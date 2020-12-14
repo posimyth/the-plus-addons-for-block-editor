@@ -1,0 +1,350 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-stylist-list{
+	position: relative;
+    width: 100%;
+    display: block
+}
+.tpgb-stylist-list .tpgb-icon-list-items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.tpgb-stylist-list .tpgb-icon-list-item {
+    margin: 0;
+    padding: 0;
+    position: relative
+}
+
+.tpgb-stylist-list .tpgb-icon-list-item:after {
+    position: absolute;
+    bottom: 0;
+    width: 100%
+}
+.tpgb-stylist-list .tpgb-icon-list-item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.tpgb-stylist-list .tpgb-icon-list-item:before:last-child {
+	display: none
+}
+.tpgb-stylist-list .tpgb-icon-list-item,
+.tpgb-stylist-list .tpgb-icon-list-item > a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.tpgb-stylist-list .tpgb-icon-list-text,
+.tpgb-stylist-list .tpgb-icon-list-text a,
+.tpgb-stylist-list .tpgb-icon-list-icon .tpgb-icon-list-icon,
+.tpgb-stylist-list .tpgb-icon-list-icon i {
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    transition: all .3s linear
+}
+
+.tpgb-stylist-list .tpgb-icon-list-item > a {
+    width: 100%
+}
+
+.tpgb-stylist-list .tpgb-icon-list-text p {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: inherit;
+    padding-bottom: 0;
+    display: inline-block
+}
+.tpgb-stylist-list .tpgb-icon-list-text a {
+    color: inherit
+}
+.tpgb-stylist-list .tpgb-icon-list-text {
+    display: inline-block
+}
+
+.tpgb-stylist-list .tpgb-icon-list-icon+.tpgb-icon-list-text {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    padding-left: 5px
+}
+
+.tpgb-stylist-list .tpgb-icon-list-icon {
+    text-align: center;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    display: inherit
+}
+
+.tpgb-stylist-list.align-center .tpgb-icon-list-item,
+.tpgb-stylist-list.align-center .tpgb-icon-list-item a,
+.tpgb-stylist-list.align-center .tpgb-icon-list-items {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto
+}
+.tpgb-stylist-list.align-left {
+    text-align: left;
+}
+.tpgb-stylist-list.align-center {
+    text-align: center;
+}
+.tpgb-stylist-list.align-right {
+    text-align: right;
+}
+.tpgb-stylist-list.align-center .tpgb-icon-list-item:after {
+    margin: auto
+}
+
+.tpgb-stylist-list.align-left .tpgb-icon-list-item,
+.tpgb-stylist-list.align-left .tpgb-icon-list-item a,
+.tpgb-stylist-list.align-left .tpgb-icon-list-items {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    text-align: left;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.tpgb-stylist-list.align-right .tpgb-icon-list-item,
+.tpgb-stylist-list.align-right .tpgb-icon-list-item a,
+.tpgb-stylist-list.align-right .tpgb-icon-list-items {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    text-align: right;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end
+}
+
+.tpgb-stylist-list ul.tpgb-icon-list-items.d-flex-center .tpgb-icon-list-icon {
+    text-align: center;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: inline-block
+}
+
+.tpgb-stylist-list ul.tpgb-icon-list-items.d-flex-top .tpgb-icon-list-icon {
+    text-align: left;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: flex-start;
+    align-self: flex-start;
+	display: initial;
+}
+.tpgb-stylist-list .tpgb-icon-list-icon .list-icon {
+    font-style: initial;
+    color: #6f14f1;
+	vertical-align:middle;
+}
+.tpgb-stylist-list .tpgb-icon-list-icon img{
+    max-width: 20px;
+}
+.tpgb-stylist-list:not(.align-right) .tpgb-icon-list-item:after {
+    left: 0
+}
+
+.tpgb-stylist-list:not(.align-left) .tpgb-icon-list-item:after {
+    right: 0
+}
+
+
+/*.tpgb-stylist-list .plus-icon-list-item.animated-columns.animation-done {
+    display: -webkit-box!important;
+    display: -webkit-flex!important;
+    display: -ms-flexbox!important;
+    display: flex!important
+}*/
+
+.tpgb-stylist-list .tpgb-icon-list-item,
+.tpgb-stylist-list.hover-inverse-effect .tpgb-icon-list-item{
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    transition: all .3s linear
+}
+
+.tpgb-stylist-list.hover-inverse-effect:hover .on-hover .tpgb-icon-list-item {
+    opacity: .6
+}
+
+.tpgb-stylist-list.hover-inverse-effect:hover .on-hover .tpgb-icon-list-item:hover{
+    opacity: 1!important;
+}
+
+@media (max-width:1024px) {
+	.tpgb-stylist-list.tablet-align-left {
+		text-align: left;
+	}
+	.tpgb-stylist-list.tablet-align-center {
+		text-align: center;
+	}
+	.tpgb-stylist-list.tablet-align-right {
+		text-align: right;
+	}
+    .tpgb-stylist-list.tablet-align-center .tpgb-icon-list-item,
+    .tpgb-stylist-list.tablet-align-center .tpgb-icon-list-item a,
+    .tpgb-stylist-list.tablet-align-center .tpgb-icon-list-items {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto
+    }
+    .tpgb-stylist-list.tablet-align-center .tpgb-icon-list-item:after {
+        margin: auto
+    }
+    .tpgb-stylist-list.tablet-align-left .tpgb-icon-list-items {
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start
+    }
+    .tpgb-stylist-list.tablet-align-left .tpgb-icon-list-item,
+    .tpgb-stylist-list.tablet-align-left .tpgb-icon-list-item a {
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        text-align: left
+    }
+    .tpgb-stylist-list.tablet-align-right .tpgb-icon-list-items {
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        -webkit-box-align: end;
+        -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+        align-items: flex-end
+    }
+    .tpgb-stylist-list.tablet-align-right .tpgb-icon-list-item,
+    .tpgb-stylist-list.tablet-align-right .tpgb-icon-list-item a {
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        text-align: right
+    }
+    .tpgb-stylist-list:not(.tablet-align-right) .tpgb-icon-list-item:after {
+        left: 0
+    }
+    .tpgb-stylist-list:not(.tablet-align-left) .tpgb-icon-list-item:after {
+        right: 0
+    }
+}
+
+@media (max-width:767px) {
+	.tpgb-stylist-list.mobile-align-left {
+		text-align: left;
+	}
+	.tpgb-stylist-list.mobile-align-center {
+		text-align: center;
+	}
+	.tpgb-stylist-list.mobile-align-right {
+		text-align: right;
+	}
+    .tpgb-stylist-list.mobile-align-center .tpgb-icon-list-item,
+    .tpgb-stylist-list.mobile-align-center .tpgb-icon-list-item a,
+    .tpgb-stylist-list.mobile-align-center .tpgb-icon-list-items {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto
+    }
+    .tpgb-stylist-list.mobile-align-center .tpgb-icon-list-item:after {
+        margin: auto
+    }
+    .tpgb-stylist-list.mobile-align-left .tpgb-icon-list-items {
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start
+    }
+    .tpgb-stylist-list.mobile-align-left .tpgb-icon-list-item,
+    .tpgb-stylist-list.mobile-align-left .tpgb-icon-list-item a {
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        text-align: left;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start
+    }
+    .tpgb-stylist-list.mobile-align-right .tpgb-icon-list-items {
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        -webkit-box-align: end;
+        -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+        align-items: flex-end
+    }
+    .tpgb-stylist-list.mobile-align-right .tpgb-icon-list-item,
+    .tpgb-stylist-list.mobile-align-right .tpgb-icon-list-item a {
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        text-align: right
+    }
+    .tpgb-stylist-list:not(.mobile-align-right) .tpgb-icon-list-item:after {
+        left: 0
+    }
+    .tpgb-stylist-list:not(.mobile-align-left) .tpgb-icon-list-item:after {
+        right: 0
+    }
+}

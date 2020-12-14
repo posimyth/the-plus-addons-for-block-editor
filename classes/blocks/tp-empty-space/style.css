@@ -1,0 +1,11 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.edit-post-visual-editor .tpgb-empty-space{
+	position:relative;
+	display:block;
+}
+[data-type="tpgb/tp-empty-space"].is-selected .tpgb-empty-space{
+	background: #f7f7f7;
+	transition: all .2s linear;
+}

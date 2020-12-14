@@ -1,0 +1,116 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-accordion-wrapper{
+	position:relative;
+	overflow-anchor: none;
+}
+.tpgb-accordion-wrapper .tpgb-accordion-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom : 5px;
+}
+.tpgb-accordion-wrapper .tpgb-accordion-header{
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: 0; 
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    transition: all .2s linear;
+    font-size: 18px;
+    line-height: 29px;
+    font-weight: 100;
+    color: #101011;
+    padding: 10px ;
+}
+.tpgb-accordion-wrapper .tpgb-accordion-content{
+    display: none;
+}
+.tpgb-accordion-wrapper .tpgb-accordion-content.active{
+    display: block;
+}
+.tpgb-accordion-header .accordion-title-icon-wrap{
+    width: 100%;
+	display: flex;
+    align-items: center;
+}
+.tpgb-accordion-content .tpgb-content-editor{
+    color: #747474;
+    font-weight: 100;
+    font-size: 16px;
+    line-height: 29px;
+}
+.tpgb-accordion-header .accordion-tab-icon{
+    display: inline-block;
+    margin-right: 10px;
+    color: #000;
+    font-size: 15px;
+}
+.tpgb-accordion-wrapper .tpgb-accordion-header i{
+    font-style: normal;
+}
+.tpgb-accordion-header.active .accordion-title,.tpgb-accordion-header:hover .accordion-title,.tpgb-accordion-header.active .accordion-tab-icon{
+    color: #6f14f1 ;
+}
+.tpgb-accordion-header.active{
+    background-color: rgba(247,247,247,100);
+}
+.tpgb-accordion-header .toggle-icon{
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    font-size: 15px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+.tpgb-accordion-header .accordion-toggle-icon{
+    margin: 0px 20px ;
+	z-index: 1;
+}
+.tpgb-accordion-header .close-toggle-icon{
+    color: #000;
+}
+.tpgb-accordion-header.active .open-toggle-icon{
+    color: #6f14f1;
+}
+.tpgb-accordion-header .open-toggle-icon,.tpgb-accordion-header.active .close-toggle-icon{
+    display: none;
+}
+.tpgb-accordion-header.active .open-toggle-icon,.tpgb-accordion-header .close-toggle-icon{
+    display: inline;
+}
+.tpgb-accordion-wrapper .accordion-title-icon-wrap .accordion-title{
+    padding: 0px;
+    margin: 0px;
+}
+/* TItle Alignment Css */
+
+.tpgb-accordion-wrapper .tpgb-accordion-item .text-left .accordion-title-icon-wrap{
+    justify-content: flex-start;
+}
+.tpgb-accordion-wrapper .tpgb-accordion-item .text-center .accordion-title-icon-wrap{
+    justify-content: center;
+}
+.tpgb-accordion-wrapper .tpgb-accordion-item .text-right .accordion-title-icon-wrap{
+    justify-content: flex-end;
+}
+
+/* TItle Alignment Css */
+
+/* Desc Alignment Css */
+.tpgb-accordion-content .tpgb-content-editor.text-left{
+    text-align: left;
+}
+.tpgb-accordion-content .tpgb-content-editor.text-center{
+    text-align: center;
+}
+.tpgb-accordion-content .tpgb-content-editor.text-right{
+    text-align: right;
+}
+/* Desc Alignment Css */

@@ -1,0 +1,77 @@
+.tp-blockquote {
+    position: relative;
+    display: block;
+    width: 100%
+}
+.tpgb-blockquote-inner {
+    position: relative;
+    display: block;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.tpgb-blockquote-inner .tpgb-quote-text {
+    font-size: inherit;
+    padding: 0!important;
+    margin: 0;
+    background: transparent;
+    border: 0;
+    font-style: normal;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    color: #747474;
+    font-weight: 400;
+}
+
+.tpgb-blockquote-inner .tpgb-quote-text:before,.tpgb-blockquote-inner .tpgb-quote-text:after {
+    display: none
+}
+
+.tpgb-blockquote-inner.tpgb-quote-style-1 {
+    background-color: rgba(240,231,254,0.5);
+    padding: 10px;
+    border-left: 3px solid #6f14f1;
+    font-size: 16px;
+    line-height: 29px;
+    color: #888
+}
+
+.tpgb-blockquote-inner.tpgb-quote-style-2 .tpgb-quote-left {
+    position: absolute;
+    font-size: 60px;
+    line-height: 1;
+    top: -40px;
+    filter: drop-shadow(7px 14px 4px rgba(0,0,0,.1));
+    color: #888;
+}
+
+.tpgb-blockquote-inner.tpgb-quote-style-2 {
+    padding: 20px;
+    background: #eee;
+    border-radius: 3px
+}
+
+.tpgb-blockquote-inner .tpgb-quote-text>span {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.tpgb-blockquote-inner.tpgb-quote-style-2 .tpgb-quote-text>span:not(.tpgb-quote-left) {
+    padding-left: 65px
+}
+
+.tpgb-blockquote-inner.tpgb-quote-style-2 .tpgb-quote-text .tpgb-quote-author {
+    text-align: right;
+    font-size: 14px;
+    line-height: 1.2;
+    margin-top: 10px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}

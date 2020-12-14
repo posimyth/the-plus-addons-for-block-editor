@@ -1,0 +1,161 @@
+.tpgb-number-counter {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.tpgb-number-counter .number-counter-inner {
+    position: relative;
+    display: block;
+    width: 100%;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.tpgb-number-counter .counter-icon-inner {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 15px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    text-align: center;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.tpgb-number-counter .counter-image-inner {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 15px;
+    max-width: 100px;
+    vertical-align: middle;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.tpgb-number-counter .counter-icon-inner .counter-icon {
+    font-size: 30px;
+    line-height: inherit!important;
+    display: inline-block;
+    color: #222;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.tpgb-number-counter .number-counter-inner .counter-title,.tpgb-number-counter .number-counter-inner .counter-title a {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 25px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.tpgb-number-counter .number-counter-inner .nc-counter-number {
+    -o-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+    margin-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 10px;
+	display: block;
+}
+
+.counter-icon-inner.shape-icon-square {
+    border: 1px solid;
+    border-radius: 2px;
+}
+
+.counter-icon-inner.shape-icon-rounded {
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+.counter-icon-inner.shape-icon-hexagon {
+    border-radius: initial;
+    background-color: #8072fc;
+    -webkit-mask: url(../../plugins/the-plus-addons-for-block-editor/assets/images/hexagon-shape.svg) top right / 100% 100%;
+}
+
+.counter-icon-inner.shape-icon-pentagon {
+    border-radius: initial;
+    background-color: #8072fc;
+    -webkit-mask: url(../../plugins/the-plus-addons-for-block-editor/assets/images/pentagon-shape.svg) top right / 100% 100%;
+    padding-top: 4px;
+}
+
+.counter-icon-inner.shape-icon-square-rotate {
+    border-radius: initial;
+    background-color: #8072fc;
+    -webkit-mask: url(../../plugins/the-plus-addons-for-block-editor/assets/images/square-rotate.svg) top right / 100% 100%;
+}
+
+.tpgb-number-counter .counter-icon-inner.shape-icon-hexagon .counter-icon,.tpgb-number-counter .counter-icon-inner.shape-icon-pentagon .counter-icon,.tpgb-number-counter .counter-icon-inner.shape-icon-square-rotate .counter-icon {
+    color: #fff;
+}
+
+.tpgb-number-counter.counter-style-2 .number-counter-inner {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.tpgb-number-counter.counter-style-2 .counter-content {
+    -webkit-flex: 1 1 0%;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;
+}
+
+.tpgb-number-counter.counter-style-2 .number-counter-inner.vertical-center {
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.tpgb-number-counter.text-right.counter-style-2 .number-counter-inner {
+    flex-direction: row-reverse;
+}
+.tpgb-number-counter.text-right.counter-style-2 .counter-content {
+    margin-right: 12px;
+}
+.tpgb-number-counter.text-left.counter-style-2 .counter-content {
+    margin-left: 12px;
+}
+.tpgb-number-counter.counter-style-2 .counter-image-inner,.tpgb-number-counter.counter-style-2 .counter-icon-inner {
+    margin-bottom: 0;
+}
+/*align css */
+.text-left{
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}

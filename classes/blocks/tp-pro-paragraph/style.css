@@ -1,0 +1,23 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-pro-paragraph{
+	position:relative;
+	display:block;
+}
+.tpgb-pro-paragraph .pro-paragraph-inner,.tpgb-pro-paragraph .pro-heading-inner,.tpgb-pro-paragraph .pro-paragraph-inner a{
+	-webkit-transition:all 0.3s linear;
+	-o-transition:all 0.3s linear;
+	transition:all 0.3s linear;
+}
+.tpgb-pro-paragraph .pro-heading-inner{
+	margin:0;
+	padding:0;
+}
+.tpgb-pro-paragraph .pro-paragraph-inner p {
+    margin: 0;
+}
+.tpgb-pro-paragraph .pro-paragraph-inner * {
+    margin: 0;
+    padding: 0;
+}

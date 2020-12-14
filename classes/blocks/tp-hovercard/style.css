@@ -1,0 +1,9 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+
+ .tpgb-hovercard-wrap{
+	position: relative;
+    display: block;
+    width: 100%;
+ }

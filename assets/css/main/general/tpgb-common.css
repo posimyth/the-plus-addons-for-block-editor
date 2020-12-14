@@ -1,0 +1,9 @@
+.tpgb-cssfilters {
+    transition: all .3s linear;
+}
+.tpgb-view-animation{
+	visibility:hidden;
+}
+.tpgb-view-animation-out{
+    visibility: visible;
+}

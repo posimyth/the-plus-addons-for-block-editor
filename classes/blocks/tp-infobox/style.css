@@ -1,0 +1,291 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-infobox {
+	display: block;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+.tpgb-infobox, .tpgb-infobox .info-box-inner {
+    -webkit-transition: all 0.3s linear;
+    moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+ .m-r-16 {
+    margin-right: 16px;
+}
+.m-l-16 {
+    margin-left: 16px
+}
+.text-left {
+    text-align: left;
+}
+.text-right{
+	text-align: right;
+}
+.text-center, .text-alignment{
+	text-align: center;
+}
+
+.tpgb-infobox .style-1.service-img-border {
+    border-right: 1px solid;
+    padding-right: 10px;
+	color: #000;
+	margin-right: 16px;
+}
+.tpgb-infobox .content_hover_effect {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.tpgb-infobox .info-box-bg-box, .tpgb-infobox .service-icon-wrap {
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.tpgb-infobox .info-box-bg-box {
+    position: relative;
+	display:block;
+	text-decoration: blink;
+}
+.tpgb-infobox .service-media {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+.tpgb-infobox .info-box-bg-box>div:first-child {
+    position: relative;
+    z-index: 11;
+}
+.tpgb-infobox .vertical-center {
+    align-items: center;
+}
+
+.tpgb-infobox .info-box-inner .service-icon {
+	color: #000;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+	font-size: 25px; 
+    text-align: center;
+	display: inherit;
+	top: auto;
+    word-spacing: initial;
+	 -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.tpgb-infobox .info-box-inner .icon-square {
+    border: 1px solid;
+    border-radius: inherit;
+}
+.tpgb-infobox .info-box-inner .icon-rounded {
+    border: 1px solid;
+    border-radius: 50%;
+}
+.tpgb-infobox .service-title {
+	display: block;
+	font-size: 18px;
+    line-height: 1.2;
+	margin-top: 0;
+	margin-bottom: 0;
+	text-decoration: blink;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.tpgb-infobox .service-content {
+    -webkit-flex: 1 1 0%;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;
+}
+.tpgb-infobox .service-border {
+	display: inline-block;
+	border: 1px solid #000;
+    width: 20%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.tpgb-infobox .service-desc {
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.tpgb-infobox .infobox-overlay-color {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    transition: all 0.3s linear;
+    z-index: 1;
+}
+
+.tpgb-infobox .info-icon-content {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+}
+.tpgb-infobox .info-box-inner .info-pin-text {
+    position: absolute;
+    top: 0;
+    background: #6fc784;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    color: #fff;
+    padding: 1px 5px;
+    border-radius: 3px;
+    width: max-content;
+    font-size: 12px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.service-bg-5 {
+	position: absolute;
+    opacity: 0.7;
+}
+.tpgb-infobox .style-5-service-content {
+    margin-left: 60px;
+    z-index: 1;
+    margin-top: 40px;
+}
+
+/* btn space added */
+.tpgb-infobox .infobox-btn-block {
+    margin-top: 10px;
+}
+
+.tpgb-jstilt {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform: perspective(500px);
+    transform: perspective(500px)
+}
+
+.tpgb-jstilt .tpgb-infobox .service-icon-wrap {
+    transform: translateZ(35px) scale(0.8);
+}
+
+.tpgb-jstilt .tpgb-infobox .service-title {
+    transform: translateZ(35px) scale(0.8);
+}
+
+.tpgb-jstilt .tpgb-infobox .service-desc {
+    transform: translateZ(35px) scale(0.8);
+}
+/*Content hover Effect*/
+.content_hover_effect {
+    position: relative;
+    display: block;
+    width: 100%
+}
+
+.content_hover_push {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.content_hover_push:hover {
+    -webkit-animation-name: hvr-push;
+    animation-name: hvr-push;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1
+}
+
+@-webkit-keyframes hvr-push {
+    50% {
+        -webkit-transform: scale(.8);
+        transform: scale(.8)
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+}
+
+@keyframes hvr-push {
+    50% {
+        -webkit-transform: scale(.8);
+        transform: scale(.8)
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+}
+
+.content_hover_float {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+	will-change:transform;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out
+}
+
+.content_hover_float:hover {
+    -webkit-transform: translateY(-8px);
+    -moz-transform: translateY(-8px);
+    -ms-transform: translateY(-8px);
+    -o-transform: translateY(-8px);
+    transform: translateY(-8px)
+}
+/*Content hover Effect*/

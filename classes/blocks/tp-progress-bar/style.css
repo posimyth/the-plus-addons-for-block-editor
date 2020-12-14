@@ -1,0 +1,273 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.progress-title-inline{
+	 display: inline-block;
+}
+.tpgb-progress-bar {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+.progress-bar-media {
+    vertical-align: middle;
+}
+.progress-bar-media {
+    display: table;
+    width: 100%;
+}
+.prog-title.prog-icon {
+    display: table-cell;
+    vertical-align: middle;
+}
+span.progres-ims {
+    color: #313131;
+    font-size: 14px;
+    vertical-align: middle;
+    align-items: center;
+}
+img.progress-bar-img {
+    width: 40px;
+}
+span.progress-bar-title {
+    color: #4a4a4a;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-weight: 400;
+	
+}
+span.progress-bar-title {
+    vertical-align: middle;
+}
+.tpgb-progress-bar:not(.tpgb-piechart) .progress-bar-title.before-icon{
+	padding-left: 5px;
+}
+.tpgb-progress-bar:not(.tpgb-piechart) .progress-bar-title.after-icon{
+	padding-right: 5px;
+}
+.progress-bar-sub-title {
+    color: #888;
+    font-size: 13px;
+    line-height: 25px;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+.counter-number {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+h5.counter-number {
+    vertical-align: middle;
+}
+.counter-number .theserivce-milestone-symbol, .counter-number .theserivce-milestone-number.icon-milestone {
+    color: #252525;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: right;
+    font-weight: 400;
+}
+.counter-number .theserivce-milestone-symbol, .counter-number .theserivce-milestone-number.icon-milestone {
+    color: #252525;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: right;
+    font-weight: 400;
+}
+.progress-bar-skill-bar-filled {
+    background: #2d9bea;
+    height: 100%;
+    width: 0%;
+    -webkit-transition: width 2s cubic-bezier(0, 0, 0.2, 1) .2s;
+    -moz-transition: width 2s cubic-bezier(0, 0, 0.2, 1) .2s;
+    transition: width 2s cubic-bezier(0, 0, 0.2, 1) .2s;
+    position: relative;
+}
+.progress-bar-skill.skill-fill {
+    background: #f3f3f3;
+}
+.progress-bar-skill.skill-fill.small {
+    height: 6px;
+    position: relative;
+}
+.progress-bar-skill.skill-fill.medium	{
+	 height: 15px;
+    position: relative;
+}
+.progress-bar-skill.skill-fill.large	{
+	 height: 40px;
+    position: relative;
+}
+.progress-bar-skill-bar-filled {
+    background-color: #6c2bcc;
+}
+.progress-bar-skill.skill-fill {
+    background-color: #d3d3d3;
+    height: 6px;
+    position: relative;
+}
+.progress-bar-skill.skill-fill	{
+    background-color: #8072fc;
+}
+.progress-bar-media-large {
+    position: absolute;
+    top: 0;
+}
+.progress-bar-media.large {
+    position: absolute;
+    -webkit-transform: translateZ(50px) translateY(-50%) translateX(-50%);
+    -ms-transform: translateZ(50px) translateY(-50%) translateX(-50%);
+    -moz-transform: translateZ(50px) translateY(-50%) translateX(-50%);
+    -o-transform: translateZ(50px) translateY(-50%) translateX(-50%);
+    transform: translateZ(50px) translateY(-50%);
+    top: 50%;
+	width: 15%;
+    padding: 0 10px;
+    -webkit-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+.progress-bar-media.large .prog-title.prog-icon.large .progres-ims, .progress-bar-media.large .prog-title.prog-icon.large .progress-bar-title {
+    color: #fff;
+}
+.progress-bar-media.large span.progress-bar-title {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 5px;
+	padding-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.progress-bar-media.large span.progres-ims {
+    display: table-cell;
+    vertical-align: middle;
+
+}
+.progress-bar-skill.skill-fill {
+    margin-top: 0px;
+}
+.progress-style-2.progress-bar-skill.skill-fill {
+    background: #f3f3f3;
+    margin-top: 5px;
+    height: 2px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    overflow: visible;
+}
+.progress-style-2 .progress-bar-skill-bar-filled:after {
+    position: absolute;
+    content: '';
+    left: 100%;
+    margin-left: -2px;
+    border-right: 2px solid #6c2bcc;
+    height: 8px;
+    top: 0;
+}
+/*-------------------*/
+.tpgb-piechart {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+.tpgb-piechart{
+	text-align: center;
+}
+.tpgb-piechart {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+.tpgb-piechart canvas {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    max-width: 100%;
+    -webkit-transform: rotateY(180deg) translateX(50%);
+    -moz-transform: rotateY(180deg) translateX(50%);
+    -o-transform: rotateY(180deg) translateX(50%);
+    -ms-transform: rotateY(180deg) translateX(50%);
+    transform: rotateY(180deg) translateX(50%);
+}
+.circle {
+    position: relative;
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.pie-circle-border .circle:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid #e7e7e7;
+    border-radius: inherit;
+    -webkit-border-radius: inherit;
+    -moz-border-radius: inherit;
+}
+.pie-numbers {
+    position: absolute;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -ms-transform: translateY(-50%) translateX(-50%);
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -o-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+    top: 50%;
+    left: 50%;
+}
+.tpgb-pie-chart{
+	padding-top: 20px;
+}
+/*...............................*/
+.tpgb-pie-chart.style-2 {
+    display: table;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 auto;
+}
+.tpgb-pie-chart.style-2 .pie-chart {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.tpgb-pie-chart.style-2 .pie-chart-style2 {
+    display: inline-block;
+    vertical-align: middle;
+}
+/*................................*/
+.tpgb-pie-circle .pie-numbers {
+    position: absolute;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -ms-transform: translateY(-50%) translateX(-50%);
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -o-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+    top: 50%;
+    left: 50%;
+    width: 100%;
+}
+.tpgb-pie-chart.style-3 .counter-number, .tpgb-pie-chart .pie-chart-style3 {
+	display: inline-block;
+    text-align: center;
+}
+.tpgb-pie-chart.style-3 .pie-chart .counter-number {
+    margin: 0;
+}
+.tpgb-pie-chart {
+    padding-top: 20px;
+}
+.tpgb-pie-chart .pie-chart{
+	text-align:center;
+}

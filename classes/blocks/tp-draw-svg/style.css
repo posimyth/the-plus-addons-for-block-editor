@@ -1,0 +1,13 @@
+/*
+Front End + Back End CSS
+*/
+.tpgb-draw-svg .svg-inner-block {
+    position: relative;
+    display: inline-flex;
+	max-width: 150px;
+    max-height: 150px;
+}
+.tpgb-draw-svg .svg-inner-block object{
+	max-width: 100%;
+	opacity:0;
+}

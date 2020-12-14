@@ -1,0 +1,83 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-section {
+	position:relative;
+	transition : all .3s ease,left 0s, width 0s;
+}
+.tpgb-row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.tpgb-section .tpgb-row {
+	width: 100%;
+	margin-left:0;
+	margin-right:0;
+}
+.tpgb-section.tpgb-section-height-full {
+	height:100vh;
+}
+.tpgb-section.tpgb-section-height-full > .tpgb-container-fluid,.tpgb-section.tpgb-section-height-full > .tpgb-container {
+	height:100%;
+}
+.tpgb-section .tpgb-section-wrap {
+    position: relative;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+	padding:0;
+	flex-wrap: wrap;
+}
+
+.tpgb-align-items-start {
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.tpgb-align-items-end {
+    -ms-flex-align: end;
+    align-items: flex-end
+}
+
+.tpgb-align-items-center {
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.tpgb-container,.tpgb-container-fluid{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%
+}
+
+@media (min-width: 576px) {
+    .tpgb-container {
+        max-width:540px
+    }
+}
+
+@media (min-width: 768px) {
+    .tpgb-container {
+        max-width:720px
+    }
+}
+
+@media (min-width: 992px) {
+    .tpgb-container {
+        max-width:960px
+    }
+}
+
+@media (min-width: 1200px) {
+    .tpgb-container {
+        max-width:1140px
+    }
+}

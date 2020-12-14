@@ -1,0 +1,157 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-testimonials{
+	position:relative;
+	display:block;
+}
+.tpgb-testimonials .testimonial-list-content .entry-content {
+    color: #313131;
+    font-size: 14px;
+    line-height: 26px;
+    letter-spacing: .5px;
+}
+.testimonial-list .entry-content{
+    margin-bottom: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.testimonial-style-1 .testimonial-list-content .entry-content,
+.testimonial-style-2 .testimonial-list-content .entry-content {
+    text-align: center;
+}
+.edit-post-visual-editor .tpgb-testimonials .author-thumb img{
+	cursor:pointer;
+}
+/*Style-1*/
+.testimonial-style-1 .testimonial-content-text {
+    padding: 35px 40px;
+    position: relative;
+    background: #fff;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 3px 12px -6px #00000042;
+    margin-bottom: 40px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.tpgb-testimonials .testi-author-title {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 0;
+    margin-top: 18px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #313131;
+    font-weight: 600;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.testimonial-style-1 .testimonial-content-text:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -13px;
+    width: 0;
+    height: 0;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-top: 13px solid #fff;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.tpgb-testimonials .post-content-image .testi-post-title{
+    color: #313131;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-align: center;
+    display: block;
+    margin: 0;
+    margin-top: 15px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.tpgb-testimonials .testi-post-designation{
+    text-align: center;
+    color: #888;
+    margin-top: 4px;
+    font-size: 13px;
+    letter-spacing: .5px;
+    font-weight: 400;
+    line-height: 18px;
+}
+.testimonial-style-1 .post-content-image,
+.testimonial-style-2 .post-content-image {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.testimonial-style-1 .author-thumb,
+.testimonial-style-2 .author-thumb {
+    position: relative;
+    display: block;
+    max-width: 70px;
+    border-radius: 40px;
+    text-align: center;
+    margin: 0 auto;
+}
+.tpgb-testimonials .author-thumb img{
+    border-radius: 50%;
+    box-shadow: 0 7px 13px -6px #00000036;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+/*Style 2*/
+.tpgb-testimonials.testimonial-style-2 .testimonial-list-content {
+    padding: 20px;
+    position: relative;
+    background: #fff;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 3px 12px -6px #00000042;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.tpgb-testimonials.testimonial-style-2 .testimonial-content-text {
+    position: relative;
+    text-align: center;
+    margin-bottom: 35px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.testimonial-style-2 .post-content-image {
+    margin-bottom: 0;
+}
+/*Style 2*/

@@ -1,0 +1,282 @@
+.tpgb-flipbox.flip-box-style-1 {
+    overflow: visible!important;
+}
+.tpgb-flipbox {
+    display: block;
+    position: relative;
+    width: 100%;
+    -webkit-transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    -ms-transition: all 0.25s linear;
+    transition: all 0.25s linear;
+    z-index: 1;
+}
+.tpgb-flipbox .flip-box-inner {
+    -webkit-transition: all 0.3s;
+    moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.tpgb-flipbox .flip-box-bg-box {
+    position: relative;
+}
+.tpgb-flipbox .flip-box-bg-box {
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    -ms-transition: 0.4s;
+}
+.tpgb-flipbox .flip-box-bg-box>div:first-child {
+    position: relative;
+    z-index: 11;
+}
+.service-flipbox {
+    position: relative;
+    -webkit-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    -ms-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+}
+.tpgb-flipbox .flip-box-inner .service-flipbox, .tpgb-flipbox .flip-box-inner .service-flipbox-front, .tpgb-flipbox .flip-box-inner .service-flipbox-back {
+    min-height: 300px;
+}
+.perspective {
+    -webkit-transform: perspective(1000px);
+    -ms-transform: perspective(1000px);
+    -moz-transform: perspective(1000px);
+    -o-transform: perspective(1000px);
+    transform: perspective(1000px);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.bezier-1 {
+    -webkit-transition: all .7s cubic-bezier(.645,.045,.355,1);
+    -moz-transition: all .7s cubic-bezier(.645,.045,.355,1);
+    -o-transition: all .7s cubic-bezier(.645,.045,.355,1);
+    -ms-transition: all .7s cubic-bezier(.645,.045,.355,1);
+    transition: all .7s cubic-bezier(.645,.045,.355,1);
+}
+.service-flipbox, .service-flipbox-holder {
+    -moz-transform: perspective(1000px);
+    -ms-transform: perspective(1000px);
+    -webkit-transform: perspective(1000px);
+    -o-transform: perspective(1000px);
+    transform: perspective(1000px);
+}
+.height-full {
+    height: 100%;
+}
+.text-center {
+    text-align: center;
+}
+.tpgb-flipbox .flip-box-inner .service-flipbox-front {
+    background: #fff;
+}
+
+.service-flipbox-back, .service-flipbox-front {
+    background-size: cover;
+    background-position: center;
+}
+
+.service-flipbox-front {
+    position: absolute;
+    z-index: 2;
+}
+.service-flipbox-back, .service-flipbox-front {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.tpgb-flipbox .service-flipbox-content {
+    position: relative;
+    z-index: 11;
+}
+.width-full {
+    width: 100%;
+}
+
+.tpgb-flipbox .flip-box-inner .service-icon {
+	display: inline-block;
+    font-size: 25px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.tpgb-flipbox.flip-box-style-1 .service-icon {
+    padding: 0;
+}
+.tpgb-flipbox.flip-box-style-1 .service-img {
+    padding: 15px;
+}
+.flip-box-inner .icon-square {
+    border: 1px solid;
+    border-radius: inherit;
+}
+.flip-box-inner .icon-rounded {
+    border: 1px solid;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.flip-box-inner .icon-hexagon {
+    border-radius: initial;
+    background-color: #8072fc;
+    -webkit-mask: url(../../plugins/the-plus-addons-for-block-editor/assets/images/hexagon-shape.svg) top right / 100% 100%;
+}
+
+.flip-box-inner .icon-pentagon {
+    border-radius: initial;
+    background-color: #8072fc;
+    -webkit-mask: url(../../plugins/the-plus-addons-for-block-editor/assets/images/pentagon-shape.svg) top right / 100% 100%;
+    padding-top: 4px;
+}
+
+.flip-box-inner .icon-square-rotate {
+    border-radius: initial;
+    background-color: #8072fc;
+    -webkit-mask: url(../../plugins/the-plus-addons-for-block-editor/assets/images/square-rotate.svg) top right / 100% 100%;
+}
+
+.flip-box-inner .service-icon {
+    font-size: inherit;
+    top: auto;
+}
+.service-content {
+    -webkit-flex: 1 1 0%;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;
+}
+.service-title {
+    font-size: 18px;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.1;
+}
+.tpgb-flipbox.flip-box-style-1 .flip-box-inner .service-title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.tpgb-flipbox .flip-box-inner .service-title {
+    color: #313131;
+}
+.tpgb-flipbox.flip-box-style-1 .flip-box-inner .service-title {
+    margin-top: 0;
+}
+.tpgb-flipbox.flip-box-style-1 .service-title {
+    padding: 15px;
+}
+.flip-box-inner .service-icon, .flip-box-inner .service-title, .flip-box-inner .service-desc, .flip-box-inner .service-desc p {
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.flip-horizontal .service-flipbox-back {
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.fold-back-horizontal {
+    -webkit-transform: translateX(-100%) rotateY(-180deg);
+    -ms-transform: translateX(-100%) rotateY(-180deg);
+    -moz-transform: translateX(-100%) rotateY(-180deg);
+    -o-transform: translateX(-100%) rotateY(-180deg);
+    transform: translateX(-100%) rotateY(-180deg);
+}
+.service-flipbox-back {
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.service-flipbox-back, .service-flipbox-front {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: table;
+}
+.no-backface {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.origin-center {
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    -moz-transform-origin: center;
+    -o-transform-origin: center;
+    transform-origin: center;
+}
+.service-flipbox-content {
+    display: table-cell;
+    vertical-align: middle;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(35px) scale(.81);
+    transform: translateZ(35px) scale(.81);
+}
+.tpgb-flipbox.flip-box-style-1 .service-desc {
+    padding: 15px;
+}
+.service-desc {
+    margin-top: 0;
+}
+.tpgb-flipbox .flipbox-front-overlay, .tpgb-flipbox .flipbox-back-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    transition: all 0.3s linear;
+    z-index: 1;
+}
+.flip-horizontal:hover .service-flipbox-front {
+    -webkit-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+.flip-horizontal:hover .service-flipbox-back {
+    -webkit-transform: rotateY(0);
+    -ms-transform: rotateY(0);
+    -moz-transform: rotateY(0);
+    -o-transform: rotateY(0);
+    transform: rotateY(0);
+}
+
+.flip-vertical:hover .service-flipbox-front {
+    -webkit-transform: rotateX(-180deg);
+    -ms-transform: rotateX(-180deg);
+    -moz-transform: rotateX(-180deg);
+    -o-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
+}
+.flip-vertical .service-flipbox-back {
+    -webkit-transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    -o-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+}
+.flip-vertical:hover .service-flipbox-back {
+    -webkit-transform: rotateX(0);
+    -ms-transform: rotateX(0);
+    -moz-transform: rotateX(0);
+    -o-transform: rotateX(0);
+    transform: rotateX(0);
+}

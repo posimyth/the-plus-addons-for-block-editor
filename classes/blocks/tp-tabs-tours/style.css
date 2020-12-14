@@ -1,0 +1,193 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-tabs-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.tpgb-tabs-tours .tpgb-tabs-wrapper .tpgb-tabs-nav span i {
+    font-style: normal;
+}
+.tpgb-tabs-wrapper .tpgb-tabs-nav-wrapper {
+    display: block;
+}
+.tpgb-tabs-wrapper ul.tpgb-tabs-nav{
+    position:relative;
+    width:auto;
+    display:inline-block;
+    padding:0;
+    list-style:none;
+    margin:0;
+}
+
+.tab-view-horizontal ul.tpgb-tabs-nav li{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: inline-flex;
+}
+.tpgb-tab-header{
+    position: relative;
+    color: #101011;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 29px;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    padding: 15px;
+}
+.tpgb-tab-header span{
+    vertical-align: middle;
+}
+.tpgb-tabs-nav-wrapper .tpgb-tab-header.active .tab-icon-wrap,.tpgb-tabs-nav-wrapper .tpgb-tab-header:hover .tab-icon-wrap,.tpgb-tabs-nav .tpgb-tab-header.active,.tpgb-tabs-nav .tpgb-tab-header:hover{
+    color: #6f14f1;
+}
+.tpgb-tab-header, .tpgb-tabs-wrapper .tpgb-tabs-content-wrapper, .tpgb-tabs-nav-wrapper .tpgb-tab-header .tab-icon-wrap,.tpgb-tabs-wrapper ul.tpgb-tabs-nav {
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    transition: all .3s linear;
+}
+.tpgb-tabs-content-wrapper .tpgb-tab-content {
+    position: relative;
+    width: 100%;
+    color: #888;
+    font-size: 15px;
+    line-height: 22px;
+    display: none;
+    opacity: 0;
+}
+.tpgb-tabs-wrapper .tpgb-tab-header .tab-icon-wrap img{
+    max-width: 15px;
+}
+.tpgb-tabs-content-wrapper .tpgb-tab-content.active {
+    display: block;
+    width: 100%;
+    opacity: 1;
+    animation: fadeIn linear 0.3s;
+}
+.tpgb-tabs-nav-wrapper .tpgb-tab-header .tab-icon-wrap {
+    padding-right: 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px;
+    color: #000000
+}
+.tpgb-tabs-wrapper .tab-mobile-title{
+    display: none;
+}
+.tpgb-tabs-wrapper .tab-mobile-title{
+    padding: 10px;
+    cursor: pointer;
+}
+.tpgb-tabs-content-wrapper .tpgb-tab-content .tpgb-content-editor{
+    font-weight: 400;
+    color: #747474;
+    font-size: 16px;
+    line-height: 26px;
+}
+/* Css For Vertical Align Nav */
+.tab-view-vertical .tpgb-tabs-wrapper{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.tab-view-vertical .tpgb-tabs-nav-wrapper {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+.tab-view-vertical .tpgb-tabs-content-wrapper{
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+.tab-view-vertical .tpgb-tabs-nav .tpgb-tab-header{
+    margin-bottom: 25px;
+}
+
+/* full Width Icon css */
+.tpgb-tabs-wrapper ul.tpgb-tabs-nav.full-width-icon .tpgb-tab-header>span {
+    display: block;
+    text-align: center;
+}
+/* full Width Icon css */
+/* Tab NAv Alignment Css */
+.tpgb-tabs-wrapper .text-left{
+    text-align: left;
+}
+.tpgb-tabs-wrapper .text-center{
+    text-align: center;
+}
+.tpgb-tabs-wrapper .text-right{
+    text-align: right;
+}
+/* Tab NAv Alignment Css */
+
+/* Css For underLine Tab */
+.tpgb-tabs-wrapper .tpgb-tabs-nav.tab-underline .tpgb-tab-header.active:before {
+    width: 100px;
+    height: 3px;
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    margin-top: 30px;
+    content: "";
+    transform: translateX(-50%);
+    background: #6f14f1;
+    background: -moz-linear-gradient(left, #fff 0%, #6f14f1 50%, #fff 100%);
+    background: -webkit-linear-gradient(left, #fff 0%, #6f14f1 50%, #fff 100%);
+    background: linear-gradient(to right, #fff 0%, #6f14f1 50%, #fff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-white',endColorstr='$color-white',GradientType=1);
+}
+ul.tpgb-tabs-nav.tab-underline:before {
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    left: 0;
+    top: 45px;
+    margin-top: 5px;
+    content: "";
+}
+.tpgb-tabs-nav.tab-underline .tpgb-tab-header.active {
+    background: linear-gradient(to bottom, #fff0 0%, #ffffff00 50%, #fff1f100 100%);
+}
+/* Css For underLine Tab */
+
+/* Vertical alignment css */
+.tab-view-vertical .tpgb-tabs-nav-wrapper.align-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.tab-view-vertical .tpgb-tabs-nav-wrapper.align-top {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+.tab-view-vertical .tpgb-tabs-nav-wrapper.align-bottom {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    justify-content: center;
+    flex-direction: column;
+}
+/* Vertical alignment css */

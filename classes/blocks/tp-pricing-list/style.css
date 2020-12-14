@@ -1,0 +1,292 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-pricing-list {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.tpgb-pricing-list h5.food-menu-tag , .tpgb-pricing-list h3.food-menu-title , .tpgb-pricing-list h4.food-menu-price {
+	margin: 0;
+}
+.tpgb-pricing-list h3.food-menu-title,.tpgb-pricing-list .food-desc,.tpgb-pricing-list h4.food-menu-price {
+    margin: 10px 0;
+}
+.food-menu-price {
+    display: inline-block;
+}
+.tpgb-pricing-list .food-menu-box {
+    background-size: cover!important;
+    background-position: center!important;
+}
+.tpgb-pricing-list .food-menu-box .food-menu-tag {
+    display: inline-block;
+    padding: 5px;
+}
+.bezier-1 {
+    -webkit-transition: all .7s cubic-bezier(.645,.045,.355,1);
+    -moz-transition: all .7s cubic-bezier(.645,.045,.355,1);
+    -o-transition: all .7s cubic-bezier(.645,.045,.355,1);
+    -ms-transition: all .7s cubic-bezier(.645,.045,.355,1);
+    transition: all .7s cubic-bezier(.645,.045,.355,1);
+}
+.perspective {
+    -webkit-transform: perspective(1000px);
+    -ms-transform: perspective(1000px);
+    -moz-transform: perspective(1000px);
+    -o-transform: perspective(1000px);
+    transform: perspective(1000px);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.tpgb-pricing-list.food-menu-style-1 .food-menu-box {
+    background: #ccc;
+    padding: 40px 30px;
+}
+.tpgb-pricing-list.food-menu-style-1 .food-menu-box .food-menu-tag {
+    display: inline-block;
+    padding: 5px;
+}
+/*....style-1 end with common css....*/
+
+/*....style-2 start....*/
+.tpgb-pricing-list.food-menu-style-2 {
+    overflow: visible;
+}
+.tpgb-pricing-list.food-menu-style-2 .food-menu-tag-block {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+.tpgb-pricing-list .food-flipbox {
+    min-height: 300px;
+}
+.tpgb-pricing-list .food-flipbox {
+    position: relative;
+    -webkit-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    -ms-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+}
+.tpgb-pricing-list .food-flipbox,.food-flipbox-holder {
+    -moz-transform: perspective(1000px);
+    -ms-transform: perspective(1000px);
+    -webkit-transform: perspective(1000px);
+    -o-transform: perspective(1000px);
+    transform: perspective(1000px);
+}
+.tpgb-pricing-list .flip-horizontal:hover .food-flipbox-front {
+    -webkit-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+	box-shadow: none;
+}
+.tpgb-pricing-list .flip-vertical:hover .food-flipbox-front {
+    -webkit-transform: rotateX(-180deg);
+    -ms-transform: rotateX(-180deg);
+    -moz-transform: rotateX(-180deg);
+    -o-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
+	box-shadow: none;
+}
+.tpgb-pricing-list .food-flipbox-back,.tpgb-pricing-list .food-flipbox-front {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.tpgb-pricing-list .food-flipbox-front {
+    position: absolute;
+    z-index: 2;
+}
+.tpgb-pricing-list .food-flipbox-back,.tpgb-pricing-list .food-flipbox-front {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: table;
+    min-height: 300px;
+    background: #b1b1b1;
+}
+.tpgb-pricing-list .food-flipbox-content {
+    display: table-cell;
+    vertical-align: middle;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(35px) scale(.81);
+    transform: translateZ(35px) scale(.81);
+}
+.tpgb-pricing-list .flip-horizontal:hover .food-flipbox-back {
+    -webkit-transform: rotateY(0);
+    -ms-transform: rotateY(0);
+    -moz-transform: rotateY(0);
+    -o-transform: rotateY(0);
+    transform: rotateY(0);
+}
+.tpgb-pricing-list .flip-vertical:hover .food-flipbox-back {
+    -webkit-transform: rotateX(0);
+    -ms-transform: rotateX(0);
+    -moz-transform: rotateX(0);
+    -o-transform: rotateX(0);
+    transform: rotateX(0);
+}
+.tpgb-pricing-list .flip-horizontal .food-flipbox-back {
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.tpgb-pricing-list .flip-vertical .food-flipbox-back {
+    -webkit-transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    -o-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+}
+.tpgb-pricing-list .food-flipbox-back {
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.tpgb-pricing-list .food-flipbox-holder.height-full {
+    min-height: 300px;
+}
+.tpgb-pricing-list .food-flipbox-front,.tpgb-pricing-list .food-flipbox-back {
+    background-size: cover;
+    background-position: center center;
+}
+.tpgb-pricing-list.food-menu-style-2 .bottom-left .food-flipbox-front .food-flipbox-content,.tpgb-pricing-list.food-menu-style-2 .bottom-right .food-flipbox-front .food-flipbox-content {
+    vertical-align: bottom;
+}
+.tpgb-pricing-list.food-menu-style-2 .top-left .food-flipbox-front .food-flipbox-content,.tpgb-pricing-list.food-menu-style-2 .top-right .food-flipbox-front .food-flipbox-content {
+    vertical-align: top;
+}
+.tpgb-pricing-list.food-menu-style-2 .top-right .food-flipbox-content,.tpgb-pricing-list.food-menu-style-2 .bottom-right .food-flipbox-content {
+    text-align: right;
+}
+.tpgb-pricing-list.food-menu-style-2 .top-left .food-menu-title,.tpgb-pricing-list.food-menu-style-2 .bottom-left .food-menu-title {
+    left: -19px;
+    padding-left: 20px;
+}
+.tpgb-pricing-list.food-menu-style-2 .top-right .food-menu-title,.tpgb-pricing-list.food-menu-style-2 .bottom-right .food-menu-title {
+    right: -19px;
+    padding-right: 20px;
+}
+.tpgb-pricing-list.food-menu-style-2 .food-menu-title{
+	color: #fff;
+}
+.tpgb-pricing-list.food-menu-style-2 .food-menu-title {
+    background: #000000b5;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+}
+.no-backface {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.height-full {
+    height: 100%;
+}
+.width-full {
+    width: 100%;
+}
+/*....style-2 end....*/
+/*....style-3 start....*/
+.tpgb-pricing-list.food-menu-style-3 .food-menu-flex {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.tpgb-pricing-list.food-menu-style-3 .food-flex-line {
+    display: flex;
+    align-items: center;
+}
+
+.tpgb-pricing-list.food-menu-style-3 .food-flex-content {
+    display: flex;
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+}
+
+.tpgb-pricing-list.food-menu-style-3 .food-flex-line .food-flex-img {
+    margin-right: 20px
+}
+
+.tpgb-pricing-list.food-menu-style-3 .food-flex-line .food-title-price {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.tpgb-pricing-list.food-menu-style-3 .food-flex-line h3.food-menu-title {
+    margin-bottom: 0;
+   /* -webkit-box-flex: 0;
+    -ms-flex: 0 1;
+    flex: 0 1; */
+    line-height: 1;
+    white-space: nowrap;
+}
+.tpgb-pricing-list.food-menu-style-3 .food-flex-line .food-menu-divider {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1;
+    flex: 1 1;
+    padding: 0 15px;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+.tpgb-pricing-list.food-menu-style-3 .food-flex-line .food-menu-divider .menu-divider {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: auto;
+}
+.tpgb-pricing-list.food-menu-style-3 .food-flex-line h4.food-menu-price {
+    margin-left: auto;
+    margin-bottom: 0;
+}
+.tpgb-pricing-list.food-menu-style-3 .food-img.img-rounded img {
+    border-radius: 10px;
+}
+.tpgb-pricing-list.food-menu-style-3 .food-img.img-circle img {
+    border-radius: 50%;
+}
+.tpgb-pricing-list.food-menu-style-3 .food-flex-imgs.food-flex-img {
+    display: block !important;
+    width: 100% !important;
+	max-width:200px;
+}
+.tpgb-pricing-list .food-img.img-custom {
+	mask-image: url(../../plugins/the-plus-addons-for-block-editor/assets/images/team-mask.png);
+    mask-repeat: no-repeat;
+    mask-size: 120% 120%;
+    mask-position: -20px -30px;
+    -webkit-mask-image: url(../../plugins/the-plus-addons-for-block-editor/assets/images/team-mask.png);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-position: 0 0;
+    height: auto;
+    display: inline-block;
+}
+@media (max-width: 767px) {
+    .tpgb-pricing-list.food-menu-style-3 .food-flex-line h3.food-menu-title {
+		white-space: initial;
+    }
+}
