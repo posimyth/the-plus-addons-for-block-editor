@@ -973,6 +973,18 @@ class Tpgb_Gutenberg_Settings_Options {
 				),
 			),*/
 			array(
+				'name' => esc_html__('Font Awesome Loading'),
+				'desc' => esc_html__('Note : If you disable this, It will stop loading at frontend throughout your website.','tpgb'),
+				'id'   => 'fontawesome_load',
+				'type' => 'select',
+				'show_option_none' => false,
+				'default' => 'enable',
+				'options' => array(
+					'enable' => esc_html__('Enable', 'tpgb'),
+					'disable' => esc_html__('Disable', 'tpgb'),
+				),
+			),
+			array(
 				'name' => esc_html__('Google Map API Key', 'tpgb'),
 				'desc' => esc_html__('NOTE : Turn Off this key If you theme already have google key option. So, It will not generate error in console for multiple google map keys.', 'tpgb'),
 				'default' => '',

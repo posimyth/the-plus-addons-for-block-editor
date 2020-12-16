@@ -1,6 +1,6 @@
 ( function( $ ) {
 	"use strict";
-		$('.tpgb-accordion-wrapper').each(function(){
+	$('.tpgb-accordion-wrapper').each(function(){
 		var $this =  $(this),
 			$type = $this.data('type'),
 			$accrodionList = $this.find('.tpgb-accordion-item'),
@@ -35,10 +35,12 @@
 		
 	});
 	var hash = window.location.hash;
-	if(hash!='' && hash!=undefined && !$(hash).hasClass("active") && $(hash).length){
+	if(hash!='' && hash!=undefined && $(hash).hasClass("tpgb-accordion-header") && !$(hash).hasClass("active") && $(hash).length){
 		$('html, body').animate({
 			scrollTop: $(hash).offset().top
 		}, 1500);
-		$(hash+".tpgb-accordion-header").trigger("click");
+		setTimeout(function(){
+			$(hash+".tpgb-accordion-header").trigger("click");
+		}, 100);
 	}
 })(jQuery);

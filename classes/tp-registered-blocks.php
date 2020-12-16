@@ -684,6 +684,21 @@ Class Tpgb_Library {
 				}
 			}
 			
+			//fontawesome icon load frontend
+			$fontawesome_load = Tp_Blocks_Helper::get_extra_option('fontawesome_load');
+			$fontawesome_pro = Tp_Blocks_Helper::get_extra_option('fontawesome_pro_kit');
+			if((empty($fontawesome_load) || $fontawesome_load=='enable' || empty($fontawesome_pro) || !defined('TPGBP_VERSION')) && $fontawesome_load!='disable'){
+				wp_enqueue_style('tpgb-fontawesome', TPGB_URL.'assets/css/extra/fontawesome.min.css', array());
+			}
+			if ( is_admin_bar_showing() ) {
+				wp_enqueue_script(
+					'tpgb-purge-js',
+					TPGB_URL."assets/js/main/general/tpgb-purge.js",
+					['jquery'],
+					TPGB_VERSION,
+					true
+				);
+			}
 			$plus_version=get_post_meta( $queried_obj, '_block_css', true );
 			if(empty($plus_version)){
 				$plus_version=time();

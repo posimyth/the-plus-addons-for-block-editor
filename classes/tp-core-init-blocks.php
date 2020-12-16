@@ -99,19 +99,6 @@ class Tp_Core_Init_Blocks {
 	 */
 	public function tp_block_assets(){
 	
-		//fontawesome icon load frontend
-		$fontawesome_pro = Tp_Blocks_Helper::get_extra_option('fontawesome_pro_kit');
-		if(empty($fontawesome_pro) || !defined('TPGBP_VERSION')){
-			wp_enqueue_style('tpgb-fontawesome', TPGB_ASSETS_URL.'assets/css/extra/fontawesome.min.css', array());
-		}
-		
-		wp_enqueue_script(
-			'tpgb-purge-js',
-			TPGB_URL."/assets/js/main/general/tpgb-purge.js",
-			['jquery'],
-			TPGB_VERSION,
-			true
-		);
 		
 		$GoogleMap_Enable = Tp_Blocks_Helper::get_extra_option('gmap_api_switch');
 		$GoogleMap_Api = '';
@@ -137,6 +124,20 @@ class Tp_Core_Init_Blocks {
 				$css_file = TPGB_URL . '/assets/css/main/general/theplus.min.css';
 				$js_file = TPGB_URL . '/assets/js/main/general/theplus.min.js';
 			}
+			
+			//fontawesome icon load frontend
+			$fontawesome_pro = Tp_Blocks_Helper::get_extra_option('fontawesome_pro_kit');
+			if(empty($fontawesome_pro) || !defined('TPGBP_VERSION')){
+				wp_enqueue_style('tpgb-fontawesome', TPGB_URL.'assets/css/extra/fontawesome.min.css', array());
+			}
+			
+			wp_enqueue_script(
+				'tpgb-purge-js',
+				TPGB_URL."assets/js/main/general/tpgb-purge.js",
+				['jquery'],
+				TPGB_VERSION,
+				true
+			);
 			
 			// Load Plus Style Editor Block
 			wp_enqueue_style(

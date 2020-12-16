@@ -194,7 +194,7 @@ h5.counter-number {
     -ms-transform: rotateY(180deg) translateX(50%);
     transform: rotateY(180deg) translateX(50%);
 }
-.circle {
+.tp-pie-circle {
     position: relative;
     overflow: hidden;
     width: 160px;
@@ -205,7 +205,7 @@ h5.counter-number {
     margin: 0 auto;
     text-align: center;
 }
-.pie-circle-border .circle:before {
+.pie-circle-border .tp-pie-circle:before {
     content: "";
     position: absolute;
     top: 0;

@@ -187,14 +187,14 @@ function tpgb_tp_progress_bar_render_callback( $attributes, $content) {
 		}
 		if($layoutType=='piechart'){
 			if($pieStyleType=='pieStyle-1'){
-				$output .='<div class = "tpgb-piechart '.esc_attr($circleBorder).'"><div class="circle"><div class="pie-numbers">'.$getCounterNo.'</div></div></div>';
+				$output .='<div class = "tpgb-piechart '.esc_attr($circleBorder).'"><div class="tp-pie-circle"><div class="pie-numbers">'.$getCounterNo.'</div></div></div>';
 				$output .='<div class = "tpgb-pie-chart">';		 
 					$output .= $getTitle;
 					$output .=$getSubTitle;
 				$output .='</div>';
 			}
 			if($pieStyleType=='pieStyle-2'){
-				$output .='<div class = "tpgb-piechart '.esc_attr($circleBorder).'"><div class="circle"><div class="pie-numbers">'.$getCounterNo.'</div></div></div>';
+				$output .='<div class = "tpgb-piechart '.esc_attr($circleBorder).'"><div class="tp-pie-circle"><div class="pie-numbers">'.$getCounterNo.'</div></div></div>';
 					$output .='<div class = "tpgb-pie-chart style-2"><div class = "pie-chart">'.$getIcon.'</div>';
 					$output .='<div class = "pie-chart-style2">';		 
 						$output .= $getTitle;
@@ -202,7 +202,7 @@ function tpgb_tp_progress_bar_render_callback( $attributes, $content) {
 					$output .='</div></div>';
 			}
 			if($pieStyleType=='pieStyle-3'){
-				$output .='<div class = "tpgb-piechart '.esc_attr($circleBorder).'"><div class="circle"><div class="pie-numbers">'.$getIcon.'</div></div></div>';
+				$output .='<div class = "tpgb-piechart '.esc_attr($circleBorder).'"><div class="tp-pie-circle"><div class="pie-numbers">'.$getIcon.'</div></div></div>';
 				$output .='<div class = "tpgb-pie-chart style-3"><div class = "pie-chart">'.$getCounterNo.'</div>';
 					$output .='<div class = "pie-chart-style3">';		 
 						$output .= $getTitle;
@@ -268,7 +268,7 @@ function tpgb_tp_progress_bar() {
 				'default' => 200,
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}}.tpgb-piechart .circle{ width:{{pieCircleSize}}px; height:{{pieCircleSize}}px;}',
+						'selector' => '{{PLUS_WRAP}}.tpgb-piechart .tp-pie-circle{ width:{{pieCircleSize}}px; height:{{pieCircleSize}}px;}',
 					],
 				],
 			],
