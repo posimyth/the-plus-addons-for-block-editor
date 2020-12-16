@@ -15,29 +15,29 @@ Say Hello to the newest member of the family, Introducing The Plus Addons for Gu
 
 [Team POSIMYTH](https://posimyth.com/) is constantly trying to improve the web and have already developed some wonderful and user friendly Addons for Elementor and WPBakery Page Builders. And we have added one more in our list. 
 
-Presenting, [The Plus Addons for Gutenberg](https://theplusaddons.com/gutenberg/).<br>
+Presenting, [The Plus Addons for Gutenberg](https://theplusaddons.com/gutenberg/).
 
-### Creative, truly creative !
+** Creative, truly creative !**
 The Plus Addons for Gutenberg is thoroughly crafted by passionate designers and developers proficient in their field. It’s developed uniquely to handle responsive needs, accessible and with tons of options of customization.
 
-### Innovative & Lightweight
+** Innovative & Lightweight**
 Gutenberg Editor has allowed The Plus Addons to fulfill user’s all logical and design needs without writing a single line of code and construct a highly flexible and best in class website. We have kept the plugin UI simple and sound and and with no compatibility issues with other plugins. 
 
-### Regular Updates & Extended Support
+** Regular Updates & Extended Support**
 Team POSIMYTH is always refining the products so users have the greatest experience and cope up with the trends of web designing.<br>
 
-### Primary features
-* Simple UI & Easy to Use fields
-* Developed with standard lightweight code practices with reduced server load
-* Superfast and highly customizable
-* No learning curve, No coding required, As good as shown in demos
-* Responsive Friendly 
-* Minimal Use of Tags with latest HTML5 & CSS3 markup
-* Cross browser compatibility
-* Custom CSS & JS options
+** Primary features**
+- Simple UI & Easy to Use fields
+- Developed with standard lightweight code practices with reduced server load
+- Superfast and highly customizable
+- No learning curve, No coding required, As good as shown in demos
+- Responsive Friendly 
+- Minimal Use of Tags with latest HTML5 & CSS3 markup
+- Cross browser compatibility
+- Custom CSS & JS options
 
 
-<H3>30+ free widgets<H3>
+**30+ free widgets**
 
 * [Accordion](https://theplusaddons.com/gutenberg/plus-blocks/accordion/) - Add a stacked list of items using it.
 * [Breadcrumbs](https://theplusaddons.com/gutenberg/plus-blocks/breadcrumb-bar/) - A secondary navigation to show user’s his location on the website.
