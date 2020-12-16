@@ -152,5 +152,5 @@ Make sure you are using [Gutenberg](https://wordpress.org/plugins/gutenberg/) wh
 - Fix : Infobox Style 3 : Margin CSS Fixed
 - Fix : Other Minor bug fix
 
-##### 1.0.0 `09 December 2020`
+#### 1.0.0 `09 December 2020`
 - Initial Release
