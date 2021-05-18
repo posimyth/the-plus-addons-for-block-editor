@@ -167,7 +167,7 @@ class Tpgb_Gutenberg_Settings_Options {
 		$this->block_lists = [
 				'tp-accordion' => [
 					'label' => esc_html__('Accordion','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/accordion/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/accordion/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'freemium',
@@ -176,7 +176,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-anything-carousel' => [
 					'label' => esc_html__('Carousel Anything','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/carousal-anything/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/carousal-anything/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -193,19 +193,12 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-blockquote' => [
 					'label' => esc_html__('Blockquote','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/blockquote/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/blockquote/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="quote-left" class="svg-inline--fa fa-quote-left fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M464 256h-80v-64a64.06 64.06 0 0 1 64-64h8a23.94 23.94 0 0 0 24-23.88V56a23.94 23.94 0 0 0-23.88-24H448a160 160 0 0 0-160 160v240a48 48 0 0 0 48 48h128a48 48 0 0 0 48-48V304a48 48 0 0 0-48-48z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M176 256H96v-64a64.06 64.06 0 0 1 64-64h8a23.94 23.94 0 0 0 24-23.88V56a23.94 23.94 0 0 0-23.88-24H160A160 160 0 0 0 0 192v240a48 48 0 0 0 48 48h128a48 48 0 0 0 48-48V304a48 48 0 0 0-48-48z"></path></g></svg>',
 					'keyword' => ['blockquote', 'Block Quotation', 'Citation', 'Pull Quotes'],
-				],
-				'tp-blog-listing' => [
-					'label' => esc_html__('Blog Listing','tpgb'),
-					'demoUrl' => '',
-					'docUrl' => '',
-					'videoUrl' => '',
-					'tag' => 'pro',
 				],
 				'tp-breadcrumbs' => [
 					'label' => esc_html__('Breadcrumbs','tpgb'),
@@ -218,7 +211,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-button' => [
 					'label' => esc_html__('Tp Button','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/button/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/button/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'freemium',
@@ -227,7 +220,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-carousel-remote' => [
 					'label' => esc_html__('Carousal Remote','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/carousal-remote/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/carousal-remote/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -236,7 +229,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-countdown' => [
 					'label' => esc_html__('Countdown','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/countdown/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/countdown/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'freemium',
@@ -254,7 +247,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-cta-banner' => [
 					'label' => esc_html__('CTA Banner','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/cta-banner/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/cta-banner/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -263,7 +256,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-data-table' => [
 					'label' => esc_html__('Data Table','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/data-table/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/data-table/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'freemium',
@@ -272,7 +265,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-draw-svg' => [
 					'label' => esc_html__('Draw SVG','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/draw-svg/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/draw-svg/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
@@ -290,7 +283,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-expand' => [
 					'label' => esc_html__('Expand','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/expand/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/expand/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -299,7 +292,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-flipbox' => [
 					'label' => esc_html__('Flipbox','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/flipbox/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/flipbox/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
@@ -308,7 +301,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-google-map' => [
 					'label' => esc_html__('Google Map','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/google-maps/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/google-maps/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'freemium',
@@ -317,7 +310,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-heading-animation' => [
 					'label' => esc_html__('Heading Animation','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/heading-animation/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/heading-animation/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -326,7 +319,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-heading-title' => [
 					'label' => esc_html__('TP Heading','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/heading-title/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/heading-title/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
@@ -335,7 +328,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-hotspot' => [
 					'label' => esc_html__('Hotspot','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/hotspot-pin-point/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/hotspot-pin-point/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -344,7 +337,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-hovercard' => [
 					'label' => esc_html__('Hover Card','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/advanced-hover-card-animations/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/advanced-hover-card-animations/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
@@ -353,7 +346,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-infobox' => [
 					'label' => esc_html__('Infobox','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/infobox/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/infobox/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'freemium',
@@ -362,7 +355,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-mailchimp' => [
 					'label' => esc_html__('Mailchimp','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/mailchimp/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/mailchimp/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -379,7 +372,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-messagebox' => [
 					'label' => esc_html__('Message box','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/message-box/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/message-box/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
@@ -388,7 +381,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-navigation-builder' => [
 					'label' => esc_html__('Navigation Menu','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/navigation-menu/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/navigation-menu/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -397,16 +390,88 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-number-counter' => [
 					'label' => esc_html__('Number Counter','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/number-counter/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/number-counter/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="hashtag" class="svg-inline--fa fa-hashtag fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M202.46 32.19a11.5 11.5 0 0 0-2.11-.19h-40.63a12 12 0 0 0-11.81 9.89L132.53 128h65l14.62-81.89a12 12 0 0 0-9.69-13.92zM72.19 465.89a12 12 0 0 0 9.7 13.92A11.5 11.5 0 0 0 84 480h40.64a12 12 0 0 0 11.81-9.89L186.11 192h-65zm163.65 0a12 12 0 0 0 9.7 13.92 11.5 11.5 0 0 0 2.11.19h40.63a12 12 0 0 0 11.82-9.89L315.47 384h-65zm130.27-433.7A11.5 11.5 0 0 0 364 32h-40.63a12 12 0 0 0-11.82 9.89L261.89 320h65l48.92-273.89a12 12 0 0 0-9.7-13.92z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M44.18 191.81a11.5 11.5 0 0 0 2.11.19H285l11-64H53.43a12 12 0 0 0-11.81 9.89l-7.14 40a12 12 0 0 0 9.7 13.92zM7.33 329.89l-7.14 40a12 12 0 0 0 9.7 13.92A11.5 11.5 0 0 0 12 384h75l11-64H19.15a12 12 0 0 0-11.82 9.89zm430.78-201.7A11.5 11.5 0 0 0 436 128h-75l-11 64h78.85a12 12 0 0 0 11.82-9.89l7.14-40a12 12 0 0 0-9.7-13.92zm-34.29 192a11.5 11.5 0 0 0-2.11-.19H163l-11 64h242.57a12 12 0 0 0 11.81-9.89l7.14-40a12 12 0 0 0-9.7-13.92z"></path></g></svg>',
 					'keyword' => ['number counter', 'counter', 'animated counter', 'Odometer']
 				],
+				'tp-post-author' => [
+					'label' => esc_html__('Post Author', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'free',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="user" class="svg-inline--fa fa-user fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M352 128A128 128 0 1 1 224 0a128 128 0 0 1 128 128z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M313.6 288h-16.7a174.1 174.1 0 0 1-145.8 0h-16.7A134.43 134.43 0 0 0 0 422.4V464a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48v-41.6A134.43 134.43 0 0 0 313.6 288z"></path></g></svg>',
+					'keyword' => ['post author', 'author','user info']
+				],
+				'tp-post-comment' => [
+					'label' => esc_html__('Post Comments', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'free',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="comment-dots" class="svg-inline--fa fa-comment-dots fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5a8 8 0 0 0-1.5 8.7A7.83 7.83 0 0 0 8 480c66.3 0 116-31.8 140.6-51.4A305 305 0 0 0 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zM128 272a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm128 0a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm128 0a32 32 0 1 1 32-32 32 32 0 0 1-32 32z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M128 208a32 32 0 1 0 32 32 32 32 0 0 0-32-32zm128 0a32 32 0 1 0 32 32 32 32 0 0 0-32-32zm128 0a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"></path></g></svg>',
+					'keyword' => ['post comments', 'comments','comments area']
+				],
+				'tp-post-content' => [
+					'label' => esc_html__('Post Content', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'free',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="file-alt" class="svg-inline--fa fa-file-alt fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M384 128H272a16 16 0 0 1-16-16V0H24A23.94 23.94 0 0 0 0 23.88V488a23.94 23.94 0 0 0 23.88 24H360a23.94 23.94 0 0 0 24-23.88V128zm-96 244a12 12 0 0 1-12 12H108a12 12 0 0 1-12-12v-8a12 12 0 0 1 12-12h168a12 12 0 0 1 12 12zm0-64a12 12 0 0 1-12 12H108a12 12 0 0 1-12-12v-8a12 12 0 0 1 12-12h168a12 12 0 0 1 12 12zm0-64a12 12 0 0 1-12 12H108a12 12 0 0 1-12-12v-8a12 12 0 0 1 12-12h168a12 12 0 0 1 12 12z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M377 105L279.1 7a24 24 0 0 0-17-7H256v112a16 16 0 0 0 16 16h112v-6.1a23.9 23.9 0 0 0-7-16.9zM276 352H108a12 12 0 0 0-12 12v8a12 12 0 0 0 12 12h168a12 12 0 0 0 12-12v-8a12 12 0 0 0-12-12zm0-64H108a12 12 0 0 0-12 12v8a12 12 0 0 0 12 12h168a12 12 0 0 0 12-12v-8a12 12 0 0 0-12-12zm0-64H108a12 12 0 0 0-12 12v8a12 12 0 0 0 12 12h168a12 12 0 0 0 12-12v-8a12 12 0 0 0-12-12z"></path></g></svg>',
+					'keyword' => ['content', 'post content', 'post excerpt', 'archive description']
+				],
+				'tp-post-image' => [
+					'label' => esc_html__('Post Image', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'free',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="file-image" class="svg-inline--fa fa-file-image fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M384 128H272a16 16 0 0 1-16-16V0H24A23.94 23.94 0 0 0 0 23.88V488a23.94 23.94 0 0 0 23.88 24H360a23.94 23.94 0 0 0 24-23.88V128zm-271.46 48a48 48 0 1 1-48 48 48 48 0 0 1 48-48zm208 240h-256l.46-48.48L104.51 328c4.69-4.69 11.8-4.2 16.49.48L160.54 368 264 264.48a12 12 0 0 1 17 0L320.54 304z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M377 105L279.1 7a24 24 0 0 0-17-7H256v112a16 16 0 0 0 16 16h112v-6.1a23.9 23.9 0 0 0-7-16.9zM112.54 272a48 48 0 1 0-48-48 48 48 0 0 0 48 48zM264 264.45L160.54 368 121 328.48c-4.69-4.68-11.8-5.17-16.49-.48L65 367.52 64.54 416h256V304L281 264.48a12 12 0 0 0-17-.03z"></path></g></svg>',
+					'keyword' => ['post featured image', 'post image', 'featured image']
+				],
+				'tp-post-listing' => [
+					'label' => esc_html__('Post Listing', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'freemium',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="list-alt" class="svg-inline--fa fa-list-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M464 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zM128 392a40 40 0 1 1 40-40 40 40 0 0 1-40 40zm0-96a40 40 0 1 1 40-40 40 40 0 0 1-40 40zm0-96a40 40 0 1 1 40-40 40 40 0 0 1-40 40zm288 168a12 12 0 0 1-12 12H204a12 12 0 0 1-12-12v-32a12 12 0 0 1 12-12h200a12 12 0 0 1 12 12zm0-96a12 12 0 0 1-12 12H204a12 12 0 0 1-12-12v-32a12 12 0 0 1 12-12h200a12 12 0 0 1 12 12zm0-96a12 12 0 0 1-12 12H204a12 12 0 0 1-12-12v-32a12 12 0 0 1 12-12h200a12 12 0 0 1 12 12z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M128 200a40 40 0 1 0-40-40 40 40 0 0 0 40 40zm0 16a40 40 0 1 0 40 40 40 40 0 0 0-40-40zm0 96a40 40 0 1 0 40 40 40 40 0 0 0-40-40z"></path></g></svg>',
+					'keyword' => ['post listing', 'related posts', 'archive posts', 'post list', 'post grid', 'post masonry','post carousel', 'post slider']
+				],
+				'tp-post-meta' => [
+					'label' => esc_html__('Post Meta Info', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'free',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M256 8C119 8 8 119.08 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 110a42 42 0 1 1-42 42 42 42 0 0 1 42-42zm56 254a12 12 0 0 1-12 12h-88a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h12v-64h-12a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h64a12 12 0 0 1 12 12v100h12a12 12 0 0 1 12 12z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M256 202a42 42 0 1 0-42-42 42 42 0 0 0 42 42zm44 134h-12V236a12 12 0 0 0-12-12h-64a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h12v64h-12a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h88a12 12 0 0 0 12-12v-24a12 12 0 0 0-12-12z"></path></g></svg>',
+					'keyword' => ['post category', 'post tags', 'post meta info', 'meta info', 'post date', 'post comment', 'post author']
+				],
+				'tp-post-navigation' => [
+					'label' => esc_html__('Post Navigation', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="exchange" class="svg-inline--fa fa-exchange fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M488 384H106l30.47 27.73a24 24 0 0 1 .47 34.4L126.13 457a24 24 0 0 1-33.94 0L9.37 374.63a32 32 0 0 1 0-45.26L92.19 247a24 24 0 0 1 33.94 0L137 257.87a24 24 0 0 1-.47 34.4L106 320h382a24 24 0 0 1 24 24v16a24 24 0 0 1-24 24z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M0 168v-16a24 24 0 0 1 24-24h382l-30.5-27.73a24 24 0 0 1-.47-34.4L385.87 55a24 24 0 0 1 33.94 0l82.82 82.34a32 32 0 0 1 0 45.26L419.81 265a24 24 0 0 1-33.94 0L375 254.13a24 24 0 0 1 .47-34.4L406 192H24a24 24 0 0 1-24-24z"></path></g></svg>',
+					'keyword' => ['previous next', 'post previous next', 'post navigation']
+				],
+				'tp-post-title' => [
+					'label' => esc_html__('Post Title', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'free',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="underline" class="svg-inline--fa fa-underline fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M432 448H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M32 64h32v160c0 88.22 71.78 160 160 160s160-71.78 160-160V64h32a16 16 0 0 0 16-16V16a16 16 0 0 0-16-16H272a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h32v160a80 80 0 0 1-160 0V64h32a16 16 0 0 0 16-16V16a16 16 0 0 0-16-16H32a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16z"></path></g></svg>',
+					'keyword' => ['post title', 'page title', 'archive title']
+				],
 				'tp-popup-builder' => [
 					'label' => esc_html__('Popup Builder','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/popup-builder/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/popup-builder/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -415,7 +480,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-pricing-list' => [
 					'label' => esc_html__('Pricing List','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/pricing-list/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/pricing-list/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
@@ -424,7 +489,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-pricing-table' => [
 					'label' => esc_html__('Pricing Table','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/pricing-table/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/pricing-table/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'freemium',
@@ -433,7 +498,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-pro-paragraph' => [
 					'label' => esc_html__('TP Paragraph','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/advance-text-block/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/advance-text-block/',
 					'docUrl' => '#doc',
 					'videoUrl' => '#video',
 					'tag' => 'free',
@@ -442,7 +507,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-process-steps' => [
 					'label' => esc_html__('Process Steps','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/process-steps/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/process-steps/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -451,7 +516,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-progress-bar' => [
 					'label' => esc_html__('Progress Bar','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/progress-bar/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/progress-bar/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
@@ -467,9 +532,18 @@ class Tpgb_Gutenberg_Settings_Options {
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="grip-lines" class="svg-inline--fa fa-grip-lines fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M512 304v32a16 16 0 0 1-16 16H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h480a16 16 0 0 1 16 16z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M512 176v32a16 16 0 0 1-16 16H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h480a16 16 0 0 1 16 16z"></path></g></svg>',
 					'keyword' => ['Row', 'layout'],
 				],
+				'tp-site-logo' => [
+					'label' => esc_html__('Site Logo','tpgb'),
+					'demoUrl' => '#',
+					'docUrl' => '#doc',
+					'videoUrl' => '#video',
+					'tag' => 'free',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="fire" class="svg-inline--fa fa-fire fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M216 23.86C216 9.06 204.15 0 192 0a24 24 0 0 0-20.1 10.82C48 191.85 224 200 224 288v.81A64 64 0 0 1 160 352h-.87C124 351.5 96 322.18 96 287v-85.5c0-14.52-11.83-24-24.15-24a23.63 23.63 0 0 0-17.28 7.5C27.8 213.16 0 261.33 0 320c0 105.87 86.13 192 192 192s192-86.13 192-192c0-170.29-168-193-168-296.14zM192 444a123.61 123.61 0 0 1-87.78-36.5l2.63 1.21a129.9 129.9 0 0 0 51.39 11.23h1.78A132 132 0 0 0 292 289.71V288c0-27.83-8.69-54.44-25.84-79.11l-.3-.43c10.81 11 20.62 22.28 28.61 34.68C309.16 265.92 316 290.34 316 320a124.15 124.15 0 0 1-124 124z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M265.86 208.46c10.81 11 20.62 22.28 28.61 34.68C309.16 265.92 316 290.34 316 320a123.94 123.94 0 0 1-211.78 87.5l2.63 1.21a129.9 129.9 0 0 0 51.39 11.23h1.78A132 132 0 0 0 292 289.71V288c0-27.83-8.69-54.44-25.84-79.11l-.3-.43"></path></g></svg>',
+					'keyword' => ['site logo', 'logo'],
+				],
 				'tp-stylist-list' => [
 					'label' => esc_html__('Stylist Lists','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/stylish-list/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/stylish-list/',
 					'docUrl' => '#doc',
 					'videoUrl' => '#video',
 					'tag' => 'freemium',
@@ -478,7 +552,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-scroll-navigation' => [
 					'label' => esc_html__('Scroll Navigation','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/one-page-scroll-navigation/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/one-page-scroll-navigation/',
 					'docUrl' => '#doc',
 					'videoUrl' => '#video',
 					'tag' => 'pro',
@@ -487,7 +561,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-social-icons' => [
 					'label' => esc_html__('Social Icon','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/social-icon/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/social-icon/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'freemium',
@@ -504,7 +578,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-switcher' => [
 					'label' => esc_html__('Switcher','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/switcher/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/switcher/',
 					'docUrl' => '#doc',
 					'videoUrl' => '#video',
 					'tag' => 'pro',
@@ -513,7 +587,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-table-content' => [
 					'label' => esc_html__('Table of Contents','tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/table-of-contents/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/table-of-contents/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'pro',
@@ -522,7 +596,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-tabs-tours' => [
 					'label' => esc_html__('Tabs Tours', 'tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/tabs-tours/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/tabs-tours/',
 					'docUrl' => '#doc',
 					'videoUrl' => '#video',
 					'tag' => 'freemium',
@@ -539,7 +613,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-testimonials' => [
 					'label' => esc_html__('Testimonials', 'tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-listing/testimonials/',
+					'demoUrl' => 'https://theplusblocks.com/plus-listing/testimonials/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'freemium',
@@ -556,7 +630,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				],
 				'tp-video' => [
 					'label' => esc_html__('TP Video', 'tpgb'),
-					'demoUrl' => 'http://theplusaddons.com/gutenberg/plus-blocks/video/',
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/video/',
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',

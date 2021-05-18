@@ -1,13 +1,13 @@
 /*slick carousel*/
 ( function( $ ) {
 	"use strict";
-	if($(".tpgb-carousel").length > 0){
+	if( $(".tpgb-carousel").length > 0 ) {
 		$(".tpgb-carousel").each(function(i){
 			tpgb_carousel_list(this);
 		})
 	}
-})(jQuery);
-function tpgb_carousel_list(element){	
+})( jQuery );
+function tpgb_carousel_list(element) {
 	var $=jQuery,
 	current = $(element),
 	con_id = current.data('id'),

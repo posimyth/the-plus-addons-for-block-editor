@@ -257,6 +257,72 @@ function tpgb_registered_blocks(){
 				],
 			],
 		],
+		TPGB_CATEGORY.'/tp-post-title' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-post-title/style.css',
+				],
+			],
+		],
+		TPGB_CATEGORY.'/tp-post-content' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-post-content/style.css',
+				],
+			],
+		],
+		TPGB_CATEGORY.'/tp-post-image' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-post-image/style.css',
+				],
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/js/main/tp-post-image/tpgb-post-image.min.js',
+				],
+			],
+		],
+		TPGB_CATEGORY.'/tp-post-listing' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/bootstrap-grid.min.css',
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-post-listing/style.css',
+				],
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/extra/isotope.pkgd.min.js',
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/post-listing/post-masonry.min.js',
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/post-listing/post-listing.min.js',
+				],
+			],
+		],
+		TPGB_CATEGORY.'/tp-post-author' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-post-author/style.css',
+				],
+			],
+		],
+		TPGB_CATEGORY.'/tp-post-meta' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-post-meta/style.css',
+				],
+			],
+		],
+		TPGB_CATEGORY.'/tp-post-comment' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/bootstrap-grid.min.css',
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-post-comment/style.css',
+				],
+			],
+		],
+		TPGB_CATEGORY.'/tp-site-logo' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-site-logo/style.css',
+				],
+			],
+		],
 		'creativeImageParallax' => [
 			'dependency' => [
 				'js' => [
@@ -387,6 +453,14 @@ Class Tpgb_Library {
 			TPGB_CATEGORY.'/tp-tabs-tours' => TPGB_CATEGORY.'/tp-tabs-tours',
 			TPGB_CATEGORY.'/tp-testimonials' => TPGB_CATEGORY.'/tp-testimonials',
 			TPGB_CATEGORY.'/tp-video' => TPGB_CATEGORY.'/tp-video',
+			TPGB_CATEGORY.'/tp-post-title' => TPGB_CATEGORY.'/tp-post-title',
+			TPGB_CATEGORY.'/tp-post-content' => TPGB_CATEGORY.'/tp-post-content',
+			TPGB_CATEGORY.'/tp-post-image' => TPGB_CATEGORY.'/tp-post-image',
+			TPGB_CATEGORY.'/tp-post-author' => TPGB_CATEGORY.'/tp-post-author',
+			TPGB_CATEGORY.'/tp-post-listing' => TPGB_CATEGORY.'/tp-post-listing',
+			TPGB_CATEGORY.'/tp-post-meta' => TPGB_CATEGORY.'/tp-post-meta',
+			TPGB_CATEGORY.'/tp-post-comment' => TPGB_CATEGORY.'/tp-post-comment',
+			TPGB_CATEGORY.'/tp-site-logo' => TPGB_CATEGORY.'/tp-site-logo',
 		];
 		
 		if(has_filter('tpgb_blocks_register_render')) {
@@ -959,7 +1033,6 @@ Class Tpgb_Library {
 			$options = (!empty($block['attrs'])) ? $block['attrs'] : '';
 			$this->plus_blocks_options( $options, $block['blockName'] );
 			$this->transient_blocks[] = $block['blockName'];
-			
 		}
 		return $block_content;
 	}
@@ -1069,9 +1142,9 @@ Class Tpgb_Library {
             return true;
         }
         
-        if (isset($_REQUEST['action'])) {
+        /*if (isset($_REQUEST['action'])) {
             return true;
-        }
+        }*/
 
         return false;
     }

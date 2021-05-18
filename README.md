@@ -2,15 +2,15 @@
 
 **Contributors:** posimyththemes, nirmalkavaiya, sagarpatel124
 
-**Donate link:** https://theplusaddons.com/gutenberg/
+**Donate link:** https://theplusblocks.com/
 
 **Tags:** gutenberg, gutenberg addons, gutenberg blocks, gutenberg widgets, the plus addons for gutenberg, the plus widgets gutenberg, free gutenberg addons,drag and drop, gutenberg widget pack, popular addons for gutenberg, powerful addons for gutenberg, best addons for gutenberg
 
 **Requires at least:** 4.0
 
-**Tested up to:** 5.5
+**Tested up to:** 5.7
 
-**Stable tag:** 1.0.4
+**Stable tag:** 1.1.0
 
 **Requires PHP:** 5.6
 
@@ -24,7 +24,7 @@ Say Hello to the newest member of the family, Introducing The Plus Addons for Gu
 
 [Team POSIMYTH](https://posimyth.com/) is constantly trying to improve the web and have already developed some wonderful and user friendly Addons for Elementor and WPBakery Page Builders. And we have added one more in our list. 
 
-Presenting, [The Plus Addons for Gutenberg](https://theplusaddons.com/gutenberg/).
+Presenting, [The Plus Addons for Gutenberg](https://theplusblocks.com/).
 
 **Creative, truly creative !**
 
@@ -51,33 +51,33 @@ Team POSIMYTH is always refining the products so users have the greatest experie
 
 **30+ free widgets**
 
-- [Accordion](https://theplusaddons.com/gutenberg/plus-blocks/accordion/) - Add a stacked list of items using it.
-- [Breadcrumbs](https://theplusaddons.com/gutenberg/plus-blocks/breadcrumb-bar/) - A secondary navigation to show user’s his location on the website.
-- [Blockquote](http://theplusaddons.com/gutenberg/plus-blocks/blockquote/) - Extended quotation.
-- [Button](http://theplusaddons.com/gutenberg/plus-blocks/button/) - A clickable element for multiple purposes. 
-- [Countdown](http://theplusaddons.com/gutenberg/plus-blocks/countdown/) - Sequence of backward counting to show the remaining time. 
-- [Creative Images](http://theplusaddons.com/gutenberg/plus-blocks/creative-images/) - Image with more than creative options.
-- [Draw SVG](http://theplusaddons.com/gutenberg/plus-blocks/draw-svg/) - Self drawing image.
-- [Flipbox](http://theplusaddons.com/gutenberg/plus-blocks/flipbox/) - UI widget which flips itself on hover.
-- [Google Map](http://theplusaddons.com/gutenberg/plus-blocks/google-maps/) - Simply Google maps with way more options.
-- [Heading Title](http://theplusaddons.com/gutenberg/plus-blocks/heading-title/) - A title and a description option.
-- [Hover Card](http://theplusaddons.com/gutenberg/plus-blocks/advanced-hover-card-animations/) - Most creative UI widget to make customized layouts.
-- [Infobox](http://theplusaddons.com/gutenberg/plus-blocks/infobox/) - List of features.
-- [Message Box](http://theplusaddons.com/gutenberg/plus-blocks/message-box/) - Alert box with creative UI.
-- [Number Counter](http://theplusaddons.com/gutenberg/plus-blocks/number-counter/) - A counter to count to some specific number.
-- [PieChart](http://theplusaddons.com/gutenberg/plus-blocks/piechart/) - A circular statistical graph to display data.
-- [Pricing List](http://theplusaddons.com/gutenberg/plus-blocks/pricing-list/) - List of current prices of the different items, kind of menu.
-- [Pricing Table](http://theplusaddons.com/gutenberg/plus-blocks/pricing-table/) - Table to show prices of single product with different variants or plans.
-- [Progress Bar](http://theplusaddons.com/gutenberg/plus-blocks/progress-bar/) - Visualize the progression of program or activity.
-- [Social Icon](http://theplusaddons.com/gutenberg/plus-blocks/social-icon/) - A list of your social media profiles.
-- [Stylish List](http://theplusaddons.com/gutenberg/plus-blocks/stylish-list/) - Sequence of connected items in a stylish way.
-- [Tabs Tours](http://theplusaddons.com/gutenberg/plus-blocks/tabs-tours/) - Display multiple portions of content concurrently.
-- [Testimonials](http://theplusaddons.com/gutenberg/plus-listing/testimonials/) - Testimonials for your service by your clients in a slider form.
-- [Video](http://theplusaddons.com/gutenberg/plus-blocks/video/) - Youtube / Vimeo / Custom video.
-- [Data Table](http://theplusaddons.com/gutenberg/plus-blocks/data-table/) - Display information in tabular form with rows and columns.
-- [Column](https://theplusaddons.com/gutenberg/column/) - Vertical section.
-- [Pro Paragraph](http://theplusaddons.com/gutenberg/plus-blocks/advance-text-block/) - A WYSIWYG text editor with some extra features. 
-- [Section / Row](https://theplusaddons.com/gutenberg/row/) - Horizontal Section.
+- [Accordion](https://theplusblocks.com/plus-blocks/accordion/) - Add a stacked list of items using it.
+- [Breadcrumbs](https://theplusblocks.com/plus-blocks/breadcrumb-bar/) - A secondary navigation to show user’s his location on the website.
+- [Blockquote](http://theplusblocks.com/plus-blocks/blockquote/) - Extended quotation.
+- [Button](http://theplusblocks.com/plus-blocks/button/) - A clickable element for multiple purposes. 
+- [Countdown](http://theplusblocks.com/plus-blocks/countdown/) - Sequence of backward counting to show the remaining time. 
+- [Creative Images](http://theplusblocks.com/plus-blocks/creative-images/) - Image with more than creative options.
+- [Draw SVG](http://theplusblocks.com/plus-blocks/draw-svg/) - Self drawing image.
+- [Flipbox](http://theplusblocks.com/plus-blocks/flipbox/) - UI widget which flips itself on hover.
+- [Google Map](http://theplusblocks.com/plus-blocks/google-maps/) - Simply Google maps with way more options.
+- [Heading Title](http://theplusblocks.com/plus-blocks/heading-title/) - A title and a description option.
+- [Hover Card](http://theplusblocks.com/plus-blocks/advanced-hover-card-animations/) - Most creative UI widget to make customized layouts.
+- [Infobox](http://theplusblocks.com/plus-blocks/infobox/) - List of features.
+- [Message Box](http://theplusblocks.com/plus-blocks/message-box/) - Alert box with creative UI.
+- [Number Counter](http://theplusblocks.com/plus-blocks/number-counter/) - A counter to count to some specific number.
+- [PieChart](http://theplusblocks.com/plus-blocks/piechart/) - A circular statistical graph to display data.
+- [Pricing List](http://theplusblocks.com/plus-blocks/pricing-list/) - List of current prices of the different items, kind of menu.
+- [Pricing Table](http://theplusblocks.com/plus-blocks/pricing-table/) - Table to show prices of single product with different variants or plans.
+- [Progress Bar](http://theplusblocks.com/plus-blocks/progress-bar/) - Visualize the progression of program or activity.
+- [Social Icon](http://theplusblocks.com/plus-blocks/social-icon/) - A list of your social media profiles.
+- [Stylish List](http://theplusblocks.com/plus-blocks/stylish-list/) - Sequence of connected items in a stylish way.
+- [Tabs Tours](http://theplusblocks.com/plus-blocks/tabs-tours/) - Display multiple portions of content concurrently.
+- [Testimonials](http://theplusblocks.com/plus-listing/testimonials/) - Testimonials for your service by your clients in a slider form.
+- [Video](http://theplusblocks.com/plus-blocks/video/) - Youtube / Vimeo / Custom video.
+- [Data Table](http://theplusblocks.com/plus-blocks/data-table/) - Display information in tabular form with rows and columns.
+- [Column](https://theplusblocks.com/column/) - Vertical section.
+- [Pro Paragraph](http://theplusblocks.com/plus-blocks/advance-text-block/) - A WYSIWYG text editor with some extra features. 
+- [Section / Row](https://theplusblocks.com/row/) - Horizontal Section.
 - Spacer - Add space between components.
 - And Many More to Come !!!
 
@@ -135,6 +135,16 @@ Make sure you are using [Gutenberg](https://wordpress.org/plugins/gutenberg/) wh
 - [Contact Us](http://m.me/tpagutenberg/) if you want some custom / extra features and we will try to deliver a solution as soon as possible.
 
 ### Changelog
+
+#### 1.1.0 `18 May 2020`
+- Added : Site Logo
+- Added : Post Listing Block
+- Added : Post Title Block
+- Added : Post Content Block
+- Added : Post Meta Info Block
+- Added : Post Image Block
+- Added : Post Comment Block
+- Added : Post Author Info Block
 
 #### 1.0.4 `16 December 2020`
 - Fix : Nested blocks dynamic assets loading bug fix

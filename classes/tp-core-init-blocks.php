@@ -12,6 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+define('TPGB_ASSET_PATH', wp_upload_dir()['basedir'] . DIRECTORY_SEPARATOR . 'theplus_gutenberg');
+define('TPGB_ASSET_URL', wp_upload_dir()['baseurl'] . '/theplus_gutenberg');
+		
 /**
  * Tp_Core_Init_Blocks.
  *
@@ -43,8 +46,7 @@ class Tp_Core_Init_Blocks {
 	 */
 	public function __construct() {
 		
-		define('TPGB_ASSET_PATH', wp_upload_dir()['basedir'] . DIRECTORY_SEPARATOR . 'theplus_gutenberg');
-		define('TPGB_ASSET_URL', wp_upload_dir()['baseurl'] . '/theplus_gutenberg');
+		
 		
 		add_filter( 'block_categories', array( $this, 'tp_register_block_category' ), 10, 2 );
 		
@@ -61,6 +63,7 @@ class Tp_Core_Init_Blocks {
 		
 		//Load Css/Js File blocks
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_load_block_css_js'));
+		add_action('wp_enqueue_scripts', array($this, 'enqueue_post_css'));
 		add_action('wp_footer', array($this, 'template_load_block_css_js'));
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_css_js'));
 	}
@@ -111,11 +114,11 @@ class Tp_Core_Init_Blocks {
 		
 		// Generate Block Editor Style and Scripts
 		if (tpgb_library()->is_preview_mode()) {
-			
+
 			if (!tpgb_library()->check_cache_files()) {
 				$blocksList= tpgb_library()->plus_generate_scripts(tpgb_library()->get_plus_block_settings());
 			}
-			
+
 			// enqueue scripts
 			if (tpgb_library()->check_cache_files()) {
 				$css_file = TPGB_ASSET_URL . '/theplus.min.css';
@@ -124,13 +127,13 @@ class Tp_Core_Init_Blocks {
 				$css_file = TPGB_URL . '/assets/css/main/general/theplus.min.css';
 				$js_file = TPGB_URL . '/assets/js/main/general/theplus.min.js';
 			}
-			
+
 			//fontawesome icon load frontend
 			$fontawesome_pro = Tp_Blocks_Helper::get_extra_option('fontawesome_pro_kit');
 			if(empty($fontawesome_pro) || !defined('TPGBP_VERSION')){
 				wp_enqueue_style('tpgb-fontawesome', TPGB_URL.'assets/css/extra/fontawesome.min.css', array());
 			}
-			
+
 			wp_enqueue_script(
 				'tpgb-purge-js',
 				TPGB_URL."assets/js/main/general/tpgb-purge.js",
@@ -190,7 +193,7 @@ class Tp_Core_Init_Blocks {
     public function editor_assets() {
 		
 		if (!defined('TPGBP_VERSION')) {
-			wp_register_style('tpgb-block-editor-css', TPGB_ASSETS_URL.'assets/css/admin/tpgb-blocks-editor.min.css', array('wp-edit-blocks'),TPGB_VERSION);
+			wp_enqueue_style('tpgb-block-editor-css', TPGB_ASSETS_URL.'assets/css/admin/tpgb-blocks-editor.min.css', array('wp-edit-blocks'),TPGB_VERSION);
 		}
 		
 		wp_enqueue_script( 'tpgb-xdlocalstorage-js', TPGB_ASSETS_URL . 'assets/js/extra/xdlocalstorage.js', array( 'wp-blocks' ), TPGB_VERSION, false );
@@ -224,6 +227,7 @@ class Tp_Core_Init_Blocks {
 			'fontawesome' => false,
 			'contactform_list' => Tp_Blocks_Helper::get_contact_form_post(),
 			'preview_image' => esc_url(TPGB_URL .'assets/images/tpgb-placeholder.jpg'),
+			'taxonomy_list' => Tp_Blocks_Helper::tpgb_get_post_taxonomies(),
 		);
 		
 		if(has_filter('tpgb_load_localize')) {
@@ -439,7 +443,6 @@ class Tp_Core_Init_Blocks {
 
 			// set block meta
 			if ($is_preview==false) {
-				update_post_meta($post_id, '__tpgb_available_blocks', serialize($params['available_blocks']));
 				return ['success' => true, 'message' => __('Plus block css updated.', 'tpgb'), 'data' => $params];
 			}else{
 				return ['success' => true, 'message' => __('Plus block preview css updated.', 'tpgb'), 'data' => $params];
@@ -512,8 +515,6 @@ class Tp_Core_Init_Blocks {
 	 * Frontend Enqueue Scripts
 	 **/
 	public function template_load_block_css_js(){
-		$upload_dir			= wp_get_upload_dir();
-		$upload_base_dir 	= trailingslashit($upload_dir['basedir']);
 		$post_ids = [];
 		if(has_filter('tpgb_template_get_post_id')) {
 			$post_ids = apply_filters('tpgb_template_get_post_id', $post_ids);
@@ -521,19 +522,26 @@ class Tp_Core_Init_Blocks {
 		
 		if(!empty($post_ids)){
 			foreach($post_ids as $post_id){
-				$css_path			= $upload_base_dir . "theplus_gutenberg/plus-css-{$post_id}.css";
-				
+				$this->enqueue_post_css($post_id);
+			}
+		}
+	}
+	
+	public function enqueue_post_css($post_id = ''){
+		if(!empty($post_id)){
+			$upload_dir			= wp_get_upload_dir();
+			$upload_base_dir 	= trailingslashit($upload_dir['basedir']);
+			$css_path			= $upload_base_dir . "theplus_gutenberg/plus-css-{$post_id}.css";
+			
+			if (file_exists($css_path)) {
 				$plus_version=get_post_meta( $post_id, '_block_css', true );
 				if(empty($plus_version)){
 					$plus_version=time();
 				}
-				
-				if (file_exists($css_path)) {
-					$css_file_url = trailingslashit($upload_dir['baseurl']);
-					$css_url     = $css_file_url . "theplus_gutenberg/plus-css-{$post_id}.css";
-					if (!$this->is_editor_screen()) {
-						wp_enqueue_style("plus-post-{$post_id}", $css_url, false, $plus_version);
-					}
+				$css_file_url = trailingslashit($upload_dir['baseurl']);
+				$css_url     = $css_file_url . "theplus_gutenberg/plus-css-{$post_id}.css";
+				if (!$this->is_editor_screen()) {
+					wp_enqueue_style("plus-post-{$post_id}", $css_url, false, $plus_version);
 				}
 			}
 		}

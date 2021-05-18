@@ -273,6 +273,25 @@ class Tpgb_Blocks_Global_Options {
 					],
 				],
 			],
+			
+			'globalClasses' => [
+				'type' => 'string',
+				'default' => '',
+			],
+			'globalId' => [
+				'type' => 'string',
+				'default' => '',
+			],
+			'globalCustomCss' => [
+				'type' => 'string',
+				'default' => '',
+				'style' => [
+					(object) [
+						'selector' => '',
+					],
+				],
+			],
+			
 			'globalAnim' => [
 				'type' => 'object',
 				'default' => [ 'md' => 'none' ],
@@ -879,9 +898,19 @@ class Tpgb_Blocks_Global_Options {
 			}
 			
 			$outputWrap = '';
-			if(!empty($animationEffect) || !empty($animationOutEffect) || !empty($filterEffect)  || !empty($Plus3DTilt) || !empty($PlusMouseParallax) ){
+			
+			$wrapClass = '';
+			if( (!empty($attributes['globalClasses'])) ){
+				$wrapClass .= $attributes['globalClasses'];
+			}
+			$wrapID = '';
+			if( (!empty($attributes['globalId'])) ){
+				$wrapID .= 'id="'.esc_attr($attributes['globalId']).'"';
+			}
+			
+			if(!empty($wrapID) || !empty($wrapClass) || !empty($attributes['globalCustomCss']) || !empty($animationEffect) || !empty($animationOutEffect) || !empty($filterEffect)  || !empty($Plus3DTilt) || !empty($PlusMouseParallax) ){
 				
-				$outputWrap .= '<div class="tpgb-wrap-'.esc_attr($attributes['block_id']).' '.esc_attr($animClass).'" '.$animAttr.' >';
+				$outputWrap .= '<div '.$wrapID.' class="tpgb-wrap-'.esc_attr($attributes['block_id']).' '.esc_attr($wrapClass).' '.esc_attr($animClass).'" '.$animAttr.' >';
 					
 					$outputWrap .= $content;
 					

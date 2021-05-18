@@ -119,7 +119,7 @@ echo '<div class="tpgb-panel-welcome-page">';
 						echo '<li>'.esc_html__('Fix : Other Minor bug fix','tpgb').'</li>';
 					echo '</ul>';
 				echo '</div>';
-				echo '<a href="https://theplusaddons.com/gutenberg/change-log/" class="tpgb-panel-btn tpgb-mt-8" title="'.esc_attr__('change log','tpgb').'" target="_blank">'.esc_html__('Full Change log','tpgb').'</a>';
+				echo '<a href="https://theplusblocks.com/change-log/" class="tpgb-panel-btn tpgb-mt-8" title="'.esc_attr__('change log','tpgb').'" target="_blank">'.esc_html__('Full Change log','tpgb').'</a>';
 			echo '</div>';
 			/*Welcome Change log*/
 			/*Welcome FAQ*/
@@ -244,7 +244,7 @@ echo '<div class="tpgb-panel-welcome-page">';
 				echo '<div class="tpgb-sec-subtitle">'.esc_html__('Get latest updates, Offers and more on your email.','tpgb').'</div>';
 				echo '<div class="tpgb-sec-border"></div>';
 				echo '<div class="tpgb-sec-desc">'.esc_html__('Want to join our newsletter? We share tricks & tips related to Product and WordPress itself. On top of that, You will get timely notifications of new plugin updates and lots more.','tpgb').'</div>';
-				echo '<a href="https://theplusaddons.com/gutenberg/#ft-subscribe" class="tpgb-panel-btn tpgb-mt-8" title="'.esc_attr__('Subscribe Us','tpgb').'" target="_blank">'.esc_html__('Subscribe Us','tpgb').'</a>';
+				echo '<a href="https://theplusblocks.com/#ft-subscribe" class="tpgb-panel-btn tpgb-mt-8" title="'.esc_attr__('Subscribe Us','tpgb').'" target="_blank">'.esc_html__('Subscribe Us','tpgb').'</a>';
 			echo '</div>';
 			/*subscriber*/
 		echo '</div>';

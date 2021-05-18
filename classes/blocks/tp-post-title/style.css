@@ -1,0 +1,24 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-post-title{
+	position:relative;
+	display:block;
+}
+.tpgb-post-title .tpgb-entry-title{
+	display:block;
+}
+.tpgb-post-title .tpgb-entry-title {
+    margin: 0;
+}
+.tpgb-post-title .tpgb-entry-title,.tpgb-post-title .tpgb-entry-title a{
+	margin: 0;
+    padding: 0;
+	display: inline-block;
+    -webkit-transition:all 0.3s linear;
+	-o-transition:all 0.3s linear;
+	transition:all 0.3s linear;
+}
+/*.tpgb-post-title .tp-prepost-title {
+    vertical-align: middle;
+}*/

@@ -34,7 +34,6 @@
 						var p_list = $(this).closest(".tpgb-isotope"),
 							uid = p_list.data("id");
 
-							console.log($('#'+uid).find(".post-loop-inner"))
 						var d = $(this).attr("data-filter");
 								$(this).parent().parent().find(".active").removeClass("active"),
 								$(this).addClass("active"),

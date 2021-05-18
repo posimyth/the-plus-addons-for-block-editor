@@ -43,6 +43,7 @@ class Tp_Blocks_Helper {
 		add_action('plugins_loaded', array($this, 'init_blocks_load'));
 		add_action('wp_head', array($this,'custom_css_js_load'));
 		add_filter('upload_mimes', array($this,'tpgb_mime_types') );
+		add_action( 'wp_ajax_tpgb_cross_cp_import', array( $this, 'cross_copy_paste_media_import' ) );
 	}
 	
 	/* Load Custom Css and Js
@@ -127,11 +128,19 @@ class Tp_Blocks_Helper {
 			'tp-infobox' => TPGB_CATEGORY.'/tp-infobox',
 			'tp-messagebox' => TPGB_CATEGORY.'/tp-messagebox',
 			'tp-number-counter' => TPGB_CATEGORY.'/tp-number-counter',
+			'tp-post-author' => TPGB_CATEGORY.'/tp-post-author',
+			'tp-post-comment' => TPGB_CATEGORY.'/tp-post-comment',
+			'tp-post-content' => TPGB_CATEGORY.'/tp-post-content',
+			'tp-post-image' => TPGB_CATEGORY.'/tp-post-image',
+			'tp-post-listing' => TPGB_CATEGORY.'/tp-post-listing',
+			'tp-post-meta' => TPGB_CATEGORY.'/tp-post-meta',
+			'tp-post-title' => TPGB_CATEGORY.'/tp-post-title',
 			'tp-pricing-list' => TPGB_CATEGORY.'/tp-pricing-list',
 			'tp-pricing-table' => TPGB_CATEGORY.'/tp-pricing-table',
 			'tp-pro-paragraph' => TPGB_CATEGORY.'/tp-pro-paragraph',
 			'tp-progress-bar' => TPGB_CATEGORY.'/tp-progress-bar',
 			'tp-row' => TPGB_CATEGORY.'/tp-row',
+			'tp-site-logo' => TPGB_CATEGORY.'/tp-site-logo',
 			'tp-stylist-list' => TPGB_CATEGORY.'/tp-stylist-list',
 			'tp-social-icons' => TPGB_CATEGORY.'/tp-social-icons',
 			'tpgb-settings' => TPGB_CATEGORY.'/tpgb-settings',
@@ -293,7 +302,7 @@ class Tp_Blocks_Helper {
 	}
 	
 	public static function get_default_thumb(){
-		return TPGB_ASSETS_URL. 'images/tpgb-placeholder.jpg';
+		return TPGB_ASSETS_URL. 'assets/images/tpgb-placeholder.jpg';
 	}
 	
 	public static function get_contact_form_post() {
@@ -551,6 +560,129 @@ class Tp_Blocks_Helper {
             $crumbs_output .= '</nav>';
         }
         return $crumbs_output;
+	}
+	
+	/* Get Taxonomie  Slug
+	 * @since 1.1.0
+	 */
+	public static function tpgb_get_post_taxonomies() {
+		$args = array(
+			'public'   => true,
+			'show_ui' => true
+		);
+		$output = 'names'; // or objects
+		$operator = 'and'; // 'and' or 'or'
+		$cat_list = array();
+		$cat_list[] = ['' , 'Select Taxonomy'];
+		$taxonomies = get_taxonomies( $args, $output, $operator );
+		if ( $taxonomies ) {		
+			foreach ( $taxonomies  as $taxonomy ) {
+				$cat_list[] = [ $taxonomy , ucfirst($taxonomy) ];			
+			}
+			
+		}
+		return $cat_list;
+	}
+	
+	/**
+	 * Cross copy paste media import
+	 * @since  1.1.0
+	 */
+	public static function cross_copy_paste_media_import() {
+		
+		check_ajax_referer( 'tpgb-addons', 'nonce' );
+
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error(
+				__( 'Not a Valid', 'tpgb' ),
+				403
+			);
+		}
+		require_once TPGB_PATH . 'classes/global-options/tp-import-media.php';
+		$media_import = isset( $_POST['content'] ) ? wp_unslash( $_POST['content'] ) : '';
+		
+		if ( empty( $media_import ) ) {
+			wp_send_json_error( __( 'Empty Content.', 'tpgb' ) );
+		}
+
+		$media_import = array( json_decode( $media_import, true ) );
+		$media_import = self::tp_import_media_copy_content( $media_import );
+
+		wp_send_json_success( $media_import );
+	}
+	
+	/**
+	 * Recursively data.
+	 *
+	 * Accept any type of data and a callback function. The callback
+	 * function runs recursively for each data and his child data.
+	 *
+	 * @since 1.1.0
+	 * @access public
+	 *
+	 */
+	public static function tp_import_media_copy_content( $data_import ){
+		return self::array_recursively_data(
+			$data_import,
+			function( $block_data ) {
+				
+				$elements = self::block_data_instance( $block_data );
+				
+				return $elements;
+			}
+		);
+	}
+	
+	/*
+	 * Block Data inner Block Instance
+	 *
+	 * @since 1.1.0
+	 */
+	public static function block_data_instance( array $block_data, array $args = [], $block_args = null ){
+
+		if ( $block_data['name'] && $block_data['clientId'] && $block_data['attributes'] ) {
+		
+			foreach($block_data['attributes'] as $block_key => $block_val) {
+				if( isset( $block_val['url'] ) && isset( $block_val['id'] ) && !empty( $block_val['url'] ) ){
+					$new_media = Tpgb_Import_Images::media_import( $block_val );
+					$block_data['attributes'][$block_key] = $new_media;
+				}
+			}
+		}
+
+		return $block_data;
+	}
+	
+	/**
+	 * Recursively data.
+	 *
+	 * Accept any type of data and a callback function. The callback
+	 * function runs recursively for each data and his child data.
+	 *
+	 * @since 1.1.0
+	 * @access public
+	 *
+	 */
+	public static function array_recursively_data( $data, $callback, $args = [] ) {
+		if ( isset( $data['name'] ) ) {
+			if ( ! empty( $data['innerBlocks'] ) ) {
+				$data['innerBlocks'] = self::array_recursively_data( $data['innerBlocks'], $callback, $args );
+			}
+
+			return call_user_func( $callback, $data, $args );
+		}
+
+		foreach ( $data as $block_key => $block_value ) {
+			$block_data = self::array_recursively_data( $data[ $block_key ], $callback, $args );
+
+			if ( null === $block_data ) {
+				continue;
+			}
+
+			$data[ $block_key ] = $block_data;
+		}
+
+		return $data;
 	}
 }
 

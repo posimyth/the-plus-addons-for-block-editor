@@ -63,7 +63,6 @@ if ( !class_exists( 'TP_Gutenberg_Loader' ) ) {
 				require_once TPGB_PATH . 'includes/metabox/init.php';
             }
 			
-			
 			$option_name='default_tpgb_load_opt';
 			$value='1';
 			if ( is_admin() && get_option( $option_name ) !== false ) {
