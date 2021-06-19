@@ -136,6 +136,12 @@ Make sure you are using [Gutenberg](https://wordpress.org/plugins/gutenberg/) wh
 
 ### Changelog
 
+#### 1.1.1 `19 May 2020`
+- Added : Smooth Scroll Block
+- Update : Post Meta Block
+- Fix : Reusable Block Load CSS Bug
+- Fix : Plus Paste Import Issue whole Block Media Import
+
 #### 1.1.0 `18 May 2020`
 - Added : Site Logo
 - Added : Post Listing Block

@@ -131,8 +131,8 @@ Absolutely not. Keeping in mind the development issues, we have tried to add as 
 = 1.1.1 = 19 June 2021
 - Added : Smooth Scroll Block
 - Update : Post Meta Block
-- Fix : Reusable Block Load Css bug
-- Fix : Plus Paste Import Block Media Import
+- Fix : Reusable Block Load CSS Bug
+- Fix : Plus Paste Import Issue whole Block Media Import
 
 = 1.1.0 = 18 May 2021
 - Added : Site Logo Block
