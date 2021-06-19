@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Accordion
+ * @since : 1.0.0
  */
 function tpgb_tp_accordion_render_callback( $attributes, $content) {
 	$output = '';
@@ -13,20 +13,13 @@ function tpgb_tp_accordion_render_callback( $attributes, $content) {
 	$ActiconName = (!empty($attributes['ActiconName'])) ? $attributes['ActiconName'] : 'fas fa-minus';
 	$iconAlign = (!empty($attributes['iconAlign'])) ? $attributes['iconAlign'] : 'end';
 	$titleTag = (!empty($attributes['titleTag'])) ? $attributes['titleTag'] : 'h3';
+	
 	$descAlign = (!empty($attributes['descAlign'])) ? $attributes['descAlign'] :'';
 	
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
-	
 	$i=0;
+	
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+	
 	//Get Toogle icon
 	$tgicon = '';
 	if(!empty($toggleIcon)){	
@@ -43,7 +36,6 @@ function tpgb_tp_accordion_render_callback( $attributes, $content) {
 			$tgicon .= '</span>';
 		$tgicon .= '</div>';
 	}
-	
 	
 	
 	$loop_content = '';

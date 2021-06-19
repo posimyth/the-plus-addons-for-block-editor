@@ -1,26 +1,18 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Testimonials
+ * @since : 1.0.0
  */
 function tpgb_tp_testimonials_render_callback( $attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
     $style = (!empty($attributes['style'])) ? $attributes['style'] : 'style-1';
-    $className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+   
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$ItemRepeater = (!empty($attributes['ItemRepeater'])) ? $attributes['ItemRepeater'] : [];
 	
 	//Carousel Options
-	$carousel_settings = tpgb_testmonial_carousel_settings($attributes);
+	$carousel_settings = Tp_Blocks_Helper::carousel_settings($attributes);
 	$carousel_settings = json_encode($carousel_settings);
 	
 
@@ -95,28 +87,6 @@ function tpgb_tp_testimonials_render_callback( $attributes, $content) {
 	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $output);
 	
     return $output;
-}
-
-function tpgb_testmonial_carousel_settings($attr){
-	$settings =array();
-	$settings['sliderMode'] = $attr['sliderMode'];
-	$settings['slidesToShow'] = $attr['slideColumns'];
-	$settings['initialSlide'] = $attr['initialSlide'];
-	$settings['slidesToScroll'] = $attr['slideScroll'];
-	$settings['speed'] = $attr['slideSpeed'];
-	$settings['draggable'] = $attr['slideDraggable'];
-	$settings['infinite'] = $attr['slideInfinite'];
-	$settings['pauseOnHover'] = $attr['slideHoverPause'];
-	$settings['adaptiveHeight'] = $attr['slideAdaptiveHeight'];
-	$settings['autoplay'] = $attr['slideAutoplay'];
-	$settings['autoplaySpeed'] = $attr['slideAutoplaySpeed'];
-	$settings['dots'] = $attr['showDots'];
-	$settings['dotsStyle'] = $attr['dotsStyle'];
-	$settings['centerMode'] = $attr['centerMode'];
-	$settings['arrows'] = $attr['showArrows'];
-	$settings['arrowsStyle'] = $attr['arrowsStyle'];
-	
-	return $settings;
 }
 
 /**
@@ -564,7 +534,7 @@ function tpgb_tp_testimonials() {
 			],
 			'dotsBorderColor' => [
 				'type' => 'string',
-				'default' => '#8072fc',
+				'default' => '',
 				'style' => [
 						(object) [
 						'condition' => [
@@ -601,7 +571,7 @@ function tpgb_tp_testimonials() {
 			],
 			'arrowsBgColor' => [
 				'type' => 'string',
-				'default' => '#8072fc',
+				'default' => '',
 				'style' => [
 						(object) [
 						'condition' => [
@@ -614,7 +584,7 @@ function tpgb_tp_testimonials() {
 			],
 			'arrowsIconColor' => [
 				'type' => 'string',
-				'default' => '#fff',
+				'default' => '',
 				'style' => [
 						(object) [
 						'condition' => [
@@ -626,7 +596,7 @@ function tpgb_tp_testimonials() {
 			],
 			'arrowsHoverBgColor' => [
 				'type' => 'string',
-				'default' => '#fff',
+				'default' => '',
 				'style' => [
 						(object) [
 						'condition' => [
@@ -639,7 +609,7 @@ function tpgb_tp_testimonials() {
 			],
 			'arrowsHoverIconColor' => [
 				'type' => 'string',
-				'default' => '#8072fc',
+				'default' => '',
 				'style' => [
 						(object) [
 						'condition' => [

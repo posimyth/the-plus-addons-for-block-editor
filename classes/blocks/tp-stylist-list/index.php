@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Stylist List
+ * @since : 1.0.0
  */
 function tpgb_tp_stylist_list_render_callback( $attributes, $content) {
 	$output = '';
@@ -11,16 +11,8 @@ function tpgb_tp_stylist_list_render_callback( $attributes, $content) {
     $hoverInverseEffect = (!empty($attributes['hoverInverseEffect'])) ? $attributes['hoverInverseEffect'] : false;
 	
     $readMoreToggle = (!empty($attributes['readMoreToggle'])) ? $attributes['readMoreToggle'] : false;
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$alignattr ='';
 	if($alignment!==''){

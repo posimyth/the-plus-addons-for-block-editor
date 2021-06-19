@@ -7,7 +7,6 @@ function tpgb_tp_post_author_render_callback( $attr, $content) {
 	
     $post = get_queried_object();
     $block_id = (!empty($attr['block_id'])) ? $attr['block_id'] : uniqid("title");
-	$className = (!empty($attr['className'])) ? $attr['className'] : '';
 	$Align = (!empty($attr['Align'])) ? $attr['Align'] : '';
 	$authorStyle = (!empty($attr['authorStyle'])) ? $attr['authorStyle'] : 'style-1';
     $ShowName = (!empty($attr['ShowName'])) ? $attr['ShowName'] : false;
@@ -15,14 +14,7 @@ function tpgb_tp_post_author_render_callback( $attr, $content) {
     $ShowAvatar = (!empty($attr['ShowAvatar'])) ? $attr['ShowAvatar'] : false;
     $ShowSocial = (!empty($attr['ShowSocial'])) ? $attr['ShowSocial'] : false;
     
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	$align = (!empty($attr['align'])) ? $attr['align'] :'';
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
 	$outputavatar=$outputname=$outputbio=$outputrole=$authorsocial='';
 	if(!empty($post)){

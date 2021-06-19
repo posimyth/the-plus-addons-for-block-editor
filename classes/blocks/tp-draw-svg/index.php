@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Draw Svg
+ * @since : 1.0.0
  */
 function tpgb_tp_draw_svg_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -13,16 +13,7 @@ function tpgb_tp_draw_svg_render_callback( $attributes, $content) {
 	$fillToggle = (!empty($attributes['fillToggle'])) ? $attributes['fillToggle'] : false;
 	$fillColor = (!empty($attributes['fillColor'])) ? $attributes['fillColor'] : '';
 	
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$fillEnable=$fill_color = '';
 	if(!empty($fillToggle)){

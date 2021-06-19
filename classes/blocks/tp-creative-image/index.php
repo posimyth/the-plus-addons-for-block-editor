@@ -1,7 +1,86 @@
 <?php
-/**
- * Render for the server-side
+/* Block : Creative Image
+ * @since : 1.0.0
  */
+function tpgb_tp_creative_image_callback( $settings, $content) {
+	
+	$block_id	= !empty($settings['block_id']) ? $settings['block_id'] : '';
+	
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $settings );
+	
+	$contentImage = $imgID ='';
+	if ( isset( $settings['SelectImg']['id'] ) && !empty($settings['SelectImg']['id'])) {
+		$imgID = $settings['SelectImg']['id'];
+	}
+	if ( ! empty( $settings['SelectImg']['url'] ) && isset( $settings['SelectImg']['id'] ) ) {
+		$attr = array(
+			'class' => "hover__img info_img",
+		);
+		$contentImage = wp_get_attachment_image($imgID, $settings['ImgSize'],"",$attr);				
+	} else { 
+		$contentImage .= tpgb_loading_image_grid(get_the_ID());
+	}
+	
+	$href = $target = $rel = '';
+	if (!empty($settings['link']['url'])) {
+		$href  = ($settings['link']['url'] !== '' ) ? $settings['link']['url'] : ''; 
+		$target  = (!empty($settings['link']['target'])) ? 'target="_blank"' : ''; 
+		$rel = (!empty($settings['link']['rel'])) ? 'rel="nofollow"' : '';
+	}
+
+	$maskImage='';
+	if(!empty($settings["showMaskImg"])){
+		$maskImage=' tpgb-creative-mask-media';
+	}
+	$wrapperClass='tpgb-creative-img-wrap '.esc_attr($maskImage);
+
+	$dataImage='';
+	if(isset($settings['SelectImg']['id'])) {
+		$fullImage = wp_get_attachment_image_src( $imgID, 'full' );
+		
+		$dataImage = (!empty($fullImage) && !empty($fullImage[0])) ? 'background: url('.esc_url($fullImage[0]).');' : '';
+	} else {
+		$dataImage = tpgb_loading_image_grid('','background');
+	}
+
+	if ( ! empty( $settings['link']['url'] ) ) {
+		$html = '<a href="'.esc_url($href).'" '.$target.' '.$rel.' class="' . esc_attr($wrapperClass) . ' ">' .$contentImage. '</a>';
+	} else {
+		$html = '<div class="' . esc_attr($wrapperClass) . '">' .$contentImage. '</div>';
+	}
+
+	$uid=uniqid('bg-image');
+	$cssRule=$cssData=$animatedClass='';
+
+	if(!empty($settings["showMaskImg"]) && !empty($settings['MaskImg']['url'])) {
+		$cssData .= '.' . esc_attr( $uid ) . '.tpgb-animate-image .tpgb-creative-img-wrap.tpgb-creative-mask-media{mask-image: url('.esc_url($settings['MaskImg']['url']).');-webkit-mask-image: url('.esc_url($settings['MaskImg']['url']).');}';
+	}
+	$cssClass = '';
+	$cssClass = ' text-' . esc_attr($settings["Alignment"]['md']) . ' '.esc_attr($animatedClass);
+	$cssClass .= (!empty($settings["Alignment"]['sm'])) ? ' text-tablet-' . esc_attr($settings["Alignment"]['sm']) : '';
+	$cssClass .= (!empty($settings["Alignment"]['xs'])) ? ' text-mobile-' . esc_attr($settings["Alignment"]['xs']) : '';
+
+	$uidWidget = uniqid("plus");
+	$output = '<div id="'.esc_attr($uidWidget).'" class="tpgb-creative-image tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
+		$output .= '<div class="tpgb-anim-img-parallax" >';
+			$output .= '<div class="tpgb-animate-image '.esc_attr($uid).' ' .  trim( $cssClass ) . ' ">
+				<figure>' . $html . '</figure>
+				</div>';
+		$output .= '</div>';
+	$output .= '</div>';
+	
+	$cssRule='';
+	if(!empty($cssData)){
+		$cssRule='<style>';
+		$cssRule .= $cssData;
+		$cssRule .= '</style>';
+	}
+	
+	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($settings, $output);
+	
+	return $cssRule.$output;
+}
+
 function tpgb_tp_creative_image_render() {
 	
 	$globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
@@ -181,96 +260,6 @@ function tpgb_tp_creative_image_render() {
     ) );
 }
 add_action( 'init', 'tpgb_tp_creative_image_render' );
-
-/*
- *  After rendering from the block editor display output on front-end
- */
-function tpgb_tp_creative_image_callback( $settings, $content) {
-	
-	$block_id	= !empty($settings['block_id']) ? $settings['block_id'] : '';
-	$className = (!empty($settings['className'])) ? $settings['className'] :'';
-	$align = (!empty($settings['align'])) ? $settings['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
-	
-	$contentImage = $imgID ='';
-	if ( isset( $settings['SelectImg']['id'] ) && !empty($settings['SelectImg']['id'])) {
-		$imgID = $settings['SelectImg']['id'];
-	}
-	if ( ! empty( $settings['SelectImg']['url'] ) && isset( $settings['SelectImg']['id'] ) ) {
-		$attr = array(
-			'class' => "hover__img info_img",
-		);
-		$contentImage = wp_get_attachment_image($imgID, $settings['ImgSize'],"",$attr);				
-	} else { 
-		$contentImage .= tpgb_loading_image_grid(get_the_ID());
-	}
-	
-	$href = $target = $rel = '';
-	if (!empty($settings['link']['url'])) {
-		$href  = ($settings['link']['url'] !== '' ) ? $settings['link']['url'] : ''; 
-		$target  = (!empty($settings['link']['target'])) ? 'target="_blank"' : ''; 
-		$rel = (!empty($settings['link']['rel'])) ? 'rel="nofollow"' : '';
-	}
-
-	$maskImage='';
-	if(!empty($settings["showMaskImg"])){
-		$maskImage=' tpgb-creative-mask-media';
-	}
-	$wrapperClass='tpgb-creative-img-wrap '.esc_attr($maskImage);
-
-	$dataImage='';
-	if(isset($settings['SelectImg']['id'])) {
-		$fullImage = wp_get_attachment_image_src( $imgID, 'full' );
-		
-		$dataImage = (!empty($fullImage) && !empty($fullImage[0])) ? 'background: url('.esc_url($fullImage[0]).');' : '';
-	} else {
-		$dataImage = tpgb_loading_image_grid('','background');
-	}
-
-	if ( ! empty( $settings['link']['url'] ) ) {
-		$html = '<a href="'.esc_url($href).'" '.$target.' '.$rel.' class="' . esc_attr($wrapperClass) . ' ">' .$contentImage. '</a>';
-	} else {
-		$html = '<div class="' . esc_attr($wrapperClass) . '">' .$contentImage. '</div>';
-	}
-
-	$uid=uniqid('bg-image');
-	$cssRule=$cssData=$animatedClass='';
-
-	if(!empty($settings["showMaskImg"]) && !empty($settings['MaskImg']['url'])) {
-		$cssData .= '.' . esc_attr( $uid ) . '.tpgb-animate-image .tpgb-creative-img-wrap.tpgb-creative-mask-media{mask-image: url('.esc_url($settings['MaskImg']['url']).');-webkit-mask-image: url('.esc_url($settings['MaskImg']['url']).');}';
-	}
-	$cssClass = '';
-	$cssClass = ' text-' . esc_attr($settings["Alignment"]['md']) . ' '.esc_attr($animatedClass);
-	$cssClass .= (!empty($settings["Alignment"]['sm'])) ? ' text-tablet-' . esc_attr($settings["Alignment"]['sm']) : '';
-	$cssClass .= (!empty($settings["Alignment"]['xs'])) ? ' text-mobile-' . esc_attr($settings["Alignment"]['xs']) : '';
-
-	$uidWidget = uniqid("plus");
-	$output = '<div id="'.esc_attr($uidWidget).'" class="tpgb-creative-image tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
-		$output .= '<div class="tpgb-anim-img-parallax" >';
-			$output .= '<div class="tpgb-animate-image '.esc_attr($uid).' ' .  trim( $cssClass ) . ' ">
-				<figure>' . $html . '</figure>
-				</div>';
-		$output .= '</div>';
-	$output .= '</div>';
-	
-	$cssRule='';
-	if(!empty($cssData)){
-		$cssRule='<style>';
-		$cssRule .= $cssData;
-		$cssRule .= '</style>';
-	}
-	
-	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($settings, $output);
-	
-	return $cssRule.$output;
-}
 
 function tpgb_loading_image_grid($postid = '', $type = '') {
 	global $post;

@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Flip Box
+ * @since : 1.0.0
  */
 function tpgb_tp_flipbox_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -22,16 +22,7 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 	$showDots = (!empty($attributes['showDots'])) ? $attributes['showDots'] : [ 'md' => false ];
 	$showArrows = (!empty($attributes['showArrows'])) ? $attributes['showArrows'] : [ 'md' => false ];
 	
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$count = '';
 	$carouselClass = '';
@@ -40,7 +31,7 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 	}
 	
 	//Carousel Options
-	$carousel_settings = tpgb_flipbox_carousel_settings($attributes);
+	$carousel_settings = Tp_Blocks_Helper::carousel_settings( $attributes );
 	$carousel_settings = json_encode($carousel_settings);
 	
 	$Sliderclass = '';
@@ -211,28 +202,7 @@ function tpgb_getButtonRender($attributes,$itemBtnUrl='',$itemBtnText=''){
 	$getbutton .= '</div>';
 	return $getbutton;
 }
-function tpgb_flipbox_carousel_settings($attr){
-	$settings =array();
-	$settings['sliderMode'] = $attr['sliderMode'];
-	$settings['slidesToShow'] = $attr['slideColumns'];
-	$settings['initialSlide'] = $attr['initialSlide'];
-	$settings['slidesToScroll'] = $attr['slideScroll'];
-	$settings['speed'] = $attr['slideSpeed'];
-	$settings['draggable'] = $attr['slideDraggable'];
-	$settings['infinite'] = $attr['slideInfinite'];
-	$settings['pauseOnHover'] = $attr['slideHoverPause'];
-	$settings['adaptiveHeight'] = $attr['slideAdaptiveHeight'];
-	$settings['autoplay'] = $attr['slideAutoplay'];
-	$settings['autoplaySpeed'] = $attr['slideAutoplaySpeed'];
-	$settings['dots'] = $attr['showDots'];
-	$settings['dotsStyle'] = $attr['dotsStyle'];
-	$settings['centerMode'] = $attr['centerMode'];
-	$settings['arrows'] = $attr['showArrows'];
-	$settings['arrowsStyle'] = $attr['arrowsStyle'];
-	$settings['arrowsPosition'] = $attr['arrowsPosition'];
-	
-	return $settings;
-}
+
 /**
  * Render for the server-side
  */
@@ -1260,7 +1230,7 @@ function tpgb_flipbox() {
 		],
 		'dotsBorderColor' => [
 			'type' => 'string',
-			'default' => '#8072fc',
+			'default' => '',
 			'style' => [
 				(object) [
 				'condition' => [
@@ -1302,7 +1272,7 @@ function tpgb_flipbox() {
 		],
 		'arrowsBgColor' => [
 			'type' => 'string',
-			'default' => '#8072fc',
+			'default' => '',
 			'style' => [
 				(object) [
 					'condition' => [
@@ -1315,7 +1285,7 @@ function tpgb_flipbox() {
 		],
 		'arrowsIconColor' => [
 			'type' => 'string',
-			'default' => '#fff',
+			'default' => '',
 			'style' => [
 				(object) [
 					'condition' => [
@@ -1327,7 +1297,7 @@ function tpgb_flipbox() {
 		],
 		'arrowsHoverBgColor' => [
 			'type' => 'string',
-			'default' => '#fff',
+			'default' => '',
 			'style' => [
 				(object) [
 					'condition' => [
@@ -1340,7 +1310,7 @@ function tpgb_flipbox() {
 		],
 		'arrowsHoverIconColor' => [
 			'type' => 'string',
-			'default' => '#8072fc',
+			'default' => '',
 			'style' => [
 				(object) [
 					'condition' => [

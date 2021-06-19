@@ -1,21 +1,13 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Hover Card
+ * @since : 1.0.0
  */
 function tpgb_tp_hovercard_render_callback( $attributes, $content) {
 	$output = '';
 	$block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
 	$cardList = (!empty($attributes['cardList'])) ? $attributes['cardList'] : [];
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
     $output .= '<div class="tpgb-hovercard tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
 		$output .= '<div class="tpgb-hovercard-wrap">';

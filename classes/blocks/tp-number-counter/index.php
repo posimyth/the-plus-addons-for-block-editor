@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Number Counter
+ * @since : 1.0.0
  */
 function tpgb_tp_number_counter_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -23,16 +23,8 @@ function tpgb_tp_number_counter_render_callback( $attributes, $content) {
 	$target = (!empty($attributes['linkURL']['target'])) ? '_blank' : '';
 	$nofollow = (!empty($attributes['linkURL']['nofollow'])) ? 'nofollow' : '';
 	$verticalCenter = (!empty($attributes['verticalCenter'])) ? $attributes['verticalCenter'] : false;
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	if(!empty($imagestore) && !empty($imagestore['id'])){
 		$counter_img = $imagestore['id'];

@@ -1,8 +1,177 @@
 <?php
 /* Block : Data Table
- * Author : ThePlus
  * @since : 1.0.0
  */
+function tpgb_tp_datatable_callback( $attributes, $content) {
+	$DataTable = '';
+    $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
+    $ContentTable = (!empty($attributes['ContentTable'])) ? $attributes['ContentTable'] : '';
+    $TableHeader = (!empty($attributes['TableHeader'])) ? $attributes['TableHeader'] : [];
+    $Tablebody = (!empty($attributes['Tablebody'])) ? $attributes['Tablebody'] : [];
+	$TbSort = (!empty($attributes['TbSort'])) ? $attributes['TbSort'] : false;
+    $IconPosition = (!empty($attributes['IconPosition'])) ? $attributes['IconPosition'] : 'left';
+    $ImgPosition = (!empty($attributes['ImgPosition'])) ? $attributes['ImgPosition'] : 'left';
+	
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+	
+    $sorting = (!empty($TbSort)) ? 'yes' : 'no';
+    $Search = 'no';
+    $Filter = 'no';
+
+    $DTHeader = '';
+    $DTBody = '';
+
+    $DataTable .= '<div class="tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
+        $DataTable .= '<div class="tpgb-table-wrapper">';
+            $DataTable .= '<table class="tpgb-table" id="tpgb-table-id-'.esc_attr($block_id).'" data-id="'.esc_attr($block_id).'" data-sort-table="'.esc_attr($sorting).'" data-show-entry="'.esc_attr($Filter).'" data-searchable="'.esc_attr($Search).'" role="grid">';
+
+                if( $ContentTable =='custom' ){
+                    $row_count_tb = count( $TableHeader );
+                    $headerArray = array();
+                    $headerArrayicon = array();
+                    $headerArrayimage = array();
+                    if ( $row_count_tb > 1 ) {
+                        $counter_row = 1;
+                        $inline_count = 0;
+                        $cell_col_count = 0;
+                        $first_row_th = true;
+                        $Mob_thc = 0;
+
+                        foreach ( $TableHeader as $index => $item ) {
+                            $ThIcon= '';
+                            $ThImg = '';
+                            $thColumnSpan = (!empty($item['thColumnSpan'])) ? $item['thColumnSpan'] : 1;
+                            $thRowSpan = (!empty($item['thRowSpan'])) ? $item['thRowSpan'] : 1;
+							$checkText = (!empty($item['thtext']) ? '' : ' less-icon-space');
+                            if( (!empty($item['thDRicon'])) && $item['thDRicon'] == 'icon' && !empty($item['thicon']) ){
+                                $ThIcon = '<span class="tpgb-align-icon--'.esc_attr($IconPosition).esc_attr($checkText).'"><i class="'.esc_attr($item['thicon']).' tableicon"></i></span>';
+                            }else if(!empty($item['thDRicon']) && $item['thDRicon'] == 'image' && !empty($item['thDRimage'])) {
+                                $Thimagesize = (!empty($item['thimagesize'])) ? $item['thimagesize'] : 'thumbnail';
+                                $ThImgID = $item['thDRimage']['id'];
+                                $ThImgurl = wp_get_attachment_image_src($ThImgID,$Thimagesize);
+                                $ThImg = '<img src="'.esc_url($ThImgurl[0]).'" class="tpgb-col-img--'.esc_attr($IconPosition).esc_attr($checkText).'" alt="'.esc_attr($ThImgID).'" />';
+                            }
+
+                            if( $item['thAction'] === 'cell' ){
+                                $DTHeader .= '<th class="tpgb-table-col tp-repeater-item-'.esc_attr($item['_key']).'" colspan="'.esc_attr($thColumnSpan).'" rowspan="'.esc_attr($thRowSpan).'" data-sort="'.esc_attr($cell_col_count).'" scope="col">';
+                                        $DTHeader .= '<span class="tpgb-table__text">';
+                                            $DTHeader .= ( $IconPosition == 'left' ) ? $ThIcon : '';
+                                            $DTHeader .= ( $ImgPosition == 'left') ? $ThImg : '';
+												$DTHeader .= (!empty($item['thtext']) ? '<span class="tpgb-table__text-inner">'.wp_kses_post($item['thtext']).'</span>' : '');
+                                            $DTHeader .= ( $IconPosition == 'right' ) ? $ThIcon : '';
+                                            $DTHeader .= ( $ImgPosition == 'right') ? $ThImg : '';
+                                        $DTHeader .= '</span>';
+                                        $DTHeader .= '<span class="tpgb-sort-icon">';
+                                            if(!empty($TbSort)){
+                                                $DTHeader .= '<i class="up-icon fas fa-sort-up"></i>';
+                                                $DTHeader .= '<i class="down-icon fas fa-sort-down"></i>';
+                                            }
+                                        $DTHeader .= '</span>';
+                                $DTHeader .= '</th>';
+                                
+                                    $headerArray[$Mob_thc] = wp_kses_post($item['thtext']);
+                                    $headerArrayicon[$Mob_thc] = $ThIcon;
+                                    $headerArrayimage[$Mob_thc] = $ThImg;
+
+                                $Mob_thc++;
+                                $cell_col_count++;
+                            }else {
+                                if ( $counter_row > 1 && $counter_row < $row_count_tb ) {
+                                    $DTHeader .= '</tr><tr class="tpgb-table-row" role="row">';                                    
+                                    $first_row_th = false;
+                                } elseif ( 1 === $counter_row && "row" === $attributes['TableHeader'][0]['thAction'] ) {                                    
+                                    $DTHeader .= '<tr class="tpgb-table-row" role="row">';
+                                }
+                                $Mob_thc = 0;
+                            }   
+                            $counter_row++;
+                            $inline_count++;
+                        }  
+                    }          
+                    
+                    $row_count = count( $Tablebody );
+                    if ( $row_count > 1 ) {
+                        $counter = 1;	
+                        $cell_inline_count = 0;
+                        $data_entry_col = 0;
+                        $Mob_trc = 0;
+                    
+                        foreach ( $Tablebody as $index => $item ) {
+                            if( $item['trAction'] == 'cell' ){
+                                $TrColumnSpan = (!empty($item['TrColumnSpan'])) ? $item['TrColumnSpan'] : 1;
+                                $TrRowSpan = (!empty($item['TrRowSpan'])) ? $item['TrRowSpan'] : 1;
+                                $Tag = (!empty($item['TrHeading']) && $item['TrHeading'] == 'th') ? $item['TrHeading'] : 'td';
+                                $Btntx = (!empty($item['Trbtntext']) ? $item['Trbtntext'] : __('Click Here','tpgb') );
+                                $Btnlink = (!empty($item['TrbtnLink']) && !empty($item['TrbtnLink']['url'])) ? $item['TrbtnLink']['url'] : '';
+                                $TRIcon = '';
+                                $TRImg = '';
+                                
+								$checkText = (!empty($item['trtext']) ? '' : ' less-icon-space');
+
+                                if( !empty($item['trDricon']) && $item['trDricon'] == 'icon' && !empty($item['TrfaIcon']) ){
+                                    $TRIcon = '<span class="tpgb-align-icon--'.esc_attr($IconPosition).$checkText.'"><i class="'.esc_attr($item['TrfaIcon']).' tableicon"></i></span>';
+                                }else if(!empty($item['trDricon']) && $item['trDricon'] == 'image' && !empty($item['trDrimage'])){
+                                    $TRimagesize = (!empty($item['trimagesize'])) ? $item['trimagesize'] : 'thumbnail';
+                                    $TRDrimgid = (!empty($item['trDrimage']['id'])) ? $item['trDrimage']['id'] : '';
+                                    $TRImgurl = wp_get_attachment_image_src($TRDrimgid,$TRimagesize);
+                                    $TRImg = '<img src="'.esc_url($TRImgurl[0]).'" class="tpgb-col-img--'.esc_attr($IconPosition).$checkText.'" alt="'.esc_attr($TRDrimgid).'" />';
+                                }
+                                $DTBody .= '<'.esc_attr($Tag).' class="tpgb-table-col tp-repeater-item-'.esc_attr($item['_key']).'"  colspan="'.esc_attr($TrColumnSpan).'" rowspan="'.esc_attr($TrRowSpan).'">';
+                                    
+                                    if( !empty($item['TrLink']) && !empty($item['TrLink']['url']) ){
+                                        $DTBody.='<a href="'.esc_url($item['TrLink']['url']).'" class="tb-col-link">';
+                                    }
+                                    if($item['trtext'] != '' || $TRIcon != '' || $TRImg != '' ){
+                                        $DTBody .= '<span class="tpgb-table__text">';
+                                            $DTBody .= ( $IconPosition == 'left') ? $TRIcon : '';
+                                            $DTBody .= ( $ImgPosition == 'left') ? $TRImg : '';
+                                                $DTBody .= (!empty($item['trtext']) ? '<span class="tpgb-table__text-inner">'.esc_html($item['trtext']).'</span>' : '');
+                                            $DTBody .= ( $IconPosition == 'right') ? $TRIcon : '';
+                                            $DTBody .= ( $ImgPosition == 'right') ? $TRImg : '';
+                                        $DTBody .= '</span>';   
+                                    }
+
+                                    if( (!empty($item['Trbtn'])) && $item['Trbtn'] == TRUE ){
+                                        $DTBody .='<div class="pt_tpgb_button tp-repeater-item-'.esc_attr($item['_key']).' button-style-8">';
+                                            $DTBody .='<a href="'.esc_url($Btnlink).'" class="button-link-wrap"  >'.esc_html($Btntx).'</a>';
+                                        $DTBody .='</div>';
+                                    }
+                                 
+                                $DTBody .= '</'.esc_attr($Tag).'>';
+                                
+                                $Mob_trc++;
+                            }else{
+                                if ( $counter > 1 && $counter < $row_count ) {
+                                    $data_entry_col++;
+                                    $DTBody .= '</tr><tr data-entry="'.esc_attr($data_entry_col).'" class="tpgb-table-row odd" role="row">';
+                                } elseif ( 1 === $counter && "row" === $attributes['Tablebody'][0]['trAction'] ) {
+                                    $data_entry_col = 1;
+                                    $DTBody .= '<tr data-entry="'.esc_attr($data_entry_col).'" class="tpgb-table-row odd" role="row">';
+                                }
+                                $Mob_trc = 0;
+                            }
+                            $counter++;
+                            $cell_inline_count++;
+                        }                        
+                    }
+
+                        $DataTable .= '<thead>';
+                            $DataTable .= $DTHeader;
+                        $DataTable .= '</thead>';
+
+                        $DataTable .= '<tbody>';
+                            $DataTable .= $DTBody;
+                        $DataTable .= '</tbody>';
+                }
+
+                $DataTable .= '</table>';
+        $DataTable .= '</div>';
+    $DataTable .= '</div>';
+	
+	$DataTable = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $DataTable);
+	
+    return $DataTable;
+}
 
 function tpgb_tp_datatable_render() {
     $globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
@@ -780,186 +949,3 @@ function tpgb_tp_datatable_render() {
     ));
 }
 add_action( 'init', 'tpgb_tp_datatable_render' );
-
-/**
- * After rendring from the block editor display output on front-end
- */
-function tpgb_tp_datatable_callback( $attributes, $content) {
-	$DataTable = '';
-    $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
-    $ContentTable = (!empty($attributes['ContentTable'])) ? $attributes['ContentTable'] : '';
-    $TableHeader = (!empty($attributes['TableHeader'])) ? $attributes['TableHeader'] : [];
-    $Tablebody = (!empty($attributes['Tablebody'])) ? $attributes['Tablebody'] : [];
-	$TbSort = (!empty($attributes['TbSort'])) ? $attributes['TbSort'] : false;
-    $IconPosition = (!empty($attributes['IconPosition'])) ? $attributes['IconPosition'] : 'left';
-    $ImgPosition = (!empty($attributes['ImgPosition'])) ? $attributes['ImgPosition'] : 'left';
-	
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
-	
-    $sorting = (!empty($TbSort)) ? 'yes' : 'no';
-    $Search = 'no';
-    $Filter = 'no';
-
-    $DTHeader = '';
-    $DTBody = '';
-
-    $DataTable .= '<div class="tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
-        $DataTable .= '<div class="tpgb-table-wrapper">';
-            $DataTable .= '<table class="tpgb-table" id="tpgb-table-id-'.esc_attr($block_id).'" data-id="'.esc_attr($block_id).'" data-sort-table="'.esc_attr($sorting).'" data-show-entry="'.esc_attr($Filter).'" data-searchable="'.esc_attr($Search).'" role="grid">';
-
-                if( $ContentTable =='custom' ){
-                    $row_count_tb = count( $TableHeader );
-                    $headerArray = array();
-                    $headerArrayicon = array();
-                    $headerArrayimage = array();
-                    if ( $row_count_tb > 1 ) {
-                        $counter_row = 1;
-                        $inline_count = 0;
-                        $cell_col_count = 0;
-                        $first_row_th = true;
-                        $Mob_thc = 0;
-
-                        foreach ( $TableHeader as $index => $item ) {
-                            $ThIcon= '';
-                            $ThImg = '';
-                            $thColumnSpan = (!empty($item['thColumnSpan'])) ? $item['thColumnSpan'] : 1;
-                            $thRowSpan = (!empty($item['thRowSpan'])) ? $item['thRowSpan'] : 1;
-							$checkText = (!empty($item['thtext']) ? '' : ' less-icon-space');
-                            if( (!empty($item['thDRicon'])) && $item['thDRicon'] == 'icon' && !empty($item['thicon']) ){
-                                $ThIcon = '<span class="tpgb-align-icon--'.esc_attr($IconPosition).esc_attr($checkText).'"><i class="'.esc_attr($item['thicon']).' tableicon"></i></span>';
-                            }else if(!empty($item['thDRicon']) && $item['thDRicon'] == 'image' && !empty($item['thDRimage'])) {
-                                $Thimagesize = (!empty($item['thimagesize'])) ? $item['thimagesize'] : 'thumbnail';
-                                $ThImgID = $item['thDRimage']['id'];
-                                $ThImgurl = wp_get_attachment_image_src($ThImgID,$Thimagesize);
-                                $ThImg = '<img src="'.esc_url($ThImgurl[0]).'" class="tpgb-col-img--'.esc_attr($IconPosition).esc_attr($checkText).'" alt="'.esc_attr($ThImgID).'" />';
-                            }
-
-                            if( $item['thAction'] === 'cell' ){
-                                $DTHeader .= '<th class="tpgb-table-col tp-repeater-item-'.esc_attr($item['_key']).'" colspan="'.esc_attr($thColumnSpan).'" rowspan="'.esc_attr($thRowSpan).'" data-sort="'.esc_attr($cell_col_count).'" scope="col">';
-                                        $DTHeader .= '<span class="tpgb-table__text">';
-                                            $DTHeader .= ( $IconPosition == 'left' ) ? $ThIcon : '';
-                                            $DTHeader .= ( $ImgPosition == 'left') ? $ThImg : '';
-												$DTHeader .= (!empty($item['thtext']) ? '<span class="tpgb-table__text-inner">'.wp_kses_post($item['thtext']).'</span>' : '');
-                                            $DTHeader .= ( $IconPosition == 'right' ) ? $ThIcon : '';
-                                            $DTHeader .= ( $ImgPosition == 'right') ? $ThImg : '';
-                                        $DTHeader .= '</span>';
-                                        $DTHeader .= '<span class="tpgb-sort-icon">';
-                                            if(!empty($TbSort)){
-                                                $DTHeader .= '<i class="up-icon fas fa-sort-up"></i>';
-                                                $DTHeader .= '<i class="down-icon fas fa-sort-down"></i>';
-                                            }
-                                        $DTHeader .= '</span>';
-                                $DTHeader .= '</th>';
-                                
-                                    $headerArray[$Mob_thc] = wp_kses_post($item['thtext']);
-                                    $headerArrayicon[$Mob_thc] = $ThIcon;
-                                    $headerArrayimage[$Mob_thc] = $ThImg;
-
-                                $Mob_thc++;
-                                $cell_col_count++;
-                            }else {
-                                if ( $counter_row > 1 && $counter_row < $row_count_tb ) {
-                                    $DTHeader .= '</tr><tr class="tpgb-table-row" role="row">';                                    
-                                    $first_row_th = false;
-                                } elseif ( 1 === $counter_row && "row" === $attributes['TableHeader'][0]['thAction'] ) {                                    
-                                    $DTHeader .= '<tr class="tpgb-table-row" role="row">';
-                                }
-                                $Mob_thc = 0;
-                            }   
-                            $counter_row++;
-                            $inline_count++;
-                        }  
-                    }          
-                    
-                    $row_count = count( $Tablebody );
-                    if ( $row_count > 1 ) {
-                        $counter = 1;	
-                        $cell_inline_count = 0;
-                        $data_entry_col = 0;
-                        $Mob_trc = 0;
-                    
-                        foreach ( $Tablebody as $index => $item ) {
-                            if( $item['trAction'] == 'cell' ){
-                                $TrColumnSpan = (!empty($item['TrColumnSpan'])) ? $item['TrColumnSpan'] : 1;
-                                $TrRowSpan = (!empty($item['TrRowSpan'])) ? $item['TrRowSpan'] : 1;
-                                $Tag = (!empty($item['TrHeading']) && $item['TrHeading'] == 'th') ? $item['TrHeading'] : 'td';
-                                $Btntx = (!empty($item['Trbtntext']) ? $item['Trbtntext'] : __('Click Here','tpgb') );
-                                $Btnlink = (!empty($item['TrbtnLink']) && !empty($item['TrbtnLink']['url'])) ? $item['TrbtnLink']['url'] : '';
-                                $TRIcon = '';
-                                $TRImg = '';
-                                
-								$checkText = (!empty($item['trtext']) ? '' : ' less-icon-space');
-
-                                if( !empty($item['trDricon']) && $item['trDricon'] == 'icon' && !empty($item['TrfaIcon']) ){
-                                    $TRIcon = '<span class="tpgb-align-icon--'.esc_attr($IconPosition).$checkText.'"><i class="'.esc_attr($item['TrfaIcon']).' tableicon"></i></span>';
-                                }else if(!empty($item['trDricon']) && $item['trDricon'] == 'image' && !empty($item['trDrimage'])){
-                                    $TRimagesize = (!empty($item['trimagesize'])) ? $item['trimagesize'] : 'thumbnail';
-                                    $TRDrimgid = (!empty($item['trDrimage']['id'])) ? $item['trDrimage']['id'] : '';
-                                    $TRImgurl = wp_get_attachment_image_src($TRDrimgid,$TRimagesize);
-                                    $TRImg = '<img src="'.esc_url($TRImgurl[0]).'" class="tpgb-col-img--'.esc_attr($IconPosition).$checkText.'" alt="'.esc_attr($TRDrimgid).'" />';
-                                }
-                                $DTBody .= '<'.esc_attr($Tag).' class="tpgb-table-col tp-repeater-item-'.esc_attr($item['_key']).'"  colspan="'.esc_attr($TrColumnSpan).'" rowspan="'.esc_attr($TrRowSpan).'">';
-                                    
-                                    if( !empty($item['TrLink']) && !empty($item['TrLink']['url']) ){
-                                        $DTBody.='<a href="'.esc_url($item['TrLink']['url']).'" class="tb-col-link">';
-                                    }
-                                    if($item['trtext'] != '' || $TRIcon != '' || $TRImg != '' ){
-                                        $DTBody .= '<span class="tpgb-table__text">';
-                                            $DTBody .= ( $IconPosition == 'left') ? $TRIcon : '';
-                                            $DTBody .= ( $ImgPosition == 'left') ? $TRImg : '';
-                                                $DTBody .= (!empty($item['trtext']) ? '<span class="tpgb-table__text-inner">'.esc_html($item['trtext']).'</span>' : '');
-                                            $DTBody .= ( $IconPosition == 'right') ? $TRIcon : '';
-                                            $DTBody .= ( $ImgPosition == 'right') ? $TRImg : '';
-                                        $DTBody .= '</span>';   
-                                    }
-
-                                    if( (!empty($item['Trbtn'])) && $item['Trbtn'] == TRUE ){
-                                        $DTBody .='<div class="pt_tpgb_button tp-repeater-item-'.esc_attr($item['_key']).' button-style-8">';
-                                            $DTBody .='<a href="'.esc_url($Btnlink).'" class="button-link-wrap"  >'.esc_html($Btntx).'</a>';
-                                        $DTBody .='</div>';
-                                    }
-                                 
-                                $DTBody .= '</'.esc_attr($Tag).'>';
-                                
-                                $Mob_trc++;
-                            }else{
-                                if ( $counter > 1 && $counter < $row_count ) {
-                                    $data_entry_col++;
-                                    $DTBody .= '</tr><tr data-entry="'.esc_attr($data_entry_col).'" class="tpgb-table-row odd" role="row">';
-                                } elseif ( 1 === $counter && "row" === $attributes['Tablebody'][0]['trAction'] ) {
-                                    $data_entry_col = 1;
-                                    $DTBody .= '<tr data-entry="'.esc_attr($data_entry_col).'" class="tpgb-table-row odd" role="row">';
-                                }
-                                $Mob_trc = 0;
-                            }
-                            $counter++;
-                            $cell_inline_count++;
-                        }                        
-                    }
-
-                        $DataTable .= '<thead>';
-                            $DataTable .= $DTHeader;
-                        $DataTable .= '</thead>';
-
-                        $DataTable .= '<tbody>';
-                            $DataTable .= $DTBody;
-                        $DataTable .= '</tbody>';
-                }
-
-                $DataTable .= '</table>';
-        $DataTable .= '</div>';
-    $DataTable .= '</div>';
-	
-	$DataTable = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $DataTable);
-	
-    return $DataTable;
-}

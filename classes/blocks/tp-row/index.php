@@ -11,21 +11,13 @@ function tpgb_tp_section_row_render_callback( $attributes, $content) {
     $sectionWidth = (!empty($attributes['sectionWidth'])) ? $attributes['sectionWidth'] : '';
     $customClass = (!empty($attributes['customClass'])) ? $attributes['customClass'] : '';
     $customId = (!empty($attributes['customId'])) ? 'id="'.esc_attr($attributes['customId']).'"' : '';
-    $align = (!empty($attributes['align'])) ? $attributes['align'] : '';
-    $className = (!empty($attributes['className'])) ? $attributes['className'] : '';
     
-	$sectionClass = '';
+	$sectionClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	if( !empty( $height ) ){
 		$sectionClass .= ' tpgb-section-height-'.esc_attr($height);
 	}
 	if( !empty( $stretchRow ) ){
-		$sectionClass .= ' tpgb-section-stretch-row';
-	}
-	if(!empty($align)){
-		$sectionClass .= ' align'.$align;
-	}
-	if(!empty($className)){
-		$sectionClass .= ' '.$className;
+		$sectionClass .= ' tpgb-section-stretch-row alignfull';
 	}
 	
 	$containerClass ='';

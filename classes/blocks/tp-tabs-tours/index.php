@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Tabs And Tours
+ * @since : 1.0.0
  */
 function tpgb_tp_tabs_tours_render_callback( $attributes, $content) {
 	
@@ -14,16 +14,8 @@ function tpgb_tp_tabs_tours_render_callback( $attributes, $content) {
 	$titleShow =  (!empty($attributes['titleShow'])) ? $attributes['titleShow'] : false;
 	$navPosition = (!empty($attributes['navPosition'])) ? $attributes['navPosition'] :'top' ;
 	$VerticalAlign = (!empty($attributes['VerticalAlign'])) ? $attributes['VerticalAlign'] :'';
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$output = '';
 	$tab_nav = '';

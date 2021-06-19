@@ -1,8 +1,92 @@
 <?php
 /* Block : Breadcrumbs
- * Author : ThePlus
  * @since : 1.0.0
  */
+function tpgb_breadcrumbs_callback( $attributes, $content) {
+	$output = '';
+    $uid = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
+    $style = (!empty($attributes['style'])) ? $attributes['style'] : '';
+    
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+	
+    $icons = $icontype = '';
+    if($attributes['homeIcon'] == "icon") {
+        if(!empty($attributes["iconFontStyle"]) && $attributes["iconFontStyle"] == 'font_awesome') {
+            $icons = (!empty($attributes["iconFawesome"])) ? $attributes["iconFawesome"] : '';
+            $icontype = 'icon';
+        } else if(!empty($attributes["iconFontStyle"]) && $attributes["iconFontStyle"] == 'icon_image') {
+            $iconsImg = $attributes['iconsImg']['id'];
+            $img = wp_get_attachment_image_src($iconsImg);
+            $icons = $img[0];
+            $icontype = 'image';
+        }
+    }
+    
+    $sepIcons = $sepIconType = '';
+    if($attributes['sepIcon']=="sep_icon") {
+        if(!empty($attributes["sepIconFontStyle"]) && $attributes["sepIconFontStyle"]=='sep_font_awesome') {
+            $sepIcons= (!empty($attributes["sepIconFawesome"])) ? $attributes["sepIconFawesome"] : '';
+            $sepIconType='sep_icon';
+        } else if(!empty($attributes["sepIconFontStyle"]) && $attributes["sepIconFontStyle"]=='sep_icon_image') {
+            $sepIconImg = $attributes['sepIconImg']['id'];
+            $img = wp_get_attachment_image_src($sepIconImg);
+            $sepIcons = $img[0];
+            $sepIconType = 'sep_image';
+        }
+    }
+    
+    $cssClass = '';
+    if($style == 'style-1') {
+        $bredStyleClass = 'bred_style_1';
+    } else if($style == 'style-2') {
+        $bredStyleClass = 'bred_style_2';
+    }
+	
+    $cssClass = (!empty($attributes["bredAlign"]['md'])) ? ' bred-' . esc_attr($attributes["bredAlign"]['md']) : '';
+    $cssClass .= (!empty($attributes["bredAlign"]['sm'])) ? ' bred-tablet-' . esc_attr($attributes["bredAlign"]['sm']) : '';
+    $cssClass .= (!empty($attributes["bredAlign"]['xs'])) ? ' bred-mobile-' . esc_attr($attributes["bredAlign"]['xs']) : '';
+
+    $homeTitle = $attributes["homeTitle"];
+    
+    $bdToggleHome = (!empty($attributes['bdToggleHome'])) ? "on-off-home" : "";
+    $bdToggleParent = (!empty($attributes['bdToggleParent'])) ? "on-off-parent" : "";	
+
+    if((!empty($attributes['letterLimitParentT']))){
+    	$letterLimitParent = (!empty($attributes['letterLimitParent'])) ? $attributes['letterLimitParent'] : '';
+	}else{
+		$letterLimitParent ='0';
+	}
+	if((!empty($attributes['letterLimitCurrentT']))){
+    	$letterLimitCurrent = (!empty($attributes['letterLimitCurrent'])) ? $attributes['letterLimitCurrent'] : '';
+	}else{
+		$letterLimitCurrent = '0';
+	}
+    
+    $bdToggleCurrent = (!empty($attributes['bdToggleCurrent'])) ? "on-off-current" : "";
+    
+    $breadcrumbs_last_sec_tri_normal = '';
+    $breadcrumbs_bar = '';	
+    
+    $breadcrumbs_bar .= '<div class="tp-breadcrumbs tpgb-block-'.esc_attr($uid).' '.esc_attr($blockClass).'">';
+    $breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar '.  trim( $cssClass ) .'">';
+    
+    if(!empty($attributes['bredWidth']) && $style == 'style-1') {
+        $breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar_inner '.esc_attr($bredStyleClass).'" style="width:100%">';
+    } else {
+        $breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar_inner '.esc_attr($bredStyleClass).'">';
+    }
+    
+    $activeColorCurrent = ($attributes['activeColorCurrent'] == true) ? "default_active" : "";
+
+    $breadcrumbs_bar .= Tp_Blocks_Helper::theplus_breadcrumbs($icontype,$sepIconType,$icons,$homeTitle,$sepIcons,$activeColorCurrent,$breadcrumbs_last_sec_tri_normal,$bdToggleHome,$bdToggleParent,$bdToggleCurrent,$letterLimitParent,$letterLimitCurrent);
+    $breadcrumbs_bar .= '</div>';
+    $breadcrumbs_bar .= '</div></div>';
+    
+	$breadcrumbs_bar = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $breadcrumbs_bar);
+	
+	return $breadcrumbs_bar;
+}
+
 function tpgb_tp_breadcrumbs_render() {
     $globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
     $globalpositioningOption = Tpgb_Blocks_Global_Options::load_positioning_options();
@@ -576,104 +660,7 @@ function tpgb_tp_breadcrumbs_render() {
 		'attributes' => $attributesOptions,
 		'editor_script' => 'tpgb-block-editor-js',
 		'editor_style'  => 'tpgb-block-editor-css',
-        'render_callback' => 'tpgb_tp_breadcrumbs_callback'
+        'render_callback' => 'tpgb_breadcrumbs_callback'
     ));
 }
 add_action( 'init', 'tpgb_tp_breadcrumbs_render' );
-
-/**
- * After rendring from the block editor display output on front-end
- */
-function tpgb_tp_breadcrumbs_callback( $attributes, $content) {
-	$output = '';
-    $uid = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
-    $style = (!empty($attributes['style'])) ? $attributes['style'] : '';
-    
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
-	
-    $icons = $icontype = '';
-    if($attributes['homeIcon'] == "icon") {
-        if(!empty($attributes["iconFontStyle"]) && $attributes["iconFontStyle"] == 'font_awesome') {
-            $icons = (!empty($attributes["iconFawesome"])) ? $attributes["iconFawesome"] : '';
-            $icontype = 'icon';
-        } else if(!empty($attributes["iconFontStyle"]) && $attributes["iconFontStyle"] == 'icon_image') {
-            $iconsImg = $attributes['iconsImg']['id'];
-            $img = wp_get_attachment_image_src($iconsImg);
-            $icons = $img[0];
-            $icontype = 'image';
-        }
-    }
-    
-    $sepIcons = $sepIconType = '';
-    if($attributes['sepIcon']=="sep_icon") {
-        if(!empty($attributes["sepIconFontStyle"]) && $attributes["sepIconFontStyle"]=='sep_font_awesome') {
-            $sepIcons= (!empty($attributes["sepIconFawesome"])) ? $attributes["sepIconFawesome"] : '';
-            $sepIconType='sep_icon';
-        } else if(!empty($attributes["sepIconFontStyle"]) && $attributes["sepIconFontStyle"]=='sep_icon_image') {
-            $sepIconImg = $attributes['sepIconImg']['id'];
-            $img = wp_get_attachment_image_src($sepIconImg);
-            $sepIcons = $img[0];
-            $sepIconType = 'sep_image';
-        }
-    }
-    
-    $cssClass = '';
-    if($style == 'style-1') {
-        $bredStyleClass = 'bred_style_1';
-    } else if($style == 'style-2') {
-        $bredStyleClass = 'bred_style_2';
-    }
-	
-    $cssClass = (!empty($attributes["bredAlign"]['md'])) ? ' bred-' . esc_attr($attributes["bredAlign"]['md']) : '';
-    $cssClass .= (!empty($attributes["bredAlign"]['sm'])) ? ' bred-tablet-' . esc_attr($attributes["bredAlign"]['sm']) : '';
-    $cssClass .= (!empty($attributes["bredAlign"]['xs'])) ? ' bred-mobile-' . esc_attr($attributes["bredAlign"]['xs']) : '';
-
-    $homeTitle = $attributes["homeTitle"];
-    
-    $bdToggleHome = (!empty($attributes['bdToggleHome'])) ? "on-off-home" : "";
-    $bdToggleParent = (!empty($attributes['bdToggleParent'])) ? "on-off-parent" : "";	
-
-    if((!empty($attributes['letterLimitParentT']))){
-    	$letterLimitParent = (!empty($attributes['letterLimitParent'])) ? $attributes['letterLimitParent'] : '';
-	}else{
-		$letterLimitParent ='0';
-	}
-	if((!empty($attributes['letterLimitCurrentT']))){
-    	$letterLimitCurrent = (!empty($attributes['letterLimitCurrent'])) ? $attributes['letterLimitCurrent'] : '';
-	}else{
-		$letterLimitCurrent = '0';
-	}
-    
-    $bdToggleCurrent = (!empty($attributes['bdToggleCurrent'])) ? "on-off-current" : "";
-    
-    $breadcrumbs_last_sec_tri_normal = '';
-    $breadcrumbs_bar = '';	
-    
-    $breadcrumbs_bar .= '<div class="tp-breadcrumbs tpgb-block-'.esc_attr($uid).' '.esc_attr($blockClass).'">';
-    $breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar '.  trim( $cssClass ) .'">';
-    
-    if(!empty($attributes['bredWidth']) && $style == 'style-1') {
-        $breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar_inner '.esc_attr($bredStyleClass).'" style="width:100%">';
-    } else {
-        $breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar_inner '.esc_attr($bredStyleClass).'">';
-    }
-    
-    $activeColorCurrent = ($attributes['activeColorCurrent'] == true) ? "default_active" : "";
-
-    $breadcrumbs_bar .= Tp_Blocks_Helper::theplus_breadcrumbs($icontype,$sepIconType,$icons,$homeTitle,$sepIcons,$activeColorCurrent,$breadcrumbs_last_sec_tri_normal,$bdToggleHome,$bdToggleParent,$bdToggleCurrent,$letterLimitParent,$letterLimitCurrent);
-    $breadcrumbs_bar .= '</div>';
-    $breadcrumbs_bar .= '</div></div>';
-    
-	$breadcrumbs_bar = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $breadcrumbs_bar);
-	
-	return $breadcrumbs_bar;
-}

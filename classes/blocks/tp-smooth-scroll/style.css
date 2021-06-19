@@ -1,0 +1,18 @@
+/**
+ * CSS for both Frontend+Backend.
+ */
+.tpgb-smooth-scroll{
+	position:relative;
+	display:block;
+	width: 100%;
+}
+.tpgb-smooth-scroll .tpgb-error-handle{
+	text-align: center;
+	background-color: #a7a4a4;
+	padding: 10px;
+	border: 1px solid #a7a4a4;
+	width: 100%;
+}
+.tpgb-smooth-scroll .tpgb-error-handle img{
+	max-width: 18px;
+}

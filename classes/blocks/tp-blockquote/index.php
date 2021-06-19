@@ -1,8 +1,31 @@
 <?php
 /* Block : BlockQuote
- * Author : ThePlus
- * @since : 1.0.0
+ * @since : 1.1.1
  */
+function tpgb_tp_blockquote_callback($attributes, $content) {
+	$output = '';
+    $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
+	
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+	
+    $output ='<div class="tp-blockquote tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
+        $output .='<div class="tpgb-blockquote-inner tpgb-quote-'.esc_attr($attributes['style']).'">';
+            if($attributes['style'] == 'style-2') {
+                $output .= '<span class="tpgb-quote-left"><i class="fa fa-quote-left" aria-hidden="true"></i></span>';
+            }
+            $output .= '<blockquote class="tpgb-quote-text">';
+            $output .= '<div class="quote-text-wrap">'.wp_kses_post($content).'</div>';
+            if($attributes['style'] == 'style-2' && !empty($attributes['authorName'])) {
+                $output .= '<div class="tpgb-quote-author">'.esc_html($attributes['authorName']).'</div>';
+            }
+            $output .= '</blockquote>';
+        $output .='</div>';
+    $output .='</div>';
+	
+	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $output);
+	
+    return $output;
+}
 
 function tpgb_tp_blockquote_render() {
     $globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
@@ -92,7 +115,7 @@ function tpgb_tp_blockquote_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-2']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-text .tpgb-quote-left{color: {{quoteColor}};}',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-left{color: {{quoteColor}};}',
                 ],
             ],
         ],
@@ -278,40 +301,3 @@ function tpgb_tp_blockquote_render() {
     ));
 }
 add_action( 'init', 'tpgb_tp_blockquote_render' );
-
-/**
- * After rendring from the block editor display output on front-end
-*/
-function tpgb_tp_blockquote_callback($attributes, $content) {
-	$output = '';
-    $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
-	
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
-	
-    $output ='<div class="tp-blockquote tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
-        $output .='<div class="tpgb-blockquote-inner tpgb-quote-'.esc_attr($attributes['style']).'">';
-            if($attributes['style'] == 'style-2') {
-                $output .= '<span class="tpgb-quote-left"><i class="fa fa-quote-left" aria-hidden="true"></i></span>';
-            }
-            $output .= '<blockquote class="tpgb-quote-text">';
-            $output .= '<div class="quote-text-wrap">'.wp_kses_post($content).'</div>';
-            if($attributes['style'] == 'style-2' && !empty($attributes['authorName'])) {
-                $output .= '<div class="tpgb-quote-author">'.esc_html($attributes['authorName']).'</div>';
-            }
-            $output .= '</blockquote>';
-        $output .='</div>';
-    $output .='</div>';
-	
-	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $output);
-	
-    return $output;
-}

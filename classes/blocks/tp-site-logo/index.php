@@ -21,6 +21,8 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 	$sImgSize = (!empty($attributes['sImgSize'])) ? $attributes['sImgSize'] : 'thumbnail' ;
 	$stickySvg = (!empty($attributes['stickySvg']['url'])) ? $attributes['stickySvg'] : '';
 	
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+	
 	if(!empty($imageStore) && !empty($imageStore['id'])){
 		$site_img = $imageStore['id'];
 		$imgSrc = wp_get_attachment_image_src($site_img , $imageSize);
@@ -69,7 +71,7 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 	}
 	
 	$output = '';
-	$output .= '<div class="tpgb-site-logo tpgb-block-'.esc_attr($block_id).'">';
+	$output .= '<div class="tpgb-site-logo tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
 		$output .= '<div class="site-logo-wrap '.esc_attr($normal_hover).'">';
 		if($logoType=='img'){
 			if(!empty($imageStore)){

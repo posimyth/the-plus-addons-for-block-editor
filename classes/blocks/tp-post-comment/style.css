@@ -36,7 +36,9 @@
 .tpgb-post-comment .comment-list>.comment {
     border-bottom: 1px solid #eee;
 }
-
+.tpgb-post-comment .tpgb-col{
+    padding: 0px;
+}
 .tpgb-post-comment .comment-list ul.children li,.tpgb-post-comment .comment-list>.comment:nth-child(2) {
     border-top: 1px solid #eee;
 }

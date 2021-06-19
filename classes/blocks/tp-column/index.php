@@ -1,18 +1,14 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Tp Column
+ * @since : 1.0.0
  */
 function tpgb_tp_section_column_render_callback( $attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("column");
-	$Width = (!empty($attributes['Width'])) ? $attributes['Width'] : [ 'md' => 100, 'sm' => 100, 'xs' => 100 ];
-    $className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	
+    $Width = (!empty($attributes['Width'])) ? $attributes['Width'] : [ 'md' => 100, 'sm' => 100, 'xs' => 100 ];
+    
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+
 	if(!empty($Width)){
 		if(!empty($Width['md'])){
 			$blockClass .= ' tpgb-md-col-'.intval($Width['md']);

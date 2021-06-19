@@ -124,8 +124,12 @@ class Tp_Core_Init_Blocks {
 				$css_file = TPGB_ASSET_URL . '/theplus.min.css';
 				$js_file = TPGB_ASSET_URL . '/theplus.min.js';
 			} else {
-				$css_file = TPGB_URL . '/assets/css/main/general/theplus.min.css';
-				$js_file = TPGB_URL . '/assets/js/main/general/theplus.min.js';
+				$tpgb_url = TPGB_URL;
+				if (defined('TPGBP_VERSION') && defined('TPGBP_URL')) {
+					$tpgb_url = TPGBP_URL;
+				}
+				$css_file = $tpgb_url . 'assets/css/main/general/theplus.min.css';
+				$js_file = $tpgb_url . 'assets/js/main/general/theplus.min.js';
 			}
 
 			//fontawesome icon load frontend
@@ -265,6 +269,22 @@ class Tp_Core_Init_Blocks {
 			)
 		);
 		
+		// Get Post Content by ID
+		register_rest_route(
+			'tpgb/v1',
+			'/tpgb_get_content/',
+			array(
+				array(
+					'methods' => 'POST',
+					'callback' => array( $this, 'tpgb_get_post_content' ),
+					'permission_callback' => function () {
+						return current_user_can( 'edit_posts' );
+					},
+					'args' => array(),
+				),
+			)
+		);
+		
 		// ThePlus Save Block Css file
 		register_rest_route(
 			'the-plus-addons-for-block-editor/v1',
@@ -352,6 +372,28 @@ class Tp_Core_Init_Blocks {
 			return ['success' => true, 'settings' => $plus_settings];
 		} catch (Exception $e) {
 			return ['success' => false, 'message' => $e->getMessage()];
+		}
+	}
+	
+	/**
+	 * API call Get Post Content
+	 * @since 1.1.1
+	 */
+	public function tpgb_get_post_content( $request ) {
+		$params = $request->get_params();
+		try {
+			if ( isset( $params['post_id'] ) ) {
+				return array(
+					'success' => true,
+					'data'    => get_post( $params['post_id'] )->post_content,
+					'message' => 'Get Success!!',
+				);
+			}
+		} catch ( Exception $e ) {
+			return array(
+				'success' => false,
+				'message' => $e->getMessage(),
+			);
 		}
 	}
 	
@@ -483,6 +525,7 @@ class Tp_Core_Init_Blocks {
 					$global_url     = $css_file_url . "theplus_gutenberg/plus-global.css";
 					wp_enqueue_style("plus-global", $global_url, false, $plus_version);
 				}
+				$this->tpgb_reusable_block_css();
 				if (!$this->is_editor_screen()) {
 					wp_enqueue_style("plus-preview-{$post_id}", $css_url, false, $plus_version);
 				}
@@ -501,6 +544,7 @@ class Tp_Core_Init_Blocks {
 					wp_enqueue_style("plus-post-{$post_id}", $css_url, false, $plus_version);
 				}
 				
+				$this->tpgb_reusable_block_css();
 				if( !isset($_GET['preview']) && empty($_GET['preview']) ){
 					$css_preview_path = $upload_base_dir . "theplus_gutenberg/plus-preview-{$post_id}.css";
 					if (file_exists($css_preview_path)) {
@@ -511,6 +555,49 @@ class Tp_Core_Init_Blocks {
 		}
 	}
 	
+	/**
+	 * Get Reference ID
+	 * @since 1.1.1
+	 */
+	public function block_reference_id( $res_blocks ) {
+		$ref_id = array();
+		if ( ! empty( $res_blocks ) ) {
+			foreach ( $res_blocks as $key => $block ) {
+				if ( $block['blockName'] == 'core/block' ) {
+					$ref_id[] = $block['attrs']['ref'];
+				}
+				if ( count( $block['innerBlocks'] ) > 0 ) {
+					$ref_id = array_merge( $this->block_reference_id( $block['innerBlocks'] ), $ref_id );
+				}
+			}
+		}
+		return $ref_id;
+	}
+	
+	/*
+	 * Frontend Reusable Block Load Css
+	 * @since 1.1.1
+	 */
+	public function tpgb_reusable_block_css(){
+		$post_id = $this->is_tpgb_post_id();
+		
+		if ( $post_id ) {
+			$post_content = get_post( $post_id );
+			if ( isset( $post_content->post_content ) ) {
+				$content = $post_content->post_content;
+				$parse_blocks = parse_blocks( $content );
+				$res_id = $this->block_reference_id( $parse_blocks );
+				if ( is_array( $res_id ) && ! empty( $res_id )) {
+					$res_id = array_unique( $res_id );
+					
+					foreach ( $res_id as $value ) {
+						$this->enqueue_post_css($value);
+					}
+				}
+			}
+		}
+	}
+
 	/*
 	 * Frontend Enqueue Scripts
 	 **/
@@ -527,17 +614,30 @@ class Tp_Core_Init_Blocks {
 		}
 	}
 	
+	/*
+	 * Enqueue Post Id Load Css
+	 * @since 1.1.1
+	 */
 	public function enqueue_post_css($post_id = ''){
 		if(!empty($post_id)){
 			$upload_dir			= wp_get_upload_dir();
 			$upload_base_dir 	= trailingslashit($upload_dir['basedir']);
 			$css_path			= $upload_base_dir . "theplus_gutenberg/plus-css-{$post_id}.css";
+			$preview_css_path	= $upload_base_dir . "theplus_gutenberg/plus-preview-{$post_id}.css";
 			
-			if (file_exists($css_path)) {
-				$plus_version=get_post_meta( $post_id, '_block_css', true );
-				if(empty($plus_version)){
-					$plus_version=time();
+			$plus_version=get_post_meta( $post_id, '_block_css', true );
+			if(empty($plus_version)){
+				$plus_version=time();
+			}
+			
+			if( isset($_GET['preview']) && $_GET['preview'] == true && file_exists($preview_css_path)){
+				$css_file_url = trailingslashit($upload_dir['baseurl']);
+				$css_url     = $css_file_url . "theplus_gutenberg/plus-preview-{$post_id}.css";
+				if (!$this->is_editor_screen()) {
+					wp_enqueue_style("plus-preview-{$post_id}", $css_url, false, $plus_version);
 				}
+			}else if (file_exists($css_path)) {
+				
 				$css_file_url = trailingslashit($upload_dir['baseurl']);
 				$css_url     = $css_file_url . "theplus_gutenberg/plus-css-{$post_id}.css";
 				if (!$this->is_editor_screen()) {
@@ -603,7 +703,7 @@ class Tp_Core_Init_Blocks {
 	
 	/*
 	 * Get Post Meta Info.
-	 * @since 1.0.0
+	 * @since 1.1.1
 	 */
 	public function tpgb_get_post_meta_info($obj){
 		
@@ -623,11 +723,13 @@ class Tp_Core_Init_Blocks {
 			if(!empty($obj['author'])){
 				$post_meta['author_name'] = get_the_author_meta('display_name', $obj['author']);
 				$post_meta['author_url'] = get_author_posts_url($obj['author']);
+				$post_meta['author_email'] =  get_the_author_meta('email',$obj['author']);
 				$post_meta['author_website'] = get_the_author_meta('user_url', $obj['author']);
 				$post_meta['author_description'] = get_the_author_meta('user_description', $obj['author']);
 				$post_meta['author_facebook'] = get_the_author_meta('author_facebook', $obj['author']);
 				$post_meta['author_twitter'] = get_the_author_meta('author_twitter', $obj['author']);
 				$post_meta['author_instagram'] = get_the_author_meta('author_instagram', $obj['author']);
+				$post_meta['author_role'] = get_the_author_meta('roles', $obj['author']);
 				
 				global $user;  
 				$author_avatar = get_avatar( get_the_author_meta('ID'), 200);

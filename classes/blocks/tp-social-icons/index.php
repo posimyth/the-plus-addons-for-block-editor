@@ -1,22 +1,14 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Social Icons
+ * @since : 1.0.0
  */
 function tpgb_tp_social_icons_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
 	$style = (!empty($attributes['style'])) ? $attributes['style'] : 'style-1';
 	$socialIcon = (!empty($attributes['socialIcon'])) ? $attributes['socialIcon'] : [];
 	$Alignment = (!empty($attributes['Alignment'])) ? $attributes['Alignment'] : 'text-center';
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$alignattr ='';
 	if($Alignment!==''){

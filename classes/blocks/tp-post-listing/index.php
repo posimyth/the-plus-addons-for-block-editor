@@ -46,16 +46,8 @@ function tpgb_tp_post_listing_render_callback( $attributes ) {
 	$orderBy		= isset($attributes['orderBy']) ? $attributes['orderBy'] : 'date';
 	$order		= isset($attributes['order']) ? $attributes['order'] : 'desc';
 	$postLodop = isset($attributes['postLodop']) ? $attributes['postLodop'] : '';
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 
 	//Columns
 	$column_class = '';

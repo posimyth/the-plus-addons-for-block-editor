@@ -85,7 +85,7 @@
 .tpgb-meta-info.layout-2  .tp-meta-category .tpgb-meta-date-label,
 .tpgb-meta-info.layout-2  .tp-meta-category .tpgb-meta-category-label,
 .tpgb-meta-info.layout-2  .tp-meta-author .tpgb-meta-author-label,
-.tpgb-meta-info.layout-2  .tp-meta-author .tpgb-meta-comment-label {
+.tpgb-meta-info.layout-2  .tp-meta-comment .tpgb-meta-comment-label {
     margin: 0;
 }
 
@@ -94,5 +94,11 @@
 .tpgb-meta-info.layout-2 .tpgb-meta-author,
 .tpgb-meta-info.layout-2 .tpgb-meta-comment {
     display: inline-flex;
+	flex-wrap: wrap;
     flex-direction: column;
+}
+
+.tpgb-meta-info.layout-1 .tpgb-meta-category.style-2{
+    display: flex;
+    flex-wrap: wrap;
 }

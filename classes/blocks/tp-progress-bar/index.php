@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Progress Bar
+ * @since : 1.0.0
  */
 function tpgb_tp_progress_bar_render_callback( $attributes, $content) {
 	$output = '';
@@ -30,16 +30,8 @@ function tpgb_tp_progress_bar_render_callback( $attributes, $content) {
 	$pieColor1 = (!empty($attributes['pieColor1'])) ? $attributes['pieColor1'] : '#FFA500';
 	$pieColor2 = (!empty($attributes['pieColor2'])) ? $attributes['pieColor2'] : '#008000';
 	$fillReverse = (!empty($attributes['fillReverse'])) ? $attributes['fillReverse'] : false;
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	//image size
 	if(!empty($imageName) && !empty($imageName['id'])){
 		$pbar_img = $imageName['id'];

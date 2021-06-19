@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Heading Title
+ * @since : 1.0.0
  */
 function tpgb_limit_words($string, $word_limit){
 	$words = explode(" ",$string);
@@ -31,16 +31,7 @@ function tpgb_tp_heading_title_render_callback( $attributes, $content) {
 	$subTitleCount = (!empty($attributes['subTitleCount'])) ? $attributes['subTitleCount'] : '3';
 	$subTitleDots = (!empty($attributes['subTitleDots'])) ? $attributes['subTitleDots'] : false;
 	
-	$className = (!empty($attributes['className'])) ? $attributes['className'] : '';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] : '';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$getExtraTitle = '';
 	if(!empty($extraTitle)){
@@ -370,6 +361,16 @@ function tpgb_tp_heading_title() {
 						'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-8' ]],
 						'selector' => '{{PLUS_WRAP}}.heading-style-8 .sep-dot{ color: {{sepDotColor}}; }',
 					],
+				],
+			],
+			'septopspa' => [
+				'type' => 'string',
+				'default' => '',
+				'style' => [
+					(object) [
+						'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-6' ]],
+						'selector' => '{{PLUS_WRAP}}.heading-style-6 .head-title:after{ top : {{septopspa}}px; }',
+					]
 				],
 			],
 			'titleType' => [

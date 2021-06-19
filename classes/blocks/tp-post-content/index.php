@@ -7,20 +7,12 @@ function tpgb_tp_post_content_render_callback( $attr, $content) {
 	$post_id = get_the_ID();
     $post = get_queried_object();
     $block_id = (!empty($attr['block_id'])) ? $attr['block_id'] : uniqid("title");
-	$className = (!empty($attr['className'])) ? $attr['className'] :'';
 	$types = (!empty($attr['types'])) ? $attr['types'] : 'singular';
-	$align = (!empty($attr['align'])) ? $attr['align'] :'';
 	$contentType = (!empty($attr['contentType'])) ? $attr['contentType'] :'';
 	$limitCountType = (!empty($attr['limitCountType'])) ? $attr['limitCountType'] :'';
 	$titleLimit = (!empty($attr['titleLimit'])) ? $attr['titleLimit'] :'';
     
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
 	$content = '';
 	if($types == 'archive'){

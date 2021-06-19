@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Google Map
+ * @since : 1.0.0
  */
 function tpgb_tp_google_map_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("map");
@@ -29,16 +29,8 @@ function tpgb_tp_google_map_render_callback( $attributes, $content) {
 	$lightness = (!empty($attributes['lightness'])) ? $attributes['lightness'] : '';
 	
 	$gmapType = (!empty($attributes['gmapType'])) ? $attributes['gmapType'] : 'roadmap';
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$json_map  = [];
 	$json_map['places']  = [];

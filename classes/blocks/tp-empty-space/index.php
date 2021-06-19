@@ -1,22 +1,12 @@
 <?php
-
-
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Empty Space
+ * @since : 1.0.0
  */
 function tpgb_tp_empty_space_render_callback( $attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
     $output .= '<div class="tpgb-empty-space tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
     $output .= '</div>';

@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : Info Box
+ * @since : 1.0.0
  */
 function tpgb_tp_infobox_render_callback( $attributes, $content) {
 	$output = '';
@@ -26,16 +26,7 @@ function tpgb_tp_infobox_render_callback( $attributes, $content) {
 	$iconstyleType = (!empty($attributes['iconstyleType'])) ? $attributes['iconstyleType'] : 'none';
 	$contenthoverEffect = (!empty($attributes['contenthoverEffect'])) ? $attributes['contenthoverEffect'] : '';
 	
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	if(!empty($imageName) && !empty($imageName['id'])){
 		$info_img = $imageName['id'];

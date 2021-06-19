@@ -122,7 +122,7 @@
     height: 100%
 }
 
-.ts-video-caption-text {
+.ts-video-caption-text{
     position: absolute;
     bottom: 0;
     font-weight: 400;
@@ -152,7 +152,6 @@
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out
 }
-
 .tpgb_video_player:hover .ts-video-caption-text {
     -webkit-transform: translateY(0%);
     -ms-transform: translateY(0%);
@@ -332,4 +331,8 @@ button.tpgb-video-play-btn.ts-video-blay-btn-youtube {
     position: relative;
     display: inline-block;
     width: auto
+}
+
+.tpgb_video_player .tpgb-video-upload{
+    display: none;
 }

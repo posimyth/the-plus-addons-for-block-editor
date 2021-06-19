@@ -7,19 +7,11 @@ function tpgb_tp_post_comment_render_callback( $attr, $content) {
 	$post_id = get_queried_object_id();
     $post = get_queried_object();
     $block_id = (!empty($attr['block_id'])) ? $attr['block_id'] : uniqid("title");
-	$className = (!empty($attr['className'])) ? $attr['className'] :'';
-	$align = (!empty($attr['align'])) ? $attr['align'] :'';
 	$comment_args = tpgb_comment_args();
     $comment = get_comments($post);
     $list_args = array('style' => 'ul', 'short_ping' => true, 'avatar_size' => 100, 'page' => $post_id );
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
 	ob_start();
     echo '<div class="tpgb-post-comment tpgb-block-'.esc_attr($block_id ).' '.esc_attr($blockClass).'" >';

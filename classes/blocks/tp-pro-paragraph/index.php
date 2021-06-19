@@ -1,6 +1,7 @@
 <?php
 /**
- * After rendring from the block editor display output on front-end
+ * Block : TP Pro Paragraph
+ * @since : 1.1.1
  */
 function tpgb_tp_pro_paragraph_render_callback( $attributes ) {
 	$output = '';
@@ -10,16 +11,9 @@ function tpgb_tp_pro_paragraph_render_callback( $attributes ) {
     $titleTag = (!empty($attributes['titleTag'])) ? $attributes['titleTag'] : 'h3';
 	$content = (!empty($attributes['content'])) ? $attributes['content'] : '';
 	$descTag = (!empty($attributes['descTag'])) ? $attributes['descTag'] : 'p';
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+	
     $output .= '<div class="tpgb-pro-paragraph tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
 		if(!empty($Showtitle) && !empty($title)){
 			$output .= '<'.esc_attr($titleTag).' class="pro-heading-inner">';
@@ -164,7 +158,7 @@ function tpgb_tp_pro_paragraph() {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'Showtitle', 'relation' => '==', 'value' => true ]],
-						'selector' => '{{PLUS_WRAP}} .pro-heading-inner',
+						'selector' => '{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-heading-inner',
 					],
 				],
 			],
@@ -175,7 +169,7 @@ function tpgb_tp_pro_paragraph() {
 				'style' => [
 						(object) [
 							'condition' => [(object) ['key' => 'Showtitle', 'relation' => '==', 'value' => true ]],
-							'selector' => '{{PLUS_WRAP}} .pro-heading-inner{ color: {{titleColor}}; }',
+							'selector' => '{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-heading-inner{ color: {{titleColor}}; }',
 					],
 				],
 			],

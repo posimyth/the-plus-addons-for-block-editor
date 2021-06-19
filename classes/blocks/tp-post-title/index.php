@@ -15,16 +15,8 @@ function tpgb_tp_post_title_render_callback( $attr, $content) {
 	$titleTag = (!empty($attr['titleTag'])) ? $attr['titleTag'] : 'h3';
 	$limitCountType = (!empty($attr['limitCountType'])) ? $attr['limitCountType'] : '';
     $titleLimit = (!empty($attr['titleLimit'])) ? $attr['titleLimit'] : '';
-	$className = (!empty($attr['className'])) ? $attr['className'] :'';
-	$align = (!empty($attr['align'])) ? $attr['align'] :'';
-
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
 	if( $types == 'archive' ){
 		$is_archive = is_archive();
@@ -140,7 +132,7 @@ function tpgb_post_title_content() {
 				'default' => '',
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}}.tpgb-post-title .tpgb-post-title {text-align: {{titleAlign}};}',
+						'selector' => '{{PLUS_WRAP}}.tpgb-post-title{text-align: {{titleAlign}};}',
 					],
 				],
 			],

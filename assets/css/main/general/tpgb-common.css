@@ -1,9 +1,186 @@
 .tpgb-cssfilters {
-    transition: all .3s linear;
+    transition: all .3s linear
 }
-.tpgb-view-animation{
-	visibility:hidden;
+
+.tpgb-view-animation {
+    visibility: hidden
 }
-.tpgb-view-animation-out{
-    visibility: visible;
+
+.tpgb-view-animation-out {
+    visibility: visible
+}
+
+@keyframes tpgb-pulse {
+    0%,to {
+        transform: scale(.95);
+        opacity: 1
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes tpgb-pulse {
+    0%,to {
+        -webkit-transform: scale(.95);
+        opacity: .7
+    }
+
+    50% {
+        -webkit-transform: scale(1);
+        opacity: 1
+    }
+}
+
+@keyframes tpgb-floating {
+    0%,to {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(4%)
+    }
+}
+
+@-webkit-keyframes tpgb-floating {
+    0%,to {
+        -webkit-transform: translateY(0)
+    }
+
+    50% {
+        -webkit-transform: translateY(4%)
+    }
+}
+
+@keyframes tpgb-tossing {
+    0%,to {
+        transform: rotate(-15deg)
+    }
+
+    50% {
+        transform: rotate(15deg)
+    }
+}
+
+@-webkit-keyframes tpgb-tossing {
+    0%,to {
+        -webkit-transform: rotate(-15deg)
+    }
+
+    50% {
+        -webkit-transform: rotate(15deg)
+    }
+}
+
+@keyframes tpgb-continue-rotating {
+    0% {
+        -webkit-transform: rotate(0deg) translate(-10px) rotate(0deg);
+        -moz-transform: rotate(0deg) translate(-10px) rotate(0deg);
+        -ms-transform: rotate(0deg) translate(-10px) rotate(0deg);
+        -o-transform: rotate(0deg) translate(-10px) rotate(0deg);
+        transform: rotate(0deg) translate(-10px) rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(360deg) translate(-10px) rotate(-360deg);
+        -moz-transform: rotate(360deg) translate(-10px) rotate(-360deg);
+        -ms-transform: rotate(360deg) translate(-10px) rotate(-360deg);
+        -o-transform: rotate(360deg) translate(-10px) rotate(-360deg);
+        transform: rotate(360deg) translate(-10px) rotate(-360deg)
+    }
+}
+
+@-webkit-keyframes tpgb-continue-rotating {
+    0% {
+        -webkit-transform: rotate(0deg) translate(-10px) rotate(0deg);
+        -moz-transform: rotate(0deg) translate(-10px) rotate(0deg);
+        -ms-transform: rotate(0deg) translate(-10px) rotate(0deg);
+        -o-transform: rotate(0deg) translate(-10px) rotate(0deg);
+        transform: rotate(0deg) translate(-10px) rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(360deg) translate(-10px) rotate(-360deg);
+        -moz-transform: rotate(360deg) translate(-10px) rotate(-360deg);
+        -ms-transform: rotate(360deg) translate(-10px) rotate(-360deg);
+        -o-transform: rotate(360deg) translate(-10px) rotate(-360deg);
+        transform: rotate(360deg) translate(-10px) rotate(-360deg)
+    }
+}
+
+@-webkit-keyframes tpgb-rotating {
+    0% {
+        -webkit-transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+@-moz-keyframes tpgb-rotating {
+    0% {
+        -moz-transform: rotate(0deg)
+    }
+
+    to {
+        -moz-transform: rotate(360deg)
+    }
+}
+
+@keyframes tpgb-rotating {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+
+
+.tpgb-floating,.tpgb-pulse,.tpgb-tossing {
+    animation-name: tpgb-pulse;
+    -webkit-animation-name: tpgb-pulse;
+    animation-duration: 2.2s;
+    -webkit-animation-duration: 2.2s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite
+}
+
+.tpgb-floating,.tpgb-tossing {
+    animation-name: tpgb-floating;
+    -webkit-animation-name: tpgb-floating
+}
+
+.tpgb-tossing {
+    animation-name: tpgb-tossing;
+    -webkit-animation-name: tpgb-tossing
+}
+
+.tpgb-rotating {
+    -webkit-animation-name: tpgb-rotating;
+    animation-name: tpgb-rotating
+}
+
+.tpgb-rotating-continue {
+    animation-name: tpgb-continue-rotating;
+    -webkit-animation-name: tpgb-continue-rotating
+}
+
+.tpgb-rotating,.tpgb-rotating-continue {
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    -ms-transform-origin: center center;
+    -o-transform-origin: center center;
+    transform-origin: center center;
+    animation-duration: 5s;
+    -webkit-animation-duration: 5s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite
 }

@@ -4,7 +4,7 @@ Donate link: https://theplusblocks.com/
 Tags: gutenberg, gutenberg addons, gutenberg blocks, gutenberg widgets, the plus addons for gutenberg, the plus widgets gutenberg, free gutenberg addons,drag and drop, gutenberg widget pack, popular addons for gutenberg, powerful addons for gutenberg, best addons for gutenberg
 Requires at least: 4.0
 Tested up to: 5.7
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
@@ -128,9 +128,14 @@ Absolutely not. Keeping in mind the development issues, we have tried to add as 
 [Contact Us](http://m.me/tpagutenberg/) if you want some custom / extra features and we will try to deliver a solution as soon as possible.
 
 == Changelog ==
+= 1.1.1 = 19 June 2021
+- Added : Smooth Scroll Block
+- Update : Post Meta Block
+- Fix : Reusable Block Load Css bug
+- Fix : Plus Paste Import Block Media Import
 
 = 1.1.0 = 18 May 2021
-- Added : Site Logo
+- Added : Site Logo Block
 - Added : Post Listing Block
 - Added : Post Title Block
 - Added : Post Content Block

@@ -1,10 +1,6 @@
 <?php
 /* Block : Price List
- * Author : ThePlus
  * @since : 1.0.0
- */
- /**
- * After rendering from the block editor display output on front-end
  */
 function tpgb_pricing_list( $attributes, $content) {
 	$block_id = isset($attributes['block_id']) ? $attributes['block_id'] : '';
@@ -19,16 +15,8 @@ function tpgb_pricing_list( $attributes, $content) {
 	$imgShape = (!empty($attributes['imgShape'])) ? $attributes['imgShape'] : 'none';
 	$maskImg = (!empty($attributes['maskImg'])) ? $attributes['maskImg'] : '';
 	$imageSize = (!empty($attributes['imageSize'])) ? $attributes['imageSize'] : 'thumbnail';
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
 	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	if(!empty($imageField) && !empty($imageField['id'])){
 		$price_img = $imageField['id'];

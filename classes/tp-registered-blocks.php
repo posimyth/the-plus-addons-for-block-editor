@@ -294,6 +294,13 @@ function tpgb_registered_blocks(){
 				],
 			],
 		],
+		'tpgb-pagination' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/main/post-listing/tpgb-pagination.css',
+				],
+			],
+		],
 		TPGB_CATEGORY.'/tp-post-author' => [
 			'dependency' => [
 				'css' => [
@@ -323,13 +330,14 @@ function tpgb_registered_blocks(){
 				],
 			],
 		],
-		'creativeImageParallax' => [
+		TPGB_CATEGORY.'/tp-smooth-scroll' => [
 			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-smooth-scroll/style.css',
+				],
 				'js' => [
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/js/extra/timelinemax.js',
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/js/extra/tweenmax.js',
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/js/extra/scrollmagic.js',
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/js/extra/animation.gsap.min.js',
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/js/extra/smoothscroll.min.js',
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/js/main/smooth-scroll/tpgb-smooth-scroll.min.js',
 				],
 			],
 		],
@@ -421,7 +429,7 @@ Class Tpgb_Library {
     /**
      * Return saved settings
      *
-     * @since 1.0.0
+     * @since 1.1.1
      */
     public function get_plus_block_settings($block = null){
 		
@@ -461,6 +469,7 @@ Class Tpgb_Library {
 			TPGB_CATEGORY.'/tp-post-meta' => TPGB_CATEGORY.'/tp-post-meta',
 			TPGB_CATEGORY.'/tp-post-comment' => TPGB_CATEGORY.'/tp-post-comment',
 			TPGB_CATEGORY.'/tp-site-logo' => TPGB_CATEGORY.'/tp-site-logo',
+			TPGB_CATEGORY.'/tp-smooth-scroll' => TPGB_CATEGORY.'/tp-smooth-scroll',
 		];
 		
 		if(has_filter('tpgb_blocks_register_render')) {
@@ -470,7 +479,11 @@ Class Tpgb_Library {
 		$blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
 		
 		//Plus Extras Options Array
-		$plus_extras = array('content-hover-effect','tpgb-group-button','creativeImageParallax','carouselSlider','countdown-style-1','countdown-style-2','countdown-style-3','tpgb-animation','tpgb-jstilt','tpgb-mouse-parallax');
+		$plus_extras = array('content-hover-effect','tpgb-group-button','carouselSlider','countdown-style-1','tpgb-animation', 'tpgb-pagination');
+		
+		if(has_filter('tpgb_exrta_conditions_blocks_register')) {
+			$plus_extras = apply_filters('tpgb_exrta_conditions_blocks_register', $plus_extras);
+		}
 		
 		if(empty($blocks)){
 			$blocks = array_keys($replace);
@@ -713,6 +726,11 @@ Class Tpgb_Library {
 			set_transient($this->plus_uid . '_updated_at', get_transient('tpgb_save_updated_at'));
 			
             $this->remove_files_unlink($post_type, $queried_object);
+			
+			// if no cache files, generate new
+            if (!$this->check_cache_files($post_type, $queried_object)) {
+                $this->plus_generate_scripts($elements, 'theplus-' . $post_type . '-' . $queried_object);
+            }
         }
     }
 	
@@ -723,8 +741,10 @@ Class Tpgb_Library {
 			if ($this->requires_update) {
 				$elements = array_keys($this->tpgb_registered_blocks);
             } else {
-                $elements = get_transient($this->plus_uid . '_blocks');
-				if(!empty($elements)){
+				$elements = get_transient($this->plus_uid . '_blocks');
+				
+				if (!$this->check_cache_files($post_type, $queried_obj) && !empty($elements)) {
+					update_post_meta($queried_obj, '_block_css',time());
 					$this->plus_generate_scripts($elements, 'theplus-' . $post_type . '-' . $queried_obj);
 				}
             }
@@ -734,17 +754,22 @@ Class Tpgb_Library {
                 return;
             }
 			
+			$tpgb_url = TPGB_URL;
+			if (defined('TPGBP_VERSION') && defined('TPGBP_URL')) {
+				$tpgb_url = TPGBP_URL;
+			}
+			
 			if ($this->requires_update){
 				if (file_exists(TPGB_ASSET_PATH . '/theplus.min.css') && file_exists(TPGB_ASSET_PATH . '/theplus.min.js')) {
 					$css_file = TPGB_ASSET_URL . '/theplus.min.css';
 					$js_file = TPGB_ASSET_URL . '/theplus.min.js';
 				}else{
-					$css_file = TPGB_URL . '/assets/css/main/general/theplus.min.css';
-					$js_file = TPGB_URL . '/assets/js/main/general/theplus.min.js';
+					$css_file = $tpgb_url . 'assets/css/main/general/theplus.min.css';
+					$js_file =  $tpgb_url . 'assets/js/main/general/theplus.min.js';
 				}
 			}else{
 			
-				if (tpgb_library()->check_cache_files($post_type, $queried_obj)) {
+				if ($this->check_cache_files($post_type, $queried_obj)) {
 					$css_file = TPGB_ASSET_URL . '/theplus-' . $post_type . '-' . $queried_obj . '.min.css';
 					$js_file = TPGB_ASSET_URL . '/theplus-' . $post_type . '-' . $queried_obj . '.min.js';
 				} else {
@@ -752,8 +777,8 @@ Class Tpgb_Library {
 						$css_file = TPGB_ASSET_URL . '/theplus.min.css';
 						$js_file = TPGB_ASSET_URL . '/theplus.min.js';
 					}else{
-						$css_file = TPGB_URL . '/assets/css/main/general/theplus.min.css';
-						$js_file = TPGB_URL . '/assets/js/main/general/theplus.min.js';
+						$css_file = $tpgb_url . 'assets/css/main/general/theplus.min.css';
+						$js_file = $tpgb_url . 'assets/js/main/general/theplus.min.js';
 					}
 				}
 			}
@@ -1037,6 +1062,11 @@ Class Tpgb_Library {
 		return $block_content;
 	}
 	
+	/*
+	 * List of Blocks Condition Check
+	 *
+	 * @since 1.1.1
+	 */
 	public function plus_blocks_options($options='' , $blockname=''){
 		
 		if(!empty($options) && !empty($options['contentHoverEffect'])){
@@ -1046,24 +1076,30 @@ Class Tpgb_Library {
 			$this->transient_blocks[] = 'tpgb-animation';
 		}
 		
-		if(!empty($options) && !empty($options['layoutType']) && $options['layoutType']=='carousel'){	//flipbox
+		if(!empty($options) && !empty($options['layoutType']) && $options['layoutType']=='carousel'){	//infobox / flipbox
 			$this->transient_blocks[] = 'carouselSlider';
 		}
 		if(!empty($options) && !empty($options['extBtnshow'])){
 			$this->transient_blocks[] = 'tpgb-group-button';
 		}
 		
-		if($blockname=='tpgb/tp-countdown' && !empty($options) && !empty($options['style']) && $options['style'] == 'style-2') {
-			$this->transient_blocks[] = 'countdown-style-2';
-		} else if($blockname=='tpgb/tp-countdown' && !empty($options) && !empty($options['style']) && $options['style'] == 'style-3') {
-			$this->transient_blocks[] = 'countdown-style-3';
-		} else if($blockname=='tpgb/tp-countdown') {
+		if($blockname=='tpgb/tp-countdown') {
 			$this->transient_blocks[] = 'countdown-style-1';
 		}
 		if($blockname=='tpgb/tp-flipbox' && !empty($options) && (!empty($options['backBtn']) || !empty($options['backCarouselBtn']))){
 			$this->transient_blocks[] = 'tpgb-group-button';
 		}
 		
+		//Post Listing
+		if($blockname=='tpgb/tp-post-listing') {
+			if(!empty($options) && !empty($options['postLodop']) && $options['postLodop'] == 'pagination' ){
+				$this->transient_blocks[] = 'tpgb-pagination';
+			} 
+		}
+		
+		if(has_filter('tpgb_has_blocks_condition')) {
+			$this->transient_blocks = apply_filters('tpgb_has_blocks_condition', $this->transient_blocks, $options, $blockname );
+		}
 	}
 	
 	public function plus_post_save_transient( $post_id, $post, $update ){
@@ -1130,10 +1166,9 @@ Class Tpgb_Library {
 	/**
      * Check if wp running in background
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
-    public function is_background_running()
-    {
+    public function is_background_running() {
         if (wp_doing_cron()) {
             return true;
         }

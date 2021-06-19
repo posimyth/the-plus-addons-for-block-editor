@@ -1,14 +1,12 @@
 <?php
 /* Tp Block : Post Meta
- * @since	: 1.1.0
+ * @since	: 1.1.1
  */
 function tpgb_tp_post_meta_render_callback( $attr, $content) {
 	$output = '';
     $post_id = get_queried_object_id();
 	
     $block_id = (!empty($attr['block_id'])) ? $attr['block_id'] : uniqid("title");
-	$className = (!empty($attr['className'])) ? $attr['className'] :'';
-	$align = (!empty($attr['align'])) ? $attr['align'] :'';
 	$showDate = (!empty($attr['showDate'])) ? $attr['showDate'] : false;
 	$showCategory = (!empty($attr['showCategory'])) ? $attr['showCategory'] : false;
 	$showAuthor = (!empty($attr['showAuthor'])) ? $attr['showAuthor'] : false;
@@ -16,18 +14,12 @@ function tpgb_tp_post_meta_render_callback( $attr, $content) {
 	$metaSort = (!empty($attr['metaSort'])) ? (Array)$attr['metaSort'] :'';
 	$metaLayout = (!empty($attr['metaLayout'])) ? $attr['metaLayout'] :'';
     
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
 	$outputDate='';
 	if($showDate){
 		$datePrefix = (!empty($attr['datePrefix'])) ? '<span class="tpgb-meta-date-label">'.esc_html($attr['datePrefix']).'</span>' : '';
-		$dateIcon = (!empty($attr['dateIcon'])) ? '<i class="'.esc_attr($attr['dateIcon']).'"></i>' : '';
+		$dateIcon = (!empty($attr['dateIcon'])) ? '<i class="meta-date-icon '.esc_attr($attr['dateIcon']).'"></i>' : '';
 		$outputDate .='<span class="tpgb-meta-date" >'.$datePrefix.'<a href="'.esc_url(get_the_permalink()).'">'.$dateIcon.esc_html(get_the_date()).'</a></span>';
 	}
 	
@@ -40,12 +32,14 @@ function tpgb_tp_post_meta_render_callback( $attr, $content) {
 		$category_list ='';
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			$i = 0;
+			$category_list .= '<span>';
 			foreach ( $terms as $term ) {
 				if($cateDisplayNo >= $i){
 					$category_list .= '<a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( sprintf( __( '%s', 'tpgb' ), $term->name ) ) . '">' . $term->name . '</a>';
 				}
 				$i++;
 			}
+			$category_list .= '</span>';
 		}
 		$outputCategory .='<span class="tpgb-meta-category '.esc_attr($cateStyle).'" >'.$catePrefix . $category_list.'</span>';
 	}
@@ -60,14 +54,14 @@ function tpgb_tp_post_meta_render_callback( $attr, $content) {
 		if(!empty($authorIcon) && $authorIcon=='profile'){
 			$iconauthor = '<span>'.get_avatar( get_the_author_meta('ID'), 200).'</span>';
 		}else if(!empty($authorIcon)){
-			$iconauthor = '<i class="'.esc_attr($authorIcon).'"></i>';
+			$iconauthor = '<i class="meta-author-icon '.esc_attr($authorIcon).'"></i>';
 		}
 		$outputAuthor .='<span class="tpgb-meta-author" >'.$authorPrefix.'<a href="'.esc_url(get_author_posts_url(get_the_author_meta('ID'))).'" rel="'.esc_attr__('author','tpgb').'">'.$iconauthor.''.get_the_author_meta( 'display_name', $author_id ).'</a></span>';
 	}
 	
 	$outputComment='';
 	if($showComment){
-		$commentIcon =(!empty($attr['commentIcon'])) ? '<i class="'.$attr['commentIcon'].'"></i>' : '';
+		$commentIcon =(!empty($attr['commentIcon'])) ? '<i class="meta-comment-icon '.esc_attr($attr['commentIcon']).'"></i>' : '';
 		$comments_count = wp_count_comments($post_id);
 		$count=0;
 		if(!empty($comments_count)){
@@ -126,7 +120,7 @@ function tpgb_post_meta_content() {
 				'default' => [ 'md' => 'left' ],
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta-info,{{PLUS_WRAP}}.tpgb-post-meta {justify-content: {{alignment}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info,{{PLUS_WRAP}}.tpgb-post-meta {justify-content: {{alignment}};}',
 					],
 				],
 			],
@@ -187,7 +181,7 @@ function tpgb_post_meta_content() {
 				'default' => '',
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info>span:after{margin-left: {{sepLeftSpace}}px;}',
+						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info > span:after{margin-left: {{sepLeftSpace}}px;}',
 					],
 				],
 			],
@@ -257,7 +251,7 @@ function tpgb_post_meta_content() {
 				'default' => '',
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date i{margin-right: {{dateIconSpace}}px;}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date .meta-date-icon{margin-right: {{dateIconSpace}}px;}',
 					],
 				],
 			],
@@ -269,7 +263,7 @@ function tpgb_post_meta_content() {
 						'condition' => [(object) ['key' => 'showDate', 'relation' => '==', 'value' => true],
 										['key' => 'dateIcon', 'relation' => '!=', 'value' => '']
 										],
-						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date i{color: {{dateIconColor}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date .meta-date-icon{color: {{dateIconColor}};}',
 					],
 				],
             ],
@@ -281,7 +275,7 @@ function tpgb_post_meta_content() {
 						'condition' => [(object) ['key' => 'showDate', 'relation' => '==', 'value' => true],
 										['key' => 'dateIcon', 'relation' => '!=', 'value' => '']
 										],
-						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date a:hover i{color: {{dateIconHoverColor}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date a:hover .meta-date-icon{color: {{dateIconHoverColor}};}',
 					],
 				],
             ],
@@ -347,6 +341,23 @@ function tpgb_post_meta_content() {
 					(object) [
 						'condition' => [(object) ['key' => 'cateStyle', 'relation' => '==', 'value' => 'style-2']],
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a{padding: {{catepadding}};}',
+					],
+				],
+			],
+			'catemargin' => [
+				'type' => 'object',
+				'default' => (object) [ 
+					'md' => [
+						"top" => '',
+						"right" => '',
+						"bottom" => '',
+						"left" => '',
+					],
+					"unit" => 'px',
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category a{margin: {{catemargin}};}',
 					],
 				],
 			],
@@ -505,7 +516,7 @@ function tpgb_post_meta_content() {
 				'default' => '',
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author i,{{PLUS_WRAP}} .tpgb-meta-author img{margin-right: {{authorIconSpace}}px;}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author .meta-author-icon,{{PLUS_WRAP}} .tpgb-meta-author img{margin-right: {{authorIconSpace}}px;}',
 					],
 				],
 			],
@@ -547,7 +558,7 @@ function tpgb_post_meta_content() {
 						'condition' => [(object) ['key' => 'showAuthor', 'relation' => '==', 'value' => true],
 										['key' => 'authorIcon', 'relation' => '!=', 'value' => 'profile']
 						],
-						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author i{color: {{authorIconColor}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author .meta-author-icon{color: {{authorIconColor}};}',
 					],
 				],
             ],
@@ -559,7 +570,7 @@ function tpgb_post_meta_content() {
 						'condition' => [(object) ['key' => 'showAuthor', 'relation' => '==', 'value' => true],
 										['key' => 'authorIcon', 'relation' => '!=', 'value' => 'profile']
 						],
-						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author a:hover i{color: {{authorIconHoverColor}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author a:hover .meta-author-icon{color: {{authorIconHoverColor}};}',
 					],
 				],
             ],
@@ -581,7 +592,7 @@ function tpgb_post_meta_content() {
 				'default' => '',
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment i{margin-right: {{commentIconSpace}}px;}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment .meta-comment-icon{margin-right: {{commentIconSpace}}px;}',
 					],
 				],
 			],
@@ -613,7 +624,7 @@ function tpgb_post_meta_content() {
 						'condition' => [(object) ['key' => 'showComment', 'relation' => '==', 'value' => true],
 												['key' => 'commentIcon', 'relation' => '!=', 'value' => '']
 						],
-						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment i{color: {{commentIconColor}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment .meta-comment-icon{color: {{commentIconColor}};}',
 					],
 				],
             ],
@@ -625,7 +636,7 @@ function tpgb_post_meta_content() {
 						'condition' => [(object) ['key' => 'showComment', 'relation' => '==', 'value' => true],
 							['key' => 'commentIcon', 'relation' => '!=', 'value' => '']
 						],
-						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment a:hover i{color: {{commentIconHoverColor}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment a:hover .meta-comment-icon{color: {{commentIconHoverColor}};}',
 					],
 				],
             ],

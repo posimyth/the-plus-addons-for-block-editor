@@ -1,8 +1,8 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : TP Button
+ * @since : 1.0.0
  */
-function tpgb_tp_button_render_callback( $attributes ) {
+function tpgb_button_render_callback( $attributes ) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
 	$styleType = (!empty($attributes['styleType'])) ? $attributes['styleType'] : 'style-1';
@@ -16,16 +16,7 @@ function tpgb_tp_button_render_callback( $attributes ) {
 	$target = (!empty($attributes['btnLink']['target'])) ? '_blank' : '';
 	$nofollow = (!empty($attributes['btnLink']['nofollow'])) ? 'nofollow' : '';
 	
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$iconHover='';
 	if($styleType=='style-11' || $styleType=='style-13'){
@@ -555,7 +546,7 @@ function tpgb_tp_button() {
 		'attributes' => $attributesOptions,
 		'editor_script' => 'tpgb-block-editor-js',
 		'editor_style'  => 'tpgb-block-editor-css',
-        'render_callback' => 'tpgb_tp_button_render_callback'
+        'render_callback' => 'tpgb_button_render_callback'
     ) );
 }
 add_action( 'init', 'tpgb_tp_button' );

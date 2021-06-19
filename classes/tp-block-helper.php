@@ -144,6 +144,7 @@ class Tp_Blocks_Helper {
 			'tp-stylist-list' => TPGB_CATEGORY.'/tp-stylist-list',
 			'tp-social-icons' => TPGB_CATEGORY.'/tp-social-icons',
 			'tpgb-settings' => TPGB_CATEGORY.'/tpgb-settings',
+			'tp-smooth-scroll' => TPGB_CATEGORY.'/tp-smooth-scroll',
 			'tp-tabs-tours' => TPGB_CATEGORY.'/tp-tabs-tours',
 			'tp-testimonials' => TPGB_CATEGORY.'/tp-testimonials',
 			'tp-video' => TPGB_CATEGORY.'/tp-video',
@@ -204,13 +205,16 @@ class Tp_Blocks_Helper {
 			$block_path = TPGBP_PATH;
 		}
 		
-		if ( ! file_exists( $block_path.$filename ) ) {
+		if ( file_exists( $block_path.$filename ) ) {
+			require $block_path.$filename;
+			return true;
+		}else if( file_exists( TPGB_PATH.$filename ) ){
+			require TPGB_PATH.$filename;
+			return true;
+		}else{
 			return false;
 		}
-
-		require $block_path.$filename;
-
-		return true;
+		
 	}
 	
 	/*
@@ -570,18 +574,67 @@ class Tp_Blocks_Helper {
 			'public'   => true,
 			'show_ui' => true
 		);
-		$output = 'names'; // or objects
+		$output = 'objects'; // or objects
 		$operator = 'and'; // 'and' or 'or'
 		$cat_list = array();
 		$cat_list[] = ['' , 'Select Taxonomy'];
 		$taxonomies = get_taxonomies( $args, $output, $operator );
 		if ( $taxonomies ) {		
 			foreach ( $taxonomies  as $taxonomy ) {
-				$cat_list[] = [ $taxonomy , ucfirst($taxonomy) ];			
+				$cat_list[] = [ $taxonomy->name , $taxonomy->labels->singular_name ];			
 			}
 			
 		}
 		return $cat_list;
+	}
+	
+	/*
+	 * Get Common Classes Block Options
+	 * @since 1.1.1
+	 */
+	public static function block_wrapper_classes( $attr ){
+		$className = (!empty($attr['className'])) ? $attr['className'] :'';
+		$align = (!empty($attr['align'])) ? $attr['align'] :'';
+		
+		$blockClass = '';
+		if(!empty($className)){
+			$blockClass .= $className;
+		}
+		if(!empty($align)){
+			$blockClass .= ' align'.$align;
+		}
+		
+		return $blockClass;
+	}
+	
+	/*
+	 * Get Carousel Settings Block Options
+	 * @since 1.1.1
+	 */
+	public static function carousel_settings( $attr ){
+		$settings =[
+			'sliderMode' => isset( $attr['sliderMode'] ) ? $attr['sliderMode'] : 'horizontal',
+			'slidesToShow' => isset( $attr['slideColumns'] ) ? $attr['slideColumns'] : [ 'md' => 1,'sm' => 1,'xs' => 1 ],
+			'initialSlide' => isset( $attr['initialSlide'] ) ? $attr['initialSlide'] : 0,
+			'slidesToScroll' => isset( $attr['slideScroll'] ) ? $attr['slideScroll'] : [ 'md' => 1 ],
+			'speed' => isset( $attr['slideSpeed'] ) ? $attr['slideSpeed'] : 1500,
+			'draggable' => isset( $attr['slideDraggable'] ) ? $attr['slideDraggable'] : [ 'md' => true ],
+			'infinite' => isset( $attr['slideInfinite'] ) ? $attr['slideInfinite'] : [ 'md' => false ],
+			'pauseOnHover' => isset( $attr['slideHoverPause'] ) ? $attr['slideHoverPause'] : false,
+			'adaptiveHeight' => isset( $attr['slideAdaptiveHeight'] ) ? $attr['slideAdaptiveHeight'] : false,
+			'autoplay' => isset( $attr['slideAutoplay'] ) ? $attr['slideAutoplay'] : [ 'md' => true ],
+			'autoplaySpeed' => isset( $attr['slideAutoplaySpeed'] ) ? $attr['slideAutoplaySpeed'] : ['md' => 1500 ],
+			'dots' => isset( $attr['showDots'] ) ? $attr['showDots'] : [ 'md' => true ],
+			'dotsStyle' => isset( $attr['dotsStyle'] ) ? $attr['dotsStyle'] : 'style-1',
+			'centerMode' => isset( $attr['centerMode'] ) ? $attr['centerMode'] : [ 'md' => false ],
+			'centerPadding' =>  isset( $attr['centerPadding'] ) ? $attr['centerPadding'] : '',
+			'rows' => isset( $attr['slideRow'] ) ? $attr['slideRow'] : 1,
+			'arrows' => isset( $attr['showArrows'] ) ? $attr['showArrows'] : [ 'md' => false ],
+			'arrowsStyle' => isset( $attr['arrowsStyle'] ) ? $attr['arrowsStyle'] : 'style-1',
+			'arrowsPosition' => isset( $attr['arrowsPosition'] ) ? $attr['arrowsPosition'] : 'top-right',
+		];
+		
+		return $settings;
 	}
 	
 	/**

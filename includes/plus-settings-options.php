@@ -174,6 +174,14 @@ class Tpgb_Gutenberg_Settings_Options {
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="lightbulb-on" class="svg-inline--fa fa-lightbulb-on fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M319.45,0C217.44.31,144,83,144,176a175,175,0,0,0,43.56,115.78c16.52,18.85,42.36,58.22,52.21,91.44,0,.28.07.53.11.78H400.12c0-.25.07-.5.11-.78,9.85-33.22,35.69-72.59,52.21-91.44A175,175,0,0,0,496,176C496,78.63,416.91-.31,319.45,0ZM320,96a80.09,80.09,0,0,0-80,80,16,16,0,0,1-32,0A112.12,112.12,0,0,1,320,64a16,16,0,0,1,0,32Z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M240.06,454.34A32,32,0,0,0,245.42,472l17.1,25.69c5.23,7.91,17.17,14.28,26.64,14.28h61.7c9.47,0,21.41-6.37,26.64-14.28L394.59,472A37.47,37.47,0,0,0,400,454.34L400,416H240ZM112,192a24,24,0,0,0-24-24H24a24,24,0,0,0,0,48H88A24,24,0,0,0,112,192Zm504-24H552a24,24,0,0,0,0,48h64a24,24,0,0,0,0-48ZM131.08,55.22l-55.42-32a24,24,0,1,0-24,41.56l55.42,32a24,24,0,1,0,24-41.56Zm457.26,264-55.42-32a24,24,0,1,0-24,41.56l55.42,32a24,24,0,0,0,24-41.56Zm-481.26-32-55.42,32a24,24,0,1,0,24,41.56l55.42-32a24,24,0,0,0-24-41.56ZM520.94,100a23.8,23.8,0,0,0,12-3.22l55.42-32a24,24,0,0,0-24-41.56l-55.42,32a24,24,0,0,0,12,44.78Z"></path></g></svg>',
 					'keyword' => ['accordion', 'tabs', 'toggle', 'faq', 'collapse', 'show hide content', 'Tiles'],
 				],
+				'tp-animated-service-boxes' => [
+					'label' => esc_html__('Animated Service Boxes', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="th" class="svg-inline--fa fa-th fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M306.67 352H205.33a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.34a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24zM488 192H386.67a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24H488a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24zM306.67 32H205.33a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.34a24 24 0 0 0 24-24V56a24 24 0 0 0-24-24zM125.33 192H24a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.33a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M488 352H386.67a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24H488a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24zM306.67 192H205.33a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.34a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24zM488 32H386.67a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24H488a24 24 0 0 0 24-24V56a24 24 0 0 0-24-24zm-362.67 0H24A24 24 0 0 0 0 56v80a24 24 0 0 0 24 24h101.33a24 24 0 0 0 24-24V56a24 24 0 0 0-24-24zm0 320H24a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.33a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24z"></path></g></svg>',
+				],
 				'tp-anything-carousel' => [
 					'label' => esc_html__('Carousel Anything','tpgb'),
 					'demoUrl' => 'https://theplusblocks.com/plus-blocks/carousal-anything/',
@@ -295,7 +303,7 @@ class Tpgb_Gutenberg_Settings_Options {
 					'demoUrl' => 'https://theplusblocks.com/plus-blocks/flipbox/',
 					'docUrl' => '',
 					'videoUrl' => '',
-					'tag' => 'free',
+					'tag' => 'freemium',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="repeat-alt" class="svg-inline--fa fa-repeat-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M493.54 181.5A159 159 0 0 1 512 257.25C511.34 345.4 438.56 416 350.4 416H192v47.5c0 22.5-26.18 32.3-41 17.5l-80-80a24 24 0 0 1 0-33.94l80-80c15.11-15.11 41-4.34 41 17v48h158.87c52.82 0 96.58-42.18 97.12-95a95.53 95.53 0 0 0-9.21-42.06 23.94 23.94 0 0 1 4.8-27.28c4.74-4.71 8.64-8.55 11.87-11.79a24 24 0 0 1 38.09 5.57z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M68.42 324.35c-4.74 4.71-8.64 8.56-11.87 11.79a24 24 0 0 1-38.09-5.57A159 159 0 0 1 0 254.82C.66 166.67 73.44 96 161.6 96H320V48.58c0-22.29 26-32.47 41-17.52l80 80a24 24 0 0 1 0 33.94l-80 80c-14.85 14.85-41 4.91-41-17.46V160H161.12c-52.81 0-96.57 42.18-97.12 95a95.47 95.47 0 0 0 9.22 42 23.94 23.94 0 0 1-4.8 27.35z"></path></g></svg>',
 					'keyword' => ['flipbox', 'flip', 'flip image', 'flip card', 'action box', 'flipbox 3D', 'card'],
 				],
@@ -353,6 +361,15 @@ class Tpgb_Gutenberg_Settings_Options {
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M256 8C119 8 8 119.08 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 110a42 42 0 1 1-42 42 42 42 0 0 1 42-42zm56 254a12 12 0 0 1-12 12h-88a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h12v-64h-12a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h64a12 12 0 0 1 12 12v100h12a12 12 0 0 1 12 12z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M256 202a42 42 0 1 0-42-42 42 42 0 0 0 42 42zm44 134h-12V236a12 12 0 0 0-12-12h-64a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h12v64h-12a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h88a12 12 0 0 0 12-12v-24a12 12 0 0 0-12-12z"></path></g></svg>',
 					'keyword' => ['Infobox', 'Information', 'Info box', 'card', 'info']
 				],
+				'tp-lottiefiles' => [
+					'label' => esc_html__('LottieFiles Animation','tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="hand-scissors" class="svg-inline--fa fa-hand-scissors fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M512 168v240a40 40 0 0 1-30.84 38.94l-136 32A40.36 40.36 0 0 1 336 480h-80a40 40 0 0 1 0-80v-8h-32a40 40 0 0 1 0-80h32v-8H48a48 48 0 0 1 0-96h208v-13.57L78.45 124.69a48 48 0 1 1 35.1-89.35l190.34 74.76L328.77 79a40 40 0 0 1 51.08-9.74l112 64A40 40 0 0 1 512 168z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d=""></path></g></svg>',
+					'keyword' => ['animation', 'lottie', 'files']
+				],
 				'tp-mailchimp' => [
 					'label' => esc_html__('Mailchimp','tpgb'),
 					'demoUrl' => 'https://theplusblocks.com/plus-blocks/mailchimp/',
@@ -396,6 +413,15 @@ class Tpgb_Gutenberg_Settings_Options {
 					'tag' => 'free',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="hashtag" class="svg-inline--fa fa-hashtag fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M202.46 32.19a11.5 11.5 0 0 0-2.11-.19h-40.63a12 12 0 0 0-11.81 9.89L132.53 128h65l14.62-81.89a12 12 0 0 0-9.69-13.92zM72.19 465.89a12 12 0 0 0 9.7 13.92A11.5 11.5 0 0 0 84 480h40.64a12 12 0 0 0 11.81-9.89L186.11 192h-65zm163.65 0a12 12 0 0 0 9.7 13.92 11.5 11.5 0 0 0 2.11.19h40.63a12 12 0 0 0 11.82-9.89L315.47 384h-65zm130.27-433.7A11.5 11.5 0 0 0 364 32h-40.63a12 12 0 0 0-11.82 9.89L261.89 320h65l48.92-273.89a12 12 0 0 0-9.7-13.92z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M44.18 191.81a11.5 11.5 0 0 0 2.11.19H285l11-64H53.43a12 12 0 0 0-11.81 9.89l-7.14 40a12 12 0 0 0 9.7 13.92zM7.33 329.89l-7.14 40a12 12 0 0 0 9.7 13.92A11.5 11.5 0 0 0 12 384h75l11-64H19.15a12 12 0 0 0-11.82 9.89zm430.78-201.7A11.5 11.5 0 0 0 436 128h-75l-11 64h78.85a12 12 0 0 0 11.82-9.89l7.14-40a12 12 0 0 0-9.7-13.92zm-34.29 192a11.5 11.5 0 0 0-2.11-.19H163l-11 64h242.57a12 12 0 0 0 11.81-9.89l7.14-40a12 12 0 0 0-9.7-13.92z"></path></g></svg>',
 					'keyword' => ['number counter', 'counter', 'animated counter', 'Odometer']
+				],
+				'tp-popup-builder' => [
+					'label' => esc_html__('Popup Builder','tpgb'),
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/popup-builder/',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M245.53 410.5l-75 92.83c-14 17.1-42.5 7.8-42.5-15.8V358l280.26-252.77c5.5-4.9 13.3 2.6 8.6 8.3L191.72 387.87z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M511.59 28l-72 432a24.07 24.07 0 0 1-33 18.2l-214.87-90.33 225.17-274.34c4.7-5.7-3.1-13.2-8.6-8.3L128 358 14.69 313.83a24 24 0 0 1-2.2-43.2L476 3.23c17.29-10 39 4.6 35.59 24.77z"></path></g></svg>',
+					'keyword' => ['popup', 'pop up', 'alertbox', 'offcanvas', 'modal box', 'modal popup']
 				],
 				'tp-post-author' => [
 					'label' => esc_html__('Post Author', 'tpgb'),
@@ -468,15 +494,6 @@ class Tpgb_Gutenberg_Settings_Options {
 					'tag' => 'free',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="underline" class="svg-inline--fa fa-underline fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M432 448H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M32 64h32v160c0 88.22 71.78 160 160 160s160-71.78 160-160V64h32a16 16 0 0 0 16-16V16a16 16 0 0 0-16-16H272a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h32v160a80 80 0 0 1-160 0V64h32a16 16 0 0 0 16-16V16a16 16 0 0 0-16-16H32a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16z"></path></g></svg>',
 					'keyword' => ['post title', 'page title', 'archive title']
-				],
-				'tp-popup-builder' => [
-					'label' => esc_html__('Popup Builder','tpgb'),
-					'demoUrl' => 'https://theplusblocks.com/plus-blocks/popup-builder/',
-					'docUrl' => '',
-					'videoUrl' => '',
-					'tag' => 'pro',
-					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M245.53 410.5l-75 92.83c-14 17.1-42.5 7.8-42.5-15.8V358l280.26-252.77c5.5-4.9 13.3 2.6 8.6 8.3L191.72 387.87z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M511.59 28l-72 432a24.07 24.07 0 0 1-33 18.2l-214.87-90.33 225.17-274.34c4.7-5.7-3.1-13.2-8.6-8.3L128 358 14.69 313.83a24 24 0 0 1-2.2-43.2L476 3.23c17.29-10 39 4.6 35.59 24.77z"></path></g></svg>',
-					'keyword' => ['popup', 'pop up', 'alertbox', 'offcanvas', 'modal box', 'modal popup']
 				],
 				'tp-pricing-list' => [
 					'label' => esc_html__('Pricing List','tpgb'),
@@ -575,6 +592,14 @@ class Tpgb_Gutenberg_Settings_Options {
 					'videoUrl' => '#',
 					'tag' => 'pro',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="share-alt-square" class="svg-inline--fa fa-share-alt-square fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zm-96 376a56 56 0 0 1-54.26-69.9l-68-40.77a56 56 0 1 1 0-82.66l68-40.77a56 56 0 1 1 16.48 27.43l-68 40.77a56.39 56.39 0 0 1 0 27.8l68 40.77A56 56 0 1 1 304 408z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M360 352a56 56 0 1 1-110.26-13.9l-68-40.77a56 56 0 1 1 0-82.66l68-40.77a56 56 0 1 1 16.48 27.43l-68 40.77a56.39 56.39 0 0 1 0 27.8l68 40.77A56 56 0 0 1 360 352z"></path></g></svg>',
+				],
+				'tp-smooth-scroll' => [
+					'label' => esc_html__('Smooth Scroll','tpgb'),
+					'demoUrl' => '#',
+					'docUrl' => '#',
+					'videoUrl' => '#',
+					'tag' => 'free',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="scroll-old" class="svg-inline--fa fa-scroll-old fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M539.31 228.69L512 256l27.31 27.31a16 16 0 0 1 4.69 11.32V384h-89.37a16 16 0 0 0-11.32 4.69L416 416l-27.31-27.31a16 16 0 0 0-11.32-4.69H304a16 16 0 0 0-16 16v32a80 80 0 0 1-80.61 80c-44.11-.33-79.39-36.89-79.39-81V262.63a16 16 0 0 1 4.69-11.32L160 224l-27.31-27.31a16 16 0 0 1-4.69-11.32V65A65 65 0 0 0 63 0h385a96.1 96.1 0 0 1 95.68 88.2 16.15 16.15 0 0 1-4.63 12.8L512 128l27.31 27.31a16 16 0 0 1 4.69 11.32v50.74a16 16 0 0 1-4.69 11.32z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M192 512h16c-2.59 0-5.14-.13-7.66-.37-2.75.24-5.53.37-8.34.37zM64 0A64 64 0 0 0 0 64v48a16 16 0 0 0 16 16h112V65A65 65 0 0 0 64 0zm560 384H454.63a16 16 0 0 0-11.32 4.69L416 416l-27.31-27.31a16 16 0 0 0-11.32-4.69H304a16 16 0 0 0-16 16v32a80 80 0 0 1-80 80h320a112 112 0 0 0 112-112.06A16 16 0 0 0 624 384z"></path></g></svg>',
 				],
 				'tp-switcher' => [
 					'label' => esc_html__('Switcher','tpgb'),
@@ -1026,38 +1051,6 @@ class Tpgb_Gutenberg_Settings_Options {
         );
 		
 		$extra_options= array(
-			/*array(
-				'name' => esc_html__('Mailchimp API Key', 'tpgb'),
-				'desc' => esc_html__('Go to your Mailchimp > Account > Extras > API Keys then create a key and paste here', 'tpgb'),
-				'default' => '',
-				'id' => 'mailchimp_api',
-				'type' => 'text',
-				'attributes'  => array(
-					'autocomplete' => 'off',
-				),
-			),
-			array(
-				'name' => esc_html__('Mailchimp List ID', 'tpgb'),
-				'desc' => esc_html__('Go to your Mailchimp > Audience > Settings > Audience name and defaults > Copy the Audience ID and paste here.', 'tpgb'),
-				'default' => '',
-				'id' => 'mailchimp_id',
-				'type' => 'text',
-				'attributes'  => array(
-					'autocomplete' => 'off',
-				),
-			),*/
-			array(
-				'name' => esc_html__('Font Awesome Loading'),
-				'desc' => esc_html__('Note : If you disable this, It will stop loading at frontend throughout your website.','tpgb'),
-				'id'   => 'fontawesome_load',
-				'type' => 'select',
-				'show_option_none' => false,
-				'default' => 'enable',
-				'options' => array(
-					'enable' => esc_html__('Enable', 'tpgb'),
-					'disable' => esc_html__('Disable', 'tpgb'),
-				),
-			),
 			array(
 				'name' => esc_html__('Google Map API Key', 'tpgb'),
 				'desc' => esc_html__('NOTE : Turn Off this key If you theme already have google key option. So, It will not generate error in console for multiple google map keys.', 'tpgb'),
@@ -1081,6 +1074,18 @@ class Tpgb_Gutenberg_Settings_Options {
 				'attributes' => array(
 					'data-conditional-id'    => 'gmap_api_switch',
 					'data-conditional-value' => 'enable',
+				),
+			),
+			array(
+				'name' => esc_html__('Font Awesome Loading'),
+				'desc' => esc_html__('Note : If you disable this, It will stop loading at frontend throughout your website.','tpgb'),
+				'id'   => 'fontawesome_load',
+				'type' => 'select',
+				'show_option_none' => false,
+				'default' => 'enable',
+				'options' => array(
+					'enable' => esc_html__('Enable', 'tpgb'),
+					'disable' => esc_html__('Disable', 'tpgb'),
 				),
 			),
 		);

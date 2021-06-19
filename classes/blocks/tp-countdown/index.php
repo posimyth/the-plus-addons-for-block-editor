@@ -1,12 +1,101 @@
 <?php
 /* Block : Countdown
- * Author : ThePlus
  * @since : 1.0.0
  */
- 
-/**
- * Render for the server-side
- */
+function tpgb_tp_countdown_callback( $attributes, $content) {
+	$output = '';
+	$block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
+   
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+	
+	$style = $attributes['style'];
+    $countdownSelection = $attributes['countdownSelection'];
+    $offset_time = get_option('gmt_offset');
+    $offsetTime = wp_timezone_string();
+    $now    = new DateTime('NOW', new DateTimeZone($offsetTime));
+	$future = '';
+    if(!empty($attributes['datetime']) && $attributes['datetime'] != 'Invalid date') {
+        $future = new DateTime($attributes['datetime'], new DateTimeZone($offsetTime));
+    }
+    $now    = $now->modify("+1 second");
+
+    if(!empty($attributes['datetime'])) {
+        $datetime = $attributes['datetime'];
+        $datetime = date('m/d/Y H:i:s', strtotime($datetime) );
+    } else {
+        $curr_date = date("m/d/Y H:i:s");
+		$datetime = date('m/d/Y H:i:s', strtotime($curr_date . ' +1 month'));
+    }
+    
+    $encodedUrl = '';
+    if($attributes['countdownExpiry'] == 'redirect') {
+        $encodedUrl = $attributes['expiryRedirect']['url'];
+    }
+    
+    $dataAttr = '';
+    $showLabels = (!empty($attributes['showLabels'])) ? $attributes['showLabels'] : '' ;
+    $daysText = (!empty($attributes['daysText'])) ? $attributes['daysText'] : esc_html__('Days','tpgb');
+    $hoursText = (!empty($attributes['hoursText'])) ? $attributes['hoursText'] : esc_html__('Hours','tpgb');
+    $minutesText = (!empty($attributes['minutesText'])) ? $attributes['minutesText'] : esc_html__('Minutes','tpgb');
+    $secondsText = (!empty($attributes['secondsText'])) ? $attributes['secondsText'] : esc_html__('Seconds','tpgb');
+    
+    if(!empty($showLabels) && $showLabels == true) {
+        $dataAttr .= 'data-day="'.esc_attr($daysText).'" data-hour="'.esc_attr($hoursText).'" data-min="'.esc_attr($minutesText).'" data-sec="'.esc_attr($secondsText).'"';
+    }
+
+    $output .= '<div class="tp-countdown tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).' countdown-'.esc_attr($style).'" data-id="tpgb-block-'.esc_attr($block_id).'" data-style="'.esc_attr($style).'" data-offset="'.esc_attr($offset_time).'" data-expiry="'.esc_attr($attributes['countdownExpiry']).'" data-redirect="'.esc_url($encodedUrl).'" '.$dataAttr.'>';
+    
+    if($countdownSelection == 'normal') {
+
+        if($future >= $now && isset($future)) {
+
+            if($style == 'style-1') {
+
+                $inline_style = (!empty($attributes["inlineStyle"])) ? 'count-inline-style' : '';
+                
+                $output .= '<ul class="tpgb-countdown-counter '.esc_attr($inline_style).'" data-time = "'.esc_attr($datetime).'">';
+                $output .= '<li class="count_1">';
+                $output .= '<span class="days">'.esc_html__('00','tpgb').'</span>';
+                if(!empty($showLabels) && $showLabels==true) {
+                    $output .= '<h6 class="days_ref">'.esc_html($daysText).'</h6>';
+                }
+                $output .= '</li>';
+                $output .= '<li class="count_2">';
+                $output .= '<span class="hours">'.esc_html__('00','tpgb').'</span>';
+                if(!empty($showLabels) && $showLabels==true) {
+                    $output .= '<h6 class="hours_ref">'.esc_html($hoursText).'</h6>';
+                }
+                $output .= '</li>';
+                $output .= '<li class="count_3">';
+                $output .= '<span class="minutes">'.esc_html__('00','tpgb').'</span>';
+                if(!empty($showLabels) && $showLabels==true) {
+                    $output .= '<h6 class="minutes_ref">'.esc_html($minutesText).'</h6>';
+                }
+                $output .= '</li>';
+                $output .= '<li class="count_4">';
+                $output .= '<span class="seconds last">'.esc_html__('00','tpgb').'</span>';
+                if(!empty($showLabels) && $showLabels==true) {
+                    $output .= '<h6 class="seconds_ref">'.esc_html($secondsText).'</h6>';
+                }
+                $output .= '</li></ul>';
+            }
+        
+        } else {
+            
+            if($attributes['countdownExpiry'] == 'showmsg') {
+                $output .= '<div class="tpgb-countdown-expiry">'.esc_html($attributes['expiryMsg']).'</div>';
+            }
+
+        }
+    }
+        
+    $output .= '</div>';
+	
+	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $output);
+	
+    return $output;
+}
+
 function tpgb_tp_countdown_render() {
  
     $globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
@@ -382,109 +471,3 @@ function tpgb_tp_countdown_render() {
     ));
 }
 add_action('init', 'tpgb_tp_countdown_render');
-
-/**
- * After rendring from the block editor display output on front-end
- */
-function tpgb_tp_countdown_callback( $attributes, $content) {
-	$output = '';
-    $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
-	
-	$className = (!empty($attributes['className'])) ? $attributes['className'] :'';
-	$align = (!empty($attributes['align'])) ? $attributes['align'] :'';
-	
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
-	
-	$style = $attributes['style'];
-    $countdownSelection = $attributes['countdownSelection'];
-    $offset_time = get_option('gmt_offset');
-    $offsetTime = wp_timezone_string();
-    $now    = new DateTime('NOW', new DateTimeZone($offsetTime));
-	$future = '';
-    if(!empty($attributes['datetime']) && $attributes['datetime'] != 'Invalid date') {
-        $future = new DateTime($attributes['datetime'], new DateTimeZone($offsetTime));
-    }
-    $now    = $now->modify("+1 second");
-
-    if(!empty($attributes['datetime'])) {
-        $datetime = $attributes['datetime'];
-        $datetime = date('m/d/Y H:i:s', strtotime($datetime) );
-    } else {
-        $curr_date = date("m/d/Y H:i:s");
-		$datetime = date('m/d/Y H:i:s', strtotime($curr_date . ' +1 month'));
-    }
-    
-    $encodedUrl = '';
-    if($attributes['countdownExpiry'] == 'redirect') {
-        $encodedUrl = $attributes['expiryRedirect']['url'];
-    }
-    
-    $dataAttr = '';
-    $showLabels = (!empty($attributes['showLabels'])) ? $attributes['showLabels'] : '' ;
-    $daysText = (!empty($attributes['daysText'])) ? $attributes['daysText'] : esc_html__('Days','tpgb');
-    $hoursText = (!empty($attributes['hoursText'])) ? $attributes['hoursText'] : esc_html__('Hours','tpgb');
-    $minutesText = (!empty($attributes['minutesText'])) ? $attributes['minutesText'] : esc_html__('Minutes','tpgb');
-    $secondsText = (!empty($attributes['secondsText'])) ? $attributes['secondsText'] : esc_html__('Seconds','tpgb');
-    
-    if(!empty($showLabels) && $showLabels == true) {
-        $dataAttr .= 'data-day="'.esc_attr($daysText).'" data-hour="'.esc_attr($hoursText).'" data-min="'.esc_attr($minutesText).'" data-sec="'.esc_attr($secondsText).'"';
-    }
-
-    $output .= '<div class="tp-countdown tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).' countdown-'.esc_attr($style).'" data-id="tpgb-block-'.esc_attr($block_id).'" data-style="'.esc_attr($style).'" data-offset="'.esc_attr($offset_time).'" data-expiry="'.esc_attr($attributes['countdownExpiry']).'" data-redirect="'.esc_url($encodedUrl).'" '.$dataAttr.'>';
-    
-    if($countdownSelection == 'normal') {
-
-        if($future >= $now && isset($future)) {
-
-            if($style == 'style-1') {
-
-                $inline_style = (!empty($attributes["inlineStyle"])) ? 'count-inline-style' : '';
-                
-                $output .= '<ul class="tpgb-countdown-counter '.esc_attr($inline_style).'" data-time = "'.esc_attr($datetime).'">';
-                $output .= '<li class="count_1">';
-                $output .= '<span class="days">'.esc_html__('00','tpgb').'</span>';
-                if(!empty($showLabels) && $showLabels==true) {
-                    $output .= '<h6 class="days_ref">'.esc_html($daysText).'</h6>';
-                }
-                $output .= '</li>';
-                $output .= '<li class="count_2">';
-                $output .= '<span class="hours">'.esc_html__('00','tpgb').'</span>';
-                if(!empty($showLabels) && $showLabels==true) {
-                    $output .= '<h6 class="hours_ref">'.esc_html($hoursText).'</h6>';
-                }
-                $output .= '</li>';
-                $output .= '<li class="count_3">';
-                $output .= '<span class="minutes">'.esc_html__('00','tpgb').'</span>';
-                if(!empty($showLabels) && $showLabels==true) {
-                    $output .= '<h6 class="minutes_ref">'.esc_html($minutesText).'</h6>';
-                }
-                $output .= '</li>';
-                $output .= '<li class="count_4">';
-                $output .= '<span class="seconds last">'.esc_html__('00','tpgb').'</span>';
-                if(!empty($showLabels) && $showLabels==true) {
-                    $output .= '<h6 class="seconds_ref">'.esc_html($secondsText).'</h6>';
-                }
-                $output .= '</li></ul>';
-            }
-        
-        } else {
-            
-            if($attributes['countdownExpiry'] == 'showmsg') {
-                $output .= '<div class="tpgb-countdown-expiry">'.esc_html($attributes['expiryMsg']).'</div>';
-            }
-
-        }
-    }
-        
-    $output .= '</div>';
-	
-	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $output);
-	
-    return $output;
-}

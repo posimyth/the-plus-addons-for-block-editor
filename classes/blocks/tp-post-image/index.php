@@ -7,19 +7,11 @@ function tpgb_tp_post_image_render_callback( $attr, $content) {
 	$post_id = get_the_ID();
 
     $block_id = (!empty($attr['block_id'])) ? $attr['block_id'] : uniqid("title");
-	$className = (!empty($attr['className'])) ? $attr['className'] : '';
 	$imageType = (!empty($attr['imageType'])) ? $attr['imageType'] : 'default';
 	$bgLocation = (!empty($attr['bgLocation'])) ? $attr['bgLocation'] : 'section';
-	$align = (!empty($attr['align'])) ? $attr['align'] :'';
 	$imageSize = (!empty($attr['imageSize'])) ? $attr['imageSize'] : 'full';
     
-	$blockClass = '';
-	if(!empty($className)){
-		$blockClass .= $className;
-	}
-	if(!empty($align)){
-		$blockClass .= ' align'.$align;
-	}
+	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
 	$data_attr = [];
 	if(!empty($imageType) && $imageType=='background'){
