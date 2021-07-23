@@ -1,6 +1,6 @@
 <?php
 /* Block : Flip Box
- * @since : 1.0.0
+ * @since : 1.1.2
  */
 function tpgb_tp_flipbox_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -19,22 +19,28 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 	
 	$flipcarousel = (!empty($attributes['flipcarousel'])) ? $attributes['flipcarousel'] : [];
 	
-	$showDots = (!empty($attributes['showDots'])) ? $attributes['showDots'] : [ 'md' => false ];
-	$showArrows = (!empty($attributes['showArrows'])) ? $attributes['showArrows'] : [ 'md' => false ];
-	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	$count = '';
-	$carouselClass = '';
+	$Sliderclass = $arrowCss = '';
+	$carousel_settings = [];
 	if($layoutType=='carousel'){
-		$carouselClass = 'tpgb-carousel';
+		
+		$carousel_settings = Tp_Blocks_Helper::carousel_settings( $attributes );
+		
+		$Sliderclass .= 'tpgb-carousel splide';
+		
+		$showDots = (!empty($attributes['showDots'])) ? $attributes['showDots'] : [ 'md' => false ];
+		$dotsStyle = (!empty($attributes['dotsStyle'])) ? $attributes['dotsStyle'] : false;
+		if( ( isset($showDots['md']) && !empty($showDots['md']) ) || ( isset($showDots['sm']) && !empty($showDots['sm']) ) || ( isset($showDots['xs']) && !empty($showDots['xs']) ) ){
+			$Sliderclass .= ' dots-'.esc_attr($dotsStyle);
+		}
+		
+		$showArrows = (!empty($attributes['showArrows'])) ? $attributes['showArrows'] : [ 'md' => false ];
+		$arrowsStyle = (!empty($attributes['arrowsStyle'])) ? $attributes['arrowsStyle'] : 'style-1';
+		
+		$arrowCss = Tp_Blocks_Helper::tpgb_carousel_arrow_css( $showArrows , $block_id );
 	}
-	
-	//Carousel Options
-	$carousel_settings = Tp_Blocks_Helper::carousel_settings( $attributes );
-	$carousel_settings = json_encode($carousel_settings);
-	
-	$Sliderclass = '';
 	
 	//img src
 	if(!empty($imagestore) && !empty($imagestore['id'])){
@@ -48,7 +54,7 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 	}
 			
 	$output = '';
-    $output .= '<div class="tpgb-flipbox '.esc_attr($carouselClass).' '.esc_attr($Sliderclass).' list-'.esc_attr($layoutType).' flip-box-style-1 tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'" data-carousel-option=\'' . $carousel_settings . '\'>';
+    $output .= '<div class="tpgb-flipbox '.esc_attr($Sliderclass).' list-'.esc_attr($layoutType).' flip-box-style-1 tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'" data-carousel-option=\'' . json_encode($carousel_settings) . '\'>';
 		if($layoutType=='listing'){
 			$output .= '<div class="flip-box-inner content_hover_effect ">';
 				$output .= '<div class="flip-box-bg-box">';
@@ -85,11 +91,15 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 			$output .= '</div>';
 		}
 		if($layoutType=='carousel'){
-			$output .= '<div class="post-loop-inner">';
+			if( ( isset($showArrows['md']) && !empty($showArrows['md']) ) || ( isset($showArrows['sm']) && !empty($showArrows['sm']) ) || ( isset($showArrows['xs']) && !empty($showArrows['xs']) ) ){
+				$output .= Tp_Blocks_Helper::tpgb_carousel_arrow($arrowsStyle, '');
+			}
+			$output .= '<div class="post-loop-inner splide__track">';
+			$output .= '<div class="splide__list">';
 			if(!empty($flipcarousel)){
 				foreach ( $flipcarousel as $index => $item ) {
 					$count++;
-					$output .= '<div class="flip-box-inner content_hover_effect tp-repeater-item-'.esc_attr($item['_key']).'" data-index="'.esc_attr($count).'">';
+					$output .= '<div class="splide__slide flip-box-inner content_hover_effect tp-repeater-item-'.esc_attr($item['_key']).'" data-index="'.esc_attr($count).'">';
 						$output .= '<div class="flip-box-bg-box">';
 							$output .= '<div class="service-flipbox flip-'.esc_attr($flipType).'" height-full"}>';
 								$output .= '<div class="service-flipbox-holder height-full text-center perspective bezier-1">';
@@ -132,11 +142,14 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 				}
 			}
 			$output .= '</div>';
+			$output .= '</div>';
 		}
     $output .= '</div>';
 	
 	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $output);
-	
+	if($layoutType=='carousel' && !empty($arrowCss) ){
+		$output .= $arrowCss;
+	}
     return $output;
 }
 
@@ -210,7 +223,7 @@ function tpgb_flipbox() {
 	$globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
 	$globalpositioningOption = Tpgb_Blocks_Global_Options::load_positioning_options();
 	$globalPlusExtrasOption = Tpgb_Blocks_Global_Options::load_plusextras_options();
-	
+	$carousel_options = Tpgb_Blocks_Global_Options::carousel_options();
 	$attributesOptions = array(
 		'block_id' => [
 			'type' => 'string',
@@ -394,19 +407,6 @@ function tpgb_flipbox() {
 				'url' => TPGB_ASSETS_URL.'assets/images/tpgb-placeholder.jpg',
 			],
 		],
-		'imgWidth' => [
-			'type' => 'object',
-			'default' => [ 
-				'md' => '',
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'img' ]],
-					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-img{ max-width: {{imgWidth}}; }',
-				],
-			],
-		],
 		'imageSize' => [
 			'type' => 'string',
 			'default' => 'thumbnail',	
@@ -461,7 +461,11 @@ function tpgb_flipbox() {
 			],
 			'style' => [
 				(object) [
-					'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object)['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ font-size: {{iconSize}}; }',
+				],
+				(object) [
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ]],
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ font-size: {{iconSize}}; }',
 				],
 			],
@@ -474,7 +478,11 @@ function tpgb_flipbox() {
 			],
 			'style' => [
 				(object) [
-					'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object)['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ width: {{iconWidth}}; height: {{iconWidth}}; line-height: {{iconWidth}}; }',
+				],
+				(object) [
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ]],
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ width: {{iconWidth}}; height: {{iconWidth}}; line-height: {{iconWidth}}; }',
 				],
 			],
@@ -484,7 +492,11 @@ function tpgb_flipbox() {
 			'default' => '',
 			'style' => [
 				(object) [
-					'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object)['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ color: {{icnNmlColor}}; }',
+				],
+				(object) [
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ]],
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ color: {{icnNmlColor}}; }',
 				],
 			],
@@ -494,7 +506,11 @@ function tpgb_flipbox() {
 			'default' => '',
 			'style' => [
 				(object) [ 
-					'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object)['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon{ color: {{icnHvrColor}}; }',
+				],
+				(object) [ 
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ]],
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon{ color: {{icnHvrColor}}; }',
 				],
 			],
@@ -512,7 +528,11 @@ function tpgb_flipbox() {
 			],
 			'style' => [
 				(object) [
-					'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object)['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon',
+				],
+				(object) [
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ]],
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon',
 				],
 			],
@@ -530,7 +550,11 @@ function tpgb_flipbox() {
 			],
 			'style' => [
 				(object) [
-					'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object)['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon',
+				],
+				(object) [
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ]],
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon',
 				],
 			],
@@ -541,8 +565,13 @@ function tpgb_flipbox() {
 			'style' => [
 				(object) [
 					'condition' => [
-						(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ],
-						(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['square','rounded'] ]
+						(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ],(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['square','rounded'] ]
+					],
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ border-color: {{nmlBColor}}; }',
+				],
+				(object) [
+					'condition' => [
+						(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ],(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['square','rounded'] ]
 					],
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ border-color: {{nmlBColor}}; }',
 				],
@@ -554,8 +583,13 @@ function tpgb_flipbox() {
 			'style' => [
 				(object) [ 
 					'condition' => [
-						(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ],
-						(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['square','rounded'] ]
+						(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ],(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['square','rounded'] ]
+					],
+					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon{ border-color: {{hvrBColor}}; }',
+				],
+				(object) [ 
+					'condition' => [
+						(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ],(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['square','rounded'] ]
 					],
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon{ border-color: {{hvrBColor}}; }',
 				],
@@ -575,8 +609,14 @@ function tpgb_flipbox() {
 			'style' => [
 				(object) [
 					'condition' => [
-						(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ],
+						(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ],
 						(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['none','square','rounded'] ]
+					],
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{border-radius: {{nmlIcnBRadius}};}',
+				],
+				(object) [
+					'condition' => [
+						(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ],(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['none','square','rounded'] ]
 					],
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{border-radius: {{nmlIcnBRadius}};}',
 				],
@@ -595,9 +635,14 @@ function tpgb_flipbox() {
 			],
 			'style' => [
 				(object) [
-					'condition' => [
-						(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ],
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ],
 						(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['none','square','rounded'] ]
+					],
+					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon{border-radius: {{hvrIcnBRadius}};}',
+				],
+				(object) [
+					'condition' => [
+						(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ],(object) [ 'key' => 'iconStyle', 'relation' => '==', 'value' => ['none','square','rounded'] ]
 					],
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon{border-radius: {{hvrIcnBRadius}};}',
 				],
@@ -616,7 +661,11 @@ function tpgb_flipbox() {
 			],
 			'style' => [
 				(object) [
-					'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon',
+				],
+				(object) [
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ]],
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon',
 				],
 			],
@@ -634,8 +683,29 @@ function tpgb_flipbox() {
 			],
 			'style' => [
 				(object) [
-					'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ]],
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon',
+				],
+				(object) [
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon',
+				],
+			],
+		],
+		'imgWidth' => [
+			'type' => 'object',
+			'default' => [ 
+				'md' => '',
+				"unit" => 'px',
+			],
+			'style' => [
+				(object) [
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'listing' ],(object)['key' => 'iconType', 'relation' => '==', 'value' => 'img' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-img{ max-width: {{imgWidth}}; }',
+				],
+				(object) [
+					'condition' => [(object) ['key' => 'layoutType', 'relation' => '==', 'value' => 'carousel' ]],
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-img{ max-width: {{imgWidth}}; }',
 				],
 			],
 		],
@@ -1158,182 +1228,9 @@ function tpgb_flipbox() {
 				],
 			],
 		],
-		'sliderMode' => [
-			'type' => 'string',
-			'default' => 'horizontal',
-		],
-		'slideSpeed' => [
-			'type' => 'string',
-			'default' => 1500,
-		],
-			
-		'slideColumns' => [
-			'type' => 'object',
-			'default' => [ 'md' => 1,'sm' => 1,'xs' => 1 ],
-		],
-		'initialSlide' => [
-			'type' => 'number',
-			'default' => 0,
-		],
-		'slideScroll' => [
-			'type' => 'object',
-			'default' => [ 'md' => 1 ],
-		],
-		'slideColumnSpace' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => 15,
-					"right" => 15,
-					"bottom" => 15,
-					"left" => 15,
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'selector' => '{{PLUS_WRAP}} .flip-box-inner{padding: {{slideColumnSpace}};}',
-				],
-			],
-		],
-		'slideDraggable' => [
-			'type' => 'object',
-			'default' => [ 'md' => true ],
-		],
-		'slideInfinite' => [
-			'type' => 'object',
-			'default' => [ 'md' => false ],
-		],
-		'slideHoverPause' => [
-			'type' => 'boolean',
-			'default' => false,
-		],
-		'slideAdaptiveHeight' => [
-			'type' => 'boolean',
-			'default' => false,
-		],
-		'slideAutoplay' => [
-			'type' => 'object',
-			'default' => [ 'md' => false ],
-		],
-		'slideAutoplaySpeed' => [
-			'type' => 'object',
-			'default' => ['md' => 1500 ],
-		],
-		'showDots' => [
-			'type' => 'object',
-			'default' => [ 'md' => true ],
-		],
-		'dotsStyle' => [
-			'type' => 'string',
-			'default' => 'style-1',
-		],
-		'dotsBorderColor' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-				'condition' => [
-					(object) [ 'key' => 'dotsStyle', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4','style-6'] ],
-					(object) [ 'key' => 'showDots', 'relation' => '==', 'value' => true ]
-					],
-				'selector' => '{{PLUS_WRAP}} .slick-dots.style-1 li button{-webkit-box-shadow:inset 0 0 0 8px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 8px {{dotsBorderColor}};box-shadow: inset 0 0 0 8px {{dotsBorderColor}};} {{PLUS_WRAP}} .slick-dots.style-1 li.slick-active button{-webkit-box-shadow:inset 0 0 0 1px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 1px {{dotsBorderColor}};box-shadow: inset 0 0 0 1px {{dotsBorderColor}};}{{PLUS_WRAP}} .slick-dots.style-1 li button:before{color: {{dotsBorderColor}};}',
-				],
-			],
-		],
 		
-		'dotsTopSpace' => [
-			'type' => 'object',
-			'default' => [ 'md' => 0,'sm' => 0,'xs' => 0,'unit' => 'px' ],
-			'style' => [
-				(object) [
-					'condition' => [ 
-						(object) [ 'key' => 'showDots', 'relation' => '==', 'value' => true ]
-					],
-					'selector' => '{{PLUS_WRAP}} .slick-dots{transform: translateY({{dotsTopSpace}});}',
-				],
-			],
-		],
-		'slideHoverDots' => [
-			'type' => 'boolean',
-			'default' => false,
-		],
-		'showArrows' => [
-			'type' => 'object',
-			'default' => [ 'md' => false ],
-		],
-		'arrowsStyle' => [
-			'type' => 'string',
-			'default' => 'style-1',
-		],
-		'arrowsPosition' => [
-			'type' => 'string',
-			'default' => 'top-right',
-		],
-		'arrowsBgColor' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [
-						(object) [ 'key' => 'arrowsStyle', 'relation' => '==', 'value' => 'style-1' ],
-						(object) [ 'key' => 'showArrows', 'relation' => '==', 'value' => true ]
-					],
-					'selector' => '{{PLUS_WRAP}} .slick-nav.style-1{background:{{arrowsBgColor}};}',
-				],
-			],
-		],
-		'arrowsIconColor' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [
-						(object) [ 'key' => 'showArrows', 'relation' => '==', 'value' => true ]
-					],
-					'selector' => '{{PLUS_WRAP}} .slick-nav.style-1:before{color:{{arrowsIconColor}};}',
-				],
-			],
-		],
-		'arrowsHoverBgColor' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [
-						(object) [ 'key' => 'arrowsStyle', 'relation' => '==', 'value' => 'style-1' ],
-						(object) [ 'key' => 'showArrows', 'relation' => '==', 'value' => true ]
-					],
-					'selector' => '{{PLUS_WRAP}} .slick-nav.style-1:hover{background:{{arrowsHoverBgColor}};}',
-				],
-			],
-		],
-		'arrowsHoverIconColor' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [
-						(object) [ 'key' => 'showArrows', 'relation' => '==', 'value' => true ]
-					],
-					'selector' => '{{PLUS_WRAP}} .slick-nav.style-1:hover:before{color:{{arrowsHoverIconColor}};}',
-				],
-			],
-		],
-		'outerArrows' => [
-			'type' => 'boolean',
-			'default' => false,
-		],
-		'slideHoverArrows' => [
-			'type' => 'boolean',
-			'default' => false,
-		],
-		'centerMode' => [
-			'type' => 'object',
-			'default' => [ 'md' => false ],
-		],
 	);
-	$attributesOptions = array_merge($attributesOptions,$globalBgOption,$globalpositioningOption, $globalPlusExtrasOption);
+	$attributesOptions = array_merge($attributesOptions, $carousel_options, $globalBgOption, $globalpositioningOption, $globalPlusExtrasOption);
 	
 	register_block_type( 'tpgb/tp-flipbox', array(
 		'attributes' => $attributesOptions,

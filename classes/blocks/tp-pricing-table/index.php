@@ -1,6 +1,6 @@
 <?php
 /* Block : Pricing Table
- * @since : 1.0.0
+ * @since : 1.1.2
  */
 function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -26,7 +26,7 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 	$prevPriceValue = (!empty($attributes['prevPriceValue'])) ? $attributes['prevPriceValue'] : '';
 	$prevPostText = (!empty($attributes['prevPostText'])) ? $attributes['prevPostText'] : '';
 	$preText = (!empty($attributes['preText'])) ? $attributes['preText'] : '';
-	$priceValue = (!empty($attributes['priceValue'])) ? $attributes['priceValue'] : '';
+	$priceValue = (isset($attributes['priceValue'])) ? $attributes['priceValue'] : '';
 	$postText = (!empty($attributes['postText'])) ? $attributes['postText'] : '';
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
@@ -94,7 +94,7 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 		if(!empty($preText)){
 			$getPriceContent .= '<span class="price-prefix-text">'.esc_html($preText).'</span>';
 		}
-		if(!empty($priceValue)){
+		if(isset($priceValue) && $priceValue!=''){
 			$getPriceContent .= '<span class="pricing-price">'.esc_html($priceValue).'</span>'; 
 		}
 		if(!empty($postText)){

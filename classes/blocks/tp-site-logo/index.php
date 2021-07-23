@@ -1,6 +1,6 @@
 <?php
 /* Tp Block : Site Logo
- * @since	: 1.1.0
+ * @since	: 1.1.2
  */
 function tpgb_tp_site_logo_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -23,42 +23,44 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
-	if(!empty($imageStore) && !empty($imageStore['id'])){
-		$site_img = $imageStore['id'];
-		$imgSrc = wp_get_attachment_image_src($site_img , $imageSize);
-		$imgSrc = (!empty($imgSrc[0])) ? $imgSrc[0] : '';
-	}else if(!empty($imageStore['url'])){
-		$imgSrc = $imageStore['url'];
-	}else{
-		$imgSrc = $imageStore;
-	}
-	
-	if(!empty($hvrImageStore) && !empty($hvrImageStore['id'])){
-		$site_hImg = $hvrImageStore['id'];
-		$hImgSrc = wp_get_attachment_image_src($site_hImg , $hvrImageSize);
-		$hImgSrc = (!empty($hImgSrc[0])) ? $hImgSrc[0] : '';
-	}else if(!empty($hvrImageStore['url'])){
-		$hImgSrc = $hvrImageStore['url'];
-	}else{
-		$hImgSrc = $hvrImageStore;
-	}
-	
-	if(!empty($stickyImg) && !empty($stickyImg['id'])){
-		$site_sImg = $stickyImg['id'];
-		$sImgSrc = wp_get_attachment_image_src($site_sImg , $sImgSize);
-		$sImgSrc = (!empty($sImgSrc[0])) ? $sImgSrc[0] : '';
-	}else if(!empty($stickyImg['url'])){
-		$sImgSrc = $stickyImg['url'];
-	}else{
-		$sImgSrc = $stickyImg;
-	}
-	
 	$normal_hover = $sticky_class ='';
 	if($logoNmlDbl=='double' && !empty($hvrImageStore)){
 		$normal_hover = 'logo-hover-normal';
 	}
 	if(!empty($stickyLogo)){
 		$sticky_class = 'tp-sticky-logo-cls';
+	}
+	
+	$default_img = TPGB_ASSETS_URL. 'assets/images/tpgb-placeholder.jpg';
+	
+	$imgSrc ='';
+	if(!empty($imageStore) && !empty($imageStore['id'])){
+		$site_img = $imageStore['id'];
+		$imgSrc = wp_get_attachment_image($site_img , $imageSize, false, ['class' => 'image-logo-wrap normal-image'.esc_attr($sticky_class) ] );
+		$imgSrc = (!empty($imgSrc)) ? $imgSrc : '<img src="'.esc_url($default_img).'" class="image-logo-wrap normal-image '.esc_attr($sticky_class).'"/>';
+	}else if(!empty($imageStore['url'])){
+		$imgSrc = $imageStore['url'];
+		$imgSrc = '<img src="'.esc_url($imgSrc).'" class="image-logo-wrap normal-image '.esc_attr($sticky_class).'"/>';
+	}
+	
+	$hImgSrc = '';
+	if(!empty($hvrImageStore) && !empty($hvrImageStore['id'])){
+		$site_hImg = $hvrImageStore['id'];
+		$hImgSrc = wp_get_attachment_image($site_hImg , $hvrImageSize, false, ['class' => 'image-logo-wrap' ] );
+		$hImgSrc = (!empty($hImgSrc)) ? $hImgSrc : '<img src="'.esc_url($default_img).'" class="image-logo-wrap"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
+	}else if(!empty($hvrImageStore['url'])){
+		$hImgSrc = $hvrImageStore['url'];
+		$hImgSrc = '<img src="'.esc_url($hImgSrc).'" class="image-logo-wrap"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
+	}
+	
+	$sImgSrc = '';
+	if(!empty($stickyImg) && !empty($stickyImg['id'])){
+		$site_sImg = $stickyImg['id'];
+		$sImgSrc = wp_get_attachment_image($site_sImg , $sImgSize, false, ['class' => 'image-logo-wrap sticky-image' ] );
+		$sImgSrc = (!empty($sImgSrc)) ? $sImgSrc : '<img src="'.esc_url($default_img).'" class="image-logo-wrap sticky-image"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
+	}else if(!empty($stickyImg['url'])){
+		$sImgSrc = $stickyImg['url'];
+		$sImgSrc = '<img src="'.esc_url($sImgSrc).'" class="image-logo-wrap sticky-image"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
 	}
 	
 	$url_link = $target = $nofollow = '';
@@ -76,14 +78,14 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 		if($logoType=='img'){
 			if(!empty($imageStore)){
 				$output .= '<a href="'.esc_url($url_link).'" target="'.esc_attr($target).'" rel="'.esc_attr($nofollow).'" class="site-normal-logo image-logo">';
-					$output .= '<img src="'.esc_url($imgSrc).'" class="image-logo-wrap normal-image '.esc_attr($sticky_class).'"/>';
+					$output .= $imgSrc;
 					if(!empty($stickyLogo)){
 						$output .= '<img src="'.esc_url($sImgSrc).'" class="image-logo-wrap sticky-image"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
 					}
 				$output .= '</a>';
 				if($logoNmlDbl=='double' && !empty($hvrImageStore)){
 					$output .= '<a href="'.esc_url($url_link).'" target="'.esc_attr($target).'" rel="'.esc_attr($nofollow).'" class="site-normal-logo image-logo hover-logo">';
-						$output .= '<img src="'.esc_url($hImgSrc).'" class="image-logo-wrap"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
+						$output .= $hImgSrc;
 					$output .= '</a>';
 				}
 			}

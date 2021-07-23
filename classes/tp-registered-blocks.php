@@ -110,14 +110,13 @@ function tpgb_registered_blocks(){
 			'dependency' => [
 				'css' => [
 					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/bootstrap-grid.min.css',
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/slick.min.css',
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/slick-theme.min.css',
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/main/post-listing/slick-carousel.css',
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/splide.min.css',
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/main/post-listing/splide-carousel.min.css',
 					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-testimonials/style.css',
 				],
 				'js' => [
-					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/extra/slick.min.js',
-					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/post-listing/post-carousel.min.js',
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/extra/splide.min.js',
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/post-listing/post-splide.min.js',
 				],
 			],
 		],
@@ -351,13 +350,12 @@ function tpgb_registered_blocks(){
 		'carouselSlider' => [
 			'dependency' => [
 				'css' => [
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/slick.min.css',
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/slick-theme.min.css',
-					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/main/post-listing/slick-carousel.css',
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/splide.min.css',
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/main/post-listing/splide-carousel.min.css',
 				],
 				'js' => [
-					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/extra/slick.min.js',
-					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/post-listing/post-carousel.min.js',
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/extra/splide.min.js',
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/post-listing/post-splide.min.js',
 				],
 			],
 		],
@@ -540,7 +538,7 @@ Class Tpgb_Library {
      */
     public function plus_generate_scripts($elements, $file_name = null)
     {
-		
+
         if (empty($elements)) {
             return;
         }
@@ -591,8 +589,7 @@ Class Tpgb_Library {
      *
      * @since 1.0.0
      */
-    public function plus_merge_files($paths = array(), $file = 'theplus-style.min.css',$type='')
-    {
+    public function plus_merge_files($paths = array(), $file = 'theplus-style.min.css',$type='') {
         $output = '';
 
         if (!empty($paths)) {
@@ -638,12 +635,21 @@ Class Tpgb_Library {
 		return $this->plus_template_blocks;
 	}
 	
+	/*
+	 * Template Post Do block
+	 * @since 1.1.2
+	 */
 	public function plus_do_block($post_id=''){
 		if(!empty($post_id) && isset($post_id)){
 			$block_post = get_post( $post_id );
 			if ( ! is_wp_error( $block_post ) ) {
 				$this->plus_template_blocks[] = $post_id;
-				return do_blocks( $block_post->post_content );
+				$content =  (isset($block_post->post_content)) ? $block_post->post_content : '';
+				if(isset($content)){
+					return do_blocks( $content );
+				}else{
+					return;
+				}
 			}
 		}else{
 			return; 
@@ -661,10 +667,15 @@ Class Tpgb_Library {
 			$upload_base_dir 	= trailingslashit($upload_dir['basedir']);
 			$css_path			= $upload_base_dir . "theplus_gutenberg/plus-css-{$post_id}.css";
 			
+			$plus_version=get_post_meta( $post_id, '_block_css', true );
+			if(empty($plus_version)){
+				$plus_version = TPGB_VERSION;
+			}
+
 			if (file_exists($css_path)) {
 				$css_file_url = trailingslashit($upload_dir['baseurl']);
 				$css_url     = $css_file_url . "theplus_gutenberg/plus-css-{$post_id}.css";
-				wp_enqueue_style("plus-post-{$post_id}", $css_url, false, TPGB_VERSION);
+				wp_enqueue_style("plus-post-{$post_id}", $css_url, false, $plus_version);
 			}
 		}
 		
@@ -695,6 +706,10 @@ Class Tpgb_Library {
 		if (get_transient('tpgb_save_updated_at') == get_transient($this->plus_uid . '_updated_at')) {
             return;
         }
+		
+		if(has_filter('tpgb_extra_load_css_js')) {
+			$this->transient_blocks = apply_filters('tpgb_extra_load_css_js', $this->transient_blocks );
+		}
 		
 		if(!empty($this->transient_blocks)){
 			$this->transient_blocks = array_unique($this->transient_blocks);
@@ -943,7 +958,7 @@ Class Tpgb_Library {
 		
 		$plus_name='';
 		if(isset($_POST['plus_name']) && !empty($_POST['plus_name'])){
-			$plus_name = sanitize_text_field($_POST['plus_name']);
+			$plus_name = sanitize_text_field(wp_unslash($_POST['plus_name']));
 		}
 		if($plus_name== 'gutenberg-all') {
 			// All clear cache files

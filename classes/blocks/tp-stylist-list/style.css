@@ -6,6 +6,9 @@
     width: 100%;
     display: block
 }
+.align-justify {
+    text-align: justify;
+}
 .tpgb-stylist-list .tpgb-icon-list-items {
     list-style-type: none;
     margin: 0;

@@ -33,7 +33,7 @@ function tpgb_tp_post_title_render_callback( $attr, $content) {
 				} else if ( is_author() ) {    
 					$title = '<span class="vcard">' . get_the_author() . '</span>' ;    
 				} else if ( is_tax() ) {
-					$title = sprintf( __( '%1$s' ), single_term_title( '', false ) );
+					$title = single_term_title( '', false );
 				} else if (is_post_type_archive()) {
 					$title = post_type_archive_title( '', false );
 				} else if (is_search()) {

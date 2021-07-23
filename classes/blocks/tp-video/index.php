@@ -60,7 +60,7 @@ function tpgb_tp_video_callback( $settings, $content) {
          if ( isset($settings[ 'VideoIcon' ][ 'id' ] ) ) {
             $VideoIcon      = $settings[ 'VideoIcon' ][ 'id' ];
             $img           = wp_get_attachment_image_src ( $VideoIcon, $settings[ 'VideoIconSize' ] );
-            $VideoIcon_icon = $img[ 0 ];
+            $VideoIcon_icon = isset($img[ 0 ]) ? $img[ 0 ] : TPGB_ASSETS_URL. 'assets/images/tpgb-placeholder.jpg';
         } else {
             $VideoIcon_icon = $settings[ "BannerImg" ][ "url" ];
         }

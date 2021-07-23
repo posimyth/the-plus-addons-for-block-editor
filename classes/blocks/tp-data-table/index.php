@@ -102,7 +102,10 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
                                 $TrRowSpan = (!empty($item['TrRowSpan'])) ? $item['TrRowSpan'] : 1;
                                 $Tag = (!empty($item['TrHeading']) && $item['TrHeading'] == 'th') ? $item['TrHeading'] : 'td';
                                 $Btntx = (!empty($item['Trbtntext']) ? $item['Trbtntext'] : __('Click Here','tpgb') );
-                                $Btnlink = (!empty($item['TrbtnLink']) && !empty($item['TrbtnLink']['url'])) ? $item['TrbtnLink']['url'] : '';
+                                $Btnlink = (!empty($item['TrbtnLink']) && !empty($item['TrbtnLink']['url'])) ? 'href="'.esc_url($item['TrbtnLink']['url']).'"' : '';
+                                $target = ( !empty($item['TrbtnLink']['target'])) ? 'target="_blank"' : '';
+				                $nofollow = (!empty($item['TrbtnLink']['nofollow'])) ? 'rel="nofollow"' : '';
+								
                                 $TRIcon = '';
                                 $TRImg = '';
                                 
@@ -119,7 +122,9 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
                                 $DTBody .= '<'.esc_attr($Tag).' class="tpgb-table-col tp-repeater-item-'.esc_attr($item['_key']).'"  colspan="'.esc_attr($TrColumnSpan).'" rowspan="'.esc_attr($TrRowSpan).'">';
                                     
                                     if( !empty($item['TrLink']) && !empty($item['TrLink']['url']) ){
-                                        $DTBody.='<a href="'.esc_url($item['TrLink']['url']).'" class="tb-col-link">';
+										$target1 = ( !empty ($item['TrLink']['target'])) ? 'target="_blank"' : '';
+                                        $nofollow1= ( !empty($item['TrLink']['nofollow']) ) ? 'rel="nofollow"' : '';
+                                        $DTBody.='<a href="'.esc_url($item['TrLink']['url']).'" class="tb-col-link" '.$target1.'  '.$nofollow1.'>';
                                     }
                                     if($item['trtext'] != '' || $TRIcon != '' || $TRImg != '' ){
                                         $DTBody .= '<span class="tpgb-table__text">';
@@ -133,7 +138,7 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
 
                                     if( (!empty($item['Trbtn'])) && $item['Trbtn'] == TRUE ){
                                         $DTBody .='<div class="pt_tpgb_button tp-repeater-item-'.esc_attr($item['_key']).' button-style-8">';
-                                            $DTBody .='<a href="'.esc_url($Btnlink).'" class="button-link-wrap"  >'.esc_html($Btntx).'</a>';
+                                            $DTBody .='<a '.$Btnlink.'  '.$target.' '.$nofollow.' class="button-link-wrap"  >'.esc_html($Btntx).'</a>';
                                         $DTBody .='</div>';
                                     }
                                  

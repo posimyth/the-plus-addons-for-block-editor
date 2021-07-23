@@ -1,6 +1,6 @@
 <?php
 /* Tp Block : Post Meta
- * @since	: 1.1.1
+ * @since	: 1.1.2
  */
 function tpgb_tp_post_meta_render_callback( $attr, $content) {
 	$output = '';
@@ -13,6 +13,7 @@ function tpgb_tp_post_meta_render_callback( $attr, $content) {
 	$showComment = (!empty($attr['showComment'])) ? $attr['showComment'] : false;
 	$metaSort = (!empty($attr['metaSort'])) ? (Array)$attr['metaSort'] :'';
 	$metaLayout = (!empty($attr['metaLayout'])) ? $attr['metaLayout'] :'';
+	$taxonomySlug = (!empty($attr['taxonomySlug'])) ? $attr['taxonomySlug'] : 'category';
     
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
@@ -28,14 +29,14 @@ function tpgb_tp_post_meta_render_callback( $attr, $content) {
 		$catePrefix = (!empty($attr['catePrefix'])) ? '<span class="tpgb-meta-category-label">'.esc_html($attr['catePrefix']).'</span>' : '';
 		$cateDisplayNo = (!empty($attr['cateDisplayNo'])) ? $attr['cateDisplayNo'] : 0;
 		$cateStyle = (!empty($attr['cateStyle'])) ? $attr['cateStyle'] : 'style-1';
-		$terms = get_the_terms( $post_id, 'category', array("hide_empty" => true) );
+		$terms = get_the_terms( $post_id, $taxonomySlug, array("hide_empty" => true) );
 		$category_list ='';
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			$i = 0;
-			$category_list .= '<span>';
+			$category_list .= '<span class="tpgb-meta-category-list">';
 			foreach ( $terms as $term ) {
 				if($cateDisplayNo >= $i){
-					$category_list .= '<a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( sprintf( __( '%s', 'tpgb' ), $term->name ) ) . '">' . $term->name . '</a>';
+					$category_list .= '<a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( $term->name ) . '">' . esc_html($term->name) . '</a>';
 				}
 				$i++;
 			}
@@ -287,6 +288,10 @@ function tpgb_post_meta_content() {
 			'catePrefix' => [
                 'type' => 'string',
 				'default' => 'in ',
+			],
+			'taxonomySlug' => [
+                'type' => 'string',
+				'default' => 'category',
 			],
 			'cateDisplayNo' => [
                 'type' => 'string',

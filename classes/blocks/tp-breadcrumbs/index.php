@@ -1,12 +1,12 @@
 <?php
 /* Block : Breadcrumbs
- * @since : 1.0.0
+ * @since : 1.1.2
  */
 function tpgb_breadcrumbs_callback( $attributes, $content) {
 	$output = '';
     $uid = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
     $style = (!empty($attributes['style'])) ? $attributes['style'] : '';
-    
+    $markupSch = (!empty($attributes['markupSch'])) ? $attributes['markupSch'] : '';
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
     $icons = $icontype = '';
@@ -78,7 +78,7 @@ function tpgb_breadcrumbs_callback( $attributes, $content) {
     
     $activeColorCurrent = ($attributes['activeColorCurrent'] == true) ? "default_active" : "";
 
-    $breadcrumbs_bar .= Tp_Blocks_Helper::theplus_breadcrumbs($icontype,$sepIconType,$icons,$homeTitle,$sepIcons,$activeColorCurrent,$breadcrumbs_last_sec_tri_normal,$bdToggleHome,$bdToggleParent,$bdToggleCurrent,$letterLimitParent,$letterLimitCurrent);
+    $breadcrumbs_bar .= Tp_Blocks_Helper::theplus_breadcrumbs($icontype,$sepIconType,$icons,$homeTitle,$sepIcons,$activeColorCurrent,$breadcrumbs_last_sec_tri_normal,$bdToggleHome,$bdToggleParent,$bdToggleCurrent,$letterLimitParent,$letterLimitCurrent,$markupSch);
     $breadcrumbs_bar .= '</div>';
     $breadcrumbs_bar .= '</div></div>';
     
@@ -136,6 +136,10 @@ function tpgb_tp_breadcrumbs_render() {
                 'url' => '',
                 'Id' => '',
             ],
+        ],
+		'markupSch' => [
+            'type' => 'boolean',
+            'default' => false,
         ],
         'sepIcon' => [
             'type' => 'string',

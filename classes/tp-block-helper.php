@@ -73,10 +73,8 @@ class Tp_Blocks_Helper {
 		
 		//Load Custom Script
 		if(!empty($get_custom_css_js['tpgb_custom_js_editor'])){
-			$load_css_js .= '<script type="text/javascript">';
-				$get_js= $get_custom_css_js['tpgb_custom_js_editor'];
-				$load_css_js .= $get_js;
-			$load_css_js .= '</script>';
+			$get_js= $get_custom_css_js['tpgb_custom_js_editor'];
+			$load_css_js .= wp_print_inline_script_tag($get_js);
 		}
 		echo $load_css_js;
 	}
@@ -326,7 +324,7 @@ class Tp_Blocks_Helper {
 	
 	
 	/* Generate HTML of Breadcrumbs */
-	public static function theplus_breadcrumbs($icontype='',$sepIconType='',$icons='',$homeTitle='',$sepIcons='',$activeTextDefault='',$breadcrumbs_last_sec_tri_normal='',$bdToggleHome='',$bdToggleParent='',$bdToggleCurrent='',$letterLimitParent='',$letterLimitCurrent='') {
+	public static function theplus_breadcrumbs( $icontype='', $sepIconType='', $icons='', $homeTitle='', $sepIcons='', $activeTextDefault='',$breadcrumbs_last_sec_tri_normal='', $bdToggleHome='', $bdToggleParent='', $bdToggleCurrent='', $letterLimitParent='', $letterLimitCurrent='', $markupSch =false) {
 		
         if($homeTitle != '') {
             $text['home'] = $homeTitle;
@@ -342,6 +340,12 @@ class Tp_Blocks_Helper {
         $showOnHome  = 1; 
         $delimiter   = ' <span class="del"></span> '; 
         
+		$schemaArr = [ 
+			'@context' => 'https://schema.org',
+			'@type' => 'BreadcrumbList',
+			'itemListElement' => [],
+		];
+		$breadposi = 0;
         if($bdToggleCurrent == 'on-off-current'){
             if($breadcrumbs_last_sec_tri_normal != '') {
                 if($activeTextDefault != '') {
@@ -411,12 +415,24 @@ class Tp_Blocks_Helper {
         
         if (is_home() || is_front_page()) {
             if ($showOnHome == 1) $crumbs_output = '<nav id="breadcrumbs"><a href="' . esc_url(home_url()) . '">'.$icons_content . esc_html($text['home']) . '</a></nav>';
+			$schemaArr['itemListElement'][] = array(
+				"@type" => "ListItem",
+				"position" => ++$breadposi,
+				"name" => $text['home'],
+				"item" => esc_url(home_url())
+			);
         } else {
             $crumbs_output ='<nav id="breadcrumbs">' . sprintf($home_link, $homeLink, $text['home']) . $home_delimiter;
             if ( is_category() ) {
                 $thisCat = get_category(get_query_var('cat'), false);
                 if ($thisCat->parent != 0) {
                     $cats = get_category_parents($thisCat->parent, TRUE, $delimiter);
+					$schemaArr['itemListElement'][] = array(
+						"@type" => "ListItem",
+						"position"=> ++$breadposi,
+						"name" => $text['category'],
+						"item" => get_category_link($thisCat->term_id)
+					);
                     $cats = str_replace('<a', $linkBefore . '<a', $cats);
                     $cats = str_replace('</a>', $icons_sep_content.'</a>' . $linkAfter, $cats);
                     $crumbs_output .= $cats;
@@ -424,29 +440,70 @@ class Tp_Blocks_Helper {
                 $crumbs_output .= $before . sprintf($text['category'], single_cat_title('', false)) . $after;
             } elseif ( is_search() ) {
                 $crumbs_output .= $before . sprintf($text['search'], get_search_query()) . $after;
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" => $text['search'],
+					"item" => site_url().'/'.get_search_query()
+				);
             }
             elseif (is_singular('topic') ){
                 $post_type = get_post_type_object(get_post_type());
                 printf($link, $homeLink . '/forums/', $post_type->labels->singular_name);
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" => $post_type->labels->singular_name,
+					"item" => $homeLink . '/forums/', $post_type->labels->singular_name
+				);
             }
             /* in forum, add link to support forum page template */
             elseif (is_singular('forum')){
                 $post_type = get_post_type_object(get_post_type());
                 printf($link, $homeLink . '/forums/', $post_type->labels->singular_name);
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" => $post_type->labels->singular_name,
+					"item" => $homeLink . '/forums/', $post_type->labels->singular_name
+				);
             }
             elseif (is_tax('topic-tag')){
                 $post_type = get_post_type_object(get_post_type());
                 printf($link, $homeLink . '/forums/', $post_type->labels->singular_name);
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" => $post_type->labels->singular_name,
+					"item" => $homeLink . '/forums/', $post_type->labels->singular_name
+				);
             }
             elseif ( is_day() ) {
                 $crumbs_output .= sprintf($link, get_year_link(get_the_time('Y')), get_the_time('Y')) . $delimiter;
                 $crumbs_output .= sprintf($link, get_month_link(get_the_time('Y'),get_the_time('m')), get_the_time('F')) . $delimiter;
                 $crumbs_output .= $before . esc_html(get_the_time('d')) . $after;
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" => get_the_time('d'),
+					"item" => get_month_link(get_the_time('Y'),get_the_time('m'))
+				);
             } elseif ( is_month() ) {
                 $crumbs_output .= sprintf($link, get_year_link(get_the_time('Y')), get_the_time('Y')) . $delimiter;
                 $crumbs_output .= $before . esc_html(get_the_time('F')) . $after;
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" => get_the_time('d'),
+					"item" => get_year_link(get_the_time('Y'))
+				);
             } elseif ( is_year() ) {
                 $crumbs_output .= $before . esc_html(get_the_time('Y')) . $after;
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" => get_the_time('d'),
+				);
             } elseif ( is_single() && !is_attachment() ) {
                 if ( 'product' === get_post_type( $post ) ) {
                     
@@ -472,12 +529,30 @@ class Tp_Blocks_Helper {
     
                             if ( ! is_wp_error( $ancestor ) && $ancestor ) {
                                 $crumbs_output .= sprintf($link, get_term_link( $ancestor ), $ancestor->name);
+								$schemaArr['itemListElement'][] = array(
+									"@type" => "ListItem",
+									"position"=> ++$breadposi,
+									"name" =>  $ancestor->name,
+									"item" => get_term_link( $ancestor )
+								);
                             }
                         }
                         if($bdToggleCurrent == 'on-off-current'){
                             $crumbs_output .= sprintf($link, get_term_link( $first_term ), $first_term->name);
+							$schemaArr['itemListElement'][] = array(
+								"@type" => "ListItem",
+								"position"=> ++$breadposi,
+								"name" =>  $first_term->name,
+								"item" => get_term_link( $first_term )
+							);
                         }else{
                             $crumbs_output .= $linkBefore . '<a href="'.esc_url(get_term_link( $first_term )). '">'.esc_html($first_term->name).'</a>' . $linkAfter;
+							$schemaArr['itemListElement'][] = array(
+								"@type" => "ListItem",
+								"position"=> ++$breadposi,
+								"name" => $first_term->name ,
+								"item" => get_term_link( $first_term )
+							);
                         }
                     }
                     
@@ -495,6 +570,12 @@ class Tp_Blocks_Helper {
                     }else{
                         if ($showCurrent == 1) $crumbs_output .= $delimiter . $before .get_the_title(). $after;
                     }
+					$schemaArr['itemListElement'][] = array(
+						"@type" => "ListItem",
+						"position"=> ++$breadposi,
+						"name" => $post_type->labels->singular_name,
+						"item" => $homeLink.'?post_type=' . esc_attr($slug["slug"])
+					);
                 } else {
                     $cat = get_the_category();
                     if(isset($cat[0])) {
@@ -505,6 +586,12 @@ class Tp_Blocks_Helper {
                         $cats = str_replace('</a>', $icons_sep_content.'</a>' . $linkAfter, $cats);						
                         if($bdToggleParent != '' && $bdToggleParent == true) {
                             $crumbs_output .= $cats;
+							$schemaArr['itemListElement'][] = array(
+								"@type" => "ListItem",
+								"position"=> ++$breadposi,
+								"name" => $cat->term_id,
+								"item" => get_category_link($cat->term_id)
+							);
                         }else{
                             $crumbs_output .='';
                         }						
@@ -528,33 +615,81 @@ class Tp_Blocks_Helper {
                     $cats = str_replace('<a', $linkBefore . '<a', $cats);
                     $cats = str_replace('</a>', $icons_sep_content.'</a>' . $linkAfter, $cats);
                     $crumbs_output .= $cats;
-                    printf($link, get_permalink($parent), $parent->post_title);
+					
+					$schemaArr['itemListElement'][] = array(
+						"@type" => "ListItem",
+						"position"=> ++$breadposi,
+						"name" => $cat[0]['term_id'],
+						"item" => get_category_link($cat[0]['term_id'])
+					);
+                   
+					printf($link, get_permalink($parent), $parent->post_title);
                     if ($showCurrent == 1) $crumbs_output .= $delimiter . $before . esc_html(get_the_title()) . $after;
                 }
             } elseif ( is_page() && !$post->post_parent ) {
                 if ($showCurrent == 1) $crumbs_output .= $before . esc_html(get_the_title()) . $after;
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" => get_the_title(),
+					"item" => ''
+				);
             } elseif ( is_page() && $post->post_parent ) {
                 $parent_id  = $post->post_parent;
                 $breadcrumbs = array();
+				$posi = ++$breadposi;
                 while ($parent_id) {
+					$posi++;
                     $page = get_page($parent_id);
                     $breadcrumbs[] = sprintf($link, get_permalink($page->ID), get_the_title($page->ID));
+					$schemaArr['itemListElement'][] = array(
+						"@type" => "ListItem",
+						"position"=> $posi,
+						"name" => get_the_title($page->ID),
+						"item" => get_permalink($page->ID)
+					);
                     $parent_id  = $page->post_parent;
                 }
+				$breadposi = $posi;
                 $breadcrumbs = array_reverse($breadcrumbs);
                 for ($i = 0; $i < count($breadcrumbs); $i++) {
                     $crumbs_output .= $breadcrumbs[$i];
                     if ($i != count($breadcrumbs)-1) $crumbs_output .= $delimiter;
                 }
-                if ($showCurrent == 1) $crumbs_output .= $delimiter . $before . esc_html(get_the_title()) . $after;
+                if ($showCurrent == 1){
+					$crumbs_output .= $delimiter . $before . esc_html(get_the_title()) . $after;
+					$schemaArr['itemListElement'][] = array(
+						"@type" => "ListItem",
+						"position"=> ++$breadposi,
+						"name" => get_the_title(),
+						"item" => get_permalink()
+					);
+				}
             } elseif ( is_tag() ) {
                 $crumbs_output .= $before . sprintf($text['tag'], single_tag_title('', false)) . $after;
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" =>$text['tag'],
+					"item" => get_permalink()
+				);
             } elseif ( is_author() ) {
                 global $author;
                 $userdata = get_userdata($author);
                 $crumbs_output .= $before . sprintf($text['author'], $userdata->display_name) . $after;
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" =>$text['tag'],
+					"item" => $userdata->user_url
+				);
             } elseif ( is_404() ) {
                 $crumbs_output .= $before . $text['404'] . $after;
+				$schemaArr['itemListElement'][] = array(
+					"@type" => "ListItem",
+					"position"=> ++$breadposi,
+					"name" =>$text['404'],
+				);
             }
             if ( get_query_var('paged') ) {
                 if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) $crumbs_output .= ' (';
@@ -562,7 +697,12 @@ class Tp_Blocks_Helper {
                 if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) $crumbs_output .= ')';
             }
             $crumbs_output .= '</nav>';
+			
         }
+		if( !empty($markupSch) ){
+			$encoded_data = wp_json_encode( $schemaArr );
+			$crumbs_output .= '<script type="application/ld+json">'.$encoded_data.'</script>';
+		}
         return $crumbs_output;
 	}
 	
@@ -581,7 +721,7 @@ class Tp_Blocks_Helper {
 		$taxonomies = get_taxonomies( $args, $output, $operator );
 		if ( $taxonomies ) {		
 			foreach ( $taxonomies  as $taxonomy ) {
-				$cat_list[] = [ $taxonomy->name , $taxonomy->labels->singular_name ];			
+				$cat_list[] = [ $taxonomy->name , $taxonomy->label ];
 			}
 			
 		}
@@ -609,32 +749,157 @@ class Tp_Blocks_Helper {
 	
 	/*
 	 * Get Carousel Settings Block Options
-	 * @since 1.1.1
+	 * @since 1.1.2
 	 */
-	public static function carousel_settings( $attr ){
-		$settings =[
-			'sliderMode' => isset( $attr['sliderMode'] ) ? $attr['sliderMode'] : 'horizontal',
-			'slidesToShow' => isset( $attr['slideColumns'] ) ? $attr['slideColumns'] : [ 'md' => 1,'sm' => 1,'xs' => 1 ],
-			'initialSlide' => isset( $attr['initialSlide'] ) ? $attr['initialSlide'] : 0,
-			'slidesToScroll' => isset( $attr['slideScroll'] ) ? $attr['slideScroll'] : [ 'md' => 1 ],
-			'speed' => isset( $attr['slideSpeed'] ) ? $attr['slideSpeed'] : 1500,
-			'draggable' => isset( $attr['slideDraggable'] ) ? $attr['slideDraggable'] : [ 'md' => true ],
-			'infinite' => isset( $attr['slideInfinite'] ) ? $attr['slideInfinite'] : [ 'md' => false ],
-			'pauseOnHover' => isset( $attr['slideHoverPause'] ) ? $attr['slideHoverPause'] : false,
-			'adaptiveHeight' => isset( $attr['slideAdaptiveHeight'] ) ? $attr['slideAdaptiveHeight'] : false,
-			'autoplay' => isset( $attr['slideAutoplay'] ) ? $attr['slideAutoplay'] : [ 'md' => true ],
-			'autoplaySpeed' => isset( $attr['slideAutoplaySpeed'] ) ? $attr['slideAutoplaySpeed'] : ['md' => 1500 ],
-			'dots' => isset( $attr['showDots'] ) ? $attr['showDots'] : [ 'md' => true ],
-			'dotsStyle' => isset( $attr['dotsStyle'] ) ? $attr['dotsStyle'] : 'style-1',
-			'centerMode' => isset( $attr['centerMode'] ) ? $attr['centerMode'] : [ 'md' => false ],
-			'centerPadding' =>  isset( $attr['centerPadding'] ) ? $attr['centerPadding'] : '',
-			'rows' => isset( $attr['slideRow'] ) ? $attr['slideRow'] : 1,
-			'arrows' => isset( $attr['showArrows'] ) ? $attr['showArrows'] : [ 'md' => false ],
-			'arrowsStyle' => isset( $attr['arrowsStyle'] ) ? $attr['arrowsStyle'] : 'style-1',
-			'arrowsPosition' => isset( $attr['arrowsPosition'] ) ? $attr['arrowsPosition'] : 'top-right',
-		];
+	public static function carousel_settings( $attr ){	
+		$cenpadding = isset( $attr['centerPadding'] ) ? (array) $attr['centerPadding'] : '';
 		
+		$settings =[
+			'updateOnMove' => true,
+			'direction' => isset( $attr['sliderMode'] ) && $attr['sliderMode'] == 'vertical'  ? 'ttb' : 'ltr',
+			'start' => isset( $attr['initialSlide'] ) ? $attr['initialSlide'] : 0,
+			'autoplay' => isset( $attr['slideAutoplay'] ) ? $attr['slideAutoplay'] : false,
+			'speed' => isset( $attr['slideSpeed'] ) ? (int)$attr['slideSpeed'] : 1500,
+			'interval' => isset( $attr['slideAutoplaySpeed'] ) ? (int)$attr['slideAutoplaySpeed'] : '',
+			'drag' => isset( $attr['slideDraggable']['md'] ) ? $attr['slideDraggable']['md'] : false  ,
+			'type' => !empty( $attr['slideInfinite'] ) ? 'loop' : 'slide',
+			'pauseOnHover' => isset( $attr['slideHoverPause'] ) ? $attr['slideHoverPause'] : false,
+			'pagination' => isset( $attr['showDots']['md'] ) ? $attr['showDots']['md'] : false ,
+			'arrows' => ( !empty($attr['showArrows']['md']) || !empty($attr['showArrows']['sm']) || !empty($attr['showArrows']['xs']) ) ? true : false,
+			'padding' =>  isset( $cenpadding['md'] ) ? (int) $cenpadding['md'] : '',
+			'perMove' => isset( $attr['slideScroll']['md'] ) ? (int)$attr['slideScroll']['md']  : 1,
+			'perPage' => isset( $attr['slideColumns']['md'] ) ? (int)$attr['slideColumns']['md'] : 1,
+			'padding' =>  isset( $cenpadding['md'] ) ? (int) $cenpadding['md'] : '',
+			'breakpoints' => [
+				'1024' => [
+					'pagination' => ( !isset($attr['showDots']['sm']) ) ? $attr['showDots']['md'] : ( isset($attr['showDots']['sm'])  ? $attr['showDots']['sm'] : false ) ,
+
+					'drag' => ( !isset($attr['slideDraggable']['sm']) ) ? $attr['slideDraggable']['md'] : ( isset($attr['slideDraggable']['sm'])  ? $attr['slideDraggable']['sm'] : false ),
+
+
+					'padding' => ( !isset( $cenpadding['sm']) ) ? (isset( $cenpadding['md'] ) ? (int) $cenpadding['md'] : '') : ( isset($cenpadding['sm'])  ? $cenpadding['sm'] : '' ),
+
+					'perMove' => ( !isset($attr['slideScroll']['sm']) ) ? (int)$attr['slideScroll']['md'] : ( isset($attr['slideScroll']['sm'])  ? (int)$attr['slideScroll']['sm'] : 1 ) ,
+					
+					'perPage' =>  ( !isset( $attr['slideColumns']['sm']) ) ? $attr['slideColumns']['md'] : ( isset($attr['slideColumns']['sm'])  ? $attr['slideColumns']['sm'] : 1 ),
+				],
+				'767' => [
+					'pagination' => ( !isset($attr['showDots']['xs']) ) ? ( (!isset($attr['showDots']['sm'])) ? $attr['showDots']['md'] : $attr['showDots']['sm'] ) : (isset($attr['showDots']['xs']) ? $attr['showDots']['xs'] : false),
+
+					'drag' => ( !isset($attr['slideDraggable']['xs']) ) ? ( (!isset($attr['slideDraggable']['sm'])) ? $attr['slideDraggable']['md'] : $attr['slideDraggable']['sm'] ) : (isset($attr['slideDraggable']['xs']) ? $attr['slideDraggable']['xs'] : false),
+
+					'padding' =>  ( !isset($cenpadding['xs']) ) ? ( (!isset($cenpadding['sm'])) ? (isset( $cenpadding['md'] ) ? (int) $cenpadding['md'] : '') : $cenpadding['sm'] ) : (isset($cenpadding['xs']) ? $cenpadding['xs'] : ''),
+
+					'perMove' => ( !isset($attr['slideScroll']['xs']) ) ? ( (!isset($attr['slideScroll']['sm'])) ? (int)$attr['slideScroll']['md'] : (int)$attr['slideScroll']['sm'] ) : (isset($attr['slideScroll']['xs']) ? (int)$attr['slideScroll']['xs'] : 1),
+
+					'perPage' =>  ( !isset($attr['slideColumns']['xs']) ) ? ( (!isset($attr['slideColumns']['sm'])) ? $attr['slideColumns']['md'] : $attr['slideColumns']['sm'] ) : (isset($attr['slideColumns']['xs']) ? $attr['slideColumns']['xs'] : 1),
+				]
+			],
+		];
+
+		if(isset($attr['centerMode']['md']) && $attr['centerMode']['md'] == true){
+			$settings['focus'] =  'center';
+		}else if(isset( $attr['slideScroll']['md'] ) && $attr['slideScroll']['md'] == 1){
+			$settings['focus'] =  0;
+		}else{
+			$settings['focus'] =  false;
+		}
+		
+		
+		if(isset($attr['centerMode']['sm']) && $attr['centerMode']['sm'] == true){
+			$settings['breakpoints']['1024']['focus'] =  'center';
+		}else if(!isset( $attr['centerMode']['sm']) && !isset( $attr['slideScroll']['sm']) ){
+			$settings['breakpoints']['1024']['focus'] =  $settings['focus'];
+		}else if(isset( $attr['slideScroll']['sm'] ) && $attr['slideScroll']['sm'] == 1){
+			$settings['breakpoints']['1024']['focus'] =  0;
+		}else{
+			$settings['breakpoints']['1024']['focus'] =  false;
+		}
+
+		
+		if(isset($attr['centerMode']['xs']) && $attr['centerMode']['xs'] == true){
+			$settings['breakpoints']['767']['focus'] =  'center';
+		}else if(!isset( $attr['centerMode']['xs']) && !isset( $attr['slideScroll']['xs']) ){
+			$settings['breakpoints']['767']['focus'] =  $settings['breakpoints']['1024']['focus'];
+		}else if(isset( $attr['slideScroll']['xs'] ) && $attr['slideScroll']['xs'] == 1){
+			$settings['breakpoints']['767']['focus'] =  0;
+		}else{
+			$settings['breakpoints']['767']['focus'] =  false;
+		}
+
+		if( (isset($attr['centerMode']['md']) && $attr['centerMode']['md'] == true) || (isset($attr['centerMode']['sm']) && $attr['centerMode']['sm'] == true) || (isset($attr['centerMode']['xs']) && $attr['centerMode']['xs'] == true) ){
+			if(isset($attr['trimSpace']) && $attr['trimSpace'] == true){
+				$settings['trimSpace'] =  true;
+			}else{
+				$settings['trimSpace'] =  false;
+			}
+		}
+
+		if(isset( $attr['sliderMode'])  &&  $attr['sliderMode'] == 'vertical' ){
+			$settings['heightRatio'] = isset( $attr['slideheightRatio']) ? $attr['slideheightRatio'] : '';
+		}
+
 		return $settings;
+	}
+	
+	/*
+	 * Get Carousel Custom dots Block Options
+	 * 	@since 1.1.2
+	 */
+	public static function tpgb_carousel_arrow($arrowsStyle , $arrowsPosition='' ){
+		$arrow = '';
+		$arrow .= '<div class="splide__arrows '.esc_attr($arrowsStyle).'">';
+			$arrow .= '<button class="splide__arrow splide__arrow--prev '.esc_attr($arrowsStyle).' '.($arrowsStyle == 'style-3' || $arrowsStyle == 'style-4' ? esc_attr($arrowsPosition) : '').' ">';
+				if($arrowsStyle == 'style-2' || $arrowsStyle == 'style-5' ){
+					$arrow .= '<span class="icon-wrap"></span>';
+				}else if($arrowsStyle == 'style-3' || $arrowsStyle == 'style-4'){
+					$arrow .= '<span class="icon-wrap"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-left" class="svg-inline--fa fa-angle-left fa-w-6" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M4.2 247.5L151 99.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17L69.3 256l118.5 119.7c4.7 4.7 4.7 12.3 0 17L168 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 264.5c-4.7-4.7-4.7-12.3 0-17z"></path></svg></span>';
+				}else if($arrowsStyle == 'style-6'){
+					$arrow .= '<span class="icon-wrap"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="long-arrow-left" class="svg-inline--fa fa-long-arrow-left fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M152.485 396.284l19.626-19.626c4.753-4.753 4.675-12.484-.173-17.14L91.22 282H436c6.627 0 12-5.373 12-12v-28c0-6.627-5.373-12-12-12H91.22l80.717-77.518c4.849-4.656 4.927-12.387.173-17.14l-19.626-19.626c-4.686-4.686-12.284-4.686-16.971 0L3.716 247.515c-4.686 4.686-4.686 12.284 0 16.971l131.799 131.799c4.686 4.685 12.284 4.685 16.97-.001z"></path></svg></span>';
+				}
+			$arrow .= '</button>';
+			$arrow .= '<button class="splide__arrow splide__arrow--next '.esc_attr($arrowsStyle).' '.($arrowsStyle == 'style-3' || $arrowsStyle == 'style-4' ? esc_attr($arrowsPosition) : '').'">';
+				if($arrowsStyle == 'style-2' || $arrowsStyle == 'style-5' ){
+					$arrow .= '<span class="icon-wrap"></span>';
+				}else if($arrowsStyle == 'style-3' || $arrowsStyle == 'style-4'){
+					$arrow .= '<span class="icon-wrap"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-w-6" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M187.8 264.5L41 412.5c-4.7 4.7-12.3 4.7-17 0L4.2 392.7c-4.7-4.7-4.7-12.3 0-17L122.7 256 4.2 136.3c-4.7-4.7-4.7-12.3 0-17L24 99.5c4.7-4.7 12.3-4.7 17 0l146.8 148c4.7 4.7 4.7 12.3 0 17z"></path></svg></span>';
+				}else if($arrowsStyle == 'style-6'){
+					$arrow .= '<span class="icon-wrap"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="long-arrow-alt-right" class="svg-inline--fa fa-long-arrow-alt-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M340.485 366l99.03-99.029c4.686-4.686 4.686-12.284 0-16.971l-99.03-99.029c-7.56-7.56-20.485-2.206-20.485 8.485v71.03H12c-6.627 0-12 5.373-12 12v32c0 6.627 5.373 12 12 12h308v71.03c0 10.689 12.926 16.043 20.485 8.484z"></path></svg></span>';
+				}
+			$arrow .= '</button>';
+		$arrow .=  '</div>';
+
+		return $arrow;
+	}
+	
+	/*
+	 * Get Carousel Arrows Css
+	 * 	@since 1.1.2
+	 */
+	public static function tpgb_carousel_arrow_css($showArrows , $block_id ){
+		$arrowCss = '';
+		if( isset($showArrows['md']) &&  $showArrows['md'] === true){
+	
+			if( isset($showArrows['sm']) && $showArrows['sm'] === false){
+				$arrowCss .= '@media (max-width:1024px){.tpgb-block-'.esc_attr($block_id).' .splide__arrows{display: none } }';
+			}
+			if( isset($showArrows['xs']) && $showArrows['xs'] === false){
+				$arrowCss .= '@media (max-width:767px){.tpgb-block-'.esc_attr($block_id).' .splide__arrows{display: none } }';
+			}
+			$arrowCss .= '.tpgb-block-'.esc_attr($block_id).' .splide__arrows{display: block }';
+		}
+		if( isset($showArrows['sm']) && $showArrows['sm'] === true ){
+	
+			if( isset($showArrows['xs']) && $showArrows['xs'] === false){
+				$arrowCss .= '@media (max-width:767px){.tpgb-block-'.esc_attr($block_id).' .splide__arrows{display: none } }';
+			}
+			$arrowCss .= '@media (max-width:1024px){.tpgb-block-'.esc_attr($block_id).' .splide__arrows{display: block } }';
+		}
+		if( isset($showArrows['xs']) && $showArrows['xs'] === true){
+			$arrowCss .= '@media (max-width:767px){.tpgb-block-'.esc_attr($block_id).' .splide__arrows{display: block } }';
+		}
+
+		return "<style>".$arrowCss."</style>";
 	}
 	
 	/**

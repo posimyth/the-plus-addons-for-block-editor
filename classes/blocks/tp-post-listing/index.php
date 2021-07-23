@@ -82,8 +82,8 @@ function tpgb_tp_post_listing_render_callback( $attributes ) {
 
 	if($query->found_posts !=''){
 		$total_posts=$query->found_posts;
-		$post_offset = ($offsetPosts!='') ? $offsetPosts : 0;
-		$display_posts = ($displayPosts!='') ? $displayPosts : 0;
+		$post_offset = (isset($offsetPosts)) ? $offsetPosts : 0;
+		$display_posts = (isset($displayPosts)) ? $displayPosts : 0;
 		$offset_posts=intval($display_posts + $post_offset);
 		$total_posts= intval($total_posts - $offset_posts);	
 		
@@ -108,7 +108,9 @@ function tpgb_tp_post_listing_render_callback( $attributes ) {
 					$output .= '<div class="grid-item tpgb-col '.esc_attr($column_class).' ">';
 					if(!empty($style) && $style!=='custom'){
 						ob_start();
-						include TPGB_PATH. 'includes/blog/blog-'.esc_attr($style).'.php'; 
+						if(file_exists(TPGB_PATH. 'includes/blog/blog-'.esc_attr($style).'.php')){
+							include TPGB_PATH. 'includes/blog/blog-'.esc_attr($style).'.php'; 
+						}
 						$output .= ob_get_contents();
 						ob_end_clean();
 					}else if($style=='custom' && $attributes['blockTemplate']!=''){
@@ -1001,7 +1003,10 @@ function tpgb_tp_post_listing() {
 add_action( 'init', 'tpgb_tp_post_listing' );
 
 function tpgb_post_query($attr){
-
+	
+	$include_posts = ($attr['includePosts']) ? explode(',', $attr['includePosts']) : '';
+	$exclude_posts = ($attr['excludePosts']) ? explode(',', $attr['excludePosts']) : '';
+	
 	$query_args = array(
 		'post_type'           => $attr['postType'],
 		'post_status'         => 'publish',
@@ -1009,6 +1014,8 @@ function tpgb_post_query($attr){
 		'posts_per_page'      => ( $attr['displayPosts'] ) ? intval($attr['displayPosts']) : -1,
 		'orderby'      =>  ($attr['orderBy']) ? $attr['orderBy'] : 'date',
 		'order'      => ($attr['order']) ? $attr['order'] : 'desc',
+		'post__not_in'  => $exclude_posts,
+		'post__in'   => $include_posts,
 	);
 
 	global $paged;
@@ -1031,9 +1038,9 @@ function tpgb_post_query($attr){
 		$query_args['offset'] = $offset;
 	}
 	
-	if ( '' !== $attr['postCategory'] && $attr['postType'] == 'post' ) {
+	if ( '' !== $attr['postCategory'] ) {
+		$cat_arr = array();
 		if ( is_string($attr['postCategory'] )) {
-			$cat_arr = array();
 			$attr['postCategory'] = json_decode($attr['postCategory']);
 			if (is_array($attr['postCategory']) || is_object($attr['postCategory'])) {
 				foreach ($attr['postCategory'] as $value) {
@@ -1041,11 +1048,21 @@ function tpgb_post_query($attr){
 				}
 			}
 		}
-		$query_args['category__in'] = $cat_arr;
+		if($attr['postType'] == 'post'){
+			$query_args['category__in'] = $cat_arr;
+		}else if(!empty($attr['taxonomySlug'])){
+			$query_args['tax_query'] = array(
+				array(
+					'taxonomy' => $attr['taxonomySlug'],
+					'field' => 'term_id',
+					'terms' => $cat_arr,
+				)
+			);
+		}
 	}
-	if ( '' !== $attr['postTag'] && $attr['postType'] == 'post' ) {
+	if ( '' !== $attr['postTag'] ) {
+		$tag_arr = array();
 		if ( is_string($attr['postTag'] )) {
-			$tag_arr = array();
 			$attr['postTag'] = json_decode($attr['postTag']);
 			if (is_array($attr['postTag']) || is_object($attr['postTag'])) {
 				foreach ($attr['postTag'] as $value) {
@@ -1053,7 +1070,9 @@ function tpgb_post_query($attr){
 				}
 			}
 		}
-		$query_args['tag__in'] = $tag_arr;
+		if($attr['postType'] == 'post'){
+			$query_args['tag__in'] = $tag_arr;
+		}
 	}
 
 

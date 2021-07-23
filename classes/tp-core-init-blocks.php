@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define('TPGB_ASSET_PATH', wp_upload_dir()['basedir'] . DIRECTORY_SEPARATOR . 'theplus_gutenberg');
 define('TPGB_ASSET_URL', wp_upload_dir()['baseurl'] . '/theplus_gutenberg');
-		
+
 /**
  * Tp_Core_Init_Blocks.
  *
@@ -48,7 +48,7 @@ class Tp_Core_Init_Blocks {
 		
 		
 		
-		add_filter( 'block_categories', array( $this, 'tp_register_block_category' ), 10, 2 );
+		add_filter( 'block_categories_all', array( $this, 'tp_register_block_category' ), 10, 2 );
 		
 		require_once TPGB_PATH.'classes/tp-registered-blocks.php';
 		tpgb_library();
@@ -102,7 +102,7 @@ class Tp_Core_Init_Blocks {
 	 */
 	public function tp_block_assets(){
 	
-		
+
 		$GoogleMap_Enable = Tp_Blocks_Helper::get_extra_option('gmap_api_switch');
 		$GoogleMap_Api = '';
 		if(!empty($GoogleMap_Enable) && $GoogleMap_Enable=='enable' && has_block( 'tpgb/tp-google-map' )){
@@ -331,7 +331,7 @@ class Tp_Core_Init_Blocks {
 		
 		// POST Category Lists.
 		register_rest_field(
-			'post',
+			$post_types,
 			'tpgb_post_category',
 			array(
 				'get_callback' => array($this, 'tpgb_get_category_list'),
@@ -343,6 +343,22 @@ class Tp_Core_Init_Blocks {
 			)
 		);
 		
+		/**
+		 * rest api Product Info
+		 * @since 1.1.2
+		 */
+		register_rest_field(
+			'product',
+			'tpgb_product_data',
+			array(
+				'get_callback' => array($this, 'tpgb_get_product_data'),
+				'update_callback' => null,
+				'schema' => array(
+					'description' => __('Product Data.','tpgb'),
+					'type' => 'array',
+				),
+			)
+		);
 	}
 	
 	
@@ -377,15 +393,17 @@ class Tp_Core_Init_Blocks {
 	
 	/**
 	 * API call Get Post Content
-	 * @since 1.1.1
+	 * @since 1.1.2
 	 */
 	public function tpgb_get_post_content( $request ) {
 		$params = $request->get_params();
 		try {
 			if ( isset( $params['post_id'] ) ) {
+				$post_data = get_post( $params['post_id'] );
+				$content = (isset($post_data->post_content)) ? $post_data->post_content : ''; 
 				return array(
 					'success' => true,
-					'data'    => get_post( $params['post_id'] )->post_content,
+					'data'    => $content,
 					'message' => 'Get Success!!',
 				);
 			}
@@ -423,11 +441,10 @@ class Tp_Core_Init_Blocks {
 	}
 	
 	/**
-	 * @since 1.0.0
 	 * Save block css 
+	 * @since 1.1.2
 	 */
-	public function  plus_save_block_css($request)
-	{
+	public function  plus_save_block_css($request) {
 		try {
 			global $wp_filesystem;
 			if (!$wp_filesystem) {
@@ -448,7 +465,7 @@ class Tp_Core_Init_Blocks {
 				$global_css = (!empty($params['global_css'])) ? $params['global_css'] : '';
 				$globalfilename = "plus-global.css";
 				$import_global_first = '';
-				if(!empty($global_css)){
+				if(!empty($params['is_global']) && $params['is_global'] == true && !empty($global_css)){
 					$import_global_first = $this->set_font_import_css($global_css);
 				}
 				
@@ -472,28 +489,61 @@ class Tp_Core_Init_Blocks {
 				if (!$wp_filesystem->put_contents($dir . $filename, $import_css)) {
 					throw new Exception(__('CSS can not be load due to permission!!!', 'tpgb'));
 				}
-				
-				if (!$wp_filesystem->put_contents($dir . $globalfilename, $import_global_first)) {
-					throw new Exception(__('CSS can not be load due to permission!!!', 'tpgb'));
+				if(!empty($params['is_global']) && $params['is_global'] == true){
+					if (!$wp_filesystem->put_contents($dir . $globalfilename, $import_global_first)) {
+						throw new Exception(__('CSS can not be load due to permission!!!', 'tpgb'));
+					}
 				}
-
 			} else {
 				delete_post_meta($post_id, '_tpgb_css');
 				delete_post_meta($post_id, '_block_css');
 				$this->delete_post_dynamic($post_id);
 			}
-
+			
 			// set block meta
 			if ($is_preview==false) {
 				return ['success' => true, 'message' => __('Plus block css updated.', 'tpgb'), 'data' => $params];
 			}else{
 				return ['success' => true, 'message' => __('Plus block preview css updated.', 'tpgb'), 'data' => $params];
 			}
+			
 		} catch (Exception $e) {
 			return ['success' => false, 'message' => $e->getMessage()];
 		}
 	}
 	
+	/**
+	 * Make Dynamic Block Css By Post ID
+	 * @since 1.1.2
+	 */
+	public function make_block_css_by_post_id( $post_id = '' ){
+		if( !empty($post_id) ){
+			
+			global $wp_filesystem;
+			if (!$wp_filesystem) {
+				require_once(ABSPATH . 'wp-admin/includes/file.php');
+			}
+			
+			$filename = "plus-css-{$post_id}.css";
+			$upload_dir = wp_upload_dir();
+			$dir = trailingslashit($upload_dir['basedir']) . 'theplus_gutenberg/';
+			
+			$block_css=get_post_meta( $post_id, '_tpgb_css', true );
+			if( !empty($block_css) ){
+				$import_css = $this->set_font_import_css($block_css);
+				
+				WP_Filesystem(false, $upload_dir['basedir'], true);
+
+				if (!$wp_filesystem->is_dir($dir)) {
+					$wp_filesystem->mkdir($dir);
+				}
+
+				if (!$wp_filesystem->put_contents($dir . $filename, $import_css)) {
+					throw new Exception(__('CSS can not be load due to permission!!!', 'tpgb'));
+				}
+			}
+		}
+	}
 	
 	/*
 	 * Frontend Enqueue Scripts
@@ -551,6 +601,8 @@ class Tp_Core_Init_Blocks {
 						unlink($css_preview_path);
 					}
 				}
+			}else if(!file_exists($css_path)){
+				$this->make_block_css_by_post_id($post_id);
 			}
 		}
 	}
@@ -643,6 +695,8 @@ class Tp_Core_Init_Blocks {
 				if (!$this->is_editor_screen()) {
 					wp_enqueue_style("plus-post-{$post_id}", $css_url, false, $plus_version);
 				}
+			}else if(!file_exists($css_path)){
+				$this->make_block_css_by_post_id($post_id);
 			}
 		}
 	}
@@ -717,8 +771,16 @@ class Tp_Core_Init_Blocks {
 				$post_meta['get_date'] = $data_date;
 			}
 			get_the_category_list( __( ', ', 'tpgb' ), '', $obj['id'] );
-			$category_terms = get_the_terms( $obj['id'], 'category', array("hide_empty" => true) );
-			$post_meta['category_list'] = $category_terms;
+			$post_type = isset($obj['type']) ? $obj['type'] : '';
+			$taxonomies_list = $this->tpgb_get_taxnomy_terms( $post_type );
+			if(!empty($taxonomies_list)){
+				foreach ( $taxonomies_list as $key => $value ) {
+					if(!empty($value)){
+						$terms = get_the_terms( $obj['id'], $value, array("hide_empty" => true) );
+						$post_meta['category_list'][$value] = $terms;
+					}
+				}
+			}
 			
 			if(!empty($obj['author'])){
 				$post_meta['author_name'] = get_the_author_meta('display_name', $obj['author']);
@@ -753,12 +815,126 @@ class Tp_Core_Init_Blocks {
 	
 	// Get Category Lists
     public function tpgb_get_category_list($obj){
-		if (isset($obj['id'])) {
-			return get_the_category_list(' ', '', $obj['id']);
-		}else{
-			return;
+		$meta_list= [];
+		if(isset($obj['id']) && isset($obj['type']) && !empty($obj['type'])){
+			
+			$taxonomies_list = $this->tpgb_get_taxnomy_terms( $obj['type'] );
+			if(!empty($taxonomies_list)){
+				foreach ( $taxonomies_list as $key => $value ) {
+					if(!empty($value)){
+						$terms = get_the_terms( $obj['id'], $value, array("hide_empty" => true) );
+						if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+							$render_list = '';
+							foreach ( $terms as $term ) {
+								$render_list .= '<a href="' . esc_url( get_term_link( $term ) ) . '" alt="' . esc_attr( sprintf( __( '%s', 'tpgb' ), $term->name ) ) . '">' . $term->name . '</a> ';
+							}
+							$meta_list[$value] = $render_list;
+						}
+					}
+				}
+			}
 		}
+		return $meta_list;
     }
+	
+	/**
+	 * Get Taxonomy List
+	 * @since 1.1.2
+	 */
+	public function tpgb_get_taxnomy_terms( $post_type = ''){
+		$terms_list = [];
+		if(!empty($post_type)){
+			$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+			$taxonomies_list = wp_filter_object_list( $taxonomies, [
+				'public' => true,
+				'show_in_nav_menus' => true,
+			] );
+			if(!empty($taxonomies_list)){
+				foreach ( $taxonomies_list as $slug => $object ) {
+					if(isset($object->name)){
+						$terms_list[] = $object->name;
+					}
+				}
+			}
+		}
+		return $terms_list;
+	}
+	
+	/**
+	 * rest api Product Data
+	 * @since 1.1.2
+	 */
+	public function tpgb_get_product_data($obj){
+		$product_data = array();
+		if (!isset($obj['id'])) {
+			return $product_data;
+		} else { 
+			$product1 = wc_get_product( $obj['id'] );
+			$product_data['price_html'] = $product1->get_price_html();
+			$product_data['type'] = $product1->get_type();
+
+			//Set Gallery Image Src
+			$img_Id = $product1->get_gallery_image_ids();
+			$img_Id = (isset($img_Id[0])) ? $img_Id[0] : '';
+			$product_data['gallery'] = wp_get_attachment_image_src($img_Id,'full');
+
+			$terms = get_the_terms( $obj['id'], 'product_cat' );
+			$product_data['category'] = $terms[0]->name;
+			if($product1->get_rating_count() > 0){
+				$product_data['productRating'] = wc_get_rating_html( $product1->get_average_rating() );
+			}
+			
+			include_once(ABSPATH.'wp-admin/includes/plugin.php');
+			if( is_plugin_active('yith-woocommerce-compare/init.php') ){
+				$product_data['yithcompare'] = '<a href="'.home_url().'?action=yith-woocompare-add-product&id='.esc_attr( $obj['id']).'" class="compare button" data-product_id="'.esc_attr( $obj['id']).'" rel="nofollow"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="exchange-alt" class="tpgb-yith-icon svg-inline--fa fa-exchange-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M0 168v-16c0-13.255 10.745-24 24-24h360V80c0-21.367 25.899-32.042 40.971-16.971l80 80c9.372 9.373 9.372 24.569 0 33.941l-80 80C409.956 271.982 384 261.456 384 240v-48H24c-13.255 0-24-10.745-24-24zm488 152H128v-48c0-21.314-25.862-32.08-40.971-16.971l-80 80c-9.372 9.373-9.372 24.569 0 33.941l80 80C102.057 463.997 128 453.437 128 432v-48h360c13.255 0 24-10.745 24-24v-16c0-13.255-10.745-24-24-24z"></path></svg></a>';
+			}
+
+			
+			if( shortcode_exists( 'yith_wcwl_add_to_wishlist' ) ){
+				$product_data['yithwishlist'] = do_shortcode('[yith_wcwl_add_to_wishlist icon="fas fa-heart" label="" already_in_wishslist_text="" browse_wishlist_text=""]' );
+			}
+			
+			if( is_plugin_active('yith-woocommerce-quick-view/init.php') ){
+				$product_data['yithquickView'] = do_shortcode('[yith_quick_view product_id='.esc_attr($obj['id']).' icons="fas fa-eye"]');
+			}
+			
+			$status = get_post_meta($obj['id'], '_stock_status',true);
+
+			global $post, $product;
+			if ($status == 'outofstock') {
+				$product_data['productBadge'] =  '<span class="badge out-of-stock">Out Of stock</span>';
+			} else if ( $product->is_on_sale() ) {
+				if ('discount' == 'discount') {
+					if ($product->get_type() == 'variable') {
+						$available_variations = $product->get_available_variations();								
+						$maximumper = 0;
+						for ($i = 0; $i < count($available_variations); ++$i) {
+							$variation_id=$available_variations[$i]['variation_id'];
+							$variable_product1= new WC_Product_Variation( $variation_id );
+							$regular_price = $variable_product1->get_regular_price();
+							$sales_price = $variable_product1->get_sale_price();
+							$percentage = $sales_price ? round( (($regular_price - $sales_price) / $regular_price) * 100) : 0;
+							if ($percentage > $maximumper) {
+								$maximumper = $percentage;
+							}
+						}
+						$product_data['productBadge'] = apply_filters('woocommerce_sale_flash', '<span class="badge onsale perc">&darr; '.$maximumper.'%</span>', $post, $product);
+					} else if ($product->get_type() == 'simple'){
+						$percentage = round( (($product->get_regular_price() - $product->get_sale_price()) / $product->get_regular_price() ) * 100);
+						$product_data['productBadge'] = apply_filters('woocommerce_sale_flash', '<span class="badge onsale perc">&darr; '.$percentage.'%</span>', $post, $product);
+					} else if ($product->get_type() == 'external'){
+						$percentage = round( (($product->get_regular_price() - $product->get_sale_price()) / $product->get_regular_price() ) * 100);
+						$product_data['productBadge'] = apply_filters('woocommerce_sale_flash', '<span class="badge onsale perc">&darr; '.$percentage.'%</span>', $post, $product);
+					}
+				} else {
+					$product_data['productBadge'] = apply_filters('woocommerce_sale_flash', '<span class="badge onsale">'.esc_html__( 'Sale','tpgb' ).'</span>', $post, $product);
+				}
+			}
+
+			return $product_data;
+		}	
+		
+	}
 	
 	/**
 	 * @since 1.0.0

@@ -40,6 +40,8 @@ Front End + Back End CSS
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
+	will-change: transform;
+    image-rendering: -webkit-optimize-contrast;
 }
 .site-normal-logo.hover-logo {
     position: absolute;

@@ -24,6 +24,7 @@
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 	will-change: transform;
+    image-rendering: -webkit-optimize-contrast;
 }
 .tpgb-creative-img-wrap {
     font-size: 0;

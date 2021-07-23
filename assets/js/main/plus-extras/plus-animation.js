@@ -35,6 +35,8 @@
 					ele.removeClass("tpgb-view-animation-out tpgb_animated_out tpgb_"+animeOut).addClass("tpgb_animated").addClass('tpgb_'+anim)
 				}else if(direction === 'up' && animeOut && !ele.hasClass("tpgb_animated_out")){
 					ele.removeClass('tpgb_animated tpgb_'+anim).addClass("tpgb-view-animation-out tpgb_animated_out").addClass('tpgb_'+animeOut)
+				}else if(direction === 'down' && anim=='' && !ele.hasClass("tpgb_animated")){
+					ele.removeClass("tpgb-view-animation-out tpgb_animated_out tpgb_"+animeOut).addClass("tpgb_animated")
 				}
 			}, { offset: '80%' } );
 		}

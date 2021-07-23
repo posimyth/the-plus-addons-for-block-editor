@@ -30,7 +30,7 @@ function tpgb_tp_section_row_render_callback( $attributes, $content) {
 		$containerClass .= ' tpgb-container';
 	}
 	
-    $output .= '<div '.$customId.' class="tpgb-section tpgb-block-'.esc_attr($block_id).' '.esc_attr($sectionClass).' '.esc_attr($customClass).' ">';
+    $output .= '<div '.$customId.' class="tpgb-section tpgb-block-'.esc_attr($block_id).' '.esc_attr($sectionClass).' '.esc_attr($customClass).' " data-id="'.esc_attr($block_id).'">';
 		$output .= '<div class="tpgb-section-wrap '.esc_attr($containerClass).'">';
 				$output .= $content;
 		$output .= "</div>";

@@ -13,9 +13,7 @@ function tpgb_tp_creative_image_callback( $settings, $content) {
 		$imgID = $settings['SelectImg']['id'];
 	}
 	if ( ! empty( $settings['SelectImg']['url'] ) && isset( $settings['SelectImg']['id'] ) ) {
-		$attr = array(
-			'class' => "hover__img info_img",
-		);
+		$attr = array( 'class' => "hover__img info_img" );
 		$contentImage = wp_get_attachment_image($imgID, $settings['ImgSize'],"",$attr);				
 	} else { 
 		$contentImage .= tpgb_loading_image_grid(get_the_ID());

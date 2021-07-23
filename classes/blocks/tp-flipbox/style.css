@@ -112,6 +112,9 @@
 .tpgb-flipbox.flip-box-style-1 .service-icon {
     padding: 0;
 }
+.tpgb-flipbox img.service-img {
+	display: inline-block;
+}
 .tpgb-flipbox.flip-box-style-1 .service-img {
     padding: 15px;
 }

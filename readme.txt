@@ -3,8 +3,8 @@ Contributors: posimyththemes, nirmalkavaiya, sagarpatel124
 Donate link: https://theplusblocks.com/
 Tags: gutenberg, gutenberg addons, gutenberg blocks, gutenberg widgets, the plus addons for gutenberg, the plus widgets gutenberg, free gutenberg addons,drag and drop, gutenberg widget pack, popular addons for gutenberg, powerful addons for gutenberg, best addons for gutenberg
 Requires at least: 4.0
-Tested up to: 5.7
-Stable tag: 1.1.1
+Tested up to: 5.8
+Stable tag: 1.1.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
@@ -128,6 +128,21 @@ Absolutely not. Keeping in mind the development issues, we have tried to add as 
 [Contact Us](http://m.me/tpagutenberg/) if you want some custom / extra features and we will try to deliver a solution as soon as possible.
 
 == Changelog ==
+
+= 1.1.2 = 23 July 2021
+- Compatibility : WordPress 5.8
+- Update : Column Responsive Show/Hide Options
+- Update : Video Block : Schema Option
+- Update : Stylish List : Rich Text Integration in Content
+- Update : Breadcrumb Block : Schema Option
+- Update : Accordion Block : Schema Option
+- Update : Performance Improvement by Minifying Dynamic CSS and Global CSS
+- Update : Post Meta Block : Field Category Option
+- Update : Post Meta Block : CSS Updates
+- Update : Pricing Table Block : Improvements
+- Update : Carousel All Blocks Migrated from Slick.js to Splide Vanilla Js
+- Fix : Further Bug Fix and Improvement
+
 = 1.1.1 = 19 June 2021
 - Added : Smooth Scroll Block
 - Update : Post Meta Block

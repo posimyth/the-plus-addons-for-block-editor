@@ -26,6 +26,7 @@ function tpgb_tp_post_image_render_callback( $attr, $content) {
     $image_content ='';
 	if (has_post_thumbnail( $post_id ) ){
 		$image_content = get_the_post_thumbnail_url($post_id,$imageSize);
+		$image_content = (!empty($image_content)) ? $image_content : TPGB_ASSETS_URL. 'assets/images/tpgb-placeholder.jpg';
 		$output .= '<div class="tpgb-post-image tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).' " data-setting=\'' . $data_attr . '\'>';
 			
 				if(!empty($imageType) && $imageType!='background'){

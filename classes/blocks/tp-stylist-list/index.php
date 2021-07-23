@@ -17,8 +17,8 @@ function tpgb_tp_stylist_list_render_callback( $attributes, $content) {
 	$alignattr ='';
 	if($alignment!==''){
 		$alignattr .= (!empty($alignment['md'])) ? ' align-'.esc_attr($alignment['md']) : ' align-left';
-		$alignattr .= (!empty($alignment['sm'])) ? ' tablet-align-'.esc_attr($alignment['sm']) : ' tablet-align-left';
-		$alignattr .= (!empty($alignment['xs'])) ? ' mobile-align-'.esc_attr($alignment['xs']) : ' mobile-align-left';
+		$alignattr .= (!empty($alignment['sm'])) ? ' tablet-align-'.esc_attr($alignment['sm']) : '';
+		$alignattr .= (!empty($alignment['xs'])) ? ' mobile-align-'.esc_attr($alignment['xs']) : '';
 	}
 	$iconalignattr ='';
 	if($iconAlignment!==''){

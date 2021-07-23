@@ -8,9 +8,9 @@
 
 **Requires at least:** 4.0
 
-**Tested up to:** 5.7
+**Tested up to:** 5.8
 
-**Stable tag:** 1.1.0
+**Stable tag:** 1.1.2
 
 **Requires PHP:** 5.6
 
@@ -136,13 +136,27 @@ Make sure you are using [Gutenberg](https://wordpress.org/plugins/gutenberg/) wh
 
 ### Changelog
 
-#### 1.1.1 `19 May 2020`
+#### 1.1.2 `23 July 2021`
+- Compatibility : WordPress 5.8
+- Update : Column Responsive Show/Hide Options
+- Update : Video Block : Schema Option
+- Update : Stylish List : Rich Text Integration in Content
+- Update : Breadcrumb Block : Schema Option
+- Update : Accordion Block : Schema Option
+- Update : Performance Improvement by Minifying Dynamic CSS and Global CSS
+- Update : Post Meta Block : Field Category Option
+- Update : Post Meta Block : CSS Updates
+- Update : Pricing Table Block : Improvements
+- Update : Carousel All Blocks Migrated from Slick.js to Splide Vanilla Js
+- Fix : Further Bug Fix and Improvement
+
+#### 1.1.1 `19 June 2021`
 - Added : Smooth Scroll Block
 - Update : Post Meta Block
 - Fix : Reusable Block Load CSS Bug
 - Fix : Plus Paste Import Issue whole Block Media Import
 
-#### 1.1.0 `18 May 2020`
+#### 1.1.0 `18 May 2021`
 - Added : Site Logo
 - Added : Post Listing Block
 - Added : Post Title Block

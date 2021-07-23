@@ -248,6 +248,33 @@ function tpgb_tp_section_column() {
 					],
 				],
 			],
+			'hideDesktop' => [
+				'type' => 'boolean',
+				'default' => false,
+				'style' => [
+					(object) [
+						'selector' => '@media (min-width: 1201px){ .edit-post-visual-editor {{PLUS_WRAP}}{display: block;opacity: .5;} {{PLUS_WRAP}}{ display:none } }',
+					],
+				],
+			],
+			'hideTablet' => [
+				'type' => 'boolean',
+				'default' => false,
+				'style' => [
+					(object) [
+						'selector' => '@media (min-width: 768px) and (max-width: 1200px){ .edit-post-visual-editor {{PLUS_WRAP}}{display: block;opacity: .5;} {{PLUS_WRAP}}{ display:none } }',
+					],
+				],
+			],
+			'hideMobile' => [
+				'type' => 'boolean',
+				'default' => false,
+				'style' => [
+					(object) [
+						'selector' => '@media (max-width: 767px){ .edit-post-visual-editor {{PLUS_WRAP}}{display: block;opacity: .5;} {{PLUS_WRAP}}{ display:none !important; } }',
+					],
+				],
+			],
 		];
 		
 	$attributesOptions = array_merge( $attributesOptions );

@@ -51,6 +51,7 @@
     position: relative;
     display: block;
     width: 100%;
+	font-size: 0;
     -webkit-transition: all .4s linear;
     -moz-transition: all .4s linear;
     -ms-transition: all .4s linear;
@@ -335,4 +336,7 @@ button.tpgb-video-play-btn.ts-video-blay-btn-youtube {
 
 .tpgb_video_player .tpgb-video-upload{
     display: none;
+}
+.ts-video-wrapper .perfmatters-lazy-youtube {
+    position: absolute;
 }

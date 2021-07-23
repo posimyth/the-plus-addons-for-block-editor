@@ -57,7 +57,9 @@
     margin-left: auto;
     width: 100%
 }
-
+.tpgb-section.tpgb-section-stretch-row.alignfull {
+    max-width: initial;
+}
 @media (min-width: 576px) {
     .tpgb-container {
         max-width:540px

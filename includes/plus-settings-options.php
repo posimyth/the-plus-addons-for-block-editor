@@ -7,6 +7,32 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+/**
+ * White Label Content
+ * @since 1.0.0
+ */
+function tpgb_free_white_label_content(){
+	echo '<div class="tp-pro-note-title"><p style="margin-bottom:50px;">'.esc_html__('White Label our plugin and setup client\'s branding all around. You can update name, description, Icon and even hide the menu from dashboard. Get our pro version to have access of this feature.','tpgb').'</p></div>
+		<div style="text-align:center;">
+			<img style="width:55%;" src="'.esc_url(TPGB_URL .'assets/images/white-lable.png').'" alt="'.esc_attr__('White Lable','tpgb').'" class="panel-plus-white-lable" />
+		</div>';
+	/*echo '<div class="tp-pro-note-link"><a href="'.esc_url('theplusblocks.com/free-vs-pro/').'" target="_blank">'.esc_html__('Compare Free vs Pro','tpgb').'</a></div>';*/
+}
+add_action('tpgb_free_notice_white_label', 'tpgb_free_white_label_content' );
+
+/**
+ * Activate Content
+ * @since 1.1.2
+ */
+function tpgb_activate_content(){
+	echo '<div class="tp-pro-note-title"><p style="margin-bottom:40px;">'.esc_html__('Upgrade to Pro version to get lots more Features and Lot more.','tpgb').'</p></div>
+		<div style="text-align:center;">
+			<img style="width:55%;" src="'.esc_url(TPGB_URL .'assets/images/activate.png').'" alt="'.esc_attr__('Activate','tpgb').'" class="panel-plus-activate" />
+		</div>';
+	/*echo '<div class="tp-pro-note-link"><a href="'.esc_url('theplusblocks.com/free-vs-pro/').'" target="_blank">'.esc_html__('Compare Free vs Pro','tpgb').'</a></div>';*/
+}
+add_action('tpgb_notice_activate', 'tpgb_activate_content' );
+
 class Tpgb_Gutenberg_Settings_Options {
 	
 	/**
@@ -41,7 +67,7 @@ class Tpgb_Gutenberg_Settings_Options {
      */
     public function __construct()
     {
-		add_action('tpgb_free_notice_white_label', array($this,'tpgb_free_white_label_content'));
+		
         add_action( 'admin_enqueue_scripts', [ $this,'tpgb_options_scripts'] );
 		
 		if(defined('TPGBP_VERSION')){
@@ -57,7 +83,6 @@ class Tpgb_Gutenberg_Settings_Options {
 		$this->block_listout();
 		add_action( 'admin_post_tpgb_blocks_opts_save', array( $this,'tpgb_blocks_opts_save_action') );
 		add_action('wp_ajax_tpgb_block_search', array($this, 'tpgb_block_search'));
-		
 		
     }
 	
@@ -91,13 +116,6 @@ class Tpgb_Gutenberg_Settings_Options {
         }
     }
 	
-	public function tpgb_free_white_label_content(){
-		echo '<div class="tp-pro-note-title"><p style="margin-bottom:50px;">'.esc_html__('White Label our plugin and setup client\'s branding all around. You can update name, description, Icon and even hide the menu from dashboard. Get our pro version to have access of this feature.','tpgb').'</p></div>
-			<div style="text-align:center;">
-				<img style="width:55%;" src="'.esc_url(TPGB_URL .'assets/images/white-lable.png').'" alt="'.esc_attr__('White Lable','tpgb').'" class="panel-plus-white-lable" />
-			</div>';
-		/*echo '<div class="tp-pro-note-link"><a href="#" target="_blank">'.esc_html__('Compare Free vs Pro.','tpgb').'</a></div>';*/
-	}
 	/**
      * Add menu options page
      * @since 1.0.0
@@ -174,6 +192,22 @@ class Tpgb_Gutenberg_Settings_Options {
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="lightbulb-on" class="svg-inline--fa fa-lightbulb-on fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M319.45,0C217.44.31,144,83,144,176a175,175,0,0,0,43.56,115.78c16.52,18.85,42.36,58.22,52.21,91.44,0,.28.07.53.11.78H400.12c0-.25.07-.5.11-.78,9.85-33.22,35.69-72.59,52.21-91.44A175,175,0,0,0,496,176C496,78.63,416.91-.31,319.45,0ZM320,96a80.09,80.09,0,0,0-80,80,16,16,0,0,1-32,0A112.12,112.12,0,0,1,320,64a16,16,0,0,1,0,32Z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M240.06,454.34A32,32,0,0,0,245.42,472l17.1,25.69c5.23,7.91,17.17,14.28,26.64,14.28h61.7c9.47,0,21.41-6.37,26.64-14.28L394.59,472A37.47,37.47,0,0,0,400,454.34L400,416H240ZM112,192a24,24,0,0,0-24-24H24a24,24,0,0,0,0,48H88A24,24,0,0,0,112,192Zm504-24H552a24,24,0,0,0,0,48h64a24,24,0,0,0,0-48ZM131.08,55.22l-55.42-32a24,24,0,1,0-24,41.56l55.42,32a24,24,0,1,0,24-41.56Zm457.26,264-55.42-32a24,24,0,1,0-24,41.56l55.42,32a24,24,0,0,0,24-41.56Zm-481.26-32-55.42,32a24,24,0,1,0,24,41.56l55.42-32a24,24,0,0,0-24-41.56ZM520.94,100a23.8,23.8,0,0,0,12-3.22l55.42-32a24,24,0,0,0-24-41.56l-55.42,32a24,24,0,0,0,12,44.78Z"></path></g></svg>',
 					'keyword' => ['accordion', 'tabs', 'toggle', 'faq', 'collapse', 'show hide content', 'Tiles'],
 				],
+				'tp-advanced-buttons' => [
+					'label' => esc_html__('Advanced Buttons', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="anchor" class="svg-inline--fa fa-anchor fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M372 192h-52v-5.47A96 96 0 0 0 384 96c0-52.22-42.36-95.25-94.58-96A96 96 0 0 0 256 186.54V192h-52a12 12 0 0 0-12 12v40a12 12 0 0 0 12 12h168a12 12 0 0 0 12-12v-40a12 12 0 0 0-12-12zM288 64a32 32 0 1 1-32 32 32 32 0 0 1 32-32z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M564 352h-32.51C509.63 454.62 394.61 512 288 512c-106.41 0-221.58-57.27-243.46-160H12a12 12 0 0 1-8.51-20.49l67.26-67a12.07 12.07 0 0 1 17 0l67.26 67a12 12 0 0 1-8.46 20.49h-35.26c20.37 54.34 85.47 86.62 144.61 94V288h64.22v158c59.36-7.43 124.26-39.7 144.62-94h-35.26a12 12 0 0 1-8.48-20.49l67.26-67a12.07 12.07 0 0 1 17 0l67.26 67A12 12 0 0 1 564 352z"></path></g></svg>',
+				],
+				'tp-advanced-chart' => [
+					'label' => esc_html__('Advanced Chart', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><style>.fa-secondary{opacity:.4}</style></defs><path d="M500 384a12 12 0 0 1 12 12v40a12 12 0 0 1-12 12H12a12 12 0 0 1-12-12V76a12 12 0 0 1 12-12h40a12 12 0 0 1 12 12v308z" class="fa-secondary"/><path d="M390.1 164.2L480 352H96V248l86.8-144.7a12 12 0 0 1 19.9-1L288 216l84.7-56.5a12 12 0 0 1 17.4 4.7z" class="fa-primary"/></svg>',
+				],
 				'tp-animated-service-boxes' => [
 					'label' => esc_html__('Animated Service Boxes', 'tpgb'),
 					'demoUrl' => '',
@@ -182,15 +216,6 @@ class Tpgb_Gutenberg_Settings_Options {
 					'tag' => 'pro',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="th" class="svg-inline--fa fa-th fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M306.67 352H205.33a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.34a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24zM488 192H386.67a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24H488a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24zM306.67 32H205.33a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.34a24 24 0 0 0 24-24V56a24 24 0 0 0-24-24zM125.33 192H24a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.33a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M488 352H386.67a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24H488a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24zM306.67 192H205.33a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.34a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24zM488 32H386.67a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24H488a24 24 0 0 0 24-24V56a24 24 0 0 0-24-24zm-362.67 0H24A24 24 0 0 0 0 56v80a24 24 0 0 0 24 24h101.33a24 24 0 0 0 24-24V56a24 24 0 0 0-24-24zm0 320H24a24 24 0 0 0-24 24v80a24 24 0 0 0 24 24h101.33a24 24 0 0 0 24-24v-80a24 24 0 0 0-24-24z"></path></g></svg>',
 				],
-				'tp-anything-carousel' => [
-					'label' => esc_html__('Carousel Anything','tpgb'),
-					'demoUrl' => 'https://theplusblocks.com/plus-blocks/carousal-anything/',
-					'docUrl' => '',
-					'videoUrl' => '',
-					'tag' => 'pro',
-					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="sliders-h" class="svg-inline--fa fa-sliders-h fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M496 64H288v64h208a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zM16 128h176V64H16A16 16 0 0 0 0 80v32a16 16 0 0 0 16 16zm0 160h304v-64H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16zm480-64h-80v64h80a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0 160H160v64h336a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zM0 400v32a16 16 0 0 0 16 16h48v-64H16a16 16 0 0 0-16 16z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M272 32h-32a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zm128 160h-32a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16zM144 352h-32a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16z"></path></g></svg>',
-					'keyword' => ['carousel anything', 'slider', 'slideshow'],
-				],
 				'tp-audio-player' => [
 					'label' => esc_html__('Audio Player','tpgb'),
 					'demoUrl' => '',
@@ -198,6 +223,14 @@ class Tpgb_Gutenberg_Settings_Options {
 					'videoUrl' => '',
 					'tag' => 'pro',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="headphones-alt" class="svg-inline--fa fa-headphones-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M496 416h-16a16 16 0 0 1-16-16V288c0-114.67-93.33-207.8-208-207.82S48 173.33 48 288v112a16 16 0 0 1-16 16H16a16 16 0 0 1-16-16V288C4.57 151.13 112.91 32 256 32s251.43 119.13 256 256v112a16 16 0 0 1-16 16z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M160 288h-16a64.05 64.05 0 0 0-64 64.12v63.76A64.06 64.06 0 0 0 144 480h16a32 32 0 0 0 32-32.06V320.06A32 32 0 0 0 160 288zm208 0h-16a32 32 0 0 0-32 32.06v127.88A32 32 0 0 0 352 480h16a64.06 64.06 0 0 0 64-64.12v-63.76A64.06 64.06 0 0 0 368 288z"></path></g></svg>',
+				],
+				'tp-before-after' => [
+					'label' => esc_html__('Before After', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="star-half" class="svg-inline--fa fa-star-half fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M545.3 226L439.6 329l25 145.5c4.5 26.1-23 46-46.4 33.7l-130.7-68.6V0a31.62 31.62 0 0 1 28.7 17.8l65.3 132.4 146.1 21.2c26.2 3.8 36.7 36.1 17.7 54.6z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M110.4 474.5l25-145.5L29.7 226c-19-18.5-8.5-50.8 17.7-54.6l146.1-21.2 65.3-132.4A31.62 31.62 0 0 1 287.5 0v439.6l-130.7 68.6c-23.4 12.3-50.9-7.6-46.4-33.7z"></path></g></svg>'
 				],
 				'tp-blockquote' => [
 					'label' => esc_html__('Blockquote','tpgb'),
@@ -226,6 +259,15 @@ class Tpgb_Gutenberg_Settings_Options {
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="link" class="svg-inline--fa fa-link fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M44.45 252.59l37.11-37.1c9.84-9.84 26.78-3.3 27.29 10.6a184.45 184.45 0 0 0 9.69 52.72 16.08 16.08 0 0 1-3.78 16.61l-13.09 13.09c-28 28-28.9 73.66-1.15 102a72.07 72.07 0 0 0 102.32.51L270 343.79A72 72 0 0 0 270 242a75.64 75.64 0 0 0-10.34-8.57 16 16 0 0 1-6.95-12.6A39.86 39.86 0 0 1 264.45 191l21.06-21a16.06 16.06 0 0 1 20.58-1.74A152.05 152.05 0 0 1 327 400l-.36.37-67.2 67.2c-59.27 59.27-155.7 59.26-215 0s-59.26-155.72.01-214.98z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M410.33 203.49c28-28 28.9-73.66 1.15-102a72.07 72.07 0 0 0-102.32-.49L242 168.21A72 72 0 0 0 242 270a75.64 75.64 0 0 0 10.34 8.57 16 16 0 0 1 6.94 12.6A39.81 39.81 0 0 1 247.55 321l-21.06 21.05a16.07 16.07 0 0 1-20.58 1.74A152.05 152.05 0 0 1 185 112l.36-.37 67.2-67.2c59.27-59.27 155.7-59.26 215 0s59.27 155.7 0 215l-37.11 37.1c-9.84 9.84-26.78 3.3-27.29-10.6a184.45 184.45 0 0 0-9.69-52.72 16.08 16.08 0 0 1 3.78-16.61z"></path></g></svg>',
 					'keyword' => ['Button', 'CTA', 'link', 'creative button', 'Call to action', 'Marketing Button']
 				],
+				'tp-anything-carousel' => [
+					'label' => esc_html__('Carousel Anything','tpgb'),
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/carousal-anything/',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="sliders-h" class="svg-inline--fa fa-sliders-h fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M496 64H288v64h208a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zM16 128h176V64H16A16 16 0 0 0 0 80v32a16 16 0 0 0 16 16zm0 160h304v-64H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16zm480-64h-80v64h80a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0 160H160v64h336a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zM0 400v32a16 16 0 0 0 16 16h48v-64H16a16 16 0 0 0-16 16z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M272 32h-32a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zm128 160h-32a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16zM144 352h-32a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16z"></path></g></svg>',
+					'keyword' => ['carousel anything', 'slider', 'slideshow'],
+				],
 				'tp-carousel-remote' => [
 					'label' => esc_html__('Carousal Remote','tpgb'),
 					'demoUrl' => 'https://theplusblocks.com/plus-blocks/carousal-remote/',
@@ -234,6 +276,14 @@ class Tpgb_Gutenberg_Settings_Options {
 					'tag' => 'pro',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="signal-stream" class="svg-inline--fa fa-signal-stream fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M198.27 168.37l-22.76-22.23a16.44 16.44 0 0 0-24 1.31 168.77 168.77 0 0 0 0 217.1 16.44 16.44 0 0 0 24 1.31l22.76-22.22a15.12 15.12 0 0 0 1.45-20.32 107.39 107.39 0 0 1 0-134.64 15.11 15.11 0 0 0-1.45-20.31zm226.19-20.92a16.44 16.44 0 0 0-24-1.31l-22.76 22.23a15.12 15.12 0 0 0-1.45 20.31 107.39 107.39 0 0 1 0 134.64 15.14 15.14 0 0 0 1.45 20.32l22.76 22.22a16.44 16.44 0 0 0 24-1.31 168.77 168.77 0 0 0 0-217.1z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M288 200a56 56 0 1 0 56 56 56 56 0 0 0-56-56zM64 256a214.3 214.3 0 0 1 55.42-144.06c5.59-6.22 4.91-15.74-1.08-21.59L96 68.53a16.41 16.41 0 0 0-23.56 1C25.59 121 0 186.56 0 256s25.59 135 72.44 186.52a16.41 16.41 0 0 0 23.56 1l22.34-21.82c6-5.85 6.67-15.37 1.08-21.59A214.3 214.3 0 0 1 64 256zM503.56 69.48a16.41 16.41 0 0 0-23.56-1l-22.34 21.87c-6 5.85-6.67 15.37-1.08 21.59a214.95 214.95 0 0 1 0 288.12c-5.59 6.22-4.91 15.74 1.08 21.59L480 443.47a16.41 16.41 0 0 0 23.56-1C550.41 391 576 325.44 576 256s-25.59-135-72.44-186.52z"></path></g></svg>',
 					'keyword' => ['carousel remote', 'slider controller'],
+				],
+				'tp-circle-menu' => [
+					'label' => esc_html__('Circle Menu', 'tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="draw-circle" class="svg-inline--fa fa-draw-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M39.9 196.71A224.68 224.68 0 0 1 196.71 39.9a64 64 0 0 0 9.34 64.1A160.73 160.73 0 0 0 104 206.06a64 64 0 0 0-64.1-9.35zM320 64a63.76 63.76 0 0 1-14 40 160.73 160.73 0 0 1 102 102.06 64 64 0 0 1 64.1-9.35A224.68 224.68 0 0 0 315.29 39.9 63.73 63.73 0 0 1 320 64zm128 256a63.76 63.76 0 0 1-40-14 160.73 160.73 0 0 1-102 102 64 64 0 0 1 9.34 64.1A224.68 224.68 0 0 0 472.1 315.29 63.73 63.73 0 0 1 448 320zM192 448a63.76 63.76 0 0 1 14.05-40A160.73 160.73 0 0 1 104 306a64 64 0 0 1-64.1 9.34A224.68 224.68 0 0 0 196.71 472.1 63.73 63.73 0 0 1 192 448z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M256 384a64 64 0 1 0 64 64 64 64 0 0 0-64-64zm0 80a16 16 0 1 1 16-16 16 16 0 0 1-16 16zm0-464a64 64 0 1 0 64 64 64 64 0 0 0-64-64zm0 80a16 16 0 1 1 16-16 16 16 0 0 1-16 16zM64 192a64 64 0 1 0 64 64 64 64 0 0 0-64-64zm0 80a16 16 0 1 1 16-16 16 16 0 0 1-16 16zm384-80a64 64 0 1 0 64 64 64 64 0 0 0-64-64zm0 80a16 16 0 1 1 16-16 16 16 0 0 1-16 16z"></path></g></svg>',
 				],
 				'tp-countdown' => [
 					'label' => esc_html__('Countdown','tpgb'),
@@ -396,6 +446,15 @@ class Tpgb_Gutenberg_Settings_Options {
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="exclamation-square" class="svg-inline--fa fa-exclamation-square fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zM224 384a32 32 0 1 1 32-32 32 32 0 0 1-32 32zm38.24-238.41l-12.8 128A16 16 0 0 1 233.52 288h-19a16 16 0 0 1-15.92-14.41l-12.8-128A16 16 0 0 1 201.68 128h44.64a16 16 0 0 1 15.92 17.59z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M246.32 128h-44.64a16 16 0 0 0-15.92 17.59l12.8 128A16 16 0 0 0 214.48 288h19a16 16 0 0 0 15.92-14.41l12.8-128A16 16 0 0 0 246.32 128zM224 320a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"></path></g></svg>',
 					'keyword' => ['Message box', 'Notification box', 'alert box']
 				],
+				'tp-mobile-menu' => [
+					'label' => esc_html__('Mobile Menu','tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="mobile" class="svg-inline--fa fa-mobile fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M0 384v80a48 48 0 0 0 48 48h224a48 48 0 0 0 48-48v-80zm160 96a32 32 0 1 1 32-32 32 32 0 0 1-32 32z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M0 384V48A48 48 0 0 1 48 0h224a48 48 0 0 1 48 48v336z"></path></g></svg>',
+					'keyword' => ['mobile menu', 'menu']
+				],
 				'tp-navigation-builder' => [
 					'label' => esc_html__('Navigation Menu','tpgb'),
 					'demoUrl' => 'https://theplusblocks.com/plus-blocks/navigation-menu/',
@@ -531,6 +590,15 @@ class Tpgb_Gutenberg_Settings_Options {
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="ellipsis-h" class="svg-inline--fa fa-ellipsis-h fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M256 184a72 72 0 1 0 72 72 72 72 0 0 0-72-72z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M432 184a72 72 0 1 0 72 72 72 72 0 0 0-72-72zm-352 0a72 72 0 1 0 72 72 72 72 0 0 0-72-72z"></path></g></svg>',
 					'keyword' => ['Process steps', 'post timeline', 'step process', 'steps form', 'Steppers', 'timeline', 'Progress Tracker']
 				],
+				'tp-product-listing' => [
+					'label' => esc_html__('Product Listing','tpgb'),
+					'demoUrl' => '',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'pro',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="product-hunt" class="svg-inline--fa fa-product-hunt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M326.3 218.8c0 20.5-16.7 37.2-37.2 37.2h-70.3v-74.4h70.3c20.5 0 37.2 16.7 37.2 37.2zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-128.1-37.2c0-47.9-38.9-86.8-86.8-86.8H169.2v248h49.6v-74.4h70.3c47.9 0 86.8-38.9 86.8-86.8z"></path></svg>',
+					'keyword' => ['Product', 'Woocommerce']
+				],
 				'tp-progress-bar' => [
 					'label' => esc_html__('Progress Bar','tpgb'),
 					'demoUrl' => 'https://theplusblocks.com/plus-blocks/progress-bar/',
@@ -659,7 +727,7 @@ class Tpgb_Gutenberg_Settings_Options {
 					'docUrl' => '',
 					'videoUrl' => '',
 					'tag' => 'free',
-					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="video" class="svg-inline--fa fa-video fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M525.6 410.2L416 334.7V177.3l109.6-75.6c21.3-14.6 50.4.4 50.4 25.8v256.9c0 25.5-29.2 40.4-50.4 25.8z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M0 400.2V111.8A47.8 47.8 0 0 1 47.8 64h288.4a47.8 47.8 0 0 1 47.8 47.8v288.4a47.8 47.8 0 0 1-47.8 47.8H47.8A47.8 47.8 0 0 1 0 400.2z"></path></g></svg>',
+					'icon' => '<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="svg-inline--fa fa-video fa-w-18" data-icon="video" data-prefix="fad" viewBox="0 0 576 512"><defs/><g class="fa-group"><path fill="currentColor" d="M525.6 410.2L416 334.7V177.3l109.6-75.6c21.3-14.6 50.4.4 50.4 25.8v256.9c0 25.5-29.2 40.4-50.4 25.8z" class="fa-secondary" opacity=".4"/><path fill="currentColor" d="M0 400.2V111.8A47.8 47.8 0 0147.8 64h288.4a47.8 47.8 0 0147.8 47.8v288.4a47.8 47.8 0 01-47.8 47.8H47.8A47.8 47.8 0 010 400.2z" class="fa-primary"/></g></svg>',
 					'keyword' => ['Video', 'youtube video', 'vimeo video', 'video player', 'mp4 player', 'web player', 'youtube content', 'Youtube embed', 'youtube iframe']
 				],
 			];
@@ -726,19 +794,12 @@ class Tpgb_Gutenberg_Settings_Options {
 							$output .='<span>'.esc_html($block['label']).'</span>';
 							$output .='<span class="block-group-info">';
 								$output .='<span class="block-hover-info">';
-								$output .='<svg xmlns="http://www.w3.org/2000/svg" width="4.347" height="13.909" viewBox="0 0 4.347 13.909">
-										  <g transform="translate(-176)">
-											<path d="M178.173,192A2.176,2.176,0,0,0,176,194.173v4.347a2.173,2.173,0,0,0,4.347,0v-4.347A2.176,2.176,0,0,0,178.173,192Zm1.3,6.278a1.481,1.481,0,0,1-1.407,1.545h-.04a.136.136,0,0,1-.076-.246,1.586,1.586,0,0,0,.644-1.3v-3.864a1.586,1.586,0,0,0-.644-1.3.136.136,0,0,1,.076-.246h.04a1.481,1.481,0,0,1,1.407,1.545Z" transform="translate(0 -186.784)" fill="#888"/>
-											<path d="M178.173,0a2.173,2.173,0,1,0,2.173,2.173A2.176,2.176,0,0,0,178.173,0Zm.049,3.476h-.054a.126.126,0,0,1-.071-.23,1.3,1.3,0,0,0,0-2.148.126.126,0,0,1,.07-.23h0a1.3,1.3,0,0,1,.049,2.607Z" transform="translate(0)" fill="#888"/>
-										  </g>
-										</svg>';
+								$output .='<svg xmlns="http://www.w3.org/2000/svg" width="3.75" height="10.8" viewBox="0 0 4.449 11.917"><defs/><path d="M3.604 3.602H.061v1.5h.962v5.364H0v1.435h1.021v.01h2.583v-.01h.845v-1.429h-.845z" data-name="Path 348"/><path d="M2.294 2.582A1.294 1.294 0 102.329 0a1.293 1.293 0 10-.035 2.582z" data-name="Path 349"/></svg>';
 							$output .='</span>';
 							$output .='<a href="'.esc_url($block['demoUrl']).'" target="_blank" class="block-hover-details block-info-demo">';
-								$output .='<svg xmlns="http://www.w3.org/2000/svg" width="10" height="9.009" viewBox="0 0 10 9.009">
-									  <path d="M9.755,36.8a.787.787,0,0,0-.589-.255H.833a.788.788,0,0,0-.589.255A.851.851,0,0,0,0,37.409V43.3a.851.851,0,0,0,.245.612.788.788,0,0,0,.589.254H3.667a1.171,1.171,0,0,1-.083.422,3.905,3.905,0,0,1-.167.379.614.614,0,0,0-.083.238.339.339,0,0,0,.1.244.314.314,0,0,0,.234.1H6.333a.314.314,0,0,0,.234-.1.339.339,0,0,0,.1-.244.635.635,0,0,0-.083-.235,4.052,4.052,0,0,1-.167-.384,1.18,1.18,0,0,1-.083-.42H9.167a.787.787,0,0,0,.588-.254A.851.851,0,0,0,10,43.3v-5.89A.851.851,0,0,0,9.755,36.8Zm-.422,5.116a.17.17,0,0,1-.049.122.158.158,0,0,1-.117.051H.833a.157.157,0,0,1-.117-.051.17.17,0,0,1-.049-.122v-4.5a.17.17,0,0,1,.049-.122.158.158,0,0,1,.117-.051H9.167a.157.157,0,0,1,.117.051.17.17,0,0,1,.049.122v4.5Z" transform="translate(0 -36.543)" />
-									</svg>';
+								$output .='<svg xmlns="http://www.w3.org/2000/svg" width="10" height="9.009"><defs/><path d="M9.755.257a.787.787 0 00-.589-.255H.833a.788.788 0 00-.589.255A.851.851 0 000 .866v5.891a.851.851 0 00.245.612.788.788 0 00.589.254h2.833a1.171 1.171 0 01-.083.422 3.905 3.905 0 01-.167.379.614.614 0 00-.083.238.339.339 0 00.1.244.314.314 0 00.234.1h2.665a.314.314 0 00.234-.1.339.339 0 00.1-.244.635.635 0 00-.083-.235 4.052 4.052 0 01-.167-.384 1.18 1.18 0 01-.083-.42h2.833a.787.787 0 00.588-.254.851.851 0 00.245-.612V.867a.851.851 0 00-.245-.61zm-.422 5.116a.17.17 0 01-.049.122.158.158 0 01-.117.051H.833a.157.157 0 01-.117-.051.17.17 0 01-.049-.122v-4.5A.17.17 0 01.716.751.158.158 0 01.833.7h8.334a.157.157 0 01.117.051.17.17 0 01.049.122v4.5z"/></svg>';
 							$output .='</a>';
-							$output .='<a href="'.esc_url($block['docUrl']).'" target="_blank" class="block-hover-details block-info-doc">';
+							/*$output .='<a href="'.esc_url($block['docUrl']).'" target="_blank" class="block-hover-details block-info-doc">';
 								$output .='<svg xmlns="http://www.w3.org/2000/svg" width="8.053" height="10.166" viewBox="0 0 8.053 10.166">
 									<g transform="translate(-41.796)">
 										<g transform="translate(42.06 1.188)">
@@ -754,11 +815,9 @@ class Tpgb_Gutenberg_Settings_Options {
 										</g>
 									</g>
 									</svg>';
-							$output .='</a>';
+							$output .='</a>';*/
 							$output .='<a href="'.esc_url($block['videoUrl']).'" target="_blank" class="block-hover-details block-info-video">';
-								$output .='<svg xmlns="http://www.w3.org/2000/svg" width="7.801" height="10.037" viewBox="0 0 7.801 10.037">
-									  <path d="M47.444,44.945a.4.4,0,0,1-.4-.4V35.308a.4.4,0,0,1,.62-.334l7,4.618a.4.4,0,0,1,.181.334.4.4,0,0,1-.181.334l-7,4.619a.4.4,0,0,1-.22.066Zm.4-8.894V43.8l5.874-3.876Z" transform="translate(-47.044 -34.909)" />
-									</svg>';
+								$output .='<svg xmlns="http://www.w3.org/2000/svg" width="7.801" height="10.037"><defs/><path d="M.4 10.036a.4.4 0 01-.4-.4V.399A.4.4 0 01.62.065l7 4.618a.4.4 0 01.181.334.4.4 0 01-.181.334l-7 4.619a.4.4 0 01-.22.066zm.4-8.894v7.749l5.874-3.876z"/></svg>';
 							$output .='</a>';
 							$output .='</span>';
 						$output .='</div>';
@@ -798,53 +857,7 @@ class Tpgb_Gutenberg_Settings_Options {
 					if(defined('TPGBP_VERSION') && (!empty($options['tpgb_plus_logo']))){
 						$output .='<img src="'.esc_url($options['tpgb_plus_logo']).'" style="max-width:150px;"/>';
 					}else{
-						$output .='<svg xmlns="http://www.w3.org/2000/svg" width="250" viewBox="0 0 976.078 341.4">
-  <g transform="translate(-21 -2711)">
-    <rect width="172" height="76" rx="10" transform="translate(825 2711)" fill="#fff"/>
-    <text transform="translate(850 2769)" fill="#6f1df1" font-size="51" font-family="Roboto-Medium, Roboto" font-weight="500"><tspan x="0" y="0">BETA</tspan></text>
-    <g transform="translate(21 2787)">
-      <g>
-        <g>
-          <g opacity="0.4">
-            <path d="M139.14,108.15H126.28v18.12H108.15v12.86h18.13v18.13h12.86V139.13h18.11V126.27H139.14V108.15" fill="#fff"/>
-            <path d="M132.7,0H84.18V126.27H45v12.86H84.18v18.12H97V12.86h35.7a35.73,35.73,0,0,1,35.66,35.46V73.18h12.86V48.31A48.56,48.56,0,0,0,132.7,0" fill="#fff"/>
-            <path d="M139.13,45H126.27V84.18H108.15V97H252.54v35.7a35.73,35.73,0,0,1-35.46,35.66H192.23v12.86h24.88A48.53,48.53,0,0,0,265.4,132.7V84.18H139.13V45" fill="#fff"/>
-            <path d="M181.23,108.15H168.37V252.54H132.71a35.73,35.73,0,0,1-35.66-35.46V192.23H84.19V217.1a48.53,48.53,0,0,0,48.52,48.3h48.52V139.13h39.15V126.27H181.23V108.15" fill="#fff"/>
-            <path d="M73.18,84.19H48.31A48.56,48.56,0,0,0,0,132.71v48.52H126.27v39.15h12.86V181.23h18.12V168.37H12.86V132.71A35.72,35.72,0,0,1,48.33,97.05H73.18V84.19" fill="#fff"/>
-          </g>
-          <path  d="M97,12.86h35.7a35.73,35.73,0,0,1,35.66,35.46V73.18h12.86V48.31A48.56,48.56,0,0,0,132.7,0H84.18V157.25H97Z" fill="#fff"/>
-          <path d="M170.3,126.27h-44v12.86h42.09V252.54H132.71a35.73,35.73,0,0,1-35.66-35.46V192.23H84.19V217.1a48.53,48.53,0,0,0,48.52,48.3h48.52V126.27Z" fill="#fff"/>
-          <path d="M393.3,44.93H313.65V61.25H343.2v81.46h20.15V61.25H393.3V44.93" fill="#fff"/>
-          <path d="M490,44.93H469.86V84.55H430.57V44.93H410.42v97.78h20.15V100.8h39.29v41.91H490V44.93" fill="#fff"/>
-          <path d="M578.65,44.93H513.24v97.78h65.54V126.53H533.39v-26.2h38.68V84.55H533.39V61.25h45.26V44.93" fill="#fff"/>
-          <path d="M656.28,91.94V61.25h18.46q7.46.14,11.69,4.57t4.23,11.61q0,7-4.19,10.75t-12.2,3.76h-18m18-47H636.13v97.78h20.15V108.26h17.66q17.38,0,27.23-8.3T711,77.3a31.94,31.94,0,0,0-4.5-16.89A29.72,29.72,0,0,0,693.65,49a44.1,44.1,0,0,0-19.38-4" fill="#fff"/>
-          <path d="M750.63,44.93H730.48v97.78h62.93V126.53H750.63V44.93" fill="#fff"/>
-          <path d="M883,44.93H862.78V110q-.27,17.86-17.26,17.87-8.13,0-12.73-4.4t-4.6-14V44.93H808.05v65.14q.19,15.86,10.27,24.92t27.2,9.06q17.38,0,27.43-9.33t10-25.39V44.93" fill="#fff"/>
-          <path d="M940.14,43.59a48.23,48.23,0,0,0-18.77,3.49,29.2,29.2,0,0,0-12.83,9.7,23.62,23.62,0,0,0-4.46,14.14q0,15.24,16.65,24.24a102.137,102.137,0,0,0,16.59,6.69q10.47,3.39,14.5,6.44a10.33,10.33,0,0,1,4,8.76,9.51,9.51,0,0,1-4,8.17q-4,2.91-11.21,2.92-19.33,0-19.34-16.19H901.05a29,29,0,0,0,4.87,16.66,32.51,32.51,0,0,0,14.14,11.31,50,50,0,0,0,20.55,4.13q16.25,0,25.86-7.22t9.6-19.91a25.529,25.529,0,0,0-7.86-19.07Q960.35,90.19,943.16,85q-9.33-2.8-14.16-6t-4.81-8a9.86,9.86,0,0,1,4.1-8.23q4.09-3.12,11.48-3.12,7.66,0,11.89,3.72t4.23,10.45h20.15A28,28,0,0,0,971.5,58.1a29.72,29.72,0,0,0-12.72-10.71,44,44,0,0,0-18.67-3.79" fill="#fff"/>
-          <path d="M354.12,216.21a6.32,6.32,0,0,1-4.23-1.39,4.79,4.79,0,0,1-1.65-3.86q0-5.66,9.65-5.65H362v6.3a7.7,7.7,0,0,1-3.21,3.32,9.11,9.11,0,0,1-4.68,1.28m1.7-27.28a15,15,0,0,0-6.15,1.25,11.2,11.2,0,0,0-4.42,3.39,7.24,7.24,0,0,0-1.63,4.44h5.28a4.18,4.18,0,0,1,1.9-3.43,7.62,7.62,0,0,1,4.71-1.42,6.6,6.6,0,0,1,4.85,1.63,5.91,5.91,0,0,1,1.65,4.39v2.41h-5.1q-6.61,0-10.26,2.66A8.68,8.68,0,0,0,343,211.7a8.3,8.3,0,0,0,2.91,6.51,10.87,10.87,0,0,0,7.45,2.57,11.72,11.72,0,0,0,8.74-3.8,11.14,11.14,0,0,0,.74,3.23h5.51v-.45a17.291,17.291,0,0,1-1.08-6.73V198.9a9.6,9.6,0,0,0-3.12-7.31q-3-2.66-8.32-2.66" fill="#fff"/>
-          <path d="M391.65,216.32a7,7,0,0,1-6-2.95q-2.16-3-2.16-8.17,0-5.85,2.16-8.83a7,7,0,0,1,6-3,7.74,7.74,0,0,1,7.24,4.34v14.11a7.67,7.67,0,0,1-7.3,4.48m12.55-39.7H399v16a11.4,11.4,0,0,0-17.32.61q-3.35,4.31-3.35,11.37v.4q0,7,3.36,11.41a10.52,10.52,0,0,0,8.71,4.37,10.71,10.71,0,0,0,8.77-3.86l.25,3.29h4.83V176.62" fill="#fff"/>
-          <path d="M428.5,216.32a7,7,0,0,1-6-2.95c-1.44-2-2.15-4.69-2.15-8.17,0-3.9.71-6.84,2.15-8.83a7,7,0,0,1,6-3,7.73,7.73,0,0,1,7.24,4.34v14.11a7.67,7.67,0,0,1-7.3,4.48m12.55-39.7H435.8v16a11.4,11.4,0,0,0-17.32.61q-3.35,4.31-3.35,11.37v.4q0,7,3.37,11.41a10.49,10.49,0,0,0,8.7,4.37,10.71,10.71,0,0,0,8.77-3.86l.25,3.29h4.83V176.62" fill="#fff"/>
-          <path d="M465.87,216.49a7.6,7.6,0,0,1-6.35-3.09,13.14,13.14,0,0,1-2.37-8.2c0-3.84.8-6.8,2.38-8.86a8,8,0,0,1,12.65,0,13.11,13.11,0,0,1,2.4,8.19q0,5.66-2.36,8.79a7.53,7.53,0,0,1-6.35,3.13m-.06-27.56a13.45,13.45,0,0,0-7.22,2,13.19,13.19,0,0,0-4.94,5.56,18.07,18.07,0,0,0-1.78,8.12v.37q0,7.16,3.88,11.49a12.9,12.9,0,0,0,10.12,4.35,13.54,13.54,0,0,0,7.33-2,13,13,0,0,0,4.91-5.55,18.18,18.18,0,0,0,1.72-8v-.37q0-7.22-3.87-11.55a13,13,0,0,0-10.15-4.35" fill="#fff"/>
-          <path d="M504.82,188.93a11.2,11.2,0,0,0-9.2,4.43l-.17-3.86h-5v30.71h5.25V198.33a9.32,9.32,0,0,1,3-3.58,7.59,7.59,0,0,1,4.49-1.36,6.09,6.09,0,0,1,4.64,1.59,7.1,7.1,0,0,1,1.52,4.91v20.32h5.25V199.92q-.09-11-9.82-11" fill="#fff"/>
-          <path d="M537.75,188.93a12.48,12.48,0,0,0-8.16,2.61,8,8,0,0,0-3.19,6.39,6.79,6.79,0,0,0,1.12,3.92,9.06,9.06,0,0,0,3.46,2.84,26.739,26.739,0,0,0,6.33,2,15.38,15.38,0,0,1,5.59,2,3.87,3.87,0,0,1,1.61,3.31,3.7,3.7,0,0,1-1.81,3.22,8.48,8.48,0,0,1-4.78,1.2,8.22,8.22,0,0,1-5.21-1.54,5.45,5.45,0,0,1-2.11-4.19h-5.25a8.73,8.73,0,0,0,1.6,5.06,10.57,10.57,0,0,0,4.44,3.65,15.47,15.47,0,0,0,6.53,1.31,13.83,13.83,0,0,0,8.54-2.48,7.87,7.87,0,0,0,3.3-6.6,7.26,7.26,0,0,0-1.18-4.19,9.33,9.33,0,0,0-3.62-2.94,28.723,28.723,0,0,0-6.37-2.1,18.569,18.569,0,0,1-5.44-1.84,3.2,3.2,0,0,1-1.5-2.87,3.94,3.94,0,0,1,1.61-3.26,7.15,7.15,0,0,1,4.49-1.25,6.85,6.85,0,0,1,4.61,1.56,4.74,4.74,0,0,1,1.83,3.72h5.28a8.56,8.56,0,0,0-3.25-6.9,12.81,12.81,0,0,0-8.47-2.7" fill="#fff"/>
-          <path d="M591.81,176q-4.81,0-7.46,2.69c-1.76,1.81-2.64,4.35-2.64,7.64v3.15h-4.86v4.06h4.86v26.65H587V193.56h6.56V189.5H587v-3.25a6,6,0,0,1,1.39-4.28,5.1,5.1,0,0,1,3.95-1.5,15,15,0,0,1,2.83.26l.29-4.23a13.88,13.88,0,0,0-3.61-.48" fill="#fff"/>
-          <path d="M616,216.49a7.6,7.6,0,0,1-6.35-3.09,13.14,13.14,0,0,1-2.37-8.2c0-3.84.8-6.8,2.39-8.86a8,8,0,0,1,12.64,0,13.11,13.11,0,0,1,2.4,8.19c0,3.77-.79,6.7-2.35,8.79a7.56,7.56,0,0,1-6.36,3.13m-.06-27.56a13.47,13.47,0,0,0-7.22,2,13.25,13.25,0,0,0-4.94,5.56,18.2,18.2,0,0,0-1.78,8.12v.37q0,7.16,3.88,11.49A12.91,12.91,0,0,0,616,220.78a13.54,13.54,0,0,0,7.33-2,13,13,0,0,0,4.91-5.55,18.181,18.181,0,0,0,1.72-8v-.37q0-7.22-3.87-11.55a13,13,0,0,0-10.15-4.35" fill="#fff"/>
-          <path d="M653.11,188.93a8.16,8.16,0,0,0-7.32,4.12l-.09-3.55h-5.1v30.71h5.25v-21.8q1.845-4.395,7-4.4a16.08,16.08,0,0,1,2.58.2v-4.88a5.45,5.45,0,0,0-2.33-.4" fill="#fff"/>
-          <path id="Path_8980" data-name="Path 8980" d="M698.89,178.32q-7.89,0-12.25,5.14t-4.36,14.47v3.6a23.32,23.32,0,0,0,2.2,10.14,15.83,15.83,0,0,0,6.06,6.74,17,17,0,0,0,9,2.37,23.781,23.781,0,0,0,8.76-1.49,12.57,12.57,0,0,0,5.86-4.5V199.63h-15v4.46h9.56v9.26a8.17,8.17,0,0,1-3.8,2.29,18.72,18.72,0,0,1-5.36.68,10.3,10.3,0,0,1-8.6-4.1q-3.18-4.11-3.18-11.07v-3.38q0-7.29,2.85-11.15a9.653,9.653,0,0,1,8.3-3.85q8.24,0,9.77,8.23h5.45a14.46,14.46,0,0,0-4.83-9.38q-3.94-3.3-10.41-3.3" fill="#fff"/>
-          <path id="Path_8981" data-name="Path 8981" d="M750.52,189.5h-5.25v22.34q-2,4.49-8,4.48-5.68,0-5.68-7V189.5h-5.25v20c0,3.73.88,6.55,2.6,8.45s4.2,2.85,7.48,2.85q5.93,0,9-3.61l.12,3h5V189.5" fill="#fff"/>
-          <path id="Path_8982" data-name="Path 8982" d="M769.69,182.07h-5.25v7.43h-5.59v4.06h5.59v19a9.17,9.17,0,0,0,1.79,6.05,6.53,6.53,0,0,0,5.31,2.13,15.19,15.19,0,0,0,4-.57V216a12.46,12.46,0,0,1-2.5.34,3.24,3.24,0,0,1-2.61-.92,4.28,4.28,0,0,1-.77-2.77V193.56h5.74V189.5h-5.74v-7.43" fill="#fff"/>
-          <path id="Path_8983" data-name="Path 8983" d="M789.71,202.05a11.24,11.24,0,0,1,2.67-6.49,7,7,0,0,1,5.34-2.31,6.59,6.59,0,0,1,5.22,2.2,10,10,0,0,1,2.16,6.2v.4H789.71m8-13.12a12.31,12.31,0,0,0-6.8,2,13.6,13.6,0,0,0-4.88,5.62,18.35,18.35,0,0,0-1.75,8.16v1q0,6.87,3.92,11a13.43,13.43,0,0,0,10.16,4.1q7.73,0,11.58-5.93l-3.21-2.5a11.771,11.771,0,0,1-3.38,3,9.18,9.18,0,0,1-4.71,1.13,8.33,8.33,0,0,1-6.45-2.79,10.921,10.921,0,0,1-2.66-7.34h20.81v-2.19q0-7.35-3.32-11.29t-9.31-3.95" fill="#fff"/>
-          <path id="Path_8984" data-name="Path 8984" d="M834.82,188.93a11.18,11.18,0,0,0-9.19,4.43l-.17-3.86h-5v30.71h5.25V198.33a9.23,9.23,0,0,1,3-3.58,7.56,7.56,0,0,1,4.48-1.36,6.08,6.08,0,0,1,4.64,1.59,7,7,0,0,1,1.52,4.91v20.32h5.25V199.92q-.07-11-9.82-11" fill="#fff"/>
-          <path id="Path_8985" data-name="Path 8985" d="M869.4,216.32a7.92,7.92,0,0,1-7.52-4.82V198.21a7.71,7.71,0,0,1,7.47-4.82,6.85,6.85,0,0,1,6,2.92q2.07,2.92,2.07,8.29,0,5.88-2.1,8.8a6.82,6.82,0,0,1-5.88,2.92m-7.52-39.7h-5.25v43.59h4.83l.25-3.55a10.7,10.7,0,0,0,9,4.12,10.32,10.32,0,0,0,8.68-4.27q3.24-4.27,3.24-11.31v-.46q0-7.35-3.19-11.58a10.41,10.41,0,0,0-8.79-4.23,10.66,10.66,0,0,0-8.77,3.95V176.62" fill="#fff"/>
-          <path id="Path_8986" data-name="Path 8986" d="M897.4,202.05a11.24,11.24,0,0,1,2.67-6.49,7,7,0,0,1,5.33-2.31,6.6,6.6,0,0,1,5.23,2.2,10,10,0,0,1,2.15,6.2v.4H897.4m8-13.12a12.27,12.27,0,0,0-6.79,2,13.62,13.62,0,0,0-4.89,5.62,18.49,18.49,0,0,0-1.74,8.16v1q0,6.87,3.91,11a13.45,13.45,0,0,0,10.17,4.1q7.71,0,11.58-5.93l-3.21-2.5a11.9,11.9,0,0,1-3.38,3,9.2,9.2,0,0,1-4.71,1.13,8.37,8.37,0,0,1-6.46-2.79,10.92,10.92,0,0,1-2.65-7.34H918v-2.19q0-7.35-3.32-11.29t-9.31-3.95" fill="#fff"/>
-          <path id="Path_8987" data-name="Path 8987" d="M940.69,188.93a8.16,8.16,0,0,0-7.32,4.12l-.08-3.55h-5.11v30.71h5.25v-21.8q1.85-4.4,7-4.4a15.9,15.9,0,0,1,2.58.2v-4.88a5.45,5.45,0,0,0-2.33-.4" fill="#fff"/>
-          <path id="Path_8988" data-name="Path 8988" d="M963.5,216.32a6.9,6.9,0,0,1-6-3q-2.13-3-2.13-8.16,0-5.85,2.15-8.83a7,7,0,0,1,6-3,7.77,7.77,0,0,1,7.24,4.4v14a7.68,7.68,0,0,1-7.29,4.51m-1.25-27.39a10.61,10.61,0,0,0-8.8,4.25q-3.32,4.23-3.32,11.42,0,7.49,3.33,11.83a10.49,10.49,0,0,0,8.73,4.35,10.78,10.78,0,0,0,8.6-3.64v2.65a8.23,8.23,0,0,1-2.14,6.07,8,8,0,0,1-6,2.16,10.269,10.269,0,0,1-8.259-4.168L951.69,227a11.119,11.119,0,0,0,4.85,3.88,15.75,15.75,0,0,0,6.5,1.42q6,0,9.5-3.43t3.53-9.4v-30h-4.8l-.25,3.41a10.57,10.57,0,0,0-8.77-4" fill="#fff"/>
-        </g>
-      </g>
-    </g>
-  </g>
-</svg>
-';
+						$output .='<svg xmlns="http://www.w3.org/2000/svg" width="250" viewBox="0 0 976.07 265.4"><defs/><g fill="#fff"><g opacity=".4"><path d="M139.14 108.15h-12.86v18.12h-18.13v12.86h18.13v18.13h12.86v-18.13h18.11v-12.86h-18.11v-18.12"/><path d="M132.7 0H84.18v126.27H45v12.86h39.18v18.12H97V12.86h35.7a35.73 35.73 0 0135.66 35.46v24.86h12.86V48.31A48.56 48.56 0 00132.7 0"/><path d="M139.13 45h-12.86v39.18h-18.12V97h144.39v35.7a35.73 35.73 0 01-35.46 35.66h-24.85v12.86h24.88a48.53 48.53 0 0048.29-48.52V84.18H139.13V45"/><path d="M181.23 108.15h-12.86v144.39h-35.66a35.73 35.73 0 01-35.66-35.46v-24.85H84.19v24.87a48.53 48.53 0 0048.52 48.3h48.52V139.13h39.15v-12.86h-39.15v-18.12"/><path d="M73.18 84.19H48.31A48.56 48.56 0 000 132.71v48.52h126.27v39.15h12.86v-39.15h18.12v-12.86H12.86v-35.66a35.72 35.72 0 0135.47-35.66h24.85V84.19"/></g><path d="M97 12.86h35.7a35.73 35.73 0 0135.66 35.46v24.86h12.86V48.31A48.56 48.56 0 00132.7 0H84.18v157.25H97z"/><path d="M170.3 126.27h-44v12.86h42.09v113.41h-35.68a35.73 35.73 0 01-35.66-35.46v-24.85H84.19v24.87a48.53 48.53 0 0048.52 48.3h48.52V126.27zM393.3 44.93h-79.65v16.32h29.55v81.46h20.15V61.25h29.95V44.93M490 44.93h-20.14v39.62h-39.29V44.93h-20.15v97.78h20.15V100.8h39.29v41.91H490V44.93M578.65 44.93h-65.41v97.78h65.54v-16.18h-45.39v-26.2h38.68V84.55h-38.68v-23.3h45.26V44.93M656.28 91.94V61.25h18.46q7.46.14 11.69 4.57t4.23 11.61q0 7-4.19 10.75t-12.2 3.76h-18m18-47h-38.14v97.78h20.15v-34.46h17.66q17.38 0 27.23-8.3T711 77.3a31.94 31.94 0 00-4.5-16.89A29.72 29.72 0 00693.65 49a44.1 44.1 0 00-19.38-4M750.63 44.93h-20.15v97.78h62.93v-16.18h-42.78v-81.6M883 44.93h-20.22V110q-.27 17.86-17.26 17.87-8.13 0-12.73-4.4t-4.6-14V44.93h-20.14v65.14q.19 15.86 10.27 24.92t27.2 9.06q17.38 0 27.43-9.33t10-25.39v-64.4M940.14 43.59a48.23 48.23 0 00-18.77 3.49 29.2 29.2 0 00-12.83 9.7 23.62 23.62 0 00-4.46 14.14q0 15.24 16.65 24.24a102.14 102.14 0 0016.59 6.69q10.47 3.39 14.5 6.44a10.33 10.33 0 014 8.76 9.51 9.51 0 01-4 8.17q-4 2.91-11.21 2.92-19.33 0-19.34-16.19h-20.22a29 29 0 004.87 16.66 32.51 32.51 0 0014.14 11.31 50 50 0 0020.55 4.13q16.25 0 25.86-7.22t9.6-19.91a25.53 25.53 0 00-7.86-19.07q-7.86-7.66-25.05-12.85-9.33-2.8-14.16-6t-4.81-8a9.86 9.86 0 014.1-8.23q4.09-3.12 11.48-3.12 7.66 0 11.89 3.72t4.23 10.45h20.15a28 28 0 00-4.54-15.72 29.72 29.72 0 00-12.72-10.71 44 44 0 00-18.67-3.79M354.12 216.21a6.32 6.32 0 01-4.23-1.39 4.79 4.79 0 01-1.65-3.86q0-5.66 9.65-5.65H362v6.3a7.7 7.7 0 01-3.21 3.32 9.11 9.11 0 01-4.68 1.28m1.7-27.28a15 15 0 00-6.15 1.25 11.2 11.2 0 00-4.42 3.39 7.24 7.24 0 00-1.63 4.44h5.28a4.18 4.18 0 011.9-3.43 7.62 7.62 0 014.71-1.42 6.6 6.6 0 014.85 1.63 5.91 5.91 0 011.65 4.39v2.41h-5.1q-6.61 0-10.26 2.66a8.68 8.68 0 00-3.64 7.45 8.3 8.3 0 002.91 6.51 10.87 10.87 0 007.45 2.57 11.72 11.72 0 008.74-3.8 11.14 11.14 0 00.74 3.23h5.51v-.45a17.29 17.29 0 01-1.08-6.73V198.9a9.6 9.6 0 00-3.12-7.31q-3-2.66-8.32-2.66M391.65 216.32a7 7 0 01-6-2.95q-2.16-3-2.16-8.17 0-5.85 2.16-8.83a7 7 0 016-3 7.74 7.74 0 017.24 4.34v14.11a7.67 7.67 0 01-7.3 4.48m12.55-39.7H399v16a11.4 11.4 0 00-17.32.61q-3.35 4.31-3.35 11.37v.4q0 7 3.36 11.41a10.52 10.52 0 008.71 4.37 10.71 10.71 0 008.77-3.86l.25 3.29h4.83v-43.57M428.5 216.32a7 7 0 01-6-2.95c-1.44-2-2.15-4.69-2.15-8.17 0-3.9.71-6.84 2.15-8.83a7 7 0 016-3 7.73 7.73 0 017.24 4.34v14.11a7.67 7.67 0 01-7.3 4.48m12.55-39.7h-5.19v16a11.4 11.4 0 00-17.32.61q-3.35 4.31-3.35 11.37v.4q0 7 3.37 11.41a10.49 10.49 0 008.7 4.37 10.71 10.71 0 008.77-3.86l.25 3.29h4.83v-43.57M465.87 216.49a7.6 7.6 0 01-6.35-3.09 13.14 13.14 0 01-2.37-8.2c0-3.84.8-6.8 2.38-8.86a8 8 0 0112.65 0 13.11 13.11 0 012.4 8.19q0 5.66-2.36 8.79a7.53 7.53 0 01-6.35 3.13m-.06-27.56a13.45 13.45 0 00-7.22 2 13.19 13.19 0 00-4.94 5.56 18.07 18.07 0 00-1.78 8.12v.37q0 7.16 3.88 11.49a12.9 12.9 0 0010.12 4.35 13.54 13.54 0 007.33-2 13 13 0 004.91-5.55 18.18 18.18 0 001.72-8v-.37q0-7.22-3.87-11.55a13 13 0 00-10.15-4.35M504.82 188.93a11.2 11.2 0 00-9.2 4.43l-.17-3.86h-5v30.71h5.25v-21.88a9.32 9.32 0 013-3.58 7.59 7.59 0 014.49-1.36 6.09 6.09 0 014.64 1.59 7.1 7.1 0 011.52 4.91v20.32h5.25v-20.29q-.09-11-9.82-11M537.75 188.93a12.48 12.48 0 00-8.16 2.61 8 8 0 00-3.19 6.39 6.79 6.79 0 001.12 3.92 9.06 9.06 0 003.46 2.84 26.74 26.74 0 006.33 2 15.38 15.38 0 015.59 2 3.87 3.87 0 011.61 3.31 3.7 3.7 0 01-1.81 3.22 8.48 8.48 0 01-4.78 1.2 8.22 8.22 0 01-5.21-1.54 5.45 5.45 0 01-2.11-4.19h-5.25a8.73 8.73 0 001.6 5.06 10.57 10.57 0 004.44 3.65 15.47 15.47 0 006.53 1.31 13.83 13.83 0 008.54-2.48 7.87 7.87 0 003.3-6.6 7.26 7.26 0 00-1.18-4.19 9.33 9.33 0 00-3.62-2.94 28.72 28.72 0 00-6.37-2.1 18.57 18.57 0 01-5.44-1.84 3.2 3.2 0 01-1.5-2.87 3.94 3.94 0 011.61-3.26 7.15 7.15 0 014.49-1.25 6.85 6.85 0 014.61 1.56 4.74 4.74 0 011.83 3.72h5.28a8.56 8.56 0 00-3.25-6.9 12.81 12.81 0 00-8.47-2.7M591.81 176q-4.81 0-7.46 2.69c-1.76 1.81-2.64 4.35-2.64 7.64v3.15h-4.86v4.06h4.86v26.65H587v-26.63h6.56v-4.06H587v-3.25a6 6 0 011.39-4.28 5.1 5.1 0 013.95-1.5 15 15 0 012.83.26l.29-4.23a13.88 13.88 0 00-3.61-.48M616 216.49a7.6 7.6 0 01-6.35-3.09 13.14 13.14 0 01-2.37-8.2c0-3.84.8-6.8 2.39-8.86a8 8 0 0112.64 0 13.11 13.11 0 012.4 8.19c0 3.77-.79 6.7-2.35 8.79a7.56 7.56 0 01-6.36 3.13m-.06-27.56a13.47 13.47 0 00-7.22 2 13.25 13.25 0 00-4.94 5.56 18.2 18.2 0 00-1.78 8.12v.37q0 7.16 3.88 11.49a12.91 12.91 0 0010.12 4.35 13.54 13.54 0 007.33-2 13 13 0 004.91-5.55 18.18 18.18 0 001.72-8v-.37q0-7.22-3.87-11.55a13 13 0 00-10.15-4.35M653.11 188.93a8.16 8.16 0 00-7.32 4.12l-.09-3.55h-5.1v30.71h5.25v-21.8c1.23-2.93 3.56-4.4 7-4.4a16.08 16.08 0 012.58.2v-4.88a5.45 5.45 0 00-2.33-.4M698.89 178.32q-7.89 0-12.25 5.14t-4.36 14.47v3.6a23.32 23.32 0 002.2 10.14 15.83 15.83 0 006.06 6.74 17 17 0 009 2.37 23.78 23.78 0 008.76-1.49 12.57 12.57 0 005.86-4.5v-15.16h-15v4.46h9.56v9.26a8.17 8.17 0 01-3.8 2.29 18.72 18.72 0 01-5.36.68 10.3 10.3 0 01-8.6-4.1q-3.18-4.11-3.18-11.07v-3.38q0-7.29 2.85-11.15t8.3-3.85q8.24 0 9.77 8.23h5.45a14.46 14.46 0 00-4.83-9.38q-3.94-3.3-10.41-3.3M750.52 189.5h-5.25v22.34q-2 4.49-8 4.48-5.68 0-5.68-7V189.5h-5.25v20c0 3.73.88 6.55 2.6 8.45s4.2 2.85 7.48 2.85q5.93 0 9-3.61l.12 3h5V189.5M769.69 182.07h-5.25v7.43h-5.59v4.06h5.59v19a9.17 9.17 0 001.79 6.05 6.53 6.53 0 005.31 2.13 15.19 15.19 0 004-.57V216a12.46 12.46 0 01-2.5.34 3.24 3.24 0 01-2.61-.92 4.28 4.28 0 01-.77-2.77v-19.09h5.74v-4.06h-5.74v-7.43M789.71 202.05a11.24 11.24 0 012.67-6.49 7 7 0 015.34-2.31 6.59 6.59 0 015.22 2.2 10 10 0 012.16 6.2v.4h-15.39m8-13.12a12.31 12.31 0 00-6.8 2 13.6 13.6 0 00-4.88 5.62 18.35 18.35 0 00-1.75 8.16v1q0 6.87 3.92 11a13.43 13.43 0 0010.16 4.1q7.73 0 11.58-5.93l-3.21-2.5a11.77 11.77 0 01-3.38 3 9.18 9.18 0 01-4.71 1.13 8.33 8.33 0 01-6.45-2.79 10.92 10.92 0 01-2.66-7.34h20.81v-2.19q0-7.35-3.32-11.29t-9.31-3.95M834.82 188.93a11.18 11.18 0 00-9.19 4.43l-.17-3.86h-5v30.71h5.25v-21.88a9.23 9.23 0 013-3.58 7.56 7.56 0 014.48-1.36 6.08 6.08 0 014.64 1.59 7 7 0 011.52 4.91v20.32h5.25v-20.29q-.07-11-9.82-11M869.4 216.32a7.92 7.92 0 01-7.52-4.82v-13.29a7.71 7.71 0 017.47-4.82 6.85 6.85 0 016 2.92q2.07 2.92 2.07 8.29 0 5.88-2.1 8.8a6.82 6.82 0 01-5.88 2.92m-7.52-39.7h-5.25v43.59h4.83l.25-3.55a10.7 10.7 0 009 4.12 10.32 10.32 0 008.68-4.27q3.24-4.27 3.24-11.31v-.46q0-7.35-3.19-11.58a10.41 10.41 0 00-8.79-4.23 10.66 10.66 0 00-8.77 3.95v-16.26M897.4 202.05a11.24 11.24 0 012.67-6.49 7 7 0 015.33-2.31 6.6 6.6 0 015.23 2.2 10 10 0 012.15 6.2v.4H897.4m8-13.12a12.27 12.27 0 00-6.79 2 13.62 13.62 0 00-4.89 5.62 18.49 18.49 0 00-1.74 8.16v1q0 6.87 3.91 11a13.45 13.45 0 0010.17 4.1q7.71 0 11.58-5.93l-3.21-2.5a11.9 11.9 0 01-3.38 3 9.2 9.2 0 01-4.71 1.13 8.37 8.37 0 01-6.46-2.79 10.92 10.92 0 01-2.65-7.34H918v-2.19q0-7.35-3.32-11.29t-9.31-3.95M940.69 188.93a8.16 8.16 0 00-7.32 4.12l-.08-3.55h-5.11v30.71h5.25v-21.8q1.85-4.4 7-4.4a15.9 15.9 0 012.58.2v-4.88a5.45 5.45 0 00-2.33-.4M963.5 216.32a6.9 6.9 0 01-6-3q-2.13-3-2.13-8.16 0-5.85 2.15-8.83a7 7 0 016-3 7.77 7.77 0 017.24 4.4v14a7.68 7.68 0 01-7.29 4.51m-1.25-27.39a10.61 10.61 0 00-8.8 4.25q-3.32 4.23-3.32 11.42 0 7.49 3.33 11.83a10.49 10.49 0 008.73 4.35 10.78 10.78 0 008.6-3.64v2.65a8.23 8.23 0 01-2.14 6.07 8 8 0 01-6 2.16 10.27 10.27 0 01-8.26-4.17l-2.67 3.23a11.12 11.12 0 004.85 3.88 15.75 15.75 0 006.5 1.42q6 0 9.5-3.43t3.53-9.4v-30h-4.8l-.25 3.41a10.57 10.57 0 00-8.77-4"/></g></svg>';
 					}
 					$output .='<div class="tpgb-panel-head-inner">';
 						$output .='<h2 class="tpgb-head-setting-panel">'.esc_html__('Setting Panel','tpgb').'</h2>';
@@ -913,15 +926,12 @@ class Tpgb_Gutenberg_Settings_Options {
 									</svg>';
 							}
 							
+							if($tab_slug == "tpgb_activate"){
+								$navicon = '<svg class="tab-nav-icon" xmlns="http://www.w3.org/2000/svg" width="15.204" height="28.507" viewBox="0 0 15.204 28.507"><g transform="translate(22.204) rotate(90)"><path d="M10.967,22.2H2.553A2.969,2.969,0,0,1,0,19.521V8.732C0,7.663.979,7,2.553,7h8.413C12.43,7,13.3,7.648,13.3,8.732v3.019H28.032a.476.476,0,0,1,.475.475v4.751a.477.477,0,0,1-.475.475H13.3V19.52A2.749,2.749,0,0,1,10.967,22.2ZM2.553,7.95c-.164,0-1.6.022-1.6.782V19.521a2.061,2.061,0,0,0,1.6,1.732h8.413c.67,0,1.386-1.016,1.386-1.731V16.977a.476.476,0,0,1,.475-.475H27.557V12.7H12.828a.475.475,0,0,1-.475-.475V8.733c0-.519-.467-.783-1.386-.783Z"></path><path d="M18.826,14.95H15.975a.475.475,0,1,1,0-.95h2.851a.475.475,0,0,1,0,.95Z" transform="translate(-0.771 -0.348)"></path><path d="M23.826,14.95H20.975a.475.475,0,0,1,0-.95h2.851a.475.475,0,0,1,0,.95Z" transform="translate(-1.02 -0.348)"></path><path d="M27.876,14.95h-1.9a.475.475,0,1,1,0-.95h1.9a.475.475,0,0,1,0,.95Z" transform="translate(-1.269 -0.348)"></path><path d="M5.376,18.552h-1.9A.476.476,0,0,1,3,18.077v-7.6A.475.475,0,0,1,3.475,10h1.9a.475.475,0,0,1,.475.475v7.6A.476.476,0,0,1,5.376,18.552ZM3.95,17.6H4.9V10.95H3.95Z" transform="translate(-0.149 -0.149)"></path></g></svg>';
+							}
+							
 							if($tab_slug == "tpgb_white_label"){
-								$navicon = '<svg class="tab-nav-icon" xmlns="http://www.w3.org/2000/svg" width="30.152" height="27.537" viewBox="0 0 30.152 27.537">
-								  <g transform="matrix(-0.788, 0.616, -0.616, -0.788, 34.922, 16.639)">
-									<path d="M27.478,20.962H4.894a.466.466,0,0,1-.335-.144L.947,17.023a3.593,3.593,0,0,1,.008-5.266L4.567,8.136A.456.456,0,0,1,4.9,8H27.462a.462.462,0,0,1,.367.744L23.416,14.48l4.348,5.651a.466.466,0,0,1-.286.83ZM5.092,20.036H26.52l-4.056-5.273a.46.46,0,0,1,0-.564L26.52,8.927H5.086L1.609,12.412a2.671,2.671,0,0,0,0,3.966Z" />
-									<path d="M6.33,17.43a2.778,2.778,0,1,1,2.778-2.778A2.782,2.782,0,0,1,6.33,17.43Zm0-4.629a1.852,1.852,0,1,0,1.852,1.852A1.853,1.853,0,0,0,6.33,12.8Z" transform="translate(-0.278 -0.287)" fill="#8072fc"/>
-									<path d="M18.581,13.926H13.026a.463.463,0,1,1,0-.926h5.555a.463.463,0,0,1,0,.926Z" transform="translate(-0.946 -0.371)"/>
-									<path d="M18.581,16.926H13.026a.463.463,0,0,1,0-.926h5.555a.463.463,0,0,1,0,.926Z" transform="translate(-0.946 -0.593)"/>
-								  </g>
-								</svg>';
+								$navicon = '<svg xmlns="http://www.w3.org/2000/svg" width="30.152" height="27.537" class="tab-nav-icon"><defs/><path d="M.357 17.047L18.153 3.136a.466.466 0 01.353-.093l5.184.765a3.594 3.594 0 013.237 4.155l-.616 5.078a.456.456 0 01-.178.312L8.353 27.252a.462.462 0 01-.747-.36l-.055-7.239-6.908-1.775a.466.466 0 01-.286-.83zm18.21-13.06l-16.885 13.2 6.444 1.657a.46.46 0 01.348.444l.051 6.653 16.89-13.203.593-4.889a2.672 2.672 0 00-2.443-3.125z"/><path fill="#8072fc" d="M19.593 6.858a2.779 2.779 0 11-.478 3.9 2.783 2.783 0 01.478-3.9zm2.851 3.648a1.852 1.852 0 10-2.6-.319 1.853 1.853 0 002.601.32z"/><path d="M12.676 16.82l4.377-3.421a.463.463 0 11.57.73l-4.377 3.422a.463.463 0 01-.57-.73zM10.964 14.632l4.378-3.422a.463.463 0 01.57.73l-4.377 3.421a.463.463 0 01-.57-.73z"/></svg>';
 							}
 							?>
 							<a class="<?php echo esc_attr($nav_class); ?>" href="<?php menu_page_url($tab_slug); ?>">
@@ -990,11 +1000,13 @@ class Tpgb_Gutenberg_Settings_Options {
 							
 							if($tab_form['id']=='tpgb_white_label'){
 								do_action('tpgb_free_notice_white_label');
+							}else if($tab_form['id']=='tpgb_activate'){
+								do_action('tpgb_notice_activate');
 							}
 							
 							if(defined('TPGBP_VERSION') && $tab_form['id']=='tpgb_white_label'){								
 								cmb2_metabox_form($tab_form, $tab_form['id']);
-							}else if($tab_form['id']!='tpgb_welcome_page' && $tab_form['id']!='tpgb_normal_blocks_opts' && $tab_form['id']!='tpgb_white_label'){
+							}else if($tab_form['id']!='tpgb_welcome_page' && $tab_form['id']!='tpgb_normal_blocks_opts' && $tab_form['id']!='tpgb_activate' && $tab_form['id']!='tpgb_white_label'){
 								cmb2_metabox_form($tab_form, $tab_form['id']);
 							}else if($tab_form['id']=='tpgb_welcome_page'){
 								include_once TPGB_INCLUDES_URL.'welcome-page.php';
@@ -1077,7 +1089,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				),
 			),
 			array(
-				'name' => esc_html__('Font Awesome Loading'),
+				'name' => esc_html__('Font Awesome Loading','tpgb'),
 				'desc' => esc_html__('Note : If you disable this, It will stop loading at frontend throughout your website.','tpgb'),
 				'id'   => 'fontawesome_load',
 				'type' => 'select',
@@ -1153,6 +1165,19 @@ class Tpgb_Gutenberg_Settings_Options {
 			),
         );
 		
+		$this->option_metabox[] = array(
+			'id' => 'tpgb_activate',
+			'title' => esc_html__('Activate', 'tpgb'),
+			'show_on' => array(
+				'key' => 'options-page',
+				'value' => array(
+					'tpgb_activate'
+				)
+			),
+			'show_names' => true,
+			'fields' => '',
+		);
+		
 		$white_label_options=[];
 		if(has_filter('tpgb_white_label_options')) {
 			$white_label_options = apply_filters('tpgb_white_label_options', $white_label_options);
@@ -1209,7 +1234,7 @@ class Tpgb_Gutenberg_Settings_Options {
             return $this->option_fields();
         }
         
-        throw new Exception( sprintf( esc_html__( 'Invalid property: %1$s', 'tpgb' ), $field ) );
+		throw new Exception( sprintf( esc_html__( 'Invalid property: %1$s', 'tpgb' ), $field ) );
     }
 }
 

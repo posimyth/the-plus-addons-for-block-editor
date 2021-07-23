@@ -33,6 +33,193 @@ class Tpgb_Blocks_Global_Options {
 		return self::$instance;
 	}
 	
+	/*
+	 * Carousel Options
+	 * @since 1.1.2
+	 */
+	public static function carousel_options(){
+	
+		if ( ! function_exists( 'register_block_type' ) ) {
+			return;
+		}
+		
+		$options = [
+			'sliderMode' => [
+				'type' => 'string',
+				'default' => 'horizontal',
+			],
+			'slideSpeed' => [
+				'type' => 'string',
+				'default' => 1500,
+			],
+			'slideColumns' => [
+				'type' => 'object',
+				'default' => [ 'md' => 1,'sm' => 1,'xs' => 1 ],
+			],
+			'initialSlide' => [
+				'type' => 'number',
+				'default' => 0,
+			],
+			'slideScroll' => [
+				'type' => 'object',
+				'default' => [ 'md' => 1 ],
+			],
+			'slideColumnSpace' => [
+				'type' => 'object',
+				'default' => (object) [ 
+					'md' => [
+						"top" => '',
+						"right" => '',
+						"bottom" => '',
+						"left" => '',
+					],
+					"unit" => 'px',
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}} .splide__list .splide__slide {padding: {{slideColumnSpace}};}',
+					],
+				],
+			],
+			'slideDraggable' => [
+				'type' => 'object',
+				'default' => [ 'md' => true ],
+			],
+			'slideInfinite' => [
+				'type' => 'boolean',
+				'default' => false,
+			],
+			'slideHoverPause' => [
+				'type' => 'boolean',
+				'default' => false,
+			],
+			'slideAutoplay' => [
+				'type' => 'boolean',
+				'default' => true,
+			],
+			'slideAutoplaySpeed' => [
+				'type' => 'string',
+				'default' => 1500
+			],
+			'showDots' => [
+				'type' => 'object',
+				'default' => [ 'md' => true ],
+			],
+			'dotsStyle' => [
+				'type' => 'string',
+				'default' => 'style-1',
+			],
+			'dotsBorderColor' => [
+				'type' => 'string',
+				'default' => '',
+				'style' => [
+						(object) [
+						'condition' => [
+							(object) [ 'key' => 'dotsStyle', 'relation' => '==', 'value' => 'style-1' ],
+						],
+						'selector' => '{{PLUS_WRAP}}.dots-style-1 ul.splide__pagination li button.splide__pagination__page{-webkit-box-shadow:inset 0 0 0 8px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 8px {{dotsBorderColor}};box-shadow: inset 0 0 0 8px {{dotsBorderColor}};} {{PLUS_WRAP}}.dots-style-1 ul.splide__pagination li button.splide__pagination__page.is-active{-webkit-box-shadow:inset 0 0 0 1px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 1px {{dotsBorderColor}};box-shadow: inset 0 0 0 1px {{dotsBorderColor}};}{{PLUS_WRAP}}.dots-style-1 ul.splide__pagination li button.splide__pagination__page{background: transparent;color: {{dotsBorderColor}};}',
+					],
+				],
+			],
+			'dotsTopSpace' => [
+				'type' => 'object',
+				'default' => [ 'md' => 0,'sm' => 0,'xs' => 0,'unit' => 'px' ],
+				'style' => [
+						(object) [
+						'condition' => [ 
+							(object) [ 'key' => 'showDots', 'relation' => '==', 'value' => true ]
+						],
+						'selector' => '{{PLUS_WRAP}} .splide__pagination{ margin-top: {{dotsTopSpace}};}',
+					],
+				],
+			],
+			'slideHoverDots' => [
+				'type' => 'boolean',
+				'default' => false,
+			],
+			'showArrows' => [
+				'type' => 'object',
+				'default' => [ 'md' => false ],
+			],
+			'arrowsStyle' => [
+				'type' => 'string',
+				'default' => 'style-1',
+			],
+			'arrowsPosition' => [
+				'type' => 'string',
+				'default' => 'top-right',
+			],
+			'arrowsBgColor' => [
+				'type' => 'string',
+				'default' => '',
+				'style' => [
+						(object) [
+						'condition' => [
+							(object) [ 'key' => 'arrowsStyle', 'relation' => '==', 'value' => 'style-1' ],
+							(object) [ 'key' => 'showArrows', 'relation' => '==', 'value' => true ]
+						],
+						'selector' => '{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1{background:{{arrowsBgColor}};}',
+					],
+				],
+			],
+			'arrowsIconColor' => [
+				'type' => 'string',
+				'default' => '',
+				'style' => [
+						(object) [
+						'condition' => [
+							(object) [ 'key' => 'showArrows', 'relation' => '==', 'value' => true ]
+						],
+						'selector' => '{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1:before{color:{{arrowsIconColor}};}',
+					],
+				],
+			],
+			'arrowsHoverBgColor' => [
+				'type' => 'string',
+				'default' => '',
+				'style' => [
+						(object) [
+						'condition' => [
+							(object) [ 'key' => 'arrowsStyle', 'relation' => '==', 'value' => 'style-1' ],
+							(object) [ 'key' => 'showArrows', 'relation' => '==', 'value' => true ]
+						],
+						'selector' => '{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1:hover{background:{{arrowsHoverBgColor}};}',
+					],
+				],
+			],
+			'arrowsHoverIconColor' => [
+				'type' => 'string',
+				'default' => '',
+				'style' => [
+						(object) [
+						'condition' => [
+							(object) [ 'key' => 'showArrows', 'relation' => '==', 'value' => true ]
+						],
+						'selector' => '{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1:hover:before{color:{{arrowsHoverIconColor}};}',
+					],
+				],
+			],
+			'outerArrows' => [
+				'type' => 'boolean',
+				'default' => false,
+			],
+			'slideHoverArrows' => [
+				'type' => 'boolean',
+				'default' => false,
+			],
+			'centerMode' => [
+				'type' => 'object',
+				'default' => [ 'md' => false ],
+			],
+		];
+		
+		if(has_filter('tpgb_carousel_options')) {
+			$options = apply_filters('tpgb_carousel_options', $options);
+		}
+		
+		return $options;
+	}
+	
 	/**
 	 * Load Global Background Options
 	 *
@@ -423,17 +610,17 @@ class Tpgb_Blocks_Global_Options {
 					(object) [
 						'condition' => [(object) ['key' => 'contentHoverEffect', 'relation' => '==', 'value' => true ],
 							['key' => 'selectHoverEffect', 'relation' => '==', 'value' => 'float_shadow' ]],
-						'selector' => '{{PLUS_WRAP}}.tpgb_cnt_hvr_effect.cnt_hvr_float_shadow:before{background: -webkit-radial-gradient(center, ellipse, {{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%);background: radial-gradient(ellipse at 50% 150%,{{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%); }',
+						'selector' => '{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_float_shadow:before{background: -webkit-radial-gradient(center, ellipse, {{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%);background: radial-gradient(ellipse at 50% 150%,{{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%); }',
 					],
 					(object) [
 						'condition' => [(object) ['key' => 'contentHoverEffect', 'relation' => '==', 'value' => true ],
 							['key' => 'selectHoverEffect', 'relation' => '==', 'value' => 'grow_shadow' ]],
-						'selector' => '{{PLUS_WRAP}}.tpgb_cnt_hvr_effect.cnt_hvr_grow_shadow:hover {-webkit-box-shadow: 0 10px 10px -10px {{contentHoverColor}};-moz-box-shadow: 0 10px 10px -10px {{contentHoverColor}};box-shadow: 0 10px 10px -10px {{contentHoverColor}};}',
+						'selector' => '{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_grow_shadow:hover {-webkit-box-shadow: 0 10px 10px -10px {{contentHoverColor}};-moz-box-shadow: 0 10px 10px -10px {{contentHoverColor}};box-shadow: 0 10px 10px -10px {{contentHoverColor}};}',
 					],
 					(object) [
 						'condition' => [(object) ['key' => 'contentHoverEffect', 'relation' => '==', 'value' => true ],
 							['key' => 'selectHoverEffect', 'relation' => '==', 'value' => 'shadow_radial' ]],
-						'selector' => '{{PLUS_WRAP}}.tpgb_cnt_hvr_effect.cnt_hvr_shadow_radial:before{background: -webkit-radial-gradient(center, ellipse at 50% 150%, {{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%);background: radial-gradient(ellipse at 50% 150%,{{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%); }{{PLUS_WRAP}}.tpgb_cnt_hvr_effect.cnt_hvr_shadow_radial:after {background: -webkit-radial-gradient(50% -50%, ellipse, {{contentHoverColor}} 0%, rgba(0, 0, 0, 0) 80%);background: radial-gradient(ellipse at 50% -50%, {{contentHoverColor}} 0%, rgba(0, 0, 0, 0) 80%);}',
+						'selector' => '{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_shadow_radial:before{background: -webkit-radial-gradient(center, ellipse at 50% 150%, {{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%);background: radial-gradient(ellipse at 50% 150%,{{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%); }{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_shadow_radial:after {background: -webkit-radial-gradient(50% -50%, ellipse, {{contentHoverColor}} 0%, rgba(0, 0, 0, 0) 80%);background: radial-gradient(ellipse at 50% -50%, {{contentHoverColor}} 0%, rgba(0, 0, 0, 0) 80%);}',
 					],
 				],
 			],
@@ -834,19 +1021,6 @@ class Tpgb_Blocks_Global_Options {
 			}
 			$attributes = json_decode(json_encode($attributes), true);
 			
-			
-			$filterEffect = false;
-			if((!empty($attributes['globalCssFilter']) && !empty($attributes['globalCssFilter']['openFilter'])) || (!empty($attributes['globalHCssFilter']['openFilter']) && !empty($attributes['globalHCssFilter']))){
-				$filterEffect = true;
-			}
-			
-			$Plus3DTilt = false;
-			$tiltSetting = [];
-			
-			
-			$PlusMouseParallax = false;
-			
-			
 			$animationEffect = false;
 			$animClass = $animAttr = $animDesktop = $animTablet = $animMobile = '';
 			$animSettings = [];
@@ -876,8 +1050,6 @@ class Tpgb_Blocks_Global_Options {
 				}
 				
 				if(!empty($animationEffect)){
-					$animClass .= ' tpgb-view-animation';
-					
 					if(!empty($attributes['globalAnimDuration']) && $attributes['globalAnimDuration']=='custom'){
 						$animClass .= ' tpgb-anim-dur-custom';
 					}else if(!empty($attributes['globalAnimDuration'])){
@@ -890,13 +1062,35 @@ class Tpgb_Blocks_Global_Options {
 				}
 			}
 			
-			$animationOutEffect = false;
-			$animOutDesktop = $animOutTablet = $animOutMobile = '';
+			$animationOutEffect = ['check' => false ];
+			if( (!empty($attributes['globalAnimOut'])) ){
+				
+				if(has_filter('tpgb_globalAnimOut_filter')) {
+					$animationOutEffect = apply_filters('tpgb_globalAnimOut_filter', $animationOutEffect, $attributes);
+				}
+				
+				if(!empty($animationOutEffect['check'])){
+					
+					if(!empty($attributes['globalAnimDurationOut']) && $attributes['globalAnimDurationOut']=='custom'){
+						$animClass .= ' tpgb-anim-out-dur-custom';
+					}else if(!empty($attributes['globalAnimDurationOut'])){
+						$animClass .= ' tpgb-anim-out-dur-'.$attributes['globalAnimDurationOut'];
+					}
+					
+					$animSettings['animeOut']['md'] = (isset($animationOutEffect['md']) && !empty($animationOutEffect['md'])) ? $animationOutEffect['md'] : '';
+					$animSettings['animeOut']['sm'] = (isset($animationOutEffect['sm']) && !empty($animationOutEffect['sm']) ) ? $animationOutEffect['sm'] : '';
+					$animSettings['animeOut']['xs'] = (isset($animationOutEffect['xs']) && !empty($animationOutEffect['xs']) ) ? $animationOutEffect['xs'] : '';
+				}
+			}
 			
-			if(!empty($animationEffect) || !empty($animationOutEffect)){
+			if(!empty($animationEffect) || !empty($animationOutEffect['check']) ){
+				$animClass .= ' tpgb-view-animation';
 				$animAttr .= 'data-animationSetting=\'' .htmlspecialchars(json_encode($animSettings), ENT_QUOTES, 'UTF-8'). '\'';
 			}
 			
+			if(!empty($attributes['PlusMouseParallax']) && !empty($attributes['PlusMouseParallax']['tpgbReset'])){
+				$animClass .= ' tpgb-mouse-parallax';
+			}
 			$outputWrap = '';
 			
 			$wrapClass = '';
@@ -908,11 +1102,33 @@ class Tpgb_Blocks_Global_Options {
 				$wrapID .= 'id="'.esc_attr($attributes['globalId']).'"';
 			}
 			
-			if(!empty($wrapID) || !empty($wrapClass) || !empty($attributes['globalCustomCss']) || !empty($animationEffect) || !empty($animationOutEffect) || !empty($filterEffect)  || !empty($Plus3DTilt) || !empty($PlusMouseParallax) ){
+			$hasWrapper =false;
+			if(!empty($wrapID) || !empty($wrapClass) || !empty($attributes['globalCustomCss']) || !empty($animationEffect) || !empty($animationOutEffect['check']) ){
+				$hasWrapper = true;
+			}
+			
+			if(has_filter('tpgb_hasWrapper')) {
+				$hasWrapper = apply_filters('tpgb_hasWrapper', $hasWrapper, $attributes);
+			}
+			
+			if( !empty($hasWrapper) ){
+			
+				if(has_filter('tpgb_globalWrapClass')){
+					$wrapClass = apply_filters('tpgb_globalWrapClass', $wrapClass, $attributes);
+				}
 				
 				$outputWrap .= '<div '.$wrapID.' class="tpgb-wrap-'.esc_attr($attributes['block_id']).' '.esc_attr($wrapClass).' '.esc_attr($animClass).'" '.$animAttr.' >';
+					ob_start();
+					do_action('tpgb_wrapper_inner_before', $attributes );
+					$outputWrap .= ob_get_contents();
+					ob_end_clean();
 					
 					$outputWrap .= $content;
+					
+					ob_start();
+					do_action('tpgb_wrapper_inner_after', $attributes );
+					$outputWrap .= ob_get_contents();
+					ob_end_clean();
 					
 				$outputWrap .= '</div>';
 				
