@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 echo '<div class="tpgb-panel-welcome-page">';
 	echo '<div class="tpgb-panel-row">';
 		echo '<div class="tpgb-panel-col tpgb-panel-col-35">';
@@ -11,16 +14,19 @@ echo '<div class="tpgb-panel-welcome-page">';
 					}
 					echo '<div class="tpgb-welcom-author-name">'.esc_html__('Welcome, ','tpgb').esc_html($user->display_name).'</div>';
 				echo '</div>';
-				echo '<div class="tpgb-sec-subtitle tpgb-text-white tpgb-mt-8">'.esc_html__('Thanks for choosing us. Check out, What you are getting in this amazing bundle.','tpgb').'</div>';
+				echo '<div class="tpgb-sec-subtitle tpgb-text-white tpgb-mt-8">'.esc_html__('Let\'s build most amazing gutenberg websites using blocks of The Plus Addons for Gutenberg.','tpgb').'</div>';
 				echo '<div class="tpgb-sec-border tpgb-bg-white"></div>';
 				echo '<ul class="tpgb-panel-list">';
-					echo '<li>'.esc_html__("16 Free Blocks",'tpgb').'</li>';
-					echo '<li>'.esc_html__("12 Freemium Blocks",'tpgb').'</li>';
-					echo '<li>'.esc_html__("3 Special Features",'tpgb').'</li>';
-					echo '<li>'.esc_html__("Many more to come",'tpgb').'</li>';
+					echo '<li>'.esc_html__("35+ Free Blocks",'tpgb').'</li>';
+					echo '<li>'.esc_html__("15+ Freemium Blocks",'tpgb').'</li>';
+					echo '<li>'.esc_html__("30+ Pro Blocks",'tpgb').'</li>';
+					echo '<li>'.esc_html__("10+ Special Features",'tpgb').'</li>';
+					echo '<li>'.esc_html__("5+ UI Templates",'tpgb').'</li>';
+					echo '<li>'.esc_html__("300+ UI Design Blocks",'tpgb').'</li>';
 				echo '</ul>';
-				/*echo '<a href="#" class="tpgb-panel-btn-outline tpgb-text-white" title="'.esc_attr__('Free Vs Pro','tpgb').'" target="_blank" rel="noopener noreferrer">'.esc_html__('Free Vs Pro','tpgb').'</a>';
-				echo '<small class="tpgb-notice-text tpgb-mt-8">'.esc_html__('* Free is Better but Pro is the best. Try it with 30 days refund policy.','tpgb').'</small>';*/
+				echo '<div class="tpgb-mt-8">'.esc_html__("And It's just a start. Stay Tuned.",'tpgb').'</div>';
+				echo '<a href="https://theplusblocks.com/free-vs-pro/" class="tpgb-panel-btn-outline tpgb-text-white" title="'.esc_attr__('Free Vs Pro','tpgb').'" target="_blank" rel="noopener noreferrer">'.esc_html__('Free Vs Pro','tpgb').'</a>';
+				echo '<small class="tpgb-notice-text tpgb-mt-8">'.esc_html__('* Free is Better but Pro is the best. Try it with 30 days refund policy.','tpgb').'</small>';
 			echo '</div>';
 			/*Welcome User Info*/
 			/*Welcome Document*/
@@ -71,7 +77,7 @@ echo '<div class="tpgb-panel-welcome-page">';
 				}else{
 					$memory_check_req = '<span class="check-req-wrong">'.$check_wrong_req.'</span>';
 				}
-				echo '<div class="sys-req-label"><span>'.esc_html__('Memory Limit : ','tpgb').'</br>'.ini_get('memory_limit').esc_html__(' Uncheck Required 256M','tpgb').'</span>'.$memory_check_req.'</div>';
+				echo '<div class="sys-req-label"><span>'.esc_html__('Memory Limit : ','tpgb'). ini_get('memory_limit').'</br>'.esc_html__('(Required 256M)','tpgb').'</span>'.$memory_check_req.'</div>';
 				
 				$gzip_check_req = '';
 				if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')){
@@ -91,33 +97,40 @@ echo '<div class="tpgb-panel-welcome-page">';
 				echo '<div class="tpgb-sec-title">'.esc_html__('What’s New?','tpgb').'</div>';
 				echo '<div class="tpgb-sec-subtitle">'.esc_html__('Stay tuned at this place as We are working day and night for new blocks, features, design layouts, bug fixes and compatibility with WordPress Eco System.','tpgb').'</div>';
 				echo '<div class="tpgb-sec-border"></div>';
+				
 				echo '<div class="tpgb-changelog-list">';
-					echo '<div class="changelog-date">'.esc_html__('23 July 2021','tpgb').' <span class="changelog-version">'.esc_html__('1.1.2','tpgb').'</span></div>';
+					echo '<div class="changelog-date">'.esc_html__('11 Sep 2021','tpgb').' <span class="changelog-version">'.esc_html__('1.1.5','tpgb').'</span></div>';
 					echo '<ul class="changelog-list">';
-						echo '<li>'.esc_html__('Compatibility : WordPress 5.8','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Column Responsive Show/Hide Options','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Video Block : Schema Option','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Stylish List : Rich Text Integration in Content','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Breadcrumb Block : Schema Option','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Accordion Block : Schema Option','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Performance Improvement by Minifying Dynamic CSS and Global CSS','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Post Meta Block : Field Category Option','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Post Meta Block : CSS Updates','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Pricing Table Block : Improvements','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Carousel All Blocks Migrated from Slick.js to Splide Vanilla Js','tpgb').'</li>';
-						echo '<li>'.esc_html__('Fix : Further Bug Fix and Improvement','tpgb').'</li>';
-					echo '</ul>';
-				echo '</div>';
-				echo '<div class="tpgb-changelog-list">';
-					echo '<div class="changelog-date">'.esc_html__('19 June 2021','tpgb').' <span class="changelog-version">'.esc_html__('1.1.1','tpgb').'</span></div>';
-					echo '<ul class="changelog-list">';
-						echo '<li>'.esc_html__('Added : Smooth Scroll Block','tpgb').'</li>';
-						echo '<li>'.esc_html__('Update : Post Meta Block','tpgb').'</li>';
-						echo '<li>'.esc_html__('Fix : Reusable Block Load CSS Bug','tpgb').'</li>';
-						echo '<li>'.esc_html__('Fix : Plus Paste Import Issue whole Block Media Import','tpgb').'</li>';
+						echo '<li>'.esc_html__('Added : Option of "Reusable Block" in The Plus Settings','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Assets Regenerate Option Added','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Backend Google Font Issue Update','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : TP Image Block :  Backend Link Modal box removed','tpgb').'</li>';
 					echo '</ul>';
 				echo '</div>';
 				
+				echo '<div class="tpgb-changelog-list">';
+					echo '<div class="changelog-date">'.esc_html__('08 Sep 2021','tpgb').' <span class="changelog-version">'.esc_html__('1.1.4','tpgb').'</span></div>';
+					echo '<ul class="changelog-list">';
+						echo '<li>'.esc_html__('Fix : Option of Dynamic Cache from The Plus Settings removed','tpgb').'</li>';
+					echo '</ul>';
+				echo '</div>';
+				
+				echo '<div class="tpgb-changelog-list">';
+					echo '<div class="changelog-date">'.esc_html__('08 Sep 2021','tpgb').' <span class="changelog-version">'.esc_html__('1.1.3','tpgb').'</span></div>';
+					echo '<ul class="changelog-list">';
+						echo '<li>'.esc_html__('Added : Block : TP External Form Styler (Contact Form 7, Gravity Form, Everest Form etc..)','tpgb').'</li>';
+						echo '<li>'.esc_html__('Added : Global Options Save Button Added','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Post Author Block : Show User Role bug Fix and Label Option Added','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Draw SVG Block : Fill Color Not working','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Row inside Column Horizontal Position Option added','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : TP Heading block : Subtitle Margin Field added','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Post Title Block : Hide Dots Option Added','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Post Listing Block : Default Columns Options','tpgb').'</li>';
+						echo '<li>'.esc_html__('Fix : Post Comment Block : Bug Fix','tpgb').'</li>';
+						echo '<li>'.esc_html__('Fix : Post Content Block : Bug Fix','tpgb').'</li>';
+						echo '<li>'.esc_html__('Fix : Paste Feature : Plus Block Media Import bug Fix','tpgb').'</li>';
+					echo '</ul>';
+				echo '</div>';
 				echo '<a href="https://theplusblocks.com/change-log/" class="tpgb-panel-btn tpgb-mt-8" title="'.esc_attr__('change log','tpgb').'" target="_blank" rel="noopener noreferrer">'.esc_html__('Full Change log','tpgb').'</a>';
 			echo '</div>';
 			/*Welcome Change log*/

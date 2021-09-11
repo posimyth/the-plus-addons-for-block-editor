@@ -13,8 +13,7 @@ if ( !class_exists( 'TP_Gutenberg_Loader' ) ) {
     /**
      * Class TP_Gutenberg_Loader.
      */
-    final class TP_Gutenberg_Loader
-    {
+    final class TP_Gutenberg_Loader {
         
         /**
          * Member Variable
@@ -26,8 +25,7 @@ if ( !class_exists( 'TP_Gutenberg_Loader' ) ) {
         /**
          *  Initiator
          */
-        public static function get_instance()
-        {
+        public static function get_instance() {
             if ( !isset( self::$instance ) ) {
                 self::$instance = new self;
             } 
@@ -90,12 +88,13 @@ if ( !class_exists( 'TP_Gutenberg_Loader' ) ) {
         /*
          * Files load plugin loaded.
          *
-         * @since 1.0.0
+         * @since 1.1.3
          *
          * @return void
          */
         public function tp_plugin_loaded() {
             $this->load_textdomain();
+            require_once TPGB_PATH . 'classes/tp-generate-block-css.php';
             require_once TPGB_PATH . 'classes/tp-core-init-blocks.php';
         }
         

@@ -1,7 +1,8 @@
 <?php
 /* Block : Hover Card
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
 function tpgb_tp_hovercard_render_callback( $attributes, $content) {
 	$output = '';
 	$block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -172,7 +173,7 @@ function tpgb_tp_hovercard() {
 							'default' => false,	
 						],
 						'width' => [
-							'type' => 'string',
+							'type' => 'object',
 							'default' => (object) [ 
 								'md' => '',
 								"unit" => 'px',
@@ -184,7 +185,7 @@ function tpgb_tp_hovercard() {
 							],
 						],
 						'minWidth' => [
-							'type' => 'string',
+							'type' => 'object',
 							'default' => (object) [ 
 								'md' => '',
 								"unit" => 'px',
@@ -196,7 +197,7 @@ function tpgb_tp_hovercard() {
 							],
 						],
 						'height' => [
-							'type' => 'string',
+							'type' => 'object',
 							'default' => (object) [ 
 								'md' => '',
 								"unit" => 'px',
@@ -208,7 +209,7 @@ function tpgb_tp_hovercard() {
 							],
 						],
 						'minheight' => [
-							'type' => 'string',
+							'type' => 'object',
 							'default' => (object) [ 
 								'md' => '',
 								"unit" => 'px',
@@ -225,7 +226,7 @@ function tpgb_tp_hovercard() {
 						],
 						'leftoffset' => [
 							'type' => 'object',
-							'default' => [ 
+							'default' => (object) [ 
 								'md' => 10,
 								"unit" => 'px',
 							],
@@ -242,7 +243,7 @@ function tpgb_tp_hovercard() {
 						],
 						'rightoffset' => [
 							'type' => 'object',
-							'default' => [ 
+							'default' => (object) [ 
 								'md' => '',
 								"unit" => 'px',
 							],
@@ -259,7 +260,7 @@ function tpgb_tp_hovercard() {
 						],
 						'topoffset' => [
 							'type' => 'object',
-							'default' => [ 
+							'default' => (object) [ 
 								'md' => 10,
 								"unit" => 'px',
 							],
@@ -276,7 +277,7 @@ function tpgb_tp_hovercard() {
 						],
 						'bottomoffset' => [
 							'type' => 'object',
-							'default' => [ 
+							'default' => (object) [ 
 								'md' => '',
 								"unit" => 'px',
 							],
@@ -764,11 +765,17 @@ function tpgb_get_html_structure($attr,$load=''){
 		// Content
 		if(!empty($item['content']) && $item['content'] != 'none'){
 			if($item['content']=='text' && !empty($item['cntText'])){
-				$html .= esc_html($item['cntText']);
+				$html .= $item['cntText'];
 			}
 			
 			if($item['content']=='img' && !empty($item['cntImg']['url'])){
-				$html .= '<img src="'.esc_url($item['cntImg']['url']).'" alt="'.esc_attr__('Card-Img','tpgb').'" />';
+				$cntImg = $item['cntImg'];
+				if(isset($cntImg['id']) && !empty($cntImg['id'])){
+					$cntUrl = wp_get_attachment_image( $cntImg['id'], 'full');
+				}else{
+					$cntUrl = '<img src="'.esc_url($item['cntImg']['url']).'" alt="'.esc_attr__('Card-Img','tpgb').'" />';
+				}
+				$html .= $cntUrl; 
 			}
 			
 			if($item['content']=='html' && !empty($item['cnthtml'])){

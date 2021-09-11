@@ -1,12 +1,14 @@
 <?php
 /* Block : Tabs And Tours
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_tabs_tours_render_callback( $attributes, $content) {
 	
 	$block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] :'';
 	$tabLayout =  (!empty($attributes['tabLayout'])) ? $attributes['tabLayout'] :'horizontal';
-	$navAlign =  (!empty($attributes['navAlign'])) ? $attributes['navAlign'] :'text-left';
+	$navAlign =  (!empty($attributes['navAlign'])) ? $attributes['navAlign'] :'text-center';
 	$fullwidthIcon = (!empty($attributes['fullwidthIcon'])) ? $attributes['fullwidthIcon'] :false;
 	$navWidth =  (!empty($attributes['navWidth'])) ? $attributes['navWidth'] :false;
 	$underline = (!empty($attributes['underline'])) ? $attributes['underline'] :false;
@@ -69,18 +71,17 @@ function tpgb_tp_tabs_tours_render_callback( $attributes, $content) {
 				$active=' active';
 			}
 
-			$nav_loop .= '<li>';
+			$nav_loop .= '<div class="tpgb-tab-li">';
 				$nav_loop .= '<div class="tpgb-tab-header '.esc_attr($active).'" data-tab="'.esc_attr($j).'" role="tab" >';
 					if(!empty($item['innerIcon'])){
 						$nav_loop .= '<span class="tab-icon-wrap">';
 							if($item['iconFonts'] == 'font_awesome') {
 								$nav_loop .= '<i class="tab-icon '.esc_attr($item['innericonName']).'"> </i>';
 							}else if($item['iconFonts'] == 'image'){
-								$icon_image=$item['iconImage']['id'];
-								$img = wp_get_attachment_image_src($icon_image,$item['iconimageSize']);
-								$icon_image = $img[0];
-								$nav_loop .= '<img src="'.esc_url($icon_image).'"  alt="'.esc_attr__('icon-img','tpgb').'" />';
-							} 
+								if( !empty($item['iconImage']['id']) ){
+									$nav_loop .= wp_get_attachment_image($item['iconImage']['id'],$item['iconimageSize']);
+								}
+							}
 						$nav_loop .= '</span>';
 					}
 					if(!empty($titleShow)){
@@ -88,14 +89,14 @@ function tpgb_tp_tabs_tours_render_callback( $attributes, $content) {
 					}
 					
 				$nav_loop .= '</div>';
-			$nav_loop .= '</li>';
+			$nav_loop .= '</div>';
 			
 		endforeach;
 	}
 	$tab_nav .= '<div class="tpgb-tabs-nav-wrapper '.esc_attr($navAlign).' '.($tabLayout=='vertical' ? esc_attr($alignclass) : '').' ">';
-		$tab_nav .= '<ul class="tpgb-tabs-nav '.esc_attr($full_icon_class).'  '.esc_attr($full_width_nav).' '.esc_attr($underline_class).' ">';
+		$tab_nav .= '<div class="tpgb-tabs-nav '.esc_attr($full_icon_class).'  '.esc_attr($full_width_nav).' '.esc_attr($underline_class).' ">';
 			$tab_nav .= $nav_loop;
-		$tab_nav .= '</ul>';
+		$tab_nav .= '</div>';
 	$tab_nav .= '</div>';
 	
 	//Output tab content
@@ -117,10 +118,9 @@ function tpgb_tp_tabs_tours_render_callback( $attributes, $content) {
 						if($item['iconFonts'] == 'font_awesome') {
 								$content_loop .= '<i class="tab-icon '.esc_attr($item['innericonName']).'"> </i>';
 						}else if($item['iconFonts'] == 'image'){
-							$icon_image=$item['iconImage']['id'];
-							$img = wp_get_attachment_image_src($icon_image,$item['iconimageSize']);
-							$icon_image = $img[0];
-							$content_loop .= '<img src="'.esc_url($icon_image).'"  alt="'.esc_attr__('icom_img','tpgb').'" />';
+							if(!empty($item['iconImage']['id'])){
+								$content_loop .= wp_get_attachment_image($item['iconImage']['id'],$item['iconimageSize']);
+							}
 						} 
 					$content_loop .= '</span>';
 				}
@@ -290,7 +290,7 @@ function tpgb_tp_tabs_tours() {
 				'default' => '',
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}} .tpgb-tabs-nav-wrapper .tpgb-tab-header.active .tab-icon-wrap ,{{PLUS_WRAP}} .tpgb-tabs-nav-wrapper .tpgb-tab-header:hover .tab-icon-wrap { color: {{iconActcolor}}; }{{PLUS_WRAP}} .mobile-accordion .tab-mobile-title.active .tab-icon-wrap{ color: {{iconActcolor}}; }',
+						'selector' => '{{PLUS_WRAP}} .tpgb-tabs-nav-wrapper .tpgb-tab-header.active .tab-icon ,{{PLUS_WRAP}} .tpgb-tabs-nav-wrapper .tpgb-tab-header:hover .tab-icon { color: {{iconActcolor}}; }{{PLUS_WRAP}} .mobile-accordion .tab-mobile-title.active .tab-icon-wrap{ color: {{iconActcolor}}; }',
 					],
 				],
 			],
@@ -309,7 +309,7 @@ function tpgb_tp_tabs_tours() {
 					],
 					(object) [
 						'condition' => [(object) ['key' => 'fullwidthIcon', 'relation' => '==', 'value' => true]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-tabs-wrapper ul.tpgb-tabs-nav.full-width-icon .tpgb-tab-header .tab-icon-wrap{ padding-right: 0px ; padding-bottom: {{iconSpacing}}; }',
+						'selector' => '{{PLUS_WRAP}} .tpgb-tabs-wrapper .tpgb-tabs-nav.full-width-icon .tpgb-tab-header .tab-icon-wrap{ padding-right: 0px ; padding-bottom: {{iconSpacing}}; }',
 					],
 				],
 			],
@@ -348,7 +348,7 @@ function tpgb_tp_tabs_tours() {
 			],
 			'navAlign' => [
 				'type' => 'string',
-				'default' => 'text-left',
+				'default' => 'text-center',
 			],
 			
 			'navWidth' => [
@@ -383,7 +383,7 @@ function tpgb_tp_tabs_tours() {
 			],
 			'underline' => [
 				'type' => 'boolean',
-				'default' => true,	
+				'default' => false,	
 			],
 			'ulineColor' => [
 				'type' => 'string',
@@ -405,7 +405,7 @@ function tpgb_tp_tabs_tours() {
 				'style' =>[
 					(object) [
 						'condition' => [(object) ['key' => 'underline', 'relation' => '==', 'value' => true]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-tabs-wrapper .tpgb-tabs-nav.tab-underline .tpgb-tab-header.active:before,{{PLUS_WRAP}} ul.tpgb-tabs-nav.tab-underline:before{ margin-top : {{lineMargin}} }',
+						'selector' => '{{PLUS_WRAP}} .tpgb-tabs-wrapper .tpgb-tabs-nav.tab-underline .tpgb-tab-header.active:before,{{PLUS_WRAP}} .tpgb-tabs-nav.tab-underline:before{ margin-top : {{lineMargin}} }',
 						
 					],
 				],
@@ -433,7 +433,7 @@ function tpgb_tp_tabs_tours() {
 				'style' =>[
 					(object) [
 						'condition' => [(object) ['key' => 'underline', 'relation' => '==', 'value' => true]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-tabs-wrapper .tpgb-tabs-nav.tab-underline .tpgb-tab-header.active:before,{{PLUS_WRAP}} ul.tpgb-tabs-nav.tab-underline:before{ height: {{lineHeight}}; }',
+						'selector' => '{{PLUS_WRAP}} .tpgb-tabs-wrapper .tpgb-tabs-nav.tab-underline .tpgb-tab-header.active:before,{{PLUS_WRAP}} .tpgb-tabs-nav.tab-underline:before{ height: {{lineHeight}}; }',
 						
 					],
 				],
@@ -473,13 +473,13 @@ function tpgb_tp_tabs_tours() {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'tabLayout', 'relation' => '==', 'value' => 'horizontal']],
-						'selector' => '{{PLUS_WRAP}}.tab-view-horizontal .tpgb-tabs-wrapper .tpgb-tabs-nav .tpgb-tab-header{ margin-left: {{navSpace}}; }  {{PLUS_WRAP}}.tab-view-horizontal .tpgb-tabs-wrapper .tpgb-tabs-nav li:first-child .tpgb-tab-header{ margin-left: 0 ; }  {{PLUS_WRAP}}.tab-view-horizontal .tpgb-tabs-wrapper .tpgb-tabs-nav li:last-child .tpgb-tab-header{ margin-right: 0; }',
+						'selector' => '{{PLUS_WRAP}}.tab-view-horizontal .tpgb-tabs-wrapper .tpgb-tabs-nav .tpgb-tab-header{ margin-left: {{navSpace}}; }  {{PLUS_WRAP}}.tab-view-horizontal .tpgb-tabs-wrapper .tpgb-tabs-nav .tpgb-tab-li:first-child .tpgb-tab-header{ margin-left: 0 ; }  {{PLUS_WRAP}}.tab-view-horizontal .tpgb-tabs-wrapper .tpgb-tabs-nav .tpgb-tab-li:last-child .tpgb-tab-header{ margin-right: 0; }',
 						
 						
 					],
 					(object) [
 						'condition' => [(object) ['key' => 'tabLayout', 'relation' => '==', 'value' => 'vertical']],
-						'selector' => '{{PLUS_WRAP}}.tab-view-vertical .tpgb-tabs-wrapper .tpgb-tabs-nav .tpgb-tab-header{ margin-top: {{navSpace}}; }  {{PLUS_WRAP}}.tab-view-vertical .tpgb-tabs-wrapper .tpgb-tabs-nav li:first-child .tpgb-tab-header{ margin-top: 0 ; }  {{PLUS_WRAP}}.tab-view-vertical .tpgb-tabs-wrapper .tpgb-tabs-nav li:last-child .tpgb-tab-header{ margin-bottom: 0; }',
+						'selector' => '{{PLUS_WRAP}}.tab-view-vertical .tpgb-tabs-wrapper .tpgb-tabs-nav .tpgb-tab-header{ margin-top: {{navSpace}}; }  {{PLUS_WRAP}}.tab-view-vertical .tpgb-tabs-wrapper .tpgb-tabs-nav .tpgb-tab-li:first-child .tpgb-tab-header{ margin-top: 0 ; }  {{PLUS_WRAP}}.tab-view-vertical .tpgb-tabs-wrapper .tpgb-tabs-nav .tpgb-tab-li:last-child .tpgb-tab-header{ margin-bottom: 0; }',
 					],
 				],
 			],

@@ -2,6 +2,8 @@
 /* Block : Breadcrumbs
  * @since : 1.1.2
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_breadcrumbs_callback( $attributes, $content) {
 	$output = '';
     $uid = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");

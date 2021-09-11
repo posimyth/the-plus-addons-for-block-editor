@@ -1,7 +1,9 @@
 <?php
 /* Block : Draw Svg
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_draw_svg_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
 	$duration = (!empty($attributes['duration'])) ? $attributes['duration'] : 90;
@@ -35,7 +37,7 @@ function tpgb_tp_draw_svg_render_callback( $attributes, $content) {
 		$svgsrc = TPGB_URL.'assets/images/svg/'.esc_attr($svgList).'.svg';
 	}
 	$output = '';
-	$output .= '<div class="tpgb-draw-svg tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).' '.esc_attr($draw_hover).'" data-id="tpgb-block-'.esc_attr($block_id).'" data-type="'.esc_attr($drawType).'" data-duration="'.esc_attr($duration).'" data-stroke="'.esc_attr($strokeColor).'" data-fillColor="'.esc_attr($fill_color).'" data-fillEnable="'.esc_attr($fillEnable).'">';
+	$output .= '<div class="tpgb-draw-svg tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).' '.esc_attr($draw_hover).'" data-id="tpgb-block-'.esc_attr($block_id).'" data-type="'.esc_attr($drawType).'" data-duration="'.esc_attr($duration).'" data-stroke="'.esc_attr($strokeColor).'" data-fillcolor="'.esc_attr($fill_color).'" data-fillenable="'.esc_attr($fillEnable).'">';
 		$output .= '<div class="svg-inner-block">';
 			$output .= '<object id="tpgb-block-'.esc_attr($block_id).'" type="image/svg+xml" data="'.esc_url($svgsrc).'">';
 			$output .= '</object>';
@@ -71,7 +73,7 @@ function tpgb_draw_svg() {
 		'customSVG' => [
 			'type' => 'object',
 			'default' => [
-				'url' => '',
+				'url' => TPGB_ASSETS_URL.'assets/images/svg/app.svg',
 			],
 		],
 		'alignment' => [

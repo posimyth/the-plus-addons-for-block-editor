@@ -1,7 +1,9 @@
 <?php
 /* Block : Pricing Table
- * @since : 1.1.2
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
 	$style = (!empty($attributes['style'])) ? $attributes['style'] : 'style-1';
@@ -16,7 +18,7 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 	$iconType = (!empty($attributes['iconType'])) ? $attributes['iconType'] : 'none';
 	$iconStyle = (!empty($attributes['iconStyle'])) ? $attributes['iconStyle'] : 'square';
 	$iconStore = (!empty($attributes['iconStore'])) ? $attributes['iconStore'] : 'fas fa-home';
-	$imgStore = (!empty($attributes['imgStore'])) ? $attributes['imgStore']['url'] : '';
+	$imgStore = (!empty($attributes['imgStore'])) ? $attributes['imgStore'] : '';
 	$title = (!empty($attributes['title'])) ? $attributes['title'] : '';
 	$subTitle = (!empty($attributes['subTitle'])) ? $attributes['subTitle'] : '';
 	
@@ -51,7 +53,12 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 			$getPriceIcon .= '<i class="'.esc_attr($iconStore).'"></i>';
 		}
 		if($iconType=='img' && !empty($imgStore)){
-			$getPriceIcon .= '<img src='.esc_url($imgStore).' class="pricing-icon-img" alt="'.esc_attr__('Icon','tpgb').'"/>';
+			if(!empty($imgStore['id'])){
+				$imgSrc = wp_get_attachment_image($imgStore['id'] , 'full', false, ['class' => 'pricing-icon-img']);
+			}else if(!empty($imgStore['url'])){
+				$imgSrc = '<img src='.esc_url($imgStore['url']).' class="pricing-icon-img" alt="'.esc_attr__('Icon','tpgb').'"/>';
+			}
+			$getPriceIcon .= $imgSrc;
 		}
 	$getPriceIcon .= '</div>';
 		
@@ -92,13 +99,13 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 			$getPriceContent .='</span>';
 		}
 		if(!empty($preText)){
-			$getPriceContent .= '<span class="price-prefix-text">'.esc_html($preText).'</span>';
+			$getPriceContent .= '<span class="price-prefix-text">'.wp_kses_post($preText).'</span>';
 		}
 		if(isset($priceValue) && $priceValue!=''){
-			$getPriceContent .= '<span class="pricing-price">'.esc_html($priceValue).'</span>'; 
+			$getPriceContent .= '<span class="pricing-price">'.wp_kses_post($priceValue).'</span>'; 
 		}
 		if(!empty($postText)){
-			$getPriceContent .= '<span class="price-postfix-text">'.esc_html($postText).'</span>';
+			$getPriceContent .= '<span class="price-postfix-text">'.wp_kses_post($postText).'</span>';
 		}
 	$getPriceContent .= '</div>';
 		
@@ -114,7 +121,7 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 	$getWysiwygContent = '';
 	if($contentStyle=='wysiwyg'){
 		$getWysiwygContent .= '<div class="pricing-content-wrap content-desc '.esc_attr($wyStyle).'">';
-			if($wyStyle=='style-1'){
+			if($wyStyle=='style-2'){
 				$getWysiwygContent .= '<hr class="border-line"/>';
 			}
 			$getWysiwygContent .= '<div class="pricing-content">'.wp_kses_post($wyContent).'</div>';
@@ -130,6 +137,7 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 			$output .= $getPriceContent;
 			$output .= $getBtnCta;
 			$output .= $getWysiwygContent;
+			$output .= '<div class="pricing-overlay-color"></div>';
 		}
 		
 		$output .= '</div>';
@@ -243,7 +251,7 @@ function tpgb_pricing_table() {
 		],
 		'wyContent' => [
 			'type' => 'string',
-			'default' => 'All features of plan will be available here.</br>- Feature 1</br>- Feature 2</br>- Feature 3',	
+			'default' => 'All features of plan will be available here.</br></br>- Feature 1</br>- Feature 2</br>- Feature 3',	
 		],
 		
 		'disRibbon' => [
@@ -652,8 +660,8 @@ function tpgb_pricing_table() {
 			],
 			'style' => [
 				(object) [
-					'condition' => [(object) ['key' => 'contentStyle', 'relation' => '==', 'value' => 'wysiwyg' ] , ['key' => 'wyStyle', 'relation' => '==', 'value' => 'style-1' ]],
-					'selector' => '{{PLUS_WRAP}} .content-desc.style-1 hr.border-line{ margin: 30px {{wyBorderWidth}}; }',
+					'condition' => [(object) ['key' => 'contentStyle', 'relation' => '==', 'value' => 'wysiwyg' ] , ['key' => 'wyStyle', 'relation' => '==', 'value' => 'style-2' ]],
+					'selector' => '{{PLUS_WRAP}} .content-desc.style-2 hr.border-line{ margin: 30px {{wyBorderWidth}}; }',
 				],
 			],
 		],
@@ -662,14 +670,14 @@ function tpgb_pricing_table() {
 			'default' => '',
 			'style' => [
 				(object) [
-					'condition' => [(object) ['key' => 'contentStyle', 'relation' => '==', 'value' => 'wysiwyg' ] , ['key' => 'wyStyle', 'relation' => '==', 'value' => 'style-1' ]],
-					'selector' => '{{PLUS_WRAP}} .content-desc.style-1 hr.border-line{ border-color: {{wysiwygBColor}}; }',
+					'condition' => [(object) ['key' => 'contentStyle', 'relation' => '==', 'value' => 'wysiwyg' ] , ['key' => 'wyStyle', 'relation' => '==', 'value' => 'style-2' ]],
+					'selector' => '{{PLUS_WRAP}} .content-desc.style-2 hr.border-line{ border-color: {{wysiwygBColor}}; }',
 				],
 			],
 		],
 		'wysiwygAlign' => [
 			'type' => 'string',
-			'default' => 'left',
+			'default' => 'center',
 			'style' => [
 				(object) [
 					'condition' => [(object) ['key' => 'contentStyle', 'relation' => '==', 'value' => 'wysiwyg' ]],

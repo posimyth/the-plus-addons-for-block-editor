@@ -1,7 +1,8 @@
 <?php
 /* Block : Tp Video
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
 
 function tpgb_tp_video_callback( $settings, $content) {
 	
@@ -35,9 +36,9 @@ function tpgb_tp_video_callback( $settings, $content) {
     $icon_effect = '';
     if( ! empty ( $settings[ "ContinueAnim" ] ) && $settings[ "ContinueAnim" ] === true ) {
         if( $settings[ "ContinueAnimHover" ] == true ) {
-            $animation_class = 'hover_';
+            $animation_class = 'tpgb-hover-';
         } else {
-            $animation_class = 'image-';
+            $animation_class = 'tpgb-';
         }
         $icon_effect = $animation_class . $settings[ "ContinueAnimEffect" ];
     }
@@ -492,15 +493,6 @@ function tpgb_tp_video_render() {
 				],
 			],
 		],
-        'VideoBorder' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'selector' => '{{PLUS_WRAP}} .tpgb_video_player:hover{border-style: {{VideoBorder}};}',
-				],
-			],
-		],
 		'VideoBorderH' => [
 			'type' => 'object',
 			'default' => (object) [
@@ -602,7 +594,7 @@ function tpgb_tp_video_render() {
 						(object) ['key' => 'ContinueAnim', 'relation' => '==', 'value' => true],
 						(object) ['key' => 'ContinueAnimEffect', 'relation' => '==', 'value' => 'drop_waves']
 					],
-					'selector' => '{{PLUS_WRAP}} .tpgb_video_player .image-drop_waves:after,{{PLUS_WRAP}} .tpgb_video_player .hover_drop_waves:after{ background: {{DropWaveColor}}; }',
+					'selector' => '{{PLUS_WRAP}} .tpgb_video_player .tpgb-drop_waves:after,{{PLUS_WRAP}} .tpgb_video_player .tpgb-hover-drop_waves:hover:after{ background: {{DropWaveColor}}; }',
 				],
 			],
 		],
@@ -612,7 +604,7 @@ function tpgb_tp_video_render() {
 			],
 			'style' => [
 				(object) [
-					'selector' => '{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon .tp-video-icon,{{PLUS_WRAP}} .tpgb_video_player .image-drop_waves:after,{{PLUS_WRAP}} .tpgb_video_player .hover_drop_waves:after{border-radius: {{IconRadius}};}',
+					'selector' => '{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon .tp-video-icon,{{PLUS_WRAP}} .tpgb_video_player .tpgb-drop_waves:after,{{PLUS_WRAP}} .tpgb_video_player .tpgb-hover-drop_waves:hover:after{border-radius: {{IconRadius}};}',
 				],
 			],
 		],

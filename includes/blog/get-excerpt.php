@@ -1,4 +1,6 @@
 <?php 
+defined( 'ABSPATH' ) || exit;
+
 $excerpt = get_the_excerpt();
 global $post;
 if(has_excerpt( $post->ID )){

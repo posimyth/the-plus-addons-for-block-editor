@@ -1,7 +1,9 @@
 <?php
 /* Tp Block : Post Comment
- * @since	: 1.1.0
+ * @since	: 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_post_comment_render_callback( $attr, $content) {
 	$output = '';
 	$post_id = get_queried_object_id();
@@ -19,7 +21,7 @@ function tpgb_tp_post_comment_render_callback( $attr, $content) {
 			if(get_comments_number($post_id) > 0) {
 				echo '<ul class="comment-list">';
 					echo '<li>';
-						echo '<div class="comment-section-title">'.esc_html__('Comment', 'tpgb').' ('. get_comments_number($post_id) . ')</div>';
+						echo '<div class="comment-section-title">'.esc_html__('Comment', 'tpgb').' ('. esc_html(get_comments_number($post_id)) . ')</div>';
 					echo '<li>'; 
 					wp_list_comments($list_args, $comment);
 				echo "</ul>";
@@ -769,20 +771,31 @@ function tpgb_move_comment_field_to_bottom( $fields ) {
 add_filter( 'comment_form_fields', 'tpgb_move_comment_field_to_bottom' );
 
 function tpgb_comment_form_field( $fields ){
+
 	$commenter = wp_get_current_commenter();
-	$fields['author'] ='<div class="tpgb-row" style="padding-top: 10px;"> <div class="tpgb-col tpgb-col-md-4 tpgb-col-sm-12 tpgb-col-xs-12"><label>' .
+	$fields['author'] ='<div class="tpgb-col"><label>' .
 		  '<input id="author" name="author" type="text" placeholder="'.esc_attr__('Name','tpgb').'" value="' . esc_attr( $commenter['comment_author'] ) .
 		  '" size="30" /></label></div>';
 	
-	$fields['email'] ='<div class="tpgb-col tpgb-col-md-4 tpgb-col-sm-12 tpgb-col-xs-12"><label>' .
+	$fields['email'] ='<div class="tpgb-md-pl15 tpgb-col"><label>' .
 		  '<input id="email" name="email" type="text" placeholder="'.esc_attr__('Email Address *','tpgb').'" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" /></label></div>';
 	
-	$fields['url'] ='<div class="tpgb-col tpgb-col-md-4 tpgb-col-sm-12 tpgb-col-xs-12"><label>' .
+	$fields['url'] ='<div class="tpgb-md-pl15 tpgb-col"><label>' .
 		  '<input id="url" name="url" type="text" placeholder="'.esc_attr__('Website','tpgb').'" value="' . esc_attr( $commenter['comment_author_url'] ) .
-		  '" size="30" /></label></div></div>';
+		  '" size="30" /></label></div>';
 	return $fields;
 }
 add_filter( 'comment_form_default_fields', 'tpgb_comment_form_field',11 );
+
+function tpgb_comment_before_fields(){
+	echo '<div class="tpgb-row">';
+}
+add_action( 'comment_form_before_fields', 'tpgb_comment_before_fields' );
+	
+function tpgb_comment_after_fields(){
+	echo '</div>';
+}
+add_action( 'comment_form_after_fields', 'tpgb_comment_after_fields' );
 
 //remove comment cookies field form
 remove_action( 'set_comment_cookies', 'wp_set_comment_cookies' );

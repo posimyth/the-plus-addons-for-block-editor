@@ -10,7 +10,7 @@
 
 **Tested up to:** 5.8
 
-**Stable tag:** 1.1.2
+**Stable tag:** 1.1.5
 
 **Requires PHP:** 5.6
 
@@ -20,11 +20,13 @@
 
 ### Description
 
-Say Hello to the newest member of the family, Introducing The Plus Addons for Gutenberg. A pack of addons which will help gutenberg shine brighter than ever.
+In the Vision to Make Gutenberg Editor for WordPress limitless, we step in the new era of WordPress Block Editor with The Plus Blocks for Gutenberg . Get more than 75+ Dynamic Blocks, 300+ Prebuild UI Blocks, along with some of the most advanced functionalities like Blog builder, Woo Builder, Mega Menu, Filtered Gallery and much more to supercharge your Guteberg Editor like never before.Whether you're working on your Perfect blog, creating a sale generating online store or building a website for your next big idea, you can do it all with Gutenberg when you have [The Plus Blocks for Gutenberg](https://theplusblocks.com/).
 
-[Team POSIMYTH](https://posimyth.com/) is constantly trying to improve the web and have already developed some wonderful and user friendly Addons for Elementor and WPBakery Page Builders. And we have added one more in our list. 
+Enjoy a Complete No-Code experience and build everything with your simple mouse clicks. <strong>No Technical knowledge</strong> required, just plug-in and get started. Crafted with care and love to seamlessly integrate for smooth & happy workflow to impress your clients. Perfect for <strong>Bloggers, Freelancer, Marketer, Agency Owners, Designers</strong> and anyone who loves using Gutenberg giving  you the freedom to innovate.
 
-Presenting, [The Plus Addons for Gutenberg](https://theplusblocks.com/).
+| <strong> [ ⚡ SUPERCHARGE MY SITE NOW ](https://theplusblocks.com/pricing)</strong> |
+
+~~~~~~~~~~~~~~~~
 
 **Creative, truly creative !**
 
@@ -135,6 +137,27 @@ Make sure you are using [Gutenberg](https://wordpress.org/plugins/gutenberg/) wh
 - [Contact Us](http://m.me/tpagutenberg/) if you want some custom / extra features and we will try to deliver a solution as soon as possible.
 
 ### Changelog
+#### 1.1.5 `11 Sep 2021`
+- Added : Option of "Reusable Block" in The Plus Settings
+- Update : Assets Regenerate Option Added
+- Update : Backend Google Font Issue Update
+- Update : TP Image Block : Backend Link Modal box removed
+
+#### 1.1.4 `08 Sep 2021`
+- Fix : Option of Dynamic Cache from The Plus Settings removed
+
+#### 1.1.3 `08 Sep 2021`
+- Added : Block : TP External Form Styler (Contact Form 7, Gravity Form, Everest Form etc..)
+- Added : Global Options Save Button Added
+- Update : Post Author Block : Show User Role bug Fix and Label Option Added
+- Update : Draw SVG Block : Fill Color Not working
+- Update : Row inside Column Horizontal Position Option added
+- Update : TP Heading block : Subtitle Margin Field added
+- Update : Post Title Block : Hide Dots Option Added
+- Update : Post Listing Block : Default Columns Options
+- Fix : Post Comment Block : Bug Fix
+- Fix : Post Content Block : Bug Fix
+- Fix : Paste Feature : Plus Block Media Import bug Fix
 
 #### 1.1.2 `23 July 2021`
 - Compatibility : WordPress 5.8

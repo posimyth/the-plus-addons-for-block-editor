@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <div class="post-meta-info post-info-style-3">
 	<div class="post-author-detail">
 		<?php if(!empty($ShowAuthorImg) && $ShowAuthorImg == 'yes') { ?>

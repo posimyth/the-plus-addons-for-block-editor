@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <div class="post-meta-info post-info-style-2">	
 	<?php if(!empty($ShowAuthor) && $ShowAuthor == 'yes')  { ?>
 		<span class="post-meta-author tpgb-dynamic-tran"><?php echo esc_html__('By ', 'tpgb'); ?> <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" rel="author" class="tpgb-dynamic-tran"><?php echo get_the_author(); ?></a> </span>

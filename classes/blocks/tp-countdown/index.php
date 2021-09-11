@@ -2,6 +2,8 @@
 /* Block : Countdown
  * @since : 1.0.0
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_countdown_callback( $attributes, $content) {
 	$output = '';
 	$block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -53,31 +55,31 @@ function tpgb_tp_countdown_callback( $attributes, $content) {
 
                 $inline_style = (!empty($attributes["inlineStyle"])) ? 'count-inline-style' : '';
                 
-                $output .= '<ul class="tpgb-countdown-counter '.esc_attr($inline_style).'" data-time = "'.esc_attr($datetime).'">';
-                $output .= '<li class="count_1">';
+                $output .= '<div class="tpgb-countdown-counter '.esc_attr($inline_style).'" data-time = "'.esc_attr($datetime).'">';
+                $output .= '<div class="count_1">';
                 $output .= '<span class="days">'.esc_html__('00','tpgb').'</span>';
                 if(!empty($showLabels) && $showLabels==true) {
                     $output .= '<h6 class="days_ref">'.esc_html($daysText).'</h6>';
                 }
-                $output .= '</li>';
-                $output .= '<li class="count_2">';
+                $output .= '</div>';
+                $output .= '<div class="count_2">';
                 $output .= '<span class="hours">'.esc_html__('00','tpgb').'</span>';
                 if(!empty($showLabels) && $showLabels==true) {
                     $output .= '<h6 class="hours_ref">'.esc_html($hoursText).'</h6>';
                 }
-                $output .= '</li>';
-                $output .= '<li class="count_3">';
+                $output .= '</div>';
+                $output .= '<div class="count_3">';
                 $output .= '<span class="minutes">'.esc_html__('00','tpgb').'</span>';
                 if(!empty($showLabels) && $showLabels==true) {
                     $output .= '<h6 class="minutes_ref">'.esc_html($minutesText).'</h6>';
                 }
-                $output .= '</li>';
-                $output .= '<li class="count_4">';
+                $output .= '</div>';
+                $output .= '<div class="count_4">';
                 $output .= '<span class="seconds last">'.esc_html__('00','tpgb').'</span>';
                 if(!empty($showLabels) && $showLabels==true) {
                     $output .= '<h6 class="seconds_ref">'.esc_html($secondsText).'</h6>';
                 }
-                $output .= '</li></ul>';
+                $output .= '</div></div>';
             }
         
         } else {
@@ -123,7 +125,7 @@ function tpgb_tp_countdown_render() {
         ],
         'countdownExpiry' => [
             'type' => 'string',
-            'default' => 'showmsg',
+            'default' => 'none',
         ],
         'expiryMsg' => [
             'type' => 'string',
@@ -167,7 +169,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li > span{ color: {{counterFontColor}}; }',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div > span{ color: {{counterFontColor}}; }',
                 ],
             ],
         ],     
@@ -179,7 +181,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1' ]],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li > span',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div > span',
                 ],
             ],
         ],
@@ -194,7 +196,7 @@ function tpgb_tp_countdown_render() {
                         (object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1'],
                             ['key' => 'showLabels', 'relation' => '==', 'value' => true]
                         ],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li > h6',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div > h6',
                 ],
             ],
         ],
@@ -226,7 +228,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_1 h6{ color: {{daysTextColor}}; }',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_1 h6{ color: {{daysTextColor}}; }',
                 ],
             ],
         ],
@@ -236,7 +238,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_1{ border-color: {{daysBorderColor}}; }',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_1{ border-color: {{daysBorderColor}}; }',
                 ],
             ],
         ],
@@ -252,7 +254,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_1',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_1',
                 ],
             ],
         ],
@@ -262,7 +264,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_2 h6{ color: {{hourTextColor}}; }',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_2 h6{ color: {{hourTextColor}}; }',
                 ],
             ],
         ],
@@ -272,7 +274,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_2{ border-color: {{hourBorderColor}}; }',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_2{ border-color: {{hourBorderColor}}; }',
                 ],
             ],
         ],
@@ -288,7 +290,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_2',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_2',
                 ],
             ],
         ],
@@ -298,7 +300,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_3 h6{ color: {{minTextColor}}; }',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_3 h6{ color: {{minTextColor}}; }',
                 ],
             ],
         ],
@@ -308,7 +310,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_3{ border-color: {{minBorderColor}}; }',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_3{ border-color: {{minBorderColor}}; }',
                 ],
             ],
         ],
@@ -324,7 +326,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_3',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_3',
                 ],
             ],
         ],
@@ -334,7 +336,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_4 h6{ color: {{secTextColor}}; }',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_4 h6{ color: {{secTextColor}}; }',
                 ],
             ]
         ],
@@ -346,7 +348,7 @@ function tpgb_tp_countdown_render() {
                     'condition' => [
                         (object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']
                     ],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_4{ border-color: {{secBorderColor}}; }',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_4{ border-color: {{secBorderColor}}; }',
                 ],
             ],
         ],
@@ -362,7 +364,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li.count_4',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_4',
                 ],
             ],
         ],
@@ -380,7 +382,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}}.countdown-style-1 .tpgb-countdown-counter li{ padding: {{padding}}; }',
+                    'selector' => '{{PLUS_WRAP}}.countdown-style-1 .tpgb-countdown-counter > div{ padding: {{padding}}; }',
                 ],
             ],
         ],
@@ -398,7 +400,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}}.countdown-style-1 .tpgb-countdown-counter li{ margin: {{margin}}; }',
+                    'selector' => '{{PLUS_WRAP}}.countdown-style-1 .tpgb-countdown-counter > div{ margin: {{margin}}; }',
                 ],
             ],
         ],
@@ -419,7 +421,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div',
                 ],
             ],
         ],
@@ -437,7 +439,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}}.countdown-style-1 .tpgb-countdown-counter li{ border-radius: {{borderR}}; }',
+                    'selector' => '{{PLUS_WRAP}}.countdown-style-1 .tpgb-countdown-counter > div{ border-radius: {{borderR}}; }',
                 ],
             ],
         ],
@@ -455,7 +457,7 @@ function tpgb_tp_countdown_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter li',
+                    'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div',
                 ],
             ],
         ],

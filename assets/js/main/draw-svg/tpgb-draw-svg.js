@@ -7,25 +7,25 @@
 				data_duration=$self.data("duration"),
 				data_type=$self.data("type"),
 				data_stroke=$self.data("stroke"),
-				fillEnable=$self.data("fillEnable"),
-				fillColor=$self.data("fillColor");
+				fillenable=$self.data("fillenable"),
+				fillcolor=$self.data("fillcolor");
 				var drawSvg = new Vivus(data_id, {type: data_type, duration: data_duration,forceRender:false,start: 'inViewport',onReady: function (myVivus) {
 					var c=myVivus.el.childNodes;
 					var show_id=document.getElementById(data_id);
-					if(fillEnable!='' && fillEnable=='yes'){
+					if(fillenable!='' && fillenable=='yes'){
 						myVivus.el.style.fillOpacity='0';
 						myVivus.el.style.transition='fill-opacity 0s';
 					}
 					show_id.style.opacity = "1";
 					if(data_stroke!=''){
 						for (var i = 0; i < c.length; i++) {
-							$(c[i]).attr("fill", fillColor);
+							$(c[i]).attr("fill", fillcolor);
 							$(c[i]).attr("stroke",data_stroke);
 							var child=c[i];
 							var pchildern=child.children;
 							if(pchildern != undefined){
 								for(var j=0; j < pchildern.length; j++){
-									$(pchildern[j]).attr("fill", fillColor);
+									$(pchildern[j]).attr("fill", fillcolor);
 									$(pchildern[j]).attr("stroke",data_stroke);
 								}
 							}
@@ -33,7 +33,7 @@
 					}
 				}
 				}, function (myVivus) {
-					if(myVivus.getStatus() === 'end' && fillEnable!='' && fillEnable=='yes'){
+					if(myVivus.getStatus() === 'end' && fillenable!='' && fillenable=='yes'){
 						myVivus.el.style.fillOpacity='1';
 						myVivus.el.style.transition='fill-opacity 1s';
 					}

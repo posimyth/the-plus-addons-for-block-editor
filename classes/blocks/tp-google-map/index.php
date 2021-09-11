@@ -2,6 +2,8 @@
 /* Block : Google Map
  * @since : 1.0.0
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_google_map_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("map");
 	$contentTgl = (!empty($attributes['contentTgl'])) ? $attributes['contentTgl'] : false;

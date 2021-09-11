@@ -401,7 +401,7 @@ class Tpgb_Blocks_Global_Options {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'globalWidth', 'relation' => '==', 'value' => 'inline' ]],
-						'selector' => '{{PLUS_BLOCK}},{{PLUS_WRAP}}{ display:inline-block;width: auto; }',
+						'selector' => '{{PLUS_BLOCK}},{{PLUS_WRAP}}{ display:inline-block;width: auto;margin-bottom: 0 !important }',
 					],
 				],
 			],
@@ -944,7 +944,7 @@ class Tpgb_Blocks_Global_Options {
 		}
 		$extBtnshow = (!empty($attributes['extBtnshow'])) ? $attributes['extBtnshow'] : false;
 		$extBtnStyle = (!empty($attributes['extBtnStyle'])) ? $attributes['extBtnStyle'] : 'style-8';
-		$extBtnText = (!empty($attributes['extBtnText'])) ? $attributes['extBtnText'] : 'Read More';
+		$extBtnText = (!empty($attributes['extBtnText'])) ? $attributes['extBtnText'] : '';
 		$extBtnUrl = (!empty($attributes['extBtnUrl'])) ? $attributes['extBtnUrl'] : '';
 		$extBtniconFont = (!empty($attributes['extBtniconFont'])) ? $attributes['extBtniconFont'] : '';
 		$extBtniconName = (!empty($attributes['extBtniconName'])) ? $attributes['extBtniconName'] : '';

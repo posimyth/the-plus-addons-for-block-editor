@@ -1,7 +1,9 @@
 <?php
 /* Block : Social Icons
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_social_icons_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
 	$style = (!empty($attributes['style'])) ? $attributes['style'] : 'style-1';
@@ -22,7 +24,7 @@ function tpgb_tp_social_icons_render_callback( $attributes, $content) {
 	$output = '';
     $output .= '<div class="tpgb-social-icons '.esc_attr($style).' '.esc_attr($alignattr).' tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
 		if(!empty($socialIcon)){
-		$output .='<ul class="tpgb-social-list ">';
+		$output .='<div class="tpgb-social-list ">';
 			
 				foreach ( $socialIcon as $index => $network ) :
 					//Tooltip
@@ -30,7 +32,7 @@ function tpgb_tp_social_icons_render_callback( $attributes, $content) {
 					
 					$uniqid=uniqid("tooltip");
 					
-					$output .= '<li id="'.esc_attr($uniqid).'" class="tp-repeater-item-'.esc_attr($network['_key']).' '.esc_attr($style).'"  >';
+					$output .= '<div id="'.esc_attr($uniqid).'" class="tp-repeater-item-'.esc_attr($network['_key']).' '.esc_attr($style).'"  >';
 						if(!empty($network['linkUrl']['url']) && !empty($network['socialNtwk'])){
 							$target = (!empty($network['linkUrl']['target'])) ? '_blank' : '';
 							$nofollow = (!empty($network['linkUrl']['nofollow'])) ? 'nofollow' : '';
@@ -41,8 +43,14 @@ function tpgb_tp_social_icons_render_callback( $attributes, $content) {
 											$output .= '<i class="'.esc_attr($network['customIcons']).'"></i>';
 										$output .= '</span>';
 									}else if($network['socialNtwk']=='custom' && $network['customType']=='image' && !empty($network['imgField']) && !empty($network['imgField']['url'])) {
+										$imgSrc='';
+										if(!empty($network['imgField']) && !empty($network['imgField']['id'])){
+											$imgSrc = wp_get_attachment_image($network['imgField']['id'] , 'full');
+										}else if(!empty($network['imgField']['url'])){
+											$imgSrc = '<img src="'.esc_url($network['imgField']['url']).'" alt="'.esc_attr__('Custom icon','tpgb').'" />';
+										}
 										$output .= '<span class="tpgb-social-icn social-img">';
-											$output .= '<img src="'.esc_url($network['imgField']['url']).'" alt="'.esc_attr__('Custom icon','tpgb').'" />';
+											$output .= $imgSrc;
 										$output .= '</span>';
 									}else if($network['socialNtwk']!='custom'){
 										$output .= '<span class="tpgb-social-icn">';
@@ -57,10 +65,10 @@ function tpgb_tp_social_icons_render_callback( $attributes, $content) {
 								$output .= '</a>';
 							$output .= '</div>';
 						}
-					$output .= '</li>';
+					$output .= '</div>';
 					
 						endforeach;
-				$output .='</ul>';
+				$output .='</div>';
 			}
 			
     $output .= '</div>';
@@ -125,7 +133,7 @@ function tpgb_social_icons() {
 						'default' => '',
 						'style' => [
 							(object) [
-								'selector' => '{{PLUS_WRAP}}.tpgb-social-icons ul.tpgb-social-list {{TP_REPEAT_ID}}:not(.style-12) .tpgb-icon-link{ color: {{iconNmlColor}}; }',
+								'selector' => '{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}:not(.style-12) .tpgb-icon-link{ color: {{iconNmlColor}}; }',
 							],
 						],
 					],
@@ -134,7 +142,7 @@ function tpgb_social_icons() {
 						'default' => '',
 						'style' => [
 							(object) [
-								'selector' => '{{PLUS_WRAP}}.tpgb-social-icons ul.tpgb-social-list {{TP_REPEAT_ID}}:not(.style-12):not(.style-4):hover .tpgb-icon-link { color: {{iconHvrColor}}; }',
+								'selector' => '{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}:not(.style-12):not(.style-4):hover .tpgb-icon-link { color: {{iconHvrColor}}; }',
 							], 
 						],
 					],
@@ -161,7 +169,7 @@ function tpgb_social_icons() {
 						'default' => '',
 						'style' => [
 							(object) [
-								'selector' => '{{PLUS_WRAP}}.tpgb-social-icons ul.tpgb-social-list {{TP_REPEAT_ID}}:not(.style-11):not(.style-12):not(.style-13) .tpgb-icon-link { border-color: {{nmlBColor}}; }',
+								'selector' => '{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}:not(.style-11):not(.style-12):not(.style-13) .tpgb-icon-link { border-color: {{nmlBColor}}; }',
 							],
 						],
 					],
@@ -170,7 +178,7 @@ function tpgb_social_icons() {
 						'default' => '',
 						'style' => [
 							(object) [
-								'selector' => '{{PLUS_WRAP}}.tpgb-social-icons ul.tpgb-social-list {{TP_REPEAT_ID}}:not(.style-11):not(.style-12):not(.style-13):hover .tpgb-icon-link { border-color: {{hvrBColor}}; }',
+								'selector' => '{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}:not(.style-11):not(.style-12):not(.style-13):hover .tpgb-icon-link { border-color: {{hvrBColor}}; }',
 							], 
 						], 
 					],
@@ -264,7 +272,7 @@ function tpgb_social_icons() {
 			],
 			'style' => [
 				(object) [
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-icons ul.tpgb-social-list li{margin: {{iconGap}};}',
+					'selector' => '{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list >div{margin: {{iconGap}};}',
 				],
 			],
 		],
@@ -276,7 +284,7 @@ function tpgb_social_icons() {
 			],
 			'style' => [
 				(object) [
-					'selector' => '{{PLUS_WRAP}} ul.tpgb-social-list .style-1 .tpgb-icon-link , {{PLUS_WRAP}} ul.tpgb-social-list .style-16 .tpgb-icon-link{ font-size: {{iconSize}}; }',
+					'selector' => '{{PLUS_WRAP}} .tpgb-social-list .style-1 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-16 .tpgb-icon-link{ font-size: {{iconSize}}; }',
 				],
 			],
 		],
@@ -288,7 +296,7 @@ function tpgb_social_icons() {
 			],
 			'style' => [
 				(object) [
-					'selector' => ' {{PLUS_WRAP}} ul.tpgb-social-list .tpgb-social-icn.social-img img{ max-width: {{imgWidth}}; }',
+					'selector' => ' {{PLUS_WRAP}} .tpgb-social-list .tpgb-social-icn.social-img img{ max-width: {{imgWidth}}; }',
 				],
 			],
 		],
@@ -301,7 +309,7 @@ function tpgb_social_icons() {
 			'style' => [
 				(object) [
 					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-16']],
-					'selector' => ' {{PLUS_WRAP}}.style-16 ul.tpgb-social-list .style-16 .tpgb-icon-link{ width: {{iconWidth}}; }',
+					'selector' => ' {{PLUS_WRAP}}.style-16 .tpgb-social-list .style-16 .tpgb-icon-link{ width: {{iconWidth}}; }',
 				],
 			],
 		],
@@ -314,7 +322,7 @@ function tpgb_social_icons() {
 			'style' => [
 				(object) [
 					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-16']],
-					'selector' => ' {{PLUS_WRAP}}.style-16 ul.tpgb-social-list .style-16 .tpgb-icon-link{ height: {{iconHeight}}; }',
+					'selector' => ' {{PLUS_WRAP}}.style-16 .tpgb-social-list .style-16 .tpgb-icon-link{ height: {{iconHeight}}; }',
 				],
 			],
 		],
@@ -324,7 +332,7 @@ function tpgb_social_icons() {
 			'style' => [
 				(object) [
 					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-16' ] ],
-					'selector' => ' {{PLUS_WRAP}}.tpgb-social-icons.style-16 ul.tpgb-social-list .tpgb-icon-link{border-style: {{borderStyle}};}',
+					'selector' => ' {{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list .tpgb-icon-link{border-style: {{borderStyle}};}',
 				],
 			],
 		],
@@ -342,7 +350,7 @@ function tpgb_social_icons() {
 			'style' => [
 				(object) [
 					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-16' ] , ['key' => 'borderStyle', 'relation' => '!=', 'value' => 'none' ]],
-					'selector' => ' {{PLUS_WRAP}}.tpgb-social-icons.style-16 ul.tpgb-social-list .tpgb-icon-link{border-width: {{borderWidth}};}',
+					'selector' => ' {{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list .tpgb-icon-link{border-width: {{borderWidth}};}',
 				],
 			],
 		],
@@ -360,7 +368,7 @@ function tpgb_social_icons() {
 			'style' => [
 				(object) [
 					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-16'] ]],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-icons ul.tpgb-social-list .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons.style-16 ul.tpgb-social-list .tpgb-icon-link{border-radius: {{iconBRadius}};}',
+					'selector' => '{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list .tpgb-icon-link{border-radius: {{iconBRadius}};}',
 				],
 			],
 		],
@@ -391,7 +399,7 @@ function tpgb_social_icons() {
 			'style' => [
 				(object) [
 					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-16' ] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-icons.style-16 ul.tpgb-social-list .tpgb-icon-link',
+					'selector' => '{{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list .tpgb-icon-link',
 				],
 			],
 		],
@@ -409,7 +417,7 @@ function tpgb_social_icons() {
 			'style' => [
 				(object) [
 					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-16' ] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-icons.style-16 ul.tpgb-social-list li:hover .tpgb-icon-link',
+					'selector' => '{{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list > div:hover .tpgb-icon-link',
 				],
 			],
 		],

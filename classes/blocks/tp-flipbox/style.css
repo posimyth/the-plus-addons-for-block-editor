@@ -45,6 +45,9 @@
 .tpgb-flipbox .flip-box-inner .service-flipbox, .tpgb-flipbox .flip-box-inner .service-flipbox-front, .tpgb-flipbox .flip-box-inner .service-flipbox-back {
     min-height: 300px;
 }
+.tpgb-flipbox .flip-box-inner .service-flipbox-front, .tpgb-flipbox .flip-box-inner .service-flipbox-back{
+	box-shadow: 2px 1px 30px rgba(0,0,0,10%);
+}
 .perspective {
     -webkit-transform: perspective(1000px);
     -ms-transform: perspective(1000px);

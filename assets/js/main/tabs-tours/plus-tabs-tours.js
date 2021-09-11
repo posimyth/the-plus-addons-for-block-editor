@@ -9,7 +9,7 @@
 				$tabheader.on('click',function(){
 					var currentTabIndex = $(this).data("tab");
 					var tabsContainer = $(this).closest('.tpgb-tabs-wrapper');
-					var tabsNav = $(tabsContainer).children('ul.tpgb-tabs-nav').children('li').children('.tpgb-tab-header');
+					var tabsNav = $(tabsContainer).children('.tpgb-tabs-nav').children('.tpgb-tab-li').children('.tpgb-tab-header');
 					var tabsContent = $(tabsContainer).children('.tpgb-tabs-content-wrapper').children('.tpgb-tab-content');
 				
 					$(tabsContainer).find(">.tpgb-tabs-nav-wrapper .tpgb-tab-header").removeClass('active default-active').addClass('inactive');

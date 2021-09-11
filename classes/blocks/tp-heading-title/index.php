@@ -1,7 +1,9 @@
 <?php
 /* Block : Heading Title
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_limit_words($string, $word_limit){
 	$words = explode(" ",$string);
 	return implode(" ",array_splice($words,0,$word_limit));
@@ -16,7 +18,6 @@ function tpgb_tp_heading_title_render_callback( $attributes, $content) {
 	$subTitle = (!empty($attributes['subTitle'])) ? $attributes['subTitle'] : '';
 	$subTitleType = (!empty($attributes['subTitleType'])) ? $attributes['subTitleType'] : 'h3';
 	$extraTitle = (!empty($attributes['extraTitle'])) ? $attributes['extraTitle'] : '';
-	$imgName = (!empty($attributes['imgName']['url'])) ? $attributes['imgName']['url'] : '';
 	$ETPosition = (!empty($attributes['ETPosition'])) ? $attributes['ETPosition'] : 'afterTitle';
 	$subTitlePosition = (!empty($attributes['subTitlePosition'])) ? $attributes['subTitlePosition'] : 'onBottonTitle';
 	
@@ -80,9 +81,15 @@ function tpgb_tp_heading_title_render_callback( $attributes, $content) {
 	$style_3_sep = '';
 	$style_3_sep .='<div class="seprator sep-l">';
 		$style_3_sep .='<span class="title-sep sep-l"></span>';
-		if($imgName!=''){
+		if(isset($attributes['imgName']) && isset($attributes['imgName']['url']) && $attributes['imgName']['url']!=''){
+			$imgSrc ='';
+			if(!empty($attributes['imgName']['id'])){
+				$imgSrc = wp_get_attachment_image( $attributes['imgName']['id'] , 'full' );
+			}else if(!empty($attributes['imgName']['url'])){
+				$imgSrc = '<img src="'.esc_url($attributes['imgName']['url']).'"  alt="'.esc_attr__('image seprator','tpgb').'" />';
+			}
 			$style_3_sep .='<div class="sep-mg">';
-				$style_3_sep .='<img src="'.esc_url($imgName).'"  alt="'.esc_attr__('image seprator','tpgb').'" />';
+				$style_3_sep .= $imgSrc;
 			$style_3_sep .='</div>';
 		}
 		$style_3_sep .='<span class="title-sep sep-r"></span>';
@@ -525,6 +532,23 @@ function tpgb_tp_heading_title() {
 					(object) [
 						'condition' => [(object) ['key' => 'subTitle', 'relation' => '!=', 'value' => '' ]],
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-sub-title{ color: {{subTitleColor}}; }',
+					],
+				],
+			],
+			'subTitleMargin' => [
+				'type' => 'object',
+				'default' => (object) [ 
+					'md' => [
+						"top" => '',
+						"right" => '',
+						"bottom" => '',
+						"left" => '',
+					],
+					"unit" => 'px',
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}}.heading_style .heading-sub-title{margin: {{subTitleMargin}};}',
 					],
 				],
 			],

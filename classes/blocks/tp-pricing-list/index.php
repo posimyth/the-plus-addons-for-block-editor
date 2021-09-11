@@ -1,7 +1,9 @@
 <?php
 /* Block : Price List
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_pricing_list( $attributes, $content) {
 	$block_id = isset($attributes['block_id']) ? $attributes['block_id'] : '';
 	$style = (!empty($attributes['style'])) ? $attributes['style'] : 'style-1';
@@ -18,14 +20,11 @@ function tpgb_pricing_list( $attributes, $content) {
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
+	$imgSrc = '';
 	if(!empty($imageField) && !empty($imageField['id'])){
-		$price_img = $imageField['id'];
-		$imgSrc = wp_get_attachment_image_src($price_img , $imageSize);
-		$imgSrc = $imgSrc[0];
+		$imgSrc = wp_get_attachment_image($imageField['id'] , $imageSize);
 	}else if(!empty($imageField['url'])){
-		$imgSrc = $imageField['url'];
-	}else{
-		$imgSrc = $imageField;
+		$imgSrc = '<img src="'.esc_url($imageField['url']).'" alt="'.esc_attr__('food icon','tpgb').'" />';
 	}
 	
 	$getMenuTag = '';
@@ -95,7 +94,7 @@ function tpgb_pricing_list( $attributes, $content) {
 						if(!empty($imgSrc)){
 							$output .='<div class="food-flex-imgs food-flex-img">';
 								$output .='<div class="food-img img-'.esc_attr($imgShape).'">'; 
-									$output .='<img src='.esc_url($imgSrc).' alt="'.esc_attr__('food icon','tpgb').'" />'; 
+									$output .= $imgSrc;
 								$output .='</div>';
 							$output .='</div>';
 						}
@@ -526,6 +525,19 @@ function tpgb_tp_pricing_list() {
 				(object) [
 					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-3' ] , ['key' => 'imageField', 'relation' => '!=', 'value' => '' ], ['key' => 'imageField.url', 'relation' => '!=', 'value' => '' ]],
 					'selector' => '{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img{ max-width: {{imgMaxWidth}}; } ',
+				],
+			],
+		],
+		'imgRightSpace' => [
+			'type' => 'object',
+			'default' => (object) [ 
+				'md' => '',
+				"unit" => 'px',
+			],
+			'style' => [
+				(object) [
+					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-3' ] , ['key' => 'imageField', 'relation' => '!=', 'value' => '' ], ['key' => 'imageField.url', 'relation' => '!=', 'value' => '' ]],
+					'selector' => '{{PLUS_WRAP}}.food-menu-style-3 .food-flex-line .food-flex-img{ margin-right: {{imgRightSpace}}; } ',
 				],
 			],
 		],

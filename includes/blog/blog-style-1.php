@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <div class="dynamic-list-content tpgb-dynamic-tran">
 
 	<?php include TPGB_INCLUDES_URL. 'blog/format-image.php'; ?>

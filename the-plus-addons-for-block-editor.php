@@ -3,7 +3,7 @@
 * Plugin Name: The Plus Addons for Block Editor
 * Plugin URI: https://theplusblocks.com/
 * Description: Biggest collection of Blocks and features to improve and supercharge your Gutenberg, A default and most powerful page builder of WordPress. 
-* Version: 1.1.2
+* Version: 1.1.5
 * Author: POSIMYTH
 * Author URI: https://posimyth.com
 * Text Domain: tpgb
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-defined( 'TPGB_VERSION' ) or define( 'TPGB_VERSION', '1.1.2' );
+defined( 'TPGB_VERSION' ) or define( 'TPGB_VERSION', '1.1.5' );
 define( 'TPGB_FILE__', __FILE__ );
 
 define( 'TPGB_PATH', plugin_dir_path( __FILE__ ) );
@@ -59,5 +59,19 @@ function tpgb_check_wp_version() {
 	$check_message      = sprintf( esc_html__( 'The Plus Addons for Block Editor requires WordPress version %s+. Because you are using an earlier version, the plugin is currently NOT RUNNING.', 'tpgb' ), '4.7.1' );
 	$display_message = sprintf( '<div class="error">%s</div>', wpautop( $check_message ) );
 	echo wp_kses_post( $display_message );
+}
+
+/* 
+ * The Plus Addons for Gutenberg Plugin Update Message
+ * @since 1.1.3
+ */
+add_action('in_plugin_update_message-the-plus-addons-for-block-editor/the-plus-addons-for-block-editor.php','tpgb_plugin_update_message',10,2);
+function tpgb_plugin_update_message( $data, $response ){			
+	if( isset( $data['upgrade_notice'] ) && !empty($data['upgrade_notice']) ) {
+		printf(
+			'<div class="update-message">%s</div>',
+			wpautop( $data['upgrade_notice'] )
+		);
+	}
 }
 ?>

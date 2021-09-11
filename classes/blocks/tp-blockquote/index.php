@@ -2,6 +2,8 @@
 /* Block : BlockQuote
  * @since : 1.1.1
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_blockquote_callback($attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");

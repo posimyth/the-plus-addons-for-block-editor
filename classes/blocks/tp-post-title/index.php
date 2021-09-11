@@ -1,7 +1,9 @@
 <?php
 /* Tp Block : Post Title
- * @since	: 1.1.0
+ * @since	: 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_post_title_render_callback( $attr, $content) {
 	$output = '';
 	$post_id = get_the_ID();
@@ -12,9 +14,10 @@ function tpgb_tp_post_title_render_callback( $attr, $content) {
 	$titlePrefix = (!empty($attr['titlePrefix'])) ? $attr['titlePrefix'] : '';
 	$titlePostfix = (!empty($attr['titlePostfix'])) ? $attr['titlePostfix'] : false;
 	$postLink = (!empty($attr['postLink'])) ? $attr['postLink'] : false;
-	$titleTag = (!empty($attr['titleTag'])) ? $attr['titleTag'] : 'h3';
+	$titleTag = (!empty($attr['titleTag'])) ? $attr['titleTag'] : 'h1';
 	$limitCountType = (!empty($attr['limitCountType'])) ? $attr['limitCountType'] : '';
     $titleLimit = (!empty($attr['titleLimit'])) ? $attr['titleLimit'] : '';
+	$hideDots = (!empty($attr['hideDots'])) ? $attr['hideDots'] : false;
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
@@ -48,13 +51,13 @@ function tpgb_tp_post_title_render_callback( $attr, $content) {
 		if( $limitCountType == 'words' ){
 			$title = wp_trim_words( $title,$titleLimit);
 		} else if( $limitCountType == 'letters' ){
-			$title = substr(wp_trim_words($title),0, $titleLimit) . '...';
+			$title = substr(wp_trim_words($title),0, $titleLimit) . (!empty($hideDots) ? '' : '...' );
 		}
 	}else if($types =='singular'){
 		if( $limitCountType == 'words' ){
 			$title = wp_trim_words(get_the_title($post_id),$titleLimit);
 		} else if( $limitCountType == 'letters' ){
-			$title = substr(wp_trim_words(get_the_title($post_id)),0, $titleLimit) . '...';
+			$title = substr(wp_trim_words(get_the_title($post_id)),0, $titleLimit) . (!empty($hideDots) ? '' : '...' );
 		} else {
 			$title = get_the_title($post_id);
 		}
@@ -117,7 +120,7 @@ function tpgb_post_title_content() {
 			],
 			'titleTag' => [
 				'type'=> 'string',
-				'default'=> 'h3',
+				'default'=> 'h1',
             ],
 			'limitCountType' => [
 				'type'=> 'string',
@@ -127,6 +130,10 @@ function tpgb_post_title_content() {
 				'type'=> 'string',
 				'default'=> '',
             ],
+			'hideDots' => [
+				'type' => 'boolean',
+				'default' => false,
+			],
 			'titleAlign' => [
 				'type' => 'object',
 				'default' => '',

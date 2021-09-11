@@ -1,14 +1,16 @@
 <?php
 /* Block : Flip Box
- * @since : 1.1.2
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_flipbox_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
 	$layoutType = (!empty($attributes['layoutType'])) ? $attributes['layoutType'] : 'listing';
 	$flipType = (!empty($attributes['flipType'])) ? $attributes['flipType'] : 'horizontal';
 	$iconType = (!empty($attributes['iconType'])) ? $attributes['iconType'] : 'icon';
 	$iconStore = (!empty($attributes['iconStore'])) ? $attributes['iconStore'] : '';
-	$iconStyle = (!empty($attributes['iconStyle'])) ? $attributes['iconStyle'] : 'square';
+	$iconStyle = (!empty($attributes['iconStyle'])) ? $attributes['iconStyle'] : 'none';
 	$imagestore = (!empty($attributes['imagestore'])) ? $attributes['imagestore'] : '';
 	$imageSize = (!empty($attributes['imageSize'])) ? $attributes['imageSize'] : 'thumbnail';
 	$title = (!empty($attributes['title'])) ? $attributes['title'] : '';
@@ -43,14 +45,12 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 	}
 	
 	//img src
+	$imgSrc ='';
 	if(!empty($imagestore) && !empty($imagestore['id'])){
 		$counter_img = $imagestore['id'];
-		$imgSrc = wp_get_attachment_image_src($counter_img , $imageSize);
-		$imgSrc = $imgSrc[0];
+		$imgSrc = wp_get_attachment_image($counter_img , $imageSize, false, ['class' => 'service-img']);
 	}else if(!empty($imagestore['url'])){
-		$imgSrc = $imagestore['url'];
-	}else{
-		$imgSrc = $imagestore;
+		$imgSrc = '<img src="'.esc_url($imagestore['url']).'" class="service-img" alt="'.esc_attr__('FlipBox','tpgb').'"/>';
 	}
 			
 	$output = '';
@@ -68,7 +68,7 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 										$output .= '</span>';
 									}
 									if($iconType=='img' && !empty($imagestore)){
-										$output .= '<img src='.esc_url($imgSrc).' class="service-img" alt="'.esc_attr__('FlipBox','tpgb').'"/>';
+										$output .= $imgSrc;
 									}
 									$output .= '<div class="service-content">';
 										$output .= '<div class="service-title">'.wp_kses_post($title).'</div>';
@@ -113,12 +113,12 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 											if($item['iconType']=='image' && !empty($item['imagestore'])){
 												$imageSize = (!empty($item['imageSize'])) ? $item['imageSize'] : 'thumbnail';
 												if(!empty($item['imagestore']['id'])){
-													$imgSrc = wp_get_attachment_image_src($item['imagestore']['id'] , $imageSize);
-													$imgSrc = $imgSrc[0];
+													$imgSrc = wp_get_attachment_image($item['imagestore']['id'] , $imageSize, false,['class' => 'service-img']);
 												}else if(!empty($item['imagestore']['url'])){
 													$imgSrc = $item['imagestore']['url'];
+													$imgSrc = '<img src="'.esc_url($imgSrc).'" class="service-img" alt="'.esc_attr__('FlipBox','tpgb').'"/>';
 												}
-												$output .= '<img src='.esc_url($imgSrc).' class="service-img" alt="'.esc_attr__('FlipBox','tpgb').'"/>';
+												$output .= $imgSrc;
 											}
 											$output .= '<div class="service-content">';
 												$output .= '<div class="service-title">'.wp_kses_post($item['title']).'</div>';
@@ -451,7 +451,7 @@ function tpgb_flipbox() {
 		
 		'iconStyle' => [
 			'type' => 'string',
-			'default' => 'square',	
+			'default' => 'none',	
 		],
 		'iconSize' => [
 			'type' => 'object',

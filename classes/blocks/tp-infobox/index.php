@@ -1,7 +1,9 @@
 <?php
 /* Block : Info Box
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_infobox_render_callback( $attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -20,22 +22,18 @@ function tpgb_tp_infobox_render_callback( $attributes, $content) {
 	$iconType = (!empty($attributes['iconType'])) ? $attributes['iconType'] : 'icon';
 	$IconName = (!empty($attributes['IconName'])) ? $attributes['IconName'] : '';
 	$imageName = (!empty($attributes['imageName']['url'])) ? $attributes['imageName'] : '';
-	$imageSize = (!empty($attributes['imageSize'])) ? $attributes['imageSize'] : 'thumbnail';
+	$imageSize = (!empty($attributes['imageSize'])) ? $attributes['imageSize'] : 'full';
 	$Title = (!empty($attributes['Title'])) ? $attributes['Title'] : '';
 	$Description = (!empty($attributes['Description'])) ? $attributes['Description'] : '';
 	$iconstyleType = (!empty($attributes['iconstyleType'])) ? $attributes['iconstyleType'] : 'none';
 	$contenthoverEffect = (!empty($attributes['contenthoverEffect'])) ? $attributes['contenthoverEffect'] : '';
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
-	
+	$imgSrc ='';
 	if(!empty($imageName) && !empty($imageName['id'])){
-		$info_img = $imageName['id'];
-		$imgSrc = wp_get_attachment_image_src($info_img , $imageSize);
-		$imgSrc = (!empty($imgSrc[0])) ? $imgSrc[0] : '';
+		$imgSrc = wp_get_attachment_image($imageName['id'] , $imageSize, false, ['class' => 'service-icon']);
 	}else if(!empty($imageName['url'])){
-		$imgSrc = $imageName['url'];
-	}else{
-		$imgSrc = $imageName;
+		$imgSrc = '<img src="'.esc_url($imageName['url']).'" class="service-icon " />';
 	}
 	
 	$vcenter='';
@@ -67,7 +65,7 @@ function tpgb_tp_infobox_render_callback( $attributes, $content) {
 					$getIcon .='<i class="'.esc_attr($IconName).'"></i>';
 					$getIcon .='</span>';
 				}else if($iconType=='image'){
-					$getIcon .='<img src="'.esc_url($imgSrc).'" class="service-icon " />';
+					$getIcon .= $imgSrc;
 				}
 				$getIcon .='</div>';
 			$getIcon .='</div>';
@@ -228,7 +226,7 @@ function tpgb_tp_infobox() {
 			],
 			'imageSize' => [
 				'type' => 'string',
-				'default' => 'thumbnail',	
+				'default' => 'full',	
 			],
 			'dispPinText' => [
 				'type' => 'boolean',
@@ -315,7 +313,7 @@ function tpgb_tp_infobox() {
 			],
 			'displayBorder' => [
 				'type' => 'boolean',
-				'default' => true,	
+				'default' => false,	
 			],
 			'displayBdrWidth' => [
 				'type' => 'object',
@@ -556,7 +554,7 @@ function tpgb_tp_infobox() {
 			],
 			'iconstyleType' => [
 				'type' => 'string',
-				'default' => 'square',	
+				'default' => 'none',	
 			],
 			'iconSize' => [
 				'type' => 'object',
@@ -664,6 +662,20 @@ function tpgb_tp_infobox() {
 					],
 				],
 			],
+			'iconBdrNmlType' => [
+				'type' => 'object',
+				'default' => (object) [
+					'openBorder' => 0,
+					'type' => 'solid',
+					'disableWidthColor' => true,
+				],
+				'style' => [
+					(object) [
+						'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ] , ['key' => 'iconstyleType', 'relation' => '==', 'value' => ['square' , 'rounded'] ]],
+						'selector' => '{{PLUS_WRAP}} .info-box-inner .icon-square,{{PLUS_WRAP}} .info-box-inner .icon-rounded',
+					],
+				],
+			],
 			'iconBdrNmlColor' => [
 				'type' => 'string',
 				'default' => '',
@@ -671,6 +683,19 @@ function tpgb_tp_infobox() {
 					(object) [
 						'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ] , ['key' => 'iconstyleType', 'relation' => '==', 'value' => ['square' , 'rounded'] ]],
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .icon-square,{{PLUS_WRAP}} .info-box-inner .icon-rounded{ border-color: {{iconBdrNmlColor}}; }',
+					],
+				],
+			],
+			'iconBWidth' => [
+				'type' => 'object',
+				'default' => (object) [ 
+					'md' => '',
+					"unit" => 'px',
+				],
+				'style' => [
+					(object) [
+						'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'icon' ] , ['key' => 'iconstyleType', 'relation' => '==', 'value' => ['square' , 'rounded'] ]],
+						'selector' => '{{PLUS_WRAP}} .info-box-inner .icon-square,{{PLUS_WRAP}} .info-box-inner .icon-rounded{ border-width: {{iconBWidth}}; }',
 					],
 				],
 			],
@@ -737,7 +762,7 @@ function tpgb_tp_infobox() {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'image' ]],
-						'selector' => '{{PLUS_WRAP}}  .info-box-inner .service-icon{ width: {{imageWidth}}; height: {{imageWidth}}; line-height: {{imageWidth}}; }',
+						'selector' => '{{PLUS_WRAP}}  .info-box-inner .service-icon{ width: {{imageWidth}}; height: {{imageWidth}}; }',
 					],
 				],
 			],
@@ -777,6 +802,23 @@ function tpgb_tp_infobox() {
 					],
 				],
 			],
+			'nmlImgDpShadow' => [
+				'type' => 'object',
+				'default' => (object) [
+					'openShadow' => 0,
+					'typeShadow' => 'drop-shadow',
+					'horizontal' => 2,
+					'vertical' => 3,
+					'blur' => 2,
+					'color' => "rgba(0,0,0,0.5)",
+				],
+				'style' => [
+					(object) [
+						'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'image' ]],
+						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-icon',
+					],
+				],
+			],
 			'imgBdrHvrRadius' => [
 				'type' => 'object',
 				'default' => (object) [ 
@@ -805,6 +847,23 @@ function tpgb_tp_infobox() {
 					'blur' => 8,
 					'spread' => 0,
 					'color' => "rgba(0,0,0,0.40)",
+				],
+				'style' => [
+					(object) [
+						'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'image' ]],
+						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-icon',
+					],
+				],
+			],
+			'hvrImgDpShadow' => [
+				'type' => 'object',
+				'default' => (object) [
+					'openShadow' => 0,
+					'typeShadow' => 'drop-shadow',
+					'horizontal' => 2,
+					'vertical' => 3,
+					'blur' => 2,
+					'color' => "rgba(0,0,0,0.5)",
 				],
 				'style' => [
 					(object) [
@@ -1042,7 +1101,7 @@ function tpgb_tp_infobox() {
 			],
 			'sideImgBorder' => [
 				'type' => 'boolean',
-				'default' => true,	
+				'default' => false,	
 			],
 			'bdrRightColor' => [
 				'type' => 'string',

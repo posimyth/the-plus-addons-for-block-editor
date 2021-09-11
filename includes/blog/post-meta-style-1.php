@@ -1,3 +1,4 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
 <div class="post-meta-info post-info-style-1">
 	<?php include TPGB_INCLUDES_URL. 'blog/meta-date.php'; 
 		if(!empty($ShowDate) && $ShowDate == 'yes' && !empty($ShowAuthor) && $ShowAuthor == 'yes') {

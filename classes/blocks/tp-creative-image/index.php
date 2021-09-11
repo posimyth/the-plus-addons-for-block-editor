@@ -2,6 +2,8 @@
 /* Block : Creative Image
  * @since : 1.0.0
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_creative_image_callback( $settings, $content) {
 	
 	$block_id	= !empty($settings['block_id']) ? $settings['block_id'] : '';
@@ -161,10 +163,6 @@ function tpgb_tp_creative_image_render() {
 			'ScrollParallax' => [
 				'type' => 'boolean',
 				'default' => false,
-			],
-			'ScrollMoveY' => [
-				'type' => 'string',
-				'default' => '120',
 			],
             'border' => [
 				'type' => 'object',

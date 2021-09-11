@@ -1,7 +1,9 @@
 <?php
 /* Block : Tp Column
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_section_column_render_callback( $attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("column");
@@ -57,6 +59,15 @@ function tpgb_tp_section_column() {
 				'style' => [
 					(object) [
 						'selector' => '{{PLUS_WRAP}} > .tpgb-column-wrap > .tpgb-column-inner{ align-content:{{verticalPosition}} !important; align-items:{{verticalPosition}} !important; }',
+					],
+				],
+			],
+			'horizontalPosition' => [
+                'type' => 'string',
+				'default' => '',
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}} > .tpgb-column-wrap > .tpgb-column-inner,{{PLUS_WRAP}} > .tpgb-column-wrap > .tpgb-column-inner > .block-editor-inner-blocks > .block-editor-block-list__layout{ justify-content:{{horizontalPosition}}; }{{PLUS_WRAP}}.tpgb-column-editor > .tpgb-column-wrap > .tpgb-column-inner > .block-editor-inner-blocks > .block-editor-block-list__layout { display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;}',
 					],
 				],
 			],

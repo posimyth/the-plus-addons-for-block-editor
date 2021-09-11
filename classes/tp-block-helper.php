@@ -119,6 +119,7 @@ class Tp_Blocks_Helper {
 			'tp-data-table' => TPGB_CATEGORY.'/tp-data-table',
 			'tp-draw-svg' => TPGB_CATEGORY.'/tp-draw-svg',
 			'tp-empty-space' => TPGB_CATEGORY.'/tp-empty-space',
+			'tp-external-form-styler' => TPGB_CATEGORY.'/tp-external-form-styler',
 			'tp-flipbox' => TPGB_CATEGORY.'/tp-flipbox',
 			'tp-google-map' => TPGB_CATEGORY.'/tp-google-map',
 			'tp-heading-title' => TPGB_CATEGORY.'/tp-heading-title',
@@ -307,21 +308,115 @@ class Tp_Blocks_Helper {
 		return TPGB_ASSETS_URL. 'assets/images/tpgb-placeholder.jpg';
 	}
 	
+	/*-contact form 7 start-*/
 	public static function get_contact_form_post() {
 		$contact_forms = array();
 		$cf7 = get_posts('post_type="wpcf7_contact_form"&numberposts=-1');
 		if ($cf7) {
-			$contact_forms[0] = ['',"Select Form"];
+			$contact_forms[0] = ['','Select Form', 'tpgb'];
 				foreach ($cf7 as $cform) {
 					$contact_forms[] = [$cform->ID,$cform->post_title];
 				}
 		} else {
-				$contact_forms[0] = ['', esc_html__("No contact forms found",'tpgb') ];
+			$contact_forms[0] = ['',"No contact forms found",'tpgb'];
 		}
 		return $contact_forms;
 	}
+	/*-contact form 7 end-*/
 	
+	/*caldera forms start*/
+	public static function get_caldera_forms_post() {
+		if ( class_exists( 'Caldera_Forms' ) ) {
+			$caldera_forms = \Caldera_Forms_Forms::get_forms( true, true );
+			$form_options[0]  = ['' , esc_html__( 'Select Form', 'tpgb' )];
+			if ( ! empty( $caldera_forms ) && ! is_wp_error( $caldera_forms ) ) {
+				foreach ( $caldera_forms as $form ) {
+					if ( isset($form['ID']) and isset($form['name'])) {
+						$form_options[] = [$form['ID'], $form['name']];
+					}   
+				}
+			}
+		} else {
+			$form_options[0] = ['', esc_html__( 'Form Not Found!', 'tpgb' ) ];
+		} 
+		return $form_options;
+	}
+	/*caldera forms end*/
 	
+	/*-everest form start-*/
+	public static function get_everest_form_post() {
+		$everest_form = array();
+		$ev_form = get_posts('post_type="everest_form"&numberposts=-1');
+			if ($ev_form) {
+				$everest_form[0]  = ['', esc_html__( 'Select Form', 'tpgb' )];
+				foreach ($ev_form as $evform) {
+					$everest_form[] = [$evform->ID,$evform->post_title];
+				}
+			} else {
+				$everest_form[0] = ['', esc_html__('No everest forms found', 'tpgb')];
+			}
+		return $everest_form;
+	}
+	/*-everest form end-*/
+	
+	/*-gravity form start-*/
+	public static function get_gravity_form_post() {
+		if ( class_exists( 'GFCommon' ) ) {
+		 $gravity_forms = \RGFormsModel::get_forms( null, 'title' );
+			$g_form_options [0]  = ['', esc_html__( 'Select Form', 'tpgb' )];
+			if ( ! empty( $gravity_forms ) && ! is_wp_error( $gravity_forms ) ) {
+				foreach ( $gravity_forms as $form ) {   
+					$g_form_options[] = [$form->id,$form->title];
+				}
+			}
+		} else {
+			$g_form_options [0]  = ['', esc_html__( 'Form Not Found!', 'tpgb' ) ];
+		}
+		return $g_form_options;
+	}
+	/*-gravity form end-*/
+	
+	/*-ninja form start-*/
+	public static function get_ninja_form_post() {
+        $options = array();
+        if ( class_exists( 'Ninja_Forms' ) ) {
+            $contact_forms = Ninja_Forms()->form()->get_forms();
+            if ( ! empty( $contact_forms ) && ! is_wp_error( $contact_forms ) ) {
+                $options[0]  = ['', esc_html__( 'Select Ninja Form', 'tpgb' )];
+                foreach ( $contact_forms as $form ) {   
+                    //$options[ $form->get_id() ] = $form->get_setting( 'title' );
+					$options[] = [$form->get_id(),$form->get_setting( 'title' )];
+                }
+            }
+        } else {
+            $options[0] = ['', esc_html__( 'Create a Form First', 'tpgb' )];
+        }
+        return $options;
+    }
+	/*-ninja form end-*/
+	
+	/*-wpforms start-*/
+	public static function get_wpforms_form_post() {
+        $options = array();
+        if ( class_exists( '\WPForms\WPForms' ) ) {
+            $args = array(
+                'post_type'         => 'wpforms',
+                'posts_per_page'    => -1
+            );
+            $contact_forms = get_posts( $args );
+            if ( ! empty( $contact_forms ) && ! is_wp_error( $contact_forms ) ) {
+                $options[0] = ['', esc_html__( 'Select a WPForm', 'tpgb' )];
+                foreach ( $contact_forms as $post ) {   
+                    //$options[ $post->ID ] = $post->post_title;
+					$options[] = [$post->ID,$post->post_title];
+                }
+            }
+        } else {
+            $options[0] = ['', esc_html__( 'Create a Form First', 'tpgb' )];
+        }
+        return $options;
+    }
+	/*-wpforms end-*/
 	
 	/* Generate HTML of Breadcrumbs */
 	public static function theplus_breadcrumbs( $icontype='', $sepIconType='', $icons='', $homeTitle='', $sepIcons='', $activeTextDefault='',$breadcrumbs_last_sec_tri_normal='', $bdToggleHome='', $bdToggleParent='', $bdToggleCurrent='', $letterLimitParent='', $letterLimitCurrent='', $markupSch =false) {
@@ -954,7 +1049,7 @@ class Tp_Blocks_Helper {
 	/*
 	 * Block Data inner Block Instance
 	 *
-	 * @since 1.1.0
+	 * @since 1.1.3
 	 */
 	public static function block_data_instance( array $block_data, array $args = [], $block_args = null ){
 
@@ -964,6 +1059,27 @@ class Tp_Blocks_Helper {
 				if( isset( $block_val['url'] ) && isset( $block_val['id'] ) && !empty( $block_val['url'] ) ){
 					$new_media = Tpgb_Import_Images::media_import( $block_val );
 					$block_data['attributes'][$block_key] = $new_media;
+				}else if(is_array($block_val) && !empty($block_val)){
+					if( !array_key_exists("md",$block_val) && !array_key_exists("openTypography",$block_val) && !array_key_exists("openBorder",$block_val) && !array_key_exists("openShadow",$block_val) && !array_key_exists("openFilter",$block_val)  ){
+						
+						foreach($block_val as $key => $val) {
+							if(is_array($val) && !empty($val)){
+								if( isset( $val['url'] ) && ( isset( $val['Id'] ) || isset( $val['id'] ) ) && !empty( $val['url'] ) ){
+									if( isset( $sub_val['url'] ) && ( isset( $sub_val['Id'] ) || isset( $sub_val['id'] ) ) && !empty( $sub_val['url'] ) ){
+										$new_media = Tpgb_Import_Images::media_import( $sub_val );
+										$block_data['attributes'][$block_key][$key][$sub_key] = $new_media;
+									}
+								}else{
+									foreach($val as $sub_key => $sub_val) {
+										if( isset( $sub_val['url'] ) && ( isset( $sub_val['Id'] ) || isset( $sub_val['id'] ) ) && !empty( $sub_val['url'] ) ){
+											$new_media = Tpgb_Import_Images::media_import( $sub_val );
+											$block_data['attributes'][$block_key][$key][$sub_key] = $new_media;
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}

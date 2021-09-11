@@ -1,3 +1,8 @@
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+?>
 <div class="tpgb-post-category cat-style-1">
 	
 	<?php $categories = get_the_terms(get_the_ID() , $taxonomySlug ); 

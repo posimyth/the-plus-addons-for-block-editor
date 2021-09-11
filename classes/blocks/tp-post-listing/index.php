@@ -1,7 +1,9 @@
 <?php
 /* Tp Block : Post Listing
- * @since	: 1.1.0
+ * @since	: 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_post_listing_render_callback( $attributes ) {
 	$output = '';
 	$query_args = tpgb_post_query($attributes);
@@ -41,7 +43,7 @@ function tpgb_tp_post_listing_render_callback( $attributes ) {
 	$excludeCategory =  isset($attributes['excludeCategory']) ? $attributes['excludeCategory'] : '';
 	$excludeTag =  isset($attributes['excludeTag']) ? $attributes['excludeTag'] : '';
 	
-	$displayPosts		= isset($attributes['displayPosts']) ? $attributes['displayPosts'] : 8;
+	$displayPosts		= isset($attributes['displayPosts']) ? $attributes['displayPosts'] : 6;
 	$offsetPosts		= isset($attributes['offsetPosts']) ? $attributes['offsetPosts'] : 0;
 	$orderBy		= isset($attributes['orderBy']) ? $attributes['orderBy'] : 'date';
 	$order		= isset($attributes['order']) ? $attributes['order'] : 'desc';
@@ -51,7 +53,7 @@ function tpgb_tp_post_listing_render_callback( $attributes ) {
 
 	//Columns
 	$column_class = '';
-	if($style!='carousel' && !empty($attributes['columns']) && is_array($attributes['columns'])){
+	if($layout!='carousel' && !empty($attributes['columns']) && is_array($attributes['columns'])){
 		$column_class .= ' tpgb-col-12';
 		$column_class .= isset($attributes['columns']['md']) ? " tpgb-col-lg-".$attributes['columns']['md'] : 'tpgb-col-lg-3';
 		$column_class .= isset($attributes['columns']['sm']) ? " tpgb-col-md-".$attributes['columns']['sm'] : 'tpgb-col-md-4';
@@ -202,7 +204,7 @@ function tpgb_tp_post_listing() {
 			],
 			'displayPosts' => [
 				'type' => 'string',
-				'default' => 8,
+				'default' => 6,
 			],
 			'offsetPosts' => [
 				'type' => 'string',
@@ -219,7 +221,7 @@ function tpgb_tp_post_listing() {
 			
 			'columns' => [
 				'type' => 'object',
-				'default' => [ 'md' => 3,'sm' => 4,'xs' => 6 ],
+				'default' => [ 'md' => 6,'sm' => 6,'xs' => 12 ],
 			],
 			'columnSpace' => [
 				'type' => 'object',
@@ -273,7 +275,7 @@ function tpgb_tp_post_listing() {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'ShowTitle', 'relation' => '==', 'value' => true ]],
-						'selector' => '{{PLUS_WRAP}}.tpgb-post-listing .tpgb-post-title',
+						'selector' => '{{PLUS_WRAP}}.tpgb-post-listing .tpgb-post-title a',
 					],
 				],
 			],
@@ -301,7 +303,7 @@ function tpgb_tp_post_listing() {
 			
 			'ShowExcerpt' => [
 				'type' => 'boolean',
-				'default' => true,
+				'default' => false,
 			],
 			
 			'excerptByLimit' => [
@@ -404,7 +406,7 @@ function tpgb_tp_post_listing() {
 			],
 			'showPostCategory' => [
 				'type' => 'boolean',
-				'default' => true,
+				'default' => false,
 			],
 			'postCategoryStyle' => [
 				'type' => 'string',
@@ -1172,7 +1174,7 @@ function tpgb_pagination($pages = '', $range = 2){
 	global $paged;
 	if(empty($paged)) $paged = 1;
 	
-	if($pages == '') {
+	if($pages == ''){
 		global $wp_query;
 		if( $wp_query->max_num_pages <= 1 )
 		return;
@@ -1185,14 +1187,13 @@ function tpgb_pagination($pages = '', $range = 2){
 		$pages = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
 	}
 	
-	if(1 != $pages) {
+	if(1 != $pages){
 		$paginate ="<div class=\"tpgb-pagination\">";
 		if ( get_previous_posts_link() ){
 			$paginate .= '<div class="paginate-prev">'.get_previous_posts_link('<i class="fa fa-long-arrow-left" aria-hidden="true"></i> PREV').'</div>';
 		}
 		
-		for ($i=1; $i <= $pages; $i++)
-		{
+		for ($i=1; $i <= $pages; $i++){
 			if (1 != $pages && ( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
 			{
 				$paginate .= ($paged == $i)? "<span class=\"current\">".esc_html($i)."</span>":"<a href='".get_pagenum_link($i)."' class=\"inactive\">".esc_html($i)."</a>";

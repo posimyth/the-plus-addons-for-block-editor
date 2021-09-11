@@ -55,8 +55,8 @@
 			$(".tpgb-progress-bar.tpgb-piechart").each( function(){
 				var height=$("canvas",this).outerHeight(),
 					width=$("canvas",this).outerWidth();
-				$(".circle",this).css("height",height+"px");
-				$(".circle",this).css("width",width+"px");
+				$(".tp-pie-circle",this).css("height",height+"px");
+				$(".tp-pie-circle",this).css("width",width+"px");
 			});
 		}
 	});

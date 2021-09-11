@@ -137,6 +137,45 @@ function tpgb_registered_blocks(){
 				],
 			],
 		],
+		TPGB_CATEGORY.'/tp-external-form-styler' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/bootstrap-grid.min.css',
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-external-form-styler/style.css',
+				],
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/external-form-styler/tpgb-cf7.min.js',
+				],
+			],
+		],
+		'tpgb-caldera-form' => [
+			'dependency' => [
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/external-form-styler/tpgb-caldera-form.min.js',
+				],
+			],
+		],
+		'tpgb-everest-form' => [
+			'dependency' => [
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/external-form-styler/tpgb-everest-form.min.js',
+				],
+			],
+		],
+		'tpgb-gravity-form' => [
+			'dependency' => [
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/external-form-styler/tpgb-gravity-form.min.js',
+				],
+			],
+		],
+		'tpgb-wp-form' => [
+			'dependency' => [
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/external-form-styler/tpgb-wp-form.min.js',
+				],
+			],
+		],
 		TPGB_CATEGORY.'/tp-hovercard' => [
 			'dependency' => [
 				'css' => [
@@ -442,6 +481,7 @@ Class Tpgb_Library {
 			TPGB_CATEGORY.'/tp-data-table' => TPGB_CATEGORY.'/tp-data-table',
 			TPGB_CATEGORY.'/tp-draw-svg' => TPGB_CATEGORY.'/tp-draw-svg',
 			TPGB_CATEGORY.'/tp-empty-space' => TPGB_CATEGORY.'/tp-empty-space',
+			TPGB_CATEGORY.'/tp-external-form-styler' => TPGB_CATEGORY.'/tp-external-form-styler',
 			TPGB_CATEGORY.'/tp-flipbox' => TPGB_CATEGORY.'/tp-flipbox',
 			TPGB_CATEGORY.'/tp-google-map' => TPGB_CATEGORY.'/tp-google-map',
 			TPGB_CATEGORY.'/tp-heading-title' => TPGB_CATEGORY.'/tp-heading-title',
@@ -477,7 +517,7 @@ Class Tpgb_Library {
 		$blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
 		
 		//Plus Extras Options Array
-		$plus_extras = array('content-hover-effect','tpgb-group-button','carouselSlider','countdown-style-1','tpgb-animation', 'tpgb-pagination');
+		$plus_extras = array('content-hover-effect','tpgb-group-button','carouselSlider','countdown-style-1','tpgb-animation', 'tpgb-pagination', 'tpgb-caldera-form', 'tpgb-everest-form', 'tpgb-gravity-form', 'tpgb-wp-form');
 		
 		if(has_filter('tpgb_exrta_conditions_blocks_register')) {
 			$plus_extras = apply_filters('tpgb_exrta_conditions_blocks_register', $plus_extras);
@@ -662,6 +702,32 @@ Class Tpgb_Library {
 		}
 		
 		$template_post_id = array_unique($this->plus_template_blocks);
+		
+		$queried_obj = get_queried_object_id();
+		if(is_search()){
+			$queried_obj = 'search';
+		}
+		if(is_404()){
+			$queried_obj = '404';
+		}
+		
+		$optionName = 'tpgb-load-templates-list';
+		$get_opt = get_option($optionName);
+		
+		if( $get_opt === false ){
+			add_option($optionName, [ $queried_obj => $template_post_id ] );
+		}else if( $get_opt !== false && !empty($get_opt) ){
+			if( !isset( $get_opt[ $queried_obj ] ) ){
+				$get_opt[ $queried_obj ] = $template_post_id;
+				update_option($optionName, $get_opt, false );
+			}else{
+				if($get_opt[$queried_obj] != $template_post_id){
+					$get_opt[ $queried_obj] = $template_post_id;
+					update_option($optionName, $get_opt , false );
+				}
+			}
+		}
+		
 		foreach($template_post_id as $post_id){
 			$upload_dir			= wp_get_upload_dir();
 			$upload_base_dir 	= trailingslashit($upload_dir['basedir']);
@@ -676,6 +742,9 @@ Class Tpgb_Library {
 				$css_file_url = trailingslashit($upload_dir['baseurl']);
 				$css_url     = $css_file_url . "theplus_gutenberg/plus-css-{$post_id}.css";
 				wp_enqueue_style("plus-post-{$post_id}", $css_url, false, $plus_version);
+			}else if(!file_exists($css_path)){
+				$tp_core = new Tp_Core_Init_Blocks();
+				$tp_core->make_block_css_by_post_id($post_id);
 			}
 		}
 		
@@ -703,7 +772,11 @@ Class Tpgb_Library {
             return;
         }
 		
-		if (get_transient('tpgb_save_updated_at') == get_transient($this->plus_uid . '_updated_at')) {
+		if(get_option('tpgb_save_updated_at') === false){
+			update_option('tpgb_save_updated_at', strtotime('now'), false);
+		}
+		
+		if (get_option('tpgb_save_updated_at') == get_option($this->plus_uid . '_updated_at')) {
             return;
         }
 		
@@ -737,8 +810,8 @@ Class Tpgb_Library {
 			}
             $post_type = (is_singular() ? 'post' : 'term');
             
-			set_transient($this->plus_uid . '_blocks', $elements);
-			set_transient($this->plus_uid . '_updated_at', get_transient('tpgb_save_updated_at'));
+			update_option($this->plus_uid . '_blocks', $elements, false);
+			update_option($this->plus_uid . '_updated_at', get_option('tpgb_save_updated_at'), false);
 			
             $this->remove_files_unlink($post_type, $queried_object);
 			
@@ -756,7 +829,7 @@ Class Tpgb_Library {
 			if ($this->requires_update) {
 				$elements = array_keys($this->tpgb_registered_blocks);
             } else {
-				$elements = get_transient($this->plus_uid . '_blocks');
+				$elements = get_option($this->plus_uid . '_blocks');
 				
 				if (!$this->check_cache_files($post_type, $queried_obj) && !empty($elements)) {
 					update_post_meta($queried_obj, '_block_css',time());
@@ -783,7 +856,6 @@ Class Tpgb_Library {
 					$js_file =  $tpgb_url . 'assets/js/main/general/theplus.min.js';
 				}
 			}else{
-			
 				if ($this->check_cache_files($post_type, $queried_obj)) {
 					$css_file = TPGB_ASSET_URL . '/theplus-' . $post_type . '-' . $queried_obj . '.min.css';
 					$js_file = TPGB_ASSET_URL . '/theplus-' . $post_type . '-' . $queried_obj . '.min.js';
@@ -817,6 +889,25 @@ Class Tpgb_Library {
 			if(empty($plus_version)){
 				$plus_version=time();
 			}
+			
+			$upload_dir			= wp_get_upload_dir();
+			$upload_base_dir	= trailingslashit($upload_dir['basedir']);
+			$global_path		= $upload_base_dir . "theplus_gutenberg/plus-global.css";
+			$css_file_url		= trailingslashit($upload_dir['baseurl']);
+			if( isset($_GET['preview']) && $_GET['preview'] == true){
+				$global_path = $upload_base_dir . "theplus_gutenberg/plus-global-preview.css";
+				if (file_exists($global_path) && !$this->is_editor_screen()) {
+					$global_url	= $css_file_url . "theplus_gutenberg/plus-global-preview.css";
+					wp_enqueue_style("plus-global-preview", $global_url, false, $plus_version);
+				}else if (file_exists($upload_base_dir . "theplus_gutenberg/plus-global.css") && !$this->is_editor_screen()) {
+					$global_url	= $css_file_url . "theplus_gutenberg/plus-global.css";
+					wp_enqueue_style("plus-global", $global_url, false, $plus_version);
+				}
+			}else if (file_exists($global_path) && !$this->is_editor_screen()) {
+				$global_url	= $css_file_url . "theplus_gutenberg/plus-global.css";
+				wp_enqueue_style("plus-global", $global_url, false, $plus_version);
+			}
+			
 			wp_enqueue_style('tpgb-plus-block-front-css',tpgb_library()->pathurl_security($css_file),false,$plus_version);
 
 			wp_enqueue_script('tpgb-plus-block-front-js',tpgb_library()->pathurl_security($js_file),['jquery'],$plus_version,true);
@@ -829,6 +920,13 @@ Class Tpgb_Library {
 				)
 			);
 		}
+	}
+	
+	private function is_editor_screen(){
+		if (!empty($_GET['action']) &&  $_GET['action'] === 'wppb_editor') {
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -884,11 +982,11 @@ Class Tpgb_Library {
 		
 				//Parent
 				$wp_admin_bar->add_node( [
-					'id'	=> 'tpda-purge-clear',					
+					'id'	=> 'tpda-purge-clear',
 					'meta'	=> array(
 						'class' => 'tpda-purge-clear',
 					),
-					'title' => esc_html__( 'TPDA Gutenberg Performance', 'tpgb' ),
+					'title' => esc_html__( 'TPAG Performance', 'tpgb' ),
 					
 				] );
 				
@@ -914,6 +1012,16 @@ Class Tpgb_Library {
 				foreach( $args as $each_arg) {
 					$wp_admin_bar->add_node($each_arg);
 				}
+				
+				//Parent
+				$wp_admin_bar->add_node( [
+					'id'	=> 'tpgb_edit_template',
+					'meta'	=> array(
+						'class' => 'tpgb_edit_template',
+					),
+					'title' => esc_html__( 'Edit Template', 'tpgb' ),
+					
+				] );
 		}
 	}
 	
@@ -928,6 +1036,20 @@ Class Tpgb_Library {
 
         // clear cache files
 		$this->remove_dir_files(TPGB_ASSET_PATH);
+
+		wp_send_json(true);
+    }
+	
+	/**
+     * Remove all Dynamic Style files
+     *
+     * @since 1.1.3
+     */
+    public function tpgb_dynamic_style_cache() {
+		check_ajax_referer('tpgb-addons', 'security');
+
+        // clear cache files
+		$this->remove_dir_dynamic_style_files(TPGB_ASSET_PATH);
 
 		wp_send_json(true);
     }
@@ -966,7 +1088,7 @@ Class Tpgb_Library {
 		}else {
 			// Current Page cache files
 			if($this->plus_uid){
-				delete_transient( $this->plus_uid . '_blocks' );
+				delete_option( $this->plus_uid . '_blocks' );
 			}
 			$this->remove_current_page_dir_files( TPGB_ASSET_PATH, $plus_name );
 		}
@@ -988,6 +1110,27 @@ Class Tpgb_Library {
 
         if (file_exists($js_path_url)) {
             unlink($js_path_url);
+        }
+    }
+	
+	/**
+     * Remove in Dynamic Styles files
+     * @since 1.1.3
+     */
+    public function remove_dir_dynamic_style_files($path_url) {
+        if (!is_dir($path_url) || !file_exists($path_url)) {
+            return;
+        }
+
+        foreach (scandir($path_url) as $item) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+
+			if (strpos($item, 'plus-global') !== false || strpos($item, 'theplus') !== false || strpos($item, 'plus-json-') !== false) {
+			}else{
+				unlink($this->secure_path_url($path_url . DIRECTORY_SEPARATOR . $item));
+			}
         }
     }
 	
@@ -1045,6 +1188,31 @@ Class Tpgb_Library {
 		}
 		
     }
+	
+	/*
+	 * Dynamic Style Forcely Remove In Version
+	 * @since 1.1.3
+	 */
+	public function dynamic_style_version_clear_cache(){
+		$option_name = 'tpgb_version_dynamic_cache';
+		$get_version = get_option( $option_name );
+		$versions = [ TPGB_VERSION ];
+			
+		if($get_version === false){
+			add_option( $option_name, $versions );
+			$this->remove_dir_files(TPGB_ASSET_PATH);
+			$this->remove_dir_dynamic_style_files(TPGB_ASSET_PATH);
+		}
+		if( $get_version !== false ){
+			//1.1.3
+			if( version_compare( TPGB_VERSION, '1.1.3', '==' ) && !in_array( '1.1.3', $get_version ) ){
+				$this->remove_dir_files(TPGB_ASSET_PATH);
+				$this->remove_dir_dynamic_style_files( TPGB_ASSET_PATH );
+				$versions = array_unique( array_merge( $get_version, $versions ) );
+				update_option( $option_name, $versions );
+			}
+		}
+	}
 	
 	/**
 	 * Returns the instance.
@@ -1112,13 +1280,32 @@ Class Tpgb_Library {
 			} 
 		}
 		
+		//External-Form-Styler
+		if($blockname=='tpgb/tp-external-form-styler') {
+			if( !empty($options) && !empty($options['formType']) && $options['formType'] == 'caldera-form'){  // Caldera Form
+				$this->transient_blocks[] = 'tpgb-caldera-form';
+			}
+
+			if( !empty($options) && !empty($options['formType']) && $options['formType'] == 'everest-form'){  // Everest Form
+				$this->transient_blocks[] = 'tpgb-everest-form';
+			}
+
+			if( !empty($options) && !empty($options['formType']) && $options['formType'] == 'gravity-form'){  // Gravity Form
+				$this->transient_blocks[] = 'tpgb-gravity-form';
+			}
+
+			if( !empty($options) && !empty($options['formType']) && $options['formType'] == 'wp-form'){  // Wp=Form
+				$this->transient_blocks[] = 'tpgb-wp-form';
+			}
+		}
+		
 		if(has_filter('tpgb_has_blocks_condition')) {
 			$this->transient_blocks = apply_filters('tpgb_has_blocks_condition', $this->transient_blocks, $options, $blockname );
 		}
 	}
 	
 	public function plus_post_save_transient( $post_id, $post, $update ){
-		set_transient('tpgb_save_updated_at', strtotime('now'));
+		update_option('tpgb_save_updated_at', strtotime('now'), false);
 	}
 	
 	public function init_post_request_data(){
@@ -1158,9 +1345,9 @@ Class Tpgb_Library {
 	
 	public function requires_update(){
 		
-		$blocks = get_transient($this->plus_uid . '_blocks');
-        $save_updated_at = get_transient('tpgb_save_updated_at');
-        $post_updated_at = get_transient($this->plus_uid . '_updated_at');
+		$blocks = get_option($this->plus_uid . '_blocks');
+        $save_updated_at = get_option('tpgb_save_updated_at');
+        $post_updated_at = get_option($this->plus_uid . '_updated_at');
 
         if ($blocks === false) {
             return true;
@@ -1221,7 +1408,9 @@ Class Tpgb_Library {
 		add_action( 'wp_footer', [ $this, 'wp_footer' ] );
 		
 		if (is_admin()) {
+			add_action('admin_init', array($this, 'dynamic_style_version_clear_cache'));
 			add_action('wp_ajax_tpgb_all_perf_clear_cache', array($this, 'tpgb_smart_perf_clear_cache'));
+			add_action('wp_ajax_tpgb_all_dynamic_clear_style', array($this, 'tpgb_dynamic_style_cache'));
 			add_action('wp_ajax_tpgb_backend_clear_cache', array($this, 'tpgb_backend_clear_cache'));
 		}
 	}

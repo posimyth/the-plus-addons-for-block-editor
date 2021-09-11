@@ -203,6 +203,12 @@
 }
 /*....style-2 end....*/
 /*....style-3 start....*/
+.tpgb-pricing-list.food-menu-style-3 h3.food-menu-title, .tpgb-pricing-list.food-menu-style-3 h4.food-menu-price {
+    margin: 0;
+}
+.tpgb-pricing-list.food-menu-style-3 .food-title-price {
+    margin: 10px 0;
+}
 .tpgb-pricing-list.food-menu-style-3 .food-menu-flex {
     display: block;
     position: relative;
@@ -237,10 +243,7 @@
 }
 .tpgb-pricing-list.food-menu-style-3 .food-flex-line h3.food-menu-title {
     margin-bottom: 0;
-   /* -webkit-box-flex: 0;
-    -ms-flex: 0 1;
-    flex: 0 1; */
-    line-height: 1;
+	line-height: 1;
     white-space: nowrap;
 }
 .tpgb-pricing-list.food-menu-style-3 .food-flex-line .food-menu-divider {

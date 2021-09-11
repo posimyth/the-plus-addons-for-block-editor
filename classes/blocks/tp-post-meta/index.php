@@ -1,7 +1,9 @@
 <?php
 /* Tp Block : Post Meta
- * @since	: 1.1.2
+ * @since	: 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_post_meta_render_callback( $attr, $content) {
 	$output = '';
     $post_id = get_queried_object_id();
@@ -57,7 +59,7 @@ function tpgb_tp_post_meta_render_callback( $attr, $content) {
 		}else if(!empty($authorIcon)){
 			$iconauthor = '<i class="meta-author-icon '.esc_attr($authorIcon).'"></i>';
 		}
-		$outputAuthor .='<span class="tpgb-meta-author" >'.$authorPrefix.'<a href="'.esc_url(get_author_posts_url(get_the_author_meta('ID'))).'" rel="'.esc_attr__('author','tpgb').'">'.$iconauthor.''.get_the_author_meta( 'display_name', $author_id ).'</a></span>';
+		$outputAuthor .='<span class="tpgb-meta-author" >'.$authorPrefix.'<a href="'.esc_url(get_author_posts_url($author_id)).'" rel="'.esc_attr__('author','tpgb').'">'.$iconauthor.''.get_the_author_meta( 'display_name', $author_id ).'</a></span>';
 	}
 	
 	$outputComment='';
@@ -169,7 +171,7 @@ function tpgb_post_meta_content() {
             ],
 			'separator' => [
                 'type' => 'string',
-				'default' => ',',
+				'default' => '|',
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'metaLayout', 'relation' => '==', 'value' => 'layout-1']],
@@ -221,7 +223,7 @@ function tpgb_post_meta_content() {
 			],
 			'datePrefix' => [
                 'type' => 'string',
-				'default' => '',
+				'default' => 'Published On ',
 			],
 			'dateColor' => [
 				'type' => 'string',
@@ -586,7 +588,7 @@ function tpgb_post_meta_content() {
 			],
 			'commentPrefix' => [
                 'type' => 'string',
-				'default' => '',
+				'default' => 'Comments ',
 			],
 			'commentIcon' => [
                 'type' => 'string',

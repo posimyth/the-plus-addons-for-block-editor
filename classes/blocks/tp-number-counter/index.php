@@ -1,7 +1,9 @@
 <?php
 /* Block : Number Counter
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_number_counter_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
 	$style = (!empty($attributes['style'])) ? $attributes['style'] : 'style-1';
@@ -27,13 +29,11 @@ function tpgb_tp_number_counter_render_callback( $attributes, $content) {
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
 	if(!empty($imagestore) && !empty($imagestore['id'])){
-		$counter_img = $imagestore['id'];
-		$imgSrc = wp_get_attachment_image_src($counter_img , $imageSize);
-		$imgSrc = $imgSrc[0];
+		$imgSrc = wp_get_attachment_image($imagestore['id'] , $imageSize, false, ['class' => 'counter-icon-image']);
 	}else if(!empty($imagestore['url'])){
-		$imgSrc = $imagestore['url'];
+		$imgSrc = '<img class="counter-icon-image" src='.esc_url($imagestore['url']).' alt="'.esc_attr__('Counter Number','tpgb').'"/>';
 	}else{
-		$imgSrc = $imagestore;
+		$imgSrc = '<img class="counter-icon-image" src='.esc_url($imagestore).' alt="'.esc_attr__('Counter Number','tpgb').'"/>';
 	}
 	
 	$vCenter = '';
@@ -89,7 +89,7 @@ function tpgb_tp_number_counter_render_callback( $attributes, $content) {
 		$getImg .= '<a href="'.esc_url($linkURL).'" target="'.esc_attr($target).' "  rel="'.esc_attr($nofollow).' ">';
 	}
 			$getImg .= '<div class="counter-image-inner">';
-				$getImg .= '<img class="counter-icon-image" src='.esc_url($imgSrc).' alt="'.esc_attr__('Counter Number','tpgb').'"/>';
+				$getImg .= $imgSrc;
 			$getImg .= '</div>';
 	if(!empty($linkURL)){
 		$getImg .= '</a>';
@@ -351,7 +351,7 @@ function tpgb_number_counter() {
 		],
 		'iconStyle' => [
 			'type' => 'string',
-			'default' => 'square',	
+			'default' => 'none',	
 		],
 		'iconSize' => [
 			'type' => 'object',

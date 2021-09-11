@@ -22,7 +22,8 @@
 	transition:all 0.3s linear;
 }
 .tpgb-post-meta .tpgb-meta-info > span:after {
-    margin-right: 5px;
+    margin: 0px 5px;
+	color: #b0b0b0;
 }
 .tpgb-post-meta .tpgb-meta-info.layout-1 > span:after,.tpgb-meta-info.layout-1 .tpgb-meta-category.style-1 a:after {
     position: relative;
@@ -67,6 +68,9 @@
 .tpgb-meta-author img {
     max-width: 22px;
     border-radius: 2px;
+}
+.tpgb-meta-author a > span {
+    line-height: 0;
 }
 /*Meta Author*/
 

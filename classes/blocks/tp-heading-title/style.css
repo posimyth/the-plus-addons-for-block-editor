@@ -63,6 +63,7 @@
  	align-items: center;
 	border-radius: 15px;
 	margin: 0 auto;
+	width:25%;
 }
 .tpgb-heading-title span.title-sep {
  	height: 1px;
@@ -135,7 +136,7 @@
 	background: #1e73be;
 }
 .tpgb-heading-title.heading-style-4 .heading-title:before, .tpgb-heading-title.heading-style-4 .heading-title:after {
-    background: #4d4d4d;
+    background: #6f14f1;
 }
 /*** style 4 end ***/
 /*** style 5 end ***/
@@ -181,7 +182,7 @@
 .tpgb-heading-title.heading-style-6 .head-title:after {
  	position: absolute;
  	bottom: 0;
- 	color: red;
+ 	color: #ff844a;
  	content: '.';
  	font-size: 60px;
 	width: 60px;
@@ -193,7 +194,7 @@
 	-o-transition: text-shadow 0.3s, color 0.3s;
 	-ms-transition: text-shadow 0.3s, color 0.3s;
  	transition: text-shadow 0.3s, color 0.3s;
- 	text-shadow: 15px 0 red, -15px 0 red;
+ 	text-shadow: 15px 0 #ff844a, -15px 0 #ff844a;
 }
 
 .tpgb-heading-title.heading-style-6 .head-title.text-left:after {
@@ -264,9 +265,9 @@
     padding: 0 4px;
 }
 .tpgb-heading-title span.title-sep {
-    border-color: #4099c3;
+    border-color: #6f14f1;
 }
 .tpgb-heading-title .sep-dot {
-    color: #ca2b2b;
+    color: #ff844a;
 }
 /***style 8 end***/

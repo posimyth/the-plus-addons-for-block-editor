@@ -1,7 +1,9 @@
 <?php
 /* Tp Block : Site Logo
- * @since	: 1.1.2
+ * @since	: 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_site_logo_render_callback( $attributes, $content) {
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
 	$logoNmlDbl = (!empty($attributes['logoNmlDbl'])) ? $attributes['logoNmlDbl'] : 'normal';
@@ -20,6 +22,7 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 	$stickyImg = (!empty($attributes['stickyImg']['url'])) ? $attributes['stickyImg'] : '';
 	$sImgSize = (!empty($attributes['sImgSize'])) ? $attributes['sImgSize'] : 'thumbnail' ;
 	$stickySvg = (!empty($attributes['stickySvg']['url'])) ? $attributes['stickySvg'] : '';
+	$markupSch = (!empty($attributes['markupSch'])) ? $attributes['markupSch'] : false;
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
@@ -35,22 +38,18 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 	
 	$imgSrc ='';
 	if(!empty($imageStore) && !empty($imageStore['id'])){
-		$site_img = $imageStore['id'];
-		$imgSrc = wp_get_attachment_image($site_img , $imageSize, false, ['class' => 'image-logo-wrap normal-image'.esc_attr($sticky_class) ] );
+		$imgSrc = wp_get_attachment_image($imageStore['id'] , $imageSize, false, ['class' => 'image-logo-wrap normal-image'.esc_attr($sticky_class) ] );
 		$imgSrc = (!empty($imgSrc)) ? $imgSrc : '<img src="'.esc_url($default_img).'" class="image-logo-wrap normal-image '.esc_attr($sticky_class).'"/>';
 	}else if(!empty($imageStore['url'])){
-		$imgSrc = $imageStore['url'];
-		$imgSrc = '<img src="'.esc_url($imgSrc).'" class="image-logo-wrap normal-image '.esc_attr($sticky_class).'"/>';
+		$imgSrc = '<img src="'.esc_url($imageStore['url']).'" class="image-logo-wrap normal-image '.esc_attr($sticky_class).'"/>';
 	}
 	
 	$hImgSrc = '';
 	if(!empty($hvrImageStore) && !empty($hvrImageStore['id'])){
-		$site_hImg = $hvrImageStore['id'];
-		$hImgSrc = wp_get_attachment_image($site_hImg , $hvrImageSize, false, ['class' => 'image-logo-wrap' ] );
+		$hImgSrc = wp_get_attachment_image($hvrImageStore['id'] , $hvrImageSize, false, ['class' => 'image-logo-wrap' ] );
 		$hImgSrc = (!empty($hImgSrc)) ? $hImgSrc : '<img src="'.esc_url($default_img).'" class="image-logo-wrap"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
 	}else if(!empty($hvrImageStore['url'])){
-		$hImgSrc = $hvrImageStore['url'];
-		$hImgSrc = '<img src="'.esc_url($hImgSrc).'" class="image-logo-wrap"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
+		$hImgSrc = '<img src="'.esc_url($hvrImageStore['url']).'" class="image-logo-wrap"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
 	}
 	
 	$sImgSrc = '';
@@ -80,7 +79,7 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 				$output .= '<a href="'.esc_url($url_link).'" target="'.esc_attr($target).'" rel="'.esc_attr($nofollow).'" class="site-normal-logo image-logo">';
 					$output .= $imgSrc;
 					if(!empty($stickyLogo)){
-						$output .= '<img src="'.esc_url($sImgSrc).'" class="image-logo-wrap sticky-image"  alt="'.esc_attr__('Site Logo','tpgb').'"/>';
+						$output .= $sImgSrc;
 					}
 				$output .= '</a>';
 				if($logoNmlDbl=='double' && !empty($hvrImageStore)){
@@ -109,7 +108,14 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 	$output .= '</div>';
 	
 	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $output);
-
+	if(!empty($markupSch)){
+		$output .= '<script type="application/ld+json">';
+			$output .= '@context: https://schema.org,';
+			$output .= '@type: Organization,';
+			$output .= 'url:'.esc_url($url_link).',';
+			$output .= isset($imageStore['url']) ? 'logo: '.esc_url($imageStore['url']) : '';
+		$output .= ' </script>';
+	}
     return $output;
 }
 
@@ -245,6 +251,20 @@ function tpgb_site_logo() {
 					'selector' => '{{PLUS_WRAP}} .site-normal-logo img.image-logo-wrap.sticky-image{ max-width: {{stickyWidth}}; }',
 				],
 			],
+		],
+		'logoSpeed' => [
+			'type' => 'string',
+			'default' => '',
+			'style' => [
+				(object) [
+					'condition' => [(object) ['key' => 'logoNmlDbl', 'relation' => '==', 'value' => 'double' ] ],
+					'selector' => '{{PLUS_WRAP}} .site-normal-logo,{{PLUS_WRAP}} .site-normal-logo.hover-logo,{{PLUS_WRAP}} .site-logo-wrap.logo-hover-normal:hover .site-normal-logo.hover-logo{ transition-duration : {{logoSpeed}}s; }',
+				],
+			],
+		],
+		'markupSch' => [
+			'type' => 'boolean',
+			'default' => false,	
 		],
 	);
 	$attributesOptions = array_merge($attributesOptions	, $globalBgOption, $globalpositioningOption, $globalPlusExtrasOption);

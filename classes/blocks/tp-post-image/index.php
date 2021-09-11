@@ -1,7 +1,9 @@
 <?php
 /* Tp Block : Post Image
- * @since	: 1.1.0
+ * @since	: 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_post_image_render_callback( $attr, $content) {
 	$output = '';
 	$post_id = get_the_ID();
@@ -32,7 +34,7 @@ function tpgb_tp_post_image_render_callback( $attr, $content) {
 				if(!empty($imageType) && $imageType!='background'){
 					$output .= '<div class="tpgb-featured-image">';
 						$output .= '<a href="'.esc_url(get_the_permalink()).'">';
-							$output .= '<img src="'.esc_url($image_content).'" alt="'.get_the_title().'" class="tpgb-featured-img" />';
+							$output .= get_the_post_thumbnail($post_id,$imageSize,[ 'class' => 'tpgb-featured-img']);
 						$output .= '</a>';
 					$output .= '</div>';
 				}else if(!empty($imageType) && $imageType=='background'){

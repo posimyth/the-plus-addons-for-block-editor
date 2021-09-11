@@ -1,3 +1,8 @@
+<?php 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+?>
 <div class="dynamic-list-content tpgb-dynamic-tran">
 
 	<div class="post-content-image">

@@ -11,6 +11,7 @@ Front End + Back End CSS
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
+	line-height: 0;
 }
 .tpgb-site-logo .site-logo-wrap {
     display: inline-block;

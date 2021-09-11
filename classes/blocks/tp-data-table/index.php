@@ -1,7 +1,9 @@
 <?php
 /* Block : Data Table
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_datatable_callback( $attributes, $content) {
 	$DataTable = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -48,8 +50,8 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
                             }else if(!empty($item['thDRicon']) && $item['thDRicon'] == 'image' && !empty($item['thDRimage'])) {
                                 $Thimagesize = (!empty($item['thimagesize'])) ? $item['thimagesize'] : 'thumbnail';
                                 $ThImgID = $item['thDRimage']['id'];
-                                $ThImgurl = wp_get_attachment_image_src($ThImgID,$Thimagesize);
-                                $ThImg = '<img src="'.esc_url($ThImgurl[0]).'" class="tpgb-col-img--'.esc_attr($IconPosition).esc_attr($checkText).'" alt="'.esc_attr($ThImgID).'" />';
+                                $ThImgurl = wp_get_attachment_image( $ThImgID,$Thimagesize, false, ['class' => 'tpgb-col-img--'.esc_attr($IconPosition).esc_attr($checkText) ] );
+                                $ThImg = $ThImgurl;
                             }
 
                             if( $item['thAction'] === 'cell' ){
@@ -105,8 +107,8 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
                                 $Btnlink = (!empty($item['TrbtnLink']) && !empty($item['TrbtnLink']['url'])) ? 'href="'.esc_url($item['TrbtnLink']['url']).'"' : '';
                                 $target = ( !empty($item['TrbtnLink']['target'])) ? 'target="_blank"' : '';
 				                $nofollow = (!empty($item['TrbtnLink']['nofollow'])) ? 'rel="nofollow"' : '';
-								
-                                $TRIcon = '';
+                                
+								$TRIcon = '';
                                 $TRImg = '';
                                 
 								$checkText = (!empty($item['trtext']) ? '' : ' less-icon-space');
@@ -116,8 +118,8 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
                                 }else if(!empty($item['trDricon']) && $item['trDricon'] == 'image' && !empty($item['trDrimage'])){
                                     $TRimagesize = (!empty($item['trimagesize'])) ? $item['trimagesize'] : 'thumbnail';
                                     $TRDrimgid = (!empty($item['trDrimage']['id'])) ? $item['trDrimage']['id'] : '';
-                                    $TRImgurl = wp_get_attachment_image_src($TRDrimgid,$TRimagesize);
-                                    $TRImg = '<img src="'.esc_url($TRImgurl[0]).'" class="tpgb-col-img--'.esc_attr($IconPosition).$checkText.'" alt="'.esc_attr($TRDrimgid).'" />';
+                                    $TRImgurl = wp_get_attachment_image( $TRDrimgid,$TRimagesize, false, ['class' => 'tpgb-col-img--'.esc_attr($IconPosition).$checkText ] );
+                                    $TRImg = $TRImgurl;
                                 }
                                 $DTBody .= '<'.esc_attr($Tag).' class="tpgb-table-col tp-repeater-item-'.esc_attr($item['_key']).'"  colspan="'.esc_attr($TrColumnSpan).'" rowspan="'.esc_attr($TrRowSpan).'">';
                                     
@@ -130,7 +132,7 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
                                         $DTBody .= '<span class="tpgb-table__text">';
                                             $DTBody .= ( $IconPosition == 'left') ? $TRIcon : '';
                                             $DTBody .= ( $ImgPosition == 'left') ? $TRImg : '';
-                                                $DTBody .= (!empty($item['trtext']) ? '<span class="tpgb-table__text-inner">'.esc_html($item['trtext']).'</span>' : '');
+                                                $DTBody .= (!empty($item['trtext']) ? '<span class="tpgb-table__text-inner">'.wp_kses_post($item['trtext']).'</span>' : '');
                                             $DTBody .= ( $IconPosition == 'right') ? $TRIcon : '';
                                             $DTBody .= ( $ImgPosition == 'right') ? $TRImg : '';
                                         $DTBody .= '</span>';   
@@ -138,7 +140,7 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
 
                                     if( (!empty($item['Trbtn'])) && $item['Trbtn'] == TRUE ){
                                         $DTBody .='<div class="pt_tpgb_button tp-repeater-item-'.esc_attr($item['_key']).' button-style-8">';
-                                            $DTBody .='<a '.$Btnlink.'  '.$target.' '.$nofollow.' class="button-link-wrap"  >'.esc_html($Btntx).'</a>';
+                                            $DTBody .='<a '.$Btnlink.'  '.$target.' '.$nofollow.' class="button-link-wrap"  >'.wp_kses_post($Btntx).'</a>';
                                         $DTBody .='</div>';
                                     }
                                  
@@ -357,7 +359,7 @@ function tpgb_tp_datatable_render() {
                         'default' => 'center',
                         'style' => [
                             (object) [
-                                'selector' => '{{PLUS_WRAP}} td{{TP_REPEAT_ID}}, {{PLUS_WRAP}} tbody tr th{{TP_REPEAT_ID}} {text-align:{{TrTextAlignment}};}',
+                                'selector' => '{{PLUS_WRAP}} tbody td.tpgb-table-col{{TP_REPEAT_ID}}, {{PLUS_WRAP}} tbody tr th{{TP_REPEAT_ID}} {text-align:{{TrTextAlignment}};}',
                                             
                             ],
                         ],
@@ -734,7 +736,7 @@ function tpgb_tp_datatable_render() {
             'style' => [
                 (object) [
                     'condition' => [(object) ['key' => 'ContentTable', 'relation' => '==', 'value' => 'custom']],
-                    'selector' => '{{PLUS_WRAP}} .pt_tpgb_button:hover .button-link-wrap{color:{{BtnHtxcr}};}',
+                    'selector' => '{{PLUS_WRAP}} .pt_tpgb_button .button-link-wrap:hover{color:{{BtnHtxcr}};}',
                 ],
             ],
         ],

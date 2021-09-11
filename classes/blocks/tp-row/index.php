@@ -2,6 +2,8 @@
 /**
  * After rendring from the block editor display output on front-end
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_section_row_render_callback( $attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");

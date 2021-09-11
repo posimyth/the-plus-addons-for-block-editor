@@ -3,7 +3,8 @@
  * Author : ThePlus
  * @since : 1.0.0
  */
-
+defined( 'ABSPATH' ) || exit;
+	
 function tpgb_global_settings_render() {
     $attributesOptions = [
         'block_id' => [

@@ -1,7 +1,9 @@
 <?php
 /* Tp Block : Post Author
- * @since	: 1.1.0
+ * @since	: 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_post_author_render_callback( $attr, $content) {
 	$output = '';
 	
@@ -13,29 +15,31 @@ function tpgb_tp_post_author_render_callback( $attr, $content) {
     $ShowBio = (!empty($attr['ShowBio'])) ? $attr['ShowBio'] : false;
     $ShowAvatar = (!empty($attr['ShowAvatar'])) ? $attr['ShowAvatar'] : false;
     $ShowSocial = (!empty($attr['ShowSocial'])) ? $attr['ShowSocial'] : false;
-    
+    $ShowRole = (!empty($attr['ShowRole'])) ? $attr['ShowRole'] : false;
+	$roleLabel = (!empty($attr['roleLabel'])) ? $attr['roleLabel'] : 'Role : ';
+    $titleLabel = (!empty($attr['titleLabel'])) ? $attr['titleLabel'] : 'Author : ';
+	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
 	$outputavatar=$outputname=$outputbio=$outputrole=$authorsocial='';
 	if(!empty($post)){
 		$author_page_url = get_author_posts_url($post->post_author);
-		$avatar_url = get_avatar_url($post->post_author);
 		$author_bio =  get_the_author_meta('user_description',$post->post_author);
 		if( !empty( $ShowName ) ){
 			$author_name = get_the_author_meta('display_name', $post->post_author);
-			$outputname .='<a href="'.esc_url($author_page_url).'" class="author-name tpgb-author-trans" rel="'.esc_attr__('author','tpgb').'" >'.esc_html($author_name).'</a>';
+			$outputname .='<a href="'.esc_url($author_page_url).'" class="author-name tpgb-author-trans" rel="'.esc_attr__('author','tpgb').'" >'.esc_html($titleLabel).esc_html($author_name).'</a>';
 		}
 		if(!empty($ShowAvatar)){
-			$outputavatar .= '<a href="'.esc_url($author_page_url).'" rel="'.esc_attr__('author','tpgb').'" class="author-avatar tpgb-author-trans"><img src="'.esc_url($avatar_url).'" /></a>';
+			$outputavatar .= '<a href="'.esc_url($author_page_url).'" rel="'.esc_attr__('author','tpgb').'" class="author-avatar tpgb-author-trans">'.get_avatar( get_the_author_meta('email',$post->post_author), 130 ).'</a>';
 		}
 		if(!empty($ShowBio)){
 			$outputbio .= '<div class="author-bio tpgb-author-trans" >'.esc_html($author_bio).'</div>';
 		}
 
 		$user_meta=get_the_author_meta('roles',$post->post_author);
-		if(!empty($user_meta)){
+		if(!empty($ShowRole) && !empty($user_meta)){
 			$author_role = $user_meta[0];
-			$outputrole .= '<span class="author-role">'.esc_html__( 'Role', 'tpgb' ).":-".esc_html($author_role).'</span>';
+			$outputrole .= '<span class="author-role">'.esc_html( $roleLabel ).esc_html($author_role).'</span>';
 		}
 
 		if(!empty($ShowSocial)){
@@ -44,23 +48,23 @@ function tpgb_tp_post_author_render_callback( $attr, $content) {
 			$author_email =  get_the_author_meta('email',$post->post_author);
 			$author_twitter = get_the_author_meta('author_twitter', $post->post_author);
 			$author_instagram = get_the_author_meta('author_instagram', $post->post_author);
-			$authorsocial .= '<ul class="author-social">';
+			$authorsocial .= '<div class="author-social">';
 				if(!empty($author_website)){
-					$authorsocial .= '<li><a href="'.esc_url($author_website).'" rel="'.esc_attr__("website","tpgb").'" target="_blank"><i class="fas fa-globe-asia"></i></a></li>';
+					$authorsocial .= '<div class="tpgb-author-social-list" ><a href="'.esc_url($author_website).'" rel="'.esc_attr__("website","tpgb").'" target="_blank"><i class="fas fa-globe-asia"></i></a></div>';
 				}
 				if(!empty($author_email)){
-					$authorsocial .= '<li><a href="'.esc_url($author_email).'" rel="'.esc_attr__("Email","tpgb").'" target="_blank"><i class="fas fa-envelope"></i></a></li>';
+					$authorsocial .= '<div class="tpgb-author-social-list" ><a href="'.esc_url($author_email).'" rel="'.esc_attr__("Email","tpgb").'" target="_blank"><i class="fas fa-envelope"></i></a></div>';
 				}
 				if(!empty($author_facebook)){
-					$authorsocial .= '<li><a href="'.esc_url($author_facebook).'" rel="'.esc_attr__("facebook","tpgb").'" target="_blank"><i class="fab fa-facebook-f"></i></a></li>';
+					$authorsocial .= '<div class="tpgb-author-social-list" ><a href="'.esc_url($author_facebook).'" rel="'.esc_attr__("facebook","tpgb").'" target="_blank"><i class="fab fa-facebook-f"></i></a></div>';
 				}
 				if(!empty($author_twitter)){
-					$authorsocial .= '<li><a href="'.esc_url($author_twitter).'" rel="'.esc_attr__("twitter","tpgb").'" target="_blank"><i class="fab fa-twitter" ></i></a></li>';
+					$authorsocial .= '<div class="tpgb-author-social-list" ><a href="'.esc_url($author_twitter).'" rel="'.esc_attr__("twitter","tpgb").'" target="_blank"><i class="fab fa-twitter" ></i></a></div>';
 				}
 				if(!empty($author_instagram)){
-					$authorsocial .= '<li><a href="'.esc_url($author_instagram).'" rel="'.esc_attr__("instagram","tpgb").'" target="_blank"><i class="fab fa-instagram"></i></a></li>';
+					$authorsocial .= '<div class="tpgb-author-social-list" ><a href="'.esc_url($author_instagram).'" rel="'.esc_attr__("instagram","tpgb").'" target="_blank"><i class="fab fa-instagram"></i></a></div>';
 				}
-			$authorsocial .='</ul>';
+			$authorsocial .='</div>';
 		}
 	}
 
@@ -70,14 +74,16 @@ function tpgb_tp_post_author_render_callback( $attr, $content) {
 				$output .=$outputavatar;
 			}
 			$output .='<div class="author-info">';
-				if($ShowName){
+				if(!empty($ShowName)){
 					$output .=$outputname;
 				}
-				$output .= $outputrole;
-				if($ShowBio){
+				if(!empty($ShowRole)){
+					$output .= $outputrole;
+				}
+				if(!empty($ShowBio)){
 					$output .=$outputbio;
 				}
-				if($ShowSocial){
+				if(!empty($ShowSocial)){
 					$output .=$authorsocial;
 				}
 			$output .= '</div>';
@@ -127,6 +133,10 @@ function tpgb_post_author_content() {
                 'type' => 'boolean',
 				'default' => true,
 			),
+			'titleLabel' => [
+				'type' => 'string',
+				'default' => 'Author : ',
+			],
 			'nameTypo' => [
 				'type' => 'object',
 				'default' => (object) [
@@ -167,7 +177,7 @@ function tpgb_post_author_content() {
 			],
 			'roleLabel' => [
 				'type' => 'string',
-				'default' => 'Role',
+				'default' => 'Role : ',
 			],
 			'roleTypo' => [
 				'type' => 'object',
@@ -319,7 +329,7 @@ function tpgb_post_author_content() {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'ShowSocial', 'relation' => '==', 'value' => true]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner ul.author-social li a{font-size: {{socialSize}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-social .tpgb-author-social-list a{font-size: {{socialSize}};}',
 					],
 				],
 			],
@@ -329,7 +339,7 @@ function tpgb_post_author_content() {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'ShowSocial', 'relation' => '==', 'value' => true]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner ul.author-social li a{color: {{socialNormalColor}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-social .tpgb-author-social-list a{color: {{socialNormalColor}};}',
 					],
 				],
             ],
@@ -339,7 +349,7 @@ function tpgb_post_author_content() {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'ShowSocial', 'relation' => '==', 'value' => true]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner ul.author-social li a:hover{color: {{socialHoverColor}};}',
+						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-social .tpgb-author-social-list a:hover{color: {{socialHoverColor}};}',
 					],
 				],
             ],

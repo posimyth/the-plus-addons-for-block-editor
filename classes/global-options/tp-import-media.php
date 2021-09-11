@@ -42,7 +42,7 @@ class Tpgb_Import_Images {
 	 * uploads folder, create a new attachment in the database and updates the
 	 * attachment metadata.
 	 *
-	 * @since 1.1.0
+	 * @since 1.1.3
 	 * @access public
 	 *
 	 * @param array $attachment The attachment.
@@ -83,7 +83,11 @@ class Tpgb_Import_Images {
 		if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
 			require_once ABSPATH . '/wp-admin/includes/image.php';
 		}
-
+		
+		if ( ! function_exists( 'wp_read_video_metadata' ) ) {
+			require_once ABSPATH . '/wp-admin/includes/media.php';
+		}
+		
 		wp_update_attachment_metadata(
 			$post_id,
 			wp_generate_attachment_metadata( $post_id, $upload_data['file'] )

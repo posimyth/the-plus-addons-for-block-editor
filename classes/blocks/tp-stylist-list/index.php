@@ -1,12 +1,14 @@
 <?php
 /* Block : Stylist List
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_stylist_list_render_callback( $attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
     $alignment = (!empty($attributes['alignment'])) ? $attributes['alignment'] : 'align-left';
-    $iconAlignment = (!empty($attributes['iconAlignment'])) ? $attributes['iconAlignment'] : 'd-flex-top';
+    $iconAlignment = (!empty($attributes['iconAlignment'])) ? $attributes['iconAlignment'] : false;
     $listsRepeater = (!empty($attributes['listsRepeater'])) ? $attributes['listsRepeater'] : [];
     $hoverInverseEffect = (!empty($attributes['hoverInverseEffect'])) ? $attributes['hoverInverseEffect'] : false;
 	
@@ -20,13 +22,11 @@ function tpgb_tp_stylist_list_render_callback( $attributes, $content) {
 		$alignattr .= (!empty($alignment['sm'])) ? ' tablet-align-'.esc_attr($alignment['sm']) : '';
 		$alignattr .= (!empty($alignment['xs'])) ? ' mobile-align-'.esc_attr($alignment['xs']) : '';
 	}
-	$iconalignattr ='';
-	if($iconAlignment!==''){
-		$iconalignattr = ($iconAlignment) ? ' d-flex-center' : ' d-flex-top';
-	}
+	
+	$iconalignattr = (!empty($iconAlignment)) ? ' d-flex-center' : ' d-flex-top';
 	
 	$hoverInvertClass ='';
-	if($iconAlignment!==''){
+	if( $hoverInverseEffect ){
 		$hoverInvertClass = ($hoverInverseEffect) ? ' hover-inverse-effect' : '';
 	}
 	
@@ -36,7 +36,7 @@ function tpgb_tp_stylist_list_render_callback( $attributes, $content) {
 		if(!empty($listsRepeater)){
 		
 			
-			$output .= '<ul class="tpgb-icon-list-items'.esc_attr($iconalignattr).'">';
+			$output .= '<div class="tpgb-icon-list-items'.esc_attr($iconalignattr).'">';
 				foreach ( $listsRepeater as $index => $item ) :
 					
 					$i++;
@@ -59,8 +59,13 @@ function tpgb_tp_stylist_list_render_callback( $attributes, $content) {
 							if($item['selectIcon']=='fontawesome' && !empty($item['iconFontawesome'])){ 
 								$icons .='<i class="list-icon '.esc_attr($item['iconFontawesome']).'" aria-hidden="true"></i>';
 							}else if($item['selectIcon'] == 'img' && !empty($item['iconImg']['url'])){
-								$icon_image = $item['iconImg']['url'];
-								$icons .= '<img src="'.esc_url($icon_image).'"  alt="'.esc_attr__('icon-img','tpgb').'" />';
+								$imgSrc = '';
+								if(!empty($item['iconImg']) && !empty($item['iconImg']['id'])){
+									$imgSrc = wp_get_attachment_image($item['iconImg']['id'] , 'full');
+								}else if( !empty($item['iconImg']['url']) ){
+									$imgSrc = '<img src="'.esc_url($item['iconImg']['url']).'"  alt="'.esc_attr__('icon-img','tpgb').'" />';
+								}
+								$icons .= $imgSrc;
 							} 
 						$icons .= '</div>';
 					}
@@ -72,14 +77,14 @@ function tpgb_tp_stylist_list_render_callback( $attributes, $content) {
 					}
 
 					//Item Content
-					$output .= '<li class="tpgb-icon-list-item tp-repeater-item-'.esc_attr($item['_key']).' '.esc_attr($active_class).'" >';
+					$output .= '<div class="tpgb-icon-list-item tp-repeater-item-'.esc_attr($item['_key']).' '.esc_attr($active_class).'" >';
 						$output .= $descurl_open;
 						$output .= $icons;
 						$output .= $itemdesc;
 						$output .= $descurl_close;
-					$output .= "</li>";
+					$output .= "</div>";
 				endforeach;
-			$output .= "</ul>";
+			$output .= "</div>";
 			
 		}
     $output .= "</div>";

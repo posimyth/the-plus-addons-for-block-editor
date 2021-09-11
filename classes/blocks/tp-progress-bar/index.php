@@ -1,7 +1,9 @@
 <?php
 /* Block : Progress Bar
- * @since : 1.0.0
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_progress_bar_render_callback( $attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -33,14 +35,11 @@ function tpgb_tp_progress_bar_render_callback( $attributes, $content) {
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	//image size
+	$imgSrc ='';
 	if(!empty($imageName) && !empty($imageName['id'])){
-		$pbar_img = $imageName['id'];
-		$imgSrc = wp_get_attachment_image_src($pbar_img , $imageSize);
-		$imgSrc = $imgSrc[0];
+		$imgSrc = wp_get_attachment_image($imageName['id'] , $imageSize, false, ['class' => 'progress-bar-img']);
 	}else if(!empty($imageName['url'])){
-		$imgSrc = $imageName['url'];
-	}else{
-		$imgSrc = $imageName;
+		$imgSrc = '<img src="'.esc_url($imageName['url']).'" class="progress-bar-img" />';
 	}
 	
 	$data_fill_color='';
@@ -68,7 +67,7 @@ function tpgb_tp_progress_bar_render_callback( $attributes, $content) {
 				$getIcon .='<i class="'.esc_attr($IconName).'"></i>';
 			}
 			elseif($iconType=='iconImage'){
-				$getIcon .='<img src="'.esc_url($imgSrc).'" class="progress-bar-img" />';
+				$getIcon .= $imgSrc;
 			}
 		$getIcon .='</span>';
 			

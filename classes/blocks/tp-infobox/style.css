@@ -78,9 +78,9 @@
     height: 50px;
     line-height: 50px;
 	font-size: 25px; 
-    text-align: center;
-	display: inherit;
-	top: auto;
+    display: inline-flex;
+	justify-content: center;
+	align-items: center;
     word-spacing: initial;
 	 -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s linear;
@@ -99,7 +99,7 @@
 .tpgb-infobox .service-title {
 	display: block;
 	font-size: 18px;
-    line-height: 1.2;
+    line-height: 2em;
 	margin-top: 0;
 	margin-bottom: 0;
 	text-decoration: blink;
@@ -123,6 +123,8 @@
     margin-bottom: 5px;
 }
 .tpgb-infobox .service-desc {
+	font-size: 14px;
+	line-height: 1.8em;
     -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s linear;
     -o-transition: all 0.3s linear;

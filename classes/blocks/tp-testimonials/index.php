@@ -2,6 +2,8 @@
 /* Block : Testimonials
  * @since : 1.0.0
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_testimonials_render_callback( $attributes, $content) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -61,10 +63,10 @@ function tpgb_tp_testimonials_render_callback( $attributes, $content) {
 							}else if(!empty($item['avatar']) && !empty($item['avatar']['url'])){
 								$imgUrl = '<img src="'.esc_url($item['avatar']['url']).'" alt="'.esc_html__('author avatar','tpgb').'"/>';
 							}else{
-								$imgUrl ='<img src="'.esc_url(TPGB_URL.'assets/images/tpgb-placeholder.jpg').'" alt="'.esc_html__('author avatar','tpgb').'"/>';
+								$imgUrl ='<img src="'.esc_url(TPGB_URL.'assets/images/tpgb-placeholder-grid.jpg').'" alt="'.esc_html__('author avatar','tpgb').'"/>';
 							}
 							
-							$output .= '<div class="grid-item splide__slide tpgb-col tp-repeater-item-"'.esc_attr($item['_key']).' >';
+							$output .= '<div class="grid-item splide__slide tpgb-col tp-repeater-item-'.esc_attr($item['_key']).'" >';
 								$output .= '<div class="testimonial-list-content" >';
 									
 									if($style!='style-4'){
@@ -263,12 +265,12 @@ function tpgb_tp_testimonials() {
 					],
 				],
             ],
-			'contentHoverColor' => [
+			'cntHovercolor' => [
 				'type' => 'string',
 				'default' => '',
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}} .testimonial-list-content:hover .entry-content{color: {{contentHoverColor}};}',
+						'selector' => '{{PLUS_WRAP}} .testimonial-list-content:hover .entry-content{color: {{cntHovercolor}};}',
 					],
 				],
             ],

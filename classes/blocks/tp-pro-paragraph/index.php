@@ -1,8 +1,10 @@
 <?php
 /**
  * Block : TP Pro Paragraph
- * @since : 1.1.1
+ * @since : 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+	
 function tpgb_tp_pro_paragraph_render_callback( $attributes ) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
@@ -51,7 +53,7 @@ function tpgb_tp_pro_paragraph() {
 			],
 			'title' => [
 				'type' => 'string',
-				'default' => 'Space for your Pretty Title',
+				'default' => 'Save the Earth for future Generations.',
 			],
 			'titleTag' => [
 				'type' => 'string',
@@ -63,7 +65,7 @@ function tpgb_tp_pro_paragraph() {
 			],
 			'content' => [
 				'type' => 'string',
-				'default' => 'Just say anything, George, say what ever’s natural, the first thing that comes to your mind. Take that you mutated son-of-a-bitch. My pine, why you. You space bastard, you killed a pine. You do? Yeah, it’s 8:00. Hey, McFly, I thought I told you never to come in here. Well it’s gonna cost you. How much money you got on you?',
+				'default' => 'No human technology can replace `nature`s technology`, perfected over hundreds of millions of years to sustain life on Earth. For those in power, the questions are straightforward. Are they prepared to jeopardise their careers – or their profits – for our children’s children? Are they ready to put short-term politicking aside and help deliver a sustainable plan for the future? Are they willing to take difficult decisions on behalf of voters they’ll never meet?',
 			],
 			'alignment' => [
 				'type' => 'object',

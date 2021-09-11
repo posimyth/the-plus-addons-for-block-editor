@@ -37,7 +37,7 @@
     color: #000;
 }
 .tpgb-post-listing .dynamic-list-content:hover .tpgb-post-title a {
-	color :#ff5a6e;
+	color :#6f14f1;
 }
 .tpgb-post-excerpt{
 	position:relative;
@@ -91,6 +91,9 @@
     text-transform: uppercase;
     font-weight: 600;
 }
+.tpgb-post-listing .post-meta-info > span,.tpgb-post-listing .post-meta-info > span > a,.tpgb-post-listing .post-meta-info .post-author-date > a{
+    color: #676767;
+}
 /*-----Post Meta Info----*/
 .tpgb-post-featured-img {
     position: relative;
@@ -103,7 +106,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.32);
+    background: rgba(0, 0, 0, 0);
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
@@ -242,10 +245,6 @@
     padding: 0;
     padding-right: 15px;
 }
-.dynamic-style-3.content-align-right .post-content-image, .dynamic-style-3.content-align-left-right .grid-item:nth-child(even) .post-content-image {
-    padding: 0;
-    padding-left: 15px;
-}
 
 .dynamic-style-3 .tpgb-content-bottom{
 	padding:0;
@@ -312,4 +311,18 @@
     border-radius: 3px;
     box-shadow: 0 5px 30px -5px #8072fc;
     color: #fff;
+}
+@media (max-width:575px) {
+    .dynamic-style-3.content-align-right .post-content-image, .dynamic-style-3.content-align-left-right .grid-item:nth-child(even) .post-content-image,    .dynamic-style-3.content-align-right .post-content-image, .dynamic-style-3.content-align-left-right .grid-item:nth-child(odd) .post-content-image{
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0;
+        padding: 0;
+    }
+    .dynamic-style-3 .tpgb-content-bottom {
+        margin-top: 15px
+    }
+    .dynamic-style-3.content-align-right .post-content-image, .dynamic-style-3.content-align-left-right .grid-item:nth-child(even) .tpgb-content-bottom,    .dynamic-style-3.content-align-right .tpgb-content-bottom, .dynamic-style-3.content-align-left-right .grid-item:nth-child(odd) .tpgb-content-bottom{
+        padding: 0 15px!important
+    }
 }

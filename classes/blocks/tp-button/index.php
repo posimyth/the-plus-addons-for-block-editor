@@ -2,6 +2,8 @@
 /* Block : TP Button
  * @since : 1.0.0
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_button_render_callback( $attributes ) {
 	$output = '';
     $block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");

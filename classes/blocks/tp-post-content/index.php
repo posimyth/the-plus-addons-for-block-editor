@@ -1,7 +1,9 @@
 <?php
 /* Tp Block : Post Content
- * @since	: 1.1.0
+ * @since	: 1.1.3
  */
+defined( 'ABSPATH' ) || exit;
+
 function tpgb_tp_post_content_render_callback( $attr, $content) {
 	$output = '';
 	$post_id = get_the_ID();
@@ -11,7 +13,8 @@ function tpgb_tp_post_content_render_callback( $attr, $content) {
 	$contentType = (!empty($attr['contentType'])) ? $attr['contentType'] :'';
 	$limitCountType = (!empty($attr['limitCountType'])) ? $attr['limitCountType'] :'';
 	$titleLimit = (!empty($attr['titleLimit'])) ? $attr['titleLimit'] :'';
-    
+    $chideDots = (!empty($attr['chideDots'])) ? $attr['chideDots'] : false ;
+	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
 	$content = '';
@@ -30,10 +33,11 @@ function tpgb_tp_post_content_render_callback( $attr, $content) {
 				if ( ! $post || 'nxt_builder' == $post->post_type) {
 					return '';
 				}
-
-				if ( 'publish' !== $post->post_status || ! empty( $post->post_password ) ) {
+				
+				if ( ('publish' !== $post->post_status && 'draft' !== $post->post_status && 'private' !== $post->post_status) || ! empty( $post->post_password ) ) {
 					return '';
 				}
+				
 				$content = apply_filters( 'the_content', $post->post_content );
 			}
 		}else{
@@ -41,7 +45,7 @@ function tpgb_tp_post_content_render_callback( $attr, $content) {
 			if( $limitCountType == 'words' && !empty($excerpt) ){
 				$content = wp_trim_words( $excerpt ,$titleLimit);
 			} else if( $limitCountType == 'letters' && !empty($excerpt) ){
-				$content = substr(wp_trim_words( $excerpt ),0, $titleLimit) . '...';
+				$content = substr(wp_trim_words( $excerpt ),0, $titleLimit) . ( !empty($chideDots) ? '' : '...' );
 			} else if( !empty($excerpt) ) {
 				$content = $excerpt;
 			}
@@ -91,6 +95,10 @@ function tpgb_post_content() {
 			'titleLimit' => [
 				'type' => 'number',
 				'default' => '',
+			],
+			'chideDots' => [
+				'type' => 'boolean',
+				'default' => false,
 			],
 			'contentAlign' => [
 				'type' => 'object',
