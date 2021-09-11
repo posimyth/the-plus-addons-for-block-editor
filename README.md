@@ -26,8 +26,6 @@ Enjoy a Complete No-Code experience and build everything with your simple mouse 
 
 | <strong> [ ⚡ SUPERCHARGE MY SITE NOW ](https://theplusblocks.com/pricing)</strong> |
 
-~~~~~~~~~~~~~~~~
-
 **Creative, truly creative !**
 
 The Plus Addons for Gutenberg is thoroughly crafted by passionate designers and developers proficient in their field. It’s developed uniquely to handle responsive needs, accessible and with tons of options of customization.
