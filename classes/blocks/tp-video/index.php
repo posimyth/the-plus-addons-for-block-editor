@@ -71,7 +71,7 @@ function tpgb_tp_video_callback( $settings, $content) {
     if( ! empty ( $settings[ "OverlayIconImg" ][ "url" ] ) ) {
         $OverlayIconImg_src = $settings[ 'OverlayIconImg' ][ 'id' ];
         $img             = wp_get_attachment_image_src ( $OverlayIconImg_src, $settings[ 'OverlayIconImgSize' ] );
-        $OverlayIconImg     = $img[ 0 ];
+		$OverlayIconImg = (!empty($img) && isset($img[0])) ? $img[ 0 ] : '';
 
         $image_id  = $settings[ "OverlayIconImg" ][ "id" ];
         $image_alt = get_post_meta ( $image_id, '_wp_attachment_image_alt', TRUE );
@@ -86,7 +86,7 @@ function tpgb_tp_video_callback( $settings, $content) {
         if ( isset($settings[ 'BannerImg' ][ 'id' ] ) ) {
             $BannerImg = $settings[ 'BannerImg' ][ 'id' ];
             $img          = wp_get_attachment_image_src ( $BannerImg, $settings[ 'BannerImgSize' ] );
-            $BannerImg = $img[ 0 ];
+			$BannerImg = (!empty($img) && isset($img[0])) ? $img[ 0 ] : '';
         } else {
             $BannerImg = $settings[ "BannerImg" ][ "url" ];
         }
@@ -413,6 +413,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-video-box .ts-video-caption-text',
 				],
 			],
+			'scopy' => true,
         ],
 		'TitleColor' => [
 			'type' => 'string',
@@ -423,6 +424,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .ts-video-caption-text{ color: {{TitleColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'TitleBgColor' => [
 			'type' => 'string',
@@ -433,12 +435,12 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .ts-video-caption-text{ background: {{TitleBgColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'VideoPopup' => [
 			'type' => 'boolean',
 			'default' => false,	
 		],
-                        
 		'VideoBorder' => [
 			'type' => 'object',
 			'default' => (object) [
@@ -452,8 +454,6 @@ function tpgb_tp_video_render() {
 							'bottom' => '',
 							'right' => '',
 					],
-					'sm' => (object)[ ],
-					'xs' => (object)[ ],
 					"unit" => "",
 				],
 			],
@@ -462,6 +462,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player',
 				],
 			],
+			'scopy' => true,
 		],
 		'VideoBRadius' => [
 			'type' => 'object',
@@ -472,6 +473,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player{ border-radius: {{VideoBRadius}};overflow:hidden; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'BoxShadow' => [
 			'type' => 'object',
@@ -483,6 +485,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player',
 				],
 			],
+			'scopy' => true,
 		],
         'Transform' => [
 			'type' => 'string',
@@ -492,6 +495,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-video-box{-webkit-transform:{{Transform}};-ms-transform:{{Transform}};-moz-transform:{{Transform}};-o-transform:{{Transform}};transform:{{Transform}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'VideoBorderH' => [
 			'type' => 'object',
@@ -516,6 +520,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'VideoBRadiusH' => [
 			'type' => 'object',
@@ -526,6 +531,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player:hover{ border-radius: {{VideoBRadiusH}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'BoxShadowH' => [
 			'type' => 'object',
@@ -537,27 +543,32 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'TransformH' => [
-				'type' => 'string',
-				'default' => '',
-				'style' => [
-					(object) [
-						'selector' => '{{PLUS_WRAP}}.tpgb-video-box:hover{-webkit-transform:{{TransformH}};-ms-transform:{{TransformH}};-moz-transform:{{TransformH}};-o-transform:{{TransformH}};transform:{{TransformH}};};',
-					],
+			'type' => 'string',
+			'default' => '',
+			'style' => [
+				(object) [
+					'selector' => '{{PLUS_WRAP}}.tpgb-video-box:hover{-webkit-transform:{{TransformH}};-ms-transform:{{TransformH}};-moz-transform:{{TransformH}};-o-transform:{{TransformH}};transform:{{TransformH}};};',
 				],
+			],
+			'scopy' => true,
 		],
 		'ContinueAnim' => [
             'type' => 'boolean',
             'default' => false,	
+			'scopy' => true,
         ],
 		'ContinueAnimEffect' => [
 			'type' => 'string',
 			'default' => 'pulse',
+			'scopy' => true,
 		],
 		'ContinueAnimHover' => [
 			'type' => 'boolean',
 			'default' => false,	
+			'scopy' => true,
 		],
 		'ContinueAnimDur' => [
 			'type' => 'string',
@@ -571,6 +582,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon .tp-video-icon{ animation-duration: {{ContinueAnimDur}}s; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'ContinueTransRotate' => [
 			'type' => 'string',
@@ -584,6 +596,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon .tp-video-icon{-webkit-transform-origin: {{ContinueTransRotate}};-moz-transform-origin:{{ContinueTransRotate}},-ms-transform-origin:{{ContinueTransRotate}};,-o-transform-origin: {{ContinueTransRotate}};,transform-origin: {{ContinueTransRotate}};}',
 			   ],
 			],
+			'scopy' => true,
 		],
 		'DropWaveColor' => [
 			'type' => 'string',
@@ -597,6 +610,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player .tpgb-drop_waves:after,{{PLUS_WRAP}} .tpgb_video_player .tpgb-hover-drop_waves:hover:after{ background: {{DropWaveColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'IconRadius' => [
 			'type' => 'object',
@@ -607,6 +621,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon .tp-video-icon,{{PLUS_WRAP}} .tpgb_video_player .tpgb-drop_waves:after,{{PLUS_WRAP}} .tpgb_video_player .tpgb-hover-drop_waves:hover:after{border-radius: {{IconRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'PlayIconSize' => [
 			'type' => 'string',
@@ -616,6 +631,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon{max-width: {{PlayIconSize}}px;width: {{PlayIconSize}}px;max-height: {{PlayIconSize}}px;height: {{PlayIconSize}}px;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'VideoDesc' => [
 			'type' => 'string',
@@ -632,7 +648,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .ts-video-caption-text .tpgb-video-desc',
 				],
 			],
-		
+			'scopy' => true,
 		],
 		'DescColor' => [
 			'type' => 'string',
@@ -643,6 +659,7 @@ function tpgb_tp_video_render() {
 					'selector' => '{{PLUS_WRAP}} .ts-video-caption-text .tpgb-video-desc{ color : {{DescColor}} }',
 				],
 			],
+			'scopy' => true,
 		],
 	];
 	

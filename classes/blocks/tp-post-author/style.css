@@ -30,6 +30,7 @@
 }
 .tpgb-post-inner .author-avatar {
     max-width: 130px;
+	line-height: 0;
 }
 .tpgb-post-inner.author-style-1 .author-info {
     margin-left: 15px;

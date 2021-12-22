@@ -146,57 +146,70 @@ function tpgb_google_map() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-map{ min-height: {{mapHeight}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'Zoom' => [
 			'type' => 'string',
-			'default' => 8.5
+			'default' => 8.5,
+			'scopy' => true,
 		],
 		
 		
 		'scrollWheel' => [
 			'type' => 'boolean',
 			'default' => true,	
+			'scopy' => true,
 		],
 		'panCtrl' => [
 			'type' => 'boolean',
 			'default' => true,	
+			'scopy' => true,
 		],
 		'Draggable' => [
 			'type' => 'boolean',
 			'default' => true,	
+			'scopy' => true,
 		],
 		'zoomCtrl' => [
 			'type' => 'boolean',
-			'default' => true,	
+			'default' => true,
+			'scopy' => true,
 		],
 		'mapTypeCtrl' => [
 			'type' => 'boolean',
 			'default' => true,	
+			'scopy' => true,
 		],
 		'scaleCtrl' => [
 			'type' => 'boolean',
 			'default' => true,	
+			'scopy' => true,
 		],
 		'fullScreenCtrl' => [
 			'type' => 'boolean',
 			'default' => true,	
+			'scopy' => true,
 		],
 		'streetViewCtrl' => [
 			'type' => 'boolean',
 			'default' => true,	
+			'scopy' => true,
 		],
 		
 		'gmapType' => [
 			'type' => 'string',
 			'default' => 'roadmap',
+			'scopy' => true,
 		],
 		'customStyleTgl' => [
 			'type' => 'boolean',
 			'default' => false,	
+			'scopy' => true,
 		],
 		'customStyle' => [
 			'type' => 'string',
 			'default' => 'style-1',
+			'scopy' => true,
 		],
 		
 		'contentTgl' => [

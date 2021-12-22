@@ -121,7 +121,7 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
                                     $TRImgurl = wp_get_attachment_image( $TRDrimgid,$TRimagesize, false, ['class' => 'tpgb-col-img--'.esc_attr($IconPosition).$checkText ] );
                                     $TRImg = $TRImgurl;
                                 }
-                                $DTBody .= '<'.esc_attr($Tag).' class="tpgb-table-col tp-repeater-item-'.esc_attr($item['_key']).'"  colspan="'.esc_attr($TrColumnSpan).'" rowspan="'.esc_attr($TrRowSpan).'">';
+                                $DTBody .= '<'.Tp_Blocks_Helper::validate_html_tag($Tag).' class="tpgb-table-col tp-repeater-item-'.esc_attr($item['_key']).'"  colspan="'.esc_attr($TrColumnSpan).'" rowspan="'.esc_attr($TrRowSpan).'">';
                                     
                                     if( !empty($item['TrLink']) && !empty($item['TrLink']['url']) ){
 										$target1 = ( !empty ($item['TrLink']['target'])) ? 'target="_blank"' : '';
@@ -144,7 +144,7 @@ function tpgb_tp_datatable_callback( $attributes, $content) {
                                         $DTBody .='</div>';
                                     }
                                  
-                                $DTBody .= '</'.esc_attr($Tag).'>';
+                                $DTBody .= '</'.Tp_Blocks_Helper::validate_html_tag($Tag).'>';
                                 
                                 $Mob_trc++;
                             }else{
@@ -416,9 +416,10 @@ function tpgb_tp_datatable_render() {
             'default' => '',
             'style' => [
                 (object) [
-                    'selector' => '{{PLUS_WRAP}} thead th.tpgb-table-col,{{PLUS_WRAP}} tbody tr th{text-align:{{ThAlignment}};}',                                
+                    'selector' => '{{PLUS_WRAP}} thead th.tpgb-table-col,{{PLUS_WRAP}} tbody tr th{text-align:{{ThAlignment}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ThTypo' => [
             'type'=> 'object',
@@ -430,6 +431,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} th.tpgb-table-col,{{PLUS_WRAP}} thead tr th',
                 ],
             ],
+			'scopy' => true,
         ],
         'ThPadding' => [
             'type' => 'object',
@@ -442,6 +444,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} thead tr.tpgb-table-row th.tpgb-table-col,{{PLUS_WRAP}} tbody tr th{padding:{{ThPadding}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ThRTxCr' => [
             'type' => 'string',
@@ -451,6 +454,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} thead .tpgb-table-row th .tpgb-table__text,{{PLUS_WRAP}} tbody tr th{color:{{ThRTxCr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ThRBgCr' => [
             'type' => 'string',
@@ -460,10 +464,12 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} thead .tpgb-table-row th,{{PLUS_WRAP}} table tbody>tr:nth-child(odd)>th,{{PLUS_WRAP}} tbody tr:nth-child(even)>th{background-color:{{ThRBgCr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ThABorder' => [
             'type' => 'boolean',
             'default' => false,	
+			'scopy' => true,
         ],
         'ThBorderType' => [
             'type' => 'object',
@@ -476,6 +482,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} thead th.tpgb-table-col,{{PLUS_WRAP}} tbody tr th.tpgb-table-col,{{PLUS_WRAP}} thead tr th',
                 ],
             ],
+			'scopy' => true,
         ],
         'ThHTxCr' => [
             'type' => 'string',
@@ -485,6 +492,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} thead .tpgb-table-row:hover .tpgb-table__text,{{PLUS_WRAP}} tbody .tpgb-table-row:hover th .tpgb-table__text,{{PLUS_WRAP}} .csv-html-table tr:hover th{color:{{ThHTxCr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ThHBgCr' => [
             'type' => 'string',
@@ -494,6 +502,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} thead .tpgb-table-row:hover > th,{{PLUS_WRAP}} .tpgb-table tbody .tpgb-table-row:hover > th,{{PLUS_WRAP}} .thead tr:hover > th{background-color:{{ThHBgCr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ThHCellCr' => [
             'type' => 'string',
@@ -503,6 +512,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} thead th.tpgb-table-col:hover .tpgb-table__text,{{PLUS_WRAP}} tbody .tpgb-table-row th.tpgb-table-col:hover .tpgb-table__text,{{PLUS_WRAP}} .csv-html-table tr th:hover{color:{{ThHCellCr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ThHCellBGCr' => [
             'type' => 'string',
@@ -512,6 +522,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} thead .tpgb-table-row th.tpgb-table-col:hover,{{PLUS_WRAP}} .tpgb-table tbody .tpgb-table-row:hover >  th.tpgb-table-col:hover,{{PLUS_WRAP}} .csv-html-table tr th:hover{ background-color: {{ThHCellBGCr}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
 
         'TBAlignment' => [
@@ -522,6 +533,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} tbody td.tpgb-table-col{text-align:{{TBAlignment}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'TBvAlignment' => [
             'type' => 'string',
@@ -531,6 +543,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} tbody .tpgb-table-col{vertical-align:{{TBvAlignment}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'TBTypo' => [
             'type'=> 'object',
@@ -542,6 +555,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} td .tpgb-table__text-inner,{{PLUS_WRAP}} td .tpgb-align-icon--left,{{PLUS_WRAP}} td .tpgb-align-icon--right,{{PLUS_WRAP}} td',
                 ],
             ],
+			'scopy' => true,
         ],
         'TBPadding' => [
             'type' => 'object',
@@ -554,6 +568,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} tbody td.tpgb-table-col,{{PLUS_WRAP}} tbody span.tpgb-table__text-inner{padding:{{TBPadding}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'TBrTxCr' => [
             'type' => 'string',
@@ -563,10 +578,12 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} tbody td.tpgb-table-col .tpgb-table__text,{{PLUS_WRAP}} tbody td{color:{{TBrTxCr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'TBStripEff' => [
             'type' => 'boolean',
             'default' => false,	
+			'scopy' => true,
         ],
         'TBbgCR' => [
             'type' => 'string',
@@ -577,11 +594,13 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} tbody .tpgb-table-row,{{PLUS_WRAP}} table tbody>tr:nth-child(odd)>td,{{PLUS_WRAP}} tbody tr:nth-child(even){background-color:{{TBbgCR}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         
         'TBABorder' => [
             'type' => 'boolean',
             'default' => false,	
+			'scopy' => true,
         ],
         'TBborder' => [
             'type' => 'object',
@@ -594,6 +613,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} tbody .tpgb-table-col',
                 ],
             ],
+			'scopy' => true,
         ],
         'TBhRTxCr' => [
             'type' => 'string',
@@ -603,6 +623,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} tbody .tpgb-table-row:hover td.tpgb-table-col .tpgb-table__text,{{PLUS_WRAP}} tbody .tpgb-table-row:hover td.tpgb-table-col{color:{{TBhRTxCr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'TBhRBGCr' => [
             'type' => 'string',
@@ -612,6 +633,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} tbody .tpgb-table-row:hover{background-color:{{TBhRBGCr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'TBHcellCr' => [
             'type' => 'string',
@@ -621,6 +643,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-table tbody td.tpgb-table-col:hover .tpgb-table__text,{{PLUS_WRAP}} .tpgb-table tbody td.tpgb-table-col:hover{color:{{TBHcellCr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'TBHcellBGCr' => [
             'type' => 'string',
@@ -630,6 +653,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-table tbody .tpgb-table-row:hover > td.tpgb-table-col:hover{ background-color: {{TBHcellBGCr}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         
         'BtnTypo' => [
@@ -643,6 +667,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-table-col .pt_tpgb_button .button-link-wrap',
                 ],
             ],
+			'scopy' => true,
         ],
         'BtnPadding' => [
             'type' => 'object',
@@ -656,6 +681,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button .button-link-wrap{padding:{{BtnPadding}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'Btnwidth' => [
             'type' => 'object',
@@ -669,6 +695,7 @@ function tpgb_tp_datatable_render() {
                     'selector' =>'{{PLUS_WRAP}} .button-style-8{width:{{Btnwidth}};}',
                 ],
             ],
+			'scopy' => true,
         ],
 
         'BtnNtxcr' => [
@@ -680,6 +707,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button .button-link-wrap{color:{{BtnNtxcr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'BtnNcr' => [
             'type' => 'object',
@@ -692,6 +720,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button.button-style-8 .button-link-wrap',
                 ],
             ],
+			'scopy' => true,
         ],
         'BtnNBorder' => [
             'type' => 'object',
@@ -704,6 +733,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button.button-style-8 .button-link-wrap',
                 ],
             ],
+			'scopy' => true,
         ],
         'BtnNBR' => [
             'type' => 'object',
@@ -717,6 +747,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button.button-style-8 .button-link-wrap{border-radius:{{BtnNBR}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'BtnNBs' => [
             'type' => 'object',
@@ -729,6 +760,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button.button-style-8 .button-link-wrap',
                 ],
             ],
+			'scopy' => true,
         ],
         'BtnHtxcr' => [
             'type' => 'string',
@@ -739,6 +771,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button .button-link-wrap:hover{color:{{BtnHtxcr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'BtnHcr' => [
             'type' => 'object',
@@ -751,6 +784,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button.button-style-8 .button-link-wrap:hover',
                 ],
             ],
+			'scopy' => true,
         ],
         'BtnHBcr' => [
             'type' => 'string',
@@ -761,6 +795,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button.button-style-8 .button-link-wrap:hover{border-color:{{BtnHBcr}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'BtnHBRs' => [
             'type' => 'object',
@@ -774,6 +809,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_tpgb_button.button-style-8 .button-link-wrap:hover{border-radius:{{BtnHBRs}};}',
                 ],
             ],
+			'scopy' => true,
         ],
 
         'IconColor' => [
@@ -785,6 +821,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-align-icon--left .tableicon,{{PLUS_WRAP}} .tpgb-align-icon--right .tableicon{color:{{IconColor}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'IconSize' => [
             'type' => 'object',
@@ -798,10 +835,12 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-align-icon--left .tableicon,{{PLUS_WRAP}} .tpgb-align-icon--right tableicon{font-size:{{IconSize}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'IconPosition' => [
             'type' => 'string',
-            'default' => 'left',	
+            'default' => 'left',
+			'scopy' => true,
         ],       
         'IconSpacing' => [
             'type' => 'object',
@@ -815,6 +854,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-align-icon--left{margin-right:{{IconSpacing}};},{{PLUS_WRAP}} .tpgb-align-icon--right{margin-left:{{IconSpacing}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ImgSize' => [
             'type' => 'object',
@@ -828,10 +868,12 @@ function tpgb_tp_datatable_render() {
                     'selector' =>'{{PLUS_WRAP}} .tpgb-col-img--left,{{PLUS_WRAP}} .tpgb-col-img--right{width:{{ImgSize}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ImgPosition' => [
             'type' => 'string',
             'default' => 'left',	
+			'scopy' => true,
         ],
         'ImgSpacing' => [
             'type' => 'object',
@@ -845,6 +887,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-col-img--left{margin-right:{{ImgSpacing}};},{{PLUS_WRAP}} .tpgb-col-img--right{margin-left:{{ImgSpacing}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ImgBRs' => [
             'type' => 'object',
@@ -858,6 +901,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-col-img--left{border-radius:{{ImgBRs}}}',
                 ],
             ],
+			'scopy' => true,
         ],
 
 
@@ -872,6 +916,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-table-wrapper{margin:{{ToMargin}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ToPadding' => [
             'type' => 'object',
@@ -884,6 +929,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-table-wrapper{padding:{{ToPadding}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'Tobg' => [
             'type' => 'object',
@@ -895,6 +941,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} table tbody>tr:nth-child(odd)>td,{{PLUS_WRAP}} table tbody>tr:nth-child(even)>td',
                 ],
             ],
+			'scopy' => true,
         ],
         'Toborder' => [
             'type' => 'object',
@@ -920,6 +967,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-table-wrapper',
                 ],
             ],
+			'scopy' => true,
         ],
         'ToBrs' => [
             'type' => 'object',
@@ -933,6 +981,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-table-wrapper,{{PLUS_WRAP}} table{border-radius:{{ToBrs}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'ToBoxS' => [
             'type' => 'object',
@@ -942,6 +991,7 @@ function tpgb_tp_datatable_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-table-wrapper .tpgb-table',
                 ],
             ],
+			'scopy' => true,
         ],
 
     ];  

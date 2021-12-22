@@ -1,21 +1,21 @@
-=== The Plus Addons for Gutenberg ===
+=== Gutenberg Blocks - The Plus Addons for Gutenberg Block Editor ===
 Contributors: posimyththemes, nirmalkavaiya, sagarpatel124
 Donate link: https://theplusblocks.com/
-Tags: gutenberg, gutenberg addons, gutenberg blocks, gutenberg widgets, the plus addons for gutenberg, the plus widgets gutenberg, free gutenberg addons,drag and drop, gutenberg widget pack, popular addons for gutenberg, powerful addons for gutenberg, best addons for gutenberg
+Tags:  blocks, block editor, Gutenberg, gutenberg block, gutenberg addons,
 Requires at least: 4.0
 Tested up to: 5.8
-Stable tag: 1.1.5
+Stable tag: 1.2.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-Make your Gutenberg workflow Easy and Fast. Add Extra 75+ Blocks, 300+ Prebuild Layouts including Blog Builder, WooBuilder, Mega Menu, Gallery etc.
+Extend your Gutenberg Editor with Powerful Extra 70+ Blocks, 300+ Prebuild Templates including Blog Builder, Mega Menu, On-Scroll Animations etc.
 
 == Description ==
 
-In the Vision to Make Gutenberg Editor for WordPress limitless, we step in the new era of WordPress Block Editor with The Plus Blocks for Gutenberg. Get more than <strong>75+ Dynamic Blocks, 300+ Prebuild UI Blocks</strong> , along with some of the most advanced functionalities like Blog builder, Woo Builder, Mega Menu, Filtered Gallery and much more to supercharge your Guteberg Editor like never before.Whether you're working on your Perfect blog, creating a sale generating online store or building a website for your next big idea, you can do it all with Gutenberg when you have [The Plus Blocks for Gutenberg](https://theplusblocks.com/).
+In the Vision to Make Gutenberg for WordPress limitless, we step into the new era of WordPress Block Editor with The Plus Addons for Gutenberg. Get more than <strong>70+ Dynamic Blocks, 300+ Prebuild UI Blocks</strong>, along with some of the most advanced functionalities like Blog builder, Woo Builder, Mega Menu, Filtered Gallery and much more to supercharge your Gutenberg Editor like never before. Whether you're working on your Perfect blog, creating a sale generating online store or building a website for your next big idea, you can do it all with Gutenberg when you have [The Plus Addons for Gutenberg](https://theplusblocks.com/).
 
-Enjoy a Complete<strong> No-Code experience</strong> and build everything with your simple mouse clicks. <strong>No Technical knowledge</strong> required, just plug-in and get started. Crafted with care and love to seamlessly integrate for smooth & happy workflow to impress your clients. Perfect for <strong>Bloggers, Freelancer, Marketer, Agency Owners, Designers</strong> and anyone who loves using Gutenberg giving  you the freedom to innovate.
+Enjoy a Complete<strong> No-Code experience</strong> and build everything with your simple mouse clicks. <strong>No Technical knowledge</strong> required, just plug-in and get started. Crafted with care and love to seamlessly integrate for smooth & happy workflow to impress your clients. Perfect for <strong>Bloggers, Freelancers, Marketers, Agency Owners, Designers</strong> and anyone who loves using Gutenberg giving you the freedom to innovate.
 
 | <strong> [ ⚡ SUPERCHARGE MY SITE NOW ](https://theplusblocks.com/pricing)</strong> |
 
@@ -24,11 +24,11 @@ Enjoy a Complete<strong> No-Code experience</strong> and build everything with y
 <strong> Quick Navigation Links</strong>
 [ 🌐 Visit Website](https://theplusblocks.com/) | [ 📹 Video Guides](https://www.youtube.com/c/POSIMYTHInnovations)| [ 📑 Documentations](https://docs.posimyth.com/tpag/) | [ 🛣️ Roadmap](https://roadmap.theplusblocks.com/) | [ 👥 Join Community](https://www.facebook.com/groups/theplus4gutenberg) |[ 🤝 Free Support](https://wordpress.org/support/plugin/the-plus-addons-for-block-editor/) | [ ⭐ Premium Support](https://store.posimyth.com)
 
-### 💪 Glimpse of The Plus Addon for Gutenberg under 60 Sec <a href="https://www.youtube.com/watch?v=UGVlqN9VjIQ"> Watch Now</a>
+### 💪 Glimpse of The Plus Addons for Gutenberg under 60 Sec <a href="https://www.youtube.com/watch?v=UGVlqN9VjIQ"> Watch Now</a>
 
 https://www.youtube.com/watch?v=UGVlqN9VjIQ
 
-### 👑 Exclusive Features of The Plus Blocks for Gutenberg
+### 👑 Exclusive Features of The Plus Addons for Gutenberg
 
 * <strong>Free Blog Builder</strong> for Gutenberg to customize anything<br><br><br>
 * <strong>WooCommerce Store Builder</strong> for Gutenberg to build custom Checkout, Cart pages, Thank you page etc. (Coming Soon)🔥<br><br><br>
@@ -38,15 +38,15 @@ https://www.youtube.com/watch?v=UGVlqN9VjIQ
 * Vertical and Horizontal <strong>Mega Menu Builder</strong> for Gutenberg🔥<br><br><br>
 * <strong>Carousel Anything</strong> converts any sections with blocks into beautiful carousel 🔥<br><br><br>
 * High converting <strong>Popup Builder</strong> for Gutenberg Sites<br><br><br>
-* <strong>Custom Cursor</strong> for Gutenberg (Coming Soon) <br><br><br>
-* Integrated with <strong>ACF, Toolset, Pods, WooCommerce, Mailchimp </strong> and more<br><br><br>
+* <strong>Dark Mode</strong> for Gutenberg <br><br><br>
+* Copy & Paste <strong>Blocks CSS Style</strong> in one click<br><br><br>
 * <strong>Supports RTL | WPML</strong> or any Translation | <strong>Multisite</strong><br><br><br>
 * <strong>Optimized Code Delivery</strong> with <strong>Ultra Light Modular</strong> backend architecture<br><br><br>
-* <strong>SEO Friendly,  A/B Tested Designs</strong> and <strong>Mobile Friendly</strong><br><br><br>
+* <strong>Completely Whitelabel Plugin, SEO Friendly,  A/B Tested Designs</strong> and <strong>Mobile Friendly</strong><br><br><br>
 * <strong>Custom CSS & JS options</strong> Add Custom Code anywhere on your site for any customization <br><br><br>
-* Compatible with all Popular <strong>WordPress themes like Nexter, Astra, OceanWP, GeneratePress, Neve</strong><br><br><br>
+* Compatible with all Popular WordPress themes like <strong>Nexter, Blocksy , Kadence, Astra, OceanWP, GeneratePress, Neve</strong><br><br><br>
 
-and much more, scroll down to explore more below
+and much more, keep scrolling to explore more
 
 
 ###🏆 30+ Free Blocks & Extensions
@@ -81,15 +81,17 @@ and much more, scroll down to explore more below
 28. <strong>[Blog Builder](https://theplusblocks.com/blog-builder/)</strong> - Post Title, Post Content, Post Image, Post Meta info, Post Author, Post Navigation, Post Comments.
 29. <strong>[Post Listing](https://theplusblocks.com/plus-listing/)</strong> - Any type of Post Listing (Related Posts and Archive Posts).
 30. <strong>Spacer</strong> - Add space between components.
-31. <strong>[On Scroll Animation ](https://theplusblocks.com/plus-extras/on-scroll-animations/)</strong> - Amazing On Scroll Animations for all your individual Blocks of Gutenberg, You can setup one time scroll animation in Gutenberg or dual scroll animation It have more than 30 Animation styles.
-32. <strong>[Live Copy Paste](https://theplusblocks.com/plus-extras/live-copy-paste/)</strong> - Use "Plus Copy" to transfer your Gutenberg Sections, Widgets & Columns from One site to another with simple method. It will change the way you are using Plus Design Templates, You just need to Live Copy from our demo pages and Paste on your website directly.
-33. <strong>[Smooth Scroll](https://theplusblocks.com/plus-blocks/smooth-scroll/)</strong> - Some pages of your site needs amazing smooth experience. You can do it using this plugin to have smooth scroll effect for amazing UX in your website.
+31. <strong>[On Scroll Animation ](https://theplusblocks.com/plus-extras/on-scroll-animations/)</strong> - Amazing On Scroll Animations for all your individual Blocks of Gutenberg, You can set up one-time scroll animation in Gutenberg or dual scroll animation It has more than 30 Animation styles.
+32. <strong>[Live Copy Paste](https://theplusblocks.com/plus-extras/live-copy-paste/)</strong> - Use "Plus Copy" to transfer your Gutenberg Sections, Widgets & Columns from One site to another with simple method. It will change the way you are using Plus Design Templates, You just need to Live Copy from our demo pages and Paste it on your website directly.
+33. <strong>[Smooth Scroll](https://theplusblocks.com/plus-blocks/smooth-scroll/)</strong> - Some pages of your site needs amazing smooth experience. You can do it using this plugin to have a smooth scroll effect for amazing UX on your website.
+34. Display(Conditional) Rules All Blocks Compatibility Free (Login Status) \
+35. <strong>[Dark Mode](https://theplusblocks.com/plus-blocks/dark-mode/)</strong> - for Gutenberg Block Editor, works across all devices and is fully responsive. Instantly make your website more appealing to your audience.
  
 
 
 ### 🏆 30+ Premium Blocks & Extensions
 
-1.  <strong>[Anything Carousal Remote](https://theplusblocks.com/plus-blocks/carousel-remote/)</strong> - Connect any carousel using unique id to trigger carousel motion
+1.  <strong>[Anything Carousel Remote](https://theplusblocks.com/plus-blocks/carousel-remote/)</strong> - Connect any carousel using unique id to trigger carousel motion
 2. <strong>[Anything Carousel ](https://theplusblocks.com/plus-blocks/carousel-anything/)</strong> - An effective way to display different images, videos, and other media in a sequence of slides like Carousel
 3. <strong>[Expand](https://theplusblocks.com/plus-blocks/expand/)</strong> - Show or Hide complete info on the page, when it cannot be viewed fully on the initial screen using Expand or Read More options
 4. <strong>[Heading Animation](https://theplusblocks.com/plus-blocks/heading-animation/)</strong> - Create animated impactful header that draws attention
@@ -123,6 +125,7 @@ and much more, scroll down to explore more below
 32.  <strong>[Mobile Menu](https://theplusblocks.com/plus-blocks/mobile-menu/)</strong> - Special responsive and mobile-friendly menu designs crafted for easier navigation
 33.  <strong>[Before After](https://theplusblocks.com/plus-blocks/before-after/)</strong> - Display two different versions of a webpage or product for comparison, measurement, and decision-making
 34.  <strong>[Product listing](https://theplusblocks.com/plus-listing/product-grid/)</strong> - List your WooCommerce Store Products on your website with intuitive filters and categories.
+35.  Display (Conditional) Rules for Gutenberg  Rules All Blocks Compatibility 
  
 
 
@@ -138,16 +141,16 @@ and much more, scroll down to explore more below
 
 ⚠️ NOTE: Make sure you are using <a href="https://wordpress.org/plugins/gutenberg/">Gutenberg Block Editor</a> which is the current default page editor, and not Classic editor or any other Page Builder for WordPress. 
 
-<em> For Elementor Page Builder, check <a href="https://wordpress.org/plugins/the-plus-addons-for-elementor-page-builder/">The Plus Addons for Elementor</a></em>
-
 <h3>☑️ 5 Steps for Installation </h3>
 1. Go to <strong>‘Plugins’</strong> option in your dashboard and select <strong>'Add New'</strong>
 2. Search for <strong>'The Plus Addons for Gutenberg'</strong> and install it
 3. Now You will have all Blocks available in your Block Library. You can easily add them using the ‘Add Block’ button in your page editor.
-4. You may enable/disable Blocks  from The Plus Settings from Dashboard.
+4. You may enable/disable Blocks from The Plus Settings from Dashboard.
 5. Congratulation, Now your site is ⚡ SUPERCHARGED, Get ready to build amazing websites
 
 <h3>👉 <a href="https://youtu.be/watch?v=KYiWUOA7LWs"> Watch this Quick Installation Guide under ⏱️ 60 Seconds</a></h3>
+
+<em> For Elementor Page Builder, check <a href="https://wordpress.org/plugins/the-plus-addons-for-elementor-page-builder/">The Plus Addons for Elementor</a></em>
 
 
 == Screenshots ==
@@ -157,22 +160,71 @@ and much more, scroll down to explore more below
 
 = Is Gutenberg required to use this plugin ? =
 
-Well Gutenberg is kind of the default page editor for Wordpress version 5.0 and further. So if you haven’t messed up with default page builder settings, you don’t need any installations. However if you have, then go and download [Gutenberg Plugin](https://wordpress.org/plugins/gutenberg/), install it and keep it activated.
+Well, Gutenberg is kind of the default page editor for WordPress version 5.0 and further. So if you haven’t messed up with default page builder settings, you don’t need any installations. However, if you have, then go and download [Gutenberg Plugin](https://wordpress.org/plugins/gutenberg/), install it and keep it activated.
 
-= Will it work with all themes out there ? =
+= Will it work with all themes out there? =
 
-Yes definitely ! We have designed the blocks to have compatibility with all the themes out there and we have made tags and CSS structure non-conflict in manner so that you can enjoy designing web sites in your own flow regardless of worrying about theme.
+Yes definitely! We have designed the blocks to have compatibility with all the themes out there and we have made tags and CSS structure non-conflict in a manner so that you can enjoy designing websites in your own flow regardless of worrying about the theme.
 
-However we are specially designing a Theme for all of our addons which would be lightweight and you can take out most of it without any extra efforts, so stay tuned for it !
+However we are specially designing a Theme for all of our addons that would be lightweight and you can take out most of it without any extra effort, so stay tuned for it!
 
-= Will it add a bloat and slow down my website ? =
+= Will it add bloat and slow down my website? =
 
-Absolutely not. Keeping in mind the development issues, we have tried to add as few as possible HTML tags. We have also managed the auto generation of styles on condition of activation and all the things that can save up space and act faster. So nothing to worry about.
+Absolutely not. Keeping in mind the development issues, we have tried to add as few as possible HTML tags. We have also managed the auto-generation of styles on condition of activation and all the things that can save up space and act faster. So nothing to worry about.
 
 
 [Contact Us](http://m.me/tpagutenberg/) if you want some custom / extra features and we will try to deliver a solution as soon as possible.
 
 == Changelog ==
+= 1.2.2 = 20 Nov 2021
+- Fix : Stylish List : Edit Page Error Bug
+- Fix : Global Spacing : Save Bug 
+
+= 1.2.1 = 18 Nov 2021
+- Update : Dark Mode Compatibility With Global Palettes of Astra, Kadence, Blocksy Theme and Many More.
+- Update : Breadcrumbs Block : Custom Home URL Option
+- Update : Security Update
+- Fix : Pricing List : Price Option Bug
+- Fix : Kadence Compatibility : Custom Font : Undefined Variable Bug
+- Rank Math : Accordion, TP Image, InfoBox, TP Heading, Stylist List, TP Button, FlipBox Blocks compatibility for Words Counts
+
+= 1.2.0 = 25 Oct 2021
+- Added : Block : Dark Mode
+- Added : Display/Conditional Rules based on Login Status : All Blocks Compatibility
+- Update : TP Post Image Block : Fancy Box Popup
+- Update : Tp Image Block : Fancy Box Popup
+- Fix : Site Logo : SVG URL Bug
+- Compatibility : Themes : Global Colors : Astra, Kadence, Blocksy and more based on Gutenberg Default Color Palette
+- Compatibility : Plugins : Global Colors : Stackable
+- Compatibility : Themes : Custom Fonts : Blocksy, Kadence
+- Compatibility : Plugins : Custom Fonts plugin ["Custom Fonts"](https://wordpress.org/plugins/custom-fonts/), ["Use Any Font"](https://wordpress.org/plugins/use-any-font/)
+
+= 1.1.7 = 04 Oct 2021
+- Added : InfoBox : SVG Icon Option
+- Added : Pricing Table : SVG Icon Option
+- Added : FlipBox : SVG Icon Option
+- Added : Number Counter : SVG Icon Option
+- Added : Extra option : Disable Google Font Load
+- Update : TP Post Image : New Styling Options
+- Update : Improved Regenerate Assets : CSS Regeneration
+- Compatibility : Nexter Theme : Improved CSS Regeneration Process
+- Compatibility : Blocksy Theme : Global Colors and Custom Font Family Connection
+- Compatibility : Stackable Gutenberg Blocks : Global Colors
+- Compatibility : Astra Theme : CSS Related Compatibility with Testing
+- Compatibility : Guten Theme : CSS Related Compatibility with Testing
+- Compatibility : PopularFX Theme : CSS Related Compatibility with Testing
+- Compatibility : GO Theme : CSS Related Compatibility with Testing
+- Compatibility : Neve Theme : CSS Related Compatibility with Testing
+- Fix : TP Post Content : Editor Error Bug
+- Fix : TP Post Image : Bug Fix
+- Fix : Other Bug Fixes & Improvements
+
+= 1.1.6 = 20 Sep 2021
+- Update : Theme Compatibility (Hello Elementor) 
+- Fix : Carousel Bug in Most of Carousel related Blocks
+- Fix : JQuery Migration Update
+- Fix : TP Post Meta Block Author Image Bug
+
 = 1.1.5 = 11 Sep 2021
 - Added : Option of "Reusable Block" in The Plus Settings
 - Update : Assets Regenerate Option Added

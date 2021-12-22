@@ -3,7 +3,7 @@
 * Plugin Name: The Plus Addons for Block Editor
 * Plugin URI: https://theplusblocks.com/
 * Description: Biggest collection of Blocks and features to improve and supercharge your Gutenberg, A default and most powerful page builder of WordPress. 
-* Version: 1.1.5
+* Version: 1.2.2
 * Author: POSIMYTH
 * Author URI: https://posimyth.com
 * Text Domain: tpgb
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-defined( 'TPGB_VERSION' ) or define( 'TPGB_VERSION', '1.1.5' );
+defined( 'TPGB_VERSION' ) or define( 'TPGB_VERSION', '1.2.2' );
 define( 'TPGB_FILE__', __FILE__ );
 
 define( 'TPGB_PATH', plugin_dir_path( __FILE__ ) );

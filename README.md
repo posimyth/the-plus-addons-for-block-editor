@@ -10,7 +10,7 @@
 
 **Tested up to:** 5.8
 
-**Stable tag:** 1.1.5
+**Stable tag:** 1.2.2
 
 **Requires PHP:** 5.6
 

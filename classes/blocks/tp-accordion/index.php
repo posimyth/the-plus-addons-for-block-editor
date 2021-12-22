@@ -1,6 +1,6 @@
 <?php
 /* Block : Accordion
- * @since : 1.0.0
+ * @since : 1.2.0
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -64,7 +64,7 @@ function tpgb_tp_accordion_render_callback( $attributes, $content) {
 								}
 							$loop_content .= '</span>';
 						}
-						$loop_content .= '<'.esc_attr($titleTag).' class="accordion-title"> '.wp_kses_post($item['title']).'</'.esc_attr($titleTag).'>';
+						$loop_content .= '<'.Tp_Blocks_Helper::validate_html_tag($titleTag).' class="accordion-title"> '.wp_kses_post($item['title']).'</'.Tp_Blocks_Helper::validate_html_tag($titleTag).'>';
 					$loop_content .= '</span>';
 
 					if($iconAlign == 'end'){
@@ -101,6 +101,8 @@ function tpgb_tp_accordion_render_callback( $attributes, $content) {
 function tpgb_tp_accordion() {
 	$globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
 	$globalpositioningOption = Tpgb_Blocks_Global_Options::load_positioning_options();
+	$globalPlusExtrasOption = Tpgb_Blocks_Global_Options::load_plusextras_options();
+	
 	$attributesOptions = [
 			'block_id' => [
                 'type' => 'string',
@@ -220,6 +222,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header .accordion-tab-icon{ color: {{inIconColor}}; }',
 					]
 				],
+				'scopy' => true,
 			],
 			'inIconActcolor' => [
 				'type' => 'string',
@@ -229,6 +232,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header.active .accordion-tab-icon{ color: {{inIconActcolor}}; }',
 					]
 				],
+				'scopy' => true,
 			],
 			'inIconGap' => [
 				'type' => 'object',
@@ -241,6 +245,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header .accordion-tab-icon { margin-right: {{inIconGap}}; }',
 					]
 				],
+				'scopy' => true,
 			],
 			'inIconSize' => [
 				'type' => 'object',
@@ -253,6 +258,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header .accordion-tab-icon{ font-size: {{inIconSize}}; }',
 					]
 				],
+				'scopy' => true,
 			],
 			'tgiconColor' => [
 				'type' => 'string',
@@ -263,6 +269,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header .close-toggle-icon{ color: {{tgiconColor}}; }',
 					]
 				],
+				'scopy' => true,
 			],
 			'tgiconActcolor' => [
 				'type' => 'string',
@@ -273,6 +280,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header .open-toggle-icon{ color: {{tgiconActcolor}}; }',
 					]
 				],
+				'scopy' => true,
 			],
 			'tgiconGap' => [
 				'type' => 'object',
@@ -290,6 +298,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header .accordion-toggle-icon { margin-left: {{tgiconGap}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'tgiconSize' => [
 				'type' => 'object',
@@ -303,6 +312,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header .toggle-icon{ font-size: {{tgiconSize}}; }',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleTypo' => [
 				'type'=> 'object',
@@ -315,10 +325,12 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header .accordion-title',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleAlign' =>[
 				'type' => 'string',
 				'default' => 'text-left',
+				'scopy' => true,
 			],
 			'titleColor' => [
 				'type' => 'string',
@@ -328,6 +340,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header .accordion-title{color : {{titleColor}}}',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleActcolor' => [
 				'type' => 'string',
@@ -337,6 +350,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header.active .accordion-title{color : {{titleActcolor}}}',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleHvrcolor' => [
 				'type' => 'string',
@@ -346,6 +360,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header:hover .accordion-title{color : {{titleHvrcolor}}}',
 					]
 				],
+				'scopy' => true,
 			], 
 			'titlePadding' => [
 				'type' => 'object',
@@ -358,6 +373,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header{ padding : {{titlePadding}}}',
 					]
 				],
+				'scopy' => true,
 			],
 			'accorBetspace' => [
 				'type' => 'object',
@@ -370,6 +386,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-wrapper .tpgb-accordion-item{ margin-bottom : {{accorBetspace}}}',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleBorder' => [
 				'type' => 'object',
@@ -381,6 +398,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleBradius' => [
 				'type' => 'object',
@@ -393,6 +411,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header{ border-radius : {{titleBradius}} }',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleActborder' => [
 				'type' => 'object',
@@ -404,6 +423,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header.active',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleActBradius' => [
 				'type' => 'object',
@@ -416,6 +436,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header.active{ border-radius : {{titleActBradius}} }',
 					]
 				],
+				'scopy' => true,
 			],
 			'titlebgType' => [
 				'type' => 'object',
@@ -428,6 +449,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleBshadow' => [
 				'type' => 'object',
@@ -445,6 +467,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleActbgtype' => [
 				'type' => 'object',
@@ -457,6 +480,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header.active',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleActBshadow' => [
 				'type' => 'object',
@@ -474,6 +498,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-header.active',
 					]
 				],
+				'scopy' => true,
 			],
 			'descTypo' => [
 				'type'=> 'object',
@@ -486,10 +511,12 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-content .tpgb-content-editor',
 					]
 				],
+				'scopy' => true,
 			],
 			'descAlign' => [
 				'type'=> 'string',
-				'default' => 'text-left'
+				'default' => 'text-left',
+				'scopy' => true,
 			],
 			'descColor' => [
 				'type' => 'string',
@@ -499,6 +526,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-content .tpgb-content-editor{color : {{descColor}}}',
 					]
 				],
+				'scopy' => true,
 			],
 			'descMargin' => [
 				'type' => 'object',
@@ -511,6 +539,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-content { margin : {{descMargin}}}',
 					]
 				],
+				'scopy' => true,
 			],
 			'descPadding' => [	
 				'type' => 'object',
@@ -523,6 +552,7 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-content { padding : {{descPadding}}}',
 					]
 				],
+				'scopy' => true,
 			],
 			'descbgType' => [
 				'type' => 'object',
@@ -535,10 +565,11 @@ function tpgb_tp_accordion() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-accordion-content',
 					]
 				],
+				'scopy' => true,
 			],
 		];
 		
-	$attributesOptions = array_merge($attributesOptions, $globalBgOption, $globalpositioningOption);
+	$attributesOptions = array_merge($attributesOptions, $globalBgOption, $globalpositioningOption, $globalPlusExtrasOption);
 	
 	register_block_type( 'tpgb/tp-accordion', array(
 		'attributes' => $attributesOptions,

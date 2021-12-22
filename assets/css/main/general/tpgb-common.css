@@ -193,6 +193,7 @@
     top: 0;
     left: 0;
 	opacity: 0;
+	z-index: -1;
     -webkit-animation-duration: 1.5s;
     animation-duration: 1.5s;
     -webkit-animation-fill-mode: forwards;
@@ -229,6 +230,20 @@
         transform: scale(1.4)
     }
 }
+/* Post Not Found Css */
+h3.tpgb-posts-not-found{
+    font-size: 14px !important;
+    background: #8072fc;
+    padding: 10px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 3px;
+    box-shadow: 0 5px 30px -5px #8072fc;
+    color: #fff !important;
+    width: 100%;
+}
+/* Post Not Found Css */
+/* Admin Bar Css */
 #wp-admin-bar-tpgb_edit_template .ab-item.tpgb-admin-sub-item {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -257,3 +272,52 @@
     background: #3a3c3e;
     padding-top: 0;
 }
+
+/* Theme Compatibility Css */
+
+/* Hello Elementor */
+.alignfull .tpgb-before-after .tpgb-before-sepicon > img,.alignfull .tpgb-creative-image img,.alignfull .tpgb-flipbox img.service-img,.alignfull .tpgb-process-steps .tpgb-process-steps-wrapper img.tp-icon-img,.alignfull img.progress-bar-img{
+    width: auto;
+}
+/* Hello Elementor */
+/* OceanWP Theme */
+.page .entry .tpgb-section.alignfull{
+    max-width: initial;
+}
+.single-post:not(.elementor-page) .single-page-article .entry-content a:not(.wp-block-button__link):not(.wp-block-file__button), .page:not(.elementor-page):not(.woocommerce-page) .single-page-article .entry a:not(.wp-block-button__link):not(.wp-block-file__button),.single-post:not(.elementor-page) .single-page-article .entry-content a:not(.wp-block-button__link):not(.wp-block-file__button):hover, .page:not(.elementor-page):not(.woocommerce-page) .single-page-article .entry a:not(.wp-block-button__link):not(.wp-block-file__button):hover,.single-post:not(.elementor-page) .single-page-article .entry-content a:not(.wp-block-button__link):not(.wp-block-file__button):focus, .page:not(.elementor-page):not(.woocommerce-page) .single-page-article .entry a:not(.wp-block-button__link):not(.wp-block-file__button):focus,.single-post:not(.elementor-page) .single-page-article .entry-content a:not(.wp-block-button__link):not(.wp-block-file__button):focus:not(.wp-block-button__link):not(.wp-block-file__button), .page:not(.elementor-page):not(.woocommerce-page) .single-page-article .entry a:not(.wp-block-button__link):not(.wp-block-file__button):focus:not(.wp-block-button__link):not(.wp-block-file__button){
+    text-decoration: none;
+}
+/* OceanWP Theme */
+/* Astra Theme */
+.tpgb-section .svg-inline--fa {
+    width: initial;
+}
+.theme-astra .tpgb-product-listing article.product {
+   padding: 0;
+}
+.ast-single-post .entry-content .tpgb-section a {
+   text-decoration: none;
+}
+/* Astra Theme*/
+
+/* Guten Theme */
+.theme-guten .tpgb-product-listing article.product {
+	outline: none;
+}
+/* Guten Theme */
+
+/* PopularFX & Go Theme */
+.theme-popularfx .tp-breadcrumbs a:focus, .theme-popularfx .tpgb-plus-button a:focus, .theme-popularfx .tpgb-table-content .toc-list-item a:focus , .theme-go .tpgb-table-content .toc-list-item a:focus {
+    outline: none;
+}
+/* PopularFX & go Theme */
+
+/* Neve Theme */
+.theme-neve .entry-content a:not([class*=button]), .theme-neve .nv-comment-content a:not([class*=button]),.theme-neve  .nv-template .neve-main a:not([class*=button]), .theme-neve  .widget_text a:not([class*=button]){
+    text-decoration: none;
+}
+.excerpt-wrap .tpgb-toc-wrap li, .nv-content-wrap .tpgb-toc-wrap li,.excerpt-wrap .tpgb-circle-menu li , .nv-content-wrap .tpgb-circle-menu li ,.content-area .tpgb-toc-wrap ul li,.content-area .tpgb-circle-menu ul li{
+    margin: 0px;
+}
+/* Neve Theme */
+/* Theme Compatibility Css */

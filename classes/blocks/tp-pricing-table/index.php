@@ -1,6 +1,6 @@
 <?php
 /* Block : Pricing Table
- * @since : 1.1.3
+ * @since : 1.2.1
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -37,6 +37,12 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 	
 	$hoverStyle = (!empty($attributes['hoverStyle'])) ? $attributes['hoverStyle'] : 'hover_normal';
 	
+	$svgIcon = (!empty($attributes['svgIcon'])) ? $attributes['svgIcon'] : '';
+	$svgDraw = (!empty($attributes['svgDraw'])) ? $attributes['svgDraw'] : 'delayed';
+	$svgstroColor = (!empty($attributes['svgstroColor'])) ? $attributes['svgstroColor'] : '';
+	$svgfillColor = (!empty($attributes['svgfillColor'])) ? $attributes['svgfillColor'] : 'none';
+	$svgDura = (!empty($attributes['svgDura'])) ? $attributes['svgDura'] : 90;
+	
 	$i = 0;
 	// Overlay
 	$contentOverlay = '';
@@ -48,7 +54,7 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 	if($iconType=='icon'){
 		$icon_style = $iconStyle ;
 	}
-	$getPriceIcon .= '<div class="pricing-icon icon-'.esc_attr($icon_style).'">';
+	$getPriceIcon .= '<div class=" '.($iconType=='svg' ? ' tpgb-draw-svg' : ' pricing-icon' ).' icon-'.esc_attr($icon_style).'" '.($iconType=='svg' ? 'data-id="service-svg-'.esc_attr($block_id).'" data-type="'.esc_attr($svgDraw).'" data-duration="'.esc_attr($svgDura).'" data-stroke="'.esc_attr($svgstroColor).'" data-fillColor="'.esc_attr($svgfillColor).'" data-fillEnable="yes"': '' ).' >';
 		if($iconType=='icon'){
 			$getPriceIcon .= '<i class="'.esc_attr($iconStore).'"></i>';
 		}
@@ -59,6 +65,10 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 				$imgSrc = '<img src='.esc_url($imgStore['url']).' class="pricing-icon-img" alt="'.esc_attr__('Icon','tpgb').'"/>';
 			}
 			$getPriceIcon .= $imgSrc;
+		}
+		if($iconType=='svg' && !empty($svgIcon) && !empty($svgIcon['url'])){
+			$getPriceIcon .= '<object id="service-svg-'.esc_attr($block_id).'" type="image/svg+xml" data="'.esc_url($svgIcon['url']).'">';
+			$getPriceIcon .= '</object>';
 		}
 	$getPriceIcon .= '</div>';
 		
@@ -93,9 +103,9 @@ function tpgb_tp_pricing_table_render_callback( $attributes, $content) {
 	$getPriceContent .= '<div class="pricing-price-wrap '.esc_attr($priceStyle).'">';
 		if(!empty($disPrePrice)){
 			$getPriceContent .= '<span class="pricing-previous-price-wrap">';
-				$getPriceContent .= $prevPreText;
-				$getPriceContent .= $prevPriceValue;
-				$getPriceContent .= $prevPostText;
+				$getPriceContent .= wp_kses_post($prevPreText);
+				$getPriceContent .= wp_kses_post($prevPriceValue);
+				$getPriceContent .= wp_kses_post($prevPostText);
 			$getPriceContent .='</span>';
 		}
 		if(!empty($preText)){
@@ -204,6 +214,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner .pricing-icon-img{ width: {{imgSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'priceStyle' => [
 			'type' => 'string',
@@ -262,6 +273,7 @@ function tpgb_pricing_table() {
 		'iconStyle' => [
 			'type' => 'string',
 			'default' => 'square',	
+			'scopy' => true,
 		],
 		'iconSize' => [
 			'type' => 'object',
@@ -275,6 +287,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner .pricing-icon{ font-size: {{iconSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'iconWidth' => [
 			'type' => 'object',
@@ -288,6 +301,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner .pricing-icon{ width: {{iconWidth}}; height: {{iconWidth}}; line-height: {{iconWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnNmlColor' => [
 			'type' => 'string',
@@ -298,6 +312,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner .pricing-icon{ color: {{icnNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnHvrColor' => [
 			'type' => 'string',
@@ -308,6 +323,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner:hover .pricing-icon{ color: {{icnHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnNormalBG' => [
 			'type' => 'object',
@@ -326,6 +342,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner .pricing-icon',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnHoverBG' => [
 			'type' => 'object',
@@ -344,6 +361,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner:hover .pricing-icon',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlBColor' => [
 			'type' => 'string',
@@ -357,6 +375,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner .pricing-icon{ border:1px solid ; border-color: {{nmlBColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrBColor' => [
 			'type' => 'string',
@@ -370,6 +389,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner:hover .pricing-icon{ border:1px solid ; border-color: {{hvrBColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlIcnBRadius' => [
 			'type' => 'object',
@@ -391,6 +411,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner .pricing-icon{border-radius: {{nmlIcnBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrIcnBRadius' => [
 			'type' => 'object',
@@ -412,6 +433,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner:hover .pricing-icon{border-radius: {{hvrIcnBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlIcnShadow' => [
 			'type' => 'object',
@@ -430,6 +452,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner .pricing-icon',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrIcnShadow' => [
 			'type' => 'object',
@@ -448,6 +471,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner:hover .pricing-icon',
 				],
 			],
+			'scopy' => true,
 		],
 		
 		'titleTypo' => [
@@ -462,6 +486,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.pricing-style-1 .pricing-title-wrap .pricing-title',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleNmlColor' => [
 			'type' => 'string',
@@ -472,6 +497,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.pricing-style-1 .pricing-title-wrap .pricing-title { color: {{titleNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleHvrColor' => [
 			'type' => 'string',
@@ -482,6 +508,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.pricing-style-1 .pricing-table-inner:hover .pricing-title { color: {{titleHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		
 		'subTitleTypo' => [
@@ -496,6 +523,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table .pricing-subtitle',
 				],
 			],
+			'scopy' => true,
 		],
 		'subTitleNmlColor' => [
 			'type' => 'string',
@@ -506,6 +534,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table .pricing-subtitle{ color: {{subTitleNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'subTitleHvrColor' => [
 			'type' => 'string',
@@ -516,6 +545,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table .pricing-table-inner:hover .pricing-subtitle{ color: {{subTitleHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		
 		'prevPriceTypo' => [
@@ -530,6 +560,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-previous-price-wrap',
 				],
 			],
+			'scopy' => true,
 		],
 		'prevPriceAlign' => [
 			'type' => 'string',
@@ -540,6 +571,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-previous-price-wrap{ vertical-align: {{prevPriceAlign}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'prevPriceNmlColor' => [
 			'type' => 'string',
@@ -550,6 +582,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-previous-price-wrap{ color: {{prevPriceNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'prevPriceHvrColor' => [
 			'type' => 'string',
@@ -560,6 +593,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner:hover .pricing-previous-price-wrap{ color: {{prevPriceHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		
 		'priceTypo' => [
@@ -574,6 +608,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-price-wrap.style-1 .pricing-price ,{{PLUS_WRAP}} .pricing-price-wrap.style-1 span.price-prefix-text',
 				],
 			],
+			'scopy' => true,
 		],
 		'priceNmlColor' => [
 			'type' => 'string',
@@ -584,6 +619,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-price-wrap.style-1 .pricing-price , {{PLUS_WRAP}} .pricing-price-wrap.style-1 span.price-prefix-text{ color: {{priceNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'priceHvrColor' => [
 			'type' => 'string',
@@ -594,6 +630,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner:hover .pricing-price-wrap.style-1 .pricing-price , {{PLUS_WRAP}} .pricing-table-inner:hover .pricing-price-wrap.style-1 span.price-prefix-text { color: {{priceHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'postfixTypo' => [
 			'type'=> 'object',
@@ -607,6 +644,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-price-wrap span.price-postfix-text',
 				],
 			],
+			'scopy' => true,
 		],
 		'postfixNmlColor' => [
 			'type' => 'string',
@@ -617,6 +655,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-price-wrap span.price-postfix-text{ color: {{postfixNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'postfixHvrColor' => [
 			'type' => 'string',
@@ -627,6 +666,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-table-inner:hover span.price-postfix-text{ color: {{postfixHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		
 		'wysiwygTypo' => [
@@ -641,6 +681,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-content-wrap.content-desc .pricing-content',
 				],
 			],
+			'scopy' => true,
 		],
 		'wysiwygTextColor' => [
 			'type' => 'string',
@@ -651,6 +692,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-content-wrap.content-desc .pricing-content , {{PLUS_WRAP}} .pricing-content-wrap.content-desc .pricing-content p{ color: {{wysiwygTextColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'wyBorderWidth' => [
 			'type' => 'object',
@@ -664,6 +706,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .content-desc.style-2 hr.border-line{ margin: 30px {{wyBorderWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'wysiwygBColor' => [
 			'type' => 'string',
@@ -674,6 +717,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .content-desc.style-2 hr.border-line{ border-color: {{wysiwygBColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'wysiwygAlign' => [
 			'type' => 'string',
@@ -684,6 +728,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}} .pricing-content-wrap.content-desc .pricing-content , {{PLUS_WRAP}} .pricing-content-wrap.content-desc .pricing-content p{ text-align: {{wysiwygAlign}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		
 		
@@ -703,6 +748,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1 .pricing-table-inner {padding: {{innerPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgNmlBorder' => [
 			'type' => 'object',
@@ -725,6 +771,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1 .pricing-table-inner ',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgNmlBRadius' => [
 			'type' => 'object',
@@ -742,6 +789,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1 .pricing-table-inner , {{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1 .pricing-overlay-color {border-radius: {{bgNmlBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgHvrBorder' => [
 			'type' => 'object',
@@ -764,6 +812,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1:hover .pricing-table-inner',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgHvrBRadius' => [
 			'type' => 'object',
@@ -781,10 +830,12 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1:hover .pricing-table-inner ,  {{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1:hover .pricing-overlay-color {border-radius: {{bgHvrBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'hoverStyle' => [
 			'type' => 'string',
-			'default' => 'hover_normal',	
+			'default' => 'hover_normal',
+			'scopy' => true,			
 		],
 		'normalBG' => [
 			'type' => 'object',
@@ -802,6 +853,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1 .pricing-table-inner ',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlOverlay' => [
 			'type' => 'string',
@@ -812,6 +864,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1 .pricing-overlay-color{ background: {{nmlOverlay}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgNmlShadow' => [
 			'type' => 'object',
@@ -829,6 +882,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1 .pricing-table-inner ',
 				],
 			],
+			'scopy' => true,
 		],
 		'hoverBG' => [
 			'type' => 'object',
@@ -846,6 +900,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1:hover .pricing-table-inner , {{PLUS_WRAP}}.tpgb-pricing-table.hover_fadein .pricing-overlay-color , {{PLUS_WRAP}}.tpgb-pricing-table.hover_slide_left .pricing-overlay-color , {{PLUS_WRAP}}.tpgb-pricing-table.hover_slide_right .pricing-overlay-color , {{PLUS_WRAP}}.tpgb-pricing-table.hover_slide_top .pricing-overlay-color , {{PLUS_WRAP}}.tpgb-pricing-table.hover_slide_bottom .pricing-overlay-color ',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrOverlay' => [
 			'type' => 'string',
@@ -856,6 +911,7 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1:hover .pricing-overlay-color { background: {{hvrOverlay}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgHvrShadow' => [
 			'type' => 'object',
@@ -873,8 +929,46 @@ function tpgb_pricing_table() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-table.pricing-style-1:hover .pricing-table-inner ',
 				],
 			],
+			'scopy' => true,
 		],
 		
+		'svgIcon' => [
+			'type' => 'object',
+			'default' => [],
+		],
+		'svgDraw' => [
+			'type' => 'string',
+			'default' => 'delayed',	
+			'scopy' => true,
+		],
+		'svgDura' => [
+			'type' => 'string',
+			'default' => '90',
+			'scopy' => true,
+		],
+		'svgmaxWidth' => [
+			'type' => 'object',
+			'default' => [ 
+				'md' => '',
+				"unit" => 'px',
+			],
+			'style' => [
+				(object) [
+					'selector' => '{{PLUS_WRAP}} .tpgb-draw-svg{ max-width: {{svgmaxWidth}}; max-height: {{svgmaxWidth}}; }',
+				],
+			],
+			'scopy' => true,
+		],
+		'svgstroColor' => [
+			'type' => 'string',
+			'default' => '#000000',
+			'scopy' => true,
+		],
+		'svgfillColor' => [
+			'type' => 'string',
+			'default' => '',
+			'scopy' => true,
+		],
 	);
 	$attributesOptions = array_merge($attributesOptions,$globalBgOption,$globalpositioningOption,$plusButton_options, $globalPlusExtrasOption);
 	

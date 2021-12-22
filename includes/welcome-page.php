@@ -99,6 +99,33 @@ echo '<div class="tpgb-panel-welcome-page">';
 				echo '<div class="tpgb-sec-border"></div>';
 				
 				echo '<div class="tpgb-changelog-list">';
+					echo '<div class="changelog-date">'.esc_html__('18 Nov 2021','tpgb').' <span class="changelog-version">'.esc_html__('1.2.1','tpgb').'</span></div>';
+					echo '<ul class="changelog-list">';
+						echo '<li>'.esc_html__('Update : Dark Mode Compatibility With Global Palettes of Astra, Kadence, Blocksy Theme and Many More.','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Breadcrumbs Block : Custom Home URL Option','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Security Update','tpgb').'</li>';
+						echo '<li>'.esc_html__('Fix : Pricing List : Price Option Bug','tpgb').'</li>';
+						echo '<li>'.esc_html__('Fix : Kadence Compatibility : Custom Font : Undefined Variable Bug','tpgb').'</li>';
+						echo '<li>'.esc_html__('Rank Math : Accordion, TP Image, InfoBox, TP Heading, Stylist List, TP Button, FlipBox Blocks compatibility for Words Counts','tpgb').'</li>';
+					echo '</ul>';
+				echo '</div>';
+				
+				echo '<div class="tpgb-changelog-list">';
+					echo '<div class="changelog-date">'.esc_html__('25 Oct 2021','tpgb').' <span class="changelog-version">'.esc_html__('1.2.0','tpgb').'</span></div>';
+					echo '<ul class="changelog-list">';
+						echo '<li>'.esc_html__('Added : Block : Dark Mode','tpgb').'</li>';
+						echo '<li>'.esc_html__('Added : Display/Conditional Rules based on Login Status : All Blocks Compatibility','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : TP Post Image Block : Fancy Box Popup','tpgb').'</li>';
+						echo '<li>'.esc_html__('Update : Tp Image Block : Fancy Box Popup','tpgb').'</li>';
+						echo '<li>'.esc_html__('Fix : Site Logo : SVG URL Bug','tpgb').'</li>';
+						echo '<li>'.esc_html__('Compatibility : Themes : Global Colors : Astra, Kadence, Blocksy and more based on Gutenberg Default Color Palette','tpgb').'</li>';
+						echo '<li>'.esc_html__('Compatibility : Plugins : Global Colors : Stackable','tpgb').'</li>';
+						echo '<li>'.esc_html__('Compatibility : Themes : Custom Fonts : Blocksy, Kadence','tpgb').'</li>';
+						echo '<li>Compatibility : Plugins : Custom Fonts plugin <a href="https://wordpress.org/plugins/custom-fonts/">Custom Fonts</a>, <a href="https://wordpress.org/plugins/use-any-font/">Use Any Font</a></li>';
+					echo '</ul>';
+				echo '</div>';
+				
+				echo '<div class="tpgb-changelog-list">';
 					echo '<div class="changelog-date">'.esc_html__('11 Sep 2021','tpgb').' <span class="changelog-version">'.esc_html__('1.1.5','tpgb').'</span></div>';
 					echo '<ul class="changelog-list">';
 						echo '<li>'.esc_html__('Added : Option of "Reusable Block" in The Plus Settings','tpgb').'</li>';

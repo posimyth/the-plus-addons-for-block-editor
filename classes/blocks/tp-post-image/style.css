@@ -1,7 +1,7 @@
 /**
  * CSS for both Frontend+Backend.
  */
- .tpgb-post-image{
+.tpgb-post-image{
 	position:relative;
 	display:block;
 	font-size: 0;
@@ -14,6 +14,10 @@
 	-webkit-transition:all 0.3s linear;
 	-o-transition:all 0.3s linear;
 	transition:all 0.3s linear;
+}
+.tpgb-post-image .tpgb-featured-image img{
+	max-width: 100%;
+    height: auto;
 }
 .tpgb-featured-image a {
     display: flex;

@@ -1,3 +1,11 @@
+/*block editor style*/
+.edit-post-visual-editor ul.splide__pagination {
+    margin: 0;
+    padding: 0;
+}
+
+/*block editor style*/
+
 /* Splide Silder Css */
 
 /*arrows style-1*/
@@ -548,6 +556,10 @@
 .splide__pagination li button.splide__pagination__page{
     width: 12px;
     height: 12px;
+    padding: 0px;
+}
+.splide__pagination li button.splide__pagination__page:focus{
+    outline: none;
 }
 .splide__pagination li button.splide__pagination__page.is-active{
     transform: scale(1);
@@ -572,6 +584,7 @@
     -o-transition: box-shadow 0.3s ease;
     -ms-transition: box-shadow 0.3s ease;
     transition: box-shadow 0.3s ease;
+    border: none;
 }
 
 .dots-style-1 li button.splide__pagination__page:hover,.dots-style-1 li button.splide__pagination__page:focus {
@@ -832,6 +845,7 @@
 	-webkit-border-radius:0; 
     border-radius: 0;
     padding: 0;
+    border: none;
 }
 .dots-style-5 .splide__pagination li button:before {
     content: '' !important;
@@ -906,7 +920,7 @@
 	-ms-transition:0.4s ease-in-out;
 	transition: 0.4s ease-in-out;
 }
-.dots-style-6 .splide__pagination button.is-active:after, .dots-style-6 .splide__pagination li:hover button {
+.dots-style-6 .splide__pagination button.is-active:after, .dots-style-6  li:hover button {
 	opacity: 1;
 }
 /*dots style-6*/
@@ -938,6 +952,7 @@
 	-webkit-border-radius: 0;
     border-radius: 0;
     padding: 0;
+    border: none;
 }
 .dots-style-7 .splide__pagination li button:before {
     content: '' !important;
@@ -953,4 +968,5 @@
 .splide--ttb > .splide__pagination li:not(:last-child){
     margin: 0px 0px 10px 0px;
 }
+
 /* Splide Silder Css */

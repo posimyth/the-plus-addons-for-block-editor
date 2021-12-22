@@ -17,7 +17,22 @@
 					
 					$(tabsContainer).find(">.tpgb-tabs-content-wrapper>.tpgb-tab-content").removeClass('active').addClass('inactive');
 					$(">.tpgb-tabs-content-wrapper>.tpgb-tab-content[data-tab='"+currentTabIndex+"']",tabsContainer).addClass('active').removeClass('inactive');
-				
+					
+					//Init Splide Slider
+					if($(".tpgb-tab-content[data-tab='"+currentTabIndex+"']").find(".tpgb-carousel").length){
+						var scope = document.querySelectorAll(".tpgb-tab-content[data-tab='"+currentTabIndex+"'] .tpgb-carousel");
+                        scope.forEach(function(obj){
+                            var splideInit = slideStore.get(obj);
+                            splideInit.refresh();
+                        });
+					}
+
+					if($(" .tpgb-tab-content[data-tab='"+currentTabIndex+"'] .tpgb-isotope .post-loop-inner", $currentTab).length){
+						setTimeout(function(){						
+							$(" .tpgb-tab-content[data-tab='"+currentTabIndex+"'] .tpgb-isotope .post-loop-inner", $currentTab).isotope('layout');
+						}, 30);
+					}
+					
 					$(tabsContent).each( function(index) {
 						$(this).removeClass('default-active');
 					});

@@ -64,11 +64,12 @@ class Tp_Core_Init_Blocks {
 		//Load Css/Js File blocks
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_load_block_css_js'));
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_post_css'));
-		add_action('wp_footer', array($this, 'template_load_block_css_js'));
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_css_js'));
 		
-		//admin bar enqueue scripts
-		add_action( 'wp_footer', [ $this, 'admin_bar_enqueue_scripts' ] );
+		if(!defined('NEXTER_EXT')){
+			//admin bar enqueue scripts
+			add_action( 'wp_footer', [ $this, 'admin_bar_enqueue_scripts' ] );
+		}
 	}
 	
 	/**
@@ -169,12 +170,17 @@ class Tp_Core_Init_Blocks {
 				true
 			);
 			
+			$plus_version=get_option( 'tpgb_backend_cache_at' );
+			if(empty($plus_version)){
+				$plus_version = TPGB_VERSION;
+			}
+			
 			// Load Plus Style Editor Block
 			wp_enqueue_style(
 				'tpgb-plus-block-editor-css',
 				tpgb_library()->pathurl_security($css_file),
 				array('wp-edit-blocks'),
-				TPGB_VERSION
+				$plus_version
 			);
 			
 			// Load Plus Script Editor Block
@@ -182,7 +188,7 @@ class Tp_Core_Init_Blocks {
 				'tpgb-plus-block-editor-js',
 				tpgb_library()->pathurl_security($js_file),
 				['jquery'],
-				TPGB_VERSION,
+				$plus_version,
 				false
 			);
 		}else{
@@ -215,7 +221,7 @@ class Tp_Core_Init_Blocks {
 	/**
      * Enqueue block styles and scripts for backend editor.
      *
-     * @since 1.0.0
+     * @since 1.2.0
      */
     public function editor_assets() {
 		
@@ -239,7 +245,15 @@ class Tp_Core_Init_Blocks {
 			$GoogleMap_Api = Tp_Blocks_Helper::get_extra_option('googlemap_api');
 		}
 		
+		$googleFont_Load = Tp_Blocks_Helper::get_extra_option('gfont_load');
+		$googleFonts = false;
+		if( empty($googleFont_Load) || (!empty($googleFont_Load) && $googleFont_Load!='disable') ){
+			$googleFonts = true;
+			$googleFonts = apply_filters( 'tpgb_google_font_load', $googleFonts );
+		}
+		
 		$wp_localize_tpgb = array(
+			'activeTheme' => esc_html( get_template() ),
 			'category' => TPGB_CATEGORY,
 			'activated_blocks' => Tp_Blocks_Helper::get_block_enabled([]),
 			'deactivated_blocks' => Tp_Blocks_Helper::get_block_deactivate(),
@@ -251,6 +265,7 @@ class Tp_Core_Init_Blocks {
 			'ajax_url' => esc_url( admin_url( 'admin-ajax.php' ) ),
 			'image_sizes' => Tp_Blocks_Helper::get_image_sizes(),
 			'googlemap_api' => $GoogleMap_Api,
+			'googlefont_load' => $googleFonts,
 			'fontawesome' => false,
 			'contactform_list' => Tp_Blocks_Helper::get_contact_form_post(),
 			'calderaform_list' => Tp_Blocks_Helper::get_caldera_forms_post(),
@@ -261,6 +276,7 @@ class Tp_Core_Init_Blocks {
 			'preview_image' => esc_url(TPGB_URL .'assets/images/tpgb-placeholder.jpg'),
 			'preview_grid_image' => esc_url(TPGB_URL .'assets/images/tpgb-placeholder-grid.jpg'),
 			'taxonomy_list' => Tp_Blocks_Helper::tpgb_get_post_taxonomies(),
+			'custom_font' => Tp_Blocks_Helper::tpgb_custom_font(),
 		);
 		
 		if(has_filter('tpgb_load_localize')) {
@@ -664,7 +680,7 @@ class Tp_Core_Init_Blocks {
 				$css_path = $upload_base_dir . "theplus_gutenberg/plus-css-{$template_id}.css";
 				if (file_exists($css_path)) {
 					$css_url     = $css_file_url . "theplus_gutenberg/plus-css-{$template_id}.css";
-					$plus_version=get_post_meta( $post_id, '_block_css', true );
+					$plus_version=get_post_meta( $template_id, '_block_css', true );
 					if(empty($plus_version)){
 						$plus_version = TPGB_VERSION;
 					}
@@ -719,22 +735,6 @@ class Tp_Core_Init_Blocks {
 		}
 	}
 
-	/*
-	 * Frontend Enqueue Scripts
-	 **/
-	public function template_load_block_css_js(){
-		$post_ids = [];
-		if(has_filter('tpgb_template_get_post_id')) {
-			$post_ids = apply_filters('tpgb_template_get_post_id', $post_ids);
-		}
-		
-		if(!empty($post_ids)){
-			foreach($post_ids as $post_id){
-				$this->enqueue_post_css($post_id);
-			}
-		}
-	}
-	
 	/*
 	 * Enqueue Post Id Load Css
 	 * @since 1.1.1
@@ -807,7 +807,7 @@ class Tp_Core_Init_Blocks {
 		
 		$images = array();
 		if (!isset($obj['featured_media'])) {
-			$images['default'] = TPGB_URL .'assets/image/tpgb-placeholder.jpg';
+			$images['default'] = TPGB_URL .'assets/images/tpgb-placeholder.jpg';
 			return $images;
 		} else {
 			$image = wp_get_attachment_image_src($obj['featured_media'], 'full', false);
@@ -818,7 +818,7 @@ class Tp_Core_Init_Blocks {
 				$images['medium'] = wp_get_attachment_image_src($obj['featured_media'], 'medium', false);
 				$images['medium_large'] = wp_get_attachment_image_src($obj['featured_media'], 'medium_large', false);
 				$images['large'] = wp_get_attachment_image_src($obj['featured_media'], 'large', false);
-				$images['default'] = TPGB_URL .'assets/image/tpgb-placeholder.jpg';
+				$images['default'] = TPGB_URL .'assets/images/tpgb-placeholder.jpg';
 				
 				return $images;
 			}
@@ -1082,7 +1082,7 @@ class Tp_Core_Init_Blocks {
 	
 	/*
 	 * Admin Bar enqueue Scripts
-	 * @since 1.1.5
+	 * @since 1.2.0
 	 */
 	public function admin_bar_enqueue_scripts(){
 		global $wp_admin_bar;
@@ -1144,9 +1144,15 @@ class Tp_Core_Init_Blocks {
 									$type = get_post_meta( $post_id, 'nxt-hooks-layout-sections', true );
 								}else if(!empty($layout) && $layout==='pages'){
 									$type = get_post_meta( $post_id, 'nxt-hooks-layout-pages', true );
+								}else if(!empty($layout) && $layout==='code_snippet'){
+									$type = get_post_meta( $post_id, 'nxt-hooks-layout-code-snippet', true );
+								}else if(!empty($layout) && $layout==='none'){
+									unset($template_list[$post_id]);
 								}
-								$template_list[$post_id]['nexter_layout'] = $layout;
-								$template_list[$post_id]['nexter_type'] = $type;
+								if(isset($template_list[$post_id])){
+									$template_list[$post_id]['nexter_layout'] = $layout;
+									$template_list[$post_id]['nexter_type'] = $type;
+								}
 							}
 						}
 					}

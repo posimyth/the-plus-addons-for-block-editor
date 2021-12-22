@@ -1,0 +1,151 @@
+/*
+Front End + Back End CSS
+*/
+/* Dark Mode */
+.tpgb-dark-mode{
+	position: relative;
+	display: block;
+	width: 100%;
+}
+.tpgb-dark-mode .tpgb-dark-mode-wrap {
+	position: relative;
+	display: inline-block;
+}
+.dark-pos-absolute .tpgb-dark-mode-wrap {
+	display: block;
+}
+ .tpgb-darkmode-toggle {
+	z-index: 500;
+	transition: all 0.5s ease;
+}
+.tpgb-dark-mode.dark-pos-relative .tpgb-darkmode-toggle {
+	position: relative;
+}
+.tpgb-dark-mode.dark-pos-absolute .tpgb-darkmode-toggle {
+	position: absolute;
+}
+.tpgb-dark-mode.dark-pos-fixed .tpgb-darkmode-toggle {
+	position: fixed;
+}
+.tpgb-dark-mode.dark-pos-fixed {
+    height: 0;
+    z-index: 9999;
+}
+.tpgb-dark-mode.dark-pos-absolute .tpgb-darkmode-toggle {
+	left: 10%;
+	right: auto;
+}
+.fix-left-top.tpgb-darkmode-toggle {
+	left: 10%;
+    top: 10%;
+}
+.fix-left-bottom.tpgb-darkmode-toggle {
+	left: 10%;
+    bottom: 10%;
+}
+.fix-right-top.tpgb-darkmode-toggle {
+	right: 10%;
+	top: 10%;
+}
+.fix-right-bottom.tpgb-darkmode-toggle {
+	right: 10%;
+	bottom: 10%;
+}
+.darkmode-style-1 .tpgb-darkmode-toggle:before, .darkmode-style-1 .tpgb-darkmode-toggle:after, .darkmode-style-2 .tpgb-darkmode-toggle:before, .darkmode-style-2 .tpgb-darkmode-toggle:after {
+	position: absolute;
+	color: #6f14f1;
+	font-size: 18px;
+}
+.darkmode-style-1 .tpgb-darkmode-toggle, .darkmode-style-2 .tpgb-darkmode-toggle {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    outline: none;
+    width: 5.2em;
+    align-items: center;
+    justify-content: center;
+    height: 2.3em;
+    border-radius: 100px;
+    background: #6f14f1;
+	padding: 0;
+}
+.darkmode-style-1 .tpgb-dark-mode-slider, .darkmode-style-2 .tpgb-dark-mode-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 3px;
+    right: 0;
+    border-radius: 45px;
+    bottom: 0;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.darkmode-style-1 .tpgb-dark-mode-slider:before, .darkmode-style-2 .tpgb-dark-mode-slider:before {
+    border-radius: 50%;
+    background: #fff;
+}
+.darkmode-style-1 .tpgb-dark-mode-slider:before {
+    position: absolute;
+    content: "";
+    height: 1.8em;
+    width: 1.8em;
+    left: .26em;
+    bottom: .26em;
+    -webkit-transition: .4s;
+    transition: .4s;
+	border-radius: 50%;
+}
+.darkmode-style-2 .tpgb-dark-mode-slider:before {
+	content: '';
+	position: absolute;
+	height: 3em;
+	width: 3em;
+	left: -0.3em;
+	bottom: -0.3em;
+	-webkit-transition: .4s;
+	transition: .4s;
+	box-shadow: 0 4px 24px 0 #00000050;
+}
+.darkmode-style-1.darkmode-activated .tpgb-dark-mode-slider:before, .darkmode-style-2.darkmode-activated .tpgb-dark-mode-slider:before {
+	-webkit-transform: translateX(2.6em);
+	-ms-transform: translateX(2.6em);
+	transform: translateX(2.6em);
+}
+
+/*Style 3 */
+.darkmode-style-3 .tpgb-darkmode-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #100f2c;
+	width: 3rem;
+	height: 3rem;
+	border: none;
+	padding: 0;
+	margin: 0;
+	border-radius: 50px;
+	cursor: pointer;
+}
+.tpgb-dark-mode .tpgb-darkmode-toggle:focus, .tpgb-dark-mode .tpgb-darkmode-toggle:hover {
+	outline: none;
+}
+.darkmode-style-3 .tpgb-normal-icon {
+	color: #fff;
+	line-height: 0;
+}
+.darkmode-style-3 .tpgb-dark-icon {
+	display: none;
+}
+.darkmode-style-3.darkmode-activated .tpgb-dark-icon {
+	display: flex;
+}
+.darkmode-style-3.darkmode-activated .hide-normal-icon.tpgb-normal-icon {
+	display: none;
+}
+.darkmode-style-3.darkmode-activated .tpgb-normal-icon, .darkmode-style-3.darkmode-activated .tpgb-dark-icon {
+	color: #000;
+}
+.tpgb-dark-mode.darkmode-style-3.darkmode-activated .tpgb-darkmode-toggle {
+	background: #fff;
+	box-shadow: 0px 4px 24px 0px #00000030;
+}

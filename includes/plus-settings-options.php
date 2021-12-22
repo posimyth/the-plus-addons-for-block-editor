@@ -149,7 +149,7 @@ class Tpgb_Gutenberg_Settings_Options {
 							esc_html__( 'Reusable Blocks', 'tpgb' ),
 							'edit_posts',
 							'edit.php?post_type=wp_block',
-							'',
+							''
 						);
 					}
 				}else{
@@ -344,6 +344,15 @@ class Tpgb_Gutenberg_Settings_Options {
 					'tag' => 'freemium',
 					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="table" class="svg-inline--fa fa-table fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M288 160v96h160v-96zm0 256h160v-96H288zM64 256h160v-96H64zm0 160h160v-96H64z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M464 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h416a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zM224 416H64v-96h160zm0-160H64v-96h160zm224 160H288v-96h160zm0-160H288v-96h160z"></path></g></svg>',
 					'keyword' => ['Data table', 'datatable', 'grid', 'csv table', 'table', 'tabular layout', 'Table Showcase']
+				],
+				'tp-dark-mode' => [
+					'label' => esc_html__('Dark Mode','tpgb'),
+					'demoUrl' => 'https://theplusblocks.com/plus-blocks/dark-mode/',
+					'docUrl' => '',
+					'videoUrl' => '',
+					'tag' => 'free',
+					'icon' => '<svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="adjust" class="svg-inline--fa fa-adjust fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M504 256c0 137-111 248-248 248V8c137 0 248 111 248 248z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M256 8v496C119 504 8 393 8 256S119 8 256 8z"></path></g></svg>',
+					'keyword' => ['dark', 'light', 'darkmode', 'dual']
 				],
 				'tp-draw-svg' => [
 					'label' => esc_html__('Draw SVG','tpgb'),
@@ -1146,6 +1155,18 @@ class Tpgb_Gutenberg_Settings_Options {
 				'attributes' => array(
 					'data-conditional-id'    => 'gmap_api_switch',
 					'data-conditional-value' => 'enable',
+				),
+			),
+			array(
+				'name' => esc_html__('Google Fonts','tpgb'),
+				'desc' => esc_html__('Note : If you disable this, It will not load Google Font on site as well as stop showing values in Font Family Selection.','tpgb'),
+				'id'   => 'gfont_load',
+				'type' => 'select',
+				'show_option_none' => false,
+				'default' => 'enable',
+				'options' => array(
+					'enable' => esc_html__('Enable', 'tpgb'),
+					'disable' => esc_html__('Disable', 'tpgb'),
 				),
 			),
 			array(

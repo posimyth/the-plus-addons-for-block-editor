@@ -112,6 +112,16 @@
     line-height: 50px;
     text-align: center;
 }
+.tpgb-draw-svg object {
+    opacity: 0;
+}
+.tpgb-flipbox .flip-box-inner .tpgb-draw-svg{
+    display: inline-block;
+    width: 100%;
+    max-width: 50px;
+    line-height: 50px;
+    text-align: center;
+}
 .tpgb-flipbox.flip-box-style-1 .service-icon {
     padding: 0;
 }
@@ -285,4 +295,7 @@
     -moz-transform: rotateX(0);
     -o-transform: rotateX(0);
     transform: rotateX(0);
+}
+.tpgb-flipbox .tpgb-adv-button {
+    z-index: 1;
 }

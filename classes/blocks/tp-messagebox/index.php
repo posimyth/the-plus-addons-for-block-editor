@@ -147,6 +147,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleAdjust' => [
 				'type' => 'object',
@@ -164,6 +165,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-inner-body{padding: {{titleAdjust}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleMargin' => [
 				'type' => 'object',
@@ -181,6 +183,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-inner-body{margin: {{titleMargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleNmlColor' => [
 				'type' => 'string',
@@ -191,6 +194,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-title{ color: {{titleNmlColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleHvrColor' => [
 				'type' => 'string',
@@ -201,6 +205,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-title{ color: {{titleHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleNmlBG' => [
 				'type' => 'object',
@@ -214,6 +219,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-inner-body',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleHvrBG' => [
 				'type' => 'object',
@@ -227,6 +233,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-inner-body',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleNmlShadow' => [
 				'type' => 'object',
@@ -245,6 +252,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-inner-body',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleHvrShadow' => [
 				'type' => 'object',
@@ -263,6 +271,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-inner-body',
 					],
 				],
+				'scopy' => true,
 			],
 			'descTypo' => [
 				'type'=> 'object',
@@ -276,6 +285,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-desc',
 					],
 				],
+				'scopy' => true,
 			],
 			'descAdjust' => [
 				'type' => 'object',
@@ -293,6 +303,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-desc{padding: {{descAdjust}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'descMargin' => [
 				'type' => 'object',
@@ -310,6 +321,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-desc{margin: {{descMargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'descNmlColor' => [
 				'type' => 'string',
@@ -320,6 +332,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-desc{ color: {{descNmlColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'descHvrColor' => [
 				'type' => 'string',
@@ -330,6 +343,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-desc{ color: {{descHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'descNmlBG' => [
 				'type' => 'object',
@@ -343,6 +357,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-desc',
 					],
 				],
+				'scopy' => true,
 			],
 			'descHvrBG' => [
 				'type' => 'object',
@@ -356,6 +371,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-desc',
 					],
 				],
+				'scopy' => true,
 			],
 			'descNmlBRadius' => [
 				'type' => 'object',
@@ -374,6 +390,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-desc{border-radius: {{descNmlBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'descHvrBRadius' => [
 				'type' => 'object',
@@ -392,6 +409,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-desc{border-radius: {{descHvrBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconSize' => [
 				'type' => 'object',
@@ -402,6 +420,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box .msg-icon{ font-size: {{iconSize}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconWidth' => [
 				'type' => 'object',
@@ -412,10 +431,12 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}}  .messagebox-bg-box .msg-icon{ width: {{iconWidth}}; height: {{iconWidth}}; line-height: {{iconWidth}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'msgArrow' => [
 				'type' => 'boolean',
 				'default' => true,	
+				'scopy' => true,
 			],
 			'iconNormalColor' => [
 				'type' => 'string',
@@ -426,6 +447,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}}  .messagebox-bg-box .msg-icon{ color: {{iconNormalColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconHoverColor' => [
 				'type' => 'string',
@@ -436,6 +458,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon{ color: {{iconHoverColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgNormalColor' => [
 				'type' => 'string',
@@ -446,6 +469,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box .msg-icon{ background: {{bgNormalColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgHoverColor' => [
 				'type' => 'string',
@@ -456,6 +480,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon{ background: {{bgHoverColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'arrowNormalColor' => [
 				'type' => 'string',
@@ -470,6 +495,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-arrow-postfix::after{ border-right-color: {{arrowNormalColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'arrowHoverColor' => [
 				'type' => 'string',
@@ -484,6 +510,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-arrow-postfix::after{ border-right-color: {{arrowHoverColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconNmlBorder' => [
 				'type' => 'object',
@@ -496,6 +523,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box .msg-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconHvrBorder' => [
 				'type' => 'object',
@@ -508,6 +536,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconBdrNmlRadius' => [
 				'type' => 'object',
@@ -526,6 +555,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box .msg-icon{border-radius: {{iconBdrNmlRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconBdrHvrRadius' => [
 				'type' => 'object',
@@ -544,6 +574,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon{border-radius: {{iconBdrHvrRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'nmlIconShadow' => [
 				'type' => 'object',
@@ -562,6 +593,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box .msg-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'hvrIconShadow' => [
 				'type' => 'object',
@@ -580,6 +612,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconSize' => [
 				'type' => 'object',
@@ -590,6 +623,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box .dismiss-icon{ font-size: {{dIconSize}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconWidth' => [
 				'type' => 'object',
@@ -600,6 +634,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}}  .messagebox-bg-box .dismiss-icon{ width: {{dIconWidth}}; height: {{dIconWidth}}; line-height: {{dIconWidth}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconNmlColor' => [
 				'type' => 'string',
@@ -610,6 +645,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}}  .messagebox-bg-box .dismiss-icon{ color: {{dIconNmlColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconHvrColor' => [
 				'type' => 'string',
@@ -620,6 +656,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .dismiss-icon{ color: {{dIconHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconNmlBG' => [
 				'type' => 'string',
@@ -630,6 +667,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box .dismiss-icon{ background: {{dIconNmlBG}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconHvrBG' => [
 				'type' => 'string',
@@ -640,6 +678,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .dismiss-icon{ background: {{dIconHvrBG}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconNmlBRadius' => [
 				'type' => 'object',
@@ -658,6 +697,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box .dismiss-icon{border-radius: {{dIconNmlBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconHvrBRadius' => [
 				'type' => 'object',
@@ -676,6 +716,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .dismiss-icon{border-radius: {{dIconHvrBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconNmlShadow' => [
 				'type' => 'object',
@@ -694,6 +735,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box .dismiss-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconHvrShadow' => [
 				'type' => 'object',
@@ -712,6 +754,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover .dismiss-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'dIconMargin' => [
 				'type' => 'object',
@@ -729,6 +772,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .msg-dismiss-content{margin: {{dIconMargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'bgPadding' => [
@@ -747,6 +791,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box{padding: {{bgPadding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'normalBG' => [
 				'type' => 'object',
@@ -759,6 +804,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box',
 					],
 				],
+				'scopy' => true,
 			],
 			'HoverBG' => [
 				'type' => 'object',
@@ -771,6 +817,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgNmlBorder' => [
 				'type' => 'object',
@@ -795,6 +842,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgHvrBorder' => [
 				'type' => 'object',
@@ -819,6 +867,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBdrNmlRadius' => [
 				'type' => 'object',
@@ -836,6 +885,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box{border-radius: {{boxBdrNmlRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBdrHvrRadius' => [
 				'type' => 'object',
@@ -853,6 +903,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover{border-radius: {{boxBdrHvrRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'nmlboxShadow' => [
 				'type' => 'object',
@@ -870,6 +921,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box',
 					],
 				],
+				'scopy' => true,
 			],
 			'hvrboxShadow' => [
 				'type' => 'object',
@@ -887,6 +939,7 @@ function tpgb_tp_messagebox() {
 						'selector' => '{{PLUS_WRAP}} .messagebox-bg-box:hover',
 					],
 				],
+				'scopy' => true,
 			],
 		);
 	$attributesOptions = array_merge($attributesOptions, $globalBgOption, $globalpositioningOption, $plusButton_options, $globalPlusExtrasOption);

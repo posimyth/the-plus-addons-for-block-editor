@@ -44,7 +44,7 @@ function tpgb_tp_heading_title_render_callback( $attributes, $content) {
 		$Title = get_the_title();
 	}
 	$getTitle .='<div class="head-title ">';
-		$getTitle .='<'.esc_attr($titleType).' class="heading-title">';
+		$getTitle .='<'.Tp_Blocks_Helper::validate_html_tag($titleType).' class="heading-title">';
 			if($style=='style-1' && $ETPosition=='beforeTitle'){
 				$getTitle .= $getExtraTitle;
 			}
@@ -68,7 +68,7 @@ function tpgb_tp_heading_title_render_callback( $attributes, $content) {
 			if($style=='style-1' && $ETPosition=='afterTitle'){
 				$getTitle .= $getExtraTitle;
 			}
-		$getTitle .='</'.esc_attr($titleType).'>';
+		$getTitle .='</'.Tp_Blocks_Helper::validate_html_tag($titleType).'>';
 	$getTitle .='</div>';
 	
 	$style_8_sep = '';
@@ -98,7 +98,7 @@ function tpgb_tp_heading_title_render_callback( $attributes, $content) {
 	$getSubTitle = '';
 	if(!empty($subTitle)){
 		$getSubTitle .= '<div class="sub-heading ">';
-			$getSubTitle .= '<'.esc_attr($subTitleType).' class="heading-sub-title">';
+			$getSubTitle .= '<'.Tp_Blocks_Helper::validate_html_tag($subTitleType).' class="heading-sub-title">';
 				if(!empty($limitTgl) && !empty($subTitleLimit)){
 					if($subTitleLimitOn=='char'){												
 						$getSubTitle .= substr($subTitle,0,$subTitleCount);
@@ -116,7 +116,7 @@ function tpgb_tp_heading_title_render_callback( $attributes, $content) {
 				}else{
 					$getSubTitle .= wp_kses_post($subTitle);
 				}
-			$getSubTitle .= '</'.esc_attr($subTitleType).'>';
+			$getSubTitle .= '</'.Tp_Blocks_Helper::validate_html_tag($subTitleType).'>';
 			$getSubTitle .= '</div>';
 	}
 	
@@ -236,6 +236,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading-style-6 .head-title:after{ margin-right: 0; right:15px ;left: auto; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'limitTgl' => [
 				'type' => 'boolean',
@@ -306,6 +307,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading-style-8 .title-sep{ border-color: {{sepColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'sepWidth' => [
 				'type' => 'object',
@@ -324,6 +326,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading-style-8 .seprator{ width: {{sepWidth}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'sepHeight' => [
 				'type' => 'object',
@@ -334,6 +337,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading-style-3 .title-sep{ border-width: {{sepHeight}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'topSepHeight' => [
@@ -345,6 +349,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading-style-4 .heading-title:before{ height: {{topSepHeight}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'bottomSepHeight' => [
 				'type' => 'object',
@@ -355,6 +360,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading-style-4 .heading-title:after{ height: {{bottomSepHeight}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'sepDotColor' => [
 				'type' => 'string',
@@ -369,6 +375,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading-style-8 .sep-dot{ color: {{sepDotColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'septopspa' => [
 				'type' => 'string',
@@ -379,10 +386,12 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading-style-6 .head-title:after{ top : {{septopspa}}px; }',
 					]
 				],
+				'scopy' => true,
 			],
 			'titleType' => [
 				'type' => 'string',
 				'default' => 'h3',
+				'scopy' => true,
 			],
 			'titleTypo' => [
 				'type'=> 'object',
@@ -396,6 +405,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleColor' => [
 				'type' => 'string',
@@ -406,6 +416,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-title{ color: {{titleColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleMargin' => [
 				'type' => 'object',
@@ -423,6 +434,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-title{margin: {{titleMargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'titlePadd' => [
 				'type' => 'object',
@@ -440,6 +452,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-title{padding: {{titlePadd}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleB' => [
 				'type' => 'object',
@@ -462,6 +475,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleBRadius' => [
 				'type' => 'object',
@@ -479,6 +493,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-title{border-radius: {{titleBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleBg' => [
 				'type' => 'object',
@@ -490,6 +505,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleShadow' => [
 				'type' => 'object',
@@ -507,10 +523,12 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'subTitleType' => [
 				'type' => 'string',
 				'default' => 'h3',
+				'scopy' => true,
 			],
 			'subTitleTypo' => [
 				'type'=> 'object',
@@ -524,6 +542,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-sub-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'subTitleColor' => [
 				'type' => 'string',
@@ -534,6 +553,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-sub-title{ color: {{subTitleColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'subTitleMargin' => [
 				'type' => 'object',
@@ -551,6 +571,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .heading-sub-title{margin: {{subTitleMargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'extraTitleTypo' => [
 				'type'=> 'object',
@@ -564,6 +585,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .title-s',
 					],
 				],
+				'scopy' => true,
 			],
 			'extraTitleColor' => [
 				'type' => 'string',
@@ -574,6 +596,7 @@ function tpgb_tp_heading_title() {
 						'selector' => '{{PLUS_WRAP}}.heading_style .title-s{ color: {{extraTitleColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			
 		);

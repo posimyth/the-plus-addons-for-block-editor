@@ -22,7 +22,6 @@ function tpgb_tp_stylist_list_render_callback( $attributes, $content) {
 		$alignattr .= (!empty($alignment['sm'])) ? ' tablet-align-'.esc_attr($alignment['sm']) : '';
 		$alignattr .= (!empty($alignment['xs'])) ? ' mobile-align-'.esc_attr($alignment['xs']) : '';
 	}
-	
 	$iconalignattr = (!empty($iconAlignment)) ? ' d-flex-center' : ' d-flex-top';
 	
 	$hoverInvertClass ='';
@@ -180,6 +179,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-items, {{PLUS_WRAP}} .tpgb-icon-list-items .tpgb-icon-list-item{flex-wrap: wrap;flex-flow: wrap;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'readMoreToggle' => [
                 'type' => 'boolean',
@@ -199,6 +199,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-items .tpgb-icon-list-item{margin-top: calc({{listSpaceBetween}}/2);}{{PLUS_WRAP}} .tpgb-icon-list-items .tpgb-icon-list-item{margin-bottom: calc({{listSpaceBetween}}/2);}{{PLUS_WRAP}} .tpgb-icon-list-items .tpgb-icon-list-item:before{ top: calc(100% + {{listSpaceBetween}}/2);}',
 					],
 				],
+				'scopy' => true,
 			],
 			'horizontalSpaceBetween' => [
                 'type' => 'object',
@@ -221,10 +222,12 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-items .tpgb-icon-list-item{margin-left:0;margin-right:0}{{PLUS_WRAP}} .tpgb-icon-list-items .tpgb-icon-list-item:not(:first-child){margin-left: calc({{horizontalSpaceBetween}}/2);}{{PLUS_WRAP}} .tpgb-icon-list-items .tpgb-icon-list-item:not(:last-child){margin-right: calc({{horizontalSpaceBetween}}/2);}',
 					],
 				],
+				'scopy' => true,
 			],
 			'alignment' => [
                 'type' => 'object',
 				'default' => ['md' => 'left'],
+				'scopy' => true,
 			],
 			'separatorColor' => [
                 'type' => 'string',
@@ -234,6 +237,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-items .tpgb-icon-list-item:not(:last-child):before{border-bottom : 1px solid {{separatorColor}};}{{PLUS_WRAP}} .tpgb-icon-list-items .tpgb-icon-list-item{width: 100%;}',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'iconNormalColor' => [
@@ -244,6 +248,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-icon .list-icon{color: {{iconNormalColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconHoverColor' => [
                 'type' => 'string',
@@ -253,6 +258,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item:hover .tpgb-icon-list-icon .list-icon{color: {{iconHoverColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconSize' => [
                 'type' => 'object',
@@ -262,6 +268,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item .tpgb-icon-list-icon .list-icon{font-size: {{iconSize}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconImgSize' => [
                 'type' => 'object',
@@ -271,15 +278,18 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item .tpgb-icon-list-icon img{max-width: {{iconImgSize}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconAlignment' => [
                 'type' => 'boolean',
 				'default' => true,
+				'scopy' => true,
 			],
 			
 			'iconAdvancedStyle' => [
                 'type' => 'boolean',
 				'default' => false,
+				'scopy' => true,
 			],
 			
 			'textTypo' => [
@@ -293,6 +303,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-text,{{PLUS_WRAP}} .tpgb-icon-list-text p',
 					],
 				],
+				'scopy' => true,
 			],
 			'textNormalColor' => [
                 'type' => 'string',
@@ -302,6 +313,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-text{color: {{textNormalColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'textHoverColor' => [
                 'type' => 'string',
@@ -311,6 +323,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item:hover .tpgb-icon-list-text{color: {{textHoverColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'textIndent' => [
                 'type' => 'object',
@@ -320,6 +333,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-stylist-list .tpgb-icon-list-text{padding-left: {{textIndent}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'textPadding' => [
@@ -338,6 +352,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item{padding: {{textPadding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'textBorder' => [
 				'type' => 'object',
@@ -349,6 +364,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item',
 					],
 				],
+				'scopy' => true,
 			],
 			'textBRadius' => [
 				'type' => 'object',
@@ -366,6 +382,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item{border-radius: {{textBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'textBg' => [
 				'type' => 'object',
@@ -377,6 +394,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleBShadow' => [
 				'type' => 'object',
@@ -388,6 +406,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'textHBorder' => [
@@ -400,6 +419,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'textHBRadius' => [
 				'type' => 'object',
@@ -417,6 +437,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item:hover{border-radius: {{textHBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'textBgHover' => [
 				'type' => 'object',
@@ -428,6 +449,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleHBShadow' => [
 				'type' => 'object',
@@ -439,11 +461,13 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-icon-list-item:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'hoverInverseEffect' => [
                 'type' => 'boolean',
 				'default' => false,
+				'scopy' => true,
 			],
 			'unhoverItemOpacity' => [
                 'type' => 'string',
@@ -454,6 +478,7 @@ function tpgb_tp_stylist_list() {
 						'selector' => '{{PLUS_WRAP}}.hover-inverse-effect:hover .on-hover .tpgb-icon-list-item{opacity: {{unhoverItemOpacity}};}',
 					],
 				],
+				'scopy' => true,
 			],
 		);
 	$attributesOptions = array_merge($attributesOptions,$globalBgOption,$globalpositioningOption,$globalPlusExtrasOption);

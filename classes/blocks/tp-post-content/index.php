@@ -108,6 +108,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content {text-align: {{contentAlign}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentTypo' => [
 				'type'=> 'object',
@@ -119,6 +120,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content',
 					],
 				],
+				'scopy' => true,
 			],
 			'padding' => [
 				'type' => 'object',
@@ -136,6 +138,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content{padding: {{padding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentColor' => [
 				'type' => 'string',
@@ -145,6 +148,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content { color : {{contentColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentHvrColor' => [
 				'type' => 'string',
@@ -154,6 +158,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content:hover { color : {{contentHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentBg' => [
 				'type' => 'object',
@@ -166,6 +171,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentHvrbg' => [
 				'type' => 'object',
@@ -178,6 +184,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentBorder' => [
 				'type' => 'object',
@@ -189,6 +196,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentHvrBorder' => [
 				'type' => 'object',
@@ -200,6 +208,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentBRadius' => [
 				'type' => 'object',
@@ -217,6 +226,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content{ border-radius : {{contentBRadius}} }',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentHvrBra' => [
 				'type' => 'object',
@@ -234,6 +244,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content:hover { border-radius : {{contentHvrBra}} }',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentBshadow' => [
 				'type' => 'object',
@@ -245,6 +256,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentHvrSha' => [
 				'type' => 'object',
@@ -256,6 +268,7 @@ function tpgb_post_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-entry-content:hover',
 					],
 				],
+				'scopy' => true,
 			],
 		);
 	

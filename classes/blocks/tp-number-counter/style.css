@@ -55,7 +55,16 @@
     -ms-transition: all .3s ease;
     transition: all .3s ease;
 }
-
+.tpgb-draw-svg object {
+    opacity: 0;
+}
+.tpgb-number-counter .tpgb-draw-svg{
+    display: inline-block;
+    width: 100%;
+    max-width: 50px;
+    line-height: 50px;
+    text-align: center;
+}
 .tpgb-number-counter .number-counter-inner .counter-title,.tpgb-number-counter .number-counter-inner .counter-title a {
     display: inline-block;
     font-size: 20px;

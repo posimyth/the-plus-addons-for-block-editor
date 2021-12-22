@@ -271,3 +271,7 @@
     color: #ff844a;
 }
 /***style 8 end***/
+.tpgb-heading-title.heading_style .heading-sub-title, .tpgb-heading-title.heading_style .heading-title {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

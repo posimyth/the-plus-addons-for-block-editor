@@ -43,6 +43,7 @@ function tpgb_tp_empty_space() {
 						'selector' => '{{PLUS_WRAP}}{height: {{space}};}',
 					],
 				],
+				'scopy' => true,
 			],
 		),
 		'editor_script' => 'tpgb-block-editor-js',

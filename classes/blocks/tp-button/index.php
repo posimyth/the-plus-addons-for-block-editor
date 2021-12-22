@@ -107,6 +107,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button{ text-align: {{Alignment}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnHvrType' => [
 				'type' => 'string',
@@ -136,6 +137,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .button-before { margin-right: {{iconSpace}}; } {{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .button-after { margin-left: {{iconSpace}}; } ',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconSize' => [
 				'type' => 'object',
@@ -149,6 +151,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .btn-icon { font-size: {{iconSize}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'innerPadding' => [
 				'type' => 'object',
@@ -167,6 +170,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button:not(.button-style-11):not(.button-style-17) .button-link-wrap , {{PLUS_WRAP}}.tpgb-plus-button.button-style-11 .button-link-wrap > span',
 					],
 				],
+				'scopy' => true,
 			],
 			'texTyp' => [
 				'type'=> 'object',
@@ -180,6 +184,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnTextNmlColor' => [
 				'type' => 'string',
@@ -194,6 +199,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .btn-icon{ color: {{btnTextNmlColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconNmlColor' => [
 				'type' => 'string',
@@ -204,6 +210,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .btn-icon{ color: {{iconNmlColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'BNmlColor' => [
 				'type' => 'string',
@@ -214,6 +221,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .button_line{ background: {{BNmlColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'normalBG' => [
 				'type' => 'object',
@@ -252,6 +260,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button.button-style-20 .button-link-wrap',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgNormalB' => [
 				'type' => 'object',
@@ -295,6 +304,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button.button-style-20 .button-link-wrap',
 					],
 				],
+				'scopy' => true,
 			],
 			'normalBRadius' => [
 				'type' => 'object',
@@ -313,6 +323,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap{border-radius: {{normalBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'nmlboxShadow' => [
 				'type' => 'object',
@@ -351,6 +362,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button.button-style-20 .button-link-wrap',
 					],
 				],
+				'scopy' => true,
 			],
 			'borderHeight' => [
 				'type' => 'object',
@@ -364,6 +376,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .button_line{ height: {{borderHeight}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnTextHvrColor' => [
 				'type' => 'string',
@@ -379,6 +392,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap:hover .btn-icon{ color: {{btnTextHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconHvrColor' => [
 				'type' => 'string',
@@ -389,6 +403,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap:hover .btn-icon{ color: {{iconHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'BHoverColor' => [
 				'type' => 'string',
@@ -399,6 +414,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap:hover .button_line{ background: {{BHoverColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'hoverBG' => [
 				'type' => 'object',
@@ -437,6 +453,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button.button-style-20 .button-link-wrap::after',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgHoverB' => [
 				'type' => 'object',
@@ -480,6 +497,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button.button-style-20 .button-link-wrap:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'hoverBRadius' => [
 				'type' => 'object',
@@ -498,6 +516,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap:hover{border-radius: {{hoverBRadius}};} ',
 					],
 				],
+				'scopy' => true,
 			],
 			'hvrboxShadow' => [
 				'type' => 'object',
@@ -536,6 +555,7 @@ function tpgb_tp_button() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-plus-button.button-style-20 .button-link-wrap:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'shakeAnimate' => [
 				'type' => 'boolean',

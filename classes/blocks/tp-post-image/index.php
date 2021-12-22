@@ -1,6 +1,6 @@
 <?php
 /* Tp Block : Post Image
- * @since	: 1.1.3
+ * @since	: 1.2.0
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -12,7 +12,7 @@ function tpgb_tp_post_image_render_callback( $attr, $content) {
 	$imageType = (!empty($attr['imageType'])) ? $attr['imageType'] : 'default';
 	$bgLocation = (!empty($attr['bgLocation'])) ? $attr['bgLocation'] : 'section';
 	$imageSize = (!empty($attr['imageSize'])) ? $attr['imageSize'] : 'full';
-    
+    $fancyBox = (!empty($attr['fancyBox'])) ? $attr['fancyBox'] : false;
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attr );
 	
 	$data_attr = [];
@@ -28,12 +28,38 @@ function tpgb_tp_post_image_render_callback( $attr, $content) {
     $image_content ='';
 	if (has_post_thumbnail( $post_id ) ){
 		$image_content = get_the_post_thumbnail_url($post_id,$imageSize);
+		$fancy_content = get_the_post_thumbnail_url($post_id, 'full' );
 		$image_content = (!empty($image_content)) ? $image_content : TPGB_ASSETS_URL. 'assets/images/tpgb-placeholder.jpg';
-		$output .= '<div class="tpgb-post-image tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).' " data-setting=\'' . $data_attr . '\'>';
+		
+		// Set Fancy Box Option
+		$data_settings = $data_fancy = $href = '';
+		if(!empty($fancyBox)){
+			$FancyData = (!empty($attr['FancyOption'])) ? json_decode($attr['FancyOption']) : [];
+
+			$button = array();
+			if (is_array($FancyData) || is_object($FancyData)) {
+				foreach ($FancyData as $value) {
+					$button[] = $value->value;
+				}
+			}
+			$href = $fancy_content;
+			$fancybox = array();
+			$fancybox['button'] = $button;
+			$fancybox['animationEffect'] = $attr['AnimationFancy'];
+			$fancybox['animationDuration'] = $attr['DurationFancy'];
+			$data_settings .= ' data-fancy-option=\''.json_encode($fancybox).'\'';
+			$data_settings .= ' data-id="'.esc_attr($block_id).'" ';
+			$data_fancy = 'data-fancybox="postImg-'.esc_attr($block_id).'"';
+
+		}else{
+			$href = get_the_permalink();
+		}
+		
+		$output .= '<div class="tpgb-post-image tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).' '.(!empty($fancyBox) ? 'tpgb-fancy-add' : '').'" data-setting=\'' . $data_attr . '\' '.$data_settings.'>';
 			
 				if(!empty($imageType) && $imageType!='background'){
 					$output .= '<div class="tpgb-featured-image">';
-						$output .= '<a href="'.esc_url(get_the_permalink()).'">';
+						$output .= '<a href="'.esc_url($href).'" '.$data_fancy.'>';
 							$output .= get_the_post_thumbnail($post_id,$imageSize,[ 'class' => 'tpgb-featured-img']);
 						$output .= '</a>';
 					$output .= '</div>';
@@ -83,6 +109,7 @@ function tpgb_post_image_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-image {text-align: {{imageAlign}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'maxWidth' => [
 				'type' => 'object',
@@ -93,6 +120,7 @@ function tpgb_post_image_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-featured-image img{max-width: {{maxWidth}};width: 100%;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgPosition' => [
 				'type' => 'string',
@@ -103,6 +131,7 @@ function tpgb_post_image_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image{background-position : {{bgPosition}} }',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgAttachment' => [
 				'type' => 'string',
@@ -113,6 +142,7 @@ function tpgb_post_image_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image{background-attachment : {{bgAttachment}} }',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgRepeat' => [
 				'type' => 'string',
@@ -123,6 +153,7 @@ function tpgb_post_image_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image{background-repeat : {{bgRepeat}} }',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgSize' => [
 				'type' => 'string',
@@ -133,6 +164,7 @@ function tpgb_post_image_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image{background-size : {{bgSize}} }',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'postimgBg' => [
@@ -146,6 +178,7 @@ function tpgb_post_image_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-featured-image a:after,{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image:after',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'postimgHvrBg' => [
@@ -159,6 +192,133 @@ function tpgb_post_image_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-featured-image:hover a:after,{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image:after',
 					],
 				],
+				'scopy' => true,
+			],
+			'postimgbor' => [
+				'type' => 'object',
+				'default' => (object) [
+					'openBorder' => 0,	
+					'type' => '',	
+					'color' => '',
+					'width' => (object) [
+						'md' => (object)[
+							'top' => '',
+							'left' => '',
+							'bottom' => '',
+							'right' => '',
+						],
+						"unit" => "",
+					],
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}} .tpgb-featured-image .tpgb-featured-img',
+					],
+				],
+				'scopy' => true,
+			],
+			'postimgHvrbor' => [
+				'type' => 'object',
+				'default' => (object) [
+					'openBorder' => 0,	
+					'type' => '',	
+					'color' => '',
+					'width' => (object) [
+						'md' => (object)[
+							'top' => '',
+							'left' => '',
+							'bottom' => '',
+							'right' => '',
+						],
+						"unit" => "",
+					],
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}} .tpgb-featured-image:hover .tpgb-featured-img',
+					],
+				],
+				'scopy' => true,
+			],
+			'postimgbRad' => [
+				'type' => 'object',
+				'default' => (object) [ 
+					'md' => [
+						"top" => '',
+						"right" => '',
+						"bottom" => '',
+						"left" => '',
+					],
+					"unit" => 'px',
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}} .tpgb-featured-image .tpgb-featured-img,{{PLUS_WRAP}} .tpgb-featured-image a:after{ border-radius : {{postimgbRad}}; }',
+					],
+				],
+				'scopy' => true,
+			],
+			'postimgbhvrRad' => [
+				'type' => 'object',
+				'default' => (object) [ 
+					'md' => [
+						"top" => '',
+						"right" => '',
+						"bottom" => '',
+						"left" => '',
+					],
+					"unit" => 'px',
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}} .tpgb-featured-image:hover .tpgb-featured-img,{{PLUS_WRAP}} .tpgb-featured-image:hover a:after{ border-radius : {{postimgbhvrRad}}; }',
+					],
+				],
+				'scopy' => true,
+			],
+			'postimgBshad' => [
+				'type' => 'object',
+				'default' => (object) [
+					'openShadow' => 0,
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}} .tpgb-featured-image .tpgb-featured-img',
+					],
+				],
+				'scopy' => true,
+			],
+			'postimghvrBshad' => [
+				'type' => 'object',
+				'default' => (object) [
+					'openShadow' => 0,
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}} .tpgb-featured-image:hover .tpgb-featured-img',
+					],
+				],
+				'scopy' => true,
+			],
+			'fancyBox' => [
+				'type' => 'boolean',
+				'default' => false,
+				'scopy' => true,
+			],
+			'FancyOption' => [
+				'type' => 'string',
+        		'default' => '[]',
+				'scopy' => true,
+			],
+			'AnimationFancy' => [
+				'type' => 'string',
+				'default' => 'zoom',
+				'scopy' => true,
+			],
+			'DurationFancy' => [
+				'type' => 'string',
+				'default' => 300,
+				'scopy' => true,
 			],
 		);
 	

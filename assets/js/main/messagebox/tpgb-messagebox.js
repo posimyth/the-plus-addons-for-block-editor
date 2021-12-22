@@ -1,1 +1,1 @@
-!function(s){"use strict";s(document).ready(function(){s(".tpgb-messagebox .msg-dismiss-content").on('click',function(){s(this).closest(".tpgb-messagebox").slideUp(500)})})}(jQuery);
+!function(s){"use strict";s(document).ready(function(){s(".tpgb-messagebox .msg-dismiss-content").on("click",function(){s(this).closest(".tpgb-messagebox").slideUp(500)})})}(jQuery);

@@ -36,6 +36,16 @@ class Tp_Generate_Blocks_Css {
 		}
 	}
 	
+	public function google_font_load(){
+		$googleFont_Load = Tp_Blocks_Helper::get_extra_option('gfont_load');
+		$googleFonts = false;
+		if( empty($googleFont_Load) || (!empty($googleFont_Load) && $googleFont_Load!='disable') ){
+			$googleFonts = true;
+			$googleFonts = apply_filters( 'tpgb_google_font_load', $googleFonts );
+		}
+		return $googleFonts;
+	}
+	
 	/*
 	 * Generate Dynamic Css
  	 */
@@ -55,7 +65,7 @@ class Tp_Generate_Blocks_Css {
 		
 		if( !empty($css_render) ){
 			$csstidy = new csstidy();
-			$csstidy->set_cfg('optimise_shorthands', 2);
+			$csstidy->set_cfg('optimise_shorthands', 1);
 			$csstidy->set_cfg('merge_selectors', 2);
 			$csstidy->set_cfg('remove_bslash',false);
 			$csstidy->set_cfg('sort_selectors',true);
@@ -861,6 +871,7 @@ class Tp_Generate_Blocks_Css {
 	
 	/*
 	 * Css Typography Style
+	 * @since 1.1.7
 	 */
 	public function cssTypography( $val ){
 		$cssfont = '';
@@ -878,7 +889,8 @@ class Tp_Generate_Blocks_Css {
 			$css .= "text-decoration:var(--tpgb-T". $typo . "-text-decoration);";
 			return $css;
 		}
-		if (isset($val['fontFamily']) && $val['fontFamily']!='' && isset($val['fontFamily']['family']) && $val['fontFamily']['family'] !='') {
+		if(isset($val['fontFamily']) && $val['fontFamily']!='' && isset($val['fontFamily']['family']) && $val['fontFamily']['family'] !='' && isset($val['fontFamily']['customFont']) && $val['fontFamily']['customFont'] !=''){
+		}else if (isset($val['fontFamily']) && $val['fontFamily']!='' && isset($val['fontFamily']['family']) && $val['fontFamily']['family'] !='' && $this->google_font_load()) {
 			if ( !in_array($val['fontFamily']['family'], ['Arial', 'Tahoma', 'Verdana', 'Helvetica', 'Times New Roman', 'Trebuchet MS', 'Georgia']) ) {
 				$cssfont = '@import url(https://fonts.googleapis.com/css?family=' . preg_replace('/\s/i', '+', $val['fontFamily']['family']) . ':' . (isset($val['fontFamily']['fontWeight']) ? $val['fontFamily']['fontWeight'] : 400) . ');';
 			}
@@ -895,7 +907,9 @@ class Tp_Generate_Blocks_Css {
 		}
 		$css ='';
 		if( isset($val['fontFamily']) && $val['fontFamily'] != '' ){
-			if( isset($val['fontFamily']['family']) && $val['fontFamily']['family'] != '' ){
+			if( isset($val['fontFamily']['family']) && $val['fontFamily']['family'] != '' && isset($val['fontFamily']['customFont']) && $val['fontFamily']['customFont'] !=''){
+				$css .= ( $val['fontFamily']['family'] ) ? "font-family:'" . $val['fontFamily']['family'] . "',Sans-serif;" : '';
+			}else if( isset($val['fontFamily']['family']) && $val['fontFamily']['family'] != '' ){
 				$css .= ( $val['fontFamily']['family'] ) ? "font-family:'" . $val['fontFamily']['family'] . ( $val['fontFamily']['type'] ? "'," . $val['fontFamily']['type'] : "'") .";" : '';
 			}
 			if(isset($val['fontFamily']['fontWeight'])){

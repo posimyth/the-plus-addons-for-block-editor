@@ -47,22 +47,27 @@ class Tpgb_Blocks_Global_Options {
 			'sliderMode' => [
 				'type' => 'string',
 				'default' => 'horizontal',
+				'scopy' => true,
 			],
 			'slideSpeed' => [
 				'type' => 'string',
 				'default' => 1500,
+				'scopy' => true,
 			],
 			'slideColumns' => [
 				'type' => 'object',
 				'default' => [ 'md' => 1,'sm' => 1,'xs' => 1 ],
+				'scopy' => true,
 			],
 			'initialSlide' => [
 				'type' => 'number',
 				'default' => 0,
+				'scopy' => true,
 			],
 			'slideScroll' => [
 				'type' => 'object',
 				'default' => [ 'md' => 1 ],
+				'scopy' => true,
 			],
 			'slideColumnSpace' => [
 				'type' => 'object',
@@ -80,34 +85,42 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .splide__list .splide__slide {padding: {{slideColumnSpace}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'slideDraggable' => [
 				'type' => 'object',
 				'default' => [ 'md' => true ],
+				'scopy' => true,
 			],
 			'slideInfinite' => [
 				'type' => 'boolean',
 				'default' => false,
+				'scopy' => true,
 			],
 			'slideHoverPause' => [
 				'type' => 'boolean',
 				'default' => false,
+				'scopy' => true,
 			],
 			'slideAutoplay' => [
 				'type' => 'boolean',
 				'default' => true,
+				'scopy' => true,
 			],
 			'slideAutoplaySpeed' => [
 				'type' => 'string',
-				'default' => 1500
+				'default' => 1500,
+				'scopy' => true,
 			],
 			'showDots' => [
 				'type' => 'object',
 				'default' => [ 'md' => true ],
+				'scopy' => true,
 			],
 			'dotsStyle' => [
 				'type' => 'string',
 				'default' => 'style-1',
+				'scopy' => true,
 			],
 			'dotsBorderColor' => [
 				'type' => 'string',
@@ -120,6 +133,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}.dots-style-1 ul.splide__pagination li button.splide__pagination__page{-webkit-box-shadow:inset 0 0 0 8px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 8px {{dotsBorderColor}};box-shadow: inset 0 0 0 8px {{dotsBorderColor}};} {{PLUS_WRAP}}.dots-style-1 ul.splide__pagination li button.splide__pagination__page.is-active{-webkit-box-shadow:inset 0 0 0 1px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 1px {{dotsBorderColor}};box-shadow: inset 0 0 0 1px {{dotsBorderColor}};}{{PLUS_WRAP}}.dots-style-1 ul.splide__pagination li button.splide__pagination__page{background: transparent;color: {{dotsBorderColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'dotsTopSpace' => [
 				'type' => 'object',
@@ -132,22 +146,27 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .splide__pagination{ margin-top: {{dotsTopSpace}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'slideHoverDots' => [
 				'type' => 'boolean',
 				'default' => false,
+				'scopy' => true,
 			],
 			'showArrows' => [
 				'type' => 'object',
 				'default' => [ 'md' => false ],
+				'scopy' => true,
 			],
 			'arrowsStyle' => [
 				'type' => 'string',
 				'default' => 'style-1',
+				'scopy' => true,
 			],
 			'arrowsPosition' => [
 				'type' => 'string',
 				'default' => 'top-right',
+				'scopy' => true,
 			],
 			'arrowsBgColor' => [
 				'type' => 'string',
@@ -161,6 +180,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1{background:{{arrowsBgColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'arrowsIconColor' => [
 				'type' => 'string',
@@ -173,6 +193,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1:before{color:{{arrowsIconColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'arrowsHoverBgColor' => [
 				'type' => 'string',
@@ -186,6 +207,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1:hover{background:{{arrowsHoverBgColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'arrowsHoverIconColor' => [
 				'type' => 'string',
@@ -198,18 +220,22 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1:hover:before{color:{{arrowsHoverIconColor}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'outerArrows' => [
 				'type' => 'boolean',
 				'default' => false,
+				'scopy' => true,
 			],
 			'slideHoverArrows' => [
 				'type' => 'boolean',
 				'default' => false,
+				'scopy' => true,
 			],
 			'centerMode' => [
 				'type' => 'object',
 				'default' => [ 'md' => false ],
+				'scopy' => true,
 			],
 		];
 		
@@ -244,9 +270,10 @@ class Tpgb_Blocks_Global_Options {
 				],
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}}{margin: {{globalMargin}} !important;}',
+						'selector' => '{{PLUS_WRAP}}{margin: {{globalMargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalPadding' => [
 				'type' => 'object',
@@ -264,6 +291,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}{padding: {{globalPadding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalBg' => [
 				'type' => 'object',
@@ -276,6 +304,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalBgHover' => [
 				'type' => 'object',
@@ -288,6 +317,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalBorder' => [
 				'type' => 'object',
@@ -299,6 +329,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalBorderHover' => [
 				'type' => 'object',
@@ -310,6 +341,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalBRadius' => [
 				'type' => 'object',
@@ -327,6 +359,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}{border-radius: {{globalBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalBRadiusHover' => [
 				'type' => 'object',
@@ -344,6 +377,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}:hover{border-radius: {{globalBRadiusHover}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalBShadow' => [
 				'type' => 'object',
@@ -361,6 +395,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalBShadowHover' => [
 				'type' => 'object',
@@ -378,6 +413,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}:hover',
 					],
 				],
+				'scopy' => true,
 			],
 		];
 		
@@ -404,6 +440,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}},{{PLUS_WRAP}}{ display:inline-block;width: auto;margin-bottom: 0 !important }',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalZindex' => [
 				'type' => 'string',
@@ -413,6 +450,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}}{ position:relative;z-index: {{globalZindex}} !important; }',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'globalCssFilter' => [
@@ -423,6 +461,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}} .tpgb-cssfilters',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalHCssFilter' => [
                 'type' => 'object',
@@ -432,6 +471,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}} .tpgb-cssfilters:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalHideDesktop' => [
 				'type' => 'boolean',
@@ -441,6 +481,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '@media (min-width: 1201px){ .edit-post-visual-editor {{PLUS_WRAP}}{display: block;opacity: .5;} {{PLUS_WRAP}}{ display:none } }',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalHideTablet' => [
 				'type' => 'boolean',
@@ -450,6 +491,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '@media (min-width: 768px) and (max-width: 1200px){ .edit-post-visual-editor {{PLUS_WRAP}}{display: block;opacity: .5;} {{PLUS_WRAP}}{ display:none } }',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalHideMobile' => [
 				'type' => 'boolean',
@@ -459,11 +501,13 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '@media (max-width: 767px){ .edit-post-visual-editor {{PLUS_WRAP}}{display: block;opacity: .5;} {{PLUS_WRAP}}{ display:none !important; } }',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'globalClasses' => [
 				'type' => 'string',
 				'default' => '',
+				'scopy' => true,
 			],
 			'globalId' => [
 				'type' => 'string',
@@ -482,14 +526,17 @@ class Tpgb_Blocks_Global_Options {
 			'globalAnim' => [
 				'type' => 'object',
 				'default' => [ 'md' => 'none' ],
+				'scopy' => true,
 			],
 			'globalAnimDirect' => [
 				'type' => 'object',
 				'default' => [ 'md' => '' ],
+				'scopy' => true,
 			],
 			'globalAnimDuration' => [
 				'type' => 'string',
 				'default' => 'normal',
+				'scopy' => true,
 			],
 			'globalAnimCDuration' => [
 				'type' => 'object',
@@ -499,6 +546,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}}.tpgb_animated.tpgb-anim-dur-custom{-webkit-animation-duration: {{globalAnimCDuration}}s;animation-duration: {{globalAnimCDuration}}s;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalAnimDelay' => [
 				'type' => 'object',
@@ -508,6 +556,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}}.tpgb-view-animation{-webkit-animation-delay: {{globalAnimDelay}}s;animation-delay: {{globalAnimDelay}}s;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalAnimEasing' => [
 				'type' => 'string',
@@ -518,6 +567,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}}.tpgb-view-animation{animation-timing-function: {{globalAnimEasing}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalAnimEasCustom' => [
 				'type' => 'string',
@@ -527,19 +577,23 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}}.tpgb-view-animation{animation-timing-function: {{globalAnimEasCustom}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'globalAnimOut' => [
 				'type' => 'object',
 				'default' => [ 'md' => 'none' ],
+				'scopy' => true,
 			],
 			'globalAnimDirectOut' => [
 				'type' => 'object',
 				'default' => [ 'md' => '' ],
+				'scopy' => true,
 			],
 			'globalAnimDurationOut' => [
 				'type' => 'string',
 				'default' => 'normal',
+				'scopy' => true,
 			],
 			'globalAnimCDurationOut' => [
 				'type' => 'object',
@@ -549,6 +603,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}}.tpgb_animated_out.tpgb-anim-out-dur-custom{-webkit-animation-duration: {{globalAnimCDurationOut}}s;animation-duration: {{globalAnimCDurationOut}}s;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalAnimDelayOut' => [
 				'type' => 'object',
@@ -558,6 +613,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}}.tpgb-view-animation-out{-webkit-animation-delay: {{globalAnimDelayOut}}s;animation-delay: {{globalAnimDelayOut}}s;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalAnimEasingOut' => [
 				'type' => 'string',
@@ -568,6 +624,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}}.tpgb-view-animation-out{animation-timing-function: {{globalAnimEasingOut}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'globalAnimEasCustomOut' => [
 				'type' => 'string',
@@ -577,6 +634,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}}.tpgb-view-animation-out{animation-timing-function: {{globalAnimEasCustomOut}};}',
 					],
 				],
+				'scopy' => true,
 			],
 		];
 		
@@ -597,10 +655,12 @@ class Tpgb_Blocks_Global_Options {
 			'contentHoverEffect' => [
 				'type' => 'boolean',
 				'default' => false,	
+				'scopy' => true,
 			],
 			'selectHoverEffect' => [
 				'type' => 'string',
 				'default' => '',	
+				'scopy' => true,
 			],
 			
 			'contentHoverColor' => [
@@ -623,16 +683,23 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_shadow_radial:before{background: -webkit-radial-gradient(center, ellipse at 50% 150%, {{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%);background: radial-gradient(ellipse at 50% 150%,{{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%); }{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_shadow_radial:after {background: -webkit-radial-gradient(50% -50%, ellipse, {{contentHoverColor}} 0%, rgba(0, 0, 0, 0) 80%);background: radial-gradient(ellipse at 50% -50%, {{contentHoverColor}} 0%, rgba(0, 0, 0, 0) 80%);}',
 					],
 				],
+				'scopy' => true,
 			],
 			'Plus3DTilt' => [
 				'type' => 'object',
-				'default' => [],	
+				'default' => [],
+				'scopy' => true,
 			],
 			'PlusMouseParallax' => [
 				'type' => 'object',
 				'default' => [],	
+				'scopy' => true,
 			],
 		];
+		
+		if(has_filter('tpgb_display_option')) {
+			$options = apply_filters('tpgb_display_option', $options);
+		}
 		
 		return $options;
 	}
@@ -693,6 +760,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .button-link-wrap .button-before { margin-right: {{extBtniconSpacing}}; } {{PLUS_WRAP}} .button-link-wrap .button-after { margin-left: {{extBtniconSpacing}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'extBtniconSize' => [
 				'type' => 'object',
@@ -706,6 +774,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .button-link-wrap .btn-icon { font-size: {{extBtniconSize}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnSpace' => [
 				'type' => 'object',
@@ -719,6 +788,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button{ margin-top: {{extbtnSpace}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnbottomSpace' => [
 				'type' => 'object',
@@ -732,6 +802,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button{ margin-bottom : {{extbtnbottomSpace}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnPadding' => [
 				'type' => 'object',
@@ -750,6 +821,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap{ padding: {{extbtnPadding}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnTypo' => [
 				'type'=> 'object',
@@ -763,6 +835,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnTextColor' => [
 				'type' => 'string',
@@ -780,6 +853,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-7 .button-link-wrap:after{ border-color: {{extbtnTextColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnThoverColor' => [
 				'type' => 'string',
@@ -790,6 +864,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap:hover{ color: {{extbtnThoverColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnNormalB' => [
 				'type' => 'object',
@@ -813,6 +888,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnBRadius' => [
 				'type' => 'object',
@@ -831,6 +907,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap{border-radius: {{extbtnBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnBG' => [
 				'type' => 'object',
@@ -843,6 +920,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnHvrB' => [
 				'type' => 'object',
@@ -866,6 +944,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnHvrBRadius' => [
 				'type' => 'object',
@@ -884,6 +963,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover{border-radius: {{extbtnHvrBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnHvrBG' => [
 				'type' => 'object',
@@ -896,6 +976,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'extbtnShadow' => [
 				'type' => 'object',
@@ -912,6 +993,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap',
 					],
 				],
+				'scopy' => true,
 			],
 			'hoverextbtnShadow' => [
 				'type' => 'object',
@@ -928,6 +1010,7 @@ class Tpgb_Blocks_Global_Options {
 						'selector' => '{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap:hover',
 					],
 				],
+				'scopy' => true,
 			],
 	];
 		
@@ -961,13 +1044,13 @@ class Tpgb_Blocks_Global_Options {
 					if($extBtnStyle == 'style-8'){
 						if($extBtniconPosition == 'before'){
 							(($extBtniconFont == 'font_awesome' && !empty($extBtniconName)  ) ? $output .= '<span class="btn-icon button-'.esc_attr($extBtniconPosition).'"><i class="'.esc_attr($extBtniconName).' "></i></span>' : '');
-							$output .= esc_html($extBtnText);
+							$output .= wp_kses_post($extBtnText);
 						}else{
-							$output .= esc_html($extBtnText);
+							$output .= wp_kses_post($extBtnText);
 							(($extBtniconFont == 'font_awesome' && !empty($extBtniconName)) ? $output .= '<span class="btn-icon button-'.esc_attr($extBtniconPosition).'"><i class="'.esc_attr($extBtniconName).' "></i></span>' : '');
 						}
 					}else{
-						$output .= esc_html($extBtnText);
+						$output .= wp_kses_post($extBtnText);
 						$output .= '<span class="button-arrow"> ';
 							if($extBtnStyle == 'style-7'){
 								$output .= '<span class="btn-right-arrow"><i class="fas fa-chevron-right"></i></span>';
@@ -1050,6 +1133,7 @@ class Tpgb_Blocks_Global_Options {
 				}
 				
 				if(!empty($animationEffect)){
+					
 					if(!empty($attributes['globalAnimDuration']) && $attributes['globalAnimDuration']=='custom'){
 						$animClass .= ' tpgb-anim-dur-custom';
 					}else if(!empty($attributes['globalAnimDuration'])){
@@ -1091,6 +1175,7 @@ class Tpgb_Blocks_Global_Options {
 			if(!empty($attributes['PlusMouseParallax']) && !empty($attributes['PlusMouseParallax']['tpgbReset'])){
 				$animClass .= ' tpgb-mouse-parallax';
 			}
+			
 			$outputWrap = '';
 			
 			$wrapClass = '';
@@ -1131,12 +1216,54 @@ class Tpgb_Blocks_Global_Options {
 					ob_end_clean();
 					
 				$outputWrap .= '</div>';
-				
+
 			}else{
 				$outputWrap .= $content;
 			}
 			
+			if( isset($attributes[ 'tpgbDisrule' ]) && !empty($attributes[ 'tpgbDisrule' ]) && class_exists('Tpgb_Display_Conditions_Rules') ){
+				$tpgb_condition_rules = Tpgb_Display_Conditions_Rules::get_instance();
+				if(!empty($tpgb_condition_rules)){
+					$checkDis = $tpgb_condition_rules::tpgb_rules_actions($attributes['block_id'],$attributes);
+					
+					if($checkDis === false){
+						$outputWrap = '';
+					}
+				}
+			}
+			
 		return $outputWrap;
+	}
+	
+	/*
+	 * Row Block Render Display Rules
+	 * @since 1.2.0
+	 */
+	public static function block_row_conditional_render($attributes,$output){
+		
+		if( isset($attributes[ 'tpgbDisrule' ]) && !empty($attributes[ 'tpgbDisrule' ]) && class_exists('Tpgb_Display_Conditions_Rules') ){
+		
+			$tpgb_condition_rules = Tpgb_Display_Conditions_Rules::get_instance();
+			if(!empty($tpgb_condition_rules)){
+				$uid = (isset($attributes['block_id']) && !empty($attributes['block_id']) ) ? $attributes['block_id'] : uniqid('block');
+				$checkDis =  $tpgb_condition_rules::tpgb_rules_actions($uid,$attributes);
+				if($checkDis === false){
+					$output = '';
+				}
+			}
+		}
+		return $output;
+	}
+	
+	public static function render_block_default_attributes(){
+		
+		return [
+			'tpgbDisrule' => false,
+			'disRule' => 'all',
+			'displayRules' => [ 
+				(object)[ "_key" => '0','displayKey' => 'authentication', 'tpgb_authentication_value' => 'authenticated', 'tpgb_role_value' => 'administrator', 'tpgb_os_value' => 'iphone', 'tpgb_browser_value' => 'ie', 'assigOpr' => 'is', 'tpgb_startdate_value' => '2021-10-13', 'tpgb_enddate_value' => '2021-10-15', 'tpgb_time_value' => '12:00', 'tpgb_day_value' => '[]' ,'tpgb_post_type_value' => '[]','tpgb_page_value' => '[]' ,'tpgb_post_value' => '[]' ,'tpgb_taxonomy_archive_value' => '[]', 'tpgb_author_archive_value' => '[]', 'tpgb_post_type_archive_value' => '[]', 'tpgb_static_page_value' => 'home', 'tpgb_date_archive_value' => 'day', 'tpgb_search_results_value' => '' ]
+			],
+		];
 	}
 }
 

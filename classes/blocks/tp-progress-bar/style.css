@@ -26,7 +26,7 @@ span.progres-ims {
     vertical-align: middle;
     align-items: center;
 }
-img.progress-bar-img {
+.progres-ims img.progress-bar-img {
     width: 40px;
 }
 span.progress-bar-title {

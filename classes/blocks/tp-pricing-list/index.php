@@ -146,6 +146,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list{ text-align: {{Alignment}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'boxAlign' => [
 			'type' => 'string',
@@ -164,7 +165,7 @@ function tpgb_tp_pricing_list() {
 			'default' => 'Small|Medium|Large',	
 		],
 		'price' => [
-			'type' => 'number',
+			'type' => 'string',
 			'default' => '$4.99',	
 		],
 		'description' => [
@@ -203,6 +204,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-title',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleColor' => [
 			'type' => 'string',
@@ -213,6 +215,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-title{ color: {{titleColor}}; } {{PLUS_WRAP}}.tpgb-pricing-list.food-menu-style-2 .food-menu-title{ color: {{titleColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleBG' => [
 			'type' => 'object',
@@ -231,6 +234,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-title',
 				],
 			],
+			'scopy' => true,
 		],
 		'titlePadding' => [
 			'type' => 'object',
@@ -249,6 +253,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-title{padding: {{titlePadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'lineStyle' => [
 			'type' => 'object',
@@ -274,6 +279,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list.food-menu-style-3 .food-flex-line .food-menu-divider .menu-divider',
 				],
 			],
+			'scopy' => true,
 		],
 		'tagTypo' => [
 			'type'=> 'object',
@@ -287,6 +293,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag',
 				],
 			],
+			'scopy' => true,
 		],
 		'tagSpace' => [
 			'type' => 'object',
@@ -300,6 +307,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag{ margin-right: {{tagSpace}}; } ',
 				],
 			],
+			'scopy' => true,
 		],
 		'tagColor' => [
 			'type' => 'string',
@@ -310,6 +318,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag{ color: {{tagColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'tagBG' => [
 			'type' => 'object',
@@ -322,6 +331,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag',
 				],
 			],
+			'scopy' => true,
 		],
 		'tagBRadius' => [
 			'type' => 'object',
@@ -340,6 +350,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag{border-radius: {{tagBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tagPadding' => [
 			'type' => 'object',
@@ -358,6 +369,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag{padding: {{tagPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'priceTypo' => [
 			'type'=> 'object',
@@ -371,6 +383,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price',
 				],
 			],
+			'scopy' => true,
 		],
 		'priceColor' => [
 			'type' => 'string',
@@ -381,6 +394,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price{ color: {{priceColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'priceBG' => [
 			'type' => 'object',
@@ -393,6 +407,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price',
 				],
 			],
+			'scopy' => true,
 		],
 		'priceBRadius' => [
 			'type' => 'object',
@@ -411,6 +426,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price{border-radius: {{priceBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'pricePadding' => [
 			'type' => 'object',
@@ -429,6 +445,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price{padding: {{pricePadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		
 		'descTypo' => [
@@ -443,6 +460,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc',
 				],
 			],
+			'scopy' => true,
 		],
 		'descColor' => [
 			'type' => 'string',
@@ -453,6 +471,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc{ color: {{descColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'descBG' => [
 			'type' => 'object',
@@ -465,6 +484,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc',
 				],
 			],
+			'scopy' => true,
 		],
 		'descBRadius' => [
 			'type' => 'object',
@@ -483,6 +503,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc{border-radius: {{descBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'descPadding' => [
 			'type' => 'object',
@@ -501,6 +522,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc{padding: {{descPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgMinWidth' => [
 			'type' => 'object',
@@ -514,6 +536,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img{ min-width: {{imgMinWidth}}; } ',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgMaxWidth' => [
 			'type' => 'object',
@@ -527,6 +550,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img{ max-width: {{imgMaxWidth}}; } ',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgRightSpace' => [
 			'type' => 'object',
@@ -540,6 +564,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.food-menu-style-3 .food-flex-line .food-flex-img{ margin-right: {{imgRightSpace}}; } ',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgBorder' => [
 			'type' => 'object',
@@ -565,6 +590,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img img',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgBRadius' => [
 			'type' => 'object',
@@ -583,6 +609,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img img{ border-radius: {{imgBRadius}}; } ',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgShadow' => [
 			'type' => 'object',
@@ -601,6 +628,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img',
 				],
 			],
+			'scopy' => true,
 		],
 		'normalBG' => [
 			'type' => 'object',
@@ -617,6 +645,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-front',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgNormalB' => [
 			'type' => 'object',
@@ -646,6 +675,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-front',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgNmlBRadius' => [
 			'type' => 'object',
@@ -668,6 +698,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-front{border-radius: {{bgNmlBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'normalBGShadow' => [
 			'type' => 'object',
@@ -690,6 +721,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-front',
 				],
 			],
+			'scopy' => true,
 		],
 		'hoverBG' => [
 			'type' => 'object',
@@ -702,6 +734,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-back',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgHoverB' => [
 			'type' => 'object',
@@ -727,6 +760,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-back',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgHvrBRadius' => [
 			'type' => 'object',
@@ -745,6 +779,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-back{border-radius: {{bgHvrBRadius}};}  {{PLUS_WRAP}}.tpgb-pricing-list .flip-horizontal:hover .food-flipbox-front{border-radius: {{bgHvrBRadius}};}  {{PLUS_WRAP}}.tpgb-pricing-list .flip-vertical:hover .food-flipbox-front{border-radius: {{bgHvrBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'hoverBGShadow' => [
 			'type' => 'object',
@@ -763,6 +798,7 @@ function tpgb_tp_pricing_list() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-back',
 				],
 			],
+			'scopy' => true,
 		],
 	);
 	$attributesOptions = array_merge($attributesOptions,$globalBgOption,$globalpositioningOption, $globalPlusExtrasOption);

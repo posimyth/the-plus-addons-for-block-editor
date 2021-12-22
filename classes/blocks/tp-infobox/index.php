@@ -1,6 +1,6 @@
 <?php
 /* Block : Info Box
- * @since : 1.1.3
+ * @since : 1.1.7
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -27,6 +27,12 @@ function tpgb_tp_infobox_render_callback( $attributes, $content) {
 	$Description = (!empty($attributes['Description'])) ? $attributes['Description'] : '';
 	$iconstyleType = (!empty($attributes['iconstyleType'])) ? $attributes['iconstyleType'] : 'none';
 	$contenthoverEffect = (!empty($attributes['contenthoverEffect'])) ? $attributes['contenthoverEffect'] : '';
+	
+	$svgIcon = (!empty($attributes['svgIcon'])) ? $attributes['svgIcon'] : '';
+	$svgDraw = (!empty($attributes['svgDraw'])) ? $attributes['svgDraw'] : 'delayed';
+	$svgstroColor = (!empty($attributes['svgstroColor'])) ? $attributes['svgstroColor'] : '';
+	$svgfillColor = (!empty($attributes['svgfillColor'])) ? $attributes['svgfillColor'] : 'none';
+	$svgDura = (!empty($attributes['svgDura'])) ? $attributes['svgDura'] : 90;
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	$imgSrc ='';
@@ -66,6 +72,11 @@ function tpgb_tp_infobox_render_callback( $attributes, $content) {
 					$getIcon .='</span>';
 				}else if($iconType=='image'){
 					$getIcon .= $imgSrc;
+				}else if($iconType=='svg' && !empty($svgIcon) && !empty($svgIcon['url'])){
+					$getIcon .= '<div class="tpgb-draw-svg" data-id="service-svg-'.esc_attr($block_id).'" data-type="'.esc_attr($svgDraw).'" data-duration="'.esc_attr($svgDura).'" data-stroke="'.esc_attr($svgstroColor).'" data-fillColor="'.esc_attr($svgfillColor).'" data-fillEnable="yes">';
+						$getIcon .= '<object id="service-svg-'.esc_attr($block_id).'" type="image/svg+xml" data="'.$svgIcon['url'].'">';
+						$getIcon .= '</object>';
+					$getIcon .= '</div>';
 				}
 				$getIcon .='</div>';
 			$getIcon .='</div>';
@@ -203,6 +214,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .text-alignment .service-border{ margin-left:auto; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'Title' => [
 				'type' => 'string',
@@ -221,6 +233,10 @@ function tpgb_tp_infobox() {
 				'default'=> 'fab fa-angellist',
 			],
 			'imageName' => [
+				'type' => 'object',
+				'default' => [],
+			],
+			'svgIcon' => [
 				'type' => 'object',
 				'default' => [],
 			],
@@ -260,6 +276,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .service-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleNmlColor' => [
 				'type' => 'string',
@@ -270,6 +287,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-title{ color: {{titleNmlColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleHvrColor' => [
 				'type' => 'string',
@@ -280,6 +298,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-title{ color: {{titleHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleTopSpace' => [
 				'type' => 'object',
@@ -293,6 +312,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .service-title{ margin-top: {{titleTopSpace}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleBottomSpace' => [
 				'type' => 'object',
@@ -310,10 +330,12 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .service-media{ margin-bottom: {{titleBottomSpace}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'displayBorder' => [
 				'type' => 'boolean',
 				'default' => false,	
+				'scopy' => true,
 			],
 			'displayBdrWidth' => [
 				'type' => 'object',
@@ -324,6 +346,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .service-border{ width: {{displayBdrWidth}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'displayBdrHeight' => [
 				'type' => 'object',
@@ -334,6 +357,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .service-border{ border-width: {{displayBdrHeight}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'borderColor' => [
 				'type' => 'string',
@@ -344,6 +368,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .service-border{ border-color: {{borderColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'descTypo' => [
 				'type'=> 'object',
@@ -357,6 +382,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .service-desc',
 					],
 				],
+				'scopy' => true,
 			],
 			'descNmlColor' => [
 				'type' => 'string',
@@ -367,6 +393,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .service-desc{ color: {{descNmlColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'descHvrColor' => [
 				'type' => 'string',
@@ -377,6 +404,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-desc{ color: {{descHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'normalBG' => [
 				'type' => 'object',
@@ -388,6 +416,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-bg-box',
 					],
 				],
+				'scopy' => true,
 			],
 			'HoverBG' => [
 				'type' => 'object',
@@ -399,6 +428,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .info-box-bg-box',
 					],
 				],
+				'scopy' => true,
 			],
 			'overlayNmlBG' => [
 				'type' => 'string',
@@ -408,6 +438,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .infobox-overlay-color{ background: {{overlayNmlBG}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'overlayHvrBG' => [
 				'type' => 'string',
@@ -417,6 +448,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover:hover .infobox-overlay-color{ background: {{overlayHvrBG}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxPadding' => [
 				'type' => 'object',
@@ -434,6 +466,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-bg-box{padding: {{boxPadding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgNmlBorder' => [
 				'type' => 'object',
@@ -458,6 +491,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-bg-box',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgHvrBorder' => [
 				'type' => 'object',
@@ -482,6 +516,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .info-box-bg-box',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'boxBdrNmlRadius' => [
@@ -500,6 +535,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-bg-box,{{PLUS_WRAP}} .infobox-overlay-color{border-radius: {{boxBdrNmlRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBdrHvrRadius' => [
 				'type' => 'object',
@@ -517,6 +553,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .info-box-bg-box,{{PLUS_WRAP}} .info-box-inner:hover:hover .infobox-overlay-color{border-radius: {{boxBdrHvrRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'nmlboxShadow' => [
 				'type' => 'object',
@@ -534,6 +571,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-bg-box',
 					],
 				],
+				'scopy' => true,
 			],
 			'hvrboxShadow' => [
 				'type' => 'object',
@@ -551,10 +589,12 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .info-box-bg-box',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconstyleType' => [
 				'type' => 'string',
-				'default' => 'none',	
+				'default' => 'none',
+				'scopy' => true,				
 			],
 			'iconSize' => [
 				'type' => 'object',
@@ -568,6 +608,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-icon{ font-size: {{iconSize}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconWidth' => [
 				'type' => 'object',
@@ -581,6 +622,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}  .info-box-inner .service-icon{ width: {{iconWidth}}; height: {{iconWidth}}; line-height: {{iconWidth}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconNormalColor' => [
 				'type' => 'string',
@@ -591,6 +633,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-icon{ color: {{iconNormalColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconHoverColor' => [
 				'type' => 'string',
@@ -601,6 +644,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-icon{ color: {{iconHoverColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgNormalColor' => [
 				'type' => 'object',
@@ -613,6 +657,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgHoverColor' => [
 				'type' => 'object',
@@ -625,6 +670,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconBdrNmlRadius' => [
 				'type' => 'object',
@@ -643,6 +689,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-icon{border-radius: {{iconBdrNmlRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconBdrHvrRadius' => [
 				'type' => 'object',
@@ -661,6 +708,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-icon{border-radius: {{iconBdrHvrRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconBdrNmlType' => [
 				'type' => 'object',
@@ -675,6 +723,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .icon-square,{{PLUS_WRAP}} .info-box-inner .icon-rounded',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconBdrNmlColor' => [
 				'type' => 'string',
@@ -685,6 +734,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .icon-square,{{PLUS_WRAP}} .info-box-inner .icon-rounded{ border-color: {{iconBdrNmlColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconBWidth' => [
 				'type' => 'object',
@@ -698,6 +748,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .icon-square,{{PLUS_WRAP}} .info-box-inner .icon-rounded{ border-width: {{iconBWidth}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconBdrHvrColor' => [
 				'type' => 'string',
@@ -708,6 +759,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .icon-square,{{PLUS_WRAP}} .info-box-inner:hover .icon-rounded{ border-color: {{iconBdrHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'nmlIconShadow' => [
 				'type' => 'object',
@@ -726,6 +778,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'hvrIconShadow' => [
 				'type' => 'object',
@@ -744,14 +797,17 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconOverlay' => [
 				'type' => 'boolean',
 				'default' => false,	
+				'scopy' => true,
 			],
 			'iconShine' => [
 				'type' => 'boolean',
 				'default' => false,	
+				'scopy' => true,
 			],
 			'imageWidth' => [
 				'type' => 'object',
@@ -765,6 +821,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}  .info-box-inner .service-icon{ width: {{imageWidth}}; height: {{imageWidth}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'imgBdrNmlRadius' => [
 				'type' => 'object',
@@ -783,6 +840,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-icon{border-radius: {{imgBdrNmlRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'normalImageShadow' => [
 				'type' => 'object',
@@ -801,6 +859,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'nmlImgDpShadow' => [
 				'type' => 'object',
@@ -818,6 +877,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner .service-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'imgBdrHvrRadius' => [
 				'type' => 'object',
@@ -836,6 +896,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-icon{border-radius: {{imgBdrHvrRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'hoverImgShadow' => [
 				'type' => 'object',
@@ -854,6 +915,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'hvrImgDpShadow' => [
 				'type' => 'object',
@@ -871,10 +933,12 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .info-box-inner:hover .service-icon',
 					],
 				],
+				'scopy' => true,
 			],
 			'imgOverlay' => [
 				'type' => 'boolean',
 				'default' => false,	
+				'scopy' => true,
 			],
 			'pinTextTypo' => [
 				'type'=> 'object',
@@ -888,6 +952,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-pin-text ',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinNmlBorder' => [
 				'type' => 'object',
@@ -912,6 +977,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner .info-pin-text',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinTextNmlColor' => [
 				'type' => 'string',
@@ -922,6 +988,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner .info-pin-text{ color: {{pinTextNmlColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinNmlBG' => [
 				'type' => 'object',
@@ -934,6 +1001,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner .info-pin-text',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinTextNmlRadius' => [
 				'type' => 'object',
@@ -952,6 +1020,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner .info-pin-text{border-radius: {{pinTextNmlRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'nmlPinShadow' => [
 				'type' => 'object',
@@ -970,6 +1039,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner .info-pin-text',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinHvrBorder' => [
 				'type' => 'object',
@@ -994,6 +1064,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner:hover .info-pin-text',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinTextHvrColor' => [
 				'type' => 'string',
@@ -1004,6 +1075,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner:hover .info-pin-text{ color: {{pinTextHvrColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinHvrBG' => [
 				'type' => 'object',
@@ -1016,6 +1088,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner:hover .info-pin-text',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinTextHvrRadius' => [
 				'type' => 'object',
@@ -1034,6 +1107,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner:hover .info-pin-text{border-radius: {{pinTextHvrRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'hvrPinShadow' => [
 				'type' => 'object',
@@ -1052,6 +1126,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner:hover .info-pin-text',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinSize' => [
 				'type' => 'object',
@@ -1069,6 +1144,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner .info-pin-text{padding: {{pinSize}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinHrztlAdj' => [
 				'type' => 'object',
@@ -1081,6 +1157,7 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner .info-pin-text{ left: {{pinHrztlAdj}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'pinVrtclAdj' => [
 				'type' => 'object',
@@ -1093,15 +1170,18 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-infobox .info-box-inner .info-pin-text{ top: {{pinVrtclAdj}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'verticalCenter' => [
 				'type' => 'boolean',
 				'default' => false,	
+				'scopy' => true,
 			],
 			'sideImgBorder' => [
 				'type' => 'boolean',
 				'default' => false,	
+				'scopy' => true,
 			],
 			'bdrRightColor' => [
 				'type' => 'string',
@@ -1112,10 +1192,12 @@ function tpgb_tp_infobox() {
 						'selector' => '{{PLUS_WRAP}} .style-1.service-img-border{ color: {{bdrRightColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'minHeightTgl' => [
 				'type' => 'boolean',
 				'default' => false,	
+				'scopy' => true,
 			],
 			'minHeight' => [
 				'type' => 'object',
@@ -1130,10 +1212,46 @@ function tpgb_tp_infobox() {
 						{{PLUS_WRAP}}.info-box-style-3 .info-box-inner .info-box-bg-box{ -webkit-justify-content: center;-moz-justify-content: center;-ms-justify-content: center;justify-content: center; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'contenthoverEffect' => [
 				'type' => 'string',
-				'default' => '',	
+				'default' => '',
+				'scopy' => true,				
+			],
+			
+			'svgDraw' => [
+				'type' => 'string',
+				'default' => 'delayed',	
+				'scopy' => true,
+			],
+			'svgDura' => [
+				'type' => 'string',
+				'default' => '90',
+				'scopy' => true,
+			],
+			'svgmaxWidth' => [
+				'type' => 'object',
+				'default' => [ 
+					'md' => '',
+					"unit" => 'px',
+				],
+				'style' => [
+					(object) [
+						'selector' => '{{PLUS_WRAP}} .service-icon-wrap .tpgb-draw-svg{ max-width: {{svgmaxWidth}}; max-height: {{svgmaxWidth}}; }',
+					],
+				],
+				'scopy' => true,
+			],
+			'svgstroColor' => [
+				'type' => 'string',
+				'default' => '#000000',
+				'scopy' => true,
+			],
+			'svgfillColor' => [
+				'type' => 'string',
+				'default' => '',
+				'scopy' => true,
 			],
 		);
 	$attributesOptions = array_merge($attributesOptions,$globalBgOption,$globalpositioningOption,$plusButton_options, $globalPlusExtrasOption);

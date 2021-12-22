@@ -60,6 +60,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner div{text-align: {{contentAlignment}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'typography' => [
             'type' => 'object',
@@ -72,6 +73,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner blockquote.tpgb-quote-text > span,{{PLUS_WRAP}} .tpgb-blockquote-inner blockquote.tpgb-quote-text',
                 ],
             ],
+			'scopy' => true,
         ],
         'textNormalColor' => [
             'type' => 'string',
@@ -81,6 +83,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-text{color: {{textNormalColor}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'textHoverColor' => [
             'type' => 'string',
@@ -90,6 +93,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-text:hover{color: {{textHoverColor}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'authorNormalColor' => [
             'type' => 'string',
@@ -100,6 +104,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-text .tpgb-quote-author{color: {{authorNormalColor}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'authorHoverColor' => [
             'type' => 'string',
@@ -110,6 +115,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-text .tpgb-quote-author:hover{color: {{authorHoverColor}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'quoteColor' => [
             'type' => 'string',
@@ -120,6 +126,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-left{color: {{quoteColor}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'boxPadding' => [
             'type' => 'object',
@@ -137,6 +144,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner{padding: {{boxPadding}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'boxMargin' => [
             'type' => 'object',
@@ -154,6 +162,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner{margin: {{boxMargin}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'borderNormal' => [
             'type' => 'object',
@@ -176,6 +185,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner',
                 ],
             ],
+			'scopy' => true,
         ],
         'borderHover' => [
             'type' => 'object',
@@ -198,6 +208,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner:hover',
                 ],
             ],
+			'scopy' => true,
         ],
         'borderRadius' => [
             'type' => 'object',
@@ -215,6 +226,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner{border-radius: {{borderRadius}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'HvrborderRadius' => [
             'type' => 'object',
@@ -232,6 +244,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner:hover{border-radius: {{HvrborderRadius}};}',
                 ],
             ],
+			'scopy' => true,
         ],
         'catBg' => [
             'type' => 'object',
@@ -244,6 +257,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner',
                 ],
             ],
+			'scopy' => true,
         ],
         'catBgHover' => [
             'type' => 'object',
@@ -256,6 +270,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner:hover',
                 ],
             ],
+			'scopy' => true,
         ],
         'catBoxShadow' => [
             'type' => 'object',
@@ -273,6 +288,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner',
                 ],
             ],
+			'scopy' => true,
         ],
         'catBoxShadowHover' => [
             'type' => 'object',
@@ -290,6 +306,7 @@ function tpgb_tp_blockquote_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-blockquote-inner:hover',
                 ],
             ],
+			'scopy' => true,
         ]
     ];
 

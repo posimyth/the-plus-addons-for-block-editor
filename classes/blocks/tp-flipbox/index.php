@@ -1,6 +1,6 @@
 <?php
 /* Block : Flip Box
- * @since : 1.1.3
+ * @since : 1.1.7
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -11,6 +11,7 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 	$iconType = (!empty($attributes['iconType'])) ? $attributes['iconType'] : 'icon';
 	$iconStore = (!empty($attributes['iconStore'])) ? $attributes['iconStore'] : '';
 	$iconStyle = (!empty($attributes['iconStyle'])) ? $attributes['iconStyle'] : 'none';
+	$svgIcon = (!empty($attributes['svgIcon'])) ? $attributes['svgIcon'] : '';
 	$imagestore = (!empty($attributes['imagestore'])) ? $attributes['imagestore'] : '';
 	$imageSize = (!empty($attributes['imageSize'])) ? $attributes['imageSize'] : 'thumbnail';
 	$title = (!empty($attributes['title'])) ? $attributes['title'] : '';
@@ -20,6 +21,11 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 	$backCarouselBtn = (!empty($attributes['backCarouselBtn'])) ? $attributes['backCarouselBtn'] : false;
 	
 	$flipcarousel = (!empty($attributes['flipcarousel'])) ? $attributes['flipcarousel'] : [];
+	
+	$svgDraw = (!empty($attributes['svgDraw'])) ? $attributes['svgDraw'] : 'delayed';
+	$svgstroColor = (!empty($attributes['svgstroColor'])) ? $attributes['svgstroColor'] : '';
+	$svgfillColor = (!empty($attributes['svgfillColor'])) ? $attributes['svgfillColor'] : 'none';
+	$svgDura = (!empty($attributes['svgDura'])) ? $attributes['svgDura'] : 90;
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
@@ -58,7 +64,7 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 		if($layoutType=='listing'){
 			$output .= '<div class="flip-box-inner content_hover_effect ">';
 				$output .= '<div class="flip-box-bg-box">';
-					$output .= '<div class="service-flipbox flip-'.esc_attr($flipType).'" height-full"}>';
+					$output .= '<div class="service-flipbox flip-'.esc_attr($flipType).' height-full">';
 						$output .= '<div class="service-flipbox-holder height-full text-center perspective bezier-1">';
 							$output .= '<div class="service-flipbox-front bezier-1 no-backface origin-center">';
 								$output .= '<div class="service-flipbox-content width-full">';
@@ -69,6 +75,12 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 									}
 									if($iconType=='img' && !empty($imagestore)){
 										$output .= $imgSrc;
+									}
+									if($iconType=='svg' && !empty($svgIcon) && !empty($svgIcon['url']) ){
+										$output .= '<div class="tpgb-draw-svg" data-id="service-svg-'.esc_attr($block_id).'" data-type="'.esc_attr($svgDraw).'" data-duration="'.esc_attr($svgDura).'" data-stroke="'.esc_attr($svgstroColor).'" data-fillColor="'.esc_attr($svgfillColor).'" data-fillEnable="yes">';
+											$output .= '<object id="service-svg-'.esc_attr($block_id).'" type="image/svg+xml" data="'.$svgIcon['url'].'">';
+											$output .= '</object>';
+										$output .= '</div>';
 									}
 									$output .= '<div class="service-content">';
 										$output .= '<div class="service-title">'.wp_kses_post($title).'</div>';
@@ -119,6 +131,12 @@ function tpgb_tp_flipbox_render_callback( $attributes, $content) {
 													$imgSrc = '<img src="'.esc_url($imgSrc).'" class="service-img" alt="'.esc_attr__('FlipBox','tpgb').'"/>';
 												}
 												$output .= $imgSrc;
+											}
+											if($item['iconType']=='svg' && isset($item['svgFIcon']) && isset($item['svgFIcon']['url'])){
+												$output .= '<div class="tpgb-draw-svg" data-id="service-svg-'.esc_attr($item['_key']).'" data-type="'.esc_attr($svgDraw).'" data-duration="'.esc_attr($svgDura).'" data-stroke="'.esc_attr($svgstroColor).'" data-fillColor="'.esc_attr($svgfillColor).'" data-fillEnable="yes">';
+													$output .= '<object id="service-svg-'.esc_attr($item['_key']).'" type="image/svg+xml" data="'.$item['svgFIcon']['url'].'">';
+													$output .= '</object>';
+												$output .= '</div>';
 											}
 											$output .= '<div class="service-content">';
 												$output .= '<div class="service-title">'.wp_kses_post($item['title']).'</div>';
@@ -248,6 +266,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-flipbox .flip-box-inner .service-flipbox, {{PLUS_WRAP}}.tpgb-flipbox .flip-box-inner .service-flipbox-front, {{PLUS_WRAP}}.tpgb-flipbox .flip-box-inner .service-flipbox-back{ min-height: {{boxHeight}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'backCarouselBtn' => [
 			'type' => 'boolean',
@@ -306,6 +325,12 @@ function tpgb_flipbox() {
 						'type' => 'object',
 						'default' => [
 							'url' => TPGB_ASSETS_URL.'assets/images/tpgb-placeholder.jpg',
+						],
+					],
+					'svgFIcon' => [
+						'type' => 'object',
+						'default' => [
+							'url' => '',
 						],
 					],
 					'nmlBG' => [
@@ -374,6 +399,9 @@ function tpgb_flipbox() {
 					'imagestore' => [
 						'url' => TPGB_ASSETS_URL.'assets/images/tpgb-placeholder.jpg',
 					],
+					'svgFIcon' => [
+						'url' => '',
+					],
 				],
 				[
 					'_key' => '1',
@@ -385,6 +413,9 @@ function tpgb_flipbox() {
 					'btnUrl' => ['url'  => ''],
 					'imagestore' => [
 						'url' => TPGB_ASSETS_URL.'assets/images/tpgb-placeholder.jpg',
+					],
+					'svgFIcon' => [
+						'url' => '',
 					],
 				] 
 			]
@@ -405,6 +436,12 @@ function tpgb_flipbox() {
 			'type' => 'object',
 			'default' => [
 				'url' => TPGB_ASSETS_URL.'assets/images/tpgb-placeholder.jpg',
+			],
+		],
+		'svgIcon' => [
+			'type' => 'object',
+			'default' => [
+				'url' => ''
 			],
 		],
 		'imageSize' => [
@@ -452,6 +489,7 @@ function tpgb_flipbox() {
 		'iconStyle' => [
 			'type' => 'string',
 			'default' => 'none',	
+			'scopy' => true,
 		],
 		'iconSize' => [
 			'type' => 'object',
@@ -469,6 +507,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ font-size: {{iconSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'iconWidth' => [
 			'type' => 'object',
@@ -486,6 +525,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ width: {{iconWidth}}; height: {{iconWidth}}; line-height: {{iconWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnNmlColor' => [
 			'type' => 'string',
@@ -500,6 +540,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ color: {{icnNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnHvrColor' => [
 			'type' => 'string',
@@ -514,6 +555,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon{ color: {{icnHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnNormalBG' => [
 			'type' => 'object',
@@ -536,6 +578,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnHoverBG' => [
 			'type' => 'object',
@@ -558,6 +601,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlBColor' => [
 			'type' => 'string',
@@ -576,6 +620,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{ border-color: {{nmlBColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrBColor' => [
 			'type' => 'string',
@@ -594,6 +639,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon{ border-color: {{hvrBColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlIcnBRadius' => [
 			'type' => 'object',
@@ -621,6 +667,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon{border-radius: {{nmlIcnBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrIcnBRadius' => [
 			'type' => 'object',
@@ -647,6 +694,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon{border-radius: {{hvrIcnBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlIcnShadow' => [
 			'type' => 'object',
@@ -669,6 +717,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-icon',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrIcnShadow' => [
 			'type' => 'object',
@@ -691,6 +740,41 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-icon',
 				],
 			],
+			'scopy' => true,
+		],
+		
+		'svgDraw' => [
+			'type' => 'string',
+			'default' => 'delayed',	
+			'scopy' => true,
+		],
+		'svgDura' => [
+			'type' => 'string',
+			'default' => '90',
+			'scopy' => true,
+		],
+		'svgmaxWidth' => [
+			'type' => 'object',
+			'default' => [ 
+				'md' => '',
+				"unit" => 'px',
+			],
+			'style' => [
+				(object) [
+					'selector' => '{{PLUS_WRAP}} .flip-box-inner .tpgb-draw-svg{ max-width: {{svgmaxWidth}}; max-height: {{svgmaxWidth}}; }',
+				],
+			],
+			'scopy' => true,
+		],
+		'svgstroColor' => [
+			'type' => 'string',
+			'default' => '#000000',
+			'scopy' => true,
+		],
+		'svgfillColor' => [
+			'type' => 'string',
+			'default' => '',
+			'scopy' => true,
 		],
 		'imgWidth' => [
 			'type' => 'object',
@@ -708,6 +792,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-img{ max-width: {{imgWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleTypo' => [
 			'type'=> 'object',
@@ -721,6 +806,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-title',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleNmlColor' => [
 			'type' => 'string',
@@ -731,6 +817,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-title{ color: {{titleNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleHvrColor' => [
 			'type' => 'string',
@@ -741,6 +828,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-horizontal:hover .service-title{ color: {{titleHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleTopSpace' => [
 			'type' => 'object',
@@ -754,6 +842,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}}.flip-box-style-1 .flip-box-inner .service-title{ margin-top: {{titleTopSpace}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleBottomSpace' => [
 			'type' => 'object',
@@ -767,6 +856,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}}.flip-box-style-1 .flip-box-inner .service-title{ margin-bottom: {{titleBottomSpace}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'descTypo' => [
 			'type'=> 'object',
@@ -780,6 +870,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-desc',
 				],
 			],
+			'scopy' => true,
 		],
 		'descColor' => [
 			'type' => 'string',
@@ -790,6 +881,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-desc{ color: {{descColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnTypo' => [
 			'type'=> 'object',
@@ -806,6 +898,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnTextColor' => [
 			'type' => 'string',
@@ -834,6 +927,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-7 .button-link-wrap:after{ border-color: {{backBtnTextColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBThoverColor' => [
 			'type' => 'string',
@@ -848,6 +942,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap:hover{ color: {{backBThoverColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnSpace' => [
 			'type' => 'object',
@@ -865,6 +960,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button{ margin-top: {{backBtnSpace}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnbottomSpace' => [
 			'type' => 'object',
@@ -882,6 +978,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button{ margin-bottom : {{backBtnbottomSpace}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnIconSpacing' => [
 			'type' => 'object',
@@ -899,6 +996,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .button-link-wrap .button-before { margin-right: {{btnIconSpacing}}; } {{PLUS_WRAP}} .button-link-wrap .button-after { margin-left: {{btnIconSpacing}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnIconSize' => [
 			'type' => 'object',
@@ -916,6 +1014,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .button-link-wrap .btn-icon { font-size: {{btnIconSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnPadding' => [
 			'type' => 'object',
@@ -938,6 +1037,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap{ padding: {{backBtnPadding}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnNormalB' => [
 			'type' => 'object',
@@ -965,6 +1065,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnBRadius' => [
 			'type' => 'object',
@@ -987,6 +1088,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap{border-radius: {{backBtnBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnBG' => [
 			'type' => 'object',
@@ -1003,6 +1105,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnShadow' => [
 			'type' => 'object',
@@ -1023,6 +1126,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnHvrB' => [
 			'type' => 'object',
@@ -1050,6 +1154,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnHvrBRadius' => [
 			'type' => 'object',
@@ -1072,6 +1177,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover{border-radius: {{backBtnHvrBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnHvrBG' => [
 			'type' => 'object',
@@ -1088,6 +1194,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'backBtnHvrShadow' => [
 			'type' => 'object',
@@ -1108,6 +1215,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgBorder' => [
 			'type' => 'object',
@@ -1132,6 +1240,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-flipbox-front, {{PLUS_WRAP}} .flip-box-inner .service-flipbox-back',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgBRadius' => [
 			'type' => 'object',
@@ -1149,6 +1258,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-flipbox-front, {{PLUS_WRAP}} .flip-box-inner .service-flipbox-back, {{PLUS_WRAP}} .flipbox-front-overlay, {{PLUS_WRAP}} .flipbox-back-overlay{border-radius: {{bgBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'normalBG' => [
 			'type' => 'object',
@@ -1161,6 +1271,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-flipbox-front',
 				],
 			],
+			'scopy' => true,
 		],
 		'hoverBG' => [
 			'type' => 'object',
@@ -1173,6 +1284,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-flipbox-back',
 				],
 			],
+			'scopy' => true,
 		],
 		'overlayNmlBG' => [
 			'type' => 'string',
@@ -1183,6 +1295,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flipbox-front-overlay{ background: {{overlayNmlBG}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'overlayHvrBG' => [
 			'type' => 'string',
@@ -1193,6 +1306,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flipbox-back-overlay{ background: {{overlayHvrBG}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgNmlShadow' => [
 			'type' => 'object',
@@ -1210,6 +1324,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-flipbox-front',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgHvrShadow' => [
 			'type' => 'object',
@@ -1227,6 +1342,7 @@ function tpgb_flipbox() {
 					'selector' => '{{PLUS_WRAP}} .flip-box-inner .service-flipbox-back',
 				],
 			],
+			'scopy' => true,
 		],
 		
 	);

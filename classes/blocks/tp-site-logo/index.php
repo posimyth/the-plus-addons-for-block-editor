@@ -1,6 +1,6 @@
 <?php
 /* Tp Block : Site Logo
- * @since	: 1.1.3
+ * @since	: 1.2.1
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -10,11 +10,11 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 	$logoType = (!empty($attributes['logoType'])) ? $attributes['logoType'] : 'img';
 	$imageStore = (!empty($attributes['imageStore']['url'])) ? $attributes['imageStore'] : '';
 	$imageSize = (!empty($attributes['imageSize'])) ? $attributes['imageSize'] : 'thumbnail' ;
-	$svgStore = (!empty($attributes['svgStore']['url'])) ? $attributes['svgStore'] : '';
+	$svgStore = (!empty($attributes['svgStore']['url'])) ? $attributes['svgStore']['url'] : '';
 	
 	$hvrImageStore = (!empty($attributes['hvrImageStore']['url'])) ? $attributes['hvrImageStore'] : '';
 	$hvrImageSize = (!empty($attributes['hvrImageSize'])) ? $attributes['hvrImageSize'] : 'thumbnail' ;
-	$hvrSvgStore = (!empty($attributes['hvrSvgStore']['url'])) ? $attributes['hvrSvgStore'] : '';
+	$hvrSvgStore = (!empty($attributes['hvrSvgStore']['url'])) ? $attributes['hvrSvgStore']['url'] : '';
 	
 	$urlType = (!empty($attributes['urlType'])) ? $attributes['urlType'] : 'home';
 	
@@ -38,7 +38,7 @@ function tpgb_tp_site_logo_render_callback( $attributes, $content) {
 	
 	$imgSrc ='';
 	if(!empty($imageStore) && !empty($imageStore['id'])){
-		$imgSrc = wp_get_attachment_image($imageStore['id'] , $imageSize, false, ['class' => 'image-logo-wrap normal-image'.esc_attr($sticky_class) ] );
+		$imgSrc = wp_get_attachment_image($imageStore['id'] , $imageSize, false, ['class' => 'image-logo-wrap normal-image '.esc_attr($sticky_class) ] );
 		$imgSrc = (!empty($imgSrc)) ? $imgSrc : '<img src="'.esc_url($default_img).'" class="image-logo-wrap normal-image '.esc_attr($sticky_class).'"/>';
 	}else if(!empty($imageStore['url'])){
 		$imgSrc = '<img src="'.esc_url($imageStore['url']).'" class="image-logo-wrap normal-image '.esc_attr($sticky_class).'"/>';
@@ -167,6 +167,7 @@ function tpgb_site_logo() {
 					'selector' => '{{PLUS_WRAP}} .site-normal-logo img.image-logo-wrap{ max-width: {{logoWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		
 		'hvrImageStore' => [
@@ -197,6 +198,7 @@ function tpgb_site_logo() {
 					'selector' => '{{PLUS_WRAP}} .site-normal-logo.hover-logo img.image-logo-wrap{ max-width: {{hvrLogoWidth}}; width: {{hvrLogoWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'urlType' => [
 			'type' => 'string',
@@ -218,6 +220,7 @@ function tpgb_site_logo() {
 					'selector' => '{{PLUS_WRAP}} { text-align: {{Alignment}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'stickyLogo' => [
 			'type' => 'boolean',
@@ -251,6 +254,7 @@ function tpgb_site_logo() {
 					'selector' => '{{PLUS_WRAP}} .site-normal-logo img.image-logo-wrap.sticky-image{ max-width: {{stickyWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'logoSpeed' => [
 			'type' => 'string',
@@ -261,6 +265,7 @@ function tpgb_site_logo() {
 					'selector' => '{{PLUS_WRAP}} .site-normal-logo,{{PLUS_WRAP}} .site-normal-logo.hover-logo,{{PLUS_WRAP}} .site-logo-wrap.logo-hover-normal:hover .site-normal-logo.hover-logo{ transition-duration : {{logoSpeed}}s; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'markupSch' => [
 			'type' => 'boolean',

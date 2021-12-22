@@ -1,6 +1,6 @@
 <?php
 /* Block : Number Counter
- * @since : 1.1.3
+ * @since : 1.1.7
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -25,6 +25,12 @@ function tpgb_tp_number_counter_render_callback( $attributes, $content) {
 	$target = (!empty($attributes['linkURL']['target'])) ? '_blank' : '';
 	$nofollow = (!empty($attributes['linkURL']['nofollow'])) ? 'nofollow' : '';
 	$verticalCenter = (!empty($attributes['verticalCenter'])) ? $attributes['verticalCenter'] : false;
+	
+	$svgIcon = (!empty($attributes['svgIcon'])) ? $attributes['svgIcon'] : '';
+	$svgDraw = (!empty($attributes['svgDraw'])) ? $attributes['svgDraw'] : 'delayed';
+	$svgstroColor = (!empty($attributes['svgstroColor'])) ? $attributes['svgstroColor'] : '';
+	$svgfillColor = (!empty($attributes['svgfillColor'])) ? $attributes['svgfillColor'] : 'none';
+	$svgDura = (!empty($attributes['svgDura'])) ? $attributes['svgDura'] : 90;
 	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
@@ -94,6 +100,21 @@ function tpgb_tp_number_counter_render_callback( $attributes, $content) {
 	if(!empty($linkURL)){
 		$getImg .= '</a>';
 	}
+	
+	$getsvg = '';
+	$getsvg .= '<div class="tpgb-draw-svg" data-id="service-svg-'.esc_attr($block_id).'" data-type="'.esc_attr($svgDraw).'" data-duration="'.esc_attr($svgDura).'" data-stroke="'.esc_attr($svgstroColor).'" data-fillColor="'.esc_attr($svgfillColor).'" data-fillEnable="yes">';
+	if(!empty($linkURL)){
+		$getsvg .= '<a href="'.esc_url($linkURL).'" target="'.$target.' "  rel="'.$nofollow.' ">';
+	}
+		
+		$getsvg .= '<object id="service-svg-'.esc_attr($block_id).'" type="image/svg+xml" data="'.$svgIcon['url'].'">';
+		$getsvg .= '</object>';
+
+	if(!empty($linkURL)){
+		$getsvg .= '</a>';
+	}
+	$getsvg .= '</div>';
+	
 	$output = '';
     $output .= '<div class="tpgb-number-counter counter-'.esc_attr($style).' '.esc_attr($alignment).' tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).'">';
 		$output .= '<div class="number-counter-inner '.esc_attr($vCenter).'">';
@@ -104,6 +125,9 @@ function tpgb_tp_number_counter_render_callback( $attributes, $content) {
 					}
 					if($iconType=='img'){
 						$output .= $getImg;
+					}
+					if($iconType=='svg'){
+						$output .= $getsvg;
 					}
 					$output .= $getCounterNo;
 					if(!empty($title)){
@@ -118,6 +142,9 @@ function tpgb_tp_number_counter_render_callback( $attributes, $content) {
 					}
 					if($iconType=='img'){
 						$output .= $getImg;
+					}
+					if($iconType=='svg'){
+						$output .= $getsvg;
 					}
 				$output .= '</div>';
 				$output .= '<div class="counter-content">';
@@ -214,7 +241,12 @@ function tpgb_number_counter() {
 			'type' => 'string',
 			'default' => 'thumbnail',	
 		],
-		
+		'svgIcon' => [
+			'type' => 'object',
+			'default' => [
+				'url' => '',
+			],
+		],
 		'titleTypo' => [
 			'type'=> 'object',
 			'default'=> (object) [
@@ -227,6 +259,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-title',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleNmlColor' => [
 			'type' => 'string',
@@ -237,6 +270,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-title{ color: {{titleNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleHvrColor' => [
 			'type' => 'string',
@@ -247,6 +281,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner:hover .counter-title{ color: {{titleHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleTopSpace' => [
 			'type' => 'object',
@@ -260,6 +295,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-title{ margin-top: {{titleTopSpace}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'titleBottomSpace' => [
 			'type' => 'object',
@@ -273,6 +309,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-title{ margin-bottom: {{titleBottomSpace}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'digitTypo' => [
 			'type'=> 'object',
@@ -285,6 +322,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .nc-counter-number',
 				],
 			],
+			'scopy' => true,
 		],
 		'digitNmlColor' => [
 			'type' => 'string',
@@ -294,6 +332,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .nc-counter-number{ color: {{digitNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'digitHvrColor' => [
 			'type' => 'string',
@@ -303,6 +342,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner:hover .nc-counter-number{ color: {{digitHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'digitTopSpace' => [
 			'type' => 'object',
@@ -315,6 +355,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .nc-counter-number{ margin-top: {{digitTopSpace}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'symbolTypo' => [
 			'type'=> 'object',
@@ -328,6 +369,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-symbol-text',
 				],
 			],
+			'scopy' => true,
 		],
 		'symbolNmlColor' => [
 			'type' => 'string',
@@ -338,6 +380,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-symbol-text{ color: {{symbolNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'symbolHvrColor' => [
 			'type' => 'string',
@@ -348,10 +391,12 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner:hover .counter-symbol-text{ color: {{symbolHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'iconStyle' => [
 			'type' => 'string',
-			'default' => 'none',	
+			'default' => 'none',
+			'scopy' => true,
 		],
 		'iconSize' => [
 			'type' => 'object',
@@ -365,6 +410,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-icon-inner .counter-icon{ font-size: {{iconSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'iconWidth' => [
 			'type' => 'object',
@@ -378,6 +424,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-icon-inner { width: {{iconWidth}}; height: {{iconWidth}}; line-height: {{iconWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnNmlColor' => [
 			'type' => 'string',
@@ -388,6 +435,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-icon-inner .counter-icon{ color: {{icnNmlColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnHvrColor' => [
 			'type' => 'string',
@@ -398,6 +446,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner:hover .counter-icon{ color: {{icnHvrColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnNormalBG' => [
 			'type' => 'object',
@@ -416,6 +465,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner .counter-icon-inner',
 				],
 			],
+			'scopy' => true,
 		],
 		'icnHoverBG' => [
 			'type' => 'object',
@@ -434,6 +484,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}} .number-counter-inner:hover .counter-icon-inner',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlBColor' => [
 			'type' => 'string',
@@ -447,6 +498,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .counter-icon-inner{ border-color: {{nmlBColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrBColor' => [
 			'type' => 'string',
@@ -460,6 +512,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover .counter-icon-inner{ border-color: {{hvrBColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlIcnBRadius' => [
 			'type' => 'object',
@@ -481,6 +534,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .counter-icon-inner{border-radius: {{nmlIcnBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrIcnBRadius' => [
 			'type' => 'object',
@@ -502,6 +556,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover .counter-icon-inner{border-radius: {{hvrIcnBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'nmlIcnShadow' => [
 			'type' => 'object',
@@ -520,6 +575,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .counter-icon-inner',
 				],
 			],
+			'scopy' => true,
 		],
 		'hvrIcnShadow' => [
 			'type' => 'object',
@@ -538,6 +594,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover .counter-icon-inner',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgWidth' => [
 			'type' => 'object',
@@ -551,6 +608,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .counter-image-inner { max-width: {{imgWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgNmlBorder' => [
 			'type' => 'object',
@@ -575,6 +633,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgHvrBorder' => [
 			'type' => 'object',
@@ -599,6 +658,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgNmlBRadius' => [
 			'type' => 'object',
@@ -616,6 +676,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner{border-radius: {{bgNmlBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgHvrBRadius' => [
 			'type' => 'object',
@@ -633,6 +694,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover {border-radius: {{bgHvrBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'normalBG' => [
 			'type' => 'object',
@@ -650,6 +712,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner',
 				],
 			],
+			'scopy' => true,
 		],
 		'hoverBG' => [
 			'type' => 'object',
@@ -667,6 +730,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgNmlShadow' => [
 			'type' => 'object',
@@ -684,6 +748,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgHvrShadow' => [
 			'type' => 'object',
@@ -701,6 +766,7 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'bgPadding' => [
 			'type' => 'object',
@@ -718,10 +784,45 @@ function tpgb_number_counter() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner{padding: {{bgPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'verticalCenter' => [
 			'type' => 'boolean',
 			'default' => false,	
+			'scopy' => true,
+		],
+		'svgDraw' => [
+			'type' => 'string',
+			'default' => 'delayed',	
+			'scopy' => true,
+		],
+		'svgDura' => [
+			'type' => 'string',
+			'default' => '90',
+			'scopy' => true,
+		],
+		'svgmaxWidth' => [
+			'type' => 'object',
+			'default' => [ 
+				'md' => '',
+				"unit" => 'px',
+			],
+			'style' => [
+				(object) [
+					'selector' => '{{PLUS_WRAP}} .counter-wrap-content .tpgb-draw-svg{ max-width: {{svgmaxWidth}}; max-height: {{svgmaxWidth}}; }',
+				],
+			],
+			'scopy' => true,
+		],
+		'svgstroColor' => [
+			'type' => 'string',
+			'default' => '#000000',
+			'scopy' => true,
+		],
+		'svgfillColor' => [
+			'type' => 'string',
+			'default' => '',
+			'scopy' => true,
 		],
 	);
 	$attributesOptions = array_merge($attributesOptions,$globalBgOption,$globalpositioningOption, $globalPlusExtrasOption);

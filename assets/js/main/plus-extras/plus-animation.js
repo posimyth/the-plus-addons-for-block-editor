@@ -42,7 +42,7 @@
 		}
 		
 		if($('.tpgb-view-animation').length){
-			$(window).load(Animations),
+			$(window).on("load", Animations);
 			$(document.body).on('post-load', function() {
 				Animations()
 			});

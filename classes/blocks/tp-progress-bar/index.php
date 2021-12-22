@@ -262,26 +262,32 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-piechart .tp-pie-circle{ width:{{pieCircleSize}}px; height:{{pieCircleSize}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'pieThickness' => [
 				'type' => 'string',
 				'default' => 5,
+				'scopy' => true,
 			],
 			'pieFillColor' => [
 				'type' => 'string',
 				'default' => 'normal',
+				'scopy' => true,
 			],
 			'pieColor1' => [
 				'type' => 'string',
 				'default' => '#FFA500',
+				'scopy' => true,
 			],
 			'pieColor2' => [
 				'type' => 'string',
 				'default' => '#008000',
+				'scopy' => true,
 			],
 			'fillReverse' => [
 				'type' => 'boolean',
 				'default' => false,
+				'scopy' => true,
 			],
 			'Title' => [
 				'type' => 'string',
@@ -338,6 +344,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progress-bar-skill.skill-fill { margin-top: {{pbTopMargin}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'bgColor' => [
 				'type' => 'object',
@@ -351,6 +358,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progress-bar-skill-bar-filled',
 					],
 				],
+				'scopy' => true,
 			],
 			'emptyColor' => [
 				'type' => 'string',
@@ -360,6 +368,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progress-bar-skill.skill-fill{ background-color: {{emptyColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'sepColor' => [
 				'type' => 'string',
@@ -369,6 +378,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progress-style-2 .progress-bar-skill-bar-filled:after{ border-color: {{sepColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleTypo' => [
 				'type'=> 'object',
@@ -382,6 +392,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progress-bar-title , {{PLUS_WRAP}} .progress-bar-media.large .progress-bar-title ',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleColor' => [
 				'type' => 'string',
@@ -392,6 +403,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progress-bar-title , {{PLUS_WRAP}} .progress-bar-media.large .prog-title.prog-icon.large .progress-bar-title { color: {{titleColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleSpace' => [
 				'type' => 'object',
@@ -405,6 +417,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}}:not(.tpgb-piechart) .progress-bar-title.before-icon,{{PLUS_WRAP}}:not(.tpgb-piechart) .progress-bar-media.large .progress-bar-title.before-icon{ padding-left: {{titleSpace}}; } {{PLUS_WRAP}}:not(.tpgb-piechart) .progress-bar-title.after-icon,{{PLUS_WRAP}}:not(.tpgb-piechart) .progress-bar-media.large .progress-bar-title.after-icon{ padding-right: {{titleSpace}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'subTitleTypo' => [
 				'type'=> 'object',
@@ -418,6 +431,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progress-bar-sub-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'subTitleColor' => [
 				'type' => 'string',
@@ -428,6 +442,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progress-bar-sub-title{ color: {{subTitleColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'numTypo' => [
 				'type'=> 'object',
@@ -440,6 +455,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .theserivce-milestone-number.icon-milestone',
 					],
 				],
+				'scopy' => true,
 			],
 			'numberColor' => [
 				'type' => 'string',
@@ -449,6 +465,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .theserivce-milestone-number.icon-milestone{ color: {{numberColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'numPrePostTypo' => [
 				'type'=> 'object',
@@ -462,6 +479,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .theserivce-milestone-symbol',
 					],
 				],
+				'scopy' => true,
 			],
 			'numPrePostColor' => [
 				'type' => 'string',
@@ -472,6 +490,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .theserivce-milestone-symbol{ color: {{numPrePostColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconColor' => [
 				'type' => 'string',
@@ -479,9 +498,10 @@ function tpgb_tp_progress_bar() {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'iconIcon']],
-						'selector' => '{{PLUS_WRAP}} .progres-ims i{ color: {{iconColor}}; }',
+						'selector' => '{{PLUS_WRAP}} .progres-ims { color: {{iconColor}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'iconSize' => [
 				'type' => 'object',
@@ -495,6 +515,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progres-ims { font-size: {{iconSize}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'imgSize' => [
 				'type' => 'object',
@@ -505,9 +526,10 @@ function tpgb_tp_progress_bar() {
 				'style' => [
 					(object) [
 						'condition' => [(object) ['key' => 'iconType', 'relation' => '==', 'value' => 'iconImage']],
-						'selector' => '{{PLUS_WRAP}} .progress-bar-img { width: {{imgSize}}; }',
+						'selector' => '{{PLUS_WRAP}} .progres-ims .progress-bar-img { width: {{imgSize}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'imgBRadius' => [
 				'type' => 'object',
@@ -526,6 +548,7 @@ function tpgb_tp_progress_bar() {
 						'selector' => '{{PLUS_WRAP}} .progress-bar-img{border-radius: {{imgBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 		);
 	$attributesOptions = array_merge($attributesOptions, $globalBgOption, $globalpositioningOption, $globalPlusExtrasOption);

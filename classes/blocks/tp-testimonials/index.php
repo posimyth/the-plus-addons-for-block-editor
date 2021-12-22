@@ -162,6 +162,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .post-content-image .testi-post-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'titleNormalColor' => [
 				'type' => 'string',
@@ -171,6 +172,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .post-content-image .testi-post-title{color: {{titleNormalColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'titleHoverColor' => [
 				'type' => 'string',
@@ -180,6 +182,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .testimonial-list-content:hover .testi-post-title{color: {{titleHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'AuthortitleTypo' => [
@@ -190,18 +193,20 @@ function tpgb_tp_testimonials() {
 				],
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}} .testi-author-title',
+						'selector' => '{{PLUS_WRAP}}.tpgb-testimonials .testi-author-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'AuthortitleNormalColor' => [
 				'type' => 'string',
 				'default' => '',
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}} .testi-author-title{color: {{AuthortitleNormalColor}};}',
+						'selector' => '{{PLUS_WRAP}}.tpgb-testimonials .testi-author-title{color: {{AuthortitleNormalColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'AuthortitleHoverColor' => [
 				'type' => 'string',
@@ -211,6 +216,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .testimonial-list-content:hover .testi-author-title{color: {{AuthortitleHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'DesTypo' => [
@@ -224,6 +230,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .testi-post-designation',
 					],
 				],
+				'scopy' => true,
 			],
 			'DesNormalColor' => [
 				'type' => 'string',
@@ -233,6 +240,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .testi-post-designation{color: {{DesNormalColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'DesHoverColor' => [
 				'type' => 'string',
@@ -242,6 +250,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .testimonial-list-content:hover .testi-post-designation{color: {{DesHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'contentTypo' => [
@@ -255,6 +264,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .testimonial-list-content .entry-content',
 					],
 				],
+				'scopy' => true,
 			],
 			'contentNormalColor' => [
 				'type' => 'string',
@@ -264,6 +274,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .testimonial-list-content .entry-content{color: {{contentNormalColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'cntHovercolor' => [
 				'type' => 'string',
@@ -273,6 +284,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .testimonial-list-content:hover .entry-content{color: {{cntHovercolor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'boxMargin' => [
@@ -291,6 +303,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content{margin: {{boxMargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxPadding' => [
 				'type' => 'object',
@@ -308,6 +321,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content{padding: {{boxPadding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'boxBorderRadius' => [
@@ -326,6 +340,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content{border-radius: {{boxBorderRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBorderRadiusHover' => [
 				'type' => 'object',
@@ -343,6 +358,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-list-content:hover .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content:hover{border-radius: {{boxBorderRadiusHover}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBg' => [
 				'type' => 'object',
@@ -354,6 +370,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content',
 					],
 				],
+				'scopy' => true,
 			],
 			'arrowNormalColor' => [
 				'type' => 'string',
@@ -363,6 +380,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text:after{border-top-color: {{arrowNormalColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'boxBgHover' => [
 				'type' => 'object',
@@ -374,6 +392,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-list-content:hover .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'arrowHoverColor' => [
 				'type' => 'string',
@@ -383,6 +402,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-list-content:hover .testimonial-content-text:after{border-top-color: {{arrowHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'boxBoxShadow' => [
 				'type' => 'object',
@@ -400,6 +420,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBoxShadowHover' => [
 				'type' => 'object',
@@ -417,6 +438,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .testimonial-list-content:hover .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'imgMaxWidth' => [
@@ -427,6 +449,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}}.testimonial-style-1 .author-thumb,{{PLUS_WRAP}}.testimonial-style-2 .author-thumb{max-width: {{imgMaxWidth}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'imageBorderRadius' => [
 				'type' => 'object',
@@ -444,6 +467,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .author-thumb img{border-radius: {{imageBorderRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'imageBoxShadow' => [
 				'type' => 'object',
@@ -461,6 +485,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .author-thumb img',
 					],
 				],
+				'scopy' => true,
 			],
 			'imageBoxShadowHover' => [
 				'type' => 'object',
@@ -478,6 +503,7 @@ function tpgb_tp_testimonials() {
 						'selector' => '{{PLUS_WRAP}} .testimonial-list-content:hover .author-thumb img',
 					],
 				],
+				'scopy' => true,
 			],
 		);
 	

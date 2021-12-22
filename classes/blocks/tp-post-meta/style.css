@@ -68,6 +68,7 @@
 .tpgb-meta-author img {
     max-width: 22px;
     border-radius: 2px;
+	height:auto;
 }
 .tpgb-meta-author a > span {
     line-height: 0;

@@ -1,6 +1,6 @@
 <?php
 /* Tp Block : Post Comment
- * @since	: 1.1.3
+ * @since	: 1.2.1
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -9,7 +9,8 @@ function tpgb_tp_post_comment_render_callback( $attr, $content) {
 	$post_id = get_queried_object_id();
     $post = get_queried_object();
     $block_id = (!empty($attr['block_id'])) ? $attr['block_id'] : uniqid("title");
-	$comment_args = tpgb_comment_args();
+    $commentTitle = (!empty($attr['commentTitle'])) ? $attr['commentTitle'] : 'Comment';
+	$comment_args = tpgb_comment_args($attr);
     $comment = get_comments($post);
     $list_args = array('style' => 'ul', 'short_ping' => true, 'avatar_size' => 100, 'page' => $post_id );
 	
@@ -21,7 +22,7 @@ function tpgb_tp_post_comment_render_callback( $attr, $content) {
 			if(get_comments_number($post_id) > 0) {
 				echo '<ul class="comment-list">';
 					echo '<li>';
-						echo '<div class="comment-section-title">'.esc_html__('Comment', 'tpgb').' ('. esc_html(get_comments_number($post_id)) . ')</div>';
+						echo '<div class="comment-section-title">'.wp_kses_post($commentTitle).' ('. esc_html(get_comments_number($post_id)) . ')</div>';
 					echo '<li>'; 
 					wp_list_comments($list_args, $comment);
 				echo "</ul>";
@@ -49,6 +50,34 @@ function tpgb_post_comment_content() {
                 'type' => 'string',
 				'default' => '',
 			],
+			'commentTitle' => [
+                'type' => 'string',
+				'default' => 'Comment',
+			],
+			'commentFormTitle' => [
+                'type' => 'string',
+				'default' => 'Leave Your Comment',
+			],
+			'loggedInAsText' => [
+                'type' => 'string',
+				'default' => 'Logged in as',
+			],
+			'logOutText' => [
+                'type' => 'string',
+				'default' => 'Log out?',
+			],
+			'cancelReplyText' => [
+                'type' => 'string',
+				'default' => 'Cancel Reply',
+			],
+			'commentField' => [
+                'type' => 'string',
+				'default' => 'Comment',
+			],
+			'submitBtnText' => [
+                'type' => 'string',
+				'default' => 'Submit Now',
+			],
 			'commTypo' => [
 				'type' => 'object',
 				'default' => (object) [
@@ -60,6 +89,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .comment-section-title,.tpgb-post-comment #respond.comment-respond h3#reply-title',
 					],
 				],
+				'scopy' => true,
 			],
 			'commColor' => [
 				'type' => 'string',
@@ -69,6 +99,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .comment-section-title,.tpgb-post-comment #respond.comment-respond h3#reply-title{color: {{commColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'profilePadding' => [
 				'type' => 'object',
@@ -81,6 +112,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list li.comment>.comment-body img.avatar, {{PLUS_WRAP}}.tpgb-post-comment .comment-list li.pingback>.comment-body img.avatar{ padding: {{profilePadding}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'profileBorderRadius' => [
 				'type' => 'object',
@@ -98,6 +130,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list li.comment>.comment-body img.avatar, {{PLUS_WRAP}}.tpgb-post-comment .comment-list li.pingback>.comment-body img.avatar{border-radius: {{profileBorderRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'profileBoxShadow' => [
 				'type' => 'object',
@@ -115,6 +148,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list li.comment>.comment-body img.avatar, {{PLUS_WRAP}}.tpgb-post-comment .comment-list li.pingback>.comment-body img.avatar',
 					],
 				],
+				'scopy' => true,
 			],
 			'userTypo' => [
 				'type' => 'object',
@@ -127,6 +161,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-author.vcard cite.fn .url',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'userColor' => [
@@ -137,6 +172,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-author.vcard cite.fn .url{color: {{userColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'userHoverColor' => [
 				'type' => 'string',
@@ -146,6 +182,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-author.vcard cite.fn .url:hover{color: {{userHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'metaTypo' => [
@@ -159,6 +196,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-meta.commentmetadata a',
 					],
 				],
+				'scopy' => true,
 			],
 			'metaColor' => [
 				'type' => 'string',
@@ -168,6 +206,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-meta.commentmetadata a{color: {{metaColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'metaHoverColor' => [
 				'type' => 'string',
@@ -177,6 +216,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-meta.commentmetadata a:hover{color: {{metaHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'replypadding' => [
@@ -195,6 +235,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a{padding: {{replypadding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'replyTypo' => [
 				'type' => 'object',
@@ -207,6 +248,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a',
 					],
 				],
+				'scopy' => true,
 			],
 			'replyColor' => [
 				'type' => 'string',
@@ -216,6 +258,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a{color: {{replyColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'replyHoverColor' => [
 				'type' => 'string',
@@ -225,6 +268,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover{border-color: {{replyHoverColor}};color: {{replyHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'replyBorder' => [
 				'type' => 'object',
@@ -236,6 +280,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a',
 					],
 				],
+				'scopy' => true,
 			],
 			'replyBorderHover' => [
 				'type' => 'object',
@@ -255,6 +300,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'replyBorderRadius' => [
@@ -273,6 +319,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a{border-radius: {{replyBorderRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'replyBorderRadiusHover' => [
 				'type' => 'object',
@@ -290,6 +337,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover{border-radius: {{replyBorderRadiusHover}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'replyBg' => [
 				'type' => 'object',
@@ -305,6 +353,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a',
 					],
 				],
+				'scopy' => true,
 			],
 			'replyBgHover' => [
 				'type' => 'object',
@@ -320,6 +369,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'replyBoxShadow' => [
 				'type' => 'object',
@@ -337,6 +387,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a',
 					],
 				],
+				'scopy' => true,
 			],
 			'replyBoxShadowHover' => [
 				'type' => 'object',
@@ -354,6 +405,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'fieldTypo' => [
@@ -367,6 +419,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment',
 					],
 				],
+				'scopy' => true,
 			],
 			'fieldColor' => [
 				'type' => 'string',
@@ -376,6 +429,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment{color: {{fieldColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'fieldHoverColor' => [
 				'type' => 'string',
@@ -385,6 +439,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus{color: {{fieldHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'fieldpadding' => [
@@ -403,6 +458,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment{padding: {{fieldpadding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'fieldBorder' => [
 				'type' => 'object',
@@ -414,6 +470,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment',
 					],
 				],
+				'scopy' => true,
 			],
 			'fieldBorderHover' => [
 				'type' => 'object',
@@ -433,6 +490,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'fieldBorderRadius' => [
@@ -451,6 +509,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment{border-radius: {{fieldBorderRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'fieldBorderRadiusHover' => [
 				'type' => 'object',
@@ -468,6 +527,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus{border-radius: {{fieldBorderRadiusHover}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'fieldBg' => [
 				'type' => 'object',
@@ -483,6 +543,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment',
 					],
 				],
+				'scopy' => true,
 			],
 			'fieldBgHover' => [
 				'type' => 'object',
@@ -498,6 +559,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus',
 					],
 				],
+				'scopy' => true,
 			],
 			'fieldBoxShadow' => [
 				'type' => 'object',
@@ -515,6 +577,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment',
 					],
 				],
+				'scopy' => true,
 			],
 			'fieldBoxShadowHover' => [
 				'type' => 'object',
@@ -532,6 +595,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'btnTypo' => [
@@ -545,6 +609,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnColor' => [
 				'type' => 'string',
@@ -554,6 +619,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit{color: {{btnColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'btnHoverColor' => [
 				'type' => 'string',
@@ -563,6 +629,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover{color: {{btnHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'btnpadding' => [
@@ -581,6 +648,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit{padding: {{btnpadding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnBorder' => [
 				'type' => 'object',
@@ -592,6 +660,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnBorderHover' => [
 				'type' => 'object',
@@ -611,6 +680,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'btnBorderRadius' => [
@@ -629,6 +699,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit{border-radius: {{btnBorderRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnBorderRadiusHover' => [
 				'type' => 'object',
@@ -646,6 +717,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover{border-radius: {{btnBorderRadiusHover}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnBg' => [
 				'type' => 'object',
@@ -661,6 +733,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnBgHover' => [
 				'type' => 'object',
@@ -676,6 +749,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnBoxShadow' => [
 				'type' => 'object',
@@ -693,6 +767,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit',
 					],
 				],
+				'scopy' => true,
 			],
 			'btnBoxShadowHover' => [
 				'type' => 'object',
@@ -710,6 +785,7 @@ function tpgb_post_comment_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover',
 					],
 				],
+				'scopy' => true,
 			],
 		);
 	
@@ -724,19 +800,25 @@ function tpgb_post_comment_content() {
 }
 add_action( 'init', 'tpgb_post_comment_content' );
 
-function tpgb_comment_args(){
+function tpgb_comment_args( $attr = []){
+	$commentFormTitle = (!empty($attr) && !empty($attr['commentFormTitle'])) ? $attr['commentFormTitle'] : '';
+	$loggedInAsText = (!empty($attr) && !empty($attr['loggedInAsText'])) ? $attr['loggedInAsText'] : '';
+	$logOutText = (!empty($attr) && !empty($attr['logOutText'])) ? $attr['logOutText'] : '';
+	$cancelReplyText = (!empty($attr) && !empty($attr['cancelReplyText'])) ? $attr['cancelReplyText'] : '';
+	$submitBtnText = (!empty($attr) && !empty($attr['submitBtnText'])) ? $attr['submitBtnText'] : '';
+	$commentField = (!empty($attr) && !empty($attr['commentField'])) ? $attr['commentField'] : '';
 	$user          = wp_get_current_user();
 	$user_identity = $user->exists() ? $user->display_name : '';
 	$args = array(
 	  'id_form'           => 'commentform',
 	  'class_form' => 'comment-form',
 	  'id_submit'         => 'submit',
-	  'title_reply'       => esc_html__( 'Leave Your Comment', 'tpgb' ),
-	  'title_reply_to'    => esc_html__( 'Leave a Reply to %s', 'tpgb' ),
-	  'cancel_reply_link' => esc_html__( 'Cancel Reply', 'tpgb' ),
-	  'label_submit'      => esc_html__( 'Submit Now', 'tpgb' ),
+	  'title_reply'       => $commentFormTitle,
+	  'title_reply_to'    => $commentFormTitle . esc_html__( ' %s', 'tpgb' ),
+	  'cancel_reply_link' => $cancelReplyText,
+	  'label_submit'      => $submitBtnText,
 
-	  'comment_field' =>  '<div class="tpgb-row"><div class="tpgb-col-md-12 tpgb-col"><label><textarea id="comment" name="comment" cols="45" rows="6" placeholder="'.esc_attr__('Comment','tpgb').'" aria-required="true"></textarea></label></div></div>',
+	  'comment_field' =>  '<div class="tpgb-row"><div class="tpgb-col-md-12 tpgb-col"><label><textarea id="comment" name="comment" cols="45" rows="6" placeholder="'.esc_attr($commentField).'" aria-required="true"></textarea></label></div></div>',
 
 	  'must_log_in' => '<p class="must-log-in">' .
 		sprintf(
@@ -747,10 +829,11 @@ function tpgb_comment_args(){
 
 	  'logged_in_as' => '<p class="logged-in-as">' .
 		sprintf(
-		esc_html__( 'Logged in as %1$s%2$s. %3$sLog out?%4$s', 'tpgb' ),
+		$loggedInAsText.esc_html__( ' %1$s%2$s. %3$s%4$s%5$s', 'tpgb' ),
 		  '<a href="'.admin_url( "profile.php" ).'">'.$user_identity,
 		  '</a>',
-		  '<a href="'.wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ).'" title="'.esc_attr__("Log out of this account","tpgb").'">',
+		  '<a href="'.wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ).'" title="'.esc_attr($logOutText).'">',
+		  wp_kses_post($logOutText),
 		  '</a>'
 		) . '</p>',
 

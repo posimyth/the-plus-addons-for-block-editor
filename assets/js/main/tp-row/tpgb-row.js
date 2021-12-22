@@ -3,7 +3,7 @@
 	var rowStretch = $(".tpgb-section-stretch-row");
 	if(rowStretch.length > 0){
 		tpgb_rowStretch();
-		$(window).resize(function() {
+		$(window).on('resize', function() {
 			tpgb_rowStretch();
 		});
 	}

@@ -172,6 +172,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div > span{ color: {{counterFontColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],     
         'counterTypo' => [
             'type'=> 'object',
@@ -184,6 +185,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div > span',
                 ],
             ],
+			'scopy' => true,
         ],
         'labelTypo' => [
             'type'=> 'object',
@@ -199,6 +201,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div > h6',
                 ],
             ],
+			'scopy' => true,
         ],
         'expiryMsgTypo' => [
             'type'=> 'object',
@@ -211,6 +214,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-expiry',
                 ],
             ],
+			'scopy' => true,
         ],
         'expiryFontColor' => [
             'type' => 'string',
@@ -221,6 +225,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-expiry{ color: {{expiryFontColor}}; }',
                 ]
             ],
+			'scopy' => true,
         ],
         'daysTextColor' => [
             'type' => 'string',
@@ -231,6 +236,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_1 h6{ color: {{daysTextColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'daysBorderColor' => [
             'type' => 'string',
@@ -241,6 +247,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_1{ border-color: {{daysBorderColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'daysBg' => [
             'type' => 'object',
@@ -257,6 +264,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_1',
                 ],
             ],
+			'scopy' => true,
         ],
         'hourTextColor' => [
             'type' => 'string',
@@ -267,6 +275,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_2 h6{ color: {{hourTextColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'hourBorderColor' => [
             'type' => 'string',
@@ -277,6 +286,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_2{ border-color: {{hourBorderColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'hourBg' => [
             'type' => 'object',
@@ -293,6 +303,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_2',
                 ],
             ],
+			'scopy' => true,
         ],
         'minTextColor' => [
             'type' => 'string',
@@ -303,6 +314,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_3 h6{ color: {{minTextColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'minBorderColor' => [
             'type' => 'string',
@@ -313,6 +325,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_3{ border-color: {{minBorderColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'minBg' => [
             'type' => 'object',
@@ -329,6 +342,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_3',
                 ],
             ],
+			'scopy' => true,
         ],
         'secTextColor' => [
             'type' => 'string',
@@ -338,7 +352,8 @@ function tpgb_tp_countdown_render() {
                     'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_4 h6{ color: {{secTextColor}}; }',
                 ],
-            ]
+            ],
+			'scopy' => true,
         ],
         'secBorderColor' => [
             'type' => 'string',
@@ -351,6 +366,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_4{ border-color: {{secBorderColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'secBg' => [
             'type' => 'object',
@@ -367,6 +383,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div.count_4',
                 ],
             ],
+			'scopy' => true,
         ],
         'padding' => [
             'type' => 'object',
@@ -385,6 +402,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}}.countdown-style-1 .tpgb-countdown-counter > div{ padding: {{padding}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'margin' => [
             'type' => 'object',
@@ -403,6 +421,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}}.countdown-style-1 .tpgb-countdown-counter > div{ margin: {{margin}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'border' => [
             'type' => 'object',
@@ -424,6 +443,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div',
                 ],
             ],
+			'scopy' => true,
         ],
         'borderR' => [
             'type' => 'object',
@@ -442,6 +462,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}}.countdown-style-1 .tpgb-countdown-counter > div{ border-radius: {{borderR}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'boxShadow' => [
             'type' => 'object',
@@ -460,6 +481,7 @@ function tpgb_tp_countdown_render() {
                     'selector' => '{{PLUS_WRAP}} .tpgb-countdown-counter > div',
                 ],
             ],
+			'scopy' => true,
         ],
     ];
     

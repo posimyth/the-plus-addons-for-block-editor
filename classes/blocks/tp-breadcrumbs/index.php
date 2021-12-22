@@ -1,6 +1,6 @@
 <?php
 /* Block : Breadcrumbs
- * @since : 1.1.2
+ * @since : 1.2.1
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -9,6 +9,8 @@ function tpgb_breadcrumbs_callback( $attributes, $content) {
     $uid = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
     $style = (!empty($attributes['style'])) ? $attributes['style'] : '';
     $markupSch = (!empty($attributes['markupSch'])) ? $attributes['markupSch'] : '';
+	$ctmHomeurl = (!empty($attributes['ctmHomeurl'])) ? $attributes['ctmHomeurl'] : '';
+	
 	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 	
     $icons = $icontype = '';
@@ -80,7 +82,7 @@ function tpgb_breadcrumbs_callback( $attributes, $content) {
     
     $activeColorCurrent = ($attributes['activeColorCurrent'] == true) ? "default_active" : "";
 
-    $breadcrumbs_bar .= Tp_Blocks_Helper::theplus_breadcrumbs($icontype,$sepIconType,$icons,$homeTitle,$sepIcons,$activeColorCurrent,$breadcrumbs_last_sec_tri_normal,$bdToggleHome,$bdToggleParent,$bdToggleCurrent,$letterLimitParent,$letterLimitCurrent,$markupSch);
+    $breadcrumbs_bar .= Tp_Blocks_Helper::theplus_breadcrumbs($icontype, $sepIconType, $icons, $homeTitle, $sepIcons, $activeColorCurrent, $breadcrumbs_last_sec_tri_normal, $bdToggleHome, $bdToggleParent, $bdToggleCurrent, $letterLimitParent, $letterLimitCurrent, $markupSch, $ctmHomeurl);
     $breadcrumbs_bar .= '</div>';
     $breadcrumbs_bar .= '</div></div>';
     
@@ -115,6 +117,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar{ text-align: {{bredAlign}}; }',
                 ]
             ],
+			'scopy' => true,
         ],
         'homeTitle' => [
             'type' => 'string',
@@ -137,6 +140,14 @@ function tpgb_tp_breadcrumbs_render() {
             'default' => [
                 'url' => '',
                 'Id' => '',
+            ],
+        ],
+		'ctmHomeurl' => [
+            'type'=> 'object',
+            'default'=> [
+                'url' => '',
+                'target' => '',
+                'nofollow' => ''
             ],
         ],
 		'markupSch' => [
@@ -192,6 +203,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current_active .current_tab_sec{ padding: {{bredMargin}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'bredPadding' => [
             'type' => 'object',
@@ -210,6 +222,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current_active .current_tab_sec{ padding: {{bredPadding}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'bredTypo' => [
             'type'=> 'object',
@@ -223,6 +236,7 @@ function tpgb_tp_breadcrumbs_render() {
                     {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current_active .current_tab_sec',
                 ],
             ],
+			'scopy' => true,
         ],
         'textColor' => [
             'type' => 'string',
@@ -233,6 +247,7 @@ function tpgb_tp_breadcrumbs_render() {
                     {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current_active .current_tab_sec{ color: {{textColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'textHColor' => [
             'type' => 'string',
@@ -243,10 +258,12 @@ function tpgb_tp_breadcrumbs_render() {
                     {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a:hover,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current:hover .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current_active .current_tab_sec{ color: {{textHColor}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'activeColorCurrent' => [
             'type' => 'boolean',
 	        'default' => false,
+			'scopy' => true,
         ],
         'textBorder' => [
             'type' => 'object',
@@ -270,6 +287,7 @@ function tpgb_tp_breadcrumbs_render() {
                     {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current_tab_sec',
                 ],
             ],
+			'scopy' => true,
         ],
         'textBorderHover' => [
             'type' => 'object',
@@ -293,6 +311,7 @@ function tpgb_tp_breadcrumbs_render() {
                     {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a:hover,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current:hover .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current_active:hover .current_tab_sec',
                 ],
             ],
+			'scopy' => true,
         ],
         'iconPadding' => [
             'type' => 'object',
@@ -310,6 +329,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-home-img{ padding: {{iconPadding}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'iconSize' => [
             'type' => 'object',
@@ -323,6 +343,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-home-icon{ font-size: {{iconSize}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'iconColor' => [
             'type' => 'string',
@@ -333,6 +354,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-home-icon{ color: {{iconColor}}; -webkit-transition: all .4s ease; -moz-transition: all .4s ease; -o-transition: all .4s ease; -ms-transition: all .4s ease; transition: all .4s ease }',
                 ],
             ],
+			'scopy' => true,
         ],
         'iconColorHover' => [
             'type' => 'string',
@@ -343,6 +365,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a:hover .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a:hover .bread-home-icon{ color: {{iconColorHover}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'imgSize' => [
             'type' => 'object',
@@ -356,6 +379,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-home-img{ max-width: {{imgSize}};height: auto; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'imgBorderRadius' => [
             'type' => 'object',
@@ -374,6 +398,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-home-img{ border-radius: {{imgBorderRadius}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'sepPadding' =>[
             'type' => 'object',
@@ -391,6 +416,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs .bread-sep-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-sep-icon{ padding: {{sepPadding}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'sepSize' => [
             'type' => 'object',
@@ -404,6 +430,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-sep-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-sep-icon{ font-size: {{sepSize}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'sepColor' => [
             'type' => 'string',
@@ -414,6 +441,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-sep-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-sep-icon{ color: {{sepColor}}; -webkit-transition: all .4s ease; -moz-transition: all .4s ease; -o-transition: all .4s ease; -ms-transition: all .4s ease; transition: all .4s ease }',
                 ],
             ],
+			'scopy' => true,
         ],
         'sepColorHover' => [
             'type' => 'string',
@@ -424,6 +452,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a:hover .bread-sep-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a:hover .bread-sep-icon{ color: {{sepColorHover}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'sepImgSize' => [
             'type' => 'object',
@@ -437,6 +466,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-sep-icon{ max-width: {{sepImgSize}};height: auto; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'letterLimitParentT' => [
             'type' => 'boolean',
@@ -470,6 +500,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1{ padding: {{contentBgPadding}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'contentBg' => [
             'type' => 'object',
@@ -485,6 +516,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1',
                 ],
             ],
+			'scopy' => true,
         ],
         'contentBorder' => [
             'type' => 'object',
@@ -496,6 +528,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1',
                 ],
             ],
+			'scopy' => true,
         ],
         'contentBorderRad' => [
             'type' => 'object',
@@ -506,6 +539,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_1{ border-radius: {{contentBorderRad}}; }',
                 ],
             ],
+			'scopy' => true,
         ],  
         'contentBorderRadH' => [
             'type' => 'object',
@@ -516,6 +550,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_1:hover{ border-radius: {{contentBorderRadH}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'boxShadow' => [
             'type' => 'object',
@@ -534,6 +569,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1',
                 ],
             ],
+			'scopy' => true,
         ],
         'boxShadowH' => [
             'type' => 'object',
@@ -552,6 +588,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner:hover.bred_style_1',
                 ],
             ],
+			'scopy' => true,
         ],
         'sepBgPadding' => [
             'type' => 'object',
@@ -569,6 +606,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .current_tab_sec{ padding: {{sepBgPadding}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'sepBgMargin' => [
             'type' => 'object',
@@ -586,6 +624,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs>span:not(.del){ margin: {{sepBgMargin}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'sepBorderRadius' => [
             'type' => 'object',
@@ -603,6 +642,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .current_tab_sec{ border-radius: {{sepBorderRadius}}; }',
                 ],
             ],
+			'scopy' => true,
         ],
         'bredAll' => [
             'type' => 'string',
@@ -612,6 +652,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del) a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del) .current_tab_sec{ background: {{bredAll}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span:not(.del):before{ border-left: 30px solid {{bredAll}} }',
                 ],
             ],
+			'scopy' => true,
         ],
         'bredHome' => [
             'type' => 'string',
@@ -621,6 +662,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span.bc_home .home_bread_tab{ background: {{bredHome}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.bc_home:before{ border-left: 30px solid {{bredHome}} }',
                 ],
             ],
+			'scopy' => true,
         ],
         'bredCurrent' => [
             'type' => 'string',
@@ -630,6 +672,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del) .current_tab_sec{ background: {{bredCurrent}} !important; }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.current:before,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.current_active:before{ border-left: 30px solid {{bredCurrent}} }',
                 ],
             ],
+			'scopy' => true,
         ],
         'bredAllHover' => [
             'type' => 'string',
@@ -639,6 +682,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del):hover a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del):hover .current_tab_sec{ background: {{bredAllHover}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span:not(.del):hover:before{ border-left: 30px solid {{bredAllHover}} }',
                 ],
             ],
+			'scopy' => true,
         ],
         'bredHomeHover' => [
             'type' => 'string',
@@ -648,6 +692,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span.bc_home:hover a{ background: {{bredHomeHover}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.bc_home:hover:before { border-left: 30px solid {{bredHomeHover}} }',
                 ],
             ],
+			'scopy' => true,
         ],
         'bredCurrentHover' => [
             'type' => 'string',
@@ -657,6 +702,7 @@ function tpgb_tp_breadcrumbs_render() {
                     'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span.current:hover .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span.current_active:hover .current_tab_sec{ background: {{bredCurrentHover}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.current:hover:before,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.current_active:hover:before{ border-left: 30px solid {{bredCurrentHover}} }',
                 ],
             ],
+			'scopy' => true,
         ],
     ];
 

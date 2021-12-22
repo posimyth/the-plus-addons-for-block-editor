@@ -128,6 +128,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner{ max-width: {{maxWidth}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'ShowName' => array(
                 'type' => 'boolean',
@@ -149,6 +150,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-name',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'nameNormalColor' => [
@@ -160,6 +162,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-name{color: {{nameNormalColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'nameHoverColor' => [
 				'type' => 'string',
@@ -170,6 +173,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner:hover .author-name{color: {{nameHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'ShowRole' => [
 				'type' => 'boolean',
@@ -191,6 +195,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-role',
 					],
 				],
+				'scopy' => true,
 			],
 			'roleColor' => [
 				'type' => 'string',
@@ -201,6 +206,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-role{color: {{roleColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'roleHvrColor' => [
 				'type' => 'string',
@@ -211,6 +217,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner:hover .author-role{color: {{roleHvrColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'ShowBio' => array(
                 'type' => 'boolean',
@@ -232,6 +239,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-bio {margin: {{bioMargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'bioTypo' => [
 				'type' => 'object',
@@ -245,6 +253,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-bio',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'bioNormalColor' => [
@@ -256,6 +265,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-bio{color: {{bioNormalColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'bioHoverColor' => [
 				'type' => 'string',
@@ -266,6 +276,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner:hover .author-bio{color: {{bioHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'ShowAvatar' => array(
                 'type' => 'boolean',
@@ -280,6 +291,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-avatar{max-width: {{avatarWidth}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'avatarBorderRadius' => [
@@ -299,6 +311,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-avatar,{{PLUS_WRAP}} .tpgb-post-inner .author-avatar img{border-radius: {{avatarBorderRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'avatarBoxShadow' => [
 				'type' => 'object',
@@ -317,6 +330,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-avatar',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'ShowSocial' => array(
@@ -332,6 +346,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-social .tpgb-author-social-list a{font-size: {{socialSize}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'socialNormalColor' => [
 				'type' => 'string',
@@ -342,6 +357,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-social .tpgb-author-social-list a{color: {{socialNormalColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'socialHoverColor' => [
 				'type' => 'string',
@@ -352,6 +368,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner .author-social .tpgb-author-social-list a:hover{color: {{socialHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 
 			'padding' => [
@@ -370,6 +387,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner {padding: {{padding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBorder' => [
 				'type' => 'object',
@@ -381,6 +399,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner ',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBorderHover' => [
 				'type' => 'object',
@@ -400,6 +419,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'boxBRadius' => [
@@ -418,6 +438,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner {border-radius: {{boxBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBRadiusHover' => [
 				'type' => 'object',
@@ -435,6 +456,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner:hover{border-radius: {{boxBRadiusHover}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBg' => [
 				'type' => 'object',
@@ -450,6 +472,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner ',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBgHover' => [
 				'type' => 'object',
@@ -465,6 +488,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBoxShadow' => [
 				'type' => 'object',
@@ -482,6 +506,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner ',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBoxShadowHover' => [
 				'type' => 'object',
@@ -499,6 +524,7 @@ function tpgb_post_author_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-post-inner:hover',
 					],
 				],
+				'scopy' => true,
 			],
 		);
 	

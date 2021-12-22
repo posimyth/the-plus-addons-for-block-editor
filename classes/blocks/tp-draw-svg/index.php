@@ -84,6 +84,7 @@ function tpgb_draw_svg() {
 					'selector' => '{{PLUS_WRAP}}{ text-align: {{alignment}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'maxWidth' => [
 			'type' => 'object',
@@ -96,30 +97,37 @@ function tpgb_draw_svg() {
 					'selector' => '{{PLUS_WRAP}} .svg-inner-block{ max-width: {{maxWidth}}; max-height: {{maxWidth}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'strokeColor' => [
 			'type' => 'string',
 			'default' => '#8072fc',
+			'scopy' => true,
 		],
 		'fillToggle' => [
 			'type' => 'boolean',
 			'default' => false,	
+			'scopy' => true,
 		],
 		'fillColor' => [
 			'type' => 'string',
 			'default' => '#000000',
+			'scopy' => true,
 		],
 		'drawType' => [
 			'type' => 'string',
 			'default' => 'delayed',	
+			'scopy' => true,
 		],
 		'duration' => [
 			'type' => 'string',
 			'default' => '90',	
+			'scopy' => true,
 		],
 		'hoverDraw' => [
 			'type' => 'string',
-			'default' => 'onScroll',	
+			'default' => 'onScroll',
+			'scopy' => true,
 		],
 	);
 	$attributesOptions = array_merge($attributesOptions,$globalBgOption,$globalpositioningOption,$globalPlusExtrasOption);

@@ -1,6 +1,6 @@
 <?php
 /* Tp Block : Post Meta
- * @since	: 1.1.3
+ * @since	: 1.2.1
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -50,7 +50,7 @@ function tpgb_tp_post_meta_render_callback( $attr, $content) {
 	$outputAuthor='';
 	if($showAuthor){
 		global $post;
-		$author_id = $post->post_author;
+		$author_id = (!empty($post) && isset($post->post_author)) ? $post->post_author : '';
 		$authorPrefix = (!empty($attr['authorPrefix'])) ? '<span class="tpgb-meta-author-label">'.esc_attr($attr['authorPrefix']).'</span>' : '';
 		$authorIcon = (!empty($attr['authorIcon'])) ? $attr['authorIcon'] : '';
 		$iconauthor = '';
@@ -126,6 +126,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info,{{PLUS_WRAP}}.tpgb-post-meta {justify-content: {{alignment}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'metaTypo' => [
 				'type' => 'object',
@@ -138,6 +139,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info',
 					],
 				],
+				'scopy' => true,
 			],
 			'metaColor' => [
 				'type' => 'string',
@@ -147,6 +149,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info,{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info a{color: {{metaColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'labelTypo' => [
 				'type' => 'object',
@@ -159,6 +162,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-date-label,{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category-label,{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-author-label,{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-comment-label',
 					],
 				],
+				'scopy' => true,
 			],
 			'labelColor' => [
 				'type' => 'string',
@@ -168,6 +172,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-date-label,{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category-label,{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-author-label,{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-comment-label{color: {{labelColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'separator' => [
                 'type' => 'string',
@@ -178,6 +183,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info>span:after{content: "{{separator}}";}',
 					],
 				],
+				'scopy' => true,
 			],
 			'sepLeftSpace' => [
 				'type' => 'string',
@@ -187,6 +193,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info > span:after{margin-left: {{sepLeftSpace}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'sepRightSpace' => [
 				'type' => 'string',
@@ -196,6 +203,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info>span:after{margin-right: {{sepRightSpace}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'sepSize' => [
 				'type' => 'string',
@@ -205,6 +213,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info>span:after{font-size: {{sepSize}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'sepColor' => [
@@ -215,6 +224,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-info>span:after{color: {{sepColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'showDate' => [
@@ -234,6 +244,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date a{color: {{dateColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'dateHoverColor' => [
 				'type' => 'string',
@@ -244,10 +255,12 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date a:hover{color: {{dateHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'dateIcon' => [
                 'type' => 'string',
 				'default' => '',
+				'scopy' => true,
 			],
 			'dateIconSpace' => [
 				'type' => 'string',
@@ -257,6 +270,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date .meta-date-icon{margin-right: {{dateIconSpace}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'dateIconColor' => [
 				'type' => 'string',
@@ -269,6 +283,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date .meta-date-icon{color: {{dateIconColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'dateIconHoverColor' => [
 				'type' => 'string',
@@ -281,6 +296,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-date a:hover .meta-date-icon{color: {{dateIconHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'showCategory' => [
@@ -308,6 +324,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-category a,{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category:after{color: {{cateColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'cateHoverColor' => [
 				'type' => 'string',
@@ -318,10 +335,12 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-category a:hover{color: {{cateHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'cateStyle' => [
                 'type' => 'string',
 				'default' => 'style-1',
+				'scopy' => true,
 			],
 			'cateSpace' => [
 				'type' => 'string',
@@ -332,6 +351,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a{margin-right: {{cateSpace}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'catepadding' => [
 				'type' => 'object',
@@ -350,6 +370,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a{padding: {{catepadding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'catemargin' => [
 				'type' => 'object',
@@ -367,6 +388,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category a{margin: {{catemargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'cateBorder' => [
 				'type' => 'object',
@@ -379,6 +401,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a',
 					],
 				],
+				'scopy' => true,
 			],
 			'cateBorderHover' => [
 				'type' => 'object',
@@ -399,6 +422,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'cateBorderRadius' => [
@@ -418,6 +442,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a{border-radius: {{cateBorderRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'cateBorderRadiusHover' => [
 				'type' => 'object',
@@ -436,6 +461,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a:hover{border-radius: {{cateBorderRadiusHover}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'cateBg' => [
 				'type' => 'object',
@@ -452,6 +478,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a',
 					],
 				],
+				'scopy' => true,
 			],
 			'cateBgHover' => [
 				'type' => 'object',
@@ -468,6 +495,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'cateBoxShadow' => [
 				'type' => 'object',
@@ -486,6 +514,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a',
 					],
 				],
+				'scopy' => true,
 			],
 			'cateBoxShadowHover' => [
 				'type' => 'object',
@@ -504,6 +533,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}}.tpgb-post-meta .tpgb-meta-category.style-2 a:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'showAuthor' => [
@@ -517,6 +547,26 @@ function tpgb_post_meta_content() {
 			'authorIcon' => [
                 'type' => 'string',
 				'default' => '',
+				'scopy' => true,
+			],
+			'proBradius' => [
+				'type' => 'object',
+				'default' => (object) [
+					'md' => [
+						"top" => '',
+						"right" => '',
+						"bottom" => '',
+						"left" => '',
+					],
+					"unit" => 'px',
+				],
+				'style' => [
+					(object) [
+						'condition' => [(object) ['key' => 'authorIcon', 'relation' => '==', 'value' => 'profile']],
+						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author img{ border-radius : {{proBradius}} }',
+					],
+				],
+				'scopy' => true,
 			],
 			'authorIconSpace' => [
 				'type' => 'string',
@@ -526,6 +576,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author .meta-author-icon,{{PLUS_WRAP}} .tpgb-meta-author img{margin-right: {{authorIconSpace}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'authorIconSize' => [
 				'type' => 'string',
@@ -535,6 +586,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author img{max-width: {{authorIconSize}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'authorColor' => [
@@ -546,6 +598,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author a{color: {{authorColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'authorHoverColor' => [
 				'type' => 'string',
@@ -556,6 +609,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author a:hover{color: {{authorHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'authorIconColor' => [
 				'type' => 'string',
@@ -568,6 +622,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author .meta-author-icon{color: {{authorIconColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'authorIconHoverColor' => [
 				'type' => 'string',
@@ -580,6 +635,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-author a:hover .meta-author-icon{color: {{authorIconHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'showComment' => [
@@ -593,6 +649,7 @@ function tpgb_post_meta_content() {
 			'commentIcon' => [
                 'type' => 'string',
 				'default' => '',
+				'scopy' => true,
 			],
 			'commentIconSpace' => [
 				'type' => 'string',
@@ -602,6 +659,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment .meta-comment-icon{margin-right: {{commentIconSpace}}px;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'commentColor' => [
 				'type' => 'string',
@@ -612,6 +670,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment a{color: {{commentColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'commentHoverColor' => [
 				'type' => 'string',
@@ -622,6 +681,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment a:hover{color: {{commentHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'commentIconColor' => [
 				'type' => 'string',
@@ -634,6 +694,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment .meta-comment-icon{color: {{commentIconColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			'commentIconHoverColor' => [
 				'type' => 'string',
@@ -646,6 +707,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-comment a:hover .meta-comment-icon{color: {{commentIconHoverColor}};}',
 					],
 				],
+				'scopy' => true,
             ],
 			
 			'padding' => [
@@ -664,6 +726,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author{padding: {{padding}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'inMargin' => [
 				'type' => 'object',
@@ -681,6 +744,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author{margin: {{inMargin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBorder' => [
 				'type' => 'object',
@@ -692,6 +756,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBorderHover' => [
 				'type' => 'object',
@@ -711,6 +776,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'boxBRadius' => [
@@ -729,6 +795,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author {border-radius: {{boxBRadius}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBRadiusHover' => [
 				'type' => 'object',
@@ -746,6 +813,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author:hover{border-radius: {{boxBRadiusHover}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBg' => [
 				'type' => 'object',
@@ -761,6 +829,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author ',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBgHover' => [
 				'type' => 'object',
@@ -776,6 +845,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBoxShadow' => [
 				'type' => 'object',
@@ -793,6 +863,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author ',
 					],
 				],
+				'scopy' => true,
 			],
 			'boxBoxShadowHover' => [
 				'type' => 'object',
@@ -810,6 +881,7 @@ function tpgb_post_meta_content() {
 						'selector' => '{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-comment:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-category:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-views:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-post-likes:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-date:hover,{{PLUS_WRAP}} .tpgb-meta-info .tpgb-meta-author:hover',
 					],
 				],
+				'scopy' => true,
 			],
 		);
 	

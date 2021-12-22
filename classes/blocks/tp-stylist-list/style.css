@@ -197,7 +197,9 @@
 .tpgb-stylist-list:not(.align-left) .tpgb-icon-list-item:after {
     right: 0
 }
-
+.tpgb-stylist-list .tpgb-icon-list-items.d-flex-center .tpgb-icon-list-icon img{
+    vertical-align: middle;
+}
 .tpgb-stylist-list .tpgb-icon-list-item,
 .tpgb-stylist-list.hover-inverse-effect .tpgb-icon-list-item{
     -webkit-transition: all .3s linear;

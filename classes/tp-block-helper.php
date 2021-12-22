@@ -118,6 +118,7 @@ class Tp_Blocks_Helper {
 			'tp-creative-image' => TPGB_CATEGORY.'/tp-creative-image',
 			'tp-data-table' => TPGB_CATEGORY.'/tp-data-table',
 			'tp-draw-svg' => TPGB_CATEGORY.'/tp-draw-svg',
+			'tp-dark-mode' => TPGB_CATEGORY.'/tp-dark-mode',
 			'tp-empty-space' => TPGB_CATEGORY.'/tp-empty-space',
 			'tp-external-form-styler' => TPGB_CATEGORY.'/tp-external-form-styler',
 			'tp-flipbox' => TPGB_CATEGORY.'/tp-flipbox',
@@ -419,7 +420,7 @@ class Tp_Blocks_Helper {
 	/*-wpforms end-*/
 	
 	/* Generate HTML of Breadcrumbs */
-	public static function theplus_breadcrumbs( $icontype='', $sepIconType='', $icons='', $homeTitle='', $sepIcons='', $activeTextDefault='',$breadcrumbs_last_sec_tri_normal='', $bdToggleHome='', $bdToggleParent='', $bdToggleCurrent='', $letterLimitParent='', $letterLimitCurrent='', $markupSch =false) {
+	public static function theplus_breadcrumbs( $icontype='', $sepIconType='', $icons='', $homeTitle='', $sepIcons='', $activeTextDefault='',$breadcrumbs_last_sec_tri_normal='', $bdToggleHome='', $bdToggleParent='', $bdToggleCurrent='', $letterLimitParent='', $letterLimitCurrent='', $markupSch =false, $ctmHomeurl=[]) {
 		
         if($homeTitle != '') {
             $text['home'] = $homeTitle;
@@ -489,12 +490,12 @@ class Tp_Blocks_Helper {
         }
         
         global $post;
-        $homeLink = home_url() . '/';
+        $homeLink = ( !empty($ctmHomeurl) && !empty($ctmHomeurl['url']) ) ? $ctmHomeurl['url'] : home_url().'/';
         $linkBefore = '<span>';
         $linkAfter = '</span>';
         if($icons_content != '' || $icons_sep_content != '' ||  $text['home'] != ''){
             if($bdToggleHome != '' && $bdToggleHome == true) {
-                $home_link = '<span class="bc_home"><a class="home_bread_tab" href="%1$s">'.$icons_content.'%2$s'.$icons_sep_content.'</a>' . $linkAfter;
+                $home_link = '<span class="bc_home"><a class="home_bread_tab" href="%1$s" target="'.((!empty($ctmHomeurl) && !empty($ctmHomeurl['target'])) ? '_blank' : '').'">'.$icons_content.'%2$s'.$icons_sep_content.'</a>' . $linkAfter;
             } else {
                 $home_link = '';
             }
@@ -1117,6 +1118,76 @@ class Tp_Blocks_Helper {
 		}
 
 		return $data;
+	}
+	
+	/*
+	 * Custom Font Load
+	 * @since 1.2.0
+	 */
+	public static function tpgb_custom_font(){
+		$custom_fonts = [ 
+			'id' => 'tpgb-custom-fonts',
+			'title' => __('Custom Fonts', 'tpgb'),
+			'options' => [],
+		];
+		/*Custom Fonts*/
+		if(class_exists('Bsf_Custom_Fonts_Taxonomy')){
+			$fonts = Bsf_Custom_Fonts_Taxonomy::get_fonts();
+			if(!empty($fonts)){
+				foreach ( $fonts as $font => $values ) {
+					$custom_fonts[ 'options' ][] = (object)['label' => $font, 'value' => $font ];
+				}
+			}
+		}
+		/*Use any Font*/
+		if(function_exists('uaf_get_font_families')){
+			$uaf_fonts = uaf_get_font_families();
+			if(!empty($uaf_fonts)){
+				foreach ( $uaf_fonts as $font => $values ) {
+					$custom_fonts[ 'options' ][] = (object)['label' => $values, 'value' => $values ];
+				}
+			}
+		}
+		if( !empty($custom_fonts['options']) ){
+			return wp_json_encode($custom_fonts);
+		}
+		return false;
+	}
+	
+	/*
+	 * Check Html Tag
+	 * @since 1.2.1
+	 */
+	public static function tpgb_html_tag_check(){
+		return [ 'div',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'a',
+			'span',
+			'p',
+			'header',
+			'footer',
+			'article',
+			'aside',
+			'main',
+			'nav',
+			'section',
+			'tr',
+			'th',
+			'td'
+		];
+	}
+	
+	/*
+	 * Validate Html Tag
+	 * @since 1.2.1
+	 */
+	public static function validate_html_tag( $check_tag ) {
+		return in_array( strtolower( $check_tag ), self::tpgb_html_tag_check() ) ? $check_tag : 'div';
 	}
 }
 

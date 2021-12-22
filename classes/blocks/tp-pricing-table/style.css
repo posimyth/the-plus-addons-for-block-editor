@@ -182,12 +182,20 @@
 }
 /* wysiwyg style-1 end */
 .tpgb-pricing-table .pricing-table-inner .pricing-icon {
-    font-size: 30px;
-    line-height: 1.2;
     margin: 0 auto 8px;
 	font-size: 25px;
     width: 50px;
     height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.tpgb-draw-svg object {
+    opacity: 0;
+}
+.tpgb-pricing-table .tpgb-draw-svg{
+    margin: 0 auto 8px;
+    width: 100%;
+    max-width: 50px;
     line-height: 50px;
     text-align: center;
 }

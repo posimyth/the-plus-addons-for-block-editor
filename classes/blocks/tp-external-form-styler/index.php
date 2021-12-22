@@ -28,7 +28,7 @@ function tpgb_external_form_styler_render_callback( $attributes, $content) {
 		if($contactForm==''){
 			$output .= '<div class="tpgb-select-form-alert">Please select Form</div>';
 		} else {
-			$sc = "id = ".$contactForm;
+			$sc = 'id="'.$contactForm.'"';
 			$shortcode   = [];
 			if($formType=='contact-form-7'){
 				$shortcode[] = sprintf( '[contact-form-7 %s]', $sc );
@@ -59,17 +59,17 @@ function tpgb_get_form_rendered(){
     $form_type = isset($_POST['form_type']) ? sanitize_text_field(wp_unslash($_POST['form_type'])) : '';
 	
 	if (!empty($form_id) && $form_type=='contact-form-7'){
-		echo do_shortcode ( "[contact-form-7 id=".$form_id."]" );
+		echo do_shortcode ( "[contact-form-7 id=".esc_attr($form_id)."]" );
 	} else if(!empty($form_id) && $form_type=='caldera-form'){
-		echo do_shortcode ( "[caldera_form id=".$form_id."]" );
+		echo do_shortcode ( "[caldera_form id=".esc_attr($form_id)."]" );
 	} else if(!empty($form_id) && $form_type=='everest-form'){
-		echo do_shortcode ( "[everest_form id=".$form_id."]" );
+		echo do_shortcode ( "[everest_form id=".esc_attr($form_id)."]" );
 	} else if(!empty($form_id) && $form_type=='gravity-form'){
-		echo do_shortcode ( "[gravityform id=".$form_id." title=false description=false]" );
+		echo do_shortcode ( "[gravityform id=".esc_attr($form_id)." title=false description=false]" );
 	} else if(!empty($form_id) && $form_type=='ninja-form'){
-		echo do_shortcode ( "[ninja_form id=".$form_id."]" );
+		echo do_shortcode ( "[ninja_form id=".esc_attr($form_id)."]" );
 	} else if(!empty($form_id) && $form_type=='wp-form'){
-		echo do_shortcode ( "[wpforms id=".$form_id."]" );
+		echo do_shortcode ( "[wpforms id=".esc_attr($form_id)."]" );
 	}
     exit();
 }
@@ -80,7 +80,8 @@ add_action('wp_ajax_tpgb_external_form_ajax', 'tpgb_get_form_rendered');
 function tpgb_external_form_styler() {
 	$globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
 	$globalpositioningOption = Tpgb_Blocks_Global_Options::load_positioning_options();
-  
+	$globalPlusExtrasOption = Tpgb_Blocks_Global_Options::load_plusextras_options();
+	
 	$attributesOptions = array(
 		'block_id' => [
 			'type' => 'string',
@@ -107,6 +108,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}}.tpgb-external-form-styler{ text-align: {{Alignment}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'outerSecStyle' => [
 			'type' => 'string',
@@ -143,6 +145,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container label.wpforms-field-label',
 				],
 			],
+			'scopy' => true,
 		],
 		'subLabelTypo' => [
 			'type' => 'object',
@@ -162,6 +165,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-sublabel',
 				],
 			],
+			'scopy' => true,
 		],
 		'labelNColor' => [
 			'type' => 'string',
@@ -192,6 +196,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container label.wpforms-field-label{color: {{labelNColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'subLabelNColor' => [
 			'type' => 'string',
@@ -211,6 +216,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-label-inline,{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-sublabel{color: {{subLabelNColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'maxCharColor' => [
 			'type' => 'string',
@@ -221,6 +227,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .charleft.ginput_counter{color: {{maxCharColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'labelDescColor' => [
 			'type' => 'string',
@@ -247,6 +254,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-field-description,{{PLUS_WRAP}} .tpgb-ninja-form .nf-field-description p{color: {{labelDescColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'reqSymColor' => [
 			'type' => 'string',
@@ -273,6 +281,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-required-label{color: {{reqSymColor}} !important;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'progressBarTSize' => [
 			'type' => 'object',
@@ -286,6 +295,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper h3.gf_progressbar_title{ font-size: {{progressBarTSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'progressBarTColor' => [
 			'type' => 'string',
@@ -296,6 +306,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper h3.gf_progressbar_title{color: {{progressBarTColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'progressBarBdrSize' => [
 			'type' => 'object',
@@ -309,6 +320,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gf_progressbar{ padding: {{progressBarBdrSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'progressBarBdrColor' => [
 			'type' => 'string',
@@ -319,6 +331,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gf_progressba{background-color: {{progressBarBdrColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'priceColor' => [
 			'type' => 'string',
@@ -329,6 +342,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_product_price,{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_shipping_price,{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper span.ginput_total{color: {{priceColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'consentGrColor' => [
 			'type' => 'string',
@@ -339,6 +353,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gfield_consent_label{color: {{consentGrColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'labelHColor' => [
 			'type' => 'string',
@@ -357,6 +372,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-everest-form .evf-field-label .evf-label:hover{color: {{labelHColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Label Field end*/
 		
@@ -373,6 +389,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-description',
 				],
 			],
+			'scopy' => true,
 		],
 		'wpDescPadding' => [
 			'type' => 'object',
@@ -391,6 +408,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-description{padding: {{wpDescPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'wpDescMargin' => [
 			'type' => 'object',
@@ -409,6 +427,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-description{margin: {{wpDescMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'wpDescColor' => [
 			'type' => 'string',
@@ -419,6 +438,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-description{ color: {{wpDescColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'wpDescBG' => [
 			'type' => 'string',
@@ -429,6 +449,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-description{ background: {{wpDescBG}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'wpDescBdr' => [
 			'type' => 'object',
@@ -454,6 +475,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-description',
 				],
 			],
+			'scopy' => true,
 		],
 		'wpDescBRadius' => [
 			'type' => 'object',
@@ -464,6 +486,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field-description{border-radius: {{wpDescBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Description Field(wp-form) end*/
 		
@@ -480,6 +503,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-form-title h3',
 				],
 			],
+			'scopy' => true,
 		],
 		'formHeadColor' => [
 			'type' => 'string',
@@ -490,6 +514,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-form-title h3{ color: {{formHeadColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Form Heading Field end*/
 		
@@ -503,6 +528,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form span.fa.fa-info-circle.nf-help:before{ color: {{hintIconColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'hintDescColor' => [
 			'type' => 'string',
@@ -513,6 +539,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-field-description{ color: {{hintDescColor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Hint Field end*/
 		
@@ -549,6 +576,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container input[type="text"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container input[type="email"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container input[type="number"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container select',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputPHcolor' => [
 			'type' => 'string',
@@ -586,6 +614,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container input::placeholder, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container  email::placeholder, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container  number::placeholder, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container  select::placeholder{ color: {{inputPHcolor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputPadding' => [
 			'type' => 'object',
@@ -624,6 +653,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select{padding: {{inputPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputMargin' => [
 			'type' => 'object',
@@ -662,6 +692,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select{margin: {{inputMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputFNColor' => [
 			'type' => 'string',
@@ -692,6 +723,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select{color: {{inputFNColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputFNBG' => [
 			'type' => 'object',
@@ -722,6 +754,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputFFColor' => [
 			'type' => 'string',
@@ -752,6 +785,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select:focus{color: {{inputFFColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputFFBG' => [
 			'type' => 'object',
@@ -782,6 +816,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select:focus',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputNBdr' => [
 			'type' => 'object',
@@ -827,6 +862,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputFBdr' => [
 			'type' => 'object',
@@ -872,6 +908,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select:focus',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputNBRadius' => [
 			'type' => 'object',
@@ -902,6 +939,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select{border-radius: {{inputNBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputFBRadius' => [
 			'type' => 'object',
@@ -932,6 +970,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select:focus{border-radius: {{inputFBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputNBShadow' => [
 			'type' => 'object',
@@ -962,6 +1001,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"], {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select',
 				],
 			],
+			'scopy' => true,
 		],
 		'inputFBShadow' => [
 			'type' => 'object',
@@ -992,6 +1032,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="text"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="email"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field input[type="number"]:focus, {{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-field select:focus',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Input Field end*/
 		
@@ -1028,6 +1069,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea',
 				],
 			],
+			'scopy' => true,
 		],
 		'textAPHcolor' => [
 			'type' => 'string',
@@ -1058,6 +1100,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea::placeholder{ color: {{textAPHcolor}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'textAPadding' => [
 			'type' => 'object',
@@ -1092,6 +1135,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea{padding: {{textAPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'textAMargin' => [
 			'type' => 'object',
@@ -1130,6 +1174,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea{margin: {{textAMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'textANColor' => [
 			'type' => 'string',
@@ -1160,6 +1205,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea{color: {{textANColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'textANBG' => [
 			'type' => 'object',
@@ -1190,6 +1236,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea',
 				],
 			],
+			'scopy' => true,
 		],
 		'textAFColor' => [
 			'type' => 'string',
@@ -1220,6 +1267,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea:focus{color: {{textAFColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'textAFBG' => [
 			'type' => 'object',
@@ -1250,6 +1298,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea:focus',
 				],
 			],
+			'scopy' => true,
 		],
 		'textANBdr' => [
 			'type' => 'object',
@@ -1295,6 +1344,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea',
 				],
 			],
+			'scopy' => true,
 		],
 		'textAFBdr' => [
 			'type' => 'object',
@@ -1340,6 +1390,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea:focus',
 				],
 			],
+			'scopy' => true,
 		],
 		'textANBRadius' => [
 			'type' => 'object',
@@ -1370,6 +1421,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea{border-radius: {{textANBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'textAFBRadius' => [
 			'type' => 'object',
@@ -1400,6 +1452,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea:focus{border-radius: {{textAFBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'textANBShadow' => [
 			'type' => 'object',
@@ -1430,6 +1483,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea',
 				],
 			],
+			'scopy' => true,
 		],
 		'textAFBShadow' => [
 			'type' => 'object',
@@ -1460,6 +1514,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field.wpforms-field-textarea textarea:focus',
 				],
 			],
+			'scopy' => true,
 		],
 		/* TextArea Field end*/
 		
@@ -1473,6 +1528,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gfield .ginput_container select{height: auto}',
 				],
 			],
+			'scopy' => true,
 		],
 		'selectPadding' => [
 			'type' => 'object',
@@ -1491,6 +1547,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gfield .ginput_container select{padding: {{selectPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		/*Select Field(gravity-form) end*/
 		
@@ -1524,6 +1581,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-checkbox li label,{{PLUS_WRAP}} .wpforms-field.wpforms-field-checkbox li.wpforms-image-choices-item .wpforms-image-choices-label',
 				],
 			],
+			'scopy' => true,
 		],
 		'checkIconSize' => [
 			'type' => 'object',
@@ -1546,6 +1604,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-checkbox li label .tpgb-wp-check{font-size: {{checkIconSize}}px;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'checkBTextColor' => [
 			'type' => 'string',
@@ -1568,6 +1627,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-checkbox li label,{{PLUS_WRAP}} .wpforms-field.wpforms-field-checkbox li.wpforms-image-choices-item .wpforms-image-choices-label{color: {{checkBTextColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'checkBUnCheckedColor' => [
 			'type' => 'string',
@@ -1591,6 +1651,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-checkbox li:not(.wpforms-selected) label .tpgb-wp-check{color: {{checkBUnCheckedColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'checkBCheckedColor' => [
 			'type' => 'string',
@@ -1621,6 +1682,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-checkbox li.wpforms-selected label .tpgb-wp-check{color: {{checkBCheckedColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'checkBUnCheckedBG' => [
 			'type' => 'string',
@@ -1652,6 +1714,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-checkbox li:not(.wpforms-selected) label .tpgb-wp-check {background: {{checkBUnCheckedBG}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'checkBCheckedBG' => [
 			'type' => 'string',
@@ -1682,6 +1745,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-checkbox li.wpforms-selected label .tpgb-wp-check{background: {{checkBCheckedBG}};}',
 				],
 			],
+			'scopy' => true,
 		],             
 		'checkBBdr' => [
 			'type' => 'object',
@@ -1729,6 +1793,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-modern li label, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic li label',
 				],
 			],
+			'scopy' => true,
 		],
 		'checkBBRadius' => [
 			'type' => 'object',
@@ -1761,11 +1826,13 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-modern li label, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic li label{border-radius: {{checkBBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		//Img Choice Style
 		'wpImgChoiceStyle' => [
 			'type' => 'boolean',
 			'default' => false,	
+			'scopy' => true,
 		],
 		'wpImgCPadding' => [
 			'type' => 'object',
@@ -1784,6 +1851,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-modern label, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic label, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-none label{padding: {{wpImgCPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgCBNormal' => [
 			'type' => 'string',
@@ -1795,6 +1863,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic label{border: solid {{imgCBNormal}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgCBSelected' => [
 			'type' => 'string',
@@ -1806,6 +1875,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic li.wpforms-selected label{border: solid {{imgCBSelected}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgCheckedColor' => [
 			'type' => 'string',
@@ -1816,6 +1886,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-modern .wpforms-image-choices-image:after, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic .wpforms-image-choices-image:after{color: {{imgCheckedColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgCheckedBG' => [
 			'type' => 'string',
@@ -1826,6 +1897,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-modern .wpforms-image-choices-image:after, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic .wpforms-image-choices-image:after{background: {{imgCheckedBG}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgIconSize' => [
 			'type' => 'object',
@@ -1839,6 +1911,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-modern .wpforms-image-choices-image:after, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic .wpforms-image-choices-image:after{ font-size: {{imgIconSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgIconBGSize' => [
 			'type' => 'object',
@@ -1852,6 +1925,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-modern .wpforms-image-choices-image:after, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic .wpforms-image-choices-image:after{ width: {{imgIconBGSize}}; height: {{imgIconBGSize}}; line-height: {{imgIconBGSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		/* CheckBox Field end*/
 		
@@ -1885,6 +1959,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li label,{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li.wpforms-image-choices-item .wpforms-image-choices-label',
 				],
 			],
+			'scopy' => true,
 		],
 		'radioIconSize' => [
 			'type' => 'object',
@@ -1903,6 +1978,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li label .tpgb-wp-radio{font-size: {{radioIconSize}}px;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'radioBTextColor' => [
 			'type' => 'string',
@@ -1925,6 +2001,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li label, {{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li.wpforms-image-choices-item .wpforms-image-choices-label{color: {{radioBTextColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'radioBUnCheckedColor' => [
 			'type' => 'string',
@@ -1947,6 +2024,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li:not(.wpforms-selected) label .tpgb-wp-radio{color: {{radioBUnCheckedColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'radioCheckColor' => [
 			'type' => 'string',
@@ -1977,6 +2055,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li.wpforms-selected label .tpgb-wp-radio{color: {{radioCheckColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'radioUncheckBG' => [
 			'type' => 'string',
@@ -2003,6 +2082,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li:not(.wpforms-selected) label .tpgb-wp-radio{background: {{radioUncheckBG}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'radioCheckBG' => [
 			'type' => 'string',
@@ -2029,6 +2109,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li.wpforms-selected label .tpgb-wp-radio{background: {{radioCheckBG}};}',
 				],
 			],
+			'scopy' => true,
 		],         
 		'radioBdr' => [
 			'type' => 'object',
@@ -2070,6 +2151,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li label .tpgb-wp-radio, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-modern li label, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic li label',
 				],
 			],
+			'scopy' => true,
 		],         
 		'radioBRadius' => [
 			'type' => 'object',
@@ -2096,11 +2178,13 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-field.wpforms-field-radio li label .tpgb-wp-radio, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-modern li label, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-checkbox ul.wpforms-image-choices-classic li label{border-radius: {{radioBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		//Img Choice Style
 		'wpImgChoiceRadioStyle' => [
 			'type' => 'boolean',
 			'default' => false,	
+			'scopy' => true,
 		],
 		'wpImgRPadding' => [
 			'type' => 'object',
@@ -2119,6 +2203,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-modern label, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-classic label, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-none label{padding: {{wpImgRPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgRNormal' => [
 			'type' => 'string',
@@ -2130,6 +2215,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-classic label{border: solid {{imgRNormal}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgRSelected' => [
 			'type' => 'string',
@@ -2141,6 +2227,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-classic li.wpforms-selected label{border: solid {{imgRSelected}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgRadioColor' => [
 			'type' => 'string',
@@ -2151,6 +2238,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-modern .wpforms-image-choices-image:after, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-classic .wpforms-image-choices-image:after{color: {{imgRadioColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgRadioBG' => [
 			'type' => 'string',
@@ -2161,6 +2249,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-modern .wpforms-image-choices-image:after, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-classic .wpforms-image-choices-image:after{background: {{imgRadioBG}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgRadioIconSize' => [
 			'type' => 'object',
@@ -2174,6 +2263,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-modern .wpforms-image-choices-image:after, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-classic .wpforms-image-choices-image:after{ font-size: {{imgRadioIconSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		'imgRadioIconBGSize' => [
 			'type' => 'object',
@@ -2187,6 +2277,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-modern .wpforms-image-choices-image:after, {{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-field-radio ul.wpforms-image-choices-classic .wpforms-image-choices-image:after{ width: {{imgRadioIconBGSize}}; height: {{imgRadioIconBGSize}}; line-height: {{imgRadioIconBGSize}}; }',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Radio Field end*/
 		
@@ -2203,6 +2294,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .cf-toggle-group-buttons .btn',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnPadding' => [
 			'type' => 'object',
@@ -2221,6 +2313,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .cf-toggle-group-buttons .btn{padding: {{tglBtnPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnMargin' => [
 			'type' => 'object',
@@ -2239,6 +2332,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .cf-toggle-group-buttons .btn{margin: {{tglBtnMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnNTextColor' => [
 			'type' => 'string',
@@ -2249,6 +2343,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn{color: {{tglBtnNTextColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnHTextColor' => [
 			'type' => 'string',
@@ -2259,6 +2354,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn:hover{color: {{tglBtnHTextColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnATextColor' => [
 			'type' => 'string',
@@ -2269,6 +2365,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn.btn-success{color: {{tglBtnATextColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnNBG' => [
 			'type' => 'string',
@@ -2279,6 +2376,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn{background: {{tglBtnNBG}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnHBG' => [
 			'type' => 'string',
@@ -2289,6 +2387,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn:hover{background: {{tglBtnHBG}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnABG' => [
 			'type' => 'string',
@@ -2299,6 +2398,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn.btn-success{background: {{tglBtnABG}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnNBdr' => [
 			'type' => 'object',
@@ -2324,6 +2424,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn, {{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn:hover, {{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn.btn-success',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnHBdrColor' => [
 			'type' => 'string',
@@ -2334,6 +2435,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn:hover{border-color: {{tglBtnHBdrColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnABdrColor' => [
 			'type' => 'string',
@@ -2344,6 +2446,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn.btn-success{border-color: {{tglBtnABdrColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnNBRadius' => [
 			'type' => 'object',
@@ -2354,6 +2457,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn, {{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn:hover, {{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn.btn-success{border-radius: {{tglBtnNBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnNBShadow' => [
 			'type' => 'object',
@@ -2364,6 +2468,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnHBShadow' => [
 			'type' => 'object',
@@ -2374,6 +2479,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'tglBtnABShadow' => [
 			'type' => 'object',
@@ -2384,6 +2490,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .caldera-grid .cf-toggle-group-buttons .btn.btn-success',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Toggle Field end*/
 		
@@ -2405,6 +2512,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]',
 				],
 			],
+			'scopy' => true,
 		],
 		'filePadding' => [
 			'type' => 'object',
@@ -2427,6 +2535,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload{padding: {{filePadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileMargin' => [
 			'type' => 'object',
@@ -2449,6 +2558,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload{margin: {{fileMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileMinHeight' => [
 			'type' => 'object',
@@ -2459,6 +2569,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-contact-form-7 span.wpcf7-form-control-wrap.your-file.cf7-style-file{min-height: {{fileMinHeight}}px;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileAlign' => [
 			'type' => 'string',
@@ -2480,6 +2591,7 @@ function tpgb_external_form_styler() {
 					'{{PLUS_WRAP}} .tpgb-contact-form-7 span.wpcf7-form-control-wrap.cf7-style-file span{text-align: {{fileAlign}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileStyle' => [
 			'type' => 'boolean',
@@ -2490,6 +2602,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-contact-form-7 span.wpcf7-form-control-wrap.cf7-style-file .input__file_btn svg,{{PLUS_WRAP}} .tpgb-contact-form-7 span.wpcf7-form-control-wrap.cf7-style-file span{display:block;margin: 0 auto;text-align:center;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileTextColor' => [
 			'type' => 'string',
@@ -2508,6 +2621,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]{color: {{fileTextColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileTextHColor' => [
 			'type' => 'string',
@@ -2526,6 +2640,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]:hover{color: {{fileTextHColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileIconColor' => [
 			'type' => 'string',
@@ -2536,6 +2651,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-contact-form-7 span.wpcf7-form-control-wrap.cf7-style-file .input__file_btn svg *{fill: {{fileIconColor}};stroke:none;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileIconHColor' => [
 			'type' => 'string',
@@ -2546,6 +2662,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-contact-form-7 span.wpcf7-form-control-wrap.cf7-style-file .input__file_btn:hover svg *{fill: {{fileIconHColor}};stroke:none;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileBG' => [
 			'type' => 'object',
@@ -2564,6 +2681,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileHBG' => [
 			'type' => 'object',
@@ -2582,6 +2700,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileBdr' => [
 			'type' => 'object',
@@ -2615,6 +2734,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]',
 				],
 			],
+			'scopy' => true,
 		], 
 		'fileBdrHColor' => [
 			'type' => 'string',
@@ -2633,6 +2753,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]:hover{border-color: {{fileBdrHColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileBRadius' => [
 			'type' => 'object',
@@ -2651,6 +2772,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]{border-radius: {{fileBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileNBshadow' => [
 			'type' => 'object',
@@ -2669,6 +2791,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]',
 				],
 			],
+			'scopy' => true,
 		],
 		'fileHBshadow' => [
 			'type' => 'object',
@@ -2687,10 +2810,12 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .ginput_container_fileupload input[type="file"]:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'multipleFileUpld' => [
 			'type' => 'boolean',
 			'default' => false,
+			'scopy' => true,
 		],
 		'mFileTypo' => [
 			'type' => 'object',
@@ -2701,6 +2826,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files',
 				],
 			],
+			'scopy' => true,
 		],
 		'mFileTextNColor' => [
 			'type' => 'string',
@@ -2711,6 +2837,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files{color: {{mFileTextNColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'mFileTextHColor' => [
 			'type' => 'string',
@@ -2721,6 +2848,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files:hover{color: {{mFileTextHColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'mFileNBG' => [
 			'type' => 'object',
@@ -2731,6 +2859,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files',
 				],
 			],
+			'scopy' => true,
 		],
 		'mFileHBG' => [
 			'type' => 'object',
@@ -2741,6 +2870,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'mFileBdr' => [
 			'type' => 'object',
@@ -2766,6 +2896,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files',
 				],
 			],
+			'scopy' => true,
 		], 
 		'mFileBdrHColor' => [
 			'type' => 'string',
@@ -2776,6 +2907,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files:hover{border-color: {{mFileBdrHColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'mFileBRadius' => [
 			'type' => 'object',
@@ -2786,6 +2918,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files{border-radius: {{mFileBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'mFileNBshadow' => [
 			'type' => 'object',
@@ -2796,6 +2929,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files',
 				],
 			],
+			'scopy' => true,
 		],
 		'mFileHBshadow' => [
 			'type' => 'object',
@@ -2806,6 +2940,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper input.button.gform_button_select_files:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		/* File Field end*/
 		
@@ -2819,6 +2954,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form h2',
 				],
 			],
+			'scopy' => true,
 		],
 		'secBrkColor' => [
 			'type' => 'string',
@@ -2829,6 +2965,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .caldera-grid hr{border-color: {{secBrkColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'summryHeadColor' => [
 			'type' => 'string',
@@ -2839,6 +2976,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form h2{border-color: {{summryHeadColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'summryHeadAlign' => [
 			'type' => 'string',
@@ -2849,6 +2987,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form h2{text-align: {{fileAlign}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'summryHBelowSpace' => [
 			'type' => 'object',
@@ -2859,6 +2998,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form h2{margin-bottom: {{summryHBelowSpace}px;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'summaryPadding' => [
 			'type' => 'object',
@@ -2869,6 +3009,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .caldera-forms-summary-field{padding: {{summaryPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'summaryTypo' => [
 			'type' => 'object',
@@ -2879,6 +3020,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .caldera-forms-summary-field ul>li',
 				],
 			],
+			'scopy' => true,
 		],
 		'summaryColor' => [
 			'type' => 'string',
@@ -2889,6 +3031,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .caldera-forms-summary-field ul>li{color: {{summaryColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Summary/Break Field start*/
 		
@@ -2902,6 +3045,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .total-line',
 				],
 			],
+			'scopy' => true,
 		],
 		'calSpecCalColor' => [
 			'type' => 'string',
@@ -2912,6 +3056,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .total-line{color: {{calSpecCalColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'consentTypo' => [
 			'type' => 'object',
@@ -2922,6 +3067,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form label.caldera-forms-gdpr-field-label,{{PLUS_WRAP}} .tpgb-caldera-form .caldera-forms-consent-field-linked_text',
 				],
 			],
+			'scopy' => true,
 		],
 		'consentColor' => [
 			'type' => 'string',
@@ -2932,6 +3078,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form label.caldera-forms-gdpr-field-label,{{PLUS_WRAP}} .tpgb-caldera-form .caldera-forms-consent-field-linked_text{color: {{consentColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'consentPrivHColor' => [
 			'type' => 'string',
@@ -2942,6 +3089,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .caldera-forms-consent-field-linked_text:hover{color: {{consentPrivHColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'consentReqSignColor' => [
 			'type' => 'string',
@@ -2952,6 +3100,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-caldera-form .caldera-forms-consent-field span{color: {{consentReqSignColor}} !important;}',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Caldera Special Field end*/
 		
@@ -2985,6 +3134,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-wp-form div.wpforms-container .wpforms-field,{{PLUS_WRAP}} .tpgb-wp-form .wpforms-container .wpforms-submit-container{padding: {{outerPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'outerMargin' => [
 			'type' => 'object',
@@ -3015,6 +3165,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-field,{{PLUS_WRAP}} .wpforms-container .wpforms-submit-container{margin: {{outerMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'outerNBG' => [
 			'type' => 'object',
@@ -3045,6 +3196,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field',
 				],
 			],
+			'scopy' => true,
 		],
 		'outerHBG' => [
 			'type' => 'object',
@@ -3075,6 +3227,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field:hover',
 				],
 			],
+			'scopy' => true,
 		],          
 		'outerNBdr' => [
 			'type' => 'object',
@@ -3120,6 +3273,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field',
 				],
 			],
+			'scopy' => true,
 		],
 		'outerHBdr' => [
 			'type' => 'object',
@@ -3165,6 +3319,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field:hover',
 				],
 			],
+			'scopy' => true,
 		],           
 		'outerNBRadius' => [
 			'type' => 'object',
@@ -3195,6 +3350,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field{border-radius: {{outerNBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'outerHBRadius' => [
 			'type' => 'object',
@@ -3225,6 +3381,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field:hover {border-radius: {{outerHBRadius}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'outerNBshadow' => [
 			'type' => 'object',
@@ -3255,6 +3412,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field',
 				],
 			],
+			'scopy' => true,
 		],
 		'outerHBshadow' => [
 			'type' => 'object',
@@ -3285,6 +3443,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container .wpforms-field:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Outer Field end*/
 		
@@ -3320,6 +3479,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button{width: {{btnMWidth}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'gBtnAlign' => [
 			'type' => 'object',
@@ -3330,6 +3490,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gform_footer{ text-align: {{gBtnAlign}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnTypo' => [
 			'type' => 'object',
@@ -3362,6 +3523,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnPadding' => [
 			'type' => 'object',
@@ -3394,6 +3556,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button{padding: {{btnPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnMargin' => [
 			'type' => 'object',
@@ -3421,6 +3584,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button{margin: {{btnMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnNColor' => [
 			'type' => 'string',
@@ -3452,6 +3616,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button{color: {{btnNColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'nextBtnNColor' => [
 			'type' => 'string',
@@ -3462,6 +3627,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gform_next_button{color: {{nextBtnNColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'prevBtnNColor' => [
 			'type' => 'string',
@@ -3472,6 +3638,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gform_previous_button{color: {{prevBtnNColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnNBG' => [
 			'type' => 'object',
@@ -3503,6 +3670,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button',
 				],
 			],
+			'scopy' => true,
 		],
 		'nextBtnNBG' => [
 			'type' => 'object',
@@ -3513,6 +3681,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gform_next_button',
 				],
 			],
+			'scopy' => true,
 		],
 		'prevBtnNBG' => [
 			'type' => 'object',
@@ -3523,6 +3692,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gform_previous_button',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnHColor' => [
 			'type' => 'string',
@@ -3554,6 +3724,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button:hover{color: {{btnHColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'nextBtnHColor' => [
 			'type' => 'string',
@@ -3564,6 +3735,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_next_button:hover{color: {{nextBtnHColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'prevBtnHColor' => [
 			'type' => 'string',
@@ -3574,6 +3746,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_previous_button:hover{color: {{prevBtnHColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnHBG' => [
 			'type' => 'object',
@@ -3605,6 +3778,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'nextBtnHBG' => [
 			'type' => 'object',
@@ -3615,6 +3789,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gform_next_button:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'prevBtnHBG' => [
 			'type' => 'object',
@@ -3625,6 +3800,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gform_previous_button:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnNBdr' => [
 			'type' => 'object',
@@ -3667,6 +3843,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .field-wrap input[type=button]',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnHBdr' => [
 			'type' => 'object',
@@ -3714,6 +3891,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnNBRadius' => [
 			'type' => 'object',
@@ -3746,6 +3924,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button{border-radius: {{btnNBRadius}} !important;}',
 				],
 			],
+			'scopy' => true,
 		],            
 		'btnHBRadius' => [
 			'type' => 'object',
@@ -3778,6 +3957,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button:hover{border-radius: {{btnHBRadius}} !important;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnNBshadow' => [
 			'type' => 'object',
@@ -3810,6 +3990,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button',
 				],
 			],
+			'scopy' => true,
 		],
 		'btnHBshadow' => [
 			'type' => 'object',
@@ -3842,6 +4023,7 @@ function tpgb_external_form_styler() {
 					{{PLUS_WRAP}} div.wpforms-container .wpforms-form .wpforms-page-button',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Button Field end*/
 		
@@ -3871,6 +4053,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container {padding: {{formPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'formMargin' => [
 			'type' => 'object',
@@ -3897,6 +4080,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container {margin: {{formMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'formNBG' => [
 			'type' => 'object',
@@ -3923,6 +4107,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container',
 				],
 			],
+			'scopy' => true,
 		],
 		'formHBG' => [
 			'type' => 'object',
@@ -3949,6 +4134,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'formNBdr' => [
 			'type' => 'object',
@@ -3990,6 +4176,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container',
 				],
 			],
+			'scopy' => true,
 		],
 		'formHBdr' => [
 			'type' => 'object',
@@ -4031,6 +4218,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		'formNBRadius' => [
 			'type' => 'object',
@@ -4057,6 +4245,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container{border-radius: {{formNBRadius}} !important;}',
 				],
 			],
+			'scopy' => true,
 		],            
 		'formHBRadius' => [
 			'type' => 'object',
@@ -4083,6 +4272,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container:hover{border-radius: {{formHBRadius}} !important;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'formNBshadow' => [
 			'type' => 'object',
@@ -4109,6 +4299,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container',
 				],
 			],
+			'scopy' => true,
 		],
 		'formHBshadow' => [
 			'type' => 'object',
@@ -4135,6 +4326,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-container:hover',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Form Container end*/
 		
@@ -4168,6 +4360,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-confirmation-container-full,{{PLUS_WRAP}} .wpforms-confirmation-container-full p, {{PLUS_WRAP}} div.wpforms-container .wpforms-form label.wpforms-error',
 				],
 			],
+			'scopy' => true,
 		],
 		'responseMsgPadding' => [
 			'type' => 'object',
@@ -4198,6 +4391,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-confirmation-container-full{padding: {{responseMsgPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'responseMsgMargin' => [
 			'type' => 'object',
@@ -4228,6 +4422,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-confirmation-container-full{margin: {{responseMsgMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'responseSuccessColor' => [
 			'type' => 'string',
@@ -4258,6 +4453,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-confirmation-container-full,{{PLUS_WRAP}} .wpforms-confirmation-container-full p{color: {{responseSuccessColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'responseSuccessBG' => [
 			'type' => 'object',
@@ -4288,6 +4484,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-confirmation-container-full',
 				],
 			],
+			'scopy' => true,
 		],
 		'responseValidateColor' => [
 			'type' => 'string',
@@ -4320,6 +4517,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} div.wpforms-container .wpforms-form label.wpforms-error{color: {{responseValidateColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'responseValidateBG' => [
 			'type' => 'object',
@@ -4346,6 +4544,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-form-wrap .nf-form-errors',
 				],
 			],
+			'scopy' => true,
 		],
 		'responseSuccessBdr' => [
 			'type' => 'object',
@@ -4391,6 +4590,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-confirmation-container-full',
 				],
 			],
+			'scopy' => true,
 		],
 		'responseValidateBdr' => [
 			'type' => 'object',
@@ -4432,6 +4632,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-form-wrap .nf-form-errors',
 				],
 			],
+			'scopy' => true,
 		],          
 		'responseSuccessBRadius' => [
 			'type' => 'object',
@@ -4462,6 +4663,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .wpforms-confirmation-container-full {border-radius: {{responseSuccessBRadius}} !important;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'responseValidateBRadius' => [
 			'type' => 'object',
@@ -4488,6 +4690,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-form-wrap .nf-form-errors{border-radius: {{responseValidateBRadius}} !important;}',
 				],
 			],
+			'scopy' => true,
 		],
 		'cntntMWidth' => [
 			'type' => 'object',
@@ -4514,6 +4717,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form{max-width: {{cntntMWidth}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'ninjaReqFPadding' => [
 			'type' => 'object',
@@ -4524,6 +4728,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-error-msg.nf-error-required-error,{{PLUS_WRAP}} .tpgb-ninja-form .nf-error-msg.nf-error-field-errors{padding: {{ninjaReqFPadding}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'reqTextColor' => [
 			'type' => 'string',
@@ -4538,6 +4743,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-error-msg.nf-error-required-error,{{PLUS_WRAP}} .tpgb-ninja-form .nf-error-msg.nf-error-field-errors{color: {{reqTextColor}};} {{PLUS_WRAP}} .tpgb-ninja-form .nf-error-msg.nf-error-required-error,{{PLUS_WRAP}} .tpgb-ninja-form .nf-error-msg.nf-error-field-errors{border: 1px solid {{reqTextColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'reqTextBG' => [
 			'type' => 'string',
@@ -4552,6 +4758,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-error-msg.nf-error-required-error{background: {{reqTextBG}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'reqBdrColor' => [
 			'type' => 'string',
@@ -4562,6 +4769,7 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-ninja-form .nf-error-msg.nf-error-required-error{border: 1px solid {{reqBdrColor}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		'captchaMargin' => [
 			'type' => 'object',
@@ -4572,10 +4780,11 @@ function tpgb_external_form_styler() {
 					'selector' => '{{PLUS_WRAP}} .tpgb-gravity-form .gform_wrapper .gfield .ginput_recaptcha{margin: {{captchaMargin}};}',
 				],
 			],
+			'scopy' => true,
 		],
 		/* Response Message Field end*/
 	);
-	$attributesOptions = array_merge($attributesOptions,$globalBgOption,$globalpositioningOption);
+	$attributesOptions = array_merge($attributesOptions,$globalBgOption,$globalpositioningOption, $globalPlusExtrasOption);
 	
 	register_block_type( 'tpgb/tp-external-form-styler', array(
 		'attributes' => $attributesOptions,

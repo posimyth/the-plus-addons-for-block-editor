@@ -80,6 +80,10 @@ if ( !class_exists( 'TP_Gutenberg_Loader' ) ) {
 					add_option( $option_name,$value, $deprecated, $autoload );
 				}
 			}
+			
+			//Load Conditions Rules
+			require_once TPGB_PATH . 'classes/extras/tpgb-conditions-rules.php';
+			
             require TPGB_PATH . 'includes/plus-settings-options.php';
             
             require_once TPGB_PATH . 'classes/tp-block-helper.php';

@@ -9,7 +9,7 @@
 .tpgb-post-listing .post-loop-inner{
     position:relative;
 }
-.tpgb-post-listing a {
+.tpgb-post-listing .post-loop-inner .tpgb-post-title a,.tpgb-post-listing .post-loop-inner .post-meta-info a{
     text-decoration: blink;
 }
 .tpgb-post-listing .dynamic-list-content {

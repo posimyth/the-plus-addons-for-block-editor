@@ -1,6 +1,6 @@
 <?php
-/**
- * After rendring from the block editor display output on front-end
+/* Block : TP Row(Section)
+ * @since : 1.1.6
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -37,7 +37,9 @@ function tpgb_tp_section_row_render_callback( $attributes, $content) {
 				$output .= $content;
 		$output .= "</div>";
     $output .= "</div>";
-  
+	
+	$output = Tpgb_Blocks_Global_Options::block_row_conditional_render($attributes, $output);
+	
     return $output;
 }
 
@@ -45,6 +47,8 @@ function tpgb_tp_section_row_render_callback( $attributes, $content) {
  * Render for the server-side
  */
 function tpgb_tp_section_row() {
+	
+	$displayRules = Tpgb_Display_Conditions_Rules::tpgb_display_option();
 	
 	$attributesOptions = [
 			'block_id' => [
@@ -101,8 +105,7 @@ function tpgb_tp_section_row() {
 				],
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}}.tpgb-section-editor > .tpgb-section-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="tpgb/tp-column"] > .tpgb-column-resizable > .tpgb-column > .tpgb-column-wrap { padding-left: {{gutterSpace}};padding-right: {{gutterSpace}}; } {{PLUS_WRAP}} > .tpgb-section-wrap > .tpgb-column > .tpgb-column-wrap{ padding-left: {{gutterSpace}};padding-right: {{gutterSpace}}; }',
-						
+						'selector' => '{{PLUS_WRAP}}.tpgb-section-editor > .tpgb-section-wrap > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="tpgb/tp-column"] > .tpgb-column-resizable > .tpgb-column > .tpgb-column-wrap { padding: {{gutterSpace}}; } {{PLUS_WRAP}} > .tpgb-section-wrap > .tpgb-column > .tpgb-column-wrap, {{PLUS_WRAP}} > .tpgb-section-wrap > .tpgb-column > .inner-wrapper-sticky > .tpgb-column-wrap{ padding: {{gutterSpace}}; }',
 					],
 				],
 			],
@@ -147,6 +150,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}',
 					],
 				],
+				'scopy' => true,
 			],
 			'HoverBg' => [
 				'type' => 'object',
@@ -159,6 +163,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'NormalBorder' => [
 				'type' => 'object',
@@ -181,6 +186,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}',
 					],
 				],
+				'scopy' => true,
 			],
 			'HoverBorder' => [
 				'type' => 'object',
@@ -203,6 +209,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'NormalBradius' => [
 				'type' => 'object',
@@ -220,6 +227,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}{ border-radius: {{NormalBradius}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'HoverBradius' => [
 				'type' => 'object',
@@ -237,6 +245,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}:hover{ border-radius: {{HoverBradius}}; }',
 					],
 				],
+				'scopy' => true,
 			],
 			'NormalBShadow' => [
 				'type' => 'object',
@@ -254,6 +263,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}',
 					],
 				],
+				'scopy' => true,
 			],
 			'HoverBShadow' => [
 				'type' => 'object',
@@ -271,6 +281,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}:hover',
 					],
 				],
+				'scopy' => true,
 			],
 			'Margin' => [
 				'type' => 'object',
@@ -288,6 +299,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}{margin: {{Margin}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			'Padding' => [
 				'type' => 'object',
@@ -302,9 +314,10 @@ function tpgb_tp_section_row() {
 				],
 				'style' => [
 					(object) [
-						'selector' => '{{PLUS_WRAP}}{padding: {{Padding}};}',
+						'selector' => '{{PLUS_WRAP}}{padding: {{Padding}} !important;}',
 					],
 				],
+				'scopy' => true,
 			],
 			'ZIndex' => [
 				'type' => 'number',
@@ -314,6 +327,7 @@ function tpgb_tp_section_row() {
 						'selector' => '{{PLUS_WRAP}}{z-index: {{ZIndex}};}',
 					],
 				],
+				'scopy' => true,
 			],
 			
 			'HideDesktop' => [
@@ -324,6 +338,7 @@ function tpgb_tp_section_row() {
 						'selector' => '@media (min-width: 1201px){ .edit-post-visual-editor {{PLUS_WRAP}}{display: block;opacity: .5;} {{PLUS_WRAP}}{ display:none } }',
 					],
 				],
+				'scopy' => true,
 			],
 			'HideTablet' => [
 				'type' => 'boolean',
@@ -333,6 +348,7 @@ function tpgb_tp_section_row() {
 						'selector' => '@media (min-width: 768px) and (max-width: 1200px){ .edit-post-visual-editor {{PLUS_WRAP}}{display: block;opacity: .5;} {{PLUS_WRAP}}{ display:none } }',
 					],
 				],
+				'scopy' => true,
 			],
 			'HideMobile' => [
 				'type' => 'boolean',
@@ -342,10 +358,11 @@ function tpgb_tp_section_row() {
 						'selector' => '@media (max-width: 767px){ .edit-post-visual-editor {{PLUS_WRAP}}{display: block;opacity: .5;} {{PLUS_WRAP}}{ display:none !important; } }',
 					],
 				],
+				'scopy' => true,
 			],
 		];
 		
-	$attributesOptions = array_merge( $attributesOptions );
+	$attributesOptions = array_merge( $attributesOptions, $displayRules );
 	
 	register_block_type( 'tpgb/tp-row', array(
 		'attributes' => $attributesOptions,

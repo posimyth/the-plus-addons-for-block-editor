@@ -84,6 +84,16 @@ function tpgb_registered_blocks(){
 				],
 			],
 		],
+		TPGB_CATEGORY.'/tp-dark-mode' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-dark-mode/style.css',
+				],
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/js/main/dark-mode/tpgb-dark-mode.min.js',
+				],
+			],
+		],
 		TPGB_CATEGORY.'/tp-draw-svg' => [
 			'dependency' => [
 				'css' => [
@@ -286,6 +296,9 @@ function tpgb_registered_blocks(){
 				'css' => [
 					TPGB_PATH . DIRECTORY_SEPARATOR .'classes/blocks/tp-creative-image/style.css',
 				],
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/creative-image/plus-image-factory.min.js',
+				],
 			],
 		],
 		TPGB_CATEGORY.'/tp-social-icons' => [
@@ -424,7 +437,24 @@ function tpgb_registered_blocks(){
 				],
 			],
 		],
-		
+		'tpgb-draw-svg' => [
+			'dependency' => [
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/extra/vivus.min.js',
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/main/draw-svg/tpgb-draw-svg.min.js',
+				],
+			],
+		],
+		'tpgb-fancy-box' => [
+			'dependency' => [
+				'css' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR .'assets/css/extra/jquery.fancybox.min.css',
+				],
+				'js' => [
+					TPGB_PATH . DIRECTORY_SEPARATOR . 'assets/js/extra/jquery.fancybox.min.js',
+				],
+			],
+		],
 	];
 	
 	if(has_filter('tpgb_blocks_register')) {
@@ -479,6 +509,7 @@ Class Tpgb_Library {
 			TPGB_CATEGORY.'/tp-countdown' => TPGB_CATEGORY.'/tp-countdown',
 			TPGB_CATEGORY.'/tp-creative-image' => TPGB_CATEGORY.'/tp-creative-image',
 			TPGB_CATEGORY.'/tp-data-table' => TPGB_CATEGORY.'/tp-data-table',
+			TPGB_CATEGORY.'/tp-dark-mode' => TPGB_CATEGORY.'/tp-dark-mode',
 			TPGB_CATEGORY.'/tp-draw-svg' => TPGB_CATEGORY.'/tp-draw-svg',
 			TPGB_CATEGORY.'/tp-empty-space' => TPGB_CATEGORY.'/tp-empty-space',
 			TPGB_CATEGORY.'/tp-external-form-styler' => TPGB_CATEGORY.'/tp-external-form-styler',
@@ -517,7 +548,7 @@ Class Tpgb_Library {
 		$blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
 		
 		//Plus Extras Options Array
-		$plus_extras = array('content-hover-effect','tpgb-group-button','carouselSlider','countdown-style-1','tpgb-animation', 'tpgb-pagination', 'tpgb-caldera-form', 'tpgb-everest-form', 'tpgb-gravity-form', 'tpgb-wp-form');
+		$plus_extras = array('content-hover-effect','tpgb-group-button','carouselSlider','countdown-style-1','tpgb-animation', 'tpgb-pagination', 'tpgb-caldera-form', 'tpgb-everest-form', 'tpgb-gravity-form', 'tpgb-wp-form', 'tpgb-draw-svg', 'tpgb-fancy-box');
 		
 		if(has_filter('tpgb_exrta_conditions_blocks_register')) {
 			$plus_extras = apply_filters('tpgb_exrta_conditions_blocks_register', $plus_extras);
@@ -1013,15 +1044,16 @@ Class Tpgb_Library {
 					$wp_admin_bar->add_node($each_arg);
 				}
 				
-				//Parent
-				$wp_admin_bar->add_node( [
-					'id'	=> 'tpgb_edit_template',
-					'meta'	=> array(
-						'class' => 'tpgb_edit_template',
-					),
-					'title' => esc_html__( 'Edit Template', 'tpgb' ),
-					
-				] );
+				if(!defined('NEXTER_EXT')){
+					//Parent
+					$wp_admin_bar->add_node( [
+						'id'	=> 'tpgb_edit_template',
+						'meta'	=> array(
+							'class' => 'tpgb_edit_template',
+						),
+						'title' => esc_html__( 'Edit Template', 'tpgb' ),
+					] );
+				}
 		}
 	}
 	
@@ -1143,7 +1175,11 @@ Class Tpgb_Library {
         if (!is_dir($path_url) || !file_exists($path_url)) {
             return;
         }
-
+		if(get_option('tpgb_backend_cache_at') === false){
+			add_option('tpgb_backend_cache_at', strtotime('now'),false);
+		}else{
+			update_option('tpgb_backend_cache_at', strtotime('now'),false);
+		}
         foreach (scandir($path_url) as $item) {
             if ($item == '.' || $item == '..') {
                 continue;
@@ -1167,6 +1203,11 @@ Class Tpgb_Library {
 		}
 		if(file_exists(TPGB_ASSET_PATH . '/theplus.min.js')){
 			unlink($this->secure_path_url(TPGB_ASSET_PATH . DIRECTORY_SEPARATOR . '/theplus.min.js'));
+		}
+		if(get_option('tpgb_backend_cache_at') === false){
+			add_option('tpgb_backend_cache_at', strtotime('now'),false);
+		}else{
+			update_option('tpgb_backend_cache_at', strtotime('now'),false);
 		}
     }
 	
@@ -1211,6 +1252,12 @@ Class Tpgb_Library {
 				$versions = array_unique( array_merge( $get_version, $versions ) );
 				update_option( $option_name, $versions );
 			}
+			//1.2.1
+			if( version_compare( TPGB_VERSION, '1.2.1', '==' ) && !in_array( '1.2.1', $get_version ) ){
+				$this->remove_dir_files(TPGB_ASSET_PATH);
+				$versions = array_unique( array_merge( $get_version, $versions ) );
+				update_option( $option_name, $versions );
+			}
 		}
 	}
 	
@@ -1241,6 +1288,12 @@ Class Tpgb_Library {
 			$options = (!empty($block['attrs'])) ? $block['attrs'] : '';
 			$this->plus_blocks_options( $options, $block['blockName'] );
 			$this->transient_blocks[] = $block['blockName'];
+			
+			if( !preg_match('/\btpgb\/\b/', $block['blockName']) && isset($options['tpgbDisrule']) && !empty($options[ 'tpgbDisrule' ]) ){
+				$global_blocks = Tpgb_Blocks_Global_Options::get_instance();
+				$options = array_merge($global_blocks::render_block_default_attributes(), $options);
+				$block_content = $global_blocks::block_row_conditional_render($options,$block_content);
+			}
 		}
 		return $block_content;
 	}
@@ -1297,6 +1350,18 @@ Class Tpgb_Library {
 			if( !empty($options) && !empty($options['formType']) && $options['formType'] == 'wp-form'){  // Wp=Form
 				$this->transient_blocks[] = 'tpgb-wp-form';
 			}
+		}
+		//Svg Icon Load 
+		if( ($blockname=='tpgb/tp-flipbox' && !empty($options) && !empty($options['iconType']) && $options['iconType'] == 'svg') || ($blockname=='tpgb/tp-infobox' && !empty($options) && !empty($options['iconType']) && $options['iconType'] == 'svg') || ($blockname=='tpgb/tp-number-counter' && !empty($options) && !empty($options['iconType']) && $options['iconType'] == 'svg') || ($blockname=='tpgb/tp-pricing-table' && !empty($options) && !empty($options['iconType']) && $options['iconType'] == 'svg') ){
+			$this->transient_blocks[] = 'tpgb-draw-svg';
+		}
+		
+		// tpgb-fancy-box
+		if($blockname=='tpgb/tp-post-image' && !empty($options) && !empty($options['fancyBox']) && $options['fancyBox'] == true ) {
+			$this->transient_blocks[] = 'tpgb-fancy-box';
+		}
+		if($blockname=='tpgb/tp-creative-image' && !empty($options) && !empty($options['fancyBox']) && $options['fancyBox'] == true ) {
+			$this->transient_blocks[] = 'tpgb-fancy-box';
 		}
 		
 		if(has_filter('tpgb_has_blocks_condition')) {
@@ -1394,7 +1459,7 @@ Class Tpgb_Library {
 		$this->transient_blocks = [];
 		$this->plus_template_blocks = [];
 		
-		add_filter( 'render_block', [ $this, 'render_block' ], 10, 2 );
+		add_filter( 'render_block', [ $this, 'render_block' ], 1000, 2 );
 		add_filter('plus_template_parse_blocks', [ $this, 'plus_template_load_parse_blocks']);
 		add_action('wp_print_footer_scripts', array($this, 'generate_scripts_frontend'));
 
