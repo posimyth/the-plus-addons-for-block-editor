@@ -1,0 +1,251 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-heading",
+	"version": "0.1.0",
+	"title": "Heading",
+	"category": "tpgb",
+	"description": "Add titles and headings with style.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+        "anchor": true,
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type" :"string",
+            "source": "html",
+            "selector": ".tp-core-heading",
+            "default": "Add Your Heading Text Here"
+        },
+        "tLink": {
+            "type": "object",
+            "default": {
+            "url": "",
+            "target": "",
+            "nofollow": ""
+            }
+        },
+        "tTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "tColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tp-core-heading { color: {{tColor}}; }"
+            }],
+            "scopy": true
+        },
+        "tTypo": {
+            "type": "object",
+            "default": {
+            "openTypography": 0,
+            "size": {
+                "md": "",
+                "unit": "px"
+            }
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tp-core-heading"
+            }],
+            "scopy": true
+        },
+        "tAlign": {
+            "type": "object",
+            "default": {
+            "md": "left",
+            "sm": "",
+            "xs": ""
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}{ text-align: {{tAlign}}; }"
+            }]
+        },
+        "tStroke": {
+            "type": "object",
+            "groupField": [
+            {
+                "tstWidth": {
+                "type": "object",
+                "default": {
+                    "md": "",
+                    "unit": "px"
+                },
+                "style": [
+                    {
+                    "condition": [
+                        {
+                        "key": "tpgbReset",
+                        "relation": "==",
+                        "value": 1
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} { -webkit-text-stroke-width: {{tstWidth}}; stroke-width : {{tstWidth}}; }"
+                    }
+                ],
+                "scopy": true
+                },
+                "tstColor": {
+                "type": "string",
+                "default": "",
+                "style": [
+                    {
+                    "condition": [
+                        {
+                        "key": "tpgbReset",
+                        "relation": "==",
+                        "value": 1
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} { -webkit-text-stroke-color: {{tstColor}}; stroke: {{tstColor}}; }"
+                    }
+                ],
+                "scopy": true
+                }
+            }
+            ],
+            "default": {
+            "tpgbReset": 0,
+            "tstWidth": {
+                "md": ""
+            },
+            "tstColor": ""
+            }
+        },
+        "tShadow": {
+            "type": "object",
+            "default": {
+            "openShadow": 0,
+            "typeShadow": "text-shadow",
+            "horizontal": 2,
+            "vertical": 3,
+            "blur": 2,
+            "color": "rgba(0,0,0,0.5)"
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}"
+            }],
+            "scopy": true
+        },
+        "tblendm": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}} { mix-blend-mode: {{tblendm}}; }"
+            }],
+            "scopy": true
+        },
+        "anchor": {
+            "type": "string"
+        },
+        "globalPosition": {
+            "type": "object",
+            "default": {
+              "md": "",
+              "sm": "",
+              "xs": ""
+            },
+            "style": [
+              {
+                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ position : {{globalPosition}};width : 100%; }",
+                "backend": true
+              }
+            ]
+        },
+        "glohoriOffset": {
+            "type": "object",
+            "default": {
+              "md": "0",
+              "unit": "px"
+            },
+            "style": [
+              {
+                "condition": [
+                  {
+                    "key": "globalPosition",
+                    "relation": "==",
+                    "value": ["absolute", "fixed"]
+                  },
+                  {
+                    "key": "gloabhorizoOri",
+                    "relation": "==",
+                    "value": "left"
+                  }
+                ],
+                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ left : {{glohoriOffset}};right : auto; }",
+                "backend": true
+              },
+              {
+                "condition": [
+                  {
+                    "key": "globalPosition",
+                    "relation": "==",
+                    "value": ["absolute", "fixed"]
+                  },
+                  {
+                    "key": "gloabhorizoOri",
+                    "relation": "==",
+                    "value": "right"
+                  }
+                ],
+                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ right : {{glohoriOffset}};left : auto; }",
+                "backend": true
+              }
+            ]
+        },
+        "gloverticalOffset": {
+            "type": "object",
+            "default": {
+              "md": "0",
+              "unit": "px"
+            },
+            "style": [
+              {
+                "condition": [
+                  {
+                    "key": "globalPosition",
+                    "relation": "==",
+                    "value": ["absolute", "fixed"]
+                  },
+                  {
+                    "key": "gloabverticalOri",
+                    "relation": "==",
+                    "value": "top"
+                  }
+                ],
+                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ top : {{gloverticalOffset}}; bottom : auto; }",
+                "backend": true
+              },
+              {
+                "condition": [
+                  {
+                    "key": "globalPosition",
+                    "relation": "==",
+                    "value": ["absolute", "fixed"]
+                  },
+                  {
+                    "key": "gloabverticalOri",
+                    "relation": "==",
+                    "value": "bottom"
+                  }
+                ],
+                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ bottom : {{gloverticalOffset}}; top : auto; }",
+                "backend": true
+              }
+            ]
+        },
+        "isRptBlock": {
+			"type": "boolean",
+			"default": false
+		}
+    },
+    "usesContext": ["postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField"]
+}

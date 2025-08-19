@@ -1,0 +1,61 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-smooth-scroll",
+	"version": "0.1.0",
+	"title": "Smooth Scroll",
+	"category": "tpgb",
+	"description": "Give your users premium smooth experience by adding a smooth scroll effect.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "className": {
+            "type": "string",
+            "default": ""
+        },
+        "aniTime": {
+            "type": "string",
+            "default": "2500"
+        },
+        "stepSize": {
+            "type": "string",
+            "default": "500"
+        },
+        "tMult": {
+            "type": "string",
+            "default": "2"
+        },
+        "normalizeWheel": {
+            "type": "boolean",
+            "default": true
+        },
+         "easing": {
+            "type": "string",
+            "default": "ease-out-cubic"
+        },
+        "infinite": {
+            "type": "boolean",
+            "default": false
+        },
+        "smNav": {
+            "type": "boolean",
+            "default": false
+        },
+        "custEase": {
+            "type": "string",
+            "default": ""
+        },
+        "viewport": {
+            "type": "string",
+            "default": ""
+        }
+    }
+}

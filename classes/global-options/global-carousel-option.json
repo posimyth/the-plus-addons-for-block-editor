@@ -1,0 +1,360 @@
+{
+    "sliderMode": {
+      "type": "string",
+      "default": "horizontal",
+      "scopy": true
+    },
+    "slideSpeed": {
+      "type": "string",
+      "default": 1500,
+      "scopy": true
+    },
+    "slideColumns": {
+      "type": "object",
+      "default": {
+        "md": 1,
+        "sm": 1,
+        "xs": 1
+      },
+      "scopy": true
+    },
+    "initialSlide": {
+      "type": "number",
+      "default": 0,
+      "scopy": true
+    },
+    "slideScroll": {
+      "type": "object",
+      "default": {
+        "md": 1
+      },
+      "scopy": true
+    },
+    "slideColumnSpace": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .splide__list .splide__slide {padding: {{slideColumnSpace}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "slideDraggable": {
+      "type": "object",
+      "default": {
+        "md": true
+      },
+      "scopy": true
+    },
+    "slideInfinite": {
+      "type": "boolean",
+      "default": false,
+      "scopy": true
+    },
+    "slideHoverPause": {
+      "type": "boolean",
+      "default": false,
+      "scopy": true
+    },
+    "slideAutoplay": {
+      "type": "boolean",
+      "default": true,
+      "scopy": true
+    },
+    "slideAutoplaySpeed": {
+      "type": "string",
+      "default": 1500,
+      "scopy": true
+    },
+    "showDots": {
+      "type": "object",
+      "default": {
+        "md": true
+      },
+      "scopy": true
+    },
+    "dotsStyle": {
+      "type": "string",
+      "default": "style-1",
+      "scopy": true
+    },
+    "dotsBorderColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "dotsStyle",
+              "relation": "==",
+              "value": "style-1"
+            }
+          ],
+           "selector": "{{PLUS_WRAP}}.dots-style-1 ul.splide__pagination li button.splide__pagination__page{-webkit-box-shadow:inset 0 0 0 8px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 8px {{dotsBorderColor}};box-shadow: inset 0 0 0 8px {{dotsBorderColor}};} {{PLUS_WRAP}}.dots-style-1 ul.splide__pagination li button.splide__pagination__page.is-active{-webkit-box-shadow:inset 0 0 0 1px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 1px {{dotsBorderColor}};box-shadow: inset 0 0 0 1px {{dotsBorderColor}};}{{PLUS_WRAP}}.dots-style-2 ul.splide__pagination li button.splide__pagination__page, {{PLUS_WRAP}}.dots-style-6 .splide__pagination button{border: 1px solid {{dotsBorderColor}};}{{PLUS_WRAP}}.dots-style-3 .splide__pagination li button{-webkit-box-shadow: inset 0 0 0 1px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 1px {{dotsBorderColor}};box-shadow: inset 0 0 0 1px {{dotsBorderColor}};}{{PLUS_WRAP}}.dots-style-3 .splide__pagination li button.is-active{-webkit-box-shadow: inset 0 0 0 8px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 8px {{dotsBorderColor}};box-shadow: inset 0 0 0 8px {{dotsBorderColor}};}{{PLUS_WRAP}}.dots-style-4 .splide__pagination li button::before{-webkit-box-shadow: inset 0 0 0 1px {{dotsBorderColor}};-moz-box-shadow: inset 0 0 0 1px {{dotsBorderColor}};box-shadow: inset 0 0 0 1px {{dotsBorderColor}};}{{PLUS_WRAP}}.dots-style-1 ul.splide__pagination li button.splide__pagination__page{background: transparent;color: {{dotsBorderColor}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "dotsTopSpace": {
+      "type": "object",
+      "default": {
+        "md": 0,
+        "sm": 0,
+        "xs": 0,
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "showDots",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .splide__pagination{ margin-top: {{dotsTopSpace}} !important;}"
+        }
+      ],
+      "scopy": true
+    },
+    "slideHoverDots": {
+      "type": "boolean",
+      "default": false,
+      "scopy": true
+    },
+    "showArrows": {
+      "type": "object",
+      "default": {
+        "md": false
+      },
+      "scopy": true
+    },
+    "arrowsStyle": {
+      "type": "string",
+      "default": "style-1",
+      "scopy": true
+    },
+    "arrowsPosition": {
+      "type": "string",
+      "default": "top-right",
+      "scopy": true
+    },
+    "arrowsBgColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "arrowsStyle",
+              "relation": "==",
+              "value": "style-1"
+            },
+            {
+              "key": "showArrows",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1{background:{{arrowsBgColor}};}"
+        },
+        {
+          "condition": [
+            {
+              "key": "arrowsStyle",
+              "relation": "==",
+              "value": [
+                "style-3",
+                "style-4",
+                "style-6"
+              ]
+            },
+            {
+              "key": "showArrows",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .splide__arrows.style-3 .splide__arrow.style-3 .icon-wrap, {{PLUS_WRAP}} .splide__arrows.style-6 .splide__arrow.style-6:before{background:{{arrowsBgColor}};} {{PLUS_WRAP}} .splide__arrows.style-4 .splide__arrow.style-4 .icon-wrap{border-color:{{arrowsBgColor}}}"
+        }
+      ],
+      "scopy": true
+    },
+    "arrowsIconColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "arrowsStyle",
+              "relation": "==",
+              "value": "style-1"
+            },
+            {
+              "key": "showArrows",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1:before{color:{{arrowsIconColor}};}"
+        },
+        {
+          "condition": [
+            {
+              "key": "arrowsStyle",
+              "relation": "==",
+              "value": [
+                "style-2",
+                "style-3",
+                "style-4",
+                "style-5",
+                "style-6"
+              ]
+            },
+            {
+              "key": "showArrows",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .splide__arrows.style-3 .splide__arrow.style-3 .icon-wrap,{{PLUS_WRAP}} .splide__arrows.style-4 .splide__arrow.style-4 .icon-wrap,{{PLUS_WRAP}} .splide__arrows.style-6 .splide__arrow.style-6 .icon-wrap svg{color:{{arrowsIconColor}};}{{PLUS_WRAP}} .splide__arrows.style-2 .splide__arrow.style-2 .icon-wrap:before,{{PLUS_WRAP}} .splide__arrows.style-2 .splide__arrow.style-2 .icon-wrap:after,{{PLUS_WRAP}} .splide__arrows.style-5 .splide__arrow.style-5 .icon-wrap:before,{{PLUS_WRAP}} .splide__arrows.style-5 .splide__arrow.style-5 .icon-wrap:after{background:{{arrowsIconColor}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "arrowsHoverBgColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "arrowsStyle",
+              "relation": "==",
+              "value": "style-1"
+            },
+            {
+              "key": "showArrows",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1:hover{background:{{arrowsHoverBgColor}};}"
+        },
+        {
+          "condition": [
+            {
+              "key": "arrowsStyle",
+              "relation": "==",
+              "value": [
+                "style-2",
+                "style-3",
+                "style-4"
+              ]
+            },
+            {
+              "key": "showArrows",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .splide__arrows.style-2 .splide__arrow.style-2:hover:before,{{PLUS_WRAP}} .splide__arrows.style-3 .splide__arrow.style-3:hover .icon-wrap{background:{{arrowsHoverBgColor}};}{{PLUS_WRAP}} .splide__arrows.style-4 .splide__arrow.style-4:hover:before,{{PLUS_WRAP}} .splide__arrows.style-4 .splide__arrow.style-4:hover .icon-wrap{border-color:{{arrowsHoverBgColor}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "arrowsHoverIconColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "arrowsStyle",
+              "relation": "==",
+              "value": "style-1"
+            },
+            {
+              "key": "showArrows",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .splide__arrows.style-1 .splide__arrow.style-1:hover:before{color:{{arrowsHoverIconColor}};}"
+        },
+        {
+          "condition": [
+            {
+              "key": "arrowsStyle",
+              "relation": "==",
+              "value": [
+                "style-2",
+                "style-3",
+                "style-4",
+                "style-5",
+                "style-6"
+              ]
+            },
+            {
+              "key": "showArrows",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .splide__arrows.style-3 .splide__arrow.style-3:hover .icon-wrap,{{PLUS_WRAP}} .splide__arrows.style-4 .splide__arrow.style-4:hover .icon-wrap,{{PLUS_WRAP}} .splide__arrows.style-6 .splide__arrow.style-6:hover .icon-wrap svg{color:{{arrowsHoverIconColor}};}{{PLUS_WRAP}} .splide__arrows.style-2 .splide__arrow.style-2:hover .icon-wrap:before,{{PLUS_WRAP}} .splide__arrows.style-2 .splide__arrow.style-2:hover .icon-wrap:after,{{PLUS_WRAP}} .splide__arrows.style-5 .splide__arrow.style-5:hover .icon-wrap:before,{{PLUS_WRAP}} .splide__arrows.style-5 .splide__arrow.style-5:hover .icon-wrap:after{background:{{arrowsHoverIconColor}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "outerArrows": {
+      "type": "boolean",
+      "default": false,
+      "scopy": true
+    },
+    "slideHoverArrows": {
+      "type": "boolean",
+      "default": false,
+      "scopy": true
+    },
+    "centerMode": {
+      "type": "object",
+      "default": {
+        "md": false
+      },
+      "scopy": true
+    },
+    "slidewheel": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+    },
+    "waitfortras": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+    },
+    "slidekeyNav": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+    },
+    "slideautoScroll": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+    },
+    "autoscSpeed": {
+        "type": "string",
+        "default": "1"
+    }
+}

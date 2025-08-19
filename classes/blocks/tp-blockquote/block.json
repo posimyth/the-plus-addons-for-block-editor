@@ -1,0 +1,400 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-blockquote",
+	"version": "0.1.0",
+	"title": "Blockquote",
+	"category": "tpgb",
+	"description": "Blockquote is a typographic element used to quote text from other sources.This block can be used to provide indented text, which is a quotation that should be cited or referenced.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "style": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "content": {
+            "type": "string",
+            "source": "html",
+            "selector": ".quote-text",
+            "default": "You can't connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future."
+        },
+        "authorName": {
+            "type": "string",
+            "source": "html",
+            "selector": ".tpgb-quote-author",
+            "default": "Steve Jobs"
+        },
+        "contentAlignment": {
+            "type": "string",
+            "default": "",
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner div{text-align: {{contentAlignment}} !important;}"
+            }
+            ],
+            "scopy": true
+        },
+        "typography": {
+            "type": "object",
+            "default": {
+            "openTypography": 0,
+            "size": {
+                "md": "",
+                "unit": "px"
+            }
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner blockquote.tpgb-quote-text > span,{{PLUS_WRAP}} .tpgb-blockquote-inner blockquote.tpgb-quote-text"
+            }
+            ],
+            "scopy": true
+        },
+        "authorTypo": {
+            "type": "object",
+            "default": {
+            "openTypography": 0,
+            "size": {
+                "md": "",
+                "unit": "px"
+            }
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-quote-style-2 .tpgb-quote-text .tpgb-quote-author"
+            }
+            ],
+            "scopy": true
+        },
+        "textNormalColor": {
+            "type": "string",
+            "default": "#747474",
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-text{color: {{textNormalColor}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "textHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-text:hover{color: {{textHoverColor}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "authorNormalColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+            {
+                "condition": [
+                {
+                    "key": "style",
+                    "relation": "==",
+                    "value": "style-2"
+                }
+                ],
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-text .tpgb-quote-author{color: {{authorNormalColor}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "authorHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+            {
+                "condition": [
+                {
+                    "key": "style",
+                    "relation": "==",
+                    "value": "style-2"
+                }
+                ],
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-text .tpgb-quote-author:hover{color: {{authorHoverColor}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "quoteColor": {
+            "type": "string",
+            "default": "#888",
+            "style": [
+            {
+                "condition": [
+                {
+                    "key": "style",
+                    "relation": "==",
+                    "value": "style-2"
+                }
+                ],
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-left{color: {{quoteColor}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "boxPadding": {
+            "type": "object",
+            "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner{padding: {{boxPadding}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "boxMargin": {
+            "type": "object",
+            "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner{margin: {{boxMargin}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "borderNormal": {
+            "type": "object",
+            "default": {
+            "openBorder": 0,
+            "type": "",
+            "color": "",
+            "width": {
+                "md": {
+                "top": "",
+                "left": "",
+                "bottom": "",
+                "right": ""
+                },
+                "unit": ""
+            }
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner"
+            }
+            ],
+            "scopy": true
+        },
+        "borderHover": {
+            "type": "object",
+            "default": {
+            "openBorder": 0,
+            "type": "",
+            "color": "",
+            "width": {
+                "md": {
+                "top": "",
+                "left": "",
+                "bottom": "",
+                "right": ""
+                },
+                "unit": ""
+            }
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner:hover"
+            }
+            ],
+            "scopy": true
+        },
+        "borderRadius": {
+            "type": "object",
+            "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner{border-radius: {{borderRadius}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "HvrborderRadius": {
+            "type": "object",
+            "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner:hover{border-radius: {{HvrborderRadius}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "catBg": {
+            "type": "object",
+            "default": {
+            "bgType": "color",
+            "bgDefaultColor": ""
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner"
+            }
+            ],
+            "scopy": true
+        },
+        "catBgHover": {
+            "type": "object",
+            "default": {
+            "bgType": "color",
+            "bgDefaultColor": ""
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner:hover"
+            }
+            ],
+            "scopy": true
+        },
+        "catBoxShadow": {
+            "type": "object",
+            "default": {
+            "openShadow": 0,
+            "blur": 8,
+            "color": "rgba(0,0,0,0.40)",
+            "horizontal": 0,
+            "inset": 0,
+            "spread": 0,
+            "vertical": 4
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner"
+            }
+            ],
+            "scopy": true
+        },
+        "catBoxShadowHover": {
+            "type": "object",
+            "default": {
+            "openShadow": 0,
+            "blur": 8,
+            "color": "rgba(0,0,0,0.40)",
+            "horizontal": 0,
+            "inset": 0,
+            "spread": 0,
+            "vertical": 4
+            },
+            "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner:hover"
+            }
+            ],
+            "scopy": true
+        },
+        "quoteIcon": {
+            "type": "string",
+            "default": ""
+        },
+        "qiconSize": {
+            "type": "object",
+            "default": {
+            "md": "60",
+            "unit": "px"
+            },
+            "style": [
+            {
+                "condition": [
+                {
+                    "key": "style",
+                    "relation": "==",
+                    "value": "style-2"
+                }
+                ],
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-left{ font-size : {{qiconSize}}; }"
+            }
+            ]
+        },
+        "iconLoffset": {
+            "type": "object",
+            "default": {
+            "md": "",
+            "unit": "px"
+            },
+            "style": [
+            {
+                "condition": [
+                {
+                    "key": "style",
+                    "relation": "==",
+                    "value": "style-2"
+                }
+                ],
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-left{ left: {{iconLoffset}}; }"
+            }
+            ]
+        },
+        "iconToffset": {
+            "type": "object",
+            "default": {
+            "md": "",
+            "unit": "px"
+            },
+            "style": [
+            {
+                "condition": [
+                {
+                    "key": "style",
+                    "relation": "==",
+                    "value": "style-2"
+                }
+                ],
+                "selector": "{{PLUS_WRAP}} .tpgb-blockquote-inner .tpgb-quote-left{ top: {{iconToffset}}; }"
+            }
+            ]
+        },
+        "isRptBlock": {
+			"type": "boolean",
+			"default": false
+		},
+        "showBlockContent" : {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "usesContext": ["postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField"]
+}

@@ -1,0 +1,435 @@
+{
+    "extBtnshow": {
+      "type": "boolean",
+      "default": false
+    },
+    "extBtnStyle": {
+      "type": "string",
+      "default": "style-7"
+    },
+    "extBtnText": {
+      "type": "string",
+      "default": "Have a Look"
+    },
+    "extBtnUrl": {
+      "type": "object",
+      "default": {
+        "url": "#",
+        "target": "",
+        "nofollow": ""
+      }
+    },
+    "extBtniconFont": {
+      "type": "string",
+      "default": "none"
+    },
+    "extBtniconName": {
+      "type": "string",
+      "default": ""
+    },
+    "extBtniconPosition": {
+      "type": "string",
+      "default": "after"
+    },
+    "extBtniconSpacing": {
+      "type": "object",
+      "default": {
+        "md": 5,
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .button-link-wrap .button-before { margin-right: {{extBtniconSpacing}}; } {{PLUS_WRAP}} .button-link-wrap .button-after { margin-left: {{extBtniconSpacing}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "extBtniconSize": {
+      "type": "object",
+      "default": {
+        "md": "",
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .button-link-wrap .btn-icon { font-size: {{extBtniconSize}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnSpace": {
+      "type": "object",
+      "default": {
+        "md": "",
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button{ margin-top: {{extbtnSpace}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnbottomSpace": {
+      "type": "object",
+      "default": {
+        "md": "",
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button{ margin-bottom : {{extbtnbottomSpace}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnPadding": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap{ padding: {{extbtnPadding}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnTypo": {
+      "type": "object",
+      "default": {
+        "openTypography": 0,
+        "size": {
+          "md": "",
+          "unit": "px"
+        }
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnTextColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap{ color: {{extbtnTextColor}}; }"
+        },
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "extBtnStyle",
+              "relation": "==",
+              "value": "style-7"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-7 .button-link-wrap:after{ border-color: {{extbtnTextColor}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnThoverColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap:hover{ color: {{extbtnThoverColor}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnNormalB": {
+      "type": "object",
+      "default": {
+        "openBorder": 0,
+        "type": "",
+        "color": "",
+        "width": {
+          "md": {
+            "top": "1",
+            "left": "1",
+            "bottom": "1",
+            "right": "1"
+          },
+          "unit": "px"
+        }
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "extBtnStyle",
+              "relation": "==",
+              "value": "style-8"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnBRadius": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "extBtnStyle",
+              "relation": "==",
+              "value": "style-8"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap{border-radius: {{extbtnBRadius}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnBG": {
+      "type": "object",
+      "default": {
+        "openBg": 0
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "extBtnStyle",
+              "relation": "==",
+              "value": "style-8"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnHvrB": {
+      "type": "object",
+      "default": {
+        "openBorder": 0,
+        "type": "",
+        "color": "",
+        "width": {
+          "md": {
+            "top": "1",
+            "left": "1",
+            "bottom": "1",
+            "right": "1"
+          },
+          "unit": "px"
+        }
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "extBtnStyle",
+              "relation": "==",
+              "value": "style-8"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnHvrBRadius": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "extBtnStyle",
+              "relation": "==",
+              "value": "style-8"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover{border-radius: {{extbtnHvrBRadius}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnHvrBG": {
+      "type": "object",
+      "default": {
+        "openBg": 0
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "extBtnStyle",
+              "relation": "==",
+              "value": "style-8"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover"
+        }
+      ],
+      "scopy": true
+    },
+    "extbtnShadow": {
+      "type": "object",
+      "default": {
+        "horizontal": 0,
+        "vertical": 8,
+        "blur": 20,
+        "spread": 1,
+        "color": "rgba(0,0,0,0.27)"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap"
+        }
+      ],
+      "scopy": true
+    },
+    "hoverextbtnShadow": {
+      "type": "object",
+      "default": {
+        "horizontal": "",
+        "vertical": "",
+        "blur": "",
+        "spread": "",
+        "color": "rgba(0,0,0,0.27)"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "extBtnshow",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap:hover"
+        }
+      ],
+      "scopy": true
+    }
+}

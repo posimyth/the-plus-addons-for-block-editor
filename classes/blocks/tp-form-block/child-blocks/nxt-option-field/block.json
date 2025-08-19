@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-form-option-field",
+	"version": "0.1.0",
+	"title": "Dropdown",
+	"category": "tpgb",
+	"description": "Add a select dropdown to list choices.",
+	"example": { "attributes": {} },
+	"supports": { "anchor": true, "align": ["wide", "full"] },
+	"textdomain": "tpgb",
+	"ancestor": ["tpgb/tp-form-block"],
+	"attributes": {
+		"block_id": { "type": "string", "default": "" },
+		"labelss": { "type": "string", "default": "Select" },
+		"fldOptions": {
+			"type": "array",
+			"default": [
+				{
+					"fldLabel": " Enter Label",
+					"fldValue": " Enter Value"
+				}
+			]
+		},
+		"reqTgl": { "type": "boolean", "default": false },
+		"inpSz": {
+			"type": "object",
+			"default": { "md": "100", "unit": "%" },
+			"style": [
+				{
+					"selector": "{{PLUS_CLIENT_ID}} {margin:0; width: {{inpSz}}; } {{PLUS_CLIENT_ID}}[data-type='tpgb/tp-form-option-field'].nxt-form-option{width:100%} {{PLUS_CLIENT_ID}}~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;} {{PLUS_CLIENT_ID}}:has(input[type='text'])~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;}",
+					"backend": true
+				},
+				{
+					"selector": "{{PLUS_WRAP}}.nxt-form-option {width: {{inpSz}}; } {{PLUS_WRAP}}~.nxt-submit-button.nxt-btn-inline{flex: 0;}",
+					"backend": false
+				}
+			]
+		},
+		"hlpTxt": { "type": "boolean", "default": false },
+		"desctxt": { "type": "string", "default": "Description" },
+		"descPoss": { "type": "string", "default": "top" },
+		"error": {
+			"type": "string",
+			"default": "This field is required."
+		}
+	}
+}

@@ -1,0 +1,455 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-video",
+	"version": "0.1.0",
+	"title": "Video",
+	"category": "tpgb",
+	"description": "Showcase your YouTube, Vimeo or Self-hosted videos on your website to increase engagement.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "VideoType": {
+            "type": "string",
+            "default": "youtube"
+        },
+        "YoutubeID": {
+            "type": "string",
+            "default": "TJ1SDXbij8Y"
+        },
+        "VimeoID": {
+            "type": "string",
+            "default": "27246366"
+        },
+        "mp4Url": {
+            "type": "object",
+            "default": []
+        },
+        "autoPlay": {
+            "type": "boolean",
+            "default": false
+        },
+        "muted": {
+            "type": "boolean",
+            "default": false
+        },
+        "loop": {
+            "type": "boolean",
+            "default": false
+        },
+        "controls": {
+            "type": "boolean",
+            "default": true
+        },
+        "showinfo": {
+            "type": "boolean",
+            "default": true
+        },
+        "touchDisable": {
+            "type": "boolean",
+            "default": false
+        },
+        "ModestBranding": {
+            "type": "boolean",
+            "default": false
+        },
+        "VideoColor": {
+            "type": "string",
+            "default": ""
+        },
+        "rel": {
+            "type": "boolean",
+            "default": false
+        },
+        "yt_privacy": {
+            "type": "boolean",
+            "default": false
+        },
+        "VimeoTitle": {
+            "type": "boolean",
+            "default": true
+        },
+        "VimeoPortrait": {
+            "type": "boolean",
+            "default": true
+        },
+        "VimeoByline": {
+            "type": "boolean",
+            "default": true
+        },
+        "image_banner": {
+            "type": "string",
+            "default": "banner_img"
+        },
+        "VideoIcon": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "VideoIconSize": {
+            "type": "string",
+            "default": "full"
+        },
+        "IconAlign": {
+            "type": "string",
+            "default": "center"
+        },
+        "ShowBannerImg": {
+            "type": "boolean",
+            "default": false
+        },
+        "BannerImg": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "BannerImgSize": {
+            "type": "string",
+            "default": "full"
+        },
+        "OverlayIconImg": {
+            "type": "object",
+            "default": []
+        },
+        "OverlayIconImgSize": {
+            "type": "string",
+            "default": "full"
+        },
+        "VideoTitle": {
+            "type": "string",
+            "default": "Earth from the Moon"
+        },
+        "markupSch": {
+            "type": "boolean",
+            "default": false
+        },
+        "iframeTitle": {
+            "type": "string",
+            "default": ""
+        },
+        "VideoTitleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ShowBannerImg",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-video-box .ts-video-caption-text"
+                }
+            ],
+            "scopy": true
+        },
+        "TitleColor": {
+            "type": "string",
+            "default": "#313131",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ShowBannerImg",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .ts-video-caption-text{ color: {{TitleColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "TitleBgColor": {
+            "type": "string",
+            "default": "#ffffff",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ShowBannerImg",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .ts-video-caption-text{ background: {{TitleBgColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "VideoPopup": {
+            "type": "boolean",
+            "default": false
+        },
+        "VideoBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "solid",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "",
+                        "left": "",
+                        "bottom": "",
+                        "right": ""
+                    },
+                    "unit": ""
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player"
+                }
+            ],
+            "scopy": true
+        },
+        "VideoBRadius": {
+            "type": "object",
+            "default": [],
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player{ border-radius: {{VideoBRadius}};overflow:hidden; }"
+                }
+            ],
+            "scopy": true
+        },
+        "BoxShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player"
+                }
+            ],
+            "scopy": true
+        },
+        "Transform": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-video-box{transform:{{Transform}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "VideoBorderH": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "solid",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "",
+                        "left": "",
+                        "bottom": "",
+                        "right": ""
+                    },
+                    "sm": [],
+                    "xs": [],
+                    "unit": ""
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "VideoBRadiusH": {
+            "type": "object",
+            "default": [],
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player:hover{ border-radius: {{VideoBRadiusH}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "BoxShadowH": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "TransformH": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-video-box:hover{transform:{{TransformH}};};"
+                }
+            ],
+            "scopy": true
+        },
+        "ContinueAnim": {
+            "type": "boolean",
+            "default": false,
+            "scopy": true
+        },
+        "ContinueAnimEffect": {
+            "type": "string",
+            "default": "pulse",
+            "scopy": true
+        },
+        "ContinueAnimHover": {
+            "type": "boolean",
+            "default": false,
+            "scopy": true
+        },
+        "ContinueAnimDur": {
+            "type": "string",
+            "default": 2.5,
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ContinueAnim",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "ContinueAnimEffect",
+                            "relation": "!==",
+                            "value": "drop_waves"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon .tp-video-icon{ animation-duration: {{ContinueAnimDur}}s; }"
+                }
+            ],
+            "scopy": true
+        },
+        "ContinueTransRotate": {
+            "type": "string",
+            "default": "center center",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ContinueAnim",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "ContinueAnimEffect",
+                            "relation": "==",
+                            "value": "rotating"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon .tp-video-icon{-webkit-transform-origin: {{ContinueTransRotate}};-moz-transform-origin:{{ContinueTransRotate}},-ms-transform-origin:{{ContinueTransRotate}};,-o-transform-origin: {{ContinueTransRotate}};,transform-origin: {{ContinueTransRotate}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "DropWaveColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ContinueAnim",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "ContinueAnimEffect",
+                            "relation": "==",
+                            "value": "drop_waves"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player .tpgb-drop_waves:after,{{PLUS_WRAP}} .tpgb_video_player .tpgb-hover-drop_waves:hover:after{ background: {{DropWaveColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "IconRadius": {
+            "type": "object",
+            "default": [],
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon .tp-video-icon,{{PLUS_WRAP}} .tpgb_video_player .tpgb-drop_waves:after,{{PLUS_WRAP}} .tpgb_video_player .tpgb-hover-drop_waves:hover:after{border-radius: {{IconRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "PlayIconSize": {
+            "type": "string",
+            "default": 100,
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb_video_player .tp-video-icon-inner,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup,{{PLUS_WRAP}} .tpgb_video_player .tp-video-popup-icon{max-width: {{PlayIconSize}}px;width: {{PlayIconSize}}px;max-height: {{PlayIconSize}}px;height: {{PlayIconSize}}px;}"
+                }
+            ],
+            "scopy": true
+        },
+        "VideoDesc": {
+            "type": "string",
+            "default": ""
+        },
+        "VideoDescTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "VideoDesc",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .ts-video-caption-text .tpgb-video-desc"
+                }
+            ],
+            "scopy": true
+        },
+        "DescColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "VideoDesc",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .ts-video-caption-text .tpgb-video-desc{ color : {{DescColor}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

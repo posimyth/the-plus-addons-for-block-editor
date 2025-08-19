@@ -1,0 +1,578 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-accordion",
+	"version": "0.1.0",
+	"title": "Accordion",
+	"category": "tpgb",
+	"description": "This is the perfect solution for when you want to show more content without cluttering up your interface. Its makes it easy to create scrolling panels with any content you want.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "accorType": {
+            "type": "string",
+            "default": "content"
+        },
+        "accordianList": {
+            "type": "array",
+            "repeaterField": [
+                {
+                    "title": {
+                        "type": "string",
+                        "default": "Accordion"
+                    },
+                    "desc": {
+                        "type": "string",
+                        "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    },
+                    "innerIcon": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "UniqueId": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "iconFonts": {
+                        "type": "string",
+                        "default": "font_awesome"
+                    },
+                    "innericonName": {
+                        "type": "string",
+                        "default": "fas fa-home"
+                    },
+                    "contentType": {
+                        "type": "string",
+                        "default": "content"
+                    },
+                    "stepImage": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "default": [
+                {
+                    "_key": "0",
+                    "title": "Accordion 1",
+                    "contentType": "content",
+                    "desc": "This is just dummy content. Put your relevant content over here. We want to remind you, smile and passion are contagious, be a carrier.",
+                    "innerIcon": false,
+                    "iconFonts": "font_awesome",
+                    "innericonName": "fas fa-home"
+                },
+                {
+                    "_key": "1",
+                    "title": "Accordion 2",
+                    "contentType": "content",
+                    "desc": "Enter your relevant content over here. This is just dummy content.  We want to remind you, smile and passion are contagious, be a carrier.",
+                    "innerIcon": false,
+                    "iconFonts": "font_awesome",
+                    "innericonName": "fas fa-home"
+                }
+            ]
+        },
+        "toggleIcon": {
+            "type": "boolean",
+            "default": false
+        },
+        "iconFont": {
+            "type": "string",
+            "default": "font_awesome"
+        },
+        "iconName": {
+            "type": "string",
+            "default": "fas fa-plus "
+        },
+        "ActiconName": {
+            "type": "string",
+            "default": "fas fa-minus"
+        },
+        "titleTag": {
+            "type": "string",
+            "default": "h3"
+        },
+        "iconAlign": {
+            "type": "string",
+            "default": "end"
+        },
+        "howTotitle": {
+            "type": "string",
+            "default": "How To"
+        },
+        "howTodesc": {
+            "type": "string",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. "
+        },
+        "howToimg": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "imageSize": {
+            "type": "string",
+            "default": "full"
+        },
+        "howTostep": {
+            "type": "string",
+            "default": "Steps to configure the How-to Schema:"
+        },
+        "inIconColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .accordion-tab-icon{ color: {{inIconColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "inIconActcolor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header.active .accordion-tab-icon{ color: {{inIconActcolor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "inIconGap": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .accordion-tab-icon { margin-right: {{inIconGap}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "inIconSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .accordion-tab-icon{ font-size: {{inIconSize}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "tgiconColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "toggleIcon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .close-toggle-icon{ color: {{tgiconColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "tgiconActcolor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "toggleIcon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .open-toggle-icon{ color: {{tgiconActcolor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "tgiconGap": {
+            "type": "object",
+            "default": {
+                "md": "20",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "iconAlign",
+                            "relation": "==",
+                            "value": "start"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .accordion-toggle-icon { margin-right: {{tgiconGap}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "iconAlign",
+                            "relation": "==",
+                            "value": "end"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .accordion-toggle-icon { margin-right: {{tgiconGap}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "tgiconSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "toggleIcon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .toggle-icon{ font-size: {{tgiconSize}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "titleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .accordion-title"
+                }
+            ],
+            "scopy": true
+        },
+        "titleAlign": {
+            "type": "string",
+            "default": "text-left",
+            "scopy": true
+        },
+        "titleColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header .accordion-title{color : {{titleColor}}}"
+                }
+            ],
+            "scopy": true
+        },
+        "titleActcolor": {
+            "type": "string",
+            "default": "#6f14f1",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header.active .accordion-title{color : {{titleActcolor}}}"
+                }
+            ],
+            "scopy": true
+        },
+        "titleHvrcolor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header:hover .accordion-title{color : {{titleHvrcolor}}}"
+                }
+            ],
+            "scopy": true
+        },
+        "titlePadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "10",
+                    "bottom": "10",
+                    "left": "10",
+                    "right": "10"
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header{ padding : {{titlePadding}}}"
+                }
+            ],
+            "scopy": true
+        },
+        "accorBetspace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accor-wrap .tpgb-accor-item{ margin-bottom : {{accorBetspace}}}"
+                }
+            ],
+            "scopy": true
+        },
+        "titleBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header"
+                }
+            ],
+            "scopy": true
+        },
+        "titleBradius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "bottom": "",
+                    "left": "",
+                    "right": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header{ border-radius : {{titleBradius}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "titleActborder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header.active"
+                }
+            ],
+            "scopy": true
+        },
+        "titleActBradius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "bottom": "",
+                    "left": "",
+                    "right": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header.active{ border-radius : {{titleActBradius}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "titlebgType": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": "color"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header"
+                }
+            ],
+            "scopy": true
+        },
+        "titleBshadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header"
+                }
+            ],
+            "scopy": true
+        },
+        "titleActbgtype": {
+            "type": "object",
+            "default": {
+                "openBg": 1,
+                "bgType": "color",
+                "bgDefaultColor": "#f7f7f7"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header.active"
+                }
+            ],
+            "scopy": true
+        },
+        "titleActBshadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-header.active"
+                }
+            ],
+            "scopy": true
+        },
+        "descTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-content .tpgb-content-editor"
+                }
+            ],
+            "scopy": true
+        },
+        "descAlign": {
+            "type": "string",
+            "default": "text-left",
+            "scopy": true
+        },
+        "descColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-content .tpgb-content-editor{color : {{descColor}}}"
+                }
+            ],
+            "scopy": true
+        },
+        "descMargin": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "bottom": "",
+                    "left": "",
+                    "right": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-content { margin : {{descMargin}}}"
+                }
+            ],
+            "scopy": true
+        },
+        "descPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "bottom": "",
+                    "left": "",
+                    "right": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-content { padding : {{descPadding}}}"
+                }
+            ],
+            "scopy": true
+        },
+        "descbgType": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": "color"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-content"
+                }
+            ],
+            "scopy": true
+        },
+        "descBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-content"
+                }
+            ],
+            "scopy": true
+        },
+        "descBRedius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "bottom": "",
+                    "left": "",
+                    "right": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-accordion-content{ border-radius : {{descBRedius}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

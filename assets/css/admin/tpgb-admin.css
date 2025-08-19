@@ -1,0 +1,165 @@
+#toplevel_page_tpgb_gutenberg_settings ul.wp-submenu .wp-first-item,#ehe-admin-cb {
+    display: none;
+}
+.wp-menu-image.dashicons-before.dashicons-tpgb-plus-settings {
+    background: url(../../images/nxt-favicon.svg);	
+    background-size: 22px;
+    background-repeat: no-repeat;	
+    background-position: center;
+}
+/*Activate*/
+.notice .tpgb-notice-head {
+    font-size: 16px;
+    margin: 10px 0 10px 0px;
+}
+/*Activate*/
+/* Woocommerce Custom Field Preview Css */
+.tpgb-color-preview{
+    width: 30px;
+    height: 30px;
+}
+.tpgb-meta-image-field-wrapper{
+    display: table;
+}
+.tpgb-meta-image-field-wrapper .button-wrapper{
+    margin-left: 10px;
+    display: table-cell;
+    vertical-align: top;
+}
+.tpgb-meta-image-field-wrapper .image-preview{
+    display: table-cell;
+    width: 60px;
+    padding-right: 10px;
+}
+.tpgb-meta-image-field-wrapper .button-wrapper button{
+    margin: 5px 0;
+    display: block;
+}
+#tpgb-meta-preview {
+    width: 30px;
+}
+/* Woocommerce Custom Field Preview Css */
+
+#toplevel_page_nexter_welcome_page a[href="https://nexterwp.com/pricing/?utm_source=wpbackend&utm_medium=blocks&utm_campaign=nextersettings"]{
+    font-weight: 500;
+    background-color: #F12D2D;
+    color: #fff !important;
+    margin: 3px 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    transition: all .3s;
+}
+#toplevel_page_nexter_welcome_page a[href="https://nexterwp.com/pricing/?utm_source=wpbackend&utm_medium=blocks&utm_campaign=nextersettings"]:hover,#toplevel_page_nexter_welcome_page a[href="https://nexterwp.com/pricing/?utm_source=wpbackend&utm_medium=blocks&utm_campaign=nextersettings"]:focus{
+    background-color: #ca2222;
+    color: #fff !important;
+    box-shadow: none;
+}
+
+
+.nxt-plugin-update-notice {
+    position: relative;
+}
+.nxt-plugin-update-notice h4:before {
+    content: "\f14c";
+    color: #B32D2E;
+    margin-right: 6px;
+    vertical-align: top;
+    display: inline-block;
+    font: normal 20px / 1 dashicons;
+}
+.nxt-plugin-notice-dismiss,.nxt-halloween-notice-dismiss {
+    position: absolute;
+    top: 0;
+    right: 1px;
+    margin: 0;
+    padding: 9px;
+    border: none;
+    background: none;
+    color: #787c82;
+    cursor: pointer;
+}
+.nxt-plugin-notice-dismiss:before,.nxt-halloween-notice-dismiss:before {
+    content: "\f153";
+    font: normal 18px/22px dashicons;
+    display: block;
+    background: none;
+    color: #787c82;
+    speak: never;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.toplevel_page_nexter_welcome_page.nxt-admin-notice-active > a .wp-menu-name::after{
+    content: '1';
+    background: #ca2222;
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: -8px;
+    right: 1px;
+    width: 18px;
+    font-size: 12px;
+    height: 18px;
+    text-align: center;
+    z-index: 9;
+    line-height: 17px;
+}
+.toplevel_page_nexter_welcome_page.nxt-admin-notice-active > a,.toplevel_page_nexter_welcome_page.nxt-admin-notice-active:hover > a{
+    background: #162d9e !important;
+    color: #f0f0f1 !important;
+}
+
+/* Admin License Notice */
+.nexter-license-activate {
+	display: flex;
+	align-items: flex-start;
+	gap: 16px;
+	padding: 20px;
+}
+
+.nexter-license-content h2 {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 600;
+	color: #1c1c1c;
+}
+
+.nexter-license-content p {
+	margin: 8px 0;
+	color: #5e5e5e;
+	font-size: 12px;
+}
+
+.nxt-nobtn-primary {
+	background-color: #1717CC;
+	color: #fff;
+	border: none;
+	box-shadow: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+    text-decoration: none;
+    display: inline-flex
+}
+.nxt-nobtn-primary:hover {
+    background-color: #1717CC;
+    color: #fff;
+}
+.nxt-nobtn-primary:focus {
+    box-shadow: none;
+    outline: none;
+    color: #fff;
+}
+.nxt-notice-wrap .notice-dismiss:focus {
+    box-shadow: none;
+    outline: none;
+}
+.nxt-notice-wrap{
+    border-left-color: #1717CC;
+}

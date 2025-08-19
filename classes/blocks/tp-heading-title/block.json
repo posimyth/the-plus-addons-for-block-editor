@@ -1,0 +1,741 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-heading-title",
+	"version": "0.1.0",
+	"title": "Advanced Heading",
+	"category": "tpgb",
+	"description": "This helps users navigate and skim the page about topics.It is also a way for search engines to understand what is on the page.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"anchor" : true,
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+	"attributes": {
+		"block_id": {
+		  "type": "string",
+		  "default": ""
+		},
+		"anchor": {
+		  "type": "string"
+		},
+		"style": {
+		  "type": "string",
+		  "default": "style-1"
+		},
+		"splitType": {
+		  "type": "string",
+		  "default": "words"
+		},
+		"Title": {
+		  "type": "string",
+		  "default": "Main Heading"
+		},
+		"subTitle": {
+		  "type": "string",
+		  "default": "It’s Sub Heading"
+		},
+		"extraTitle": {
+		  "type": "string",
+		  "default": "I am Extra"
+		},
+		"ETPosition": {
+		  "type": "string",
+		  "default": "afterTitle"
+		},
+		"headingType": {
+		  "type": "string",
+		  "default": "default"
+		},
+		"Alignment": {
+		  "type": "object",
+		  "default": {
+            "md": "center",
+            "sm": "",
+            "xs": ""
+          },
+		  "style": [
+			{
+			  "condition": [
+				{
+				  "key": "style",
+				  "relation": "!=",
+				  "value": "style-5"
+				}
+			  ],
+			  "selector": "{{PLUS_WRAP}}.tpgb-heading-title{ text-align: {{Alignment}}; }"
+			}
+		  ],
+		  "scopy": true
+		},
+		"limitTgl": {
+		  "type": "boolean",
+		  "default": false
+		},
+		"titleLimit": {
+		  "type": "boolean",
+		  "default": false
+		},
+		"titleLimitOn": {
+		  "type": "string",
+		  "default": "char"
+		},
+		"titleCount": {
+		  "type": "string",
+		  "default": "3"
+		},
+		"titleDots": {
+		  "type": "boolean",
+		  "default": false
+		},
+		"subTitleLimit": {
+		  "type": "boolean",
+		  "default": false
+		},
+		"subTitleLimitOn": {
+		  "type": "string",
+		  "default": "char"
+		},
+		"subTitleCount": {
+		  "type": "string",
+		  "default": "3"
+		},
+		"subTitleDots": {
+		  "type": "boolean",
+		  "default": false
+		},
+		"subTitlePosition": {
+		  "type": "string",
+		  "default": "onBottonTitle"
+		},
+		"aniEffect": {
+		  "type": "string",
+		  "default": "default"
+		},
+		"aniPosition": {
+		  "type": "object",
+		  "default": {
+			"aniPositionX": "",
+			"aniPositionY": ""
+		  }
+		},
+		"animationScale": {
+		  "type": "object",
+		  "default": {
+			"animationScaleX": "",
+			"animationScaleY": "",
+			"animationScaleZ": ""
+		  }
+		},
+		"animationRotate": {
+		  "type": "object",
+		  "default": {
+			"animationRotateX": "",
+			"animationRotateY": "",
+			"animationRotateZ": ""
+		  }
+		},
+		"extrOpt": {
+		  "type": "object",
+		  "default": {
+			"animationOpacity": "",
+			"animationSpeed": "",
+			"animationDelay": ""
+		  }
+		},
+		"imgName": {
+		  "type": "object",
+		  "default": {
+			"url": "",
+			"Id": ""
+		  }
+		},
+		"sepColor": {
+		  "type": "string",
+		  "default": "",
+		  "style": [
+			{
+			  "condition": [
+				{
+				  "key": "style",
+				  "relation": "==",
+				  "value": "style-3"
+				}
+			  ],
+			  "selector": "{{PLUS_WRAP}}.tpgb-heading-title .title-sep{ border-color: {{sepColor}}; }"
+			},
+			{
+			  "condition": [
+				{
+				  "key": "style",
+				  "relation": "==",
+				  "value": "style-4"
+				}
+			  ],
+			  "selector": "{{PLUS_WRAP}}.heading-style-4 .heading-title:after,{{PLUS_WRAP}}.heading-style-4 .heading-title:before{ background: {{sepColor}}; }"
+			},
+			{
+			  "condition": [
+				{
+				  "key": "style",
+				  "relation": "==",
+				  "value": "style-5"
+				}
+			  ],
+			  "selector": "{{PLUS_WRAP}}.heading-style-5 .vertical-divider{ background-color: {{sepColor}}; }"
+			},
+			{
+			  "condition": [
+				{
+				  "key": "style",
+				  "relation": "==",
+				  "value": "style-8"
+				}
+			  ],
+			  "selector": "{{PLUS_WRAP}}.heading-style-8 .title-sep{ border-color: {{sepColor}}; }"
+			}
+		  ],
+		  "scopy": true
+		},
+		"sepWidth": {
+		  "type": "object",
+		  "default": {
+			"md": "",
+			"unit": "%"
+		  },
+		  "style": [
+			{
+			  "condition": [
+				{
+				  "key": "style",
+				  "relation": "==",
+				  "value": "style-3"
+				}
+			  ],
+			  "selector": "{{PLUS_WRAP}}.heading-style-3 .title-sep{ width: {{sepWidth}}; }"
+			},
+			{
+			  "condition": [
+				{
+				  "key": "imgName.url",
+				  "relation": "!=",
+				  "value": ""
+				}
+			  ],
+			  "selector": "{{PLUS_WRAP}}.heading-style-3 .seprator{ width: {{sepWidth}}; }"
+			},
+			{
+			  "condition": [
+				{
+				  "key": "style",
+				  "relation": "==",
+				  "value": "style-8"
+				}
+			  ],
+			  "selector": "{{PLUS_WRAP}}.heading-style-8 .seprator{ width: {{sepWidth}}; }"
+			}
+		  ],
+		  "scopy": true
+		},
+		"sepHeight": {
+		  "type": "object",
+		  "default": {
+			"md": "",
+			"unit": "px"
+		  },
+		  "style": [
+			{
+			  "condition": [
+				{
+				  "key": "style",
+				  "relation": "==",
+				  "value": "style-3"
+				}
+			  ],
+			  "selector": "{{PLUS_WRAP}}.heading-style-3 .title-sep{ border-width: {{sepHeight}}; }"
+			}
+		  ],
+		  "scopy": true
+		},
+		"topSepHeight": {
+			"type": "object",
+			"default": {
+			  "md": "",
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-4"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-4 .heading-title:before{ height: {{topSepHeight}}; }"
+			  }
+			],
+			"scopy": true
+		},
+		"bottomSepHeight": {
+			"type": "object",
+			"default": {
+			  "md": "",
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-4"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-4 .heading-title:after{ height: {{bottomSepHeight}}; }"
+			  }
+			],
+			"scopy": true
+		},
+		"sepDotColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-6"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-6 .head-title:after{ color: {{sepDotColor}}; text-shadow:15px 0 {{sepDotColor}},-15px 0 {{sepDotColor}};}"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-8"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-8 .sep-dot{ color: {{sepDotColor}}; }"
+			  }
+			],
+			"scopy": true
+		},
+		"septopspa": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-6"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-6 .head-title:after{ top : {{septopspa}}px; }"
+			  }
+			],
+			"scopy": true
+		},
+		"titleType": {
+			"type": "string",
+			"default": "h3",
+			"scopy": true
+		},
+		"titleTypo": {
+			"type": "object",
+			"default": {
+			  "openTypography": 0,
+			  "size": {
+				"md": "",
+				"unit": "px"
+			  }
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "!=",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-title,{{PLUS_WRAP}}.heading_style .heading-title>a"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-9 .sub-style > div"
+			  }
+			],
+			"scopy": true
+		},
+		"titleColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "!=",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-title,{{PLUS_WRAP}}.heading_style .heading-title>a{ color: {{titleColor}}; }"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-9 .sub-style > div { color: {{titleColor}}; }"
+			  }
+			],
+			"scopy": true
+		},
+		"titleMargin": {
+			"type": "object",
+			"default": {
+			  "md": {
+				"top": "",
+				"right": "",
+				"bottom": "",
+				"left": ""
+			  },
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-title{margin: {{titleMargin}};}"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-9 .sub-style { margin: {{titleMargin}}; }"
+			  }
+			],
+			"scopy": true
+		},
+		"titlePadd": {
+			"type": "object",
+			"default": {
+			  "md": {
+				"top": "",
+				"right": "",
+				"bottom": "",
+				"left": ""
+			  },
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-title{padding: {{titlePadd}};}"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-9 .sub-style { padding: {{titlePadd}}; }"
+			  }
+			],
+			"scopy": true
+		},
+		"titleB": {
+			"type": "object",
+			"default": {
+			  "openBorder": 0,
+			  "type": "",
+			  "color": "",
+			  "width": {
+				"md": {
+				  "top": "",
+				  "left": "",
+				  "bottom": "",
+				  "right": ""
+				},
+				"unit": ""
+			  }
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-title"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-9 .sub-style"
+			  }
+			],
+			"scopy": true
+		},
+		"titleBRadius": {
+			"type": "object",
+			"default": {
+			  "md": {
+				"top": "",
+				"right": "",
+				"bottom": "",
+				"left": ""
+			  },
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-title{border-radius: {{titleBRadius}};}"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-9 .sub-style { border-radius: {{titleBRadius}}; }"
+			  }
+			],
+			"scopy": true
+		},
+		"titleBg": {
+			"type": "object",
+			"default": {
+			  "openBg": 0
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-title"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-9 .sub-style"
+			  }
+			],
+			"scopy": true
+		},
+		"titleShadow": {
+			"type": "object",
+			"default": {
+			  "openShadow": 0,
+			  "blur": 8,
+			  "color": "rgba(0,0,0,0.40)",
+			  "horizontal": 0,
+			  "inset": 0,
+			  "spread": 0,
+			  "vertical": 4
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-title"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "Title",
+					"relation": "!=",
+					"value": ""
+				  },
+				  {
+					"key": "style",
+					"relation": "==",
+					"value": "style-9"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading-style-9 .sub-style"
+			  }
+			],
+			"scopy": true
+		},
+		"subTitleType": {
+			"type": "string",
+			"default": "h3",
+			"scopy": true
+		},
+		"subTitleTypo": {
+			"type": "object",
+			"default": {
+			  "openTypography": 0,
+			  "size": {
+				"md": "",
+				"unit": "px"
+			  }
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "subTitle",
+					"relation": "!=",
+					"value": ""
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-sub-title,{{PLUS_WRAP}}.heading_style .heading-sub-title>a"
+			  }
+			],
+			"scopy": true
+		},
+		"subTitleColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "subTitle",
+					"relation": "!=",
+					"value": ""
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-sub-title,{{PLUS_WRAP}}.heading_style .heading-sub-title>a{ color: {{subTitleColor}}; }"
+			  }
+			],
+			"scopy": true
+		},
+		"subTitleMargin": {
+			"type": "object",
+			"default": {
+			  "md": {
+				"top": "",
+				"right": "",
+				"bottom": "",
+				"left": ""
+			  },
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-sub-title{margin: {{subTitleMargin}};}"
+			  }
+			],
+			"scopy": true
+		},
+		"extraTitleTypo": {
+			"type": "object",
+			"default": {
+			  "openTypography": 0,
+			  "size": {
+				"md": "",
+				"unit": "px"
+			  }
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "extraTitle",
+					"relation": "!=",
+					"value": ""
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading_style .title-s,{{PLUS_WRAP}}.heading_style .title-s>a"
+			  }
+			],
+			"scopy": true
+		},
+		"extraTitleColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "extraTitle",
+					"relation": "!=",
+					"value": ""
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.heading_style .title-s,{{PLUS_WRAP}}.heading_style .title-s>a{ color: {{extraTitleColor}}; }"
+			  }
+			],
+			"scopy": true
+		},
+        "isRptBlock": {
+			"type": "boolean",
+			"default": false
+		},
+        "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+	},
+    "usesContext": [ "postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField" ]
+}

@@ -1,0 +1,109 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-form-submit-button",
+	"version": "0.1.0",
+	"title": "Submit",
+	"category": "tpgb",
+    "description": "Add a Submit Button into your form.",
+	"example": { "attributes": {} },
+	"supports": { "anchor": true, "align": ["wide", "full"] },
+	"textdomain": "tpgb",
+	"ancestor": ["tpgb/tp-form-block"],
+	"attributes": {
+		"block_id": { "type": "string", "default": "" },
+		"labelss": { "type": "string", "default": "Submit" },
+		"ButtonType": { "type": "string", "default": "none" },
+		"ButtonIcon": { "type": "string", "default": "" },
+		"ButtonImage": { "type": "object", "default": { "url": "", "Id": "" } },
+		"btnAlign": {
+			"type": "object",
+			"default": "left",
+			"style": [
+				{
+					"selector": "{{PLUS_CLIENT_ID}} .nxt-submit-button.nxt-btn-block {flex:1 1 100%;} .nxt-submit-button{{PLUS_WRAP}}{ text-align: -webkit-{{btnAlign}}; }",
+					"backend": true
+				},
+				{
+					"selector": ".nxt-submit-button{{PLUS_WRAP}}.nxt-btn-block {flex:1 1 100%; text-align: -webkit-{{btnAlign}};}",
+					"backend": false
+				}
+			],
+			"scopy": true
+		},
+		"btnSz": {
+			"type": "object",
+			"default": { "md": "", "unit": "px" },
+			"style": [
+				{
+					"selector": "{{PLUS_CLIENT_ID}}:has(.nxt-submit-button.nxt-btn-inline) {min-width:{{btnSz}}} {{PLUS_CLIENT_ID}}:has(.nxt-btn-block) {min-width:100%} {{PLUS_CLIENT_ID}} .nxt-submit-button.nxt-btn-block .nxt-submit  {min-width: {{btnSz}};}",
+					"backend": true
+				},
+				{
+                    "selector": ".nxt-submit-button{{PLUS_WRAP}}.nxt-btn-inline {min-width: {{btnSz}};} .nxt-submit-button{{PLUS_WRAP}}.nxt-btn-block .nxt-submit{min-width:{{btnSz}};}",
+					"backend": false
+				}
+			]
+		},
+		"iconPos": {
+			"type": "string",
+			"default": "-1",
+			"style": [
+				{
+					"condition": [
+						{
+							"key": "ButtonType",
+							"relation": "!=",
+							"value": "none"
+						}
+					],
+					"selector": "{{PLUS_WRAP}} .nxt-button-svg { order: {{iconPos}}; }"
+				}
+			],
+			"scopy": true
+		},
+		"iconSpc": {
+			"type": "object",
+			"default": { "md": "", "unit": "%" },
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}}.nxt-submit-button .nxt-submit {gap: {{iconSpc}};}  "
+				}
+			],
+			"scopy": true
+		},
+		"iconSz": {
+			"type": "object",
+			"default": { "md": "25", "unit": "px" },
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-button-svg, {{PLUS_WRAP}} .nxt-button-svg .nxt-btn-symbol {height: {{iconSz}}; font-size:{{iconSz}};}"
+				}
+			],
+			"scopy": true
+		},
+		"icnClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-button-svg { color: {{icnClr}}; }"
+				}
+			],
+			"scopy": true
+		},
+		"hvrIcnClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit:hover .nxt-button-svg { color: {{hvrIcnClr}}; }"
+				}
+			],
+			"scopy": true
+		},
+		"isInline": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

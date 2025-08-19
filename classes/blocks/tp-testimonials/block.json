@@ -1,0 +1,833 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-testimonials",
+	"version": "0.1.0",
+	"title": "Testimonials",
+	"category": "tpgb",
+	"description": "Showcase your customer testimonials, reviews, and feedback to build trust and credibility.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "style": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "telayout": {
+            "type": "string",
+            "default": "carousel"
+        },
+        "columns": {
+            "type": "object",
+            "default": {
+                "md": 6,
+                "sm": 6,
+                "xs": 12
+            }
+        },
+        "columnSpace": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": 15,
+                    "right": 15,
+                    "bottom": 15,
+                    "left": 15
+                },
+                "unit": "px"
+            },
+            "style": [{
+                "condition": [{
+                    "key": "telayout",
+                    "relation": "!=",
+                    "value": "carousel"
+                }],
+                "selector": "{{PLUS_WRAP}}.tpgb-testimonials .grid-item{padding: {{columnSpace}};}"
+            }]
+        },
+        "ItemRepeater": {
+            "type": "array",
+            "repeaterField": [{
+                "testiTitle": {
+                    "type": "string",
+                    "default": "John Doe"
+                },
+                "designation": {
+                    "type": "string",
+                    "default": "MD at Orange"
+                },
+                "content": {
+                    "type": "string",
+                    "default": " I am pretty satisfied with Nexter Blocks. Nexter Blocks has completely surpassed our expectations. I was amazed at the quality of Nexter Blocks."
+                },
+                "authorTitle": {
+                    "type": "string",
+                    "default": "Supercharge ⚡ Gutenberg"
+                },
+                "avatar":{
+                    "type": "object",
+                    "default" : {
+                        "url" : ""
+                    }
+                }
+            }],
+            "default": [{
+                "_key": "cvi9",
+                "testiTitle": "John Doe",
+                "designation": "MD at Orange",
+                "content": " I am pretty satisfied with Nexter Blocks. Nexter Blocks has completely surpassed our expectations. I was amazed at the quality of Nexter Blocks.",
+                "authorTitle": "Supercharge ⚡ Gutenberg",
+                "avatar":{
+                    "url" : ""
+                }
+            }]
+        },
+        "contentHei": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [{
+                    "condition": [{
+                        "key": "telayout",
+                        "relation": "==",
+                        "value": "grid"
+                    }],
+                    "selector": "{{PLUS_WRAP}}.tpgb-testimonials .testimonial-list-content .entry-content{ height : {{contentHei}}; overflow-y: auto; padding-right: 5px; }"
+                },
+                {
+                    "condition": [{
+                            "key": "telayout",
+                            "relation": "==",
+                            "value": "carousel"
+                        },
+                        {
+                            "key": "caroByheight",
+                            "relation": "==",
+                            "value": "height"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-testimonials .testimonial-list-content .entry-content{ height : {{contentHei}}; overflow-y: auto; padding-right: 5px; }"
+                }
+            ]
+        },
+        "titleHei": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [{
+                    "condition": [{
+                        "key": "telayout",
+                        "relation": "==",
+                        "value": "grid"
+                    }],
+                    "selector": "{{PLUS_WRAP}}.tpgb-testimonials .testimonial-list-content .testi-author-title{ height : {{titleHei}}; overflow-y: auto; padding-right: 5px; }"
+                },
+                {
+                    "condition": [{
+                            "key": "telayout",
+                            "relation": "==",
+                            "value": "carousel"
+                        },
+                        {
+                            "key": "caroByheight",
+                            "relation": "==",
+                            "value": "height"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-testimonials .testimonial-list-content .testi-author-title{ height : {{titleHei}}; overflow-y: auto; padding-right: 5px; }"
+                }
+            ]
+        },
+        "cntscrollOn": {
+            "type": "string",
+            "default": "on-hover"
+        },
+        "descByLimit": {
+            "type": "string",
+            "default": "default"
+        },
+        "caroByheight": {
+            "type": "string",
+            "default": ""
+        },
+        "descLimit": {
+            "type": "string",
+            "default": 30
+        },
+        "redmorTxt": {
+            "type": "string",
+            "default": "Read More"
+        },
+        "redlesTxt": {
+            "type": "string",
+            "default": "Read Less"
+        },
+        "titleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .post-content-image .testi-post-title"
+            }],
+            "scopy": true
+        },
+        "titleNormalColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .post-content-image .testi-post-title{color: {{titleNormalColor}};}"
+            }],
+            "scopy": true
+        },
+        "titleHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .testimonial-list-content:hover .testi-post-title{color: {{titleHoverColor}};}"
+            }],
+            "scopy": true
+        },
+        "AuthortitleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tpgb-testimonials .testi-author-title"
+            }],
+            "scopy": true
+        },
+        "AuthortitleNormalColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tpgb-testimonials .testi-author-title{color: {{AuthortitleNormalColor}};}"
+            }],
+            "scopy": true
+        },
+        "AuthortitleHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .testimonial-list-content:hover .testi-author-title{color: {{AuthortitleHoverColor}};}"
+            }],
+            "scopy": true
+        },
+        "DesTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .testi-post-designation"
+            }],
+            "scopy": true
+        },
+        "DesNormalColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .testi-post-designation{color: {{DesNormalColor}};}"
+            }],
+            "scopy": true
+        },
+        "DesHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .testimonial-list-content:hover .testi-post-designation{color: {{DesHoverColor}};}"
+            }],
+            "scopy": true
+        },
+        "contentTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content"
+            }],
+            "scopy": true
+        },
+        "contentNormalColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content{color: {{contentNormalColor}};}"
+            }],
+            "scopy": true
+        },
+        "cntHovercolor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .testimonial-list-content:hover .entry-content{color: {{cntHovercolor}};}"
+            }],
+            "scopy": true
+        },
+        "boxMargin": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content, {{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content{margin: {{boxMargin}};}"
+            }],
+            "scopy": true
+        },
+        "boxPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content, {{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content{padding: {{boxPadding}};}"
+            }],
+            "scopy": true
+        },
+        "boxBorderRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content, {{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content{border-radius: {{boxBorderRadius}};}"
+            }],
+            "scopy": true
+        },
+        "boxBorderRadiusHover": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-list-content:hover .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content:hover,{{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content:hover{border-radius: {{boxBorderRadiusHover}};}"
+            }],
+            "scopy": true
+        },
+        "boxBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content,{{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content"
+            }],
+            "scopy": true
+        },
+        "arrowNormalColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text:after{border-top-color: {{arrowNormalColor}};}"
+            }],
+            "scopy": true
+        },
+        "boxBgHover": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-list-content:hover .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content:hover,{{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content:hover"
+            }],
+            "scopy": true
+        },
+        "arrowHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-list-content:hover .testimonial-content-text:after{border-top-color: {{arrowHoverColor}};}"
+            }],
+            "scopy": true
+        },
+        "boxBoxShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content, {{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content"
+            }],
+            "scopy": true
+        },
+        "boxBoxShadowHover": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-list-content:hover .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content:hover,{{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content:hover"
+            }],
+            "scopy": true
+        },
+        "imgMaxWidth": {
+            "type": "string",
+            "default": "",
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.testimonial-style-1 .author-thumb,{{PLUS_WRAP}}.testimonial-style-2 .author-thumb,{{PLUS_WRAP}}.testimonial-style-3 .author-thumb{max-width: {{imgMaxWidth}}px;}"
+            }],
+            "scopy": true
+        },
+        "imageBorderRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .author-thumb img{border-radius: {{imageBorderRadius}};}"
+            }],
+            "scopy": true
+        },
+        "imageBoxShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .author-thumb img"
+            }],
+            "scopy": true
+        },
+        "imageBoxShadowHover": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .testimonial-list-content:hover .author-thumb img"
+            }],
+            "scopy": true
+        },
+        "readTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 1,
+                "size": {
+                    "md": 14,
+                    "unit": "px"
+                },
+                "height": {
+                    "md": 26,
+                    "unit": "px"
+                }
+            },
+            "style": [{
+                "condition": [{
+                    "key": "descByLimit",
+                    "relation": "!=",
+                    "value": "default"
+                }],
+                "selector": "{{PLUS_WRAP}} .testimonial-content-text .entry-content a.testi-readbtn"
+            }],
+            "scopy": true
+        },
+        "readColor": {
+            "type": "string",
+            "default": "#8072FC",
+            "style": [{
+                "condition": [{
+                    "key": "descByLimit",
+                    "relation": "!=",
+                    "value": "default"
+                }],
+                "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content a.testi-readbtn{ color : {{readColor}} }"
+            }],
+            "scopy": true
+        },
+        "readmhvrColor": {
+            "type": "string",
+            "default": "#FF5A6E",
+            "style": [{
+                "condition": [{
+                    "key": "descByLimit",
+                    "relation": "!=",
+                    "value": "default"
+                }],
+                "selector": "{{PLUS_WRAP}} .testimonial-list-content:hover .entry-content a.testi-readbtn{ color : {{readmhvrColor}} }"
+            }],
+            "scopy": true
+        },
+        "tesSclWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [{
+                    "condition": [{
+                        "key": "telayout",
+                        "relation": "==",
+                        "value": "grid"
+                    }],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar{ width:{{tesSclWidth}}; }"
+                },
+                {
+                    "condition": [{
+                            "key": "telayout",
+                            "relation": "==",
+                            "value": "carousel"
+                        },
+                        {
+                            "key": "caroByheight",
+                            "relation": "==",
+                            "value": "height"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar{ width:{{tesSclWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "tesThumbBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [{
+                    "condition": [{
+                        "key": "telayout",
+                        "relation": "==",
+                        "value": "grid"
+                    }],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-thumb,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-thumb"
+                },
+                {
+                    "condition": [{
+                            "key": "telayout",
+                            "relation": "==",
+                            "value": "carousel"
+                        },
+                        {
+                            "key": "caroByheight",
+                            "relation": "==",
+                            "value": "height"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-thumb,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-thumb"
+                }
+            ],
+            "scopy": true
+        },
+        "tesThumbBrs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [{
+                    "condition": [{
+                        "key": "telayout",
+                        "relation": "==",
+                        "value": "grid"
+                    }],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-thumb,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-thumb{border-radius:{{tesThumbBrs}};}"
+                },
+                {
+                    "condition": [{
+                            "key": "telayout",
+                            "relation": "==",
+                            "value": "carousel"
+                        },
+                        {
+                            "key": "caroByheight",
+                            "relation": "==",
+                            "value": "height"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-thumb,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-thumb{border-radius:{{tesThumbBrs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "tesThumbBsw": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [{
+                    "condition": [{
+                        "key": "telayout",
+                        "relation": "==",
+                        "value": "grid"
+                    }],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-thumb,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-thumb"
+                },
+                {
+                    "condition": [{
+                            "key": "telayout",
+                            "relation": "==",
+                            "value": "carousel"
+                        },
+                        {
+                            "key": "caroByheight",
+                            "relation": "==",
+                            "value": "height"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-thumb,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-thumb"
+                }
+            ],
+            "scopy": true
+        },
+        "tesTrackBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [{
+                    "condition": [{
+                        "key": "telayout",
+                        "relation": "==",
+                        "value": "grid"
+                    }],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-track,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-track"
+                },
+                {
+                    "condition": [{
+                            "key": "telayout",
+                            "relation": "==",
+                            "value": "carousel"
+                        },
+                        {
+                            "key": "caroByheight",
+                            "relation": "==",
+                            "value": "height"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-track,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-track"
+                }
+            ],
+            "scopy": true
+        },
+        "tesTrackBRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [{
+                    "condition": [{
+                        "key": "telayout",
+                        "relation": "==",
+                        "value": "grid"
+                    }],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-track,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-track{border-radius:{{tesTrackBRs}};}"
+                },
+                {
+                    "condition": [{
+                            "key": "telayout",
+                            "relation": "==",
+                            "value": "carousel"
+                        },
+                        {
+                            "key": "caroByheight",
+                            "relation": "==",
+                            "value": "height"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-track,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-track{border-radius:{{tesTrackBRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "tesTrackBsw": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [{
+                    "condition": [{
+                        "key": "telayout",
+                        "relation": "==",
+                        "value": "grid"
+                    }],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-track,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-track"
+                },
+                {
+                    "condition": [{
+                            "key": "telayout",
+                            "relation": "==",
+                            "value": "carousel"
+                        },
+                        {
+                            "key": "caroByheight",
+                            "relation": "==",
+                            "value": "height"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .testimonial-list-content .entry-content::-webkit-scrollbar-track,{{PLUS_WRAP}} .testimonial-list-content .testi-author-title::-webkit-scrollbar-track"
+                }
+            ],
+            "scopy": true
+        },
+        "styleLayout": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "boxBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content, {{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content"
+                }
+            ]
+        },
+        "dotsBgColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dotsStyle",
+                            "relation": "==",
+                            "value": [
+                                "style-2",
+                                "style-3",
+                                "style-4",
+                                "style-5",
+                                "style-7"
+                            ]
+                        },
+                        {
+                            "key": "showDots",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.dots-style-2 ul.splide__pagination li button.splide__pagination__page,{{PLUS_WRAP}}.dots-style-2 ul.splide__pagination li button.splide__pagination__page,{{PLUS_WRAP}}.dots-style-3 .splide__pagination li button,{{PLUS_WRAP}}.dots-style-4 .splide__pagination li button::before,{{PLUS_WRAP}}.dots-style-5 .splide__pagination li button,{{PLUS_WRAP}}.dots-style-7 .splide__pagination li button{background:{{dotsBgColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "dotsActiveBorderColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+			{
+				"condition": [
+				{ "key": "dotsStyle", "relation": "==", "value": ["style-2", "style-4", "style-6"] },
+				{ "key": "showDots", "relation": "==", "value": true }
+				],
+				"selector": "{{PLUS_WRAP}}.dots-style-2 .splide__pagination li button.is-active::after{border-color: {{dotsActiveBorderColor}};}{{PLUS_WRAP}}.dots-style-4 .splide__pagination li button.is-active{-webkit-box-shadow: inset 0 0 0 1px {{dotsActiveBorderColor}};-moz-box-shadow: inset 0 0 0 1px {{dotsActiveBorderColor}};box-shadow: inset 0 0 0 1px {{dotsActiveBorderColor}};}{{PLUS_WRAP}}.dots-style-6 .splide__pagination button::after{color: {{dotsActiveBorderColor}};}"
+			}
+			],
+        "scopy": true
+		},
+		"dotsActiveBgColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+			{
+				"condition": [
+				{ "key": "dotsStyle", "relation": "==", "value": ["style-2", "style-4", "style-5", "style-7"] },
+				{ "key": "showDots", "relation": "==", "value": true }
+				],
+				"selector": "{{PLUS_WRAP}}.dots-style-2 .splide__pagination li button.is-active::after,{{PLUS_WRAP}}.dots-style-4 .splide__pagination li button.is-active::before,{{PLUS_WRAP}}.dots-style-5 .splide__pagination li button.is-active,{{PLUS_WRAP}}.dots-style-7 .splide__pagination li button.is-active{background:{{dotsActiveBgColor}};}"
+			}
+			],
+			"scopy": true
+		},
+        "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

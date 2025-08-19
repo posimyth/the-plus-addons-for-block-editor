@@ -1,0 +1,376 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-button-core",
+	"version": "0.1.0",
+	"title": "Button",
+	"category": "tpgb",
+	"description": "Create eye-catching call-to-action buttons.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+  "attributes": {
+    "block_id": {
+      "type": "string",
+      "default": ""
+    },
+    "btxt": {
+        "type": "string",
+      "source": "html",
+      "selector": ".tpgb-btn-txt",
+      "default": "Click Here"
+    },
+    "bLink": {
+      "type": "object",
+      "default": {
+        "url": "#",
+        "target": "",
+        "nofollow": ""
+      }
+    },
+    "bAlign": {
+      "type": "object",
+      "default": {
+        "md": "left",
+        "sm": "",
+        "xs": ""
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}{ text-align: {{bAlign}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "biType": {
+      "type": "string",
+      "default": "none"
+    },
+    "bIcon": {
+      "type": "string",
+      "default": ""
+    },
+    "bImg": {
+      "type": "object",
+      "default": {
+        "url": "",
+        "Id": ""
+      }
+    },
+    "bipos": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "biType",
+              "relation": "!=",
+              "value": "none"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-icon-wrap { order: {{bipos}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "bispac": {
+      "type": "object",
+      "default": {
+        "md": "",
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "biType",
+              "relation": "!=",
+              "value": "none"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap{ column-gap: {{bispac}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "bTypo": {
+      "type": "object",
+      "default": {
+        "openTypography": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap"
+        }
+      ],
+      "scopy": true
+    },
+    "tShadow": {
+      "type": "object",
+      "default": {
+        "openShadow": 0,
+        "typeShadow": "text-shadow",
+        "horizontal": 2,
+        "vertical": 3,
+        "blur": 2,
+        "color": "rgba(0,0,0,0.5)"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-txt"
+        }
+      ]
+    },
+    "btColor": {
+      "type": "string",
+      "default": "#fff",
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap{ color : {{btColor}} }"
+        }
+      ],
+      "scopy": true
+    },
+    "bthColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap:hover{ color : {{bthColor}} }"
+        }
+      ],
+      "scopy": true
+    },
+    "btBg": {
+      "type": "object",
+      "default": {
+        "openBg": 1,
+        "bgType": "color",
+        "bgDefaultColor": "#6f14f1"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap"
+        }
+      ],
+      "scopy": true
+    },
+    "bthBg": {
+      "type": "object",
+      "default": {
+        "openBg": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap:hover"
+        }
+      ],
+      "scopy": true
+    },
+    "bBord": {
+      "type": "object",
+      "default": {
+        "openBorder": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap"
+        }
+      ],
+      "scopy": true
+    },
+    "bthBColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap:hover{ border-color : {{bthBColor}} }"
+        }
+      ],
+      "scopy": true
+    },
+    "brad": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "bottom": "",
+          "left": "",
+          "right": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap{ border-radius : {{brad}} }"
+        }
+      ],
+      "scopy": true
+    },
+    "btPad": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "bottom": "",
+          "left": "",
+          "right": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap{ padding : {{btPad}} }"
+        }
+      ],
+      "scopy": true
+    },
+    "biSize": {
+      "type": "object",
+      "default": {
+        "md": "",
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "biType",
+              "relation": "==",
+              "value": "fontAwesome"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-icon { font-size: {{biSize}}; }"
+        },
+        {
+          "condition": [
+            {
+              "key": "biType",
+              "relation": "==",
+              "value": "image"
+            }
+          ],
+          "selector": "{{PLUS_WRAP}} img.tpgb-btn-icon { max-width: {{biSize}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "btshadow": {
+      "type": "object",
+      "default": {
+        "openShadow": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .tpgb-btn-wrap"
+        }
+      ],
+      "scopy": true
+    },
+    "globalPosition": {
+      "type": "object",
+      "default": {
+        "md": "",
+        "sm": "",
+        "xs": ""
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_CLIENT_ID}}:not(.tp-button-core){ position : {{globalPosition}};width : 100%; }",
+          "backend": true
+        }
+      ]
+    },
+    "glohoriOffset": {
+      "type": "object",
+      "default": {
+        "md": "0",
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "globalPosition",
+              "relation": "==",
+              "value": ["absolute", "fixed"]
+            },
+            {
+              "key": "gloabhorizoOri",
+              "relation": "==",
+              "value": "left"
+            }
+          ],
+          "selector": "{{PLUS_CLIENT_ID}}:not(.tp-button-core){ left : {{glohoriOffset}};right : auto; }",
+          "backend": true
+        },
+        {
+          "condition": [
+            {
+              "key": "globalPosition",
+              "relation": "==",
+              "value": ["absolute", "fixed"]
+            },
+            {
+              "key": "gloabhorizoOri",
+              "relation": "==",
+              "value": "right"
+            }
+          ],
+          "selector": "{{PLUS_CLIENT_ID}}:not(.tp-button-core){ right : {{glohoriOffset}};left : auto; }",
+          "backend": true
+        }
+      ]
+    },
+    "gloverticalOffset": {
+      "type": "object",
+      "default": {
+        "md": "0",
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "globalPosition",
+              "relation": "==",
+              "value": ["absolute", "fixed"]
+            },
+            {
+              "key": "gloabverticalOri",
+              "relation": "==",
+              "value": "top"
+            }
+          ],
+          "selector": "{{PLUS_CLIENT_ID}}:not(.tp-button-core){ top : {{gloverticalOffset}}; bottom : auto; }",
+          "backend": true
+        },
+        {
+          "condition": [
+            {
+              "key": "globalPosition",
+              "relation": "==",
+              "value": ["absolute", "fixed"]
+            },
+            {
+              "key": "gloabverticalOri",
+              "relation": "==",
+              "value": "bottom"
+            }
+          ],
+          "selector": "{{PLUS_CLIENT_ID}}:not(.tp-button-core){ bottom : {{gloverticalOffset}}; top : auto; }",
+          "backend": true
+        }
+      ]
+    },
+    "isRptBlock": {
+        "type": "boolean",
+        "default": false
+    }
+  },
+  "usesContext": ["postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField"]
+}

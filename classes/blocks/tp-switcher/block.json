@@ -1,0 +1,404 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-switcher",
+	"version": "0.1.0",
+	"title": "Switcher",
+	"category": "tpgb",
+	"description": "Change content or layouts with one click switcher button",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "title1": {
+            "type": "string",
+            "default": "Switch 1"
+        },
+        "source1": {
+            "type": "string",
+            "default": "content"
+        },
+        "desc1": {
+            "type": "string",
+            "default": "This is just dummy content. Put your relevant content over here. We want to remind you, smile and passion are contagious, be a carrier."
+        },
+        "title2": {
+            "type": "string",
+            "default": "Switch 2"
+        },
+        "source2": {
+            "type": "string",
+            "default": "content"
+        },
+        "desc2": {
+            "type": "string",
+            "default": "Enter your relevant content over here. This is just dummy content. We want to remind you, smile and passion are contagious, be a carrier."
+        },
+        "showBtn": {
+            "type": "boolean",
+            "default": true
+        },
+        "switchStyle": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "switchalign": {
+            "type": "string",
+            "default": "text-left",
+            "scopy": true
+        },
+        "labSpacebet": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "switchStyle",
+                            "relation": "==",
+                            "value": [
+                                "style-1"
+                            ]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-toggle-wrap .switch-1{ margin-right: {{labSpacebet}}; }  {{PLUS_WRAP}} .switch-toggle-wrap .switch-2 { margin-left: {{labSpacebet}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "toggleSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "switchStyle",
+                            "relation": "==",
+                            "value": [
+                                "style-1"
+                            ]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-toggle-wrap .switcher-button ,{{PLUS_WRAP}} .tpgb-switch-wrap .switch-btn-label{font-size: {{toggleSize}}}"
+                }
+            ],
+            "scopy": true
+        },
+        "switchColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "switchStyle",
+                            "relation": "==",
+                            "value": [
+                                "style-1"
+                            ]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-slider.style-1:before{ background: {{switchColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "swichBgcolor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "switchStyle",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-toggle + .switch-slider{ background: {{swichBgcolor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "labelColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .switch-toggle-wrap.inactive .switch-2 , {{PLUS_WRAP}} .switch-toggle-wrap.active .switch-1 {color : {{labelColor}}; } "
+                }
+            ],
+            "scopy": true
+        },
+        "ActswichBgcolor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "switchStyle",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-toggle:checked + .switch-slider{ background: {{ActswichBgcolor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "ActlabelColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .switch-toggle-wrap.inactive .switch-1 , {{PLUS_WRAP}} .switch-toggle-wrap.active .switch-2{color : {{ActlabelColor}}; } "
+                }
+            ],
+            "scopy": true
+        },
+        "switchBshadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 0,
+                "blur": 10,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.5)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "switchStyle",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-slider.style-1:before "
+                }
+            ],
+            "scopy": true
+        },
+        "label1Typo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "title1",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-1 .switch-label"
+                }
+            ],
+            "scopy": true
+        },
+        "label2Typo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "title2",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-2 .switch-label"
+                }
+            ],
+            "scopy": true
+        },
+        "desc1Color": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "desc1",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-toggle-content .switch-content-1{color : {{desc1Color}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "desc1Typo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "desc1",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-toggle-content .switch-content-1 "
+                }
+            ],
+            "scopy": true
+        },
+        "desc2Color": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "desc2",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-toggle-content .switch-content-2{color : {{desc2Color}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "desc2Typo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "desc2",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .switch-toggle-content .switch-content-2 "
+                }
+            ],
+            "scopy": true
+        },
+        "lblIcon": {
+            "type": "boolean",
+            "default": false
+        },
+        "swiIconSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "lblIcon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-switch-wrap .tpgb-swt-icon{ font-size: {{swiIconSize}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "swiIconSpac": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "lblIcon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-switch-wrap .tpgb-swt-icon{ margin-right : {{swiIconSpac}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconNcolor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "lblIcon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-switch-wrap .tpgb-swt-icon{ color : {{iconNcolor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconHvrcolor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "lblIcon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-switch-wrap .switch-toggle-wrap.active .switch-2 .tpgb-swt-icon,{{PLUS_WRAP}} .tpgb-switch-wrap .switch-toggle-wrap.inactive .switch-1 .tpgb-swt-icon{ color : {{iconHvrcolor}}; }"
+                }
+            ],
+            "scopy": true
+        }
+    }
+}

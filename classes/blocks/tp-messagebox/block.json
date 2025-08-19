@@ -1,0 +1,1141 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-messagebox",
+	"version": "0.1.0",
+	"title": "Message box",
+	"category": "tpgb",
+	"description": "Display a notification box overlay and it's used to show important note, warning or error messages to the user",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+        "type": "string",
+        "default": ""
+        },
+        "Title": {
+            "type": "string",
+            "default": "Special Alert message for you. Got it?"
+        },
+        "Description": {
+            "type": "boolean",
+            "default": false
+        },
+        "descText": {
+            "type": "string",
+            "default": "I Am Text Block. Click Edit Button To Change This Text. Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Ut Elit Tellus, Luctus Nec Ullamcorper Mattis, Pulvinar Dapibus Leo."
+        },
+        "icon": {
+            "type": "boolean",
+            "default": true
+        },
+        "icnPosition": {
+            "type": "string",
+            "default": "prefix"
+        },
+        "IconName": {
+            "type": "string",
+            "default": "fas fa-exclamation"
+        },
+        "dismiss": {
+            "type": "boolean",
+            "default": true
+        },
+        "dismsIcon": {
+            "type": "string",
+            "default": "far fa-times-circle"
+        },
+        "titleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .msg-title"
+                }
+            ],
+            "scopy": true
+        },
+        "titleAdjust": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .msg-inner-body{padding: {{titleAdjust}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "titleMargin": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .msg-inner-body{margin: {{titleMargin}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "titleNmlColor": {
+        "type": "string",
+        "default": "",
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "Title",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}} .msg-title{ color: {{titleNmlColor}}; }"
+            }
+        ],
+        "scopy": true
+        },
+        "titleHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-title{ color: {{titleHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "titleNmlBG": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgGradient": {}
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .msg-inner-body"
+                }
+            ],
+            "scopy": true
+        },
+        "titleHvrBG": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgGradient": {}
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-inner-body"
+                }
+            ],
+            "scopy": true
+        },
+        "titleNmlShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .msg-inner-body"
+                }
+            ],
+            "scopy": true
+        },
+        "titleHvrShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-inner-body"
+                }
+            ],
+            "scopy": true
+        },
+        "descTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Description",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .msg-desc"
+                }
+            ],
+            "scopy": true
+        },
+        "descAdjust": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .msg-desc{padding: {{descAdjust}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "descMargin": {
+        "type": "object",
+        "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+        },
+        "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .msg-desc{margin: {{descMargin}};}"
+            }
+        ],
+        "scopy": true
+        },
+        "descNmlColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Description",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .msg-desc{ color: {{descNmlColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "descHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Description",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-desc{ color: {{descHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "descNmlBG": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgGradient": {}
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Description",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .msg-desc"
+                }
+            ],
+            "scopy": true
+        },
+        "descHvrBG": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgGradient": {}
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Description",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-desc"
+                }
+            ],
+            "scopy": true
+        },
+        "descNmlBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Description",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .msg-desc{border-radius: {{descNmlBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "descHvrBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "Description",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-desc{border-radius: {{descHvrBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "iconSize": {
+            "type": "object",
+            "default": {
+                "md": ""
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box .msg-icon{ font-size: {{iconSize}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconWidth": {
+            "type": "object",
+            "default": {
+                "md": ""
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}  .messagebox-bg-box .msg-icon{ width: {{iconWidth}}; height: {{iconWidth}}; line-height: {{iconWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "msgArrow": {
+            "type": "boolean",
+            "default": true,
+            "scopy": true
+        },
+        "iconNormalColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}  .messagebox-bg-box .msg-icon{ color: {{iconNormalColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon{ color: {{iconHoverColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "bgNormalColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box .msg-icon{ background: {{bgNormalColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "bgHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon{ background: {{bgHoverColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "arrowNormalColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icnPosition",
+                            "relation": "==",
+                            "value": "prefix"
+                        },
+                        {
+                            "key": "msgArrow",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .msg-arrow-prefix::after{ border-left-color: {{arrowNormalColor}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "icnPosition",
+                            "relation": "==",
+                            "value": "postfix"
+                        },
+                        {
+                            "key": "msgArrow",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .msg-arrow-postfix::after{ border-right-color: {{arrowNormalColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "arrowHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icnPosition",
+                            "relation": "==",
+                            "value": "prefix"
+                        },
+                        {
+                            "key": "msgArrow",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-arrow-prefix::after{ border-left-color: {{arrowHoverColor}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "icnPosition",
+                            "relation": "==",
+                            "value": "postfix"
+                        },
+                        {
+                            "key": "msgArrow",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-arrow-postfix::after{ border-right-color: {{arrowHoverColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconNmlBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box .msg-icon"
+                }
+            ],
+            "scopy": true
+        },
+        "iconHvrBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon"
+                }
+            ],
+            "scopy": true
+        },
+        "iconBdrNmlRadius": {
+        "type": "object",
+        "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "icon",
+                        "relation": "==",
+                        "value": true
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}} .messagebox-bg-box .msg-icon{border-radius: {{iconBdrNmlRadius}};}"
+            }
+        ],
+        "scopy": true
+        },
+        "iconBdrHvrRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon{border-radius: {{iconBdrHvrRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "nmlIconShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box .msg-icon"
+                }
+            ],
+            "scopy": true
+        },
+        "hvrIconShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "icon",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .msg-icon"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconSize": {
+            "type": "object",
+            "default": {
+                "md": ""
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box .dismiss-icon{ font-size: {{dIconSize}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconWidth": {
+            "type": "object",
+            "default": {
+                "md": ""
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}  .messagebox-bg-box .dismiss-icon{ width: {{dIconWidth}}; height: {{dIconWidth}}; line-height: {{dIconWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconNmlColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}  .messagebox-bg-box .dismiss-icon{ color: {{dIconNmlColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .dismiss-icon{ color: {{dIconHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconNmlBG": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box .dismiss-icon{ background: {{dIconNmlBG}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconHvrBG": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .dismiss-icon{ background: {{dIconHvrBG}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconNmlBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box .dismiss-icon{border-radius: {{dIconNmlBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconHvrBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .dismiss-icon{border-radius: {{dIconHvrBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconNmlShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box .dismiss-icon"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconHvrShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "dismiss",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover .dismiss-icon"
+                }
+            ],
+            "scopy": true
+        },
+        "dIconMargin": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .msg-dismiss-content{margin: {{dIconMargin}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "bgPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box{padding: {{bgPadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "normalBG": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgGradient": {}
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box"
+                }
+            ],
+            "scopy": true
+        },
+        "HoverBG": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgGradient": {}
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "bgNmlBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box"
+                }
+            ],
+            "scopy": true
+        },
+        "bgHvrBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "boxBdrNmlRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box{border-radius: {{boxBdrNmlRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "boxBdrHvrRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover{border-radius: {{boxBdrHvrRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "nmlboxShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box"
+                }
+            ],
+            "scopy": true
+        },
+        "hvrboxShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .messagebox-bg-box:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "isRptBlock": {
+            "type": "boolean",
+            "default": false
+        },
+        "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "usesContext": ["postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField"]
+}

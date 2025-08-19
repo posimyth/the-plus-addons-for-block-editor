@@ -1,0 +1,534 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-pro-paragraph",
+	"version": "0.1.0",
+	"title": "Paragraph",
+	"category": "tpgb",
+	"description": "A more text content in your website with WYSIWYG editor",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+	"attributes": {
+		  "block_id": {
+			"type": "string",
+			"default": ""
+		  },
+		  "Showtitle": {
+			"type": "boolean",
+			"default": true
+		  },
+		  "title": {
+			"type": "string",
+			"default": "Save the Earth for future Generations."
+		  },
+		  "titleTag": {
+			"type": "string",
+			"default": "h3"
+		  },
+		  "descTag": {
+			"type": "string",
+			"default": "p"
+		  },
+		   "content": {
+            "type": "string",
+            "default": "No human technology can replace `nature`s technology`, perfected over hundreds of millions of years to sustain life on Earth. For those in power, the questions are straightforward. Are they prepared to jeopardize their careers – or their profits – for our children’s children? Are they ready to put short-term politicking aside and help deliver a sustainable plan for the future? Are they willing to take difficult decisions on behalf of voters they’ll never meet?"
+		  },
+		  "alignment": {
+			"type": "object",
+			"default": {
+			  "md": ""
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}} .pro-heading-inner,{{PLUS_WRAP}} .pro-paragraph-inner{ text-align: {{alignment}}; }"
+			  }
+			],
+			"scopy": true
+		  },
+		  "textTypo": {
+			"type": "object",
+			"default": {
+			  "openTypography": 0,
+			  "size": {
+				"md": "",
+				"unit": "px"
+			  }
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}} .pro-paragraph-inner"
+			  }
+			],
+			"scopy": true
+		  },
+		  "textColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+                    "condition": [{"key": "descTag", "relation": "==", "value": "p"}],
+                    "selector": "{{PLUS_WRAP}} .pro-paragraph-inner,{{PLUS_WRAP}} .pro-paragraph-inner p{ color: {{textColor}}; }"
+                },
+                {
+                    "condition": [{"key": "descTag", "relation": "!=", "value": "p"}],
+                    "selector": "{{PLUS_WRAP}} .pro-paragraph-inner,{{PLUS_WRAP}} .pro-paragraph-inner .tpgb-propara-txt{ color: {{textColor}}; }"
+                }
+			],
+			"scopy": true
+		  },
+		  "linkColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}} .pro-paragraph-inner a{ color: {{linkColor}}; }"
+			  }
+			],
+			"scopy": true
+		  },
+		  "linkHoverColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}} .pro-paragraph-inner a:hover{ color: {{linkHoverColor}}; }"
+			  }
+			],
+			"scopy": true
+		  },
+		  "textShadow": {
+			"type": "object",
+			"default": {
+			  "openShadow": 0,
+			  "typeShadow": "text-shadow",
+			  "horizontal": 2,
+			  "vertical": 3,
+			  "blur": 2,
+			  "color": "rgba(0,0,0,0.5)"
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}} .pro-paragraph-inner"
+			  }
+			],
+			"scopy": true
+		  },
+		  "HovertextShadow": {
+			"type": "object",
+			"default": {
+			  "openShadow": 0,
+			  "typeShadow": "text-shadow",
+			  "horizontal": 2,
+			  "vertical": 3,
+			  "blur": 2,
+			  "color": "rgba(0,0,0,0.5)"
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}} .pro-paragraph-inner:hover"
+			  }
+			],
+			"scopy": true
+		  },
+		  "titleTypo": {
+			"type": "object",
+			"default": {
+			  "openTypography": 0,
+			  "size": {
+				"md": "",
+				"unit": "px"
+			  }
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "Showtitle",
+					"relation": "==",
+					"value": true
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-heading-inner,{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-heading-inner>a"
+			  }
+			],
+			"scopy": true
+		  },
+		  "titleColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "Showtitle",
+					"relation": "==",
+					"value": true
+				  }
+				],
+				"selector": "{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-heading-inner,{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-heading-inner>a{ color: {{titleColor}}; }"
+			  }
+			],
+			"scopy": true
+		  },
+		  "titleBtmSpace": {
+			"type": "object",
+			"default": {
+			  "md": "",
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "Showtitle",
+					"relation": "==",
+					"value": true
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .pro-heading-inner{margin-bottom: {{titleBtmSpace}};}"
+			  }
+			],
+			"scopy": true
+		  },
+		  "titleShadow": {
+			"type": "object",
+			"default": {
+			  "openShadow": 0,
+			  "typeShadow": "text-shadow",
+			  "horizontal": 2,
+			  "vertical": 3,
+			  "blur": 2,
+			  "color": "rgba(0,0,0,0.5)"
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "Showtitle",
+					"relation": "==",
+					"value": true
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .pro-heading-inner"
+			  }
+			],
+			"scopy": true
+		  },
+		  "HovertitleShadow": {
+			"type": "object",
+			"default": {
+			  "openShadow": 0,
+			  "typeShadow": "text-shadow",
+			  "horizontal": 2,
+			  "vertical": 3,
+			  "blur": 2,
+			  "color": "rgba(0,0,0,0.5)"
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "Showtitle",
+					"relation": "==",
+					"value": true
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .pro-heading-inner:hover"
+			  }
+			],
+			"scopy": true
+		  },
+		  "ulMargin": {
+			"type": "object",
+			"default": {
+			  "md": {
+				"top": "",
+				"bottom": "",
+				"left": "",
+				"right": ""
+			  },
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-paragraph-inner ul,{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-paragraph-inner ol{margin: {{ulMargin}} !important;}"
+			  }
+			],
+			"scopy": true
+		  },
+		  "ulPadding": {
+			"type": "object",
+			"default": {
+			  "md": {
+				"top": "",
+				"bottom": "",
+				"left": "",
+				"right": ""
+			  },
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-paragraph-inner ul,{{PLUS_WRAP}}.tpgb-pro-paragraph .pro-paragraph-inner ol{padding: {{ulPadding}} !important;}"
+			  }
+			],
+			"scopy": true
+		  },
+		  "pCol": {
+			"type": "object",
+			"default": {
+			  "md": ""
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}} { columns : {{pCol}}; }"
+			  }
+			]
+		  },
+		  "pcolspac": {
+			"type": "object",
+			"default": {
+			  "md": "",
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"selector": "{{PLUS_WRAP}} { column-gap : {{pcolspac}}; }"
+			  }
+			]
+		  },
+		  "dropCap": {
+			"type": "boolean",
+			"default": false
+		  },
+		  "dcapView": {
+			"type": "string",
+			"default": ""
+		  },
+		  "dcapCol": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  },
+				  {
+					"key": "dcapView",
+					"relation": "==",
+					"value": ""
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap p::first-letter{ color : {{dcapCol}}; }"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  },
+				  {
+					"key": "dcapView",
+					"relation": "==",
+					"value": "stacked"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap.tpgb-drop-stacked p::first-letter{ background-color : {{dcapCol}}; }"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  },
+				  {
+					"key": "dcapView",
+					"relation": "==",
+					"value": "framed"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap.tpgb-drop-framed p::first-letter{ color : {{dcapCol}}; border-color : {{dcapCol}}; }"
+			  }
+			]
+		  },
+		  "dcapseCol": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  },
+				  {
+					"key": "dcapView",
+					"relation": "==",
+					"value": "stacked"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap.tpgb-drop-stacked p::first-letter{ color : {{dcapseCol}}; }"
+			  },
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  },
+				  {
+					"key": "dcapView",
+					"relation": "==",
+					"value": "framed"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap.tpgb-drop-framed p::first-letter{ background-color : {{dcapseCol}}; }"
+			  }
+			]
+		  },
+		  "captShadow": {
+			"type": "object",
+			"default": {
+			  "openShadow": 0,
+			  "typeShadow": "text-shadow",
+			  "horizontal": 2,
+			  "vertical": 3,
+			  "blur": 2,
+			  "color": "rgba(0,0,0,0.5)"
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap p::first-letter"
+			  }
+			]
+		  },
+		  "tcapspac": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap p::first-letter{ margin-right: {{tcapspac}}px; }"
+			  }
+			]
+		  },
+		  "tcapSize": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap p::first-letter{ padding : {{tcapSize}}px; }"
+			  }
+			]
+		  },
+		  "tcapbrad": {
+			"type": "string",
+			"default": "",
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  },
+				  {
+					"key": "dcapView",
+					"relation": "==",
+					"value": "framed"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap p::first-letter{ border-radius: {{tcapbrad}}px; }"
+			  }
+			]
+		  },
+		  "boWidth": {
+			"type": "object",
+			"default": {
+			  "md": {
+				"top": "",
+				"right": "",
+				"bottom": "",
+				"left": ""
+			  },
+			  "unit": "px"
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  },
+				  {
+					"key": "dcapView",
+					"relation": "==",
+					"value": "framed"
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap p::first-letter{ border-width : {{boWidth}}; }"
+			  }
+			]
+		  },
+		  "dcapTypo": {
+			"type": "object",
+			"default": {
+			  "openTypography": 0,
+			  "size": { "md": "", "unit": "px" }
+			},
+			"style": [
+			  {
+				"condition": [
+				  {
+					"key": "dropCap",
+					"relation": "==",
+					"value": true
+				  }
+				],
+				"selector": "{{PLUS_WRAP}} .tpgb-drop-cap p::first-letter"
+			  }
+			],
+			"scopy": true
+		  },
+          "isRptBlock": {
+			"type": "boolean",
+			"default": false
+		  },
+          "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+	},
+    "usesContext": [ "postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField" ]
+}

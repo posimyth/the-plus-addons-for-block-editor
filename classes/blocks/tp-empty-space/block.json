@@ -1,0 +1,56 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-empty-space",
+	"version": "0.1.0",
+	"title": "Spacer",
+	"category": "tpgb",
+	"description": "Adjust the spacing between elements on your page to declutter it.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "className": {
+            "type": "string",
+            "default": ""
+        },
+        "toggle": {
+            "type": "string",
+            "default": "normal"
+        },
+        "space": {
+            "type": "object",
+            "default": {
+              "md": 50
+            },
+            "style": [
+              {
+                "condition": [
+                  {
+                    "key": "toggle",
+                    "relation": "==",
+                    "value": "normal"
+                  }
+                ],
+                "selector": "{{PLUS_WRAP}}{height: {{space}}px;}"
+              },
+              {
+                "condition": [
+                  {
+                    "key": "toggle",
+                    "relation": "==",
+                    "value": "global"
+                  }
+                ],
+                "selector": "{{PLUS_WRAP}}{height: {{space}};}"
+              }
+            ],
+            "scopy": true
+        }
+    }
+}

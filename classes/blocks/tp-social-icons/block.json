@@ -1,0 +1,376 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-social-icons",
+	"version": "0.1.0",
+	"title": "Social Icon",
+	"category": "tpgb",
+	"description": "Users can quickly share your website on their social media page with just one click.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+      "block_id": {
+        "type": "string",
+        "default": ""
+      },
+      "style": {
+        "type": "string",
+        "default": "style-1"
+      },
+      "hoverStyle": {
+        "type": "string",
+        "default": "faded"
+      },
+      "socialIcon": {
+        "type": "array",
+        "repeaterField": [
+          {
+            "socialNtwk": {
+              "type": "string",
+              "default": "fab fa-facebook"
+            },
+            "customType": {
+              "type": "string",
+              "default": "icon"
+            },
+            "customIcons": {
+              "type": "string",
+              "default": "fab fa-whatsapp"
+            },
+            "imgField": {
+              "type": "object",
+              "default": {
+                "url": ""
+              }
+            },
+            "linkUrl": {
+              "type": "object",
+              "default": {
+                "url": "#",
+                "target": "",
+                "nofollow": ""
+              }
+            },
+            "title": {
+              "type": "string",
+              "default": "Network"
+            },
+            "iconNmlColor": {
+              "type": "string",
+              "default": "",
+              "style": [
+                {
+                  "selector": "{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}:not(.style-12) .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-12 .tpgb-icon-link .tpgb-social-icn{ color: {{iconNmlColor}}; }"
+                }
+              ]
+            },
+            "iconHvrColor": {
+              "type": "string",
+              "default": "",
+              "style": [
+                {
+                  "selector": "{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}:not(.style-12):not(.style-4):hover .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-12 .tpgb-icon-link .tpgb-social-title , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-4 .tpgb-icon-link .tpgb-social-icn , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-5:hover .tpgb-icon-link .tpgb-social-icn , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-14:hover .tpgb-icon-link .tpgb-social-title , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list.social-faded {{TP_REPEAT_ID}}.style-15 .tpgb-icon-link .tpgb-social-title{ color: {{iconHvrColor}}; }"
+                }
+              ]
+            },
+            "nmlBG": {
+              "type": "string",
+              "default": "",
+              "style": [
+                {
+                  "selector": "{{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}:not(.style-3):not(.style-9):not(.style-11):not(.style-12) .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}.style-12 .tpgb-icon-link .tpgb-social-icn{ background: {{nmlBG}}; }  {{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}.style-3 { background: {{nmlBG}}; border-color: {{nmlBG}}; background-clip:content-box; }  {{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}.style-9:hover .tpgb-icon-link .tpgb-social-title:before{ background: {{nmlBG}}; }  {{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}.style-11 .tpgb-icon-link:before{ -webkit-box-shadow: inset 0 0 0 70px {{nmlBG}}; --moz-box-shadow: inset 0 0 0 70px {{nmlBG}}; box-shadow: inset 0 0 0 70px {{nmlBG}}; }"
+                }
+              ]
+            },
+            "hvrBG": {
+              "type": "string",
+              "default": "",
+              "style": [
+                {
+                  "selector": "{{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}:not(.style-3):not(.style-9):not(.style-11):not(.style-12):hover .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}.style-6 .tpgb-icon-link .social-hover-style , {{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}.style-12:hover .tpgb-icon-link .tpgb-social-title , {{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}.style-9:hover .tpgb-line-blink::before { background: {{hvrBG}}; }  {{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}.style-3:hover { background: {{hvrBG}}; border-color: {{hvrBG}}; background-clip:content-box}  {{PLUS_WRAP}}.tpgb-social-icons {{TP_REPEAT_ID}}.style-11:hover .tpgb-icon-link:before { -webkit-box-shadow: inset 0 0 0 4px {{hvrBG}}; -moz-box-shadow: inset 0 0 0 4px {{hvrBG}}; box-shadow: inset 0 0 0 4px {{hvrBG}};}"
+                }
+              ]
+            },
+            "nmlBColor": {
+              "type": "string",
+              "default": "",
+              "style": [
+                {
+                  "selector": "{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}:not(.style-11):not(.style-12):not(.style-13) .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-12 .tpgb-icon-link .tpgb-social-icn , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-13 .tpgb-icon-link:after , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-13 .tpgb-icon-link:before{ border-color: {{nmlBColor}}; }"
+                }
+              ]
+            },
+            "hvrBColor": {
+              "type": "string",
+              "default": "",
+              "style": [
+                {
+                  "selector": "{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}:not(.style-11):not(.style-12):not(.style-13):hover .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-12:hover .tpgb-icon-link .tpgb-social-title , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-13:hover .tpgb-icon-link:after , {{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list {{TP_REPEAT_ID}}.style-13:hover .tpgb-icon-link:before{ border-color: {{hvrBColor}}; }"
+                }
+              ]
+            },
+            "tooltipTypo": {
+              "default": {
+                "openTypography": 0
+              },
+              "style": [
+                {
+                  "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tippy-box .tippy-content"
+                }
+              ]
+            },
+            "tooltipColor": {
+              "default": "",
+              "style": [
+                {
+                  "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tippy-box .tippy-content{color:{{tooltipColor}};}"
+                }
+              ]
+            },
+            "itemTooltip": {
+              "type": "boolean",
+              "default": false
+            },
+            "tooltipText": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "default": [
+          {
+            "_key": "0",
+            "socialNtwk": "fab fa-facebook-f",
+            "title": "Facebook",
+            "linkUrl": {
+              "url": "#",
+              "target": "",
+              "nofollow": ""
+            },
+            "nmlBG": "#3a579a",
+            "nmlBColor": "#3a579a",
+            "customType": "icon",
+            "customIcons": "fab fa-whatsapp",
+            "imgField": {
+              "url": ""
+            },
+            "tooltipTypo": {
+              "openTypography": 0
+            },
+            "tooltipText": ""
+          },
+          {
+            "_key": "1",
+            "socialNtwk": "fab fa-youtube",
+            "title": "Youtube",
+            "linkUrl": {
+              "url": "#",
+              "target": "",
+              "nofollow": ""
+            },
+            "nmlBG": "#FF0000",
+            "nmlBColor": "#FF0000",
+            "customType": "icon",
+            "customIcons": "fab fa-whatsapp",
+            "imgField": {
+              "url": ""
+            },
+            "tooltipTypo": {
+              "openTypography": 0
+            },
+            "tooltipText": ""
+          },
+          {
+            "_key": "2",
+            "socialNtwk": "fab fa-twitter",
+            "title": "Twitter",
+            "linkUrl": {
+              "url": "#",
+              "target": "",
+              "nofollow": ""
+            },
+            "nmlBG": "#0aaded",
+            "nmlBColor": "#0aaded",
+            "customType": "icon",
+            "customIcons": "fab fa-whatsapp",
+            "imgField": {
+              "url": ""
+            },
+            "tooltipTypo": {
+              "openTypography": 0
+            },
+            "tooltipText": ""
+          }
+        ]
+      },
+      "Alignment": {
+        "type": "object",
+        "default": { "md": "center" },
+        "scopy": true
+      },
+      "iconPadd": {
+        "type": "object",
+        "default": { "md": { "top": "", "right": "", "bottom": "", "left": "" }, "unit": "px" },
+        "style": [
+          { "condition": [{ "key": "style", "relation": "==", "value": "style-1" }], "selector": "{{PLUS_WRAP}}.style-1 .tpgb-social-list > div .tpgb-icon-link{padding: {{iconPadd}};}" },
+          { "condition": [{ "key": "style", "relation": "==", "value": "style-2" }], "selector": "{{PLUS_WRAP}}.style-2 .tpgb-social-list > div .tpgb-icon-link{padding: {{iconPadd}};}" },
+          { "condition": [{ "key": "style", "relation": "==", "value": "style-14" }], "selector": "{{PLUS_WRAP}}.style-14 .tpgb-social-list > div .tpgb-icon-link{padding: {{iconPadd}};}" }
+        ],
+        "scopy": true
+      },
+      "iconGap": {
+        "type": "object",
+        "default": { "md": { "top": "", "right": "", "bottom": "", "left": "" }, "unit": "px" },
+        "style": [{ "selector": "{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list > div{margin: {{iconGap}};}" }],
+        "scopy": true
+      },
+      "s3CircleWidth": {
+        "type": "object",
+        "default": { "md": "", "unit": "px" },
+        "style": [{ "condition": [{ "key": "style", "relation": "==", "value": "style-3" }], "selector": "{{PLUS_WRAP}}.style-3 .tpgb-social-list > div{ width: {{s3CircleWidth}}; height: {{s3CircleWidth}}; }" }],
+        "scopy": true
+      },
+      "iconHgt": {
+        "type": "object",
+        "default": { "md": "", "unit": "px" },
+        "style": [{ "condition": [{ "key": "style", "relation": "==", "value": "style-15" }], "selector": "{{PLUS_WRAP}}.style-15 .tpgb-social-list > div.style-15 .tpgb-icon-link{height: {{iconHgt}};}" }],
+        "scopy": true
+      },
+      "iconSize": {
+        "type": "object",
+        "default": { "md": "", "unit": "px" },
+        "style": [{
+          "selector": "{{PLUS_WRAP}} .tpgb-social-list .style-1 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-2 .tpgb-icon-link .tpgb-social-icn, {{PLUS_WRAP}} .tpgb-social-list .style-3 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-4 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-5 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-6 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-7 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-8 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-9 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-10 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-11 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-12 .tpgb-icon-link .tpgb-social-icn, {{PLUS_WRAP}} .tpgb-social-list .style-13 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-14 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-15 .tpgb-icon-link , {{PLUS_WRAP}} .tpgb-social-list .style-16 .tpgb-icon-link{ font-size: {{iconSize}}; }"
+        }],
+        "scopy": true
+      },
+      "imgWidth": {
+        "type": "object",
+        "default": { "md": "", "unit": "px" },
+        "style": [{ "selector": " {{PLUS_WRAP}} .tpgb-social-list .tpgb-social-icn.social-img img{ max-width: {{imgWidth}}; }" }],
+        "scopy": true
+      },
+      "iconWidth": {
+        "type": "object",
+        "default": { "md": "", "unit": "px" },
+        "style": [{ "condition": [{ "key": "style", "relation": "==", "value": "style-16" }], "selector": " {{PLUS_WRAP}}.style-16 .tpgb-social-list .style-16 .tpgb-icon-link{ width: {{iconWidth}}; }" }],
+        "scopy": true
+      },
+      "iconHeight": {
+        "type": "object",
+        "default": { "md": "", "unit": "px" },
+        "style": [{ "condition": [{ "key": "style", "relation": "==", "value": "style-16" }], "selector": " {{PLUS_WRAP}}.style-16 .tpgb-social-list .style-16 .tpgb-icon-link{ height: {{iconHeight}}; }" }],
+        "scopy": true
+      },
+      "borderStyle": {
+        "type": "string",
+        "default": "solid",
+        "style": [{ "condition": [{ "key": "style", "relation": "==", "value": "style-16" }], "selector": " {{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list .tpgb-icon-link{border-style: {{borderStyle}};}" }],
+        "scopy": true
+      },
+      "borderWidth": {
+        "type": "object",
+        "default": { "md": { "top": "", "right": "", "bottom": "", "left": "" }, "unit": "px" },
+        "style": [{ "condition": [{ "key": "style", "relation": "==", "value": "style-16" }, { "key": "borderStyle", "relation": "!=", "value": "none" }], "selector": " {{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list .tpgb-icon-link{border-width: {{borderWidth}};}" }],
+        "scopy": true
+      },
+      "iconBRadius": {
+        "type": "object",
+        "default": { "md": { "top": "", "right": "", "bottom": "", "left": "" }, "unit": "px" },
+        "style": [{ "condition": [{ "key": "style", "relation": "==", "value": ["style-1", "style-2", "style-4", "style-5", "style-6", "style-7", "style-10", "style-16"] }], "selector": "{{PLUS_WRAP}}.tpgb-social-icons .tpgb-social-list .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons.style-4 .tpgb-social-list .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons.style-5 .tpgb-social-list .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons.style-10 .tpgb-social-list .tpgb-icon-link , {{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list .tpgb-icon-link{border-radius: {{iconBRadius}};}"}],
+        "scopy": true
+      },
+      "titleTypo": {
+        "type": "object",
+        "default": { "openTypography": 0, "size": { "md": "", "unit": "px" } },
+        "style": [{ "condition": [{ "key": "style", "relation": "==", "value": ["style-1", "style-2", "style-4", "style-10", "style-12", "style-14", "style-15"] }], "selector": "{{PLUS_WRAP}}.tpgb-social-icons .tpgb-icon-link .tpgb-social-title" }],
+        "scopy": true
+      },
+      "nmlIcnShadow": {
+        "type": "object",
+        "default": { "openShadow": 0, "inset": 0, "horizontal": 0, "vertical": 4, "blur": 8, "spread": 0, "color": "rgba(0,0,0,0.40)" },
+        "style": [
+          { "condition": [{ "key": "style", "relation": "==", "value": "style-7" }], "selector": "{{PLUS_WRAP}}.tpgb-social-icons.style-7 .tpgb-social-list .tpgb-icon-link" },
+          { "condition": [{ "key": "style", "relation": "==", "value": "style-16" }], "selector": "{{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list .tpgb-icon-link" }
+        ],
+        "scopy": true
+      },
+      "hvrIcnShadow": {
+        "type": "object",
+        "default": { "openShadow": 0, "inset": 0, "horizontal": 0, "vertical": 4, "blur": 8, "spread": 0, "color": "rgba(0,0,0,0.40)" },
+        "style": [
+          { "condition": [{ "key": "style", "relation": "==", "value": "style-7" }], "selector": "{{PLUS_WRAP}}.tpgb-social-icons.style-7 .tpgb-social-list > div:hover .tpgb-icon-link" },
+          { "condition": [{ "key": "style", "relation": "==", "value": "style-16" }], "selector": "{{PLUS_WRAP}}.tpgb-social-icons.style-16 .tpgb-social-list > div:hover .tpgb-icon-link" }
+        ],
+        "scopy": true
+      },
+      "tipInteractive": { "type": "boolean", "default": false, "scopy": true },
+      "tipPlacement": { "type": "string", "default": "top", "scopy": true },
+      "tipTheme": { "type": "string", "default": "", "scopy": true },
+      "tipMaxWidth": {
+        "type": "string",
+        "default": "100",
+        "style": [{ "selector": "{{PLUS_WRAP}}.tpgb-social-icons .tippy-box{width : {{tipMaxWidth}}px; max-width : {{tipMaxWidth}}px; }  " }],
+        "scopy": true
+      },
+      "tipOffset": { "type": "string", "default": "", "scopy": true },
+      "tipDistance": { "type": "string", "default": "", "scopy": true },
+      "tipArrow": { "type": "boolean", "default": true, "scopy": true },
+      "tipTriggers": { "type": "string", "default": "mouseenter", "scopy": true },
+      "tipAnimation": { "type": "string", "default": "", "scopy": true },
+      "tipDurationIn": { "type": "string", "default": "", "scopy": true },
+      "tipDurationOut": { "type": "string", "default": "", "scopy": true },
+      "tipArrowColor": {
+        "type": "string",
+        "default": "",
+        "style": [{ "condition": [{ "key": "tipArrow", "relation": "==", "value": true }], "selector": "{{PLUS_WRAP}} .tpgb-social-list .tippy-arrow{color: {{tipArrowColor}};}" }],
+        "scopy": true
+      },
+      "tipPadding": {
+        "type": "object",
+        "default": { "md": { "top": "", "right": "", "bottom": "", "left": "" }, "unit": "px" },
+        "style": [{ "selector": "{{PLUS_WRAP}} .tpgb-social-list .tippy-box{padding: {{tipPadding}};}" }],
+        "scopy": true
+      },
+      "tipBorder": {
+        "type": "object",
+        "default": { "openBorder": 0 },
+        "style": [{ "selector": "{{PLUS_WRAP}} .tpgb-social-list .tippy-box" }],
+        "scopy": true
+      },
+      "tipBorderRadius": {
+        "type": "object",
+        "default": { "md": { "top": "", "right": "", "bottom": "", "left": "" }, "unit": "px" },
+        "style": [{ "selector": "{{PLUS_WRAP}} .tpgb-social-list .tippy-box{border-radius: {{tipBorderRadius}};}" }],
+        "scopy": true
+      },
+      "tipBg": {
+        "type": "object",
+        "default": { 
+            "bgType": "color", 
+            "bgGradient": {
+                "color1": "#16d03e",
+                "color2": "#1f91f3",
+                "type": "linear",
+                "direction": "90",
+                "start": 5,
+                "stop": 80,
+                "radial": "center",
+                "clip": false
+            } 
+        },
+        "style": [{ "selector": "{{PLUS_WRAP}} .tpgb-social-list .tippy-box" }],
+        "scopy": true
+      },
+      "tipBoxShadow": {
+        "type": "object",
+        "default": { "openShadow": 0, "blur": 8, "color": "rgba(0,0,0,0.40)", "horizontal": 0, "inset": 0, "spread": 0, "vertical": 4 },
+        "style": [{ "selector": "{{PLUS_WRAP}} .tpgb-social-list .tippy-box" }],
+        "scopy": true
+      }
+    }
+}

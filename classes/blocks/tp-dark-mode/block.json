@@ -1,0 +1,1175 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-dark-mode",
+	"version": "0.1.0",
+	"title": "Dark Mode",
+	"category": "tpgb",
+	"description": "Manage light and dark mode using global color palettes.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+  "attributes": {
+    "block_id": {
+      "type": "string",
+      "default": ""
+    },
+    "dmStyle": {
+        "type": "string",
+        "default": "style-1"
+    },
+    "S2IconType": {
+        "type": "string",
+        "default": "icon"
+    },
+    "IconName": {
+        "type": "string",
+        "default": "fas fa-sun"
+    },
+    "darkIconEn": {
+        "type": "boolean",
+        "default": false
+    },
+    "darkIcon": {
+        "type": "string",
+        "default": "fas fa-moon"
+    },
+    "saveCookies": {
+        "type": "boolean",
+        "default": false
+    },
+    "matchOsTheme": {
+        "type": "boolean",
+        "default": true
+    },
+    "dmPosition": {
+        "type": "string",
+        "default": "relative"
+    },
+    "Alignment": {
+        "type": "object",
+        "default": {
+            "md": "center",
+            "sm": "",
+            "xs": ""
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "relative"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}{ text-align: {{Alignment}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "absoluteOff": {
+        "type": "object",
+        "default": {
+            "md": "",
+            "unit": "%"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "absolute"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.dark-pos-absolute .tpgb-darkmode-toggle{ left: {{absoluteOff}}; } "
+            }
+        ]
+    },
+    "fixedPos": {
+        "type": "string",
+        "default": "left-top"
+    },
+    "dmRightOf": {
+        "type": "object",
+        "default": {
+            "md": "",
+            "unit": "%"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "fixed"
+                    },
+                    {
+                        "key": "fixedPos",
+                        "relation": "==",
+                        "value": "left-top"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.dark-pos-fixed .tpgb-darkmode-toggle{ left: {{dmRightOf}}; right: auto; } "
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "fixed"
+                    },
+                    {
+                        "key": "fixedPos",
+                        "relation": "==",
+                        "value": "left-bottom"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.dark-pos-fixed .tpgb-darkmode-toggle{ left: {{dmRightOf}}; right: auto; } "
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "fixed"
+                    },
+                    {
+                        "key": "fixedPos",
+                        "relation": "==",
+                        "value": "right-top"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.dark-pos-fixed .tpgb-darkmode-toggle{ right: {{dmRightOf}}; left: auto; } "
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "fixed"
+                    },
+                    {
+                        "key": "fixedPos",
+                        "relation": "==",
+                        "value": "right-bottom"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.dark-pos-fixed .tpgb-darkmode-toggle{ right: {{dmRightOf}}; left: auto; } "
+            }
+        ]
+    },
+    "dmBottomOf": {
+        "type": "object",
+        "default": {
+            "md": "",
+            "unit": "%"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "fixed"
+                    },
+                    {
+                        "key": "fixedPos",
+                        "relation": "==",
+                        "value": "left-top"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.dark-pos-fixed .tpgb-darkmode-toggle{ top: {{dmBottomOf}}; bottom: auto; } "
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "fixed"
+                    },
+                    {
+                        "key": "fixedPos",
+                        "relation": "==",
+                        "value": "left-bottom"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.dark-pos-fixed .tpgb-darkmode-toggle{ bottom: {{dmBottomOf}}; top: auto; } "
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "fixed"
+                    },
+                    {
+                        "key": "fixedPos",
+                        "relation": "==",
+                        "value": "right-top"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.dark-pos-fixed .tpgb-darkmode-toggle{ top: {{dmBottomOf}}; bottom: auto; } "
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmPosition",
+                        "relation": "==",
+                        "value": "fixed"
+                    },
+                    {
+                        "key": "fixedPos",
+                        "relation": "==",
+                        "value": "right-bottom"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.dark-pos-fixed .tpgb-darkmode-toggle{ bottom: {{dmBottomOf}}; top: auto; } "
+            }
+        ]
+    },
+    "switchSize": {
+        "type": "object",
+        "default": {
+            "md": "",
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle { font-size: {{switchSize}}; }"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle{ font-size: {{switchSize}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "icons2Size": {
+        "type": "object",
+        "default": {
+            "md": "",
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3 .tpgb-darkmode-toggle{ font-size: {{icons2Size}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "bgs3Size": {
+        "type": "object",
+        "default": {
+            "md": "",
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3 .tpgb-darkmode-toggle{ width: {{bgs3Size}}; height: {{bgs3Size}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "iconLgtColor": {
+        "type": "string",
+        "default": "",
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3 .tpgb-normal-icon{ color: {{iconLgtColor}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "iconDarkColor": {
+        "type": "string",
+        "default": "",
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3.darkmode-activated .tpgb-normal-icon, {{PLUS_WRAP}}.darkmode-style-3.darkmode-activated .tpgb-dark-icon{ color: {{iconDarkColor}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "dotLgtBG": {
+        "type": "object",
+        "default": {
+            "openBg": 0
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-dark-mode-slider:before"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2 .tpgb-dark-mode-slider:before"
+            }
+        ],
+        "scopy": true
+    },
+    "dotDarkBG": {
+        "type": "object",
+        "default": {
+            "openBg": 0
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1.darkmode-activated .tpgb-dark-mode-slider:before"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2.darkmode-activated .tpgb-dark-mode-slider:before"
+            }
+        ],
+        "scopy": true
+    },
+    "dotLgtBorder": {
+        "type": "object",
+        "default": {
+            "openBorder": 0,
+            "type": "",
+            "color": "",
+            "width": {
+                "md": {
+                    "top": "1",
+                    "left": "1",
+                    "bottom": "1",
+                    "right": "1"
+                },
+                "sm": [],
+                "xs": [],
+                "unit": "px"
+            }
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-dark-mode-slider:before"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2 .tpgb-dark-mode-slider:before"
+            }
+        ],
+        "scopy": true
+    },
+    "dotDarkBorder": {
+        "type": "object",
+        "default": {
+            "openBorder": 0,
+            "type": "",
+            "color": "",
+            "width": {
+                "md": {
+                    "top": "1",
+                    "left": "1",
+                    "bottom": "1",
+                    "right": "1"
+                },
+                "sm": [],
+                "xs": [],
+                "unit": "px"
+            }
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1.darkmode-activated .tpgb-dark-mode-slider:before"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2.darkmode-activated .tpgb-dark-mode-slider:before"
+            }
+        ],
+        "scopy": true
+    },
+    "dotLgtBRadius": {
+        "type": "object",
+        "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-dark-mode-slider:before {border-radius: {{dotLgtBRadius}};}"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2 .tpgb-dark-mode-slider:before {border-radius: {{dotLgtBRadius}};}"
+            }
+        ],
+        "scopy": true
+    },
+    "dotDarkBRadius": {
+        "type": "object",
+        "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1.darkmode-activated .tpgb-dark-mode-slider:before {border-radius: {{dotDarkBRadius}};}"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2.darkmode-activated .tpgb-dark-mode-slider:before {border-radius: {{dotDarkBRadius}};}"
+            }
+        ],
+        "scopy": true
+    },
+    "dotLgtShadow": {
+        "type": "object",
+        "default": {
+            "openShadow": 0,
+            "inset": 0,
+            "horizontal": 0,
+            "vertical": 4,
+            "blur": 8,
+            "spread": 0,
+            "color": "rgba(0,0,0,0.40)"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-dark-mode-slider:before"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2 .tpgb-dark-mode-slider:before"
+            }
+        ],
+        "scopy": true
+    },
+    "dotDarkShadow": {
+        "type": "object",
+        "default": {
+            "openShadow": 0,
+            "inset": 0,
+            "horizontal": 0,
+            "vertical": 4,
+            "blur": 8,
+            "spread": 0,
+            "color": "rgba(0,0,0,0.40)"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1.darkmode-activated .tpgb-dark-mode-slider:before"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2.darkmode-activated .tpgb-dark-mode-slider:before"
+            }
+        ],
+        "scopy": true
+    },
+    "switchLgtBG": {
+        "type": "object",
+        "default": {
+            "openBg": 0
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3 .tpgb-darkmode-toggle"
+            }
+        ],
+        "scopy": true
+    },
+    "switchDarkBG": {
+        "type": "object",
+        "default": {
+            "openBg": 0
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1.darkmode-activated .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2.darkmode-activated .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3.darkmode-activated .tpgb-darkmode-toggle"
+            }
+        ],
+        "scopy": true
+    },
+    "switchLgtBorder": {
+        "type": "object",
+        "default": {
+            "openBorder": 0,
+            "type": "",
+            "color": "",
+            "width": {
+                "md": {
+                    "top": "1",
+                    "left": "1",
+                    "bottom": "1",
+                    "right": "1"
+                },
+                "sm": [],
+                "xs": [],
+                "unit": "px"
+            }
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3 .tpgb-darkmode-toggle"
+            }
+        ],
+        "scopy": true
+    },
+    "switchDarkBorder": {
+        "type": "object",
+        "default": {
+            "openBorder": 0,
+            "type": "",
+            "color": "",
+            "width": {
+                "md": {
+                    "top": "1",
+                    "left": "1",
+                    "bottom": "1",
+                    "right": "1"
+                },
+                "sm": [],
+                "xs": [],
+                "unit": "px"
+            }
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1.darkmode-activated .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2.darkmode-activated .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3.darkmode-activated .tpgb-darkmode-toggle"
+            }
+        ],
+        "scopy": true
+    },
+    "switchLgtBRadius": {
+        "type": "object",
+        "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle {border-radius: {{switchLgtBRadius}};}"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle {border-radius: {{switchLgtBRadius}};}"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3 .tpgb-darkmode-toggle {border-radius: {{switchLgtBRadius}};}"
+            }
+        ],
+        "scopy": true
+    },
+    "switchDarkBRadius": {
+        "type": "object",
+        "default": {
+            "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+            },
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1.darkmode-activated .tpgb-darkmode-toggle {border-radius: {{switchDarkBRadius}};}"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2.darkmode-activated .tpgb-darkmode-toggle {border-radius: {{switchDarkBRadius}};}"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3.darkmode-activated .tpgb-darkmode-toggle {border-radius: {{switchDarkBRadius}};}"
+            }
+        ],
+        "scopy": true
+    },
+    "switchLgtShadow": {
+        "type": "object",
+        "default": {
+            "openShadow": 0,
+            "inset": 0,
+            "horizontal": 0,
+            "vertical": 4,
+            "blur": 8,
+            "spread": 0,
+            "color": "rgba(0,0,0,0.40)"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3 .tpgb-darkmode-toggle"
+            }
+        ],
+        "scopy": true
+    },
+    "switchDarkShadow": {
+        "type": "object",
+        "default": {
+            "openShadow": 0,
+            "inset": 0,
+            "horizontal": 0,
+            "vertical": 4,
+            "blur": 8,
+            "spread": 0,
+            "color": "rgba(0,0,0,0.40)"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-1"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1.darkmode-activated .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-2"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-2.darkmode-activated .tpgb-darkmode-toggle"
+            },
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "==",
+                        "value": "style-3"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-3.darkmode-activated .tpgb-darkmode-toggle"
+            }
+        ],
+        "scopy": true
+    },
+    "beforeText": {
+        "type": "string",
+        "default": "Normal",
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "!=",
+                        "value": "style-3"
+                    },
+                    {
+                        "key": "beforeText",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle:before, {{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle:before{ content: \u0022{{beforeText}}\u0022; }"
+            }
+        ]
+    },
+    "beforeTypo": {
+        "type": "object",
+        "default": {
+            "openTypography": 0,
+            "size": {
+                "md": "",
+                "unit": "px"
+            }
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "!=",
+                        "value": "style-3"
+                    },
+                    {
+                        "key": "beforeText",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle:before, {{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle:before"
+            }
+        ],
+        "scopy": true
+    },
+    "beforeColor": {
+        "type": "string",
+        "default": "",
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "!=",
+                        "value": "style-3"
+                    },
+                    {
+                        "key": "beforeText",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle:before, {{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle:before{ color: {{beforeColor}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "beforeOffset": {
+        "type": "object",
+        "default": {
+            "md": "-63",
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "!=",
+                        "value": "style-3"
+                    },
+                    {
+                        "key": "beforeText",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle:before, {{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle:before{ left: {{beforeOffset}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "afterText": {
+        "type": "string",
+        "default": "Dark",
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "!=",
+                        "value": "style-3"
+                    },
+                    {
+                        "key": "afterText",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle:after, {{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle:after{ content: \u0022{{afterText}}\u0022; }"
+            }
+        ]
+    },
+    "afterTypo": {
+        "type": "object",
+        "default": {
+            "openTypography": 0,
+            "size": {
+                "md": "",
+                "unit": "px"
+            }
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "!=",
+                        "value": "style-3"
+                    },
+                    {
+                        "key": "afterText",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle:after, {{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle:after"
+            }
+        ],
+        "scopy": true
+    },
+    "afterColor": {
+        "type": "string",
+        "default": "",
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "dmStyle",
+                        "relation": "!=",
+                        "value": "style-3"
+                    },
+                    {
+                        "key": "afterText",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle:after, {{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle:after{ color: {{afterColor}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "afterOffset": {
+      "type": "object",
+      "default": {
+          "md": "-45",
+          "unit": "px"
+      },
+      "style": [
+          {
+              "condition": [
+                  {
+                      "key": "dmStyle",
+                      "relation": "!=",
+                      "value": "style-3"
+                  },
+                  {
+                      "key": "afterText",
+                      "relation": "!=",
+                      "value": ""
+                  }
+              ],
+              "selector": "{{PLUS_WRAP}}.darkmode-style-1 .tpgb-darkmode-toggle:after, {{PLUS_WRAP}}.darkmode-style-2 .tpgb-darkmode-toggle:after{ right: {{afterOffset}}; }"
+          }
+      ],
+      "scopy": true
+    }
+  }
+}

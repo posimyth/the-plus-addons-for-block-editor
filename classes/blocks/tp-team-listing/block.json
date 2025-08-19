@@ -1,0 +1,679 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "name": "tpgb/tp-team-listing",
+  "version": "0.1.0",
+  "title": "Team Member",
+  "category": "tpgb",
+  "description": "List your team members on your website with intuitive design",
+  "example": {
+    "attributes": {}
+  },
+  "supports": {
+    "align": ["wide", "full"]
+  },
+  "textdomain": "the-plus-addons-for-block-editor",
+  "attributes": {
+    "block_id": {
+      "type": "string",
+      "default": ""
+    },
+    "Style": {
+      "type": "string",
+      "default": "style-1"
+    },
+    "layout": {
+      "type": "string",
+      "default": "grid"
+    },
+    "Alignment": {
+      "type": "object",
+      "default": {
+        "md": "left",
+        "sm": "",
+        "xs": ""
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .post-content-bottom{text-align:{{Alignment}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "TeamMemberR": {
+      "type": "array",
+      "repeaterField": [
+        {
+          "TName": {
+            "type": "string",
+            "default": "Team Member"
+          },
+          "TImage": {
+            "type": "object",
+            "default": {
+              "url": "",
+              "Id": ""
+            }
+          },
+          "TDesig": {
+            "type": "string",
+            "default": "Manager"
+          },
+          "TCateg": {
+            "type": "string",
+            "default": ""
+          },
+          "CusUrl": {
+            "type": "object",
+            "default": {
+              "url": "",
+              "target": "",
+              "nofollow": ""
+            }
+          },
+          "WsUrl": {
+            "type": "object",
+            "default": {
+              "url": "",
+              "target": "",
+              "nofollow": ""
+            }
+          },
+          "FbUrl": {
+            "type": "object",
+            "default": {
+              "url": "",
+              "target": "",
+              "nofollow": ""
+            }
+          },
+          "MailUrl": {
+            "type": "object",
+            "default": {
+              "url": "",
+              "target": "",
+              "nofollow": ""
+            }
+          },
+          "IGUrl": {
+            "type": "object",
+            "default": {
+              "url": "",
+              "target": "",
+              "nofollow": ""
+            }
+          },
+          "TwUrl": {
+            "type": "object",
+            "default": {
+              "url": "",
+              "target": "",
+              "nofollow": ""
+            }
+          },
+          "ldUrl": {
+            "type": "object",
+            "default": {
+              "url": "",
+              "target": "",
+              "nofollow": ""
+            }
+          },
+          "TelNum": {
+            "type": "string",
+            "default": ""
+          }
+        }
+      ],
+      "default": [
+        {
+          "TName": "John Doe",
+          "TImage": {
+            "url": ""
+          },
+          "TDesig": "Director",
+          "CusUrl": {
+            "url": ""
+          },
+          "WsUrl": {
+            "url": ""
+          },
+          "FbUrl": {
+            "url": "#"
+          },
+          "MailUrl": {
+            "url": ""
+          },
+          "IGUrl": {
+            "url": "#"
+          },
+          "TwUrl": {
+            "url": ""
+          },
+          "ldUrl": {
+            "url": ""
+          },
+          "TelNum": ""
+        }
+      ]
+    },
+    "columns": {
+      "type": "object",
+      "default": {
+        "md": 3,
+        "sm": 4,
+        "xs": 6
+      }
+    },
+    "columnSpace": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}} .grid-item{padding:{{columnSpace}};}"
+        }
+      ]
+    },
+    "TitleTag": {
+      "type": "string",
+      "default": "h3"
+    },
+    "DesignDis": {
+      "type": "boolean",
+      "default": true
+    },
+    "SocialIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "DisLink": {
+      "type": "boolean",
+      "default": false
+    },
+    "DImgS": {
+      "type": "boolean",
+      "default": true
+    },
+    "ImgSize": {
+      "type": "string",
+      "default": "full"
+    },
+    "CategoryWF": {
+      "type": "boolean",
+      "default": false
+    },
+    "TitleTypo": {
+      "type": "object",
+      "default": {
+        "openTypography": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-post-title,{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-post-title a"
+        }
+      ],
+      "scopy": true
+    },
+    "TNcolor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-post-title,{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-post-title a{color:{{TNcolor}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "THcolor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content:hover .tpgb-post-title,{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content:hover .tpgb-post-title a{color:{{THcolor}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "TextTypo": {
+      "type": "object",
+      "default": {
+        "openTypography": 0
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "DesignDis",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-member-designation"
+        }
+      ],
+      "scopy": true
+    },
+    "TextNCr": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "DesignDis",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-member-designation{color:{{TextNCr}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "TextHCr": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "DesignDis",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content:hover .tpgb-member-designation{color:{{TextHCr}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "Iconsize": {
+      "type": "object",
+      "default": {
+        "md": "",
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "SocialIcon",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-team-social-content .tpgb-team-social-list > div a{font-size:{{Iconsize}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "IconBgsize": {
+      "type": "object",
+      "default": {
+        "md": "",
+        "unit": "px"
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "SocialIcon",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-team-social-content .tpgb-team-social-list > div a{width:{{IconBgsize}};height:{{IconBgsize}};line-height:{{IconBgsize}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "IconNCr": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "SocialIcon",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-team-social-content .tpgb-team-social-list > div a{color:{{IconNCr}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "IconNBgCr": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "SocialIcon",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .grid-item .tpgb-team-social-content .tpgb-team-social-list > div a{background:{{IconNBgCr}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "IconHCr": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "SocialIcon",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-team-social-content .tpgb-team-social-list > div a:hover{color:{{IconHCr}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "IconHBgCr": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "SocialIcon",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .grid-item .tpgb-team-social-content .tpgb-team-social-list > div a:hover{background:{{IconHBgCr}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "FIMargin": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .post-content-image{margin:{{FIMargin}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "FIPadding": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .post-content-image{padding:{{FIPadding}}; }"
+        }
+      ],
+      "scopy": true
+    },
+    "FImgBs": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .tpgb-team-profile img,{{PLUS_WRAP}}.tpgb-team-member-list .post-content-image{border-radius:{{FImgBs}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "InnerBgCr": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .post-content-image{background:{{InnerBgCr}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "NFilter": {
+      "type": "object",
+      "default": {
+        "openFilter": false
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .post-content-image img"
+        }
+      ],
+      "scopy": true
+    },
+    "NBoxSd": {
+      "type": "object",
+      "default": {
+        "openBorder": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .post-content-image"
+        }
+      ],
+      "scopy": true
+    },
+    "HFilter": {
+      "type": "object",
+      "default": {
+        "openFilter": false
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content:hover .post-content-image img"
+        }
+      ]
+    },
+    "HBoxSd": {
+      "type": "object",
+      "default": {
+        "openBorder": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content:hover .post-content-image"
+        }
+      ],
+      "scopy": true
+    },
+    "BoxPadding": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content{padding:{{BoxPadding}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "BoxTborder": {
+      "type": "boolean",
+      "default": false,
+      "scopy": true
+    },
+    "Boxborder": {
+      "type": "object",
+      "default": {
+        "openBorder": 0
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "BoxTborder",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content"
+        }
+      ],
+      "scopy": true
+    },
+    "BoxNBrs": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content{border-radius:{{BoxNBrs}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "BoxHBor": {
+      "type": "object",
+      "default": {
+        "openBorder": 0
+      },
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "BoxTborder",
+              "relation": "==",
+              "value": true
+            }
+          ],
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content:hover"
+        }
+      ],
+      "scopy": true
+    },
+    "BoxHBrs": {
+      "type": "object",
+      "default": {
+        "md": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "unit": "px"
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content:hover{border-radius:{{BoxHBrs}};}"
+        }
+      ],
+      "scopy": true
+    },
+    "BoxNBg": {
+      "type": "object",
+      "default": {
+        "openBg": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content"
+        }
+      ],
+      "scopy": true
+    },
+    "BoxHBg": {
+      "type": "object",
+      "default": {
+        "openBg": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content:hover"
+        }
+      ],
+      "scopy": true
+    },
+    "BoxNSd": {
+      "type": "object",
+      "default": {
+        "openShadow": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content"
+        }
+      ],
+      "scopy": true
+    },
+    "BoxHSd": {
+      "type": "object",
+      "default": {
+        "openShadow": 0
+      },
+      "style": [
+        {
+          "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .team-list-content:hover"
+        }
+      ],
+      "scopy": true
+    },
+    "MessyCol": {
+      "type": "boolean",
+      "default": false,
+      "scopy": true
+    },
+    "slideColumns": {
+      "type": "object",
+      "default": {
+        "md": 4,
+        "sm": 3,
+        "xs": 2
+      }
+    },
+    "showBlockContent" :{
+        "type": "boolean",
+        "default": true
+    }
+  }
+}

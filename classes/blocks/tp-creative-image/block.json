@@ -1,0 +1,234 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "name": "tpgb/tp-creative-image",
+    "version": "0.1.0",
+    "title": "Advanced Image",
+    "category": "tpgb",
+    "description": "An important visual part of your website. It is used to make the website look more attractive and appealing.",
+    "example": {
+        "attributes": {}
+    },
+    "supports": {
+        "align": ["wide", "full"]
+    },
+    "textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "SelectImg": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "ScrollRevelImg": {
+            "type": "boolean",
+            "default": false
+        },
+        "ImgSize": {
+            "type": "string",
+            "default": "full"
+        },
+        "Alignment": {
+            "type": "object",
+            "default": {
+                "md": "center",
+                "sm": "",
+                "xs": ""
+            },
+            "scopy": true
+        },
+        "link": {
+            "type": "object",
+            "default": {
+                "url": "",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "ariaLabel": {
+            "type": "string",
+            "default": ""
+        },
+        "ImgWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .tpgb-animate-image .tpgb-creative-img-wrap img,{{PLUS_WRAP}} .tpgb-animate-image .scroll-image-wrap,{{PLUS_WRAP}} .tpgb-animate-image figure:not(.tpgb-parallax-img-parent):not(.tpgb-creative-img-parallax){max-width: {{ImgWidth}};width:100%;}"
+            }],
+            "scopy": true
+        },
+        "showCaption": {
+            "type": "boolean",
+            "default": false
+        },
+        "ScrollImgEffect": {
+            "type": "boolean",
+            "default": false
+        },
+        "showMaskImg": {
+            "type": "boolean",
+            "default": false
+        },
+        "floatAlign": {
+            "type": "string",
+            "default": "none"
+        },
+        "MaskImg": {
+            "type": "object",
+            "default": {
+                "url": ""
+            } 
+        },
+        "MaskShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "typeShadow": "drop-shadow",
+                "horizontal": 2,
+                "vertical": 3,
+                "blur": 2,
+                "color": "rgba(0,0,0,0.5)"
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} .tpgb-animate-image"
+            }],
+            "scopy": true
+        },
+        "ScrollParallax": {
+            "type": "boolean",
+            "default": false
+        },
+        "border": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "",
+                        "left": "",
+                        "bottom": "",
+                        "right": ""
+                    },
+                    "unit": ""
+                }
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tpgb-creative-image .tpgb-animate-image img, {{PLUS_WRAP}}.tpgb-creative-image .scroll-image-wrap"
+            }],
+            "scopy": true
+        },
+        "borderHover": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "",
+                        "left": "",
+                        "bottom": "",
+                        "right": ""
+                    },
+                    "unit": ""
+                }
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tpgb-creative-image .tpgb-animate-image img:hover, {{PLUS_WRAP}}.tpgb-creative-image .scroll-image-wrap:hover"
+            }],
+            "scopy": true
+        },
+        "borderRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "left": "",
+                    "bottom": ""
+                }
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tpgb-creative-image .tpgb-animate-image img,{{PLUS_WRAP}}.tpgb-creative-image .scroll-image-wrap{border-radius: {{borderRadius}};}"
+            }],
+            "scopy": true
+        },
+        "borderRadiusHover": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "left": "",
+                    "bottom": ""
+                }
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tpgb-creative-image .tpgb-animate-image img:hover,{{PLUS_WRAP}}.tpgb-creative-image .scroll-image-wrap:hover{border-radius: {{borderRadiusHover}};}"
+            }],
+            "scopy": true
+        },
+        "shadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tpgb-creative-image .tpgb-animate-image img,{{PLUS_WRAP}}.tpgb-creative-image .scroll-image-wrap"
+            }],
+            "scopy": true
+        },
+        "shadowHover": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}}.tpgb-creative-image .tpgb-animate-image img:hover,{{PLUS_WRAP}}.tpgb-creative-image .scroll-image-wrap:hover"
+            }],
+            "scopy": true
+        },
+        "imgNFilter": {
+            "type": "object",
+            "default": {
+                "openFilter": false
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} img.hover__img"
+            }],
+            "scopy": true
+        },
+        "imgHFilter": {
+            "type": "object",
+            "default": {
+                "openFilter": false
+            },
+            "style": [{
+                "selector": "{{PLUS_WRAP}} img.hover__img:hover"
+            }],
+            "scopy": true
+        },
+        "fancyBox": {
+            "type": "boolean",
+            "default": false,
+            "scopy": true
+        },
+        "FancyOption": {
+            "type": "string",
+            "default": "[]",
+            "scopy": true
+        },
+        "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

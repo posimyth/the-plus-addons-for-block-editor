@@ -1,0 +1,62 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-form-name-field",
+	"version": "0.1.0",
+	"title": "Name Field",
+	"category": "tpgb",
+	"description": " Add a name field in your form",
+	"example": { "attributes": {} },
+	"supports": { "anchor": true, "align": ["wide", "full"] },
+	"textdomain": "tpgb",
+	"ancestor": ["tpgb/tp-form-block"],
+	"attributes": {
+		"block_id": { "type": "string", "default": "" },
+		"labelss": { "type": "string", "default": "Name" },
+		"nameIconType": { "type": "string", "default": "none" },
+		"nameIcons": { "type": "string", "default": "" },
+		"nameImage": { "type": "object", "default": { "url": "", "Id": "" } },
+		"reqTgl": { "type": "boolean", "default": false },
+		"placeholder": { "type": "string", "default": "Name" },
+		"error": { "type": "string", "default": "This field is required." },
+		"autoComplete": { "type": "string", "default": "off" },
+		"inpSz": {
+			"type": "object",
+			"default": { "md": "100", "unit": "%" },
+			"style": [
+				{
+					"selector": "{{PLUS_CLIENT_ID}} {margin:0; width: {{inpSz}}; } {{PLUS_CLIENT_ID}}[data-type='tpgb/tp-form-name-field'].tp-form-name-field{width:100%} {{PLUS_CLIENT_ID}}~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;}",
+					"backend": true
+				},
+				{
+					"selector": "{{PLUS_WRAP}}.tp-form-name-field {width: {{inpSz}}; } {{PLUS_WRAP}}~.nxt-submit-button.nxt-btn-inline{flex: 0;}",
+					"backend": false
+				}
+			]
+		},
+		"hlpTxt": { "type": "boolean", "default": false },
+		"desctxt": { "type": "string", "default": "Description" },
+		"descPoss": { "type": "string", "default": "top" },
+		"valName": { "type": "boolean", "default": false },
+		"maxAlphabets": { "type": "string", "default": "" },
+		"icnClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-name-input .nxt-input-container .nxt-placeholder-icon{ color: {{icnClr}}; }"
+				}
+			],
+			"scopy": true
+		},
+		"hvrIcnClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-name-input .nxt-input-container:hover .nxt-placeholder-icon{ color: {{hvrIcnClr}}; }"
+				}
+			],
+			"scopy": true
+		}
+	}
+}

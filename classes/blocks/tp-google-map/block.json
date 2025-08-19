@@ -1,0 +1,151 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-google-map",
+	"version": "0.1.0",
+	"title": "Google Map",
+	"category": "tpgb",
+	"description": "This simple block offers you to embed the location of a particular place on the map using Google Maps to provide you accurate information about that place.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": { "align": ["wide","full"] },
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+      "block_id": {
+        "type": "string",
+        "default": ""
+      },
+      "locationPoint": {
+        "type": "array",
+        "repeaterField": [
+          {
+            "latitude": {
+              "type": "string",
+              "default": ""
+            },
+            "longitude": {
+              "type": "string",
+              "default": ""
+            },
+            "address": {
+              "type": "string",
+              "default": ""
+            },
+            "pinIcon": {
+              "type": "object",
+              "default": {
+                "url": ""
+              }
+            },
+            "pinIconSize": {
+              "type": "string",
+              "default": "thumbnail"
+            },
+            "latOrAddr": {
+              "type": "string",
+              "default": "latitude"
+            },
+            "addr": {
+              "type": "string",
+              "default": "Galaxy Signature Science City Road, Opp. sukan bungalow, Sola, Ahmedabad, Gujarat-380060"
+            }
+          }
+        ],
+        "default": [
+          {
+            "_key": "0",
+            "latitude": "40.6884135",
+            "longitude": "-74.3606169",
+            "address": "",
+            "pinIcon": {
+              "url": ""
+            },
+            "pinIconSize" : "full",
+             "latOrAddr":"latitude",
+            "addr":"Galaxy Signature Science City Road, Opp. sukan bungalow, Sola, Ahmedabad, Gujarat-380060"
+          }
+        ]
+      },
+      "mapHeight": {
+        "type": "object",
+        "default": {
+          "md": 300,
+          "unit": "px"
+        },
+        "style": [
+          {
+            "selector": "{{PLUS_WRAP}} .tpgb-adv-map{ min-height: {{mapHeight}}; }"
+          }
+        ],
+        "scopy": true
+      },
+      "Zoom": {
+        "type": "string",
+        "default": 8.5,
+        "scopy": true
+      },
+      "scrollWheel": {
+        "type": "boolean",
+        "default": true,
+        "scopy": true
+      },
+      "panCtrl": {
+        "type": "boolean",
+        "default": true,
+        "scopy": true
+      },
+      "Draggable": {
+        "type": "boolean",
+        "default": true,
+        "scopy": true
+      },
+      "zoomCtrl": {
+        "type": "boolean",
+        "default": true,
+        "scopy": true
+      },
+      "mapTypeCtrl": {
+        "type": "boolean",
+        "default": true,
+        "scopy": true
+      },
+      "scaleCtrl": {
+        "type": "boolean",
+        "default": true,
+        "scopy": true
+      },
+      "fullScreenCtrl": {
+        "type": "boolean",
+        "default": true,
+        "scopy": true
+      },
+      "streetViewCtrl": {
+        "type": "boolean",
+        "default": true,
+        "scopy": true
+      },
+      "gmapType": {
+        "type": "string",
+        "default": "roadmap",
+        "scopy": true
+      },
+      "customStyleTgl": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+      },
+      "customStyle": {
+        "type": "string",
+        "default": "style-1",
+        "scopy": true
+      },
+      "contentTgl": {
+        "type": "boolean",
+        "default": false
+      },
+      "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

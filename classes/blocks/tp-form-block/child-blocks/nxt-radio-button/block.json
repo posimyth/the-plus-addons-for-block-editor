@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-form-radio-button",
+	"version": "0.1.0",
+	"title": "Radio Button",
+	"category": "tpgb",
+	"description": "Add radio buttons to allow selecting a single option.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"anchor": true,
+		"align": ["wide", "full"]
+	},
+	"textdomain": "tpgb",
+	"ancestor": ["tpgb/tp-form-block"],
+	"attributes": {
+		"block_id": {
+			"type": "string",
+			"default": ""
+		},
+		"labelss": {
+			"type": "string",
+			"default": "Radio"
+		},
+		"fldOptions": {
+			"type": "array",
+			"default": [
+				{
+					"fldLabel": " Enter Label",
+					"fldValue": " Enter Value"
+				}
+			]
+		},
+		"optPos": {
+			"type": "string",
+			"default": "vertical"
+		},
+		"reqTgl": {
+			"type": "boolean",
+			"default": false
+		},
+		"hlpTxt": {
+			"type": "boolean",
+			"default": false
+		},
+		"desctxt": {
+			"type": "string",
+			"default": "Description"
+		},
+		"descPoss": {
+			"type": "string",
+			"default": "top"
+		},
+		"inpSz": {
+			"type": "object",
+			"default": {
+				"md": "100",
+				"unit": "%"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_CLIENT_ID}} {margin:0; width: {{inpSz}}; } {{PLUS_CLIENT_ID}}[data-type='tpgb/tp-form-radio-button'].tp-form-radio-button{width:100%} {{PLUS_CLIENT_ID}}~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;} {{PLUS_CLIENT_ID}}:has(input[type='text'])~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;}",
+					"backend": true
+				},
+				{
+					"selector": "{{PLUS_WRAP}}.tp-form-radio-button {width: {{inpSz}}; } {{PLUS_WRAP}}~.nxt-submit-button.nxt-btn-inline{flex: 0;}",
+					"backend": false
+				}
+			]
+		},
+		"bRadius": {
+			"type": "string",
+			"default": "round"
+		},
+		"error": {
+			"type": "string",
+			"default": "This field is required."
+		}
+	}
+}

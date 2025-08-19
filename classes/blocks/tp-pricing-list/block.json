@@ -1,0 +1,754 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-pricing-list",
+	"version": "0.1.0",
+	"title": "Pricing List",
+	"category": "tpgb",
+	"description": "Show your customers the different options you offer and their associated costs.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "style": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "Alignment": {
+            "type": "object",
+           "default": {
+                "md": "left",
+                "sm": "",
+                "xs": ""
+            },
+            "style": [
+                {
+                "condition": [{"key": "style", "relation": "==", "value": "style-1"}],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list{ text-align: {{Alignment}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "boxAlign": {
+            "type": "string",
+            "default": "top-left"
+        },
+        "hoverEffect": {
+            "type": "string",
+            "default": "horizontal"
+        },
+        "title": {
+            "type": "string",
+            "default": "Delicious Cup Cake"
+        },
+        "tagField": {
+            "type": "string",
+            "default": "Small|Medium|Large"
+        },
+        "price": {
+            "type": "string",
+            "default": "$4.99"
+        },
+        "description": {
+            "type": "string",
+            "default": "Cupcake ipsum dolor. Sit amet marshmallow topping cheesecake muffin. Halvah croissant candy canes bonbon candy. Apple pie jelly beans topping carrot cake danish tart cake cheesecake. Muffin danish chocolate soufflé pastry icing bonbon oat cake. Powder cake jujubes oat cake. Lemon drops tootsie roll marshmallow halvah carrot cake."
+        },
+        "imageField": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "imageSize": {
+            "type": "string",
+            "default": "full"
+        },
+        "imgShape": {
+            "type": "string",
+            "default": "none"
+        },
+        "maskImg": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "titleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {"md": "", "unit": "px"}
+            },
+            "style": [
+                {
+                "condition": [{"key": "title", "relation": "!=", "value": ""}],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-title"
+                }
+            ],
+            "scopy": true
+        },
+        "titleColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                "condition": [{"key": "title", "relation": "!=", "value": ""}],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-title{ color: {{titleColor}}; } {{PLUS_WRAP}}.tpgb-pricing-list.food-menu-style-2 .food-menu-title{ color: {{titleColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "titleBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": "color",
+                "bgDefaultColor": "",
+                "bgGradient": {
+                "color1": "#16d03e",
+                "color2": "#1f91f3",
+                "type": "linear",
+                "direction": "90",
+                "start": 5,
+                "stop": 80,
+                "radial": "center",
+                "clip": false
+                },
+                "overlayBg": "",
+                "overlayBgOpacity": "",
+                "bgGradientOpacity": ""
+            },
+            "style": [
+                {
+                "condition": [{"key": "title", "relation": "!=", "value": ""}],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-title"
+                }
+            ],
+            "scopy": true
+        },
+        "titlePadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                "condition": [{"key": "title", "relation": "!=", "value": ""}],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-title{padding: {{titlePadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "lineStyle": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "#888",
+                "width": {
+                "md": {
+                    "top": "",
+                    "left": "",
+                    "bottom": "",
+                    "right": ""
+                },
+                "sm": {},
+                "xs": {},
+                "unit": "px"
+                }
+            },
+            "style": [
+                {
+                "condition": [{"key": "style", "relation": "==", "value": "style-3"}],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list.food-menu-style-3 .food-flex-line .food-menu-divider .menu-divider"
+                }
+            ],
+            "scopy": true
+        },
+        "tagTypo": {
+            "type": "object",
+            "default": {
+              "openTypography": 0,
+              "size": { "md": "", "unit": "px" }
+            },
+            "style": [
+              {
+                "condition": [{ "key": "tagField", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag"
+              }
+            ],
+            "scopy": true
+        },
+        "tagSpace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                "condition": [{ "key": "tagField", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag{ margin-right: {{tagSpace}}; } "
+                }
+            ],
+            "scopy": true
+        },
+        "tagColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                "condition": [{ "key": "tagField", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag{ color: {{tagColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "tagBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                "condition": [{ "key": "tagField", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag"
+                }
+            ],
+            "scopy": true
+        },
+        "tagBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                "condition": [{ "key": "tagField", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag{border-radius: {{tagBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "tagPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                "condition": [{ "key": "tagField", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-tag{padding: {{tagPadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "priceTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": { "md": "", "unit": "px" }
+            },
+            "style": [
+                {
+                "condition": [{ "key": "price", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price"
+                }
+            ],
+            "scopy": true
+        },
+        "priceColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                "condition": [{ "key": "price", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price{ color: {{priceColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "priceBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                "condition": [{ "key": "price", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price"
+                }
+            ],
+            "scopy": true
+        },
+        "priceBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                "condition": [{ "key": "price", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price{border-radius: {{priceBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "pricePadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                "condition": [{ "key": "price", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-menu-price{padding: {{pricePadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "descTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": { "md": "", "unit": "px" }
+            },
+            "style": [
+                {
+                "condition": [{ "key": "description", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc"
+                }
+            ],
+            "scopy": true
+        },
+        "descColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                "condition": [{ "key": "description", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc{ color: {{descColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "descBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                "condition": [{ "key": "description", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc"
+                }
+            ],
+            "scopy": true
+        },
+        "descBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                "condition": [{ "key": "description", "relation": "!=", "value": "" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc{border-radius: {{descBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "descPadding": {
+            "type": "object",
+            "default": {
+              "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+              },
+              "unit": "px"
+            },
+            "style": [
+              {
+                "condition": [
+                  { "key": "description", "relation": "!=", "value": "" }
+                ],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box .food-desc{padding: {{descPadding}};}"
+              }
+            ],
+            "scopy": true
+        },
+        "imgMinWidth": {
+            "type": "object",
+            "default": {
+              "md": "",
+              "unit": "px"
+            },
+            "style": [
+              {
+                "condition": [
+                  { "key": "style", "relation": "==", "value": "style-3" },
+                  { "key": "imageField", "relation": "!=", "value": "" },
+                  { "key": "imageField.url", "relation": "!=", "value": "" }
+                ],
+                "selector": "{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img{ min-width: {{imgMinWidth}}; } "
+              }
+            ],
+            "scopy": true
+        },
+        "imgMaxWidth": {
+            "type": "object",
+            "default": {
+              "md": "",
+              "unit": "px"
+            },
+            "style": [
+              {
+                "condition": [
+                  { "key": "style", "relation": "==", "value": "style-3" },
+                  { "key": "imageField", "relation": "!=", "value": "" },
+                  { "key": "imageField.url", "relation": "!=", "value": "" }
+                ],
+                "selector": "{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img{ max-width: {{imgMaxWidth}}; } "
+              }
+            ],
+            "scopy": true
+        },
+        "imgRightSpace": {
+            "type": "object",
+            "default": {
+              "md": "",
+              "unit": "px"
+            },
+            "style": [
+              {
+                "condition": [
+                  { "key": "style", "relation": "==", "value": "style-3" },
+                  { "key": "imageField", "relation": "!=", "value": "" },
+                  { "key": "imageField.url", "relation": "!=", "value": "" }
+                ],
+                "selector": "{{PLUS_WRAP}}.food-menu-style-3 .food-flex-line .food-flex-img{ margin-right: {{imgRightSpace}}; } "
+              }
+            ],
+            "scopy": true
+        },
+        "imgBorder": {
+            "type": "object",
+            "default": {
+              "openBorder": 0,
+              "type": "",
+              "color": "",
+              "width": {
+                "md": {
+                  "top": "1",
+                  "left": "1",
+                  "bottom": "1",
+                  "right": "1"
+                },
+                "sm": {},
+                "xs": {},
+                "unit": "px"
+              }
+            },
+            "style": [
+              {
+                "condition": [
+                  { "key": "style", "relation": "==", "value": "style-3" },
+                  { "key": "imageField", "relation": "!=", "value": "" },
+                  { "key": "imageField.url", "relation": "!=", "value": "" }
+                ],
+                "selector": "{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img img"
+              }
+            ],
+            "scopy": true
+        },
+        "imgBRadius": {
+            "type": "object",
+            "default": {
+              "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+              },
+              "unit": "px"
+            },
+            "style": [
+              {
+                "condition": [
+                  { "key": "style", "relation": "==", "value": "style-3" },
+                  { "key": "imageField", "relation": "!=", "value": "" },
+                  { "key": "imageField.url", "relation": "!=", "value": "" }
+                ],
+                "selector": "{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img img{ border-radius: {{imgBRadius}}; } "
+              }
+            ],
+            "scopy": true
+        },
+        "imgShadow": {
+            "type": "object",
+            "default": {
+              "openShadow": 0,
+              "inset": 0,
+              "horizontal": 0,
+              "vertical": 4,
+              "blur": 8,
+              "spread": 0,
+              "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+              {
+                "condition": [
+                  { "key": "style", "relation": "==", "value": "style-3" },
+                  { "key": "imageField", "relation": "!=", "value": "" },
+                  { "key": "imageField.url", "relation": "!=", "value": "" }
+                ],
+                "selector": "{{PLUS_WRAP}} .food-menu-box .food-flex-imgs.food-flex-img"
+              }
+            ],
+            "scopy": true
+        },
+        "bgPadding": {
+            "type": "object",
+            "default": {
+              "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+              },
+              "unit": "px"
+            },
+            "style": [
+              {
+                "condition": [{ "key": "style", "relation": "==", "value": "style-3" }],
+                "selector": "{{PLUS_WRAP}} .food-menu-box {padding: {{bgPadding}};}"
+              }
+            ],
+            "scopy": true
+        },
+        "normalBG": {
+            "type": "object",
+            "default": {
+              "openBg": 0
+            },
+            "style": [
+              {
+                "condition": [{ "key": "style", "relation": "!=", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box"
+              },
+              {
+                "condition": [{ "key": "style", "relation": "==", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-front"
+              }
+            ],
+            "scopy": true
+        },
+        "bgNormalB": {
+            "type": "object",
+            "default": {
+              "openBorder": 0,
+              "type": "",
+              "color": "",
+              "width": {
+                "md": {
+                  "top": "",
+                  "left": "",
+                  "bottom": "",
+                  "right": ""
+                },
+                "sm": {},
+                "xs": {},
+                "unit": "px"
+              }
+            },
+            "style": [
+              {
+                "condition": [{ "key": "style", "relation": "!=", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box "
+              },
+              {
+                "condition": [{ "key": "style", "relation": "==", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-front"
+              }
+            ],
+            "scopy": true
+        },
+        "bgNmlBRadius": {
+            "type": "object",
+            "default": {
+              "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+              },
+              "unit": "px"
+            },
+            "style": [
+              {
+                "condition": [{ "key": "style", "relation": "!=", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box{border-radius: {{bgNmlBRadius}};}"
+              },
+              {
+                "condition": [{ "key": "style", "relation": "==", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-front{border-radius: {{bgNmlBRadius}};}"
+              }
+            ],
+            "scopy": true
+        },
+        "normalBGShadow": {
+            "type": "object",
+            "default": {
+              "openShadow": 0,
+              "inset": 0,
+              "horizontal": 0,
+              "vertical": 4,
+              "blur": 8,
+              "spread": 0,
+              "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+              {
+                "condition": [{ "key": "style", "relation": "!=", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-menu-box "
+              },
+              {
+                "condition": [{ "key": "style", "relation": "==", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-front"
+              }
+            ],
+            "scopy": true
+        },
+        "hoverBG": {
+            "type": "object",
+            "default": {
+              "openBg": 0
+            },
+            "style": [
+              {
+                "condition": [{ "key": "style", "relation": "==", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-back"
+              }
+            ],
+            "scopy": true
+        },
+        "bgHoverB": {
+            "type": "object",
+            "default": {
+              "openBorder": 0,
+              "type": "",
+              "color": "",
+              "width": {
+                "md": {
+                  "top": "",
+                  "left": "",
+                  "bottom": "",
+                  "right": ""
+                },
+                "sm": {},
+                "xs": {},
+                "unit": "px"
+              }
+            },
+            "style": [
+              {
+                "condition": [{ "key": "style", "relation": "==", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-back"
+              }
+            ],
+            "scopy": true
+        },
+        "bgHvrBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                "condition": [{ "key": "style", "relation": "==", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-back{border-radius: {{bgHvrBRadius}};}  {{PLUS_WRAP}}.tpgb-pricing-list .flip-horizontal:hover .food-flipbox-front{border-radius: {{bgHvrBRadius}};}  {{PLUS_WRAP}}.tpgb-pricing-list .flip-vertical:hover .food-flipbox-front{border-radius: {{bgHvrBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "hoverBGShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                "condition": [{ "key": "style", "relation": "==", "value": "style-2" }],
+                "selector": "{{PLUS_WRAP}}.tpgb-pricing-list .food-flipbox-back"
+                }
+            ],
+            "scopy": true
+        },
+        "isRptBlock": {
+            "type": "boolean",
+            "default": false
+        },
+        "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+  },
+  "usesContext": ["postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField"]
+}

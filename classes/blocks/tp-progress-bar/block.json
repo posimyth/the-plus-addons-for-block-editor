@@ -1,0 +1,447 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-progress-bar",
+	"version": "0.1.0",
+	"title": "Progress Bar",
+	"category": "tpgb",
+	"description": "Add a visual indicator that shows what percentage of a process has been completed",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+  "attributes": {
+    "block_id": {
+      "type": "string",
+      "default": ""
+    },
+    "layoutType": {
+        "type": "string",
+        "default": "progressbar"
+    },
+    "styleType": {
+        "type": "string",
+        "default": "style-1"
+    },
+    "heightType": {
+        "type": "string",
+        "default": "small-height"
+    },
+    "pieStyleType": {
+        "type": "string",
+        "default": "pieStyle-1"
+    },
+    "circleStyle": {
+        "type": "string",
+        "default": "style-1"
+    },
+    "dynamicValue": {
+        "type": "string",
+        "default": "69"
+    },
+    "dynamicPieValue": {
+        "type": "string",
+        "default": "0.7"
+    },
+    "dispNumber": {
+        "type": "boolean",
+        "default": true
+    },
+    "pieCircleSize": {
+        "type": "string",
+        "default": "200",
+        "style": [
+            {
+                "selector": "{{PLUS_WRAP}}.tpgb-piechart .tp-pie-circle{ width:{{pieCircleSize}}px; height:{{pieCircleSize}}px;}"
+            }
+        ],
+        "scopy": true
+    },
+    "pieThickness": {
+        "type": "string",
+        "default": "5",
+        "scopy": true
+    },
+    "pieFillColor": {
+        "type": "string",
+        "default": "normal",
+        "scopy": true
+    },
+    "pieColor1": {
+        "type": "string",
+        "default": "#FFA500",
+        "scopy": true
+    },
+    "pieColor2": {
+        "type": "string",
+        "default": "#008000",
+        "scopy": true
+    },
+    "fillReverse": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+    },
+    "Title": {
+        "type": "string",
+        "default": "Web Design"
+    },
+    "subTitle": {
+        "type": "string",
+        "default": "HTML, CSS and WordPress"
+    },
+    "prepostSymbol": {
+        "type": "string",
+        "default": "%"
+    },
+    "sPosition": {
+        "type": "string",
+        "default": "afterNumber"
+    },
+    "iconType": {
+        "type": "string",
+        "default": "iconIcon"
+    },
+    "iconLibrary": {
+        "type": "string",
+        "default": "fontawesome"
+    },
+    "IconName": {
+        "type": "string",
+        "default": "fas fa-code"
+    },
+    "imageName": {
+        "type": "object",
+        "default": {
+            "url": "",
+            "Id": ""
+        }
+    },
+    "imageSize": {
+        "type": "string",
+        "default": "thumbnail"
+    },
+    "imgPosition": {
+        "type": "string",
+        "default": "beforeTitle"
+    },
+    "pbTopMargin": {
+        "type": "object",
+        "default": {
+            "md": "",
+            "unit": "px"
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "layoutType",
+                        "relation": "==",
+                        "value": "progressbar"
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}} .progress-bar-skill.skill-fill { margin-top: {{pbTopMargin}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "bgColor": {
+        "type": "object",
+        "default": {
+            "openBg": 0,
+            "bgType": "color",
+            "bgDefaultColor": ""
+        },
+        "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .progress-bar-skill-bar-filled"
+            }
+        ],
+        "scopy": true
+    },
+    "emptyColor": {
+        "type": "string",
+        "default": "",
+        "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .progress-bar-skill.skill-fill{ background-color: {{emptyColor}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "sepColor": {
+        "type": "string",
+        "default": "",
+        "style": [
+            {
+                "selector": "{{PLUS_WRAP}} .progress-style-2 .progress-bar-skill-bar-filled:after{ border-color: {{sepColor}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "titleTypo": {
+        "type": "object",
+        "default": {
+            "openTypography": 0,
+            "size": {
+                "md": "",
+                "unit": "px"
+            }
+        },
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "Title",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}} .progress-bar-title , {{PLUS_WRAP}} .progress-bar-media.large .progress-bar-title "
+            }
+        ],
+        "scopy": true
+    },
+    "titleColor": {
+        "type": "string",
+        "default": "",
+        "style": [
+            {
+                "condition": [
+                    {
+                        "key": "Title",
+                        "relation": "!=",
+                        "value": ""
+                    }
+                ],
+                "selector": "{{PLUS_WRAP}} .progress-bar-title , {{PLUS_WRAP}} .progress-bar-media.large .prog-title.prog-icon.large .progress-bar-title { color: {{titleColor}}; }"
+            }
+        ],
+        "scopy": true
+    },
+    "titleSpace": {
+      "type": "object",
+      "default": {
+          "md": "",
+          "unit": "px"
+      },
+      "style": [
+          {
+              "condition": [
+                  {
+                      "key": "layoutType",
+                      "relation": "==",
+                      "value": "progressbar"
+                  }
+              ],
+              "selector": "{{PLUS_WRAP}}:not(.tpgb-piechart) .progress-bar-title.before-icon,{{PLUS_WRAP}}:not(.tpgb-piechart) .progress-bar-media.large .progress-bar-title.before-icon{ padding-left: {{titleSpace}}; } {{PLUS_WRAP}}:not(.tpgb-piechart) .progress-bar-title.after-icon,{{PLUS_WRAP}}:not(.tpgb-piechart) .progress-bar-media.large .progress-bar-title.after-icon{ padding-right: {{titleSpace}}; }"
+          }
+      ],
+      "scopy": true
+  },
+  "subTitleTypo": {
+      "type": "object",
+      "default": {
+          "openTypography": 0,
+          "size": {
+              "md": "",
+              "unit": "px"
+          }
+      },
+      "style": [
+          {
+              "condition": [
+                  {
+                      "key": "subTitle",
+                      "relation": "!=",
+                      "value": ""
+                  }
+              ],
+              "selector": "{{PLUS_WRAP}} .progress-bar-sub-title"
+          }
+      ],
+      "scopy": true
+  },
+  "subTitleColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+          {
+              "condition": [
+                  {
+                      "key": "subTitle",
+                      "relation": "!=",
+                      "value": ""
+                  }
+              ],
+              "selector": "{{PLUS_WRAP}} .progress-bar-sub-title{ color: {{subTitleColor}}; }"
+          }
+      ],
+      "scopy": true
+  },
+  "numTypo": {
+      "type": "object",
+      "default": {
+          "openTypography": 0,
+          "size": {
+              "md": "",
+              "unit": "px"
+          }
+      },
+      "style": [
+          {
+              "selector": "{{PLUS_WRAP}} .theserivce-milestone-number.icon-milestone"
+          }
+      ],
+      "scopy": true
+  },
+  "numberColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+          {
+              "selector": "{{PLUS_WRAP}} .theserivce-milestone-number.icon-milestone{ color: {{numberColor}}; }"
+          }
+      ],
+      "scopy": true
+  },
+  "numPrePostTypo": {
+      "type": "object",
+      "default": {
+          "openTypography": 0,
+          "size": {
+              "md": "",
+              "unit": "px"
+          }
+      },
+      "style": [
+          {
+              "condition": [
+                  {
+                      "key": "prepostSymbol",
+                      "relation": "!=",
+                      "value": ""
+                  }
+              ],
+              "selector": "{{PLUS_WRAP}} .theserivce-milestone-symbol"
+          }
+      ],
+      "scopy": true
+  },
+  "numPrePostColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+          {
+              "condition": [
+                  {
+                      "key": "prepostSymbol",
+                      "relation": "!=",
+                      "value": ""
+                  }
+              ],
+              "selector": "{{PLUS_WRAP}} .theserivce-milestone-symbol{ color: {{numPrePostColor}}; }"
+          }
+      ],
+      "scopy": true
+  },
+  "iconColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+            "condition": [
+                {
+                    "key": "iconType",
+                    "relation": "==",
+                    "value": "iconIcon"
+                }
+            ],
+            "selector": "{{PLUS_WRAP}} .progres-ims { color: {{iconColor}}; }"
+        },
+        {
+            "condition": [
+                {
+                    "key": "heightType",
+                    "relation": "==",
+                    "value": "large-height"
+                }
+            ],
+            "selector": "{{PLUS_WRAP}} .progress-bar-media.large .prog-title.prog-icon.large .progres-ims { color: {{iconColor}}; }"
+        }
+      ],
+      "scopy": true
+  },
+  "iconSize": {
+      "type": "object",
+      "default": {
+          "md": "",
+          "unit": "px"
+      },
+      "style": [
+          {
+              "condition": [
+                  {
+                      "key": "iconType",
+                      "relation": "==",
+                      "value": "iconIcon"
+                  }
+              ],
+              "selector": "{{PLUS_WRAP}} .progres-ims { font-size: {{iconSize}}; }"
+          }
+      ],
+      "scopy": true
+  },
+  "imgSize": {
+      "type": "object",
+      "default": {
+          "md": "",
+          "unit": "px"
+      },
+      "style": [
+          {
+              "condition": [
+                  {
+                      "key": "iconType",
+                      "relation": "==",
+                      "value": "iconImage"
+                  }
+              ],
+              "selector": "{{PLUS_WRAP}} .progres-ims .progress-bar-img { width: {{imgSize}}; }"
+          }
+      ],
+      "scopy": true
+  },
+  "imgBRadius": {
+      "type": "object",
+      "default": {
+          "md": {
+              "top": "",
+              "right": "",
+              "bottom": "",
+              "left": ""
+          },
+          "unit": "px"
+      },
+      "style": [
+          {
+              "condition": [
+                  {
+                      "key": "iconType",
+                      "relation": "==",
+                      "value": "iconImage"
+                  }
+              ],
+              "selector": "{{PLUS_WRAP}} .progress-bar-img{border-radius: {{imgBRadius}};}"
+          }
+      ],
+      "scopy": true
+    },
+    "showBlockContent" :{
+        "type": "boolean",
+        "default": true
+    }
+  }
+}

@@ -1,0 +1,761 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-form-block",
+	"version": "0.1.0",
+	"title": "Form",
+	"category": "tpgb",
+	"description": " Create user-friendly forms to collect information effortlessly.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"anchor": true,
+		"align": ["wide", "full"],
+		"inserter": true
+	},
+	"textdomain": "tpgb",
+	"attributes": {
+		"block_id": {
+			"type": "string",
+			"default": ""
+		},
+		"lblClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": " {{PLUS_WRAP}} .nxt-check-title-label, {{PLUS_WRAP}} .nxt-email-label, {{PLUS_WRAP}} .nxt-message-label, {{PLUS_WRAP}} .nxt-name-label, {{PLUS_WRAP}} .nxt-number-label, {{PLUS_WRAP}} .nxt-option-label, {{PLUS_WRAP}} .nxt-phone-label, {{PLUS_WRAP}} .nxt-radio-title-label {color:{{lblClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"lblTypo": {
+			"type": "object",
+			"default": {
+				"openTypography": 0
+			},
+			"style": [
+				{
+					"selector": " {{PLUS_WRAP}} .nxt-check-title-label, {{PLUS_WRAP}} .nxt-email-label, {{PLUS_WRAP}} .nxt-message-label, {{PLUS_WRAP}} .nxt-name-label, {{PLUS_WRAP}} .nxt-number-label, {{PLUS_WRAP}} .nxt-option-label, {{PLUS_WRAP}} .nxt-radio-title-label"
+				}
+			],
+			"scopy": true
+		},
+		"lblBtmMrg": {
+			"type": "object",
+			"default": {
+				"md": "5",
+				"unit": "px"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-message-label, {{PLUS_WRAP}} .nxt-number-label, {{PLUS_WRAP}} .nxt-option-label {margin-bottom:{{lblBtmMrg}}} {{PLUS_WRAP}} .nxt-radio-box, {{PLUS_WRAP}} .nxt-check-box,{{PLUS_WRAP}} .nxt-input-container {margin-top:{{lblBtmMrg}};}"
+				}
+			]
+		},
+		"hvrLblClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input:hover .nxt-email-label, {{PLUS_WRAP}} .nxt-message-input:hover .nxt-message-label, {{PLUS_WRAP}} .nxt-name-input:hover .nxt-name-label, {{PLUS_WRAP}} .nxt-number-input:hover .nxt-number-label, {{PLUS_WRAP}} .tp-form-checkbox-button:hover .nxt-check-title-label, {{PLUS_WRAP}} .tp-form-radio-button:hover .nxt-radio-title-label, {{PLUS_WRAP}} .nxt-option-container:hover .nxt-option-label {color:{{hvrLblClr}};}"
+				}
+			]
+		},
+		"inpClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container .nxt-email-richtext, {{PLUS_WRAP}} .nxt-message-richtext, {{PLUS_WRAP}} .nxt-message-richtext:focus, {{PLUS_WRAP}} .nxt-name-input .nxt-name-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-name-richtext:focus, {{PLUS_WRAP}} .nxt-number-input .nxt-number-richtext, {{PLUS_WRAP}} .nxt-number-input .nxt-number-richtext:focus {color: {{inpClr}};}{{PLUS_WRAP}} input:-webkit-autofill, {{PLUS_WRAP}} textarea:-webkit-autofill, {{PLUS_WRAP}} select:-webkit-autofill, {{PLUS_WRAP}} input:-webkit-autofill:hover, {{PLUS_WRAP}} input:-webkit-autofill:focus, {{PLUS_WRAP}} textarea:-webkit-autofill:hover, {{PLUS_WRAP}} textarea:-webkit-autofill:focus, {{PLUS_WRAP}} select:-webkit-autofill:hover, {{PLUS_WRAP}} select:-webkit-autofill:focus {color: {{inpClr}}; -webkit-text-fill-color: {{inpClr}} !important;}"
+				}
+			],
+			"scopy": true
+		},
+		"plcClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-email-richtext::placeholder, {{PLUS_WRAP}} .nxt-message-input .nxt-message-richtext::placeholder, {{PLUS_WRAP}} .nxt-number-input .nxt-number-richtext::placeholder, {{PLUS_WRAP}} .nxt-name-input .nxt-name-richtext::placeholder {color:{{plcClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"inpBg": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+                    "selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container, {{PLUS_WRAP}} .nxt-message-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}} .nxt-number-input .nxt-input-container { background-color: {{inpBg}}; } {{PLUS_WRAP}} input:-webkit-autofill, {{PLUS_WRAP}} input:-internal-autofill-previewed { background-color: transparent !important; }"
+				}
+			]
+		},
+		"hvrPlc": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-email-richtext:hover::placeholder{color:{{hvrPlc}};} {{PLUS_WRAP}} .nxt-message-richtext:hover::placeholder{color:{{hvrPlc}};} {{PLUS_WRAP}} .nxt-name-input .nxt-input-container .nxt-name-richtext:hover::placeholder{color:{{hvrPlc}};} {{PLUS_WRAP}} .nxt-number-input .nxt-number-richtext:hover::placeholder{color:{{hvrPlc}};}"
+				}
+			]
+		},
+		"hvrInpBg": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container:hover, {{PLUS_WRAP}} .nxt-message-input .nxt-message-richtext:hover, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container:hover, {{PLUS_WRAP}}  .nxt-number-input .nxt-input-container:hover {background-color: {{hvrInpBg}};}  {{PLUS_WRAP}} .nxt-email-input:hover input:-webkit-autofill, {{PLUS_WRAP}} .nxt-name-input:hover input:-webkit-autofill,  {{PLUS_WRAP}} .nxt-number-input:hover input:-webkit-autofill, {{PLUS_WRAP}} .nxt-message-input:hover input:-webkit-autofill {background-color: transparent !important}"
+				}
+			]
+		},
+		"inpBdr": {
+			"type": "object",
+			"default": {
+				"openBorder": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}}.nxt-style-1 .nxt-email-input .nxt-input-container, {{PLUS_WRAP}}.nxt-style-1 .nxt-message-richtext, {{PLUS_WRAP}}.nxt-style-1 .nxt-message-input .nxt-message-richtext:focus, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}}.nxt-style-1 .nxt-number-input .nxt-input-container "
+				}
+			],
+			"scopy": true
+		},
+		"inpBdrRds": {
+			"type": "object",
+			"default": {
+				"md": {
+					"top": "",
+					"bottom": "",
+					"left": "",
+					"right": ""
+				},
+				"unit": "px"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container, {{PLUS_WRAP}} .nxt-email-input .nxt-email-richtext, {{PLUS_WRAP}} .nxt-message-richtext,{{PLUS_WRAP}} .nxt-name-input .nxt-input-container .nxt-name-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}} nxt-name-input .nxt-name-richtext, {{PLUS_WRAP}}.nxt-style-1 .nxt-number-input .nxt-input-container, {{PLUS_WRAP}}.nxt-style-1 .nxt-number-input .nxt-input-container .nxt-number-richtext,  {{PLUS_WRAP}} .nxt-input-wrapper, {{PLUS_WRAP}} .nxt-message-richtext::-webkit-scrollbar-thumb {border-radius:{{inpBdrRds}}}"
+				}
+			]
+		},
+		"hvrInpBdrClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-name-input:hover .nxt-input-container, {{PLUS_WRAP}} .tp-form-email-field .nxt-email-input:hover .nxt-input-container, {{PLUS_WRAP}} .nxt-message-input:hover .nxt-message-richtext, {{PLUS_WRAP}} .nxt-number-field .nxt-number-input:hover .nxt-number-richtext {border-color:{{hvrInpBdrClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"inpPad": {
+			"type": "object",
+			"default": {
+				"md": {
+					"top": "10",
+					"bottom": "10",
+					"left": "10",
+					"right": "10"
+				},
+				"unit": "px"
+			},
+			"style": [
+				{
+                    "selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container, {{PLUS_WRAP}} .nxt-message-input .nxt-message-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}} .nxt-number-input .nxt-input-container, {{PLUS_WRAP}} .nxt-input-wrapper  {padding:{{inpPad}}}"
+				}
+			]
+		},
+		"inpTypo": {
+			"type": "object",
+			"default": {
+				"openTypography": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-email-richtext, {{PLUS_WRAP}} .nxt-message-richtext, {{PLUS_WRAP}} .nxt-message-richtext::placeholder, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container .nxt-name-richtext, {{PLUS_WRAP}} .nxt-number-input .nxt-number-richtext"
+				}
+			],
+			"scopy": true
+		},
+		"btnClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit-button, {{PLUS_WRAP}} .nxt-submit-button .nxt-submit{color:{{btnClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"hvrBtnBgClr": {
+			"type": "object",
+			"default": {
+				"openBg": 0,
+				"bgType": "color",
+				"bgDefaultColor": ""
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit-button .nxt-submit:hover"
+				}
+			],
+			"scopy": true
+		},
+		"hvrBtnClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit-button .nxt-submit:hover {color:{{hvrBtnClr}}}"
+				}
+			]
+		},
+		"btnBgClr": {
+			"type": "object",
+			"default": {
+				"openBg": 0,
+				"bgType": "color",
+				"bgDefaultColor": ""
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit-button .nxt-submit"
+				}
+			],
+			"scopy": true
+		},
+		"btnTypo": {
+			"type": "object",
+			"default": {
+				"openTypography": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit-button .nxt-submit"
+				}
+			],
+			"scopy": true
+		},
+		"btnPad": {
+			"type": "object",
+			"default": {
+				"md": {
+					"top": "",
+					"bottom": "",
+					"left": "",
+					"right": ""
+				},
+				"unit": "px"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit-button .nxt-submit{padding:{{btnPad}}}"
+				}
+			]
+		},
+		"btnBdr": {
+			"type": "object",
+			"default": {
+				"openBorder": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit-button .nxt-submit"
+				}
+			],
+			"scopy": true
+		},
+		"hvrBtnBdrClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit-button .nxt-submit:hover {border-color:{{hvrBtnBdrClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"btnBdrRds": {
+			"type": "object",
+			"default": {
+				"md": {
+					"top": "",
+					"bottom": "",
+					"left": "",
+					"right": ""
+				},
+				"unit": "px"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-submit-button .nxt-submit {border-radius:{{btnBdrRds}}}"
+				}
+			]
+		},
+		"layoutType": {
+			"type": "string",
+			"default": "nxt-style-1"
+		},
+		"action": {
+			"type": "string",
+			"default": ""
+		},
+		"actionOption": {
+			"type": "string",
+			"default": "[{\"value\": \"Email\", \"label\": \"Email\"}]",
+			"scopy": true
+		},
+		"emailTo1": {
+			"type": "string",
+			"default": ""
+		},
+		"subject1": {
+			"type": "string",
+			"default": ""
+		},
+		"autoRespMsg": {
+			"type": "string",
+			"default": "Thank you for your message. It has been sent."
+		},
+		"frmDta": {
+			"type": "boolean",
+			"default": ""
+		},
+		"selectedLayout": {
+			"type": "string",
+			"default": ""
+		},
+		"ccEmail1": {
+			"type": "string",
+			"default": ""
+		},
+		"bccEmail1": {
+			"type": "string",
+			"default": ""
+		},
+		"emailHdg": {
+			"type": "string",
+			"default": ""
+		},
+		"frmEmail": {
+			"type": "string",
+			"default": "[nxt_email]"
+		},
+		"frmNme": {
+			"type": "string",
+			"default": "[nxt_name]"
+		},
+		"replyTo": {
+			"type": "string",
+			"default": ""
+		},
+		"chkRadSz": {
+			"type": "object",
+			"default": {
+				"md": "",
+				"unit": "px"
+			},
+			"style": [
+				{
+					"selector": " {{PLUS_WRAP}} .nxt-check-box > div .nxt-check-richtext, {{PLUS_WRAP}} .nxt-radio-box .nxt-radio-richtext, {{PLUS_WRAP}} .nxt-radio-richtext .nxt-check-richtext {width: {{chkRadSz}}; height: {{chkRadSz}}; } {{PLUS_WRAP}} .nxt-check-richtext:checked::after {width: calc({{chkRadSz}} - 70%); height: calc({{chkRadSz}} - 45%);   border-width: 0 calc(0.10 * {{chkRadSz}}) calc(0.10 * {{chkRadSz}}) 0; } {{PLUS_WRAP}} .nxt-radio-richtext::after, {{PLUS_WRAP}} .nxt-radio-richtext:checked::after {width: calc({{chkRadSz}} - 30%); height: calc({{chkRadSz}} - 30%);}"
+				}
+			],
+			"scopy": true
+		},
+		"chkRadBg": {
+			"type": "object",
+			"default": {
+				"openBg": 0,
+				"bgType": "color",
+				"bgDefaultColor": ""
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-check-box > div .nxt-check-richtext, {{PLUS_WRAP}} .nxt-radio-box .nxt-radio-richtext,{{PLUS_WRAP}} input[type='radio']:checked {{PLUS_WRAP}} .nxt-radio-richtext .nxt-check-richtext"
+				}
+			],
+			"scopy": true
+		},
+		"chkRadBdr": {
+			"type": "object",
+			"default": {
+				"openBorder": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-check-box > div .nxt-check-richtext, {{PLUS_WRAP}} .nxt-radio-box .nxt-radio-richtext, {{PLUS_WRAP}} input[type='radio']:checked, {{PLUS_WRAP}} input[type='radio']:checked:hover, {{PLUS_WRAP}} input[type='radio']:checked:focus, {{PLUS_WRAP}} .nxt-check-box > div .nxt-check-richtext:checked:focus, {{PLUS_WRAP}} .nxt-check-box > div .nxt-check-richtext:hover"
+				}
+			],
+			"scopy": true
+		},
+		"selClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-option-field, {{PLUS_WRAP}} .nxt-option-container select:hover {color:{{selClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"selBg": {
+			"type": "object",
+			"default": {
+				"openBg": 1,
+				"bgType": "color",
+				"bgDefaultColor": ""
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-option-container .nxt-option-field"
+				}
+			]
+		},
+		"selBdr": {
+			"type": "object",
+			"default": {
+				"openBorder": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-option-container .nxt-option-field "
+				}
+			],
+			"scopy": true
+		},
+		"selBdrRds": {
+			"type": "object",
+			"default": {
+				"md": {
+					"top": "",
+					"bottom": "",
+					"left": "",
+					"right": ""
+				},
+				"unit": "px"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-option-container .nxt-option-field{border-radius:{{selBdrRds}}}"
+				}
+			]
+		},
+		"hvrSelBg": {
+			"type": "object",
+			"default": {
+				"openBg": 1,
+				"bgType": "color",
+				"bgDefaultColor": ""
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-option-container:hover .nxt-option-field"
+				}
+			]
+		},
+		"hvrSelBdrClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-option-container:hover .nxt-option-field{border-color:{{hvrSelBdrClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"hvrSelClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-option-container:hover .nxt-option-field{color:{{hvrSelClr}}}"
+				}
+			]
+		},
+		"selPad": {
+			"type": "object",
+			"default": {
+				"md": {
+					"top": "",
+					"bottom": "",
+					"left": "",
+					"right": ""
+				},
+				"unit": "px"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-option-container .nxt-option-field{padding:{{selPad}}}"
+				}
+			]
+		},
+		"selTypo": {
+			"type": "object",
+			"default": {
+				"openTypography": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-option-container .nxt-option-field"
+				}
+			],
+			"scopy": true
+		},
+		"redirect": {
+			"type": "object",
+			"default": {
+				"url": "",
+				"target": "",
+				"nofollow": ""
+			}
+		},
+		"metaDataOpt": {
+			"type": "array",
+			"default": "[]",
+			"scopy": true
+		},
+		"formId": {
+			"type": "string",
+			"default": "",
+			"scopy": true
+		},
+		"failMsg": {
+			"type": "string",
+			"default": "",
+			"scopy": true
+		},
+		"valErrMsg": {
+			"type": "string",
+			"default": "",
+			"scopy": true
+		},
+		"descColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-help-text{color:{{descColor}}}"
+				}
+			],
+			"scopy": true
+		},
+		"hvrdescColor": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-help-text:hover{color:{{hvrdescColor}};}"
+				}
+			]
+		},
+		"descTypo": {
+			"type": "object",
+			"default": {
+				"openTypography": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-help-text"
+				}
+			],
+			"scopy": true
+		},
+		"chkdChkRadBg": {
+			"type": "object",
+			"default": {
+				"openBg": 0,
+				"bgType": "color",
+				"bgDefaultColor": ""
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-radio-box input[type=radio]:checked, {{PLUS_WRAP}} input[type='radio']:checked:focus, {{PLUS_WRAP}} input[type='radio']:checked:active, {{PLUS_WRAP}} .nxt-radio-richtext .nxt-check-richtext, {{PLUS_WRAP}} .nxt-check-box>div .nxt-check-richtext:focus, {{PLUS_WRAP}} .nxt-check-box>div .nxt-check-richtext:checked, {{PLUS_WRAP}} .nxt-check-richtext:active, {{PLUS_WRAP}} .nxt-radio-richtext:focus, {{PLUS_WRAP}} .nxt-radio-richtext:active, {{PLUS_WRAP}}  .tp-form-checkbox-button .nxt-check-box>div .nxt-check-richtext:checked"
+				}
+			],
+			"scopy": true
+		},
+		"chkdChkRadBdr": {
+			"type": "object",
+			"default": {
+				"openBorder": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} input[type='radio']:checked, {{PLUS_WRAP}} input[type='radio']:checked:focus, {{PLUS_WRAP}} input[type='radio']:checked:active, {{PLUS_WRAP}} .nxt-radio-richtext .nxt-check-richtext, {{PLUS_WRAP}} .nxt-check-box>div .nxt-check-richtext:focus, {{PLUS_WRAP}} .nxt-check-richtext:active, {{PLUS_WRAP}} .nxt-radio-richtext:focus, {{PLUS_WRAP}} .nxt-radio-richtext:active, {{PLUS_WRAP}}  .tp-form-checkbox-button .nxt-check-box>div .nxt-check-richtext:checked"
+				}
+			],
+			"scopy": true
+		},
+
+		"chkdChkRadClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-radio-box .nxt-radio-richtext::after {background-color: {{chkdChkRadClr}};} {{PLUS_WRAP}} .nxt-check-box > div .nxt-check-richtext::after {border-color: {{chkdChkRadClr}};} {{PLUS_WRAP}} .nxt-radio-box .nxt-radio-richtext:hover::after,{{PLUS_WRAP}} .nxt-radio-box .nxt-radio-richtext:focus::after,{{PLUS_WRAP}} .nxt-radio-box .nxt-radio-richtext:active::after {background-color: {{chkdChkRadClr}};}{{PLUS_WRAP}} .nxt-check-box > div .nxt-check-richtext:hover::after,{{PLUS_WRAP}} .nxt-check-box > div .nxt-check-richtext:focus::after,{{PLUS_WRAP}} .nxt-check-box > div .nxt-check-richtext:active::after {border-color: {{chkdChkRadClr}};}"
+				}
+			],
+			"scopy": true
+		},
+		"sucTypo": {
+			"type": "object",
+			"default": {
+				"openTypography": 0
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-success-message , {{PLUS_WRAP}} .nxt-error-message"
+				}
+			],
+			"scopy": true
+		},
+		"sucClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-success-message , {{PLUS_WRAP}} .nxt-error-message {color:{{sucClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"ldrClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-loader::before{border-top-color:{{ldrClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"actPlc": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-email-richtext:focus::placeholder{color:{{actPlc}};} {{PLUS_WRAP}} .nxt-message-richtext:focus::placeholder{color:{{actPlc}};} {{PLUS_WRAP}} .nxt-name-input .nxt-input-container .nxt-name-richtext:focus::placeholder{color:{{actPlc}};} {{PLUS_WRAP}} .nxt-number-input .nxt-number-richtext:focus::placeholder{color:{{actPlc}};}"
+				}
+			]
+		},
+		"actInpBg": {
+			"type": "string",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container:focus-within, {{PLUS_WRAP}} .nxt-message-input .nxt-message-richtext:focus-within, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container:focus-within, {{PLUS_WRAP}} .nxt-number-input .nxt-input-container:focus-within {     background-color: {{actInpBg}};} {{PLUS_WRAP}} .nxt-input-container:focus-within input:-webkit-autofill,  {{PLUS_WRAP}} .nxt-input-container:focus-within input:-internal-autofill-selected {background-color: transparent !important}"
+				}
+			]
+		},
+		"actInpBdrClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container:focus-within, {{PLUS_WRAP}} .nxt-message-input .nxt-message-richtext:focus-within, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container:focus-within, {{PLUS_WRAP}} .nxt-number-input .nxt-input-container:focus-within {     border-color: {{actInpBdrClr}} !important;}"
+				}
+			],
+			"scopy": true
+		},
+        "chkRadTxtClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": " {{PLUS_WRAP}} .nxt-check-label, {{PLUS_WRAP}} .nxt-radio-label {color:{{chkRadTxtClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"hvrChkRadTxtClr": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": " {{PLUS_WRAP}} .nxt-check-label:hover, {{PLUS_WRAP}} .nxt-radio-label:hover {color:{{hvrChkRadTxtClr}}}"
+				}
+			],
+			"scopy": true
+		},
+		"chkRadTxtTypo": {
+			"type": "object",
+			"default": {
+				"openTypography": 0
+			},
+			"style": [
+				{
+					"selector": " {{PLUS_WRAP}} .nxt-check-label, {{PLUS_WRAP}} .nxt-radio-label"
+				}
+			],
+			"scopy": true
+		},
+        "rowGap": {
+			"type": "object",
+			"default": {
+				"md": "",
+				"unit": "px"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .form-nxt-style-1, {{PLUS_WRAP}} .nxt-simple-contact-form {row-gap:{{rowGap}};}",
+					"backend": true
+				},
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-form {row-gap:{{rowGap}};}",
+					"backend": false
+				}
+			],
+            "scopy": true
+		},
+        "columnGap": {
+			"type": "object",
+			"default": {
+				"md": "",
+				"unit": "px"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .form-nxt-style-1, {{PLUS_WRAP}} .nxt-simple-contact-form{column-gap:{{columnGap}};}",
+					"backend": true
+				},
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-form{column-gap:{{columnGap}};}",
+					"backend": false
+				}
+			],
+            "scopy": true
+		},
+        "formAlign": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "sm": "",
+                "xs": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .nxt-simple-contact-form.block-editor-block-list__layout,{{PLUS_WRAP}} .form-nxt-style-1{ justify-content: {{formAlign}}; } {{PLUS_WRAP}} .nxt-success-message { text-align: {{formAlign}}; }",
+                    "backend": true
+                },
+                {
+                    "selector": "{{PLUS_WRAP}} .nxt-form{ justify-content: {{formAlign}}; } {{PLUS_WRAP}} .nxt-success-message { text-align: {{formAlign}}; }",
+                    "backend": false
+                }
+            ],
+            "scopy": true
+        },
+        "reqIcn": {
+            "type": "boolean",
+            "default": true,
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .nxt-check-title-label.required::after,{{PLUS_WRAP}} .nxt-email-label.required::after,{{PLUS_WRAP}} .nxt-message-label.required::after,{{PLUS_WRAP}} .nxt-name-label.required::after,{{PLUS_WRAP}} .nxt-number-label.required::after,{{PLUS_WRAP}} .nxt-option-label.required::after,{{PLUS_WRAP}} .nxt-radio-title-label.required::after { content: '*'; }"
+                }
+            ],
+            "scopy": true
+        },
+        "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+	}
+}

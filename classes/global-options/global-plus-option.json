@@ -1,0 +1,68 @@
+{
+    "className": {
+      "type": "string",
+      "default": ""
+    },
+    "contentHoverEffect": {
+      "type": "boolean",
+      "default": false,
+      "scopy": true
+    },
+    "selectHoverEffect": {
+      "type": "string",
+      "default": "",
+      "scopy": true
+    },
+    "contentHoverColor": {
+      "type": "string",
+      "default": "",
+      "style": [
+        {
+          "condition": [
+            {
+              "key": "contentHoverEffect",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "selectHoverEffect",
+              "relation": "==",
+              "value": "float_shadow"
+            }
+          ],
+          "selector": "{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_float_shadow:before{background: -webkit-radial-gradient(center, ellipse, {{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%);background: radial-gradient(ellipse at 50% 150%,{{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%); }"
+        },
+        {
+          "condition": [
+            {
+              "key": "contentHoverEffect",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "selectHoverEffect",
+              "relation": "==",
+              "value": "grow_shadow"
+            }
+          ],
+          "selector": "{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_grow_shadow:hover {-webkit-box-shadow: 0 10px 10px -10px {{contentHoverColor}};-moz-box-shadow: 0 10px 10px -10px {{contentHoverColor}};box-shadow: 0 10px 10px -10px {{contentHoverColor}};}"
+        },
+        {
+          "condition": [
+            {
+              "key": "contentHoverEffect",
+              "relation": "==",
+              "value": true
+            },
+            {
+              "key": "selectHoverEffect",
+              "relation": "==",
+              "value": "shadow_radial"
+            }
+          ],
+          "selector": "{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_shadow_radial:before{background: -webkit-radial-gradient(center, ellipse at 50% 150%, {{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%);background: radial-gradient(ellipse at 50% 150%,{{contentHoverColor}} 0%, rgba(60, 60, 60, 0) 70%); }{{PLUS_BLOCK}}.tpgb_cnt_hvr_effect.cnt_hvr_shadow_radial:after {background: -webkit-radial-gradient(50% -50%, ellipse, {{contentHoverColor}} 0%, rgba(0, 0, 0, 0) 80%);background: radial-gradient(ellipse at 50% -50%, {{contentHoverColor}} 0%, rgba(0, 0, 0, 0) 80%);}"
+        }
+      ],
+      "scopy": true
+    }
+}

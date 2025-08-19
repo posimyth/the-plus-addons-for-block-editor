@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-switch-inner",
+	"version": "0.1.0",
+	"title": "Switcher Inner",
+	"category": "tpgb",
+	"description": "Toggle content with switcher button to flip between 2 sections",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"inserter": false,
+		"reusable": false,
+		"html": false,
+        "align": ["wide","full"]
+	},
+    "parent": ["tpgb/tp-switcher"],
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "className": {
+            "type": "string",
+            "default": ""
+        },
+        "index": {
+            "type": "number",
+            "default": ""
+        }
+    }
+}

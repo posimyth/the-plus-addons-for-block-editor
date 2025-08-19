@@ -1,0 +1,91 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-form-checkbox-button",
+	"version": "0.1.0",
+	"title": "Checkbox",
+	"category": "tpgb",
+	"description": "Add checkboxes to enable multiple selections from options.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"anchor": true,
+		"align": ["wide", "full"]
+	},
+	"textdomain": "tpgb",
+	"ancestor": ["tpgb/tp-form-block"],
+	"attributes": {
+		"block_id": {
+			"type": "string",
+			"default": ""
+		},
+		"labelss": {
+			"type": "string",
+			"default": "Checkbox"
+		},
+		"fldOptions": {
+			"type": "array",
+			"default": [
+				{
+					"fldLabel": " Enter Label",
+					"fldValue": " Enter Value"
+				}
+			]
+		},
+		"optPos": {
+			"type": "string",
+			"default": "vertical"
+		},
+		"chkPosition": {
+			"type": "string",
+			"default": "",
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-check-box .check-input{text-align: {{chkPosition}};}"
+				}
+			],
+			"scopy": true
+		},
+		"reqTgl": {
+			"type": "boolean",
+			"default": false
+		},
+		"hlpTxt": {
+			"type": "boolean",
+			"default": false
+		},
+		"desctxt": {
+			"type": "string",
+			"default": "Description"
+		},
+		"descPoss": {
+			"type": "string",
+			"default": "top"
+		},
+		"inpSz": {
+			"type": "object",
+			"default": {
+				"md": "100",
+				"unit": "%"
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_CLIENT_ID}} {margin:0;width: {{inpSz}}; } {{PLUS_CLIENT_ID}}[data-type='tpgb/tp-form-checkbox-button'].tp-form-checkbox-button {width:100%} {{PLUS_CLIENT_ID}}~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;} {{PLUS_CLIENT_ID}}:has(input[type='text'])~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;}",
+					"backend": true
+				},
+				{
+					"selector": "{{PLUS_WRAP}}.tp-form-checkbox-button {width: {{inpSz}}; } {{PLUS_WRAP}}~.nxt-submit-button.nxt-btn-inline{flex: 0; margin-bottom:0px;}",
+					"backend": false
+				}
+			]
+		},
+		"bRadius": {
+			"type": "string",
+			"default": "square"
+		},
+		"error": {
+			"type": "string",
+			"default": "This field is required."
+		}
+	}
+}

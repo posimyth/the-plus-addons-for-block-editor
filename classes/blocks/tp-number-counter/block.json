@@ -1,0 +1,679 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-number-counter",
+	"version": "0.1.0",
+	"title": "Number Counter",
+	"category": "tpgb",
+	"description": "This is used for highlighting important stats and figures on the website.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "style": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "style1Align": {
+            "type": "string",
+            "default": "text-center"
+        },
+        "style2Align": {
+            "type": "string",
+            "default": "text-left"
+        },
+        "title": {
+            "type": "string",
+            "default": "Awards Won"
+        },
+        "linkURL": {
+            "type": "object",
+            "default": {
+                "url": "#",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "ariaLabel": {
+            "type": "string",
+            "default": ""
+        },
+        "numValue": {
+            "type": "string",
+            "default": "999"
+        },
+        "startValue": {
+            "type": "string",
+            "default": "0"
+        },
+        "numGap": {
+            "type": "string",
+            "default": "5"
+        },
+        "timeDelay": {
+            "type": "string",
+            "default": "5"
+        },
+        "numeration" :{
+            "type": "string",
+            "default": "default"
+        },
+        "symbol": {
+            "type": "string",
+            "default": ""
+        },
+        "symbolPos": {
+            "type": "string",
+            "default": "after"
+        },
+        "preSymbol": {
+            "type": "string",
+            "default": ""
+        },
+        "iconType": {
+            "type": "string",
+            "default": "icon"
+        },
+        "iconStore": {
+            "type": "string",
+            "default": "fas fa-award"
+        },
+        "imagestore": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "imageSize": {
+            "type": "string",
+            "default": "thumbnail"
+        },
+        "svgIcon": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "titleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-title"
+                }
+            ],
+            "scopy": true
+        },
+        "titleNmlColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-title{ color: {{titleNmlColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "titleHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner:hover .counter-title{ color: {{titleHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "titleTopSpace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-title{ margin-top: {{titleTopSpace}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "titleBottomSpace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "title",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-title{ margin-bottom: {{titleBottomSpace}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "digitTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .nc-counter-number"
+                }
+            ],
+            "scopy": true
+        },
+        "digitNmlColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .nc-counter-number{ color: {{digitNmlColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "digitHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner:hover .nc-counter-number{ color: {{digitHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "digitTopSpace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .nc-counter-number{ margin-top: {{digitTopSpace}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "symbolTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "symbol",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-symbol-text"
+                }
+            ],
+            "scopy": true
+        },
+        "symbolNmlColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "symbol",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-symbol-text{ color: {{symbolNmlColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "symbolHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "symbol",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner:hover .counter-symbol-text{ color: {{symbolHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconStyle": {
+            "type": "string",
+            "default": "none",
+            "scopy": true
+        },
+        "iconSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "iconType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-icon-inner .counter-icon{ font-size: {{iconSize}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "iconType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-icon-inner { width: {{iconWidth}}; height: {{iconWidth}}; line-height: {{iconWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "icnNmlColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "iconType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-icon-inner .counter-icon{ color: {{icnNmlColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "icnHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "iconType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner:hover .counter-icon{ color: {{icnHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "icnNormalBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": "color",
+                "bgDefaultColor": "",
+                "bgGradient": {
+                    "color1": "#16d03e",
+                    "color2": "#1f91f3",
+                    "type": "linear",
+                    "direction": "90",
+                    "start": 5,
+                    "stop": 80,
+                    "radial": "center",
+                    "clip": false
+                },
+                "overlayBg": "",
+                "overlayBgOpacity": "",
+                "bgGradientOpacity": ""
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "iconType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner .counter-icon-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "icnHoverBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": "color",
+                "bgDefaultColor": "",
+                "bgGradient": {
+                    "color1": "#16d03e",
+                    "color2": "#1f91f3",
+                    "type": "linear",
+                    "direction": "90",
+                    "start": 5,
+                    "stop": 80,
+                    "radial": "center",
+                    "clip": false
+                },
+                "overlayBg": "",
+                "overlayBgOpacity": "",
+                "bgGradientOpacity": ""
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "iconType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .number-counter-inner:hover .counter-icon-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "nmlBColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {"key": "iconType", "relation": "==", "value": "icon"},
+                        {"key": "iconStyle", "relation": "==", "value": ["square","rounded"]}
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .counter-icon-inner{ border-color: {{nmlBColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "hvrBColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {"key": "iconType", "relation": "==", "value": "icon"},
+                        {"key": "iconStyle", "relation": "==", "value": ["square","rounded"]}
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover .counter-icon-inner{ border-color: {{hvrBColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "nmlIcnBRadius": {
+            "type": "object",
+            "default": {
+                "md": {"top": "", "right": "", "bottom": "", "left": ""},
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {"key": "iconType", "relation": "==", "value": "icon"},
+                        {"key": "iconStyle", "relation": "==", "value": ["none","square","rounded"]}
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .counter-icon-inner{border-radius: {{nmlIcnBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "hvrIcnBRadius": {
+            "type": "object",
+            "default": {
+                "md": {"top": "", "right": "", "bottom": "", "left": ""},
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {"key": "iconType", "relation": "==", "value": "icon"},
+                        {"key": "iconStyle", "relation": "==", "value": ["none","square","rounded"]}
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover .counter-icon-inner{border-radius: {{hvrIcnBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "nmlIcnShadow": {
+            "type": "object",
+            "default": {"openShadow": 0, "inset": 0, "horizontal": 0, "vertical": 4, "blur": 8, "spread": 0, "color": "rgba(0,0,0,0.40)"},
+            "style": [
+                {
+                    "condition": [{"key": "iconType", "relation": "==", "value": "icon"}],
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .counter-icon-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "hvrIcnShadow": {
+            "type": "object",
+            "default": {"openShadow": 0, "inset": 0, "horizontal": 0, "vertical": 4, "blur": 8, "spread": 0, "color": "rgba(0,0,0,0.40)"},
+            "style": [
+                {
+                    "condition": [{"key": "iconType", "relation": "==", "value": "icon"}],
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover .counter-icon-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "imgWidth": {
+            "type": "object",
+            "default": {"md": "", "unit": "px"},
+            "style": [
+                {
+                    "condition": [{"key": "iconType", "relation": "==", "value": "img"}],
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .counter-image-inner { max-width: {{imgWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "bgNmlBorder": {
+            "type": "object",
+            "default": {"openBorder": 0, "type": "", "color": "", "width": {"md": {"top": "1", "left": "1", "bottom": "1", "right": "1"}, "sm": {}, "xs": {}, "unit": "px"}},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "bgHvrBorder": {
+            "type": "object",
+            "default": {"openBorder": 0, "type": "", "color": "", "width": {"md": {"top": "1", "left": "1", "bottom": "1", "right": "1"}, "sm": {}, "xs": {}, "unit": "px"}},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "bgNmlBRadius": {
+            "type": "object",
+            "default": {"md": {"top": "", "right": "", "bottom": "", "left": ""}, "unit": "px"},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner{border-radius: {{bgNmlBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "bgHvrBRadius": {
+            "type": "object",
+            "default": {"md": {"top": "", "right": "", "bottom": "", "left": ""}, "unit": "px"},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover {border-radius: {{bgHvrBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "normalBG": {
+            "type": "object",
+            "default": {"openBg": 0, "bgType": "color", "bgDefaultColor": "", "bgGradient": {"color1": "#16d03e", "color2": "#1f91f3", "type": "linear", "direction": "90", "start": 5, "stop": 80, "radial": "center", "clip": false}, "overlayBg": "", "overlayBgOpacity": "", "bgGradientOpacity": ""},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "hoverBG": {
+            "type": "object",
+            "default": {"openBg": 0, "bgType": "color", "bgDefaultColor": "", "bgGradient": {"color1": "#16d03e", "color2": "#1f91f3", "type": "linear", "direction": "90", "start": 5, "stop": 80, "radial": "center", "clip": false}, "overlayBg": "", "overlayBgOpacity": "", "bgGradientOpacity": ""},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "bgNmlShadow": {
+            "type": "object",
+            "default": {"openShadow": 0, "inset": 0, "horizontal": 0, "vertical": 4, "blur": 8, "spread": 0, "color": "rgba(0,0,0,0.40)"},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "bgHvrShadow": {
+            "type": "object",
+            "default": {"openShadow": 0, "inset": 0, "horizontal": 0, "vertical": 4, "blur": 8, "spread": 0, "color": "rgba(0,0,0,0.40)"},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "bgPadding": {
+            "type": "object",
+            "default": {"md": {"top": "", "right": "", "bottom": "", "left": ""}, "unit": "px"},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-number-counter .number-counter-inner{padding: {{bgPadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "verticalCenter": {
+            "type": "boolean",
+            "default": false,
+            "scopy": true
+        },
+        "svgDraw": {
+            "type": "string",
+            "default": "delayed",
+            "scopy": true
+        },
+        "svgDura": {
+            "type": "string",
+            "default": "90",
+            "scopy": true
+        },
+        "svgmaxWidth": {
+            "type": "object",
+            "default": {"md": "", "unit": "px"},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .counter-wrap-content .tpgb-draw-svg{ max-width: {{svgmaxWidth}}; max-height: {{svgmaxWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "svgstroColor": {
+            "type": "string",
+            "default": "#000000",
+            "scopy": true
+        },
+        "svgfillColor": {
+            "type": "string",
+            "default": "",
+            "scopy": true
+        },
+        "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

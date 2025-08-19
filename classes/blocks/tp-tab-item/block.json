@@ -1,0 +1,72 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-tab-item",
+	"version": "0.1.0",
+	"title": "Tab Tours Inner",
+	"category": "tpgb",
+	"description": "Show content under tabbed button in horizontal or vertical direction",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"inserter": false,
+		"reusable": false,
+		"html": false,
+        "align": ["wide","full"]
+	},
+    "parent": ["tpgb/tp-tabs-tours"],
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "className": {
+            "type": "string",
+            "default": ""
+        },
+        "tabtoIndex": {
+            "type": "number",
+            "default": ""
+        },
+        "tabinTitle": {
+            "type": "string",
+            "default": ""
+        },
+        "uniqueKey": {
+            "type": "string",
+            "default": ""
+        },
+        "active": {
+            "type": "string",
+            "default": ""
+        },
+        "navAlign" : {
+            "type": "string",
+            "default": "text-center",
+            "scopy": true
+        },
+        "innerIcon" : {
+            "type": "boolean",
+            "default": false
+        },
+        "iconFonts": {
+            "type": "string",
+            "default": "font_awesome"
+        },
+        "iconImage": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "innericonName": {
+            "type": "string",
+            "default": "fas fa-home"
+        },
+        "iconImageSize" : {
+            "type": "string",
+            "default": "full"
+        }
+    }
+}

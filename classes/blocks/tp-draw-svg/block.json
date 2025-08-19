@@ -1,0 +1,87 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-draw-svg",
+	"version": "0.1.0",
+	"title": "Draw SVG",
+	"category": "tpgb",
+	"description": "Display vector image format. Used to add icons, illustration, lottie files and animated graphics.",
+	"supports": { "align":["wide","full"]},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+      "block_id": {
+        "type": "string",
+        "default": ""
+      },
+      "selectSvg": {
+        "type": "string",
+        "default": "preBuild"
+      },
+      "svgList": {
+        "type": "string",
+        "default": "app"
+      },
+      "customSVG": {
+        "type": "object",
+        "default": {
+          "url": ""
+        }
+      },
+      "alignment": {
+        "type": "string",
+        "default": "center",
+        "style": [
+          {
+            "selector": "{{PLUS_WRAP}}{ text-align: {{alignment}}; }"
+          }
+        ],
+        "scopy": true
+      },
+      "maxWidth": {
+        "type": "object",
+        "default": {
+          "md": "",
+          "unit": "px"
+        },
+        "style": [
+          {
+            "selector": "{{PLUS_WRAP}}.tpgb-draw-svg .svg-inner-block{ max-width: {{maxWidth}}; max-height: {{maxWidth}}; }"
+          }
+        ],
+        "scopy": true
+      },
+      "strokeColor": {
+        "type": "string",
+        "default": "#8072fc",
+        "scopy": true
+      },
+      "fillToggle": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+      },
+      "fillColor": {
+        "type": "string",
+        "default": "#000000",
+        "scopy": true
+      },
+      "drawType": {
+        "type": "string",
+        "default": "delayed",
+        "scopy": true
+      },
+      "duration": {
+        "type": "string",
+        "default": "90",
+        "scopy": true
+      },
+      "hoverDraw": {
+        "type": "string",
+        "default": "onScroll",
+        "scopy": true
+      },
+      "showBlockContent" :{
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

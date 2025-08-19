@@ -1,0 +1,144 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "tpgb/tp-accordion-inner",
+	"version": "0.1.0",
+	"title": "Accordion Inner",
+	"category": "tpgb",
+	"description": "Display collapsible long form content in FAQ style on your website.",
+	"example": {
+		"attributes": {}
+	},
+	"supports": {
+		"inserter": false,
+		"reusable": false,
+		"html": false,
+        "align": ["wide","full"]
+	},
+    "parent": ["tpgb/tp-accordion"],
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "className": {
+            "type": "string",
+            "default": ""
+        },
+        "uniqueKey": {
+            "type": "string",
+            "default": ""
+        },
+        "accordianList": {
+            "type": "array",
+            "repeaterField": [
+                {
+                    "title": {
+                        "type": "string",
+                        "default": "Accordion"
+                    },
+                    "desc": {
+                        "type": "string",
+                        "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    },
+                    "innerIcon": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "UniqueId": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "iconFonts": {
+                        "type": "string",
+                        "default": "font_awesome"
+                    },
+                    "innericonName": {
+                        "type": "string",
+                        "default": "fas fa-home"
+                    },
+                    "contentType": {
+                        "type": "string",
+                        "default": "content"
+                    },
+                    "stepImage": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "default": [
+                {
+                    "_key": "0",
+                    "title": "Accordion 1",
+                    "contentType": "content",
+                    "desc": "This is just dummy content. Put your relevant content over here. We want to remind you, smile and passion are contagious, be a carrier.",
+                    "innerIcon": false,
+                    "iconFonts": "font_awesome",
+                    "innericonName": "fas fa-home"
+                },
+                {
+                    "_key": "1",
+                    "title": "Accordion 2",
+                    "contentType": "content",
+                    "desc": "Enter your relevant content over here. This is just dummy content.  We want to remind you, smile and passion are contagious, be a carrier.",
+                    "innerIcon": false,
+                    "iconFonts": "font_awesome",
+                    "innericonName": "fas fa-home"
+                }
+            ]
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "index": {
+            "type": "number",
+            "default": ""
+        },
+        "toggleIcon": {
+            "type": "boolean",
+            "default": false
+        },
+        "iconFont": {
+            "type": "string",
+            "default": "font_awesome"
+        },
+        "iconName": {
+            "type": "string",
+            "default": "fas fa-plus "
+        },
+        "ActiconName": {
+            "type": "string",
+            "default": "fas fa-minus"
+        },
+        "titleTag": {
+            "type": "string",
+            "default": ""
+        },
+        "titleAlign": {
+            "type": "string",
+            "default": "text-left",
+            "scopy": true
+        },
+        "innerIcon": {
+            "type": "boolean",
+            "default": false
+        },
+        "iniconFonts": {
+            "type": "string",
+            "default": "font_awesome"
+        },
+        "innericonName": {
+            "type": "string",
+            "default": "fas fa-home"
+        },
+        "iconAlign": {
+            "type": "string",
+            "default": "end"
+        },
+        "hrefLink": {
+            "type": "string",
+            "default": ""
+        }
+    }
+}
