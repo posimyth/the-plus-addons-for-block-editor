@@ -124,7 +124,7 @@ class nxt_Wdk_Widget_Api {
 			);
 
 		}
-		    $error_message = printf( 'Server error: %d', esc_html( $status_code ) );
+		    $error_message = sprintf( esc_html__( 'Server error: %d', 'the-plus-addons-for-block-editor' ), esc_html( $status_code ) );
 
 		if ( isset( $error_data->message ) ) {
 			$error_message .= ' (' . $error_data->message . ')';
