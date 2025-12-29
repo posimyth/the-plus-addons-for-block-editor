@@ -105,7 +105,7 @@ class nxt_Wdk_Widget_Api {
 			$error_message = $response->get_error_message();
 
 			/* Translators: %s is a placeholder for the error message */
-			$error_message = printf( esc_html__( 'API request error: %s', 'the-plus-addons-for-block-editor' ), esc_html( $error_message ) );
+			$error_message = sprintf( esc_html__( 'API request error: %s', 'the-plus-addons-for-block-editor' ), esc_html( $error_message ) );
 
 			return array(
 				'massage' => $error_message,
@@ -124,7 +124,7 @@ class nxt_Wdk_Widget_Api {
 			);
 
 		}
-		    $error_message = printf( 'Server error: %d', esc_html( $status_code ) );
+		    $error_message = sprintf( esc_html__( 'Server error: %d', 'the-plus-addons-for-block-editor' ), esc_html( $status_code ) );
 
 		if ( isset( $error_data->message ) ) {
 			$error_message .= ' (' . $error_data->message . ')';
