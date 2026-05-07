@@ -1,13 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <wpml-config>
-	<gutenberg-blocks>
-        <gutenberg-block type="tpgb/tp-heading" translate="1">
-			<xpath>//*[self::h1 or self::h2 or self::h3 or self::h4 or self::h5 or self::h6][contains(@class, "tp-core-heading")]</xpath>
-            <xpath>//div[contains(@class, "tp-core-heading")]</xpath>
-			<key name="tLink" />
-		</gutenberg-block>
-        <gutenberg-block type="tpgb/tp-image" translate="1">
-            <xpath>//figcaption[@class="tpgb-image-caption"]</xpath>
-            <xpath>//figure/figcaption</xpath>
+    <gutenberg-blocks>
+        <gutenberg-block type="tpgb/tp-accordion" translate="1"> 
+            <key name="accordianList">
+                <key name="*">
+                    <key name="title" />
+                    <key name="desc" />
+                </key>
+            </key>
+            <key name="howTotitle" />
+            <key name="howTodesc" />
+            <key name="howTostep" />
+            <xpath label="Accordion Title">//*[contains(@class,"accordion-title")]</xpath>
+            <xpath label="Accordion Content">//div[contains(@class,"tpgb-content-editor")]</xpath>
         </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-accordion-inner" translate="1"> 
+            <key name="title" />
+            <xpath label="Accordion Inner Title">//*[contains(@class,"accordion-title")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-blockquote" translate="1"> 
+            <key name="content" />
+            <xpath label="Quote Text">//blockquote[contains(@class,"tpgb-quote-text")]//div[@class="quote-text-wrap"]</xpath>
+            <xpath label="Quote Author">//blockquote[contains(@class,"tpgb-quote-text")]//div[@class="tpgb-quote-author"]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-breadcrumbs" translate="1"> 
+            <key name="homeTitle" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-button" translate="1"> 
+            <key name="btnText" />
+            <key name="hoverText" />
+            <key name="btnTagText" />
+            <key name="ariaLabel" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-button-core" translate="1"> 
+            <key name="btxt" />
+            <xpath label="Button Core Text">//span[contains(@class,"tpgb-btn-txt")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-code-highlighter" translate="1"> 
+            <key name="copyText" />
+            <key name="copiedText" />
+            <key name="copyErrorText" />
+            <key name="dwnldBtnText" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-countdown" translate="1"> 
+            <key name="daysText" />
+            <key name="hoursText" />
+            <key name="minutesText" />
+            <key name="secondsText" />
+            <key name="expiryMsg" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-dark-mode" translate="1"> 
+            <key name="beforeText" />
+            <key name="afterText" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-data-table" translate="1"> 
+            <key name="TableHeader">
+                <key name="*">
+                    <key name="thtext" />
+                </key>
+            </key>
+            <key name="Tablebody">
+                <key name="*">
+                    <key name="trtext" />
+                    <key name="Trbtntext" />
+                    <key name="TrHeading" />
+                    <key name="Trbtntext" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-flipbox" translate="1"> 
+            <key name="title" />
+            <key name="description" />
+            <key name="btnText" />
+            <xpath label="Flipbox Front Title">//*[@class="service-title tpgb-trans-linear"]</xpath>
+            <xpath label="Flipbox Back Description">//div[contains(@class,"service-desc")]</xpath>
+            <xpath label="Flipbox Back Button Text">//div[contains(@class,"btn-text")]</xpath>
+            <key name="flipcarousel">
+                <key name="*">
+                    <key name="title" />
+                    <key name="description" />
+                    <key name="btnText" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-heading" translate="1"> 
+            <key name="title" />
+            <key name="exTitle" />
+            <key name="tLink" />
+            <xpath label="Heading Text">//*[self::h1 or self::h2 or self::h3 or self::h4 or self::h5 or self::h6][contains(@class,"tp-core-heading")]</xpath>
+            <xpath label="Heading Div">//div[contains(@class,"tp-core-heading")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-heading-title" translate="1"> 
+            <key name="Title" />
+            <key name="subTitle" />
+            <key name="extraTitle" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-hovercard" translate="1"> 
+            <key name="cardList">
+                <key name="*">
+                    <key name="cntText" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-image" translate="1"> 
+            <key name="ctmCap" />
+            <xpath label="Image Caption">//figcaption[contains(@class,"tpgb-image-caption")]</xpath>
+            <xpath label="Figure Caption">//figure/figcaption</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-infobox" translate="1"> 
+            <key name="Title" />
+            <key name="Description" />
+            <key name="pinText" />
+            <key name="extBtnText" />
+            <key name="iboxcarousel">
+                <key name="*">
+                    <key name="Title" />
+                    <key name="Description" />
+                    <key name="btnText" />
+                    <key name="pinText" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-interactive-circle-info" translate="1"> 
+            <key name="intCircle">
+                <key name="*">
+                    <key name="conTitle" />
+                    <key name="conDesc" />
+                    <key name="btnText" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-messagebox" translate="1"> 
+            <key name="Title" />
+            <key name="descText" />
+            <xpath label="Message Title">//div[contains(@class,"msg-title")]</xpath>
+            <xpath label="Message Desc">//div[contains(@class,"msg-desc")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-navigation-builder" translate="1"> 
+            <key name="navTitle" />
+            <key name="ItemMenu">
+                <key name="*">
+                    <key name="labeltxt" />
+                    <key name="navDesc" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-number-counter" translate="1"> 
+            <key name="title" />
+            <key name="symbol" />
+            <key name="preSymbol" />
+            <key name="ariaLabel" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-post-author" translate="1"> 
+            <key name="titleLabel" />
+            <key name="roleLabel" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-post-comment" translate="1"> 
+            <key name="commentTitle" />
+            <key name="commentFormTitle" />
+            <key name="cancelReplyText" />
+            <key name="submitBtnText" />
+            <key name="loggedInAsText" />
+            <key name="logOutText" />
+            <key name="cancelReplyText" />
+            <key name="commentField" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-pricing-list" translate="1"> 
+            <key name="title" />
+            <key name="tagField" />
+            <key name="description" />
+            <key name="price" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-pricing-table" translate="1"> 
+            <key name="title" />
+            <key name="subTitle" />
+            <key name="preText" />
+            <key name="postText" />
+            <key name="priceValue" />
+            <key name="prevPreText" />
+             <key name="prevPriceValue" />
+            <key name="prevPostText" />
+            <key name="ctaText" />
+            <key name="wyContent" />
+            <key name="readMoreText" />
+            <key name="readLessText" />
+            <key name="ribbonText" />
+            <key name="extBtnText" />
+            <xpath label="Pricing CTA Button">//div[contains(@class,"btn-text")]</xpath>
+            <key name="stylishList">
+                <key name="*">
+                    <key name="listDesc" />
+                    <key name="tooltipText" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-pro-paragraph" translate="1"> 
+            <key name="title" />
+            <key name="exTitle" />
+            <key name="content" />
+            <xpath label="Pro Paragraph Heading">//*[contains(@class,"pro-heading-inner")]</xpath>
+            <xpath label="Pro Paragraph Content">//div[contains(@class,"pro-paragraph-inner")]//*[self::p or self::h1 or self::h2 or self::h3 or self::h4 or self::h5 or self::h6 or self::div or self::span or self::ul]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-progress-bar" translate="1"> 
+            <key name="Title" />
+            <key name="subTitle" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-progress-tracker" translate="1"> 
+            <key name="pinPointRep">
+                <key name="*">
+                    <key name="Title" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-search-bar" translate="1"> 
+            <key name="searchLabel" />
+            <key name="placeholder" />
+            <key name="searchBtn" />
+            <key name="suggestText" />
+            <key name="cNextText" />
+            <key name="cPrevText" />
+            <key name="loadbtnText" />
+            <key name="loadingtxt" />
+            <key name="allposttext" />
+            <key name="counterText" />
+            <key name="postNFmessage" />
+            <key name="searchField">
+                <key name="*">
+                    <key name="fieldPlaceH" />
+                </key>
+            </key>
+
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-social-icons" translate="1"> 
+            <key name="socialIcon">
+                <key name="*">
+                    <key name="title" />
+                    <key name="tooltipText" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-stylist-list" translate="1"> 
+            <key name="readMoreText" />
+            <key name="readLessText" />
+            <key name="listsRepeater">
+                <key name="*">
+                    <key name="description" />
+                    <key name="hintText" />
+                    <key name="tooltipText" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-switcher" translate="1"> 
+            <key name="title1" />
+            <key name="desc1" />
+            <key name="title2" />
+            <key name="desc2" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-tab-item" translate="1">
+            <key name="tabinTitle" />
+        </gutenberg-block>
+       <gutenberg-block type="tpgb/tp-tabs-tours" translate="1"> 
+        <key name="tablistRepeater">
+                <key name="*">
+                    <key name="tabTitle" />
+                    <key name="tabDescription" />
+                </key>
+            </key>
+            <xpath label="Tab Nav Title">//div[contains(@class,"tpgb-tab-header")]//span</xpath>
+            <xpath label="Tab Mobile Title">//div[contains(@class,"tab-mobile-title")]//span</xpath>
+            <xpath label="Tab Description">//div[contains(@class,"tpgb-content-editor")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-team-listing" translate="1"> 
+            <key name="TeamMemberR">
+                <key name="*">
+                    <key name="TName" />
+                    <key name="TDesig" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-testimonials" translate="1"> 
+            <key name="redmorTxt" />
+            <key name="redlesTxt" />
+            <key name="ItemRepeater">
+                <key name="*">
+                    <key name="testiTitle" />
+                    <key name="designation" />
+                    <key name="content" />
+                    <key name="authorTitle" />
+                </key>
+            </key>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-video" translate="1"> 
+            <key name="VideoTitle" />
+            <key name="VideoDesc" />
+            <key name="iframeTitle" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-form-block" translate="1">
+            <key name="autoRespMsg" />
+            <key name="failMsg" />
+            <key name="valErrMsg" />
+            <key name="failMsg2" />
+            <key name="valErrMsg2" />
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-form-name-field" translate="1">
+            <key name="labelss" />
+            <key name="placeholder" />
+            <key name="error" />
+            <key name="desctxt" />
+            <xpath label="Name Label">//label[contains(@class,"nxt-name-label")]</xpath>
+            <xpath label="Name Placeholder">//input[contains(@class,"nxt-name-richtext")]/@placeholder</xpath>
+            <xpath label="Name Error">//span[contains(@class,"nxt-error-show")]/@data-error-message</xpath>
+            <xpath label="Name Description">//span[contains(@class,"nxt-help-text")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-form-email-field" translate="1">
+            <key name="labelss" />
+            <key name="placeholder" />
+            <key name="error" />
+            <key name="desctxt" />
+            <xpath label="Email Label">//label[contains(@class,"nxt-email-label")]</xpath>
+            <xpath label="Email Placeholder">//input[contains(@class,"nxt-email-richtext")]/@placeholder</xpath>
+            <xpath label="Email Error">//span[contains(@class,"nxt-error-email")]/@data-error-message</xpath>
+            <xpath label="Email Description">//span[contains(@class,"nxt-help-text")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-form-message-field" translate="1">
+            <key name="labelss" />
+            <key name="placeholder" />
+            <key name="error" />
+            <key name="desctxt" />
+            <xpath label="Message Label">//label[contains(@class,"nxt-message-label")]</xpath>
+            <xpath label="Message Placeholder">//textarea[contains(@class,"nxt-message-richtext")]/@placeholder</xpath>
+            <xpath label="Message Error">//span[contains(@class,"nxt-message-error")]/@data-error-message</xpath>
+            <xpath label="Message Description">//span[contains(@class,"nxt-help-text")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-form-number-field" translate="1">
+            <key name="labelss" />
+            <key name="placeholder" />
+            <key name="error" />
+            <key name="desctxt" />
+            <xpath label="Number Label">//label[contains(@class,"nxt-number-label")]</xpath>
+            <xpath label="Number Placeholder">//input[contains(@class,"nxt-number-richtext")]/@placeholder</xpath>
+            <xpath label="Number Error">//span[contains(@class,"nxt-error-number")]/@data-error-message</xpath>
+            <xpath label="Number Description">//span[contains(@class,"nxt-help-text")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-form-radio-button" translate="1">
+            <key name="labelss" />
+            <key name="error" />
+            <key name="desctxt" />
+            <key name="fldOptions[].fldLabel" />
+            <key name="fldOptions[].fldValue" />
+            <xpath label="Radio Title Label">//label[contains(@class,"nxt-radio-title-label")]</xpath>
+            <xpath label="Radio Help Text">//span[contains(@class,"nxt-help-text")]</xpath>
+            <xpath label="Radio Option Label">//label[contains(@class,"nxt-radio-label")]</xpath>
+            <xpath label="Radio Option Value">//input[contains(@class,"nxt-radio-richtext")]/@value</xpath>
+            <xpath label="Radio Error">//span[contains(@class,"nxt-error-radiobox")]/@data-error-message</xpath>
+            <xpath label="Radio Description">//span[contains(@class,"nxt-desc-text")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-form-checkbox-button" translate="1">
+            <key name="labelss" />
+            <key name="error" />
+            <key name="desctxt" />
+            <key name="fldOptions[].fldLabel" />
+            <key name="fldOptions[].fldValue" />
+            <xpath label="Checkbox Title Label">//label[contains(@class,"nxt-check-title-label")]</xpath>
+            <xpath label="Checkbox Help Text">//span[contains(@class,"nxt-help-text")]</xpath>
+            <xpath label="Checkbox Option Label">//label[contains(@class,"nxt-check-label")]</xpath>
+            <xpath label="Checkbox Option Value">//input[contains(@class,"nxt-check-richtext")]/@value</xpath>
+            <xpath label="Checkbox Error">//span[contains(@class,"nxt-error-checkbox")]/@data-error-message</xpath>
+            <xpath label="Checkbox Description">//span[contains(@class,"nxt-desc-text")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-form-option-field" translate="1">
+            <key name="labelss" />
+            <key name="error" />
+            <key name="desctxt" />
+            <key name="fldOptions[].fldLabel" />
+            <key name="fldOptions[].fldValue" />
+            <xpath label="Select Label">//label[contains(@class,"nxt-option-label")]</xpath>
+            <xpath label="Select Option Text">//select[contains(@class,"nxt-option-field")]/option</xpath>
+            <xpath label="Select Error">//span[contains(@class,"nxt-error-select")]/@data-error-message</xpath>
+            <xpath label="Select Description">//span[contains(@class,"nxt-help-text")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-form-submit-button" translate="1">
+            <key name="labelss" />
+            <xpath label="Submit Button Text">//span[contains(@class,"nxt-btn-text")]</xpath>
+        </gutenberg-block>
+        <gutenberg-block type="tpgb/tp-container" translate="0" />
+        <gutenberg-block type="tpgb/tp-container-inner" translate="0" />
+        <gutenberg-block type="tpgb/tp-empty-space" translate="0" />
+        <gutenberg-block type="tpgb/tp-draw-svg" translate="0" />
+        <gutenberg-block type="tpgb/tp-google-map" translate="0" />
+        <gutenberg-block type="tpgb/tp-site-logo" translate="0" />
+        <gutenberg-block type="tpgb/tp-smooth-scroll" translate="0" />
+        <gutenberg-block type="tpgb/tp-post-listing" translate="0" />
+        <gutenberg-block type="tpgb/tp-post-title" translate="0" />
+        <gutenberg-block type="tpgb/tp-post-meta" translate="0" />
+        <gutenberg-block type="tpgb/tp-post-image" translate="0" />
+        <gutenberg-block type="tpgb/tp-post-content" translate="0" />
+        <gutenberg-block type="tpgb/tp-social-feed" translate="0" />
+        <gutenberg-block type="tpgb/tp-social-reviews" translate="0" />
+        <gutenberg-block type="tpgb/tp-social-embed" translate="0" />
+        <gutenberg-block type="tpgb/tp-creative-image" translate="0" />
+        <gutenberg-block type="tpgb/tp-external-form-styler" translate="0" />
+        <gutenberg-block type="tpgb/tp-icon-box" translate="0" />
+        <gutenberg-block type="tpgb/tp-switch-inner" translate="0" />
     </gutenberg-blocks>
 </wpml-config>

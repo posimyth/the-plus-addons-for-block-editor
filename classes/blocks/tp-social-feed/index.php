@@ -1,2220 +1,524 @@
 <?php
 /**
  * Block : TP Social Feed
+ *
  * @since 1.3.0.1
+ * @package ThePluginAddonsForBlockEditor
  */
+
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found
+// phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
+
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Tpgb tp social feed.
+ */
 function tpgb_tp_social_feed() {
-	$globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
-	$globalpositioningOption = Tpgb_Blocks_Global_Options::load_positioning_options();
-	$globalPlusExtrasOption = Tpgb_Blocks_Global_Options::load_plusextras_options();
-	$plusButton_options = Tpgb_Blocks_Global_Options::load_plusButton_options();
 
-	$uidId = uniqid();
-	$uidId ='F'.substr($uidId,-4);
-	$attributesOptions = [
-		'block_id' => [
-			'type' => 'string',
-			'default' => '',
-		],
-		'feed_id' => [
-            'type' => 'string',
-            'default' => '',
-        ],
-		'layout' => [
-			'type'=> 'string',
-			'default'=> 'grid',
-		],
-		'style' => [
-			'type'=> 'string',
-			'default'=> 'style-1',
-		],		
-
-		'AllReapeter' => [
-			'type'=> 'array',
-			'repeaterField' => [
-				(object) [
-					'selectFeed' => [
-						'type' => 'string',
-						'default' =>'Facebook',	
-					],
-					'FbTokenGen' => [
-						'type' => 'string',
-						'default' => 'manually',	
-					],
-					'SFFbAppId' => [
-						'type' => 'string',
-						'default' =>'',	
-					],
-					'SFFbAppSecretId' => [
-						'type' => 'string',
-						'default' =>'',	
-					],
-					'RAToken' => [
-						'type' => 'string',
-						'default' =>'',	
-					],
-					'ProfileType' => [
-						'type' => 'string',
-						'default' =>'post',	
-					],
-					'Pageid' => [
-						'type' => 'string',
-						'default' =>'',	
-					],
-					'content' => [
-						'type' => 'string',
-						'default' => '[]',
-					],
-					'fbAlbum' => [
-						'type' => 'boolean',
-						'default' => false,	
-					],
-					'AlbumMaxR' => [
-						'type' => 'string',
-						'default' => 8,	
-					],
-
-					'MaxR' => [
-						'type' => 'string',
-						'default' => 6,	
-					],
-				],
-			],
-			'default' => [ 
-				['_key'=> $uidId, 'selectFeed' => 'Facebook', 'FbTokenGen' => 'manually', 'ProfileType' => 'post', 'MaxR' => 6 , 'content' => '[]'],
-			],
-		],
-
-		'columns' => [
-			'type' => 'object',
-			'default' => [ 'md' => 4,'sm' => 4,'xs' => 6 ],
-		],
-		'columnSpace' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .post-loop-inner .grid-item{padding:{{columnSpace}};}',
-				],
-			],
-			'scopy' => true,
-		],
-
-		'TotalPost' => [
-			'type'=> 'string',
-			'default'=> 1000,
-		],
-		'BackendOff' => [
-			'type' => 'boolean',
-			'default' => true,	
-		],
-		'DescripBTM' => [
-			'type' => 'boolean',
-			'default' => false,	
-		],
-		'MediaFilter' => [
-			'type' => 'string',
-			'default' => 'default',	
-		],
-		'ShowTitle' => [
-			'type' => 'boolean',
-			'default' => false,
-		],
-		'ShowFeedId' => [
-			'type' => 'boolean',
-			'default' => false,
-		],
-		'FeedId' => [
-			'type' => 'string',
-			'default' => "",	
-		],
-		'showFooterIn' => [
-			'type' => 'boolean',
-			'default' => false,
-		],
-
-		'TimeFrq' => [
-			'type' => 'string',
-			'default' => '3600',
-		],
-		'TextLimit' => [
-			'type' => 'boolean',
-			'default' => true,
-		],
-		'TextType' => [
-			'type' => 'string',
-			'default' => 'char',	
-		],
-		'TextMore' => [
-			'type' => 'string',
-			'default' => 'Show More',	
-		],
-		'TextCount' => [
-			'type' => 'string',
-			'default' => 100,	
-		],
-		'TextDots' => [
-			'type' => 'boolean',
-			'default' => true,
-		],
-		'OnPopup' => [
-			'type'=> 'string',
-			'default'=> 'Donothing',
-		],
-		'CURLOPT_SSL_VERIFYPEER' => [
-			'type' => 'boolean',
-			'default' => true,	
-		],
-		
-		'perf_manage' => [
-			'type' => 'boolean',
-			'default' => false,	
-		],
-		
-		'CategoryWF' => [
-			'type' => 'boolean',
-			'default' => False,	
-		],
-
-		// load more
-		'postLodop' => [
-			'type' => 'string',
-			'default' => 'none',
-		],
-		
-		'FbMsgTp' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-title',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbDesTp' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-message',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbNameTp' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-username a',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbTimeTp' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-time a',
-				],
-			],
-			'scopy' => true,
-		],
-		'fbIconSize' => [
-			'type' => 'object',
-			'default' => [ 
-				'md' => '',
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'selector' => '{{PLUS_WRAP}} .feed-Facebook .social-logo-fb {font-size:{{fbIconSize}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'fbIconColor' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'selector' => '{{PLUS_WRAP}} .feed-Facebook .social-logo-fb {color:{{fbIconColor}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		
-		'FbNBgCr' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbNBcr' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBorder' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbNBRcr' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],	
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed{border-radius:{{FbNBRcr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbNBs' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openShadow' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbHBgCr' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbHBcr' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBorder' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbHBRcr' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed{border-radius:{{FbHBRcr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbHBs' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openShadow' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed',
-				],
-			],
-			'scopy' => true,
-		],
-
-		'FbPRs' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-logo{border-radius:{{FbPRs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-
-		'FbNNameC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-username a{color:{{FbNNameC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbNTimeC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-time a{color:{{FbNTimeC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbNIconCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-footer{color:{{FbNIconCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbNTitleC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-title{color:{{FbNTitleC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbNDesC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-message{color:{{FbNDesC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbHNameC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-sf-username a{color:{{FbHNameC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbHTimeC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-sf-time a{color:{{FbHTimeC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbHIconCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-sf-footer{color:{{FbHIconCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbHTitleC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-title{color:{{FbHTitleC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FbHDesC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-message{color:{{FbHDesC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		
-		'AllMsgTp' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-title',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllDesTp' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-message',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNameTp' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-username a',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllTimeTp' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-time a',
-				],
-			],
-			'scopy' => true,
-		],
-		'allIconSize' => [
-			'type' => 'object',
-			'default' => [ 
-				'md' => '',
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'selector' => '{{PLUS_WRAP}} .social-logo-fb, {{PLUS_WRAP}} .social-logo-ig, {{PLUS_WRAP}} .social-logo-vm, {{PLUS_WRAP}} .social-logo-yt, {{PLUS_WRAP}} .social-logo-tw{font-size:{{allIconSize}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'allIconColor' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'selector' => '{{PLUS_WRAP}} .social-logo-fb, {{PLUS_WRAP}} .social-logo-ig, {{PLUS_WRAP}} .social-logo-vm, {{PLUS_WRAP}} .social-logo-yt, {{PLUS_WRAP}} .social-logo-tw{color:{{allIconColor}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		
-		'AllNBgCr' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNBcr' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBorder' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNBrs' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed{border-radius:{{AllNBrs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNBs' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openShadow' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHBgCr' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHBcr' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBorder' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHBrs' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover{border-radius:{{AllHBrs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHboxpadd' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover{padding:{{AllHboxpadd}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHBs' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openShadow' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover',
-				],
-			],
-			'scopy' => true,
-		],
-
-		'AllPRs' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed img.tpgb-sf-logo{border-radius:{{AllPRs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllBoxSh' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openShadow' => 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed img.tpgb-sf-logo',
-				],
-			],
-			'scopy' => true,
-		],
-
-		'AllNNameC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-username a{color:{{AllNNameC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNTimeC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-time a{color:{{AllNTimeC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNIconCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-footer,{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-footer a{color:{{AllNIconCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNTitleC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-title{color:{{AllNTitleC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNDesC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-message{color:{{AllNDesC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHsmC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .grid-item a.readbtn{color:{{AllHsmC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-
-		'AllNurlC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-feedurl{color:{{AllNurlC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNMtC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-mantion{color:{{AllNMtC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllNHtC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-hashtag{color:{{AllNHtC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHNameC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-sf-username a{color:{{AllHNameC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHTimeC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-sf-time a{color:{{AllHTimeC}};}',
-				],
-			],
-		],
-		'AllHIconCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-sf-footer,{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-sf-footer a{color:{{AllHIconCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHurlC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message:hover .tpgb-feedurl{color:{{AllHurlC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHMtC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message:hover .tpgb-mantion{color:{{AllHMtC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHHtC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message:hover .tpgb-hashtag{color:{{AllHHtC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-
-		'AllHTitleC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-title{color:{{AllHTitleC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllHDesC' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-message{color:{{AllHDesC}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllImg' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => "",
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed img.tpgb-post-thumb{padding:{{AllImg}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllTitle' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-title{padding:{{AllTitle}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllTitleBR' => [
-			'type' => 'object',
-			'default' => (object) ['openBorder' => 0],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-title',
-				],
-			],
-			'scopy' => true,
-		],
-		'Alldescription' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-message{padding:{{Alldescription}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllDesBR' => [
-			'type' => 'object',
-			'default' => (object) ['openBorder' => 0],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-message',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllProfile' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-header{padding:{{AllProfile}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllProfBR' => [
-			'type' => 'object',
-			'default' => (object) ['openBorder' => 0],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-header',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllFooter' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-footer{padding:{{AllFooter}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'AllbtmBR' => [
-			'type' => 'object',
-			'default' => (object) ['openBorder' => 0],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-footer',
-				],
-			],
-			'scopy' => true,
-		],
-		'Allboxpadd' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed{padding:{{Allboxpadd}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		
-		'SmTxtTypo' => [
-			'type'=> 'object',
-			'default'=> (object) ['openTypography' => 0],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message a.readbtn',
-				],
-			],
-			'scopy' => true,
-		],
-
-		'SmTxtNCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message a.readbtn{color:{{SmTxtNCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'SlTxtNCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message.show-less a.readbtn{color:{{SlTxtNCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'DotTxtNCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message .sf-dots{color:{{DotTxtNCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'SmTxtHCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message a.readbtn:hover{color:{{SmTxtHCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'SlTxtHCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message.show-less a.readbtn:hover{color:{{SlTxtHCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'DotTxtHCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => ['style-1','style-2','style-3','style-4']] ],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message:hover .sf-dots{color:{{DotTxtHCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		
-		'ScrollOn' => [
-			'type' => 'boolean',
-			'default' => false,	
-		],
-		'ScrollHgt' => [
-			'type' => 'string',
-			'default' => '',
-		],
-		'ScrollBg' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'ScrollOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar',
-				],
-			],
-			'scopy' => true,
-		],
-		'ScrollWidth' => [
-			'type' => 'object',
-			'default' => [ 
-				'md' => '',
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'ScrollOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar{width:{{ScrollWidth}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'ThumbBg' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'ScrollOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-thumb',
-				],
-			],
-			'scopy' => true,
-		],
-		'ThumbBrs' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => '',
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'ScrollOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-thumb{border-radius:{{ThumbBrs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'ThumbBsw' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openShadow' => 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'ScrollOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-thumb',
-				],
-			],
-			'scopy' => true,
-		],
-		'TrackBg' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'ScrollOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-track',
-				],
-			],
-			'scopy' => true,
-		],
-		'TrackBRs' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'ScrollOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-track{border-radius:{{TrackBRs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'TrackBsw' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openShadow' => 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'ScrollOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-track',
-				],
-			],
-			'scopy' => true,
-		],
-			
-		'FcySclOn' => [
-			'type' => 'boolean',
-			'default' => false,	
-		],
-		'FcySclHgt' => [
-			'type' => 'string',
-			'default' => '',
-		],
-		'FcySclBg' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FcySclOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar',
-				],
-			],
-			'scopy' => true,
-		],
-		'FcySclWidth' => [
-			'type' => 'object',
-			'default' => [ 
-				'md' => '',
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FcySclOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar{width:{{FcySclWidth}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FcyThumbBg' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FcySclOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-thumb',
-				],
-			],
-			'scopy' => true,
-		],
-		'FcyThumbBrs' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FcySclOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-thumb{border-radius:{{FcyThumbBrs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FcyThumbBsw' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openShadow' => 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FcySclOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-thumb',
-				],
-			],
-			'scopy' => true,
-		],
-		'FcyTrackBg' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FcySclOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-track',
-				],
-			],
-			'scopy' => true,
-		],
-		'FcyTrackBRs' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FcySclOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-track{border-radius:{{FcyTrackBRs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FcyTrackBsw' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openShadow' => 0
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FcySclOn', 'relation' => '==', 'value' => true]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-track',
-				],
-			],
-			'scopy' => true,
-		],	
-
-		'FancyStyle' => [
-			'type' => 'string',
-			'default' => 'default',	
-		],
-		// 'FancyOption' => [
-		// 	'type' => 'string',
-		// 	'default' => '[]',
-		// ],
-		'LoopFancy' => [
-			'type' => 'boolean',
-			'default' => true,
-		],
-		// 'infobar' => [
-		// 	'type' => 'boolean',
-		// 	'default' => true,
-		// ],
-		'ArrowsFancy' => [
-			'type' => 'boolean',
-			'default' => true,
-		],
-		// 'AnimationFancy' => [
-		// 	'type' => 'string',
-		// 	'default' => 'zoom',
-		// ],
-		// 'DurationFancy' => [
-		// 	'type' => 'string',
-		// 	'default' => 366,
-		// ],
-		'ClickContent' => [
-			'type' => 'string',
-			'default' => 'next',	
-		],
-		// 'Slideclick' => [
-		// 	'type' => 'string',
-		// 	'default' => 'close',	
-		// ],
-		'TransitionFancy' => [
-			'type' => 'string',
-			'default' => 'slide',
-		],
-		// 'TranDuration' => [
-		// 	'type' => 'string',
-		// 	'default' => 366,
-		// ],
-		// 'ThumbsOption' => [
-		// 	'type' => 'boolean',
-		// 	'default' => false,
-		// ],
-		// 'ThumbsBrCr' => [
-		// 	'type' => 'object',
-		// 	'default' => (object) [
-		// 		'openBorder' => 0,
-		// 	],
-		// 	'style' => [
-		// 		(object) [
-		// 			'condition' => [(object) ['key' => 'ThumbsOption', 'relation' => '==', 'value' => true]],
-		// 			'selector' => '.fancybox-thumbs__list a.fancybox-thumbs-active:before,.fancybox-thumbs__list a:before',
-		// 		],
-		// 	],
-		// 	'scopy' => true,
-		// ],
-		// 'ThumbsBg' => [
-		// 	'type' => 'object',
-		// 	'default' => (object) [
-		// 		'openBg'=> 0,
-		// 	],
-		// 	'style' => [
-		// 		(object) [
-		// 			'condition' => [(object) ['key' => 'ThumbsOption', 'relation' => '==', 'value' => true]],
-		// 			'selector' => '.fancybox-thumbs .fancybox-thumbs__list',
-		// 		],
-		// 	],
-		// 	'scopy' => true,
-		// ],
-		
-		'FancyBg' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '.fancybox-container .fancybox__backdrop',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyInBg' => [
-			'type' => 'object',
-			'default' => (object) [
-				'openBg'=> 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyInBgB' => [
-			'type' => 'object',
-			'default' => (object) ['openBorder' => 0],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyInBgBs' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si{border-radius:{{FancyInBgBs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyInBoxSw' => [
-			'type' => 'object',
-			'default' => (object) ['openShadow' => 0],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si',
-				],
-			],
-			'scopy' => true,
-		],
-		
-		'FancyName' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-username a',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyTime' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-time a',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyTitle' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-title',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyDes' => [
-			'type'=> 'object',
-			'default'=> (object) [
-				'openTypography' => 0,
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-message',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyNameCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-username a{color:{{FancyNameCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyTimeCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-time a{color:{{FancyTimeCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancytitleCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-title{color:{{FancytitleCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyDesCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-message{color:{{FancyDesCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyiconCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-sf-footer a{color:{{FancyiconCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancySICr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-logo{color:{{FancySICr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancySIs' => [
-			'type' => 'object',
-			'default' => [ 
-				'md' => '',
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-logo{font-size:{{FancySIs}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyBtnCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-footer .tpgb-btn-viewpost{background:{{FancyBtnCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyBtnTxtCr' => [
-			'type' => 'string',
-			'default' => '',
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-footer .tpgb-btn-viewpost a{color:{{FancyBtnTxtCr}};}',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyBtnBr' => [
-			'type' => 'object',
-			'default' => (object) ['openBorder' => 0],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-footer .tpgb-btn-viewpost',
-				],
-			],
-			'scopy' => true,
-		],
-		'FancyBtnpadd' => [
-			'type' => 'object',
-			'default' => (object) [ 
-				'md' => [
-					"top" => '',
-					"right" => '',
-					"bottom" => '',
-					"left" => '',
-				],
-				"unit" => 'px',
-			],
-			'style' => [
-				(object) [
-					'condition' => [(object) ['key' => 'FancyStyle', 'relation' => '==', 'value' => ['style-1','style-2']]],
-					'selector' => '{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-footer .tpgb-btn-viewpost{padding:{{FancyBtnpadd}};}',
-				],
-			],
-			'scopy' => true,
-		],
-	];
-		
-	$attributesOptions = array_merge($attributesOptions,$plusButton_options, $globalBgOption, $globalpositioningOption, $globalPlusExtrasOption);
-	
-	register_block_type( 'tpgb/tp-social-feed', array(
-		'attributes' => $attributesOptions,
-		'editor_script' => 'tpgb-block-editor-js',
-		'editor_style'  => 'tpgb-block-editor-css',
-        'render_callback' => 'tpgb_tp_social_feed_render_callback'
-    ) );
+	if ( method_exists( 'Tpgb_Blocks_Global_Options', 'merge_options_json' ) ) {
+		$block_data = Tpgb_Blocks_Global_Options::merge_options_json( __DIR__, 'tpgb_tp_social_feed_render_callback', true, false, true );
+		register_block_type( $block_data['name'], $block_data );
+	}
 }
 add_action( 'init', 'tpgb_tp_social_feed' );
 
-function tpgb_tp_social_feed_render_callback( $attributes, $content) {
-	$SocialFeed = '';
-	$block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
-	$feed_id = (!empty($attributes['feed_id'])) ? $attributes['feed_id'] : uniqid("feed");
-	$layout = (!empty($attributes['layout'])) ? $attributes['layout'] : 'grid';
-	$style = (!empty($attributes['style'])) ? $attributes['style'] : 'style-1';
-	$Rsocialfeed = (!empty($attributes['AllReapeter'])) ? $attributes['AllReapeter'] : [];
-	$columns = (!empty($attributes['columns'])) ? $attributes['columns'] : 'tpgb-col-12';
-	$RefreshTime = !empty($attributes['TimeFrq']) ? $attributes['TimeFrq'] : '3600';
-	$TimeFrq = array( 'TimeFrq' => $attributes['TimeFrq'] );
-	$TotalPost = (!empty($attributes['TotalPost'])) ? $attributes['TotalPost'] : 1000;
-	
-	$FeedId = (!empty($attributes['FeedId'])) ? preg_split("/\,/", $attributes['FeedId']) : [];
-	$ShowTitle = !empty($attributes['ShowTitle']) ? $attributes['ShowTitle'] : false;
-	$showFooterIn = (!empty($attributes['showFooterIn'])) ? true : false;
-	
-	$Postdisplay = (!empty($attributes['Postdisplay']) ? (int)$attributes['Postdisplay'] : 6);
-	$postLodop = (!empty($attributes['postLodop']) ? $attributes['postLodop'] : '');
-	$postview = (!empty($attributes['postview']) ? $attributes['postview'] : 1);
-	$loadbtnText = (!empty($attributes['loadbtnText']) ? $attributes['loadbtnText'] : '');
-	$loadingtxt = (!empty($attributes['loadingtxt']) ? $attributes['loadingtxt'] : '');
-	$allposttext = (!empty($attributes['allposttext']) ? $attributes['allposttext'] : '');
+/**
+ * Tpgb tp social feed render callback.
+ *
+ * @param mixed $attributes The attributes.
+ * @param mixed $content The content.
+ * @return mixed The result.
+ */
+function tpgb_tp_social_feed_render_callback( $attributes, $content ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	$social_feed  = '';
+	$block_id     = ( ! empty( $attributes['block_id'] ) ) ? $attributes['block_id'] : uniqid( 'title' );
+	$feed_id      = ( ! empty( $attributes['feed_id'] ) ) ? $attributes['feed_id'] : uniqid( 'feed' );
+	$layout       = ( ! empty( $attributes['layout'] ) ) ? $attributes['layout'] : 'grid';
+	$style        = ( ! empty( $attributes['style'] ) ) ? $attributes['style'] : 'style-1';
+	$rsocialfeed  = ( ! empty( $attributes['AllReapeter'] ) ) ? $attributes['AllReapeter'] : array();
+	$columns      = ( ! empty( $attributes['columns'] ) ) ? $attributes['columns'] : 'tpgb-col-12';
+	$refresh_time = ! empty( $attributes['TimeFrq'] ) ? $attributes['TimeFrq'] : '3600';
+	$time_frq     = array( 'TimeFrq' => $attributes['TimeFrq'] );
+	$total_post   = ( ! empty( $attributes['TotalPost'] ) ) ? $attributes['TotalPost'] : 1000;
 
-	$txtLimt = (!empty($attributes['TextLimit']) ? $attributes['TextLimit'] : false );
-	$TextCount = (!empty($attributes['TextCount']) ? $attributes['TextCount'] : 100 );
-	$TextType = (!empty($attributes['TextType']) ? $attributes['TextType'] : 'char' );
-	$TextMore = (!empty($attributes['TextMore']) ? $attributes['TextMore'] : 'Show More' );
-	$TextDots = (!empty($attributes['TextDots']) ? '...' : '' );
+	$feed_id        = ( ! empty( $attributes['FeedId'] ) ) ? preg_split( '/\,/', $attributes['FeedId'] ) : array();
+	$show_title     = ! empty( $attributes['ShowTitle'] ) ? $attributes['ShowTitle'] : false;
+	$show_footer_in = ( ! empty( $attributes['showFooterIn'] ) ) ? true : false;
 
-	$FancyStyle = (!empty($attributes['FancyStyle']) ? $attributes['FancyStyle'] : 'default' );
-	$DescripBTM = (!empty($attributes['DescripBTM']) ? $attributes['DescripBTM'] : false );
-	$MediaFilter = (!empty($attributes['MediaFilter']) ? $attributes['MediaFilter'] : 'default' );
-	
-	$ShowFeedId = !empty($attributes['ShowFeedId']) ? $attributes['ShowFeedId'] : false;
-	$PopupOption = !empty($attributes['OnPopup']) ? $attributes['OnPopup'] : 'Donothing';
-	$Performance = !empty($attributes['perf_manage']) ? $attributes['perf_manage'] : false;
+	$postdisplay  = ( ! empty( $attributes['Postdisplay'] ) ? (int) $attributes['Postdisplay'] : 6 );
+	$post_lodop   = ( ! empty( $attributes['postLodop'] ) ? $attributes['postLodop'] : '' );
+	$postview     = ( ! empty( $attributes['postview'] ) ? $attributes['postview'] : 1 );
+	$loadbtn_text = ( ! empty( $attributes['loadbtnText'] ) ? $attributes['loadbtnText'] : '' );
+	$loadingtxt   = ( ! empty( $attributes['loadingtxt'] ) ? $attributes['loadingtxt'] : '' );
+	$allposttext  = ( ! empty( $attributes['allposttext'] ) ? $attributes['allposttext'] : '' );
 
-	$NormalScroll='';
-	$ScrollOn = !empty($attributes['ScrollOn']) ? $attributes['ScrollOn'] : false;
-	$FcyScrolllOn = !empty($attributes['FcySclOn']) ? $attributes['FcySclOn'] : false;
-	$OffsetPost = !empty($FeedId) ? $Postdisplay - count($FeedId) : '';
-	
-	if( !empty($ScrollOn) || !empty($FcyScrolllOn) ){
-		$ScrollData = array(
-			'className'     => 'tpgb-normal-scroll',
-			'ScrollOn'      => $ScrollOn,
-			'Height'        => !empty($attributes['ScrollHgt']) ? (int)$attributes['ScrollHgt'] : 150,
-			'TextLimit'     => $txtLimt,
+	$txt_limt   = ( ! empty( $attributes['TextLimit'] ) ? $attributes['TextLimit'] : false );
+	$text_count = ( ! empty( $attributes['TextCount'] ) ? $attributes['TextCount'] : 100 );
+	$text_type  = ( ! empty( $attributes['TextType'] ) ? $attributes['TextType'] : 'char' );
+	$text_more  = ( ! empty( $attributes['TextMore'] ) ? $attributes['TextMore'] : 'Show More' );
+	$text_dots  = ( ! empty( $attributes['TextDots'] ) ? '...' : '' );
 
-			'Fancyclass'    => 'tpgb-fancy-scroll',
-			'FancyScroll'   => $FcyScrolllOn,
-			'FancyHeight'   => !empty($attributes['FcySclHgt']) ? (int)$attributes['FcySclHgt'] : 150
+	$fancy_style  = ( ! empty( $attributes['FancyStyle'] ) ? $attributes['FancyStyle'] : 'default' );
+	$descrip_btm  = ( ! empty( $attributes['DescripBTM'] ) ? $attributes['DescripBTM'] : false );
+	$media_filter = ( ! empty( $attributes['MediaFilter'] ) ? $attributes['MediaFilter'] : 'default' );
+
+	$show_feed_id = ! empty( $attributes['ShowFeedId'] ) ? $attributes['ShowFeedId'] : false;
+	$popup_option = ! empty( $attributes['OnPopup'] ) ? $attributes['OnPopup'] : 'Donothing';
+	$performance  = ! empty( $attributes['perf_manage'] ) ? $attributes['perf_manage'] : false;
+
+	$normal_scroll  = '';
+	$scroll_on      = ! empty( $attributes['ScrollOn'] ) ? $attributes['ScrollOn'] : false;
+	$fcy_scrolll_on = ! empty( $attributes['FcySclOn'] ) ? $attributes['FcySclOn'] : false;
+	$offset_post    = ! empty( $feed_id ) ? $postdisplay - count( $feed_id ) : '';
+
+	if ( ! empty( $scroll_on ) || ! empty( $fcy_scrolll_on ) ) {
+		$scroll_data   = array(
+			'className'   => 'tpgb-normal-scroll',
+			'ScrollOn'    => $scroll_on,
+			'Height'      => ! empty( $attributes['ScrollHgt'] ) ? (int) $attributes['ScrollHgt'] : 150,
+			'TextLimit'   => $txt_limt,
+
+			'Fancyclass'  => 'tpgb-fancy-scroll',
+			'FancyScroll' => $fcy_scrolll_on,
+			'FancyHeight' => ! empty( $attributes['FcySclHgt'] ) ? (int) $attributes['FcySclHgt'] : 150,
 		);
-		$NormalScroll = json_encode($ScrollData, true);
+		$normal_scroll = wp_json_encode( $scroll_data, true );
 	}
 
-	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+	$block_class = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 
-	$list_layout='';
-	if( $layout=='grid' || $layout=='masonry' ){
+	$list_layout = '';
+	if ( 'grid' === $layout || 'masonry' === $layout ) {
 		$list_layout = 'tpgb-isotope';
-	}else{
+	} else {
 		$list_layout = 'tpgb-isotope';
 	}
 
-	$desktop_class='';
-	if( $columns ){
-		$desktop_class .= 'tpgb-col-'.esc_attr($columns['xs']);
-		$desktop_class .= ' tpgb-col-lg-'.esc_attr($columns['md']);
-		$desktop_class .= ' tpgb-col-md-'.esc_attr($columns['sm']);
-		$desktop_class .= ' tpgb-col-sm-'.esc_attr($columns['xs']);
+	$desktop_class = '';
+	if ( $columns ) {
+		$desktop_class .= 'tpgb-col-' . esc_attr( $columns['xs'] );
+		$desktop_class .= ' tpgb-col-lg-' . esc_attr( $columns['md'] );
+		$desktop_class .= ' tpgb-col-md-' . esc_attr( $columns['sm'] );
+		$desktop_class .= ' tpgb-col-sm-' . esc_attr( $columns['xs'] );
 	}
-	
-	$fancybox_settings = "";
-	if($PopupOption=='OnFancyBox'){
-		$fancybox_settings = tpgb_social_feed_fancybox($attributes);
-		$fancybox_settings = json_encode($fancybox_settings);
+
+	$fancybox_settings = '';
+	if ( 'OnFancyBox' === $popup_option ) {
+		$fancybox_settings = tpgb_social_feed_fancybox( $attributes );
+		$fancybox_settings = wp_json_encode( $fancybox_settings );
 	}
-	
 
-	$SocialFeed .= '<div id="'.esc_attr($block_id).'" class="tpgb-block-'.esc_attr($block_id).' '.esc_attr($blockClass).' tpgb-social-feed tpgb-relative-block '.esc_attr($list_layout).'" data-style="'.esc_attr($style).'" data-layout="'.esc_attr($layout).'" data-id="'.esc_attr($block_id).'" data-fid="'.esc_attr($feed_id).'" data-fancy-option=\''.$fancybox_settings.'\' data-scroll-normal=\''.esc_attr($NormalScroll).'\' >';
-		
-		$FancyBoxJS = '';
-		if($PopupOption == 'OnFancyBox'){
-			$FancyBoxJS = 'data-fancybox="'.esc_attr($block_id).'"';
-		}
-		
-		$FinalData = [];
-        
-        if( $Performance == false ){ // || ($Performance == true && $Perfo_transient === false)
-			$AllData = [];
-			foreach ($Rsocialfeed as $index => $social) {
-				$RFeed = (!empty($social['selectFeed'])) ? $social['selectFeed'] : 'Facebook';
-				$social = array_merge($TimeFrq,$social);
+	$social_feed .= '<div id="' . esc_attr( $block_id ) . '" class="tpgb-block-' . esc_attr( $block_id ) . ' ' . esc_attr( $block_class ) . ' tpgb-social-feed tpgb-relative-block ' . esc_attr( $list_layout ) . '" data-style="' . esc_attr( $style ) . '" data-layout="' . esc_attr( $layout ) . '" data-id="' . esc_attr( $block_id ) . '" data-fid="' . esc_attr( $feed_id ) . '" data-fancy-option=\'' . $fancybox_settings . '\' data-scroll-normal=\'' . esc_attr( $normal_scroll ) . '\' >';
 
-				if($RFeed == 'Facebook'){
-					$AllData[] = tpgb_FacebookFeed($social, $attributes);
-                }
+		$fancy_box_js = '';
+	if ( 'OnFancyBox' === $popup_option ) {
+		$fancy_box_js = 'data-fancybox="' . esc_attr( $block_id ) . '"';
+	}
+
+		$final_data = array();
+
+	if ( false === $performance ) { // || (true === $performance && false === $Perfo_transient) // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+		$all_data = array();
+		foreach ( $rsocialfeed as $index => $social ) {
+			$r_feed = ( ! empty( $social['selectFeed'] ) ) ? $social['selectFeed'] : 'Facebook';
+			$social = array_merge( $time_frq, $social );
+
+			if ( 'Facebook' === $r_feed ) {
+				$all_data[] = tpgb_FacebookFeed( $social, $attributes );
 			}
-            
-			if(!empty($AllData)){
-				foreach($AllData as $key => $val){
-					foreach($val as $key => $vall){ 
-						$FinalData[] =  $vall; 
-					}
+		}
+
+		if ( ! empty( $all_data ) ) {
+			foreach ( $all_data as $key => $val ) {
+				foreach ( $val as $key => $vall ) {
+					$final_data[] = $vall;
 				}
 			}
-			$Feed_Index = array_column($FinalData, 'Feed_Index');
-			array_multisort($Feed_Index, SORT_ASC, $FinalData);
-			set_transient("SF-Performance-$feed_id", $FinalData, $RefreshTime);
-            set_transient("SF-Performance-$block_id", $FinalData, $RefreshTime);
-            set_transient("SF-free-backup-$block_id", $FinalData, 0);
+		}
+		$feed_index = array_column( $final_data, 'Feed_Index' );
+		array_multisort( $feed_index, SORT_ASC, $final_data );
+		set_transient( "SF-Performance-$feed_id", $final_data, $refresh_time );
+		set_transient( "SF-Performance-$block_id", $final_data, $refresh_time );
+		set_transient( "SF-free-backup-$block_id", $final_data, 0 );
+	} else {
+		$final_data = get_transient( "SF-Performance-$feed_id" );
+
+		if ( false === $final_data || empty( $final_data ) ) {
+			$final_data = get_transient( "SF-Performance-$block_id" );
+		}
+
+		if ( false === $final_data || empty( $final_data ) ) {
+			$final_data = get_transient( "SF-free-backup-$block_id" );
+		}
+	}
+
+	if ( ! empty( $final_data ) ) {
+		foreach ( $final_data as $index => $data ) {
+			$post_id = ! empty( $data['PostId'] ) ? $data['PostId'] : array();
+			if ( in_array( $post_id, $feed_id, true ) ) {
+				unset( $final_data[ $index ] );
+			}
+		}
+
+		if ( ! empty( $final_data ) ) {
+
+			$social_feed .= '<div class="post-loop-inner social-feed-' . esc_attr( $style ) . '" >';
+			foreach ( $final_data as $f_index => $all_vm_data ) {
+				$uniq_each     = uniqid();
+				$popup_syl_num = $block_id . '-' . $f_index . '-' . $uniq_each;
+				$r_key         = ( ! empty( $all_vm_data['RKey'] ) ) ? $all_vm_data['RKey'] : '';
+				$post_id       = ( ! empty( $all_vm_data['PostId'] ) ) ? $all_vm_data['PostId'] : '';
+				$u_name        = ( ! empty( $all_vm_data['UName'] ) ) ? $all_vm_data['UName'] : '';
+				$select_feed   = ( ! empty( $all_vm_data['selectFeed'] ) ) ? $all_vm_data['selectFeed'] : '';
+				$massage       = ( ! empty( $all_vm_data['Massage'] ) ) ? $all_vm_data['Massage'] : '';
+				$description   = ( ! empty( $all_vm_data['Description'] ) ) ? $all_vm_data['Description'] : '';
+				$type          = ( ! empty( $all_vm_data['Type'] ) ) ? $all_vm_data['Type'] : '';
+				$post_link     = ( ! empty( $all_vm_data['PostLink'] ) ) ? $all_vm_data['PostLink'] : '';
+				$created_time  = ( ! empty( $all_vm_data['CreatedTime'] ) ) ? $all_vm_data['CreatedTime'] : '';
+				$post_image    = ( ! empty( $all_vm_data['PostImage'] ) ) ? $all_vm_data['PostImage'] : '';
+				$user_name     = ( ! empty( $all_vm_data['UserName'] ) ) ? $all_vm_data['UserName'] : '';
+				$user_image    = ( ! empty( $all_vm_data['UserImage'] ) ) ? $all_vm_data['UserImage'] : '';
+				$user_link     = ( ! empty( $all_vm_data['UserLink'] ) ) ? $all_vm_data['UserLink'] : '';
+				$social_icon   = ( ! empty( $all_vm_data['socialIcon'] ) ) ? $all_vm_data['socialIcon'] : '';
+				$error_class   = ( ! empty( $all_vm_data['ErrorClass'] ) ) ? $all_vm_data['ErrorClass'] : '';
+
+				$embed_url  = ( ! empty( $all_vm_data['Embed'] ) ) ? $all_vm_data['Embed'] : '';
+				$embed_type = ( ! empty( $all_vm_data['EmbedType'] ) ) ? $all_vm_data['EmbedType'] : '';
+
+				if ( 'Facebook' === $select_feed ) {
+					$fblikes      = ( ! empty( $all_vm_data['FbLikes'] ) ) ? $all_vm_data['FbLikes'] : 0;
+					$comment      = ( ! empty( $all_vm_data['comment'] ) ) ? $all_vm_data['comment'] : 0;
+					$share        = ( ! empty( $all_vm_data['share'] ) ) ? $all_vm_data['share'] : 0;
+					$like_img     = TPGB_ASSETS_URL . 'assets/images/social-feed/like.png';
+					$reaction_img = TPGB_ASSETS_URL . 'assets/images/social-feed/love.png';
+
+					$fb_album = ( ! empty( $all_vm_data['FbAlbum'] ) ) ? $all_vm_data['FbAlbum'] : false;
+					// if(!empty($fb_album)){ // phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+					// $fancy_box_js = 'data-fancybox="album-Facebook'.esc_attr($f_index).'-'.esc_attr($block_id).'"';.
+					// } // phpcs:ignore Squiz.Commenting.InlineComment.InvalidEndChar
+				}
+				$image_url = '';
+				$video_url = '';
+				if ( 'video' === $type || 'photo' === $type ) {
+					$sep_post_id = explode( '_', $post_id );
+					$new_p_id    = ( ! empty( $sep_post_id[1] ) ) ? $sep_post_id[1] : '';
+					$fb_post_rd  = 'https://www.facebook.com/' . esc_attr( $u_name ) . '/posts/' . esc_attr( $new_p_id );
+					$video_url   = ( 'Facebook' === $select_feed && 'GoWebsite' === $popup_option ) ? ( ! empty( $post_link[0]['link'] ) ) ? $post_link[0]['link'] : $fb_post_rd : $post_link;
+					$image_url   = $post_image;
+				}
+				if ( ! empty( $fb_album ) ) {
+					$post_link = ( ! empty( $post_link[0]['link'] ) ) ? $post_link[0]['link'] : 0;
+				}
+
+				if ( ( ! in_array( $post_id, $feed_id, true ) && $f_index < $total_post ) && ( ( 'default' === $media_filter ) || ( 'ompost' === $media_filter && ! empty( $post_link ) && ! empty( $post_image ) ) || ( 'hmcontent' === $media_filter && empty( $post_link ) && empty( $post_image ) ) ) ) {
+					$social_feed .= '<div class="grid-item splide__slide ' . esc_attr( 'feed-' . $select_feed . ' ' . $desktop_class . ' ' . $r_key . ' ' ) . '" data-index="' . esc_attr( $select_feed ) . esc_attr( $f_index ) . '" >';
+						ob_start();
+							include TPGB_INCLUDES_URL . 'social-feed/social-feed-' . sanitize_file_name( $style ) . '.php';
+							$social_feed .= ob_get_contents();
+						ob_end_clean();
+					$social_feed .= '</div>';
+				}
+			}
+			$social_feed .= '</div>';
 		} else {
-			$FinalData = get_transient("SF-Performance-$feed_id");
-
-            if ($FinalData === false || empty($FinalData)) {
-                $FinalData = get_transient("SF-Performance-$block_id");
-            }
-            
-            if ($FinalData === false || empty($FinalData)) {
-                $FinalData = get_transient("SF-free-backup-$block_id");
-            }
+			$social_feed .= '<div class="error-handal">' . esc_html__( 'All Social Feed', 'the-plus-addons-for-block-editor' ) . '</div>';
 		}
+	} else {
+		$social_feed .= '<div class="error-handal">' . esc_html__( 'All Social Feed', 'the-plus-addons-for-block-editor' ) . '</div>';
+	}
 
-		if(!empty($FinalData)){
-			foreach ($FinalData as $index => $data) {
-				$PostId = !empty($data['PostId']) ? $data['PostId'] : [];
-				if(in_array($PostId, $FeedId)){
-					unset($FinalData[$index]);
-				}
-			}
-          
-			if(!empty($FinalData)){
+	$social_feed .= '</div>';
 
-				$SocialFeed .= '<div class="post-loop-inner social-feed-'.esc_attr($style).'" >';
-				foreach ($FinalData as $F_index => $AllVmData) {
-					$uniqEach = uniqid();
-					$PopupSylNum = $block_id . "-" . $F_index . "-" . $uniqEach;
-					$RKey = (!empty($AllVmData['RKey'])) ? $AllVmData['RKey'] : '';
-					$PostId = (!empty($AllVmData['PostId'])) ? $AllVmData['PostId'] : '';
-					$UName = (!empty($AllVmData['UName'])) ? $AllVmData['UName'] : '';
-					$selectFeed = (!empty($AllVmData['selectFeed'])) ? $AllVmData['selectFeed'] : '';
-					$Massage = (!empty($AllVmData['Massage'])) ? $AllVmData['Massage'] : '';
-					$Description = (!empty($AllVmData['Description'])) ? $AllVmData['Description'] : '';
-					$Type = (!empty($AllVmData['Type'])) ? $AllVmData['Type'] : '';
-					$PostLink = (!empty($AllVmData['PostLink'])) ? $AllVmData['PostLink'] : '';
-					$CreatedTime = (!empty($AllVmData['CreatedTime'])) ? $AllVmData['CreatedTime'] : '';
-					$PostImage = (!empty($AllVmData['PostImage'])) ? $AllVmData['PostImage'] : '';
-					$UserName = (!empty($AllVmData['UserName'])) ? $AllVmData['UserName'] : '';
-					$UserImage = (!empty($AllVmData['UserImage'])) ? $AllVmData['UserImage'] : '';
-					$UserLink = (!empty($AllVmData['UserLink'])) ? $AllVmData['UserLink'] : '';
-					$socialIcon = (!empty($AllVmData['socialIcon'])) ? $AllVmData['socialIcon'] : '';
-					$ErrorClass = (!empty($AllVmData['ErrorClass'])) ? $AllVmData['ErrorClass'] : '';
-
-					$EmbedURL = (!empty($AllVmData['Embed'])) ? $AllVmData['Embed'] : '';
-					$EmbedType = (!empty($AllVmData['EmbedType'])) ? $AllVmData['EmbedType'] : '';
-					
-					if($selectFeed == 'Facebook'){
-						$Fblikes = (!empty($AllVmData['FbLikes'])) ? $AllVmData['FbLikes'] : 0;
-						$comment = (!empty($AllVmData['comment'])) ? $AllVmData['comment'] : 0;
-						$share = (!empty($AllVmData['share'])) ? $AllVmData['share'] : 0;
-						$likeImg = TPGB_ASSETS_URL.'assets/images/social-feed/like.png';
-						$ReactionImg = TPGB_ASSETS_URL.'assets/images/social-feed/love.png';
-						
-						$FbAlbum = (!empty($AllVmData['FbAlbum'])) ? $AllVmData['FbAlbum'] : false;
-						// if(!empty($FbAlbum)){
-						// 	$FancyBoxJS = 'data-fancybox="album-Facebook'.esc_attr($F_index).'-'.esc_attr($block_id).'"';
-						// }
-					}
-					$ImageURL=$videoURL="";
-					if($Type == 'video' || $Type == 'photo'){
-						$sepPostId = explode("_",$PostId);
-						$newPId = (!empty($sepPostId[1])) ? $sepPostId[1] : '';
-						$fbPostRD = 'https://www.facebook.com/'.esc_attr($UName).'/posts/'.esc_attr($newPId);
-						$videoURL = ($selectFeed == 'Facebook' && $PopupOption == 'GoWebsite') ? (!empty($PostLink[0]['link'])) ? $PostLink[0]['link'] : $fbPostRD : $PostLink;
-						$ImageURL = $PostImage;
-					}
-					if(!empty($FbAlbum)){
-						$PostLink = (!empty($PostLink[0]['link'])) ? $PostLink[0]['link'] : 0;
-					}
-					
-					if( (!in_array($PostId,$FeedId) && $F_index < $TotalPost) && ( ($MediaFilter == 'default') || ($MediaFilter == 'ompost' && !empty($PostLink) && !empty($PostImage)) || ($MediaFilter == 'hmcontent' &&  empty($PostLink) && empty($PostImage) )) ){
-						$SocialFeed .= '<div class="grid-item splide__slide '.esc_attr('feed-'.$selectFeed.' '.$desktop_class .' '.$RKey.' ').'" data-index="'.esc_attr($selectFeed).esc_attr($F_index).'" >';
-							ob_start(); 
-								include TPGB_INCLUDES_URL. "social-feed/social-feed-".sanitize_file_name($style).".php";
-								$SocialFeed .= ob_get_contents();
-							ob_end_clean();
-						$SocialFeed .= '</div>';
-					}
-
-				}
-				$SocialFeed .= '</div>';
-			}else{
-				$SocialFeed .= '<div class="error-handal">'.esc_html__('All Social Feed','the-plus-addons-for-block-editor').'</div>';
-			}
-		}else{
-			$SocialFeed .= '<div class="error-handal">'.esc_html__('All Social Feed','the-plus-addons-for-block-editor').'</div>';
-		}
-
-	$SocialFeed .= '</div>';
-
-    return $SocialFeed;
+	return $social_feed;
 }
 
-function tpgb_FacebookFeed($social,$attr){
-	$BaseURL = 'https://graph.facebook.com/v20.0';
-	$FbKey = (!empty($social['_key'])) ? $social['_key'] : '';
-	$FbAcT = (!empty($social['RAToken'])) ? $social['RAToken'] : '';
-	$FbPType = (!empty($social['ProfileType'])) ? $social['ProfileType'] : 'post';
-	$FbPageid = (!empty($social['Pageid'])) ? $social['Pageid'] : '';
-	$FbAlbum = (!empty($social['fbAlbum'])) ? $social['fbAlbum'] : false;
-	$FbLimit = (!empty($social['MaxR'])) ? $social['MaxR'] : 6;
-	$FbALimit = (!empty($social['AlbumMaxR'])) ? $social['AlbumMaxR'] : 6;	
-	$Fbcontent = (!empty($social['content'])) ? $social['content'] : [];
-	$FbTime = (!empty($social['TimeFrq'])) ? $social['TimeFrq'] : '3600';
-	$FbselectFeed = !empty($social['selectFeed']) ? $social['selectFeed'] : '';
-	$FbIcon = 'fab fa-facebook social-logo-fb';
-	$SSL_VER = $attr['CURLOPT_SSL_VERIFYPEER'];
-	$content = [];
-	if(!empty($Fbcontent) && (is_array($Fbcontent) || is_object($Fbcontent)) ){
-		foreach ($Fbcontent as $Data) {
-			$Filter = (!empty($Data['value'])) ? $Data['value'] : 'photo';
-			array_push($content,$Filter);
+/**
+ * Tpgb facebook feed.
+ *
+ * @param mixed $social The social.
+ * @param mixed $attr The attr.
+ * @return mixed The result.
+ */
+function tpgb_FacebookFeed( $social, $attr ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid,WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
+	$base_url      = 'https://graph.facebook.com/v20.0';
+	$fb_key        = ( ! empty( $social['_key'] ) ) ? $social['_key'] : '';
+	$fb_ac_t       = ( ! empty( $social['RAToken'] ) ) ? $social['RAToken'] : '';
+	$fb_p_type     = ( ! empty( $social['ProfileType'] ) ) ? $social['ProfileType'] : 'post';
+	$fb_pageid     = ( ! empty( $social['Pageid'] ) ) ? $social['Pageid'] : '';
+	$fb_album      = ( ! empty( $social['fbAlbum'] ) ) ? $social['fbAlbum'] : false;
+	$fb_limit      = ( ! empty( $social['MaxR'] ) ) ? $social['MaxR'] : 6;
+	$fb_a_limit    = ( ! empty( $social['AlbumMaxR'] ) ) ? $social['AlbumMaxR'] : 6;
+	$fbcontent     = ( ! empty( $social['content'] ) ) ? $social['content'] : array();
+	$fb_time       = ( ! empty( $social['TimeFrq'] ) ) ? $social['TimeFrq'] : '3600';
+	$fbselect_feed = ! empty( $social['selectFeed'] ) ? $social['selectFeed'] : '';
+	$fb_icon       = 'fab fa-facebook social-logo-fb';
+	$ssl_ver       = $attr['CURLOPT_SSL_VERIFYPEER'];
+	$content       = array();
+	if ( ! empty( $fbcontent ) && ( is_array( $fbcontent ) || is_object( $fbcontent ) ) ) {
+		foreach ( $fbcontent as $data ) {
+			$filter = ( ! empty( $data['value'] ) ) ? $data['value'] : 'photo';
+			array_push( $content, $filter );
 		}
-	}else{
-        array_push($content, 'photo', 'video', 'status'); 
+	} else {
+		array_push( $content, 'photo', 'video', 'status' );
 	}
-	
-	$url = '';
-	$FbAllData = '';
-	$FbArr = [];
-    if(!empty($FbAcT) && $FbPType == 'post'){
-        $url = "{$BaseURL}/me?fields=id,name,first_name,last_name,link,email,birthday,picture,posts.limit($FbLimit){type,message,story,caption,description,shares,picture,full_picture,source,created_time,reactions.summary(true),comments.summary(true).filter(toplevel)},albums.limit($FbALimit){id,type,link,picture,created_time,name,count,photos.limit($FbLimit){id,link,created_time,likes,images,name,comments.summary(true).filter(toplevel)}}&access_token={$FbAcT}";
-    }else if(!empty($FbAcT) && !empty($FbPageid) && $FbPType == 'page'){
-        $url = "{$BaseURL}/{$FbPageid}?fields=id,name,username,link,fan_count,new_like_count,phone,emails,about,birthday,category,picture,posts.limit($FbLimit){id,full_picture,created_time,message,attachments{media,media_type,title,url},picture,story,status_type,shares,reactions.summary(true),likes.summary(true),comments.summary(true).filter(toplevel)},albums.limit($FbALimit){id,type,link,picture,created_time,name,count,photos.limit($FbLimit){id,link,created_time,images,name}}&access_token={$FbAcT}";
-    }
-	
-	if(!empty($url)){
-		$GetFbRL = get_transient("Fb-Url-$FbKey");
-		$GetFbTime = get_transient("Fb-Time-$FbKey");
-		
-		if( $GetFbRL != $url || $GetFbTime != $FbTime ){
-			$FbAllData = tpgb_api_call($url,$SSL_VER);
-				set_transient("Fb-Url-$FbKey", $url, $FbTime);
-				set_transient("Data-Fb-$FbKey", $FbAllData, $FbTime);
-				set_transient("Fb-Time-$FbKey", $FbTime, $FbTime);
-		 }else{
-		 	$FbAllData = get_transient("Data-Fb-$FbKey");
-		 }
-		
-		$status = (!empty($FbAllData['HTTP_CODE']) ? $FbAllData['HTTP_CODE'] : '');
-		if($status == 200){
-			$FbPost = '';
-			if(!empty($FbAlbum)){
-				$FbPost = (!empty($FbAllData['albums']['data'])) ? $FbAllData['albums']['data'] : [];
-			}else{
-				$FbPost = !empty($FbAllData['posts']['data']) ? $FbAllData['posts']['data'] : (!empty($FbAllData['albums']['data']) ? $FbAllData['albums']['data'] : []);
-			}
-			
-			foreach ($FbPost as $index => $FbData){
-				
-				$link = (!empty($FbAllData['link']) ? $FbAllData['link'] : '');
-				$name = (!empty($FbAllData['name']) ? $FbAllData['name'] : '');
-				$u_name = (!empty($FbAllData['username']) ? $FbAllData['username'] : '');
-				$id = (!empty($FbData['id']) ? $FbData['id'] : '');
-				$type = (!empty($FbData['type']) ? $FbData['type'] : '');
-				$FbMessage = (!empty($FbData['message']) ? $FbData['message'] : '');
-				$FbPicture = $FbSource = (!empty($FbData['full_picture']) ? $FbData['full_picture'] : '');
-				$Created_time = (!empty($FbData['created_time'])) ? tpgb_feed_Post_time($FbData['created_time']) : '';
-				$FbReactions = (!empty($FbData['reactions']['summary']['total_count']) ? tpgb_number_short($FbData['reactions']['summary']['total_count']) : 0);
-				$FbComments = (!empty($FbData['comments']['summary']['total_count']) ? tpgb_number_short($FbData['comments']['summary']['total_count']) : 0);
-				$Fbshares = (!empty($FbData['shares']['count']) ? tpgb_number_short($FbData['shares']['count']) : '');
-				
-				
 
-				if($type == "video"){
-					$FbSource = (!empty($FbData['source']) ? $FbData['source'] : '');
+	$url         = '';
+	$fb_all_data = '';
+	$fb_arr      = array();
+	if ( ! empty( $fb_ac_t ) && 'post' === $fb_p_type ) {
+		$url = "{$base_url}/me?fields=id,name,first_name,last_name,link,email,birthday,picture,posts.limit($fb_limit){type,message,story,caption,description,shares,picture,full_picture,source,created_time,reactions.summary(true),comments.summary(true).filter(toplevel)},albums.limit($fb_a_limit){id,type,link,picture,created_time,name,count,photos.limit($fb_limit){id,link,created_time,likes,images,name,comments.summary(true).filter(toplevel)}}&access_token={$fb_ac_t}";
+	} elseif ( ! empty( $fb_ac_t ) && ! empty( $fb_pageid ) && 'page' === $fb_p_type ) {
+		$url = "{$base_url}/{$fb_pageid}?fields=id,name,username,link,fan_count,new_like_count,phone,emails,about,birthday,category,picture,posts.limit($fb_limit){id,full_picture,created_time,message,attachments{media,media_type,title,url},picture,story,status_type,shares,reactions.summary(true),likes.summary(true),comments.summary(true).filter(toplevel)},albums.limit($fb_a_limit){id,type,link,picture,created_time,name,count,photos.limit($fb_limit){id,link,created_time,images,name}}&access_token={$fb_ac_t}";
+	}
+
+	if ( ! empty( $url ) ) {
+		$get_fb_rl   = get_transient( "Fb-Url-$fb_key" );
+		$get_fb_time = get_transient( "Fb-Time-$fb_key" );
+
+		if ( $get_fb_rl !== $url || $get_fb_time !== $fb_time ) {
+			$fb_all_data = tpgb_api_call( $url, $ssl_ver );
+				set_transient( "Fb-Url-$fb_key", $url, $fb_time );
+				set_transient( "Data-Fb-$fb_key", $fb_all_data, $fb_time );
+				set_transient( "Fb-Time-$fb_key", $fb_time, $fb_time );
+		} else {
+			$fb_all_data = get_transient( "Data-Fb-$fb_key" );
+		}
+
+		$status = ( ! empty( $fb_all_data['HTTP_CODE'] ) ? $fb_all_data['HTTP_CODE'] : '' );
+		if ( 200 === $status ) {
+			$fb_post = '';
+			if ( ! empty( $fb_album ) ) {
+				$fb_post = ( ! empty( $fb_all_data['albums']['data'] ) ) ? $fb_all_data['albums']['data'] : array();
+			} else {
+				$fb_post = ! empty( $fb_all_data['posts']['data'] ) ? $fb_all_data['posts']['data'] : ( ! empty( $fb_all_data['albums']['data'] ) ? $fb_all_data['albums']['data'] : array() );
+			}
+
+			foreach ( $fb_post as $index => $fb_data ) {
+
+				$link         = ( ! empty( $fb_all_data['link'] ) ? $fb_all_data['link'] : '' );
+				$name         = ( ! empty( $fb_all_data['name'] ) ? $fb_all_data['name'] : '' );
+				$u_name       = ( ! empty( $fb_all_data['username'] ) ? $fb_all_data['username'] : '' );
+				$id           = ( ! empty( $fb_data['id'] ) ? $fb_data['id'] : '' );
+				$type         = ( ! empty( $fb_data['type'] ) ? $fb_data['type'] : '' );
+				$fb_message   = ( ! empty( $fb_data['message'] ) ? $fb_data['message'] : '' );
+				$fb_picture   = ( ! empty( $fb_data['full_picture'] ) ? $fb_data['full_picture'] : '' );
+				$fb_source    = ( ! empty( $fb_data['full_picture'] ) ? $fb_data['full_picture'] : '' );
+				$created_time = ( ! empty( $fb_data['created_time'] ) ) ? tpgb_feed_Post_time( $fb_data['created_time'] ) : '';
+				$fb_reactions = ( ! empty( $fb_data['reactions']['summary']['total_count'] ) ? tpgb_number_short( $fb_data['reactions']['summary']['total_count'] ) : 0 );
+				$fb_comments  = ( ! empty( $fb_data['comments']['summary']['total_count'] ) ? tpgb_number_short( $fb_data['comments']['summary']['total_count'] ) : 0 );
+				$fbshares     = ( ! empty( $fb_data['shares']['count'] ) ? tpgb_number_short( $fb_data['shares']['count'] ) : '' );
+
+				if ( 'video' === $type ) {
+					$fb_source = ( ! empty( $fb_data['source'] ) ? $fb_data['source'] : '' );
 				}
-				$FbCaption = (!empty($FbData['caption']) ? $FbData['caption'] : '');
-				$FbDescription = (!empty($FbData['description'])) ? $FbData['description'] : '';
-				
-				if($FbPType == 'page'){
-					$type = (!empty($FbData['attachments']['data'][0]['media_type']) ? $FbData['attachments']['data'][0]['media_type'] : '');
-					if($type == 'album'){
-						$type = "photo";
+				$fb_caption     = ( ! empty( $fb_data['caption'] ) ? $fb_data['caption'] : '' );
+				$fb_description = ( ! empty( $fb_data['description'] ) ) ? $fb_data['description'] : '';
+
+				if ( 'page' === $fb_p_type ) {
+					$type = ( ! empty( $fb_data['attachments']['data'][0]['media_type'] ) ? $fb_data['attachments']['data'][0]['media_type'] : '' );
+					if ( 'album' === $type ) {
+						$type = 'photo';
 					}
-					if($type == 'video'){
-						$FbSource = (!empty($FbData['attachments']['data'][0]['media']['source']) ? $FbData['attachments']['data'][0]['media']['source'] : '');
+					if ( 'video' === $type ) {
+						$fb_source = ( ! empty( $fb_data['attachments']['data'][0]['media']['source'] ) ? $fb_data['attachments']['data'][0]['media']['source'] : '' );
 					}
 				}
-				
-				if(!empty($FbAlbum)){
-					$type = 'video'; 
-					$link = (!empty($FbData['link']) ? $FbData['link'] : '');
-					$FbMessage = (!empty($FbData['name']) ? $FbData['name'] : '');
-					$Fbcount = (!empty($FbData['count']) ? $FbData['count'] : '');
-					$FbPicture = (!empty($FbData['picture']['data']['url']) ? $FbData['picture']['data']['url'] : '');
-					$FbSource = (!empty($FbData['photos']['data']) ? $FbData['photos']['data'] : []);
+
+				if ( ! empty( $fb_album ) ) {
+					$type       = 'video';
+					$link       = ( ! empty( $fb_data['link'] ) ? $fb_data['link'] : '' );
+					$fb_message = ( ! empty( $fb_data['name'] ) ? $fb_data['name'] : '' );
+					$fbcount    = ( ! empty( $fb_data['count'] ) ? $fb_data['count'] : '' );
+					$fb_picture = ( ! empty( $fb_data['picture']['data']['url'] ) ? $fb_data['picture']['data']['url'] : '' );
+					$fb_source  = ( ! empty( $fb_data['photos']['data'] ) ? $fb_data['photos']['data'] : array() );
 				}
-               
-				if( (in_array('photo',$content) ) || (in_array('video',$content) ) || ( in_array('status',$content) ) ){	
-                   
-					$FbArr[] = array(
-						"Feed_Index"	=> $index,
-						"PostId"		=> $id,
-						"Massage" 		=> $FbCaption . $FbDescription,
-						"Description"	=> $FbMessage,
-						"Type" 			=> "video",
-						"PostLink" 		=> $FbSource,
-						"CreatedTime" 	=> $Created_time,
-						"PostImage" 	=> $FbPicture,
-						"UserName" 		=> $name,
-						"UName"			=> $u_name,
-						"UserImage" 	=> (!empty($FbAllData['picture']['data']['url']) ? $FbAllData['picture']['data']['url'] : ''),
-						"UserLink" 		=> $link,
-						"share" 		=> $Fbshares,
-						"comment" 		=> $FbComments,
-						"FbLikes" 		=> $FbReactions,
-						"Embed" 		=> "Alb",
-						"EmbedType"     => $type,
-						"FbAlbum" 		=> $FbAlbum,
-						"socialIcon" 	=> $FbIcon,
-						"selectFeed"    => $FbselectFeed,
-						"RKey" 			=> "tp-repeater-item-$FbKey",
+
+				if ( ( in_array( 'photo', $content, true ) ) || ( in_array( 'video', $content, true ) ) || ( in_array( 'status', $content, true ) ) ) {
+
+					$fb_arr[] = array(
+						'Feed_Index'  => $index,
+						'PostId'      => $id,
+						'Massage'     => $fb_caption . $fb_description,
+						'Description' => $fb_message,
+						'Type'        => 'video',
+						'PostLink'    => $fb_source,
+						'CreatedTime' => $created_time,
+						'PostImage'   => $fb_picture,
+						'UserName'    => $name,
+						'UName'       => $u_name,
+						'UserImage'   => ( ! empty( $fb_all_data['picture']['data']['url'] ) ? $fb_all_data['picture']['data']['url'] : '' ),
+						'UserLink'    => $link,
+						'share'       => $fbshares,
+						'comment'     => $fb_comments,
+						'FbLikes'     => $fb_reactions,
+						'Embed'       => 'Alb',
+						'EmbedType'   => $type,
+						'FbAlbum'     => $fb_album,
+						'socialIcon'  => $fb_icon,
+						'selectFeed'  => $fbselect_feed,
+						'RKey'        => "tp-repeater-item-$fb_key",
 					);
 				}
-			}		
-		}else{
-			$FbArr[] = tpgb_SF_Error_handler($FbAllData, $FbKey, $FbselectFeed, $FbIcon);
+			}
+		} else {
+			$fb_arr[] = tpgb_SF_Error_handler( $fb_all_data, $fb_key, $fbselect_feed, $fb_icon );
 		}
-	}else{
-		$Msg = "";
-		if(empty($FbAcT)){
-			$Msg .= 'Empty Access Token </br>';
+	} else {
+		$msg = '';
+		if ( empty( $fb_ac_t ) ) {
+			$msg .= 'Empty Access Token </br>';
 		}
-		if($FbPType == 'page' && empty($FbPageid)){
-			$Msg .= 'Empty Page ID';
+		if ( 'page' === $fb_p_type && empty( $fb_pageid ) ) {
+			$msg .= 'Empty Page ID';
 		}
-		$ErrorData['error']['message'] = $Msg;
-		$FbArr[] = tpgb_SF_Error_handler($ErrorData, $FbKey, $FbselectFeed, $FbIcon);
+		$error_data['error']['message'] = $msg;
+		$fb_arr[]                       = tpgb_SF_Error_handler( $error_data, $fb_key, $fbselect_feed, $fb_icon );
 	}
-	
-	return $FbArr;
+
+	return $fb_arr;
 }
 
-function tpgb_api_call( $API, $SSL = true ){
-	$Final=[];
+/**
+ * Tpgb api call.
+ *
+ * @param mixed $api The api.
+ * @param bool  $ssl The ssl.
+ * @return mixed The result.
+ */
+function tpgb_api_call( $api, $ssl = true ) {
+	$final = array();
 
 	$args = array(
-        'method'  => 'GET',
-        'timeout' => 30,
-        'sslverify' => $SSL,
-    );
+		'method'    => 'GET',
+		'timeout'   => 30,
+		'sslverify' => $ssl,
+	);
 
-	$URL = wp_remote_get($API, $args);
-	
-	$status_code = wp_remote_retrieve_response_code($URL);
-	$body = wp_remote_retrieve_body($URL);
-	$status_code = array( "HTTP_CODE" => $status_code );
+	$url = wp_remote_get( $api, $args );
 
-	$Response = json_decode($body, true);
-	if( is_array($status_code) && is_array($Response) ){
-		$Final = array_merge($status_code, $Response);
+	$status_code = wp_remote_retrieve_response_code( $url );
+	$body        = wp_remote_retrieve_body( $url );
+	$status_code = array( 'HTTP_CODE' => $status_code );
+
+	$response = json_decode( $body, true );
+	if ( is_array( $status_code ) && is_array( $response ) ) {
+		$final = array_merge( $status_code, $response );
 	}
-	return $Final;
+	return $final;
 }
 
-function tpgb_feed_Post_time($datetime, $full = false) {
-    $now = new DateTime;
-    $ago = new DateTime($datetime);
-    $diff = $now->diff($ago);
- 
-    $diff->w = floor($diff->d / 7);
-    $diff->d -= $diff->w * 7;
- 
-    $string = array(
-        'y' => 'year',
-        'm' => 'month',
-        'w' => 'week',
-        'd' => 'day',
-        'h' => 'hour',
-        'i' => 'minute',
-        's' => 'second',
-    );
-    foreach ($string as $k => &$v) {
-        if ($diff->$k) {
-            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-        } else {
-            unset($string[$k]);
-        }
-    }
- 
-    if (!$full) $string = array_slice($string, 0, 1);
-    return $string ? implode(', ', $string) . ' ago' : 'just now';
+/**
+ * Tpgb feed post time.
+ *
+ * @param mixed $datetime The datetime.
+ * @param bool  $full The full.
+ * @return mixed The result.
+ */
+function tpgb_feed_Post_time( $datetime, $full = false ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid,WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
+	$now  = new DateTime();
+	$ago  = new DateTime( $datetime );
+	$diff = $now->diff( $ago );
+
+	$diff->w  = floor( $diff->d / 7 );
+	$diff->d -= $diff->w * 7;
+
+	$string = array(
+		'y' => 'year',
+		'm' => 'month',
+		'w' => 'week',
+		'd' => 'day',
+		'h' => 'hour',
+		'i' => 'minute',
+		's' => 'second',
+	);
+	foreach ( $string as $k => &$v ) {
+		if ( $diff->$k ) {
+			$v = $diff->$k . ' ' . $v . ( $diff->$k > 1 ? 's' : '' );
+		} else {
+			unset( $string[ $k ] );
+		}
+	}
+
+	if ( ! $full ) {
+		$string = array_slice( $string, 0, 1 );
+	}
+	return $string ? implode( ', ', $string ) . ' ago' : 'just now';
 }
 
+/**
+ * Tpgb number short.
+ *
+ * @param mixed $n The n.
+ * @param int   $precision The precision.
+ * @return mixed The result.
+ */
 function tpgb_number_short( $n, $precision = 1 ) {
-    if ($n < 900) {
-        $n_format = number_format($n, $precision);
-        $suffix = '';
-    } else if ($n < 900000) {
-        $n_format = number_format($n / 1000, $precision);
-        $suffix = 'K';
-    } else if ($n < 900000000) {
-        $n_format = number_format($n / 1000000, $precision);
-        $suffix = 'M';
-    } else if ($n < 900000000000) {
-        $n_format = number_format($n / 1000000000, $precision);
-        $suffix = 'B';
-    } else {
-        $n_format = number_format($n / 1000000000000, $precision);
-        $suffix = 'T';
+	if ( $n < 900 ) {
+		$n_format = number_format( $n, $precision );
+		$suffix   = '';
+	} elseif ( $n < 900000 ) {
+		$n_format = number_format( $n / 1000, $precision );
+		$suffix   = 'K';
+	} elseif ( $n < 900000000 ) {
+		$n_format = number_format( $n / 1000000, $precision );
+		$suffix   = 'M';
+	} elseif ( $n < 900000000000 ) {
+		$n_format = number_format( $n / 1000000000, $precision );
+		$suffix   = 'B';
+	} else {
+		$n_format = number_format( $n / 1000000000000, $precision );
+		$suffix   = 'T';
 	}
-	
-    if ( $precision > 0 ) {
-        $dotzero = '.' . str_repeat( '0', $precision );
-        $n_format = str_replace( $dotzero, '', $n_format );
-    }
-    return $n_format . $suffix;
+
+	if ( $precision > 0 ) {
+		$dotzero  = '.' . str_repeat( '0', $precision );
+		$n_format = str_replace( $dotzero, '', $n_format );
+	}
+	return $n_format . $suffix;
 }
 
-function tpgb_social_feed_fancybox($attr){
-	$button = array();
+/**
+ * Tpgb social feed fancybox.
+ *
+ * @param mixed $attr The attr.
+ * @return mixed The result.
+ */
+function tpgb_social_feed_fancybox( $attr ) {
+	$button   = array();
 	$button[] = 'close';
 
-	$fancybox = array();
-	$fancybox['loop'] = $attr['LoopFancy'];
-	$fancybox['arrows'] = $attr['ArrowsFancy'];
-	$fancybox['clickContent'] = $attr['ClickContent'];
+	$fancybox                     = array();
+	$fancybox['loop']             = $attr['LoopFancy'];
+	$fancybox['arrows']           = $attr['ArrowsFancy'];
+	$fancybox['clickContent']     = $attr['ClickContent'];
 	$fancybox['transitionEffect'] = $attr['TransitionFancy'];
-	$fancybox['button'] = $button;
+	$fancybox['button']           = $button;
 
 	return $fancybox;
 }
 
-function tpgb_SF_Error_handler($ErrorData, $Rkey='', $selectFeed='', $Icon=''){
-	$Error = !empty($ErrorData['error']) ? $ErrorData['error'] : [];
+/**
+ * Tpgb sf error handler.
+ *
+ * @param array  $error_data The error data.
+ * @param string $rkey The rkey.
+ * @param string $select_feed The select feed.
+ * @param string $icon The icon.
+ * @return mixed The result.
+ */
+function tpgb_SF_Error_handler( $error_data, $rkey = '', $select_feed = '', $icon = '' ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid,WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
+	$error = ! empty( $error_data['error'] ) ? $error_data['error'] : array();
 	return array(
-		"Feed_Index" 	=> 0,
-		"ErrorClass"    => "error-class",
-		"socialIcon" 	=> $Icon,
-		"CreatedTime" 	=> "<b>{$selectFeed}</b>",
-		"Description" 	=> !empty($Error['message']) ? $Error['message'] : 'Something Wrong',
-		"UserName" 		=> !empty($Error['HTTP_CODE']) ? 'Error Code : '.$Error['HTTP_CODE'] : 400,
-		"UserImage" 	=> TPGB_ASSETS_URL.'assets/images/tpgb-placeholder.jpg',
-		"selectType"    => $selectFeed,
-		"RKey" 			=> "tp-repeater-item-$Rkey",
+		'Feed_Index'  => 0,
+		'ErrorClass'  => 'error-class',
+		'socialIcon'  => $icon,
+		'CreatedTime' => "<b>{$select_feed}</b>",
+		'Description' => ! empty( $error['message'] ) ? $error['message'] : 'Something Wrong',
+		'UserName'    => ! empty( $error['HTTP_CODE'] ) ? 'Error Code : ' . $error['HTTP_CODE'] : 400,
+		'UserImage'   => TPGB_ASSETS_URL . 'assets/images/tpgb-placeholder.jpg',
+		'selectType'  => $select_feed,
+		'RKey'        => "tp-repeater-item-$rkey",
 	);
 }

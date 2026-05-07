@@ -1,116 +1,167 @@
 #toplevel_page_tpgb_gutenberg_settings ul.wp-submenu .wp-first-item,#ehe-admin-cb {
-    display: none;
+	display: none;
 }
-.wp-menu-image.dashicons-before.dashicons-tpgb-plus-settings {
-    background: url(../../images/nxt-favicon.svg);	
-    background-size: 22px;
-    background-repeat: no-repeat;	
-    background-position: center;
+.wp-menu-image.dashicons-nxt-builder-groups {
+	background: url(../../images/nxt-favicon.svg);
+	background-size: 22px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
+li.wp-has-current-submenu.wp-menu-open.menu-top .wp-menu-image.dashicons-nxt-builder-groups{
+	background: url(../../images/nxt-favicon-white.svg);
+	background-size: 22px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+li.wp-not-current-submenu:hover .wp-menu-image.dashicons-nxt-builder-groups{
+	background: url(../../images/nxt-favicon-blue.svg);
+	background-size: 22px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.toplevel_page_nexter_welcome > .wp-menu-image{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.toplevel_page_nexter_welcome > .wp-menu-image > img{
+	padding: 0 !important;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+}
+.wp-submenu li:has( > a[href*="nexterwp.com/pricing/"]) {
+	font-weight: 500;
+	background-color: #FF1400;
+	color: #fff !important;
+	transition: all .3s;
+}
+.wp-submenu li a[href*="nexterwp.com/pricing/"] {
+	color: #fff !important;
+	font-weight: 500;
+}
+.wp-submenu li:has( > a[href*="nexterwp.com/pricing/"]) > a{
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.wp-submenu li:has( > a[href*="nexterwp.com/pricing/"]) > a:after {
+	position : absolute;
+	content : '';
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	right: 35px;
+	top: 4px;
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-image : url( data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22none%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.333%22%20d%3D%22m4.667%2011.333%206.666-6.666M4.667%204.667h6.666v6.666%22%2F%3E%3C%2Fsvg%3E )
+}
+
 /*Activate*/
 .notice .tpgb-notice-head {
-    font-size: 16px;
-    margin: 10px 0 10px 0px;
+	font-size: 16px;
+	margin: 10px 0 10px 0px;
 }
 /*Activate*/
 /* Woocommerce Custom Field Preview Css */
 .tpgb-color-preview{
-    width: 30px;
-    height: 30px;
+	width: 30px;
+	height: 30px;
 }
 .tpgb-meta-image-field-wrapper{
-    display: table;
+	display: table;
 }
 .tpgb-meta-image-field-wrapper .button-wrapper{
-    margin-left: 10px;
-    display: table-cell;
-    vertical-align: top;
+	margin-left: 10px;
+	display: table-cell;
+	vertical-align: top;
 }
 .tpgb-meta-image-field-wrapper .image-preview{
-    display: table-cell;
-    width: 60px;
-    padding-right: 10px;
+	display: table-cell;
+	width: 60px;
+	padding-right: 10px;
 }
 .tpgb-meta-image-field-wrapper .button-wrapper button{
-    margin: 5px 0;
-    display: block;
+	margin: 5px 0;
+	display: block;
 }
 #tpgb-meta-preview {
-    width: 30px;
+	width: 30px;
 }
 /* Woocommerce Custom Field Preview Css */
 
 #toplevel_page_nexter_welcome_page a[href="https://nexterwp.com/pricing/?utm_source=wpbackend&utm_medium=blocks&utm_campaign=nextersettings"]{
-    font-weight: 500;
-    background-color: #F12D2D;
-    color: #fff !important;
-    margin: 3px 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3px;
-    transition: all .3s;
+	font-weight: 500;
+	background-color: #F12D2D;
+	color: #fff !important;
+	margin: 3px 10px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	transition: all .3s;
 }
 #toplevel_page_nexter_welcome_page a[href="https://nexterwp.com/pricing/?utm_source=wpbackend&utm_medium=blocks&utm_campaign=nextersettings"]:hover,#toplevel_page_nexter_welcome_page a[href="https://nexterwp.com/pricing/?utm_source=wpbackend&utm_medium=blocks&utm_campaign=nextersettings"]:focus{
-    background-color: #ca2222;
-    color: #fff !important;
-    box-shadow: none;
+	background-color: #ca2222;
+	color: #fff !important;
+	box-shadow: none;
 }
 
 
 .nxt-plugin-update-notice {
-    position: relative;
+	position: relative;
 }
 .nxt-plugin-update-notice h4:before {
-    content: "\f14c";
-    color: #B32D2E;
-    margin-right: 6px;
-    vertical-align: top;
-    display: inline-block;
-    font: normal 20px / 1 dashicons;
+	content: "\f14c";
+	color: #B32D2E;
+	margin-right: 6px;
+	vertical-align: top;
+	display: inline-block;
+	font: normal 20px / 1 dashicons;
 }
 .nxt-plugin-notice-dismiss,.nxt-halloween-notice-dismiss {
-    position: absolute;
-    top: 0;
-    right: 1px;
-    margin: 0;
-    padding: 9px;
-    border: none;
-    background: none;
-    color: #787c82;
-    cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 1px;
+	margin: 0;
+	padding: 9px;
+	border: none;
+	background: none;
+	color: #787c82;
+	cursor: pointer;
 }
 .nxt-plugin-notice-dismiss:before,.nxt-halloween-notice-dismiss:before {
-    content: "\f153";
-    font: normal 18px/22px dashicons;
-    display: block;
-    background: none;
-    color: #787c82;
-    speak: never;
-    height: 20px;
-    width: 20px;
-    text-align: center;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+	content: "\f153";
+	font: normal 18px/22px dashicons;
+	display: block;
+	background: none;
+	color: #787c82;
+	speak: never;
+	height: 20px;
+	width: 20px;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
-.toplevel_page_nexter_welcome_page.nxt-admin-notice-active > a .wp-menu-name::after{
-    content: '1';
-    background: #ca2222;
-    color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: -8px;
-    right: 1px;
-    width: 18px;
-    font-size: 12px;
-    height: 18px;
-    text-align: center;
-    z-index: 9;
-    line-height: 17px;
+.toplevel_page_nexter_welcome.nxt-admin-notice-active > a .wp-menu-name::after{
+	content: '1';
+	background: #ca2222;
+	color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: -8px;
+	right: 1px;
+	width: 18px;
+	font-size: 12px;
+	height: 18px;
+	text-align: center;
+	z-index: 9;
+	line-height: 17px;
 }
-.toplevel_page_nexter_welcome_page.nxt-admin-notice-active > a,.toplevel_page_nexter_welcome_page.nxt-admin-notice-active:hover > a{
-    background: #162d9e !important;
-    color: #f0f0f1 !important;
+.toplevel_page_nexter_welcome.nxt-admin-notice-active > a,.toplevel_page_nexter_welcome.nxt-admin-notice-active:hover > a{
+	background: #162d9e !important;
+	color: #f0f0f1 !important;
 }
 
 /* Admin License Notice */
@@ -134,32 +185,39 @@
 	font-size: 12px;
 }
 
-.nxt-nobtn-primary {
-	background-color: #1717CC;
-	color: #fff;
+.nxt-nobtn-secondary, .nxt-nobtn-primary{
+	padding: 8px 16px;
+	border-radius: 4px;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 18px;
+	text-decoration: none !important;
+	display: inline-flex
+}
+
+.nxt-nobtn-secondary, .nxt-nobtn-secondary:hover, .nxt-nobtn-secondary:focus {
+	background-color: #fff;
+	color: #1717CC !important;
+	border: 1px solid #1717CC;
+	box-shadow: none;
+	margin-left: 8px;
+}
+.nxt-nobtn-primary,.nxt-nobtn-primary:hover, .nxt-nobtn-primary:focus {
+	background-color: #1717CC !important;
+	color: #fff !important;
 	border: none;
 	box-shadow: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 18px;
-    text-decoration: none;
-    display: inline-flex
+	text-decoration: none !important;
 }
-.nxt-nobtn-primary:hover {
-    background-color: #1717CC;
-    color: #fff;
-}
-.nxt-nobtn-primary:focus {
-    box-shadow: none;
-    outline: none;
-    color: #fff;
+
+.nxt-nobtn-primary:focus, .nxt-nobtn-secondary:focus {
+	box-shadow: none;
+	outline: none;
 }
 .nxt-notice-wrap .notice-dismiss:focus {
-    box-shadow: none;
-    outline: none;
+	box-shadow: none;
+	outline: none;
 }
 .nxt-notice-wrap{
-    border-left-color: #1717CC;
+	border-left-color: #1717CC;
 }

@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-stylist-list",
 	"version": "0.1.0",
 	"title": "Stylish List",
@@ -53,6 +54,13 @@
                         "type": "object",
                         "default": {
                             "url": ""
+                        }
+                    },
+                    "svgIcon": {
+                        "type": "object",
+                        "default": {
+                            "url": "",
+                            "Id": ""
                         }
                     },
                     "hintColor": {
@@ -149,6 +157,10 @@
                     },
                     "iconImg": {
                         "url": ""
+                    },
+                    "svgIcon": {
+                        "url": "",
+                        "Id": ""
                     }
                 },
                 {
@@ -168,6 +180,10 @@
                     },
                     "iconImg": {
                         "url": ""
+                    },
+                    "svgIcon": {
+                        "url": "",
+                        "Id": ""
                     }
                 },
                 {
@@ -187,6 +203,10 @@
                     },
                     "iconImg": {
                         "url": ""
+                    },
+                    "svgIcon": {
+                        "url": "",
+                        "Id": ""
                     }
                 }
             ]
@@ -380,6 +400,38 @@
                     "selector": "{{PLUS_WRAP}} .tpgb-icon-list-item .tpgb-icon-list-icon img{max-width: {{iconImgSize}};}"
                 }
             ],
+            "scopy": true
+        },
+        "iconSvgSize": {
+            "type": "object",
+            "default": {
+                "md": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-icon-list-item .tpgb-icon-list-icon svg , {{PLUS_WRAP}}.tpgb-stylist-list .tpgb-icon-list-icon object {max-width: {{iconSvgSize}};}"
+                }
+            ],
+            "scopy": true
+        },
+		"headSvgColor": {
+			"type": "string",
+			"default": "",
+			"scopy": true
+		},
+		"headSvgfill": {
+			"type": "string",
+			"default": "",
+			"scopy": true
+		},
+        "svgstroHov": {
+            "type": "string",
+            "default": "",
+            "scopy": true
+        },
+        "svgfillHov": {
+            "type": "string",
+            "default": "",
             "scopy": true
         },
         "iconAlignment": {

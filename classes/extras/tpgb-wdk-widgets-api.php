@@ -8,17 +8,27 @@
  * @package    TPGBP
  */
 
+// phpcs:disable Squiz.PHP.CommentedOutCode.Found
+// phpcs:disable PEAR.NamingConventions.ValidClassName.StartWithCapital
+// phpcs:disable PEAR.NamingConventions.ValidClassName.Invalid
+// phpcs:disable WordPress.Files.FileName
+
 /**Exit if accessed directly.*/
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * nxt_Wdk_Widget_Api
+ * Nxt_Wdk_Widget_Api
  *
  * @since 4.0.7
  */
 class nxt_Wdk_Widget_Api {
+  // phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid,PEAR.NamingConventions.ValidClassName.StartWithCapital
+  // phpcs:ignore PEAR.NamingConventions.ValidClassName.StartWithCapital,WordPress.NamingConventions.ValidClassName.NotCamelCaps
+  // phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid,WordPress.NamingConventions.ValidClassName.NotCamelCaps
+ // phpcs:ignore PEAR.NamingConventions.ValidClassName.StartWithCapital,PEAR.NamingConventions.ValidClassName.Invalid
+ // phpcs:ignore PEAR.NamingConventions.ValidClassName.StartWithCapital,PEAR.NamingConventions.ValidClassName.Invalid
 
 	/**
 	 * WDesignKit site URL
@@ -56,6 +66,12 @@ class nxt_Wdk_Widget_Api {
 		add_filter( 'nxt_wdk_widget_ajax_call', array( $this, 'tp_nxt_wdkit_widget_ajax_call' ), 10 );
 	}
 
+	/**
+	 * Tp nxt wdkit widget ajax call.
+	 *
+	 * @param mixed $type The type.
+	 * @return mixed The result.
+	 */
 	public function tp_nxt_wdkit_widget_ajax_call( $type ) {
 
 		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
@@ -65,8 +81,8 @@ class nxt_Wdk_Widget_Api {
 		if ( ! $type ) {
 			$this->wdkit_error_msg( __( 'Something went wrong.', 'the-plus-addons-for-block-editor' ) );
 		}
-        
-        $response = array();
+
+		$response = array();
 
 		switch ( $type ) {
 			case 'nxt_wdk_get_widget_ajax':
@@ -104,8 +120,8 @@ class nxt_Wdk_Widget_Api {
 		if ( is_wp_error( $response ) ) {
 			$error_message = $response->get_error_message();
 
-			/* Translators: %s is a placeholder for the error message */
-			$error_message = sprintf( esc_html__( 'API request error: %s', 'the-plus-addons-for-block-editor' ), esc_html( $error_message ) );
+			/** Translators: %s is a placeholder for the error message */
+			/* $error_message = sprintf( esc_html__( 'API request error: %s', 'the-plus-addons-for-block-editor' ), esc_html( $error_message ) ); // phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment */
 
 			return array(
 				'massage' => $error_message,
@@ -124,7 +140,7 @@ class nxt_Wdk_Widget_Api {
 			);
 
 		}
-		    $error_message = sprintf( esc_html__( 'Server error: %d', 'the-plus-addons-for-block-editor' ), esc_html( $status_code ) );
+			$error_message = printf( 'Server error: %d', esc_html( $status_code ) );
 
 		if ( isset( $error_data->message ) ) {
 			$error_message .= ' (' . $error_data->message . ')';
@@ -135,8 +151,6 @@ class nxt_Wdk_Widget_Api {
 				'status'  => $status_code,
 				'success' => false,
 			);
-
-
 	}
 
 	/**
@@ -148,9 +162,9 @@ class nxt_Wdk_Widget_Api {
 
 		$widget_array = array();
 
-		$server_widgets  = $this->nxt_wdk_server_widget();
+		$server_widgets = $this->nxt_wdk_server_widget();
 
-		$local_widgets = [];
+		$local_widgets = array();
 		if ( defined( 'WDKIT_VERSION' ) ) {
 			$local_widgets = $this->nxt_wdk_local_widget();
 		}
@@ -171,7 +185,7 @@ class nxt_Wdk_Widget_Api {
 			$widget_array[ $key ]['user_id']      = $value['user_id'];
 			$widget_array[ $key ]['w_unique']     = $value['w_unique'];
 
-			if ( isset( $index ) && $index !== false ) {
+			if ( isset( $index ) && false !== $index ) {
 				$w_type                         = $local_widgets[ $index ]['publish_type'];
 				$widget_array[ $key ]['w_type'] = $w_type;
 			}
@@ -187,39 +201,39 @@ class nxt_Wdk_Widget_Api {
 	 */
 	public function nxt_wdk_local_widget() {
 		$local_array = array();
-        if( defined('WDKIT_VERSION') && defined('WDKIT_BUILDER_PATH') ){
-            $gutenberg_dir = WDKIT_BUILDER_PATH . '/gutenberg';
+		if ( defined( 'WDKIT_VERSION' ) && defined( 'WDKIT_BUILDER_PATH' ) ) {
+			$gutenberg_dir = WDKIT_BUILDER_PATH . '/gutenberg';
 
-            if ( ! empty( $gutenberg_dir ) && is_dir( $gutenberg_dir ) ) {
-                $gutenberg_list = scandir( $gutenberg_dir );
-                $gutenberg_list = array_diff( $gutenberg_list, array( '.', '..' ) );
+			if ( ! empty( $gutenberg_dir ) && is_dir( $gutenberg_dir ) ) {
+				$gutenberg_list = scandir( $gutenberg_dir );
+				$gutenberg_list = array_diff( $gutenberg_list, array( '.', '..' ) );
 
-                $gutenberg_list = array_values( $gutenberg_list );
+				$gutenberg_list = array_values( $gutenberg_list );
 
-                foreach ( $gutenberg_list as $key => $value ) {
+				foreach ( $gutenberg_list as $key => $value ) {
 
-                    if ( file_exists( "{$gutenberg_dir}/{$value}" ) && is_dir( "{$gutenberg_dir}/{$value}" ) ) {
-                        $sub_dir = scandir( "{$gutenberg_dir}/{$value}" );
-                        $sub     = array_diff( $sub_dir, array( '.', '..' ) );
-                        $sub     = array_values( $sub );
+					if ( file_exists( "{$gutenberg_dir}/{$value}" ) && is_dir( "{$gutenberg_dir}/{$value}" ) ) {
+						$sub_dir = scandir( "{$gutenberg_dir}/{$value}" );
+						$sub     = array_diff( $sub_dir, array( '.', '..' ) );
+						$sub     = array_values( $sub );
 
-                        foreach ( $sub as $idx => $sub_dir_value ) {
+						foreach ( $sub as $idx => $sub_dir_value ) {
 
-                            $file      = new SplFileInfo( $sub_dir_value );
-                            $check_ext = $file->getExtension();
-                            $ext       = pathinfo( $sub_dir_value, PATHINFO_EXTENSION );
+							$file      = new SplFileInfo( $sub_dir_value );
+							$check_ext = $file->getExtension();
+							$ext       = pathinfo( $sub_dir_value, PATHINFO_EXTENSION );
 
-                            if ( 'json' === $ext ) {
-                                $widget1     = "{$gutenberg_dir}/{$value}/{$sub_dir_value}";
-                                $filedata    = wp_json_file_decode( $widget1 );
-                                $decode_data = json_decode( wp_json_encode( $filedata ), true );
-                                array_push( $local_array, $decode_data['widget_data']['widgetdata'] );
-                            }
-                        }
-                    }
-                }
-            }
-        }
+							if ( 'json' === $ext ) {
+								$widget1     = "{$gutenberg_dir}/{$value}/{$sub_dir_value}";
+								$filedata    = wp_json_file_decode( $widget1 );
+								$decode_data = json_decode( wp_json_encode( $filedata ), true );
+								array_push( $local_array, $decode_data['widget_data']['widgetdata'] );
+							}
+						}
+					}
+				}
+			}
+		}
 		return $local_array;
 	}
 
@@ -231,12 +245,12 @@ class nxt_Wdk_Widget_Api {
 	public function nxt_wdk_server_widget() {
 
 		$array_data = array(
-			'CurrentPage' => isset( $_POST['page'] ) ? (int) $_POST['page'] : 1,
-			'builder'     => isset( $_POST['buildertype'] ) ? wp_unslash( $_POST['buildertype'] ) : '["gutenberg"]',
-			'category'    => isset( $_POST['category'] ) ? sanitize_text_field( wp_unslash( $_POST['category'] ) ) : '',
-			'ParPage'     => isset( $_POST['perpage'] ) ? (int) $_POST['perpage'] : 1000,
-			'search'      => isset( $_POST['search'] ) ? sanitize_text_field( wp_unslash( $_POST['search'] ) ) : '',
-			'free_pro'    => isset( $_POST['free_pro'] ) ? sanitize_text_field( wp_unslash( $_POST['free_pro'] ) ) : '',
+			'CurrentPage' => isset( $_POST['page'] ) ? (int) $_POST['page'] : 1, // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			'builder'     => isset( $_POST['buildertype'] ) ? sanitize_text_field( wp_unslash( $_POST['buildertype'] ) ) : '["gutenberg"]', // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			'category'    => isset( $_POST['category'] ) ? sanitize_text_field( wp_unslash( $_POST['category'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			'ParPage'     => isset( $_POST['perpage'] ) ? (int) $_POST['perpage'] : 1000, // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			'search'      => isset( $_POST['search'] ) ? sanitize_text_field( wp_unslash( $_POST['search'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			'free_pro'    => isset( $_POST['free_pro'] ) ? sanitize_text_field( wp_unslash( $_POST['free_pro'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		);
 
 		$response = $this->nxt_wdesign_api_call( $array_data, 'browse_widget' );
@@ -257,39 +271,38 @@ class nxt_Wdk_Widget_Api {
 	 */
 	public function wdk_update_widget() {
 		$array_data = array(
-			'w_name'     => isset( $_POST['w_name'] ) ? sanitize_text_field( wp_unslash( $_POST['w_name'] ) ) : '',
-			'w_unique' 	 => isset( $_POST['w_unique'] ) ? sanitize_text_field( wp_unslash( $_POST['w_unique'] ) ) : '',
-			'p_type'     => isset( $_POST['p_type'] ) ? sanitize_text_field( wp_unslash( $_POST['p_type'] ) ) : '',
+			'w_name'   => isset( $_POST['w_name'] ) ? sanitize_text_field( wp_unslash( $_POST['w_name'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			'w_unique' => isset( $_POST['w_unique'] ) ? sanitize_text_field( wp_unslash( $_POST['w_unique'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			'p_type'   => isset( $_POST['p_type'] ) ? sanitize_text_field( wp_unslash( $_POST['p_type'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		);
-        
-        if( defined('WDKIT_VERSION') && defined('WDKIT_BUILDER_PATH') ){
-            $downlod_path = WDKIT_BUILDER_PATH . "/gutenberg/";
-            $file_name    = str_replace( ' ', '_', $array_data['w_name'] );
-            $folder_name  = str_replace( ' ', '-', $array_data['w_name'] );
-    
-            $tmp_file     = "$downlod_path{$folder_name}_{$array_data['w_unique']}/{$file_name}_{$array_data['w_unique']}.json";
-    
-            $json_data = wp_json_file_decode( $tmp_file, true );
-    
-            $json_data->widget_data->widgetdata->publish_type = $array_data['p_type'];
-    
-            include_once ABSPATH . 'wp-admin/includes/file.php';
-            \WP_Filesystem();
-            global $wp_filesystem;
-    
-            if ( ! empty( $json_data ) ) {
-                $wp_filesystem->put_contents( $tmp_file, json_encode($json_data) );
-    
-                $responce = array(
-                    'message'     => esc_html__( 'Update Saved Successfully', 'the-plus-addons-for-block-editor' ),
-                    'description' => esc_html__( 'Success! Update Saved', 'the-plus-addons-for-block-editor' ),
-                    'success'     => true,
-                );
-    
-                return $responce;
-            }
-        }
 
+		if ( defined( 'WDKIT_VERSION' ) && defined( 'WDKIT_BUILDER_PATH' ) ) {
+			$downlod_path = WDKIT_BUILDER_PATH . '/gutenberg/';
+			$file_name    = str_replace( ' ', '_', $array_data['w_name'] );
+			$folder_name  = str_replace( ' ', '-', $array_data['w_name'] );
+
+			$tmp_file = "$downlod_path{$folder_name}_{$array_data['w_unique']}/{$file_name}_{$array_data['w_unique']}.json";
+
+			$json_data = wp_json_file_decode( $tmp_file, true );
+
+			$json_data->widget_data->widgetdata->publish_type = $array_data['p_type'];
+
+			include_once ABSPATH . 'wp-admin/includes/file.php';
+			\WP_Filesystem();
+			global $wp_filesystem;
+
+			if ( ! empty( $json_data ) ) {
+				$wp_filesystem->put_contents( $tmp_file, wp_json_encode( $json_data ) );
+
+				$responce = array(
+					'message'     => esc_html__( 'Update Saved Successfully', 'the-plus-addons-for-block-editor' ),
+					'description' => esc_html__( 'Success! Update Saved', 'the-plus-addons-for-block-editor' ),
+					'success'     => true,
+				);
+
+				return $responce;
+			}
+		}
 	}
 }
 

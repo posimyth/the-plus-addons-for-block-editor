@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-image",
 	"version": "0.1.0",
 	"title": "Image",
@@ -30,7 +31,7 @@
       "default": ""
     },
     "ctmCap": {
-      "type": "string",
+      "type":"string",
       "source": "html",
       "selector": ".tpgb-image-caption",
       "default": ""
@@ -106,7 +107,7 @@
     },
     "imgFit": {
         "type": "object",
-            "default": {
+        "default": {
             "md": ""
         },
         "style": [
@@ -338,7 +339,7 @@
       },
       "style": [
         {
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-image){ position : {{globalPosition}}; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ position : {{globalPosition}}; }",
           "backend": true
         }
       ]
@@ -363,7 +364,7 @@
               "value": "left"
             }
           ],
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-image){ left : {{glohoriOffset}};right : auto; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ left : {{glohoriOffset}};right : auto; }",
           "backend": true
         },
         {
@@ -379,7 +380,7 @@
               "value": "right"
             }
           ],
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-image){ right : {{glohoriOffset}};left : auto; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ right : {{glohoriOffset}};left : auto; }",
           "backend": true
         }
       ]
@@ -404,7 +405,7 @@
               "value": "top"
             }
           ],
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-image){ top : {{gloverticalOffset}}; bottom : auto; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ top : {{gloverticalOffset}}; bottom : auto; }",
           "backend": true
         },
         {
@@ -420,7 +421,7 @@
               "value": "bottom"
             }
           ],
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-image){ bottom : {{gloverticalOffset}}; top : auto; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ bottom : {{gloverticalOffset}}; top : auto; }",
           "backend": true
         }
       ]
@@ -430,8 +431,8 @@
 		  "default": false
     },
     "parentBlockName": {
-      "type": "boolean",
-      "default": false
+        "type": "boolean",
+        "default": false
     }
   },
   "usesContext": ["postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField"]

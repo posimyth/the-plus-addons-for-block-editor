@@ -1,0 +1,1310 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-code-highlighter",
+    "version": "0.1.0",
+    "title": "Code Highlighter",
+    "category": "tpgb",
+    "description": "Never let your code be boring, show the correct code syntax for multiple coding languages using our Code Highlighter.",
+    "example": {
+        "attributes": {}
+    },
+    "textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "languageType": {
+            "type": "string",
+            "default": "markup"
+        },
+        "themeType": {
+            "type": "string",
+            "default": "prism-default"
+        },
+        "sourceCode": {
+            "type": "string",
+            "default": "<h1>Welcome To Posimyth Innovation</h1>"
+        },
+        "Alignment": {
+            "type": "object",
+            "default": {
+                "md": "left",
+                "sm": "",
+                "xs": ""
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "!=",
+                            "value": "prism-coy"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter pre{ text-align: {{Alignment}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "languageText": {
+            "type": "string",
+            "default": ""
+        },
+        "copyText": {
+            "type": "string",
+            "default": "Copy"
+        },
+        "copyIcnType": {
+            "type": "string",
+            "default": "none"
+        },
+        "copyIconStore": {
+            "type": "string",
+            "default": "far fa-copy"
+        },
+        "copiedText": {
+            "type": "string",
+            "default": "Copied!"
+        },
+        "copiedIcnType": {
+            "type": "string",
+            "default": "none"
+        },
+        "copiedIconStore": {
+            "type": "string",
+            "default": "far fa-copy"
+        },
+        "copyErrorText": {
+            "type": "string",
+            "default": "Error"
+        },
+        "lineNumber": {
+            "type": "boolean",
+            "default": false
+        },
+        "lineHighlight": {
+            "type": "string",
+            "default": ""
+        },
+        "dnloadBtn": {
+            "type": "boolean",
+            "default": false
+        },
+        "dwnldBtnText": {
+            "type": "string",
+            "default": "Download"
+        },
+        "dwnldIcnType": {
+            "type": "string",
+            "default": "none"
+        },
+        "dwnldIconStore": {
+            "type": "string",
+            "default": "fas fa-download"
+        },
+        "fileLink": {
+            "type": "object",
+            "default": {
+                "url": "#",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "scodePadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter pre{padding: {{scodePadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "scodeMargin": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter pre{margin: {{scodeMargin}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "scodeHeight": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter pre{ max-height: {{scodeHeight}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "scrollBarTgl": {
+            "type": "boolean",
+            "default": false
+        },
+        "scrollBarHeight": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "!=",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre::-webkit-scrollbar{ height: {{scrollBarHeight}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "==",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre > code::-webkit-scrollbar{ height: {{scrollBarHeight}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "thumbBG": {
+            "type": "object",
+            "default": {
+                "openBg": 1,
+                "bgType": "color",
+                "bgDefaultColor": "#ff844a"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "!=",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre::-webkit-scrollbar-thumb"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "==",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre > code::-webkit-scrollbar-thumb"
+                }
+            ],
+            "scopy": true
+        },
+        "thumbRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "10",
+                    "right": "10",
+                    "bottom": "10",
+                    "left": "10"
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "!=",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre::-webkit-scrollbar-thumb{border-radius: {{thumbRadius}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "==",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre > code::-webkit-scrollbar-thumb{border-radius: {{thumbRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "thumbShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "!=",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre::-webkit-scrollbar-thumb"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "==",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre > code::-webkit-scrollbar-thumb"
+                }
+            ],
+            "scopy": true
+        },
+        "trackBG": {
+            "type": "object",
+            "default": {
+                "openBg": 1,
+                "bgType": "color",
+                "bgDefaultColor": "#6f1ef150"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "!=",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre::-webkit-scrollbar-track"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "==",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre > code::-webkit-scrollbar-track"
+                }
+            ],
+            "scopy": true
+        },
+        "trackRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "10",
+                    "right": "10",
+                    "bottom": "10",
+                    "left": "10"
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "!=",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre::-webkit-scrollbar-track{border-radius: {{trackRadius}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "==",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre > code::-webkit-scrollbar-track{border-radius: {{trackRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "trackShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "!=",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre::-webkit-scrollbar-track"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "themeType",
+                            "relation": "==",
+                            "value": "prism-coy"
+                        },
+                        {
+                            "key": "scrollBarTgl",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter .code-toolbar pre > code::-webkit-scrollbar-track"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span{padding: {{langTextPadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextMargin": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span{margin: {{langTextMargin}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextNColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span{ color: {{langTextNColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextHColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span:hover{ color: {{langTextHColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextNBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextHBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextNBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextHBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextNBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span{border-radius: {{langTextNBRadius}};} "
+                }
+            ],
+            "scopy": true
+        },
+        "langTextHBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span:hover{border-radius: {{langTextHBRadius}};} "
+                }
+            ],
+            "scopy": true
+        },
+        "langTextNShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span"
+                }
+            ],
+            "scopy": true
+        },
+        "langTextHShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "languageText",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-code-highlighter div.code-toolbar>.toolbar .toolbar-item > span:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "numberColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "lineNumber",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .line-numbers-rows > span:before{ color: {{numberColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "bdrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "lineNumber",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .line-numbers .line-numbers-rows{ border-right-color: {{bdrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "highlightBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "lineHighlight",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .line-highlight"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button{padding: {{copyDwlBtnPadding}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a{padding: {{copyDwlBtnPadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnMargin": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button{margin: {{copyDwlBtnMargin}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a{margin: {{copyDwlBtnMargin}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a"
+                }
+            ],
+            "scopy": true
+        },
+        "cpdwIconSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "copyIcnType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item .code-copy-icon{ font-size: {{cpdwIconSize}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "copiedIcnType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item .code-copied-icon{ font-size: {{cpdwIconSize}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "dwnldIcnType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a .code-download-icon{ font-size: {{cpdwIconSize}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnNColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button{ color: {{copyDwlBtnNColor}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a{ color: {{copyDwlBtnNColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnHColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button:hover{ color: {{copyDwlBtnHColor}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a:hover{ color: {{copyDwlBtnHColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlIconNColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "copyIcnType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button .code-copy-icon{ color: {{copyDwlIconNColor}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "copiedIcnType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button .code-copied-icon{ color: {{copyDwlIconNColor}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "dwnldIcnType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a .code-download-icon{ color: {{copyDwlIconNColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlIconHColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "copyIcnType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button:hover .code-copy-icon{ color: {{copyDwlIconHColor}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "copiedIcnType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button:hover .code-copied-icon{ color: {{copyDwlIconHColor}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "dwnldIcnType",
+                            "relation": "==",
+                            "value": "icon"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a:hover .code-download-icon{ color: {{copyDwlIconHColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnNmlBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnHvrBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button:hover"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnNBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnHBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button:hover"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnNRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button{border-radius: {{copyDwlBtnNRadius}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a{border-radius: {{copyDwlBtnNRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnHRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button:hover{border-radius: {{copyDwlBtnHRadius}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a:hover{border-radius: {{copyDwlBtnHRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnNShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a"
+                }
+            ],
+            "scopy": true
+        },
+        "copyDwlBtnHShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > button:hover"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "dnloadBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} div.code-toolbar .toolbar-item > a:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "showBlockContent": {
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

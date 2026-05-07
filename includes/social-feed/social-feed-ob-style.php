@@ -1,43 +1,51 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-    if(!empty($videoURL)) {
-        $Iconlogo = '<div class="tpgb-sf-logo">
-            <a href="'. ( ( is_array($videoURL) && isset($videoURL[0]['link']) && !empty($videoURL[0]['link']) ) ? esc_url($videoURL[0]['link']) : esc_url($videoURL) ) .'" 
-               class="tpgb-sf-logo-link" target="_blank" rel="noopener noreferrer" aria-label="'.esc_attr__('Post URL','the-plus-addons-for-block-editor').'">
-                <i class="'.esc_attr($socialIcon).'"></i>
+/**
+ * Social Feed Ob Style.
+ *
+ * @package ThePluginAddonsForBlockEditor
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+if ( ! empty( $video_url ) ) {
+	$iconlogo = '<div class="tpgb-sf-logo">
+            <a href="' . ( ( is_array( $video_url ) && isset( $video_url[0]['link'] ) && ! empty( $video_url[0]['link'] ) ) ? esc_url( $video_url[0]['link'] ) : esc_url( $video_url ) ) . '" 
+               class="tpgb-sf-logo-link" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Post URL', 'the-plus-addons-for-block-editor' ) . '">
+                <i class="' . esc_attr( $social_icon ) . '"></i>
             </a>
         </div>';
-    }
+}
 
-    if( ( ($style == 'style-1' || $style == 'style-2'  ) && $selectFeed == 'Facebook' && $PopupOption == 'GoWebsite' && !empty($ImageURL)) ){
-        echo '<a href="'. ( ( is_array($videoURL) && isset($videoURL[0]['link']) && !empty($videoURL[0]['link']) ) ? esc_url($videoURL[0]['link']) : esc_url($videoURL) ) .'" class="tpgb-sf-logo-link" target="_blank" rel="noopener noreferrer" aria-label="'.esc_attr__('Post URL','the-plus-addons-for-block-editor').'"> <img class="tpgb-post-thumb" src="'.esc_url($ImageURL).'"> </a>';
-    }
+if ( ( ( 'style-1' === $style || 'style-2' === $style ) && 'Facebook' === $select_feed && 'GoWebsite' === $popup_option && ! empty( $image_url ) ) ) {
+	echo '<a href="' . ( ( is_array( $video_url ) && isset( $video_url[0]['link'] ) && ! empty( $video_url[0]['link'] ) ) ? esc_url( $video_url[0]['link'] ) : esc_url( $video_url ) ) . '" class="tpgb-sf-logo-link" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Post URL', 'the-plus-addons-for-block-editor' ) . '"> <img class="tpgb-post-thumb" src="' . esc_url( $image_url ) . '"> </a>';
+}
 
 	ob_start();
-    	echo '<div class="tpgb-sf-header">';
-    		if(!empty($UserImage)){
-    			echo '<div class="tpgb-sf-profile"><img class="tpgb-sf-logo" src="'.esc_url($UserImage).'" alt="'.esc_attr__('User Profile','the-plus-addons-for-block-editor').'"/></div>';
-    		} 
-    		echo '<div class="tpgb-sf-usercontact">';
-    			if(!empty($UserName)){
-    				echo '<div class="tpgb-sf-username">
-							<a href="'.esc_url($UserLink).'" target="_blank" rel="noopener noreferrer" aria-label="'.esc_attr($UserName).'">'.wp_kses_post($UserName).'</a></div>';
-    			} 
-    			if(!empty($CreatedTime)){
-    				echo '<div class="tpgb-sf-time">
-							<a href="'. ( ( is_array($videoURL) && isset($videoURL[0]['link']) && !empty($videoURL[0]['link']) ) ? esc_url($videoURL[0]['link']) : esc_url($videoURL) ) .'"  target="_blank" rel="noopener noreferrer" alt="'.esc_attr__('Post URL','the-plus-addons-for-block-editor').'">'.wp_kses_post($CreatedTime).'</a></div>';
-    			}   
-    		echo '</div>';
-    		if( isset($Iconlogo) && (!empty($socialIcon) && $style != "style-3") || (empty($ImageURL) && $style == "style-3") ){
-    			echo wp_kses_post($Iconlogo);
-    		}
-    	echo '</div>';
-    $Header_html = ob_get_clean();
+		echo '<div class="tpgb-sf-header">';
+if ( ! empty( $user_image ) ) {
+	echo '<div class="tpgb-sf-profile"><img class="tpgb-sf-logo" src="' . esc_url( $user_image ) . '" alt="' . esc_attr__( 'User Profile', 'the-plus-addons-for-block-editor' ) . '"/></div>';
+}
+			echo '<div class="tpgb-sf-usercontact">';
+if ( ! empty( $user_name ) ) {
+	echo '<div class="tpgb-sf-username">
+							<a href="' . esc_url( $user_link ) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr( $user_name ) . '">' . wp_kses_post( $user_name ) . '</a></div>';
+}
+if ( ! empty( $created_time ) ) {
+	echo '<div class="tpgb-sf-time">
+							<a href="' . ( ( is_array( $video_url ) && isset( $video_url[0]['link'] ) && ! empty( $video_url[0]['link'] ) ) ? esc_url( $video_url[0]['link'] ) : esc_url( $video_url ) ) . '"  target="_blank" rel="noopener noreferrer" alt="' . esc_attr__( 'Post URL', 'the-plus-addons-for-block-editor' ) . '">' . wp_kses_post( $created_time ) . '</a></div>';
+}
+			echo '</div>';
+if ( isset( $iconlogo ) && ( ! empty( $social_icon ) && 'style-3' !== $style ) || ( empty( $image_url ) && 'style-3' === $style ) ) { // phpcs:ignore Generic.CodeAnalysis.RequireExplicitBooleanOperatorPrecedence.MissingParentheses
+	echo wp_kses_post( $iconlogo );
+}
+		echo '</div>';
+	$header_html = ob_get_clean();
 
-	// Title
-	$Massage_html='';
-	if(!empty($ShowTitle)){
-		ob_start();
-			echo '<div class="tpgb-title">'.wp_kses_post($Massage).'</div>';
-		$Massage_html = ob_get_clean();
-	}
+	// Title.
+	$massage_html = '';
+if ( ! empty( $show_title ) ) {
+	ob_start();
+		echo '<div class="tpgb-title">' . wp_kses_post( $massage ) . '</div>';
+	$massage_html = ob_get_clean();
+}

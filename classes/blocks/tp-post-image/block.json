@@ -1,0 +1,281 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-post-image",
+    "version": "0.1.0",
+    "title": "Post Image",
+    "category": "tpgb",
+    "description": "Display primary featured post image of the content post types.",
+    "example": {
+        "attributes": {}
+    },
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "imageType": {
+            "type": "string",
+            "default": "default"
+        },
+        "bgLocation": {
+            "type": "string",
+            "default": "section"
+        },
+        "imageSize": {
+            "type": "string",
+            "default": "full"
+        },
+        "imageAlign": {
+            "type": "object",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "imageType",
+                            "relation": "==",
+                            "value": "default"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-image {text-align: {{imageAlign}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "maxWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "imageType",
+                            "relation": "==",
+                            "value": "default"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-featured-image img{max-width: {{maxWidth}};width: 100%;}"
+                }
+            ],
+            "scopy": true
+        },
+        "bgPosition": {
+            "type": "string",
+            "default": "center center",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "imageType",
+                            "relation": "==",
+                            "value": "background"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image{background-position : {{bgPosition}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "bgAttachment": {
+            "type": "string",
+            "default": "scroll",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "imageType",
+                            "relation": "==",
+                            "value": "background"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image{background-attachment : {{bgAttachment}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "bgRepeat": {
+            "type": "string",
+            "default": "no-repeat",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "imageType",
+                            "relation": "==",
+                            "value": "background"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image{background-repeat : {{bgRepeat}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "bgSize": {
+            "type": "string",
+            "default": "cover",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "imageType",
+                            "relation": "==",
+                            "value": "background"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image{background-size : {{bgSize}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "postimgBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-featured-image a:after,{{PLUS_WRAP}}.tpgb-post-image.post-img-bg .tpgb-featured-image:after"
+                }
+            ],
+            "scopy": true
+        },
+        "postimgHvrBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-featured-image:hover a:after,{{PLUS_WRAP}}.tpgb-post-image.post-img-bg:hover .tpgb-featured-image:after"
+                }
+            ],
+            "scopy": true
+        },
+        "postimgbor": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "",
+                        "left": "",
+                        "bottom": "",
+                        "right": ""
+                    },
+                    "unit": ""
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-featured-image .tpgb-featured-img"
+                }
+            ],
+            "scopy": true
+        },
+        "postimgHvrbor": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "",
+                        "left": "",
+                        "bottom": "",
+                        "right": ""
+                    },
+                    "unit": ""
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-featured-image:hover .tpgb-featured-img"
+                }
+            ],
+            "scopy": true
+        },
+        "postimgbRad": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-featured-image .tpgb-featured-img,{{PLUS_WRAP}} .tpgb-featured-image a:after{ border-radius : {{postimgbRad}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "postimgbhvrRad": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-featured-image:hover .tpgb-featured-img,{{PLUS_WRAP}} .tpgb-featured-image:hover a:after{ border-radius : {{postimgbhvrRad}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "postimgBshad": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-featured-image .tpgb-featured-img"
+                }
+            ],
+            "scopy": true
+        },
+        "postimghvrBshad": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-featured-image:hover .tpgb-featured-img"
+                }
+            ],
+            "scopy": true
+        },
+        "fancyBox": {
+            "type": "boolean",
+            "default": false,
+            "scopy": true
+        },
+        "FancyOption": {
+            "type": "string",
+            "default": "[]",
+            "scopy": true
+        }
+    }
+}

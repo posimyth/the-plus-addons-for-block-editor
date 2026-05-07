@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-pro-paragraph",
 	"version": "0.1.0",
 	"title": "Paragraph",
@@ -25,6 +26,14 @@
 			"type": "string",
 			"default": "Save the Earth for future Generations."
 		  },
+          "exTitle": {
+            "type": "string",
+            "default": ""
+          },
+          "exproCnt": {
+            "type": "string",
+            "default": ""
+          },
 		  "titleTag": {
 			"type": "string",
 			"default": "h3"

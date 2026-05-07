@@ -1,1076 +1,351 @@
 <?php
 /**
  * Block : Social Embed
+ *
  * @since 1.3.0
+ * @package ThePluginAddonsForBlockEditor
  */
+
 defined( 'ABSPATH' ) || exit;
 
-function tpgb_social_embed_render_callback( $attributes, $content) {
-	$output = '';
-	$block_id = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
-	$embedType = (!empty($attributes['embedType'])) ? $attributes['embedType'] : 'facebook';
-	
-	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
-	$output .= '<div class="tpgb-block-'.esc_attr($block_id).' tpgb-social-embed '.esc_attr($blockClass).'">';
+/**
+ * Tpgb social embed render callback.
+ *
+ * @param mixed $attributes The attributes.
+ * @param mixed $content The content.
+ */
+function tpgb_social_embed_render_callback( $attributes, $content ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	$output     = '';
+	$block_id   = ( ! empty( $attributes['block_id'] ) ) ? $attributes['block_id'] : uniqid( 'title' );
+	$embed_type = ( ! empty( $attributes['embedType'] ) ) ? $attributes['embedType'] : 'facebook';
 
-		if($embedType == 'vimeo' || $embedType == 'youtube'){
-			$exWidth = (!empty($attributes['exWidth']) ) ? $attributes['exWidth'] : 640;
-			$exHeight = (!empty($attributes['exHeight']) ) ? $attributes['exHeight'] : 360;
+	$block_class = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
+	$output     .= '<div class="tpgb-block-' . esc_attr( $block_id ) . ' tpgb-social-embed ' . esc_attr( $block_class ) . '">';
+
+	if ( 'vimeo' === $embed_type || 'youtube' === $embed_type ) {
+		$ex_width  = ( ! empty( $attributes['exWidth'] ) ) ? $attributes['exWidth'] : 640;
+		$ex_height = ( ! empty( $attributes['exHeight'] ) ) ? $attributes['exHeight'] : 360;
+	}
+
+	if ( 'facebook' === $embed_type ) {
+		$type     = ( ! empty( $attributes['type'] ) ) ? $attributes['type'] : '';
+		$size_btn = ( ! empty( $attributes['sizeLB'] ) ) ? $attributes['sizeLB'] : '';
+
+		if ( 'comments' === $type ) {
+			$fb_comment_add = ( ! empty( $attributes['commentAddURL'] ) && ! empty( $attributes['commentAddURL']['url'] ) ) ? $attributes['commentAddURL']['url'] : '';
+			$target_c       = ( ! empty( $attributes['targetC'] ) ) ? $attributes['targetC'] : 'custom';
+
+			if ( 'currentpage' === $target_c ) {
+				$url_fc  = ( ! empty( $attributes['urlFC'] ) ) ? $attributes['urlFC'] : 'plain';
+				$post_id = get_the_ID();
+
+				if ( 'plain' === $url_fc ) {
+					$plain_url = get_permalink( $post_id );
+					$output   .= '<div class="fb-comments tpgb-fb-iframe" data-href="' . esc_url( $plain_url ) . '" data-width="" data-numposts="' . esc_attr( $attributes['countC'] ) . '" data-order-by="' . esc_attr( $attributes['orderByC'] ) . '" ></div>';
+				} elseif ( 'pretty' === $url_fc ) {
+					$pretty_url = add_query_arg( 'p', $post_id, home_url() );
+					$output    .= '<div class="fb-comments tpgb-fb-iframe" data-href="' . esc_url( $pretty_url ) . '" data-width="" data-numposts="' . esc_attr( $attributes['countC'] ) . '" data-order-by="' . esc_attr( $attributes['orderByC'] ) . '" ></div>';
+				}
+			} else {
+				$output .= '<div class="fb-comments tpgb-fb-iframe" data-href="' . esc_url( $fb_comment_add ) . '" data-width="" data-numposts="' . esc_attr( $attributes['countC'] ) . '" data-order-by="' . esc_attr( $attributes['orderByC'] ) . '" ></div>';
+			}
+			$output .= '<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>'; // phpcs:ignore WordPress.WP.EnqueuedResourcesNonEnqueuedScript.NonEnqueuedScript,WordPress.WP.EnqueuedResources.NonEnqueuedScript,WordPress.WP.EnqueuedResources
 		}
+		if ( 'posts' === $type ) {
+			$post_url     = ( ! empty( $attributes['postURL'] ) && ! empty( $attributes['postURL']['url'] ) ) ? $attributes['postURL']['url'] : '';
+			$wd_post      = ( ! empty( $attributes['wdPost'] ) ) ? $attributes['wdPost'] : 500;
+			$hg_post      = ( ! empty( $attributes['hgPost'] ) ) ? $attributes['hgPost'] : 560;
+			$iframe_title = ( ! empty( $attributes['iframeTitle'] ) ) ? esc_attr( $attributes['iframeTitle'] ) : esc_attr__( 'Social Facebook Embed', 'the-plus-addons-for-block-editor' );
 
-		if( $embedType == 'facebook' ){
-			$type = (!empty($attributes['type'])) ? $attributes['type'] : '';
-			$sizeBtn = (!empty($attributes['sizeLB'])) ? $attributes['sizeLB'] : '';
+			$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/post.php?href=' . esc_url( $post_url ) . '&show_text=' . esc_attr( $attributes['fullPT'] ) . '&width=' . esc_attr( $wd_post ) . '&height=' . esc_attr( $hg_post ) . '&appId=" width="' . esc_attr( $wd_post ) . '" height="' . esc_attr( $hg_post ) . '" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="' . $iframe_title . '"></iframe>';
+		}
+		if ( 'videos' === $type ) {
+			$videos_url   = ( ! empty( $attributes['videosURL'] ) && ! empty( $attributes['videosURL']['url'] ) ) ? $attributes['videosURL']['url'] : '';
+			$full_video   = ( ! empty( $attributes['fullVT'] ) ) ? 'allowFullScreen="' . esc_attr( $attributes['wdVideo'] . '"' ) : '';
+			$wd_video     = ( ! empty( $attributes['wdVideo'] ) ) ? $attributes['wdVideo'] : 500;
+			$hg_video     = ( ! empty( $attributes['hgVideo'] ) ) ? $attributes['hgVideo'] : 560;
+			$iframe_title = ( ! empty( $attributes['iframeTitle'] ) ) ? esc_attr( $attributes['iframeTitle'] ) : esc_attr__( 'Social Facebook Embed', 'the-plus-addons-for-block-editor' );
 
-			if( $type == 'comments' ){
-				$fbCommentAdd = (!empty($attributes['commentAddURL']) && !empty($attributes['commentAddURL']['url']) ) ? $attributes['commentAddURL']['url'] : '';				
-				$targetC = (!empty($attributes['targetC'])) ? $attributes['targetC'] : 'custom';
+			$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/video.php?href=' . esc_url( $videos_url ) . '&show_text=' . esc_attr( $attributes['captionVT'] ) . '&width=' . esc_attr( $wd_video ) . '&height=' . esc_attr( $hg_video ) . '&autoplay=' . esc_attr( $attributes['autoplayVT'] ) . '&appId=" width="' . esc_attr( $wd_video ) . '" height="' . esc_attr( $hg_video ) . '" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" ' . $full_video . ' title="' . $iframe_title . '"></iframe>';
+		}
+		if ( 'likebutton' === $type ) {
+			$fb_like_btn  = ( ! empty( $attributes['likeBtnUrl'] ) && ! empty( $attributes['likeBtnUrl']['url'] ) ) ? $attributes['likeBtnUrl']['url'] : '';
+			$faces_lbt    = ( ! empty( $attributes['facesLBT'] ) ) ? $attributes['facesLBT'] : false;
+			$fb_hg_like   = ( ! empty( $attributes['hgLikeBtn'] ) ) ? $attributes['hgLikeBtn'] : 30;
+			$f_bwd_like   = ( ! empty( $attributes['wdLikeBtn'] ) ) ? $attributes['wdLikeBtn'] : 350;
+			$iframe_title = ( ! empty( $attributes['iframeTitle'] ) ) ? esc_attr( $attributes['iframeTitle'] ) : esc_attr__( 'Social Facebook Embed', 'the-plus-addons-for-block-editor' );
 
-				if( $targetC == 'currentpage' ){
-					$urlFC = (!empty($attributes['urlFC'])) ? $attributes['urlFC'] : 'plain';
-					$post_id = get_the_ID();
-
-					if( $urlFC == 'plain' ){
-						$PlainURL = get_permalink( $post_id );
-						$output .= '<div class="fb-comments tpgb-fb-iframe" data-href="'.esc_url($PlainURL).'" data-width="" data-numposts="'.esc_attr($attributes['countC']).'" data-order-by="'.esc_attr($attributes['orderByC']).'" ></div>';
-					}else if( $urlFC == 'pretty' ){
-						$PrettyURL = add_query_arg('p', $post_id, home_url());						
-						$output .= '<div class="fb-comments tpgb-fb-iframe" data-href="'.esc_url($PrettyURL).'" data-width="" data-numposts="'.esc_attr($attributes['countC']).'" data-order-by="'.esc_attr($attributes['orderByC']).'" ></div>';
-					}
-
-				}else{
-					$output .= '<div class="fb-comments tpgb-fb-iframe" data-href="'.esc_url($fbCommentAdd).'" data-width="" data-numposts="'.esc_attr($attributes['countC']).'" data-order-by="'.esc_attr($attributes['orderByC']).'" ></div>';
+			if ( 'currentpage' === $attributes['targetLike'] ) {
+				$fmt_ur_llb = ( ! empty( $attributes['fmtURLlb'] ) ) ? $attributes['fmtURLlb'] : 'plain';
+				$post_id    = get_the_ID();
+				if ( 'plain' === $fmt_ur_llb ) {
+					$plain_lurl = get_permalink( $post_id );
+					$output    .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/like.php?href=' . esc_url( $plain_lurl ) . '&layout=' . esc_attr( $attributes['btnStyleLB'] ) . '&action=' . esc_attr( $attributes['typeLB'] ) . '&size=' . esc_attr( $size_btn ) . '&share=' . esc_attr( $attributes['sBtnLB'] ) . '&height=' . esc_attr( $fb_hg_like ) . '&show_faces=' . esc_attr( $faces_lbt ) . '&colorscheme=' . esc_attr( $attributes['colorSLB'] ) . '&width=' . esc_attr( $f_bwd_like ) . '&appId=" width="' . esc_attr( $f_bwd_like ) . '" height="' . esc_attr( $fb_hg_like ) . '" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="' . $iframe_title . '"></iframe>';
+				} elseif ( 'pretty' === $fmt_ur_llb ) {
+					$pretty_lurl = add_query_arg( 'p', $post_id, home_url() );
+					$output     .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/like.php?href=' . esc_url( $pretty_lurl ) . '&layout=' . esc_attr( $attributes['btnStyleLB'] ) . '&action=' . esc_attr( $attributes['typeLB'] ) . '&size=' . esc_attr( $size_btn ) . '&share=' . esc_attr( $attributes['sBtnLB'] ) . '&height=' . esc_attr( $fb_hg_like ) . '&show_faces=' . esc_attr( $faces_lbt ) . '&colorscheme=' . esc_attr( $attributes['colorSLB'] ) . '&width=' . esc_attr( $f_bwd_like ) . '&appId=" width="' . esc_attr( $f_bwd_like ) . '" height="' . esc_attr( $fb_hg_like ) . '" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="' . $iframe_title . '"></iframe>';
 				}
-				$output .= '<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>';
+			} else {
+				$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/like.php?href=' . esc_url( $fb_like_btn ) . '&layout=' . esc_attr( $attributes['btnStyleLB'] ) . '&action=' . esc_attr( $attributes['typeLB'] ) . '&size=' . esc_attr( $size_btn ) . '&share=' . esc_attr( $attributes['sBtnLB'] ) . '&height=' . esc_attr( $fb_hg_like ) . '&show_faces=' . esc_attr( $faces_lbt ) . '&colorscheme=' . esc_attr( $attributes['colorSLB'] ) . '&width=' . esc_attr( $f_bwd_like ) . '&appId=" width="' . esc_attr( $f_bwd_like ) . '" height="' . esc_attr( $fb_hg_like ) . '" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="' . $iframe_title . '"></iframe>';
 			}
-			if( $type == 'posts' ){
-				$postURL = (!empty($attributes['postURL']) && !empty($attributes['postURL']['url']) ) ? $attributes['postURL']['url'] : '';			
-				$wdPost = (!empty($attributes['wdPost'])) ? $attributes['wdPost'] : 500;
-				$hgPost = (!empty($attributes['hgPost'])) ? $attributes['hgPost'] : 560;
-				$iframeTitle = (!empty($attributes['iframeTitle'])) ? esc_attr($attributes['iframeTitle']) : esc_attr__('Social Facebook Embed','the-plus-addons-for-block-editor');
+		}
+		if ( 'page' === $type ) {
+			$u_rlp        = ( ! empty( $attributes['uRLP'] ) && ! empty( $attributes['uRLP']['url'] ) ) ? $attributes['uRLP']['url'] : '';
+			$wd_page      = ( ! empty( $attributes['wdPage'] ) ) ? $attributes['wdPage'] : 340;
+			$hg_page      = ( ! empty( $attributes['hgPage'] ) ) ? $attributes['hgPage'] : 500;
+			$iframe_title = ( ! empty( $attributes['iframeTitle'] ) ) ? esc_attr( $attributes['iframeTitle'] ) : esc_attr__( 'Social Facebook Embed', 'the-plus-addons-for-block-editor' );
 
-				$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/post.php?href='.esc_url($postURL).'&show_text='.esc_attr($attributes['fullPT']).'&width='.esc_attr($wdPost).'&height='.esc_attr($hgPost).'&appId=" width="'.esc_attr($wdPost).'" height="'.esc_attr($hgPost).'" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="'.$iframeTitle.'"></iframe>';
-			}
-			if( $type == 'videos' ){
-				$videosURL = (!empty($attributes['videosURL']) && !empty($attributes['videosURL']['url']) ) ? $attributes['videosURL']['url'] : '';
-				$FullVideo = (!empty($attributes['fullVT'])) ? 'allowFullScreen="'.esc_attr($attributes['wdVideo'].'"') : '';
-				$wdVideo = (!empty($attributes['wdVideo'])) ? $attributes['wdVideo'] : 500;
-				$hgVideo = (!empty($attributes['hgVideo'])) ? $attributes['hgVideo'] : 560;
-				$iframeTitle = (!empty($attributes['iframeTitle'])) ? esc_attr($attributes['iframeTitle']) : esc_attr__('Social Facebook Embed','the-plus-addons-for-block-editor');
+			$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/page.php?href=' . esc_url( $u_rlp ) . '&tabs=' . esc_attr( $attributes['layoutP'] ) . '&width=' . esc_attr( $wd_page ) . '&height=' . esc_attr( $hg_page ) . '&small_header=' . esc_attr( $attributes['smallHP'] ) . '&hide_cover=' . esc_attr( $attributes['coverP'] ) . '&show_facepile=' . esc_attr( $attributes['profileP'] ) . '&hide_cta=' . esc_attr( $attributes['ctaBtn'] ) . '&lazy=true&adapt_container_width=true&appId=" width="' . esc_attr( $wd_page ) . '" height="' . esc_attr( $hg_page ) . '" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="' . $iframe_title . '"></iframe>';
+		}
+		if ( 'save' === $type ) {
+			$save_url = ( ! empty( $attributes['saveURL'] ) && ! empty( $attributes['saveURL']['url'] ) ) ? $attributes['saveURL']['url'] : '';
 
-				$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/video.php?href='.esc_url($videosURL).'&show_text='.esc_attr($attributes['captionVT']).'&width='.esc_attr($wdVideo).'&height='.esc_attr($hgVideo).'&autoplay='.esc_attr($attributes['autoplayVT']).'&appId=" width="'.esc_attr($wdVideo).'" height="'.esc_attr($hgVideo).'" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" '.$FullVideo.' title="'.$iframeTitle.'"></iframe>';
-			}
-			if( $type == 'likebutton' ){
-				$FBLikeBtn = (!empty($attributes['likeBtnUrl']) && !empty($attributes['likeBtnUrl']['url']) ) ? $attributes['likeBtnUrl']['url'] : '';			
-				$facesLBT = (!empty($attributes['facesLBT'])) ? $attributes['facesLBT'] : false;
-				$FBHgLike = (!empty($attributes['hgLikeBtn'])) ? $attributes['hgLikeBtn'] : 30;
-				$FBwdLike = (!empty($attributes['wdLikeBtn'])) ? $attributes['wdLikeBtn'] : 350; 
-				$iframeTitle = (!empty($attributes['iframeTitle'])) ? esc_attr($attributes['iframeTitle']) : esc_attr__('Social Facebook Embed','the-plus-addons-for-block-editor');
+			$output .= '<div class="fb-save" data-uri="' . esc_url( $save_url ) . '" data-size="' . esc_attr( $size_btn ) . '"></div>';
+			$output .= '<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>'; // phpcs:ignore WordPress.WP.EnqueuedResourcesNonEnqueuedScript.NonEnqueuedScript,WordPress.WP.EnqueuedResources.NonEnqueuedScript,WordPress.WP.EnqueuedResources
+		}
+		if ( 'share' === $type ) {
+			$share_url    = ( ! empty( $attributes['shareURL'] ) && ! empty( $attributes['shareURL']['url'] ) ) ? $attributes['shareURL']['url'] : '';
+			$share_w      = ( ! empty( $attributes['wdShare'] ) && ! empty( $attributes['wdShare'] ) ) ? $attributes['wdShare'] : 100;
+			$share_h      = ( ! empty( $attributes['hgShare'] ) && ! empty( $attributes['hgShare'] ) ) ? $attributes['hgShare'] : 40;
+			$iframe_title = ( ! empty( $attributes['iframeTitle'] ) ) ? esc_attr( $attributes['iframeTitle'] ) : esc_attr__( 'Facebook Share', 'the-plus-addons-for-block-editor' );
 
-				if( $attributes['targetLike'] == 'currentpage' ){
-					$fmtURLlb = (!empty($attributes['fmtURLlb'])) ? $attributes['fmtURLlb'] : 'plain';
-					$post_id = get_the_ID();
-					if( $fmtURLlb == 'plain' ){
-						$PlainLURL = get_permalink( $post_id );
-						$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/like.php?href='.esc_url($PlainLURL).'&layout='.esc_attr($attributes['btnStyleLB']).'&action='.esc_attr($attributes['typeLB']).'&size='.esc_attr($sizeBtn).'&share='.esc_attr($attributes['sBtnLB']).'&height='.esc_attr($FBHgLike).'&show_faces='.esc_attr($facesLBT).'&colorscheme='.esc_attr($attributes['colorSLB']).'&width='.esc_attr($FBwdLike).'&appId=" width="'.esc_attr($FBwdLike).'" height="'.esc_attr($FBHgLike).'" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="'.$iframeTitle.'"></iframe>';
-					}else if( $fmtURLlb == 'pretty' ){
-						$PrettyLURL = add_query_arg('p', $post_id, home_url());						
-						$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/like.php?href='.esc_url($PrettyLURL).'&layout='.esc_attr($attributes['btnStyleLB']).'&action='.esc_attr($attributes['typeLB']).'&size='.esc_attr($sizeBtn).'&share='.esc_attr($attributes['sBtnLB']).'&height='.esc_attr($FBHgLike).'&show_faces='.esc_attr($facesLBT).'&colorscheme='.esc_attr($attributes['colorSLB']).'&width='.esc_attr($FBwdLike).'&appId=" width="'.esc_attr($FBwdLike).'" height="'.esc_attr($FBHgLike).'" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="'.$iframeTitle.'"></iframe>';
-					}
-				}else{
-					$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/like.php?href='.esc_url($FBLikeBtn).'&layout='.esc_attr($attributes['btnStyleLB']).'&action='.esc_attr($attributes['typeLB']).'&size='.esc_attr($sizeBtn).'&share='.esc_attr($attributes['sBtnLB']).'&height='.esc_attr($FBHgLike).'&show_faces='.esc_attr($facesLBT).'&colorscheme='.esc_attr($attributes['colorSLB']).'&width='.esc_attr($FBwdLike).'&appId=" width="'.esc_attr($FBwdLike).'" height="'.esc_attr($FBHgLike).'" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="'.$iframeTitle.'"></iframe>';
-				}
-			}
-			if( $type == 'page' ){
-				$uRLP = (!empty($attributes['uRLP']) && !empty($attributes['uRLP']['url']) ) ? $attributes['uRLP']['url'] : '';			
-				$wdPage = (!empty($attributes['wdPage'])) ? $attributes['wdPage'] : 340;
-				$hgPage = (!empty($attributes['hgPage'])) ? $attributes['hgPage'] : 500;
-				$iframeTitle = (!empty($attributes['iframeTitle'])) ? esc_attr($attributes['iframeTitle']) : esc_attr__('Social Facebook Embed','the-plus-addons-for-block-editor');			
-				
-				$output .= '<iframe class="tpgb-fb-iframe" src="https://www.facebook.com/plugins/page.php?href='.esc_url($uRLP).'&tabs='.esc_attr($attributes['layoutP']).'&width='.esc_attr($wdPage).'&height='.esc_attr($hgPage).'&small_header='.esc_attr($attributes['smallHP']).'&hide_cover='.esc_attr($attributes['coverP']).'&show_facepile='.esc_attr($attributes['profileP']).'&hide_cta='.esc_attr($attributes['ctaBtn']).'&lazy=true&adapt_container_width=true&appId=" width="'.esc_attr($wdPage).'" height="'.esc_attr($hgPage).'" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="'.$iframeTitle.'"></iframe>';
-			}
-			if( $type == 'save' ){
-				$saveURL = (!empty($attributes['saveURL']) && !empty($attributes['saveURL']['url']) ) ? $attributes['saveURL']['url'] : '';
-							
-				$output .= '<div class="fb-save" data-uri="'.esc_url($saveURL).'" data-size="'.esc_attr($sizeBtn).'"></div>';
-				$output .= '<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>';
-			}
-			if( $type == 'share' ){
-				$shareURL = (!empty($attributes['shareURL']) && !empty($attributes['shareURL']['url']) ) ? $attributes['shareURL']['url'] : '';
-				$shareW = (!empty($attributes['wdShare']) && !empty($attributes['wdShare']) ) ? $attributes['wdShare'] : 100;
-				$shareH = (!empty($attributes['hgShare']) && !empty($attributes['hgShare']) ) ? $attributes['hgShare'] : 40;
-				$iframeTitle = (!empty($attributes['iframeTitle'])) ? esc_attr($attributes['iframeTitle']) : esc_attr__('Facebook Share','the-plus-addons-for-block-editor');
-				
-				$output .= '<iframe src="https://www.facebook.com/plugins/share_button.php?href='.esc_url($shareURL).'&layout='.esc_attr($attributes['shareBtn']).'&size='.esc_attr($sizeBtn).'&width='.esc_attr($shareW).'&height='.esc_attr($shareH).'&appId=" width="'.esc_attr($shareW).'" height="'.esc_attr($shareH).'" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="'.$iframeTitle.'"></iframe>';
-			}
-		}else if( $embedType == 'twitter' ){
-			$tweetType = (!empty($attributes['tweetType'])) ? $attributes['tweetType'] : 'timelines';
-			$twname = (!empty($attributes['twname'])) ? $attributes['twname'] : 'twitter';
-			$twColor = (!empty($attributes['twColor'])) ? 'dark' : 'light';
-			$twwidth = (!empty($attributes['twwidth'])) ? $attributes['twwidth'] : '';
-			$twconver = (!empty($attributes['twconver'])) ? 'none' : '';
-			$twMsg = (!empty($attributes['twMsg'])) ? $attributes['twMsg'] : '';
+			$output .= '<iframe src="https://www.facebook.com/plugins/share_button.php?href=' . esc_url( $share_url ) . '&layout=' . esc_attr( $attributes['shareBtn'] ) . '&size=' . esc_attr( $size_btn ) . '&width=' . esc_attr( $share_w ) . '&height=' . esc_attr( $share_h ) . '&appId=" width="' . esc_attr( $share_w ) . '" height="' . esc_attr( $share_h ) . '" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="' . $iframe_title . '"></iframe>';
+		}
+	} elseif ( 'twitter' === $embed_type ) {
+		$tweet_type = ( ! empty( $attributes['tweetType'] ) ) ? $attributes['tweetType'] : 'timelines';
+		$twname     = ( ! empty( $attributes['twname'] ) ) ? $attributes['twname'] : 'twitter';
+		$tw_color   = ( ! empty( $attributes['twColor'] ) ) ? 'dark' : 'light';
+		$twwidth    = ( ! empty( $attributes['twwidth'] ) ) ? $attributes['twwidth'] : '';
+		$twconver   = ( ! empty( $attributes['twconver'] ) ) ? 'none' : '';
+		$tw_msg     = ( ! empty( $attributes['twMsg'] ) ) ? $attributes['twMsg'] : '';
 
-			if( $tweetType == 'tweets' ){
-				$twRepeater = (!empty($attributes['twRepeater'])) ? $attributes['twRepeater'] : [];
-				$twCards = (!empty($attributes['twCards'])) ? 'hidden' : '';
-				$twAlign = (!empty($attributes['twalign'])) ? $attributes['twalign'] : 'center';
-				
-				foreach ( $twRepeater as $index => $tweet ) {
-					$twURl = (!empty($tweet['tweetURl']) && !empty($tweet['tweetURl']['url'])) ? $tweet['tweetURl']['url'] : '';
-					$twMassage = ( !empty($tweet['twMassage']) ? $tweet['twMassage'] : '');
+		if ( 'tweets' === $tweet_type ) {
+			$tw_repeater = ( ! empty( $attributes['twRepeater'] ) ) ? $attributes['twRepeater'] : array();
+			$tw_cards    = ( ! empty( $attributes['twCards'] ) ) ? 'hidden' : '';
+			$tw_align    = ( ! empty( $attributes['twalign'] ) ) ? $attributes['twalign'] : 'center';
 
-					$output .= '<blockquote class="twitter-tweet" data-theme="'.esc_attr($twColor).'" data-width="'.esc_attr($twwidth).'" data-cards="'.esc_attr($twCards).'" data-align="'.esc_attr($twAlign).'" data-conversation="'.esc_attr($twconver).'" >';
-						$output .= '<p lang="en" dir="ltr">'.wp_kses_post($twMassage).'</p>';
-						$output .= '<a href="'.esc_attr($twURl).'"></a>';
-					$output .= '</blockquote>';
+			foreach ( $tw_repeater as $index => $tweet ) {
+				$tw_u_rl    = ( ! empty( $tweet['tweetURl'] ) && ! empty( $tweet['tweetURl']['url'] ) ) ? $tweet['tweetURl']['url'] : '';
+				$tw_massage = ( ! empty( $tweet['twMassage'] ) ? $tweet['twMassage'] : '' );
+
+				$output     .= '<blockquote class="twitter-tweet" data-theme="' . esc_attr( $tw_color ) . '" data-width="' . esc_attr( $twwidth ) . '" data-cards="' . esc_attr( $tw_cards ) . '" data-align="' . esc_attr( $tw_align ) . '" data-conversation="' . esc_attr( $twconver ) . '" >';
+					$output .= '<p lang="en" dir="ltr">' . wp_kses_post( $tw_massage ) . '</p>';
+					$output .= '<a href="' . esc_attr( $tw_u_rl ) . '"></a>';
+				$output     .= '</blockquote>';
+			}
+		}
+		if ( 'timelines' === $tweet_type ) {
+			$tw_u_rl   = '';
+			$twclass   = 'twitter-timeline';
+			$tw_guides = ( ! empty( $attributes['twGuides'] ) ) ? $attributes['twGuides'] : 'profile';
+			$tw_br_cr  = ( ! empty( $attributes['twBrCr'] ) ) ? $attributes['twBrCr'] : '';
+			$twlimit   = ( ! empty( $attributes['twlimit'] ) ) ? $attributes['twlimit'] : '';
+			$twstyle   = ( ! empty( $attributes['twstyle'] ) ) ? $attributes['twstyle'] : 'linear';
+			$tw_design = ( ! empty( $attributes['twDesign'] ) ) ? json_decode( $attributes['twDesign'] ) : array();
+			$twheight  = ( 'linear' === $twstyle ) ? $attributes['twheight'] : '';
+
+			$design_btn = array();
+			if ( is_array( $tw_design ) || is_object( $tw_design ) ) {
+				foreach ( $tw_design as $value ) {
+					$design_btn[] = $value->value;
 				}
 			}
-			if( $tweetType == 'timelines' ){
-				$twURl = '';
-				$twclass = 'twitter-timeline';
-				$twGuides = (!empty($attributes['twGuides'])) ? $attributes['twGuides'] : 'profile';
-				$twBrCr = (!empty($attributes['twBrCr'])) ? $attributes['twBrCr'] : '';
-				$twlimit = (!empty($attributes['twlimit'])) ? $attributes['twlimit'] : '';
-				$twstyle = (!empty($attributes['twstyle'])) ? $attributes['twstyle'] : 'linear';
-				$twDesign = (!empty($attributes['twDesign'])) ? json_decode($attributes['twDesign']) : [];
-				$twheight = ( $twstyle == 'linear' ) ? $attributes['twheight'] : '';
+			$tw_design = wp_json_encode( $design_btn );
 
-				$DesignBTN = array();
-				if (is_array($twDesign) || is_object($twDesign)) {
-					foreach ($twDesign as $value) {
-						$DesignBTN[] = $value->value;
-					}
-				}
-				$twDesign = json_encode($DesignBTN);
-
-				if($twGuides == 'profile'){
-					$twURl = 'https://twitter.com/'.esc_attr($twname);
-				}else if($twGuides == 'list'){
-					$twURl = (!empty($attributes['twlisturl']) && !empty($attributes['twlisturl']['url'])) ? $attributes['twlisturl']['url'] : '';
-				}else if($twGuides == 'likes'){
-					$twURl = 'https://twitter.com/'.esc_attr($twname).'/likes';
-				}else if($twGuides == 'collection'){
-					$twclass = 'twitter-grid';
-					$twURl = (!empty($attributes['twCollection']) && !empty($attributes['twCollection']['url'])) ? $attributes['twCollection']['url'] : '';
-				}
-				$output .= '<a class="'.esc_attr($twclass).'" href="'.esc_url($twURl).'" data-width="'.esc_attr($twwidth).'" data-height="'.esc_attr($twheight).'" data-theme="'.esc_attr($twColor).'" data-chrome="'.esc_attr($twDesign).'" data-border-color="'.esc_attr($twBrCr).'" data-tweet-limit="'.esc_attr($twlimit).'" data-aria-polite="" >'.wp_kses_post($twMsg).'</a>';
+			if ( 'profile' === $tw_guides ) {
+				$tw_u_rl = 'https://twitter.com/' . esc_attr( $twname );
+			} elseif ( 'list' === $tw_guides ) {
+				$tw_u_rl = ( ! empty( $attributes['twlisturl'] ) && ! empty( $attributes['twlisturl']['url'] ) ) ? $attributes['twlisturl']['url'] : '';
+			} elseif ( 'likes' === $tw_guides ) {
+				$tw_u_rl = 'https://twitter.com/' . esc_attr( $twname ) . '/likes';
+			} elseif ( 'collection' === $tw_guides ) {
+				$twclass = 'twitter-grid';
+				$tw_u_rl = ( ! empty( $attributes['twCollection'] ) && ! empty( $attributes['twCollection']['url'] ) ) ? $attributes['twCollection']['url'] : '';
 			}
-			if( $tweetType == 'buttons' ){
-				$twbutton = (!empty($attributes['twbutton'])) ? $attributes['twbutton'] : 'follow';
-				$twBtnSize = (!empty($attributes['twBtnSize'])) ? $attributes['twBtnSize'] : '';
-				$twTweetId = (!empty($attributes['twTweetId'])) ? $attributes['twTweetId'] : '';
-				$twicon = (!empty($attributes['twIcon'])) ? '' : '<i class="fab fa-twitter"></i>';
-				
-				if( $twbutton == 'tweets' ){
-					$twVia = (!empty($attributes['twVia'])) ? $attributes['twVia'] : '';
-					$twTextBtn = (!empty($attributes['twTextBtn'])) ? $attributes['twTextBtn'] : '';
-					$twHashtags = (!empty($attributes['twHashtags'])) ? $attributes['twHashtags'] : '';
-					$twTweetUrl = (!empty($attributes['twTweetUrl']) && !empty($attributes['twTweetUrl']['url'])) ? $attributes['twTweetUrl']['url'] : '';
+			$output .= '<a class="' . esc_attr( $twclass ) . '" href="' . esc_url( $tw_u_rl ) . '" data-width="' . esc_attr( $twwidth ) . '" data-height="' . esc_attr( $twheight ) . '" data-theme="' . esc_attr( $tw_color ) . '" data-chrome="' . esc_attr( $tw_design ) . '" data-border-color="' . esc_attr( $tw_br_cr ) . '" data-tweet-limit="' . esc_attr( $twlimit ) . '" data-aria-polite="" >' . wp_kses_post( $tw_msg ) . '</a>';
+		}
+		if ( 'buttons' === $tweet_type ) {
+			$twbutton    = ( ! empty( $attributes['twbutton'] ) ) ? $attributes['twbutton'] : 'follow';
+			$tw_btn_size = ( ! empty( $attributes['twBtnSize'] ) ) ? $attributes['twBtnSize'] : '';
+			$tw_tweet_id = ( ! empty( $attributes['twTweetId'] ) ) ? $attributes['twTweetId'] : '';
+			$twicon      = ( ! empty( $attributes['twIcon'] ) ) ? '' : '<i class="fab fa-twitter"></i>';
 
-					$output .= '<a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="'.esc_attr($twBtnSize).'" data-text="'.esc_attr($twTextBtn).'" data-url="'.esc_url($twTweetUrl).'" data-via="'.esc_attr($twVia).'" data-hashtags="'.esc_attr($twHashtags).'" >'.wp_kses_post($twMsg).'</a></br>';
+			if ( 'tweets' === $twbutton ) {
+				$tw_via       = ( ! empty( $attributes['twVia'] ) ) ? $attributes['twVia'] : '';
+				$tw_text_btn  = ( ! empty( $attributes['twTextBtn'] ) ) ? $attributes['twTextBtn'] : '';
+				$tw_hashtags  = ( ! empty( $attributes['twHashtags'] ) ) ? $attributes['twHashtags'] : '';
+				$tw_tweet_url = ( ! empty( $attributes['twTweetUrl'] ) && ! empty( $attributes['twTweetUrl']['url'] ) ) ? $attributes['twTweetUrl']['url'] : '';
 
-				}else if( $twbutton == 'follow' ){
-					$twCount = (!empty($attributes['twCount'])) ? $attributes['twCount'] : 'false';
-					$twHideUname = (!empty($attributes['twHideUname'])) ? 'false' : $attributes['twHideUname'];
-					
-					$output .= '<a class="twitter-follow-button" href="https://twitter.com/'.esc_attr($twname).'" data-size="'.esc_attr($twBtnSize).'" data-show-screen-name="'.esc_attr($twHideUname).'" data-show-count="'.esc_attr($twCount).'" >'.wp_kses_post($twMsg).'</a></br>';
+				$output .= '<a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="' . esc_attr( $tw_btn_size ) . '" data-text="' . esc_attr( $tw_text_btn ) . '" data-url="' . esc_url( $tw_tweet_url ) . '" data-via="' . esc_attr( $tw_via ) . '" data-hashtags="' . esc_attr( $tw_hashtags ) . '" >' . wp_kses_post( $tw_msg ) . '</a></br>';
 
-				}else if( $twbutton == 'message' ){
-					$twRId = (!empty($attributes['twRId'])) ? $attributes['twRId'] : '';
-					$twMessage = (!empty($attributes['twMessage'])) ? $attributes['twMessage'] : '';
-					$twHideUname = (!empty($attributes['twHideUname'])) ? '@' : '';
+			} elseif ( 'follow' === $twbutton ) {
+				$tw_count      = ( ! empty( $attributes['twCount'] ) ) ? $attributes['twCount'] : 'false';
+				$tw_hide_uname = ( ! empty( $attributes['twHideUname'] ) ) ? 'false' : $attributes['twHideUname'];
 
-					$output .= '<a class="twitter-dm-button" href="https://twitter.com/messages/compose?recipient_id='.esc_attr($twRId).'" data-text="'.esc_attr($twMessage).'" data-size="'.esc_attr($twBtnSize).'" data-screen-name="'.esc_attr($twHideUname.$twname).'">'.wp_kses_post($twMsg).'</a>';
-				}else if( $twbutton == 'like' ){
-					$output .= '<a class="tw-button" href="https://twitter.com/intent/like?tweet_id='.esc_attr($twTweetId).'" >'.wp_kses_post($twicon.' '.$attributes['likeBtn']).'</a>';
-				}else if( $twbutton == 'reply' ){
-					$output .= '<a class="tw-button" href="https://twitter.com/intent/tweet?in_reply_to='.esc_attr($twTweetId).'">'.wp_kses_post($twicon.' '.$attributes['replyBtn']).'</a>';
-				}else if( $twbutton == 'reTweet' ){
-					$output .= '<a class="tw-button" href="https://twitter.com/intent/retweet?tweet_id='.esc_attr($twTweetId).'">'.wp_kses_post($twicon.' '.$attributes['reTweetBtn']).'</a>';
-				}
-			}
-			
-			$output .= '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>';
-		}else if( $embedType == 'vimeo' ){
-			$VmId = (!empty($attributes['viId']) ) ? $attributes['viId'] : '';
-			$vmStime = (!empty($attributes['vmStime']) ) ? $attributes['vmStime'] : '';
-			$vmColor = (!empty($attributes['vmColor']) ) ? ltrim($attributes['vmColor'], '#') : 'ffffff';
-			$VmSelect = json_decode( $attributes['viOption'],true );
-			
-			$VmALL = [];
-			foreach ($VmSelect as $v) {
-				$VmALL[] = $v['value'];
-			}
-            
-			$Vm_FullScreen = ((in_array('fullscreen', $VmALL)) ? 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"' : '');
-			$Vm_AutoPlay = (in_array('autoplay', $VmALL)) ? 1 : 0;
-			$Vm_loop = (in_array('loop', $VmALL)) ? 1 : 0;
-			$Vm_Muted = (in_array('muted', $VmALL)) ? 1 : 0;
-			$Vm_AutoPause = (in_array('autopause', $VmALL)) ? 1 : 0;
-			$Vm_BackGround = (in_array('background', $VmALL)) ? 1 : 0;
-			$Vm_Byline = (in_array('byline', $VmALL)) ? 1 : 0;
-			$Vm_Speed = (in_array('speed', $VmALL)) ? 1 : 0;
-			$Vm_Title = (in_array('title', $VmALL)) ? 1 : 0;
-			$Vm_Portrait = (in_array('portrait', $VmALL)) ? 1 : 0;
-			$Vm_PlaySinline = (in_array('playsinline', $VmALL)) ? 1 : 0;
-			$Vm_Dnt = (in_array('dnt', $VmALL)) ? 1 : 0;
-			$Vm_PiP = (in_array('pip', $VmALL)) ? 1 : 0;
-			$Vm_transparent = (in_array('transparent', $VmALL)) ? 1 : 0;
-			$iframeTitle = (!empty($attributes['iframeTitle'])) ? esc_attr($attributes['iframeTitle']) : esc_attr__('Social Vimeo','the-plus-addons-for-block-editor');
-	
-			$output .= '<iframe class="tpgb-social-vimeo" src="https://player.vimeo.com/video/'.esc_attr($VmId).'?html5=1&amp;title='.esc_attr($Vm_Title).'&amp;byline='.esc_attr($Vm_Byline).'&amp;portrait='.$Vm_Portrait.'&amp;autoplay='.esc_attr($Vm_AutoPlay).'&amp;loop='.esc_attr($Vm_loop).'&amp;muted='.esc_attr($Vm_Muted).'&amp;autopause='.esc_attr($Vm_AutoPause).'&amp;background='.esc_attr($Vm_BackGround).'&amp;playsinline='.esc_attr($Vm_PlaySinline).'&amp;speed='.esc_attr($Vm_Speed).'&amp;dnt='.esc_attr($Vm_Dnt).'&amp;pip='.esc_attr($Vm_PiP).'&amp;transparent='.esc_attr($Vm_transparent).'&amp;color='.esc_attr($vmColor).'&amp;#t='.esc_attr($vmStime).'" width="'.esc_attr($exWidth).'" height="'.esc_attr($exHeight).'" frameborder="0" '.esc_attr($Vm_FullScreen).' title="'.$iframeTitle.'"></iframe>';
-			
-		}else if( $embedType == 'instagram' ){
-			$iGType = (!empty($attributes['iGType']) ) ? $attributes['iGType'] : 'posts';
-			$iGId = (!empty($attributes['iGId']) ) ? $attributes['iGId'] : 'CGAvnLcA3zb';
-			$IGCap = (empty($attributes['iGCaptione']) ) ? 'data-instgrm-captioned' : '';
+				$output .= '<a class="twitter-follow-button" href="https://twitter.com/' . esc_attr( $twname ) . '" data-size="' . esc_attr( $tw_btn_size ) . '" data-show-screen-name="' . esc_attr( $tw_hide_uname ) . '" data-show-count="' . esc_attr( $tw_count ) . '" >' . wp_kses_post( $tw_msg ) . '</a></br>';
 
-			if($iGType == "posts"){
-				$ig_id = 'p/'.esc_attr($iGId);
-			}else if($iGType == "reels"){
-				$ig_id = 'reel/'.esc_attr($iGId);
-			}else if($iGType == "igtv"){
-				$ig_id = 'tv/'.esc_attr($iGId);
-			}
+			} elseif ( 'message' === $twbutton ) {
+				$tw_r_id       = ( ! empty( $attributes['twRId'] ) ) ? $attributes['twRId'] : '';
+				$tw_message    = ( ! empty( $attributes['twMessage'] ) ) ? $attributes['twMessage'] : '';
+				$tw_hide_uname = ( ! empty( $attributes['twHideUname'] ) ) ? '@' : '';
 
-			$output .= '<blockquote class="instagram-media" data-instgrm-version="13" data-instgrm-permalink="https://www.instagram.com/'.esc_attr($ig_id).'/?utm_source=ig_embed" '.esc_attr($IGCap).'></blockquote><script async src="//www.instagram.com/embed.js"></script>';
-
-		}else if( $embedType == 'youtube' ){
-			$ytType = (!empty($attributes['ytType']) ) ? $attributes['ytType'] : 'ytSV';
-			$ytOption = json_decode( $attributes['ytOption'],true );
-			$ytSTime = (!empty($attributes['ytSTime']) ) ? $attributes['ytSTime'] : '';
-			$ytETime = (!empty($attributes['ytETime']) ) ? $attributes['ytETime'] : '';	
-			$ytlanguage = (!empty($attributes['ytlanguage']) ) ? $attributes['ytlanguage'] : '';	
-
-			$ytSelect = [];
-			foreach ($ytOption as $v) {
-				$ytSelect[] = !empty($v['value']) ? $v['value'] : '';
-			}
-
-			$yt_loop = (in_array('loop', $ytSelect)) ? 1 : 0;
-			$yt_fs = (in_array('fs', $ytSelect)) ? 1 : 0;
-			$yt_autoplay = (in_array('autoplay', $ytSelect)) ? 1 : 0;
-			$Yt_muted = (in_array('mute', $ytSelect)) ? 1 : 0;
-			$yt_controls = (in_array('controls', $ytSelect)) ? 1 : 0;
-			$yt_disablekb = (in_array('disablekb', $ytSelect)) ? 1 : 0;
-			$yt_modestbranding = (in_array('modestbranding', $ytSelect)) ? 1 : 0;
-			$yt_playsinline = (in_array('playsinline', $ytSelect)) ? 1 : 0;
-			$yt_rel = (in_array('rel', $ytSelect)) ? 1 : 0;
-			$iframeTitle = (!empty($attributes['iframeTitle'])) ? esc_attr($attributes['iframeTitle']) : esc_attr__('Social Youtube','the-plus-addons-for-block-editor');
-
-			$YT_Parameters = 'autoplay='.esc_attr($yt_autoplay).'&mute='.esc_attr($Yt_muted).'&controls='.esc_attr($yt_controls).'&disablekb='.esc_attr($yt_disablekb).'&fs='.esc_attr($yt_fs).'&modestbranding='.esc_attr($yt_modestbranding).'&loop='.esc_attr($yt_loop).'&rel='.esc_attr($yt_rel).'&playsinline='.esc_attr($yt_playsinline).'&start='.esc_attr($ytSTime).'&end='.esc_attr($ytETime).'&hl='.esc_attr($ytlanguage);
-			
-			if($ytType == "ytSV"){
-				$ytVideoId = (!empty($attributes['ytVideoId']) ) ? $attributes['ytVideoId'] : '';
-				$videoId = $ytVideoId;
-				if (strpos($ytVideoId, 'https://www.youtube.com/watch') === 0) {
-					$urlParts = wp_parse_url($ytVideoId);
-					
-					if (!empty($urlParts['query'])) {
-						parse_str($urlParts['query'], $queryParams);
-						if (!empty($queryParams['v']) && preg_match('/^[a-zA-Z0-9_-]{11}$/', $queryParams['v'])) {
-							$videoId = sanitize_text_field($queryParams['v']);
-						}
-					}
-				}
-
-				$ytSrc = 'https://www.youtube-nocookie.com/embed/'.esc_attr($videoId).'?'.esc_attr($YT_Parameters);
-			}else if($ytType == "ytPlayV"){
-				$ytPlaylistId = (!empty($attributes['ytPlaylistId']) ) ? $attributes['ytPlaylistId'] : '';
-				$ytSrc = 'https://www.youtube-nocookie.com/embed?listType=playlist&list='.esc_attr($ytPlaylistId).'&'.esc_attr($YT_Parameters);
-			}else if($ytType == "ytUserV"){
-				$ytUsername = (!empty($attributes['ytUsername']) ) ? $attributes['ytUsername'] : '';
-				$ytSrc = 'https://www.youtube-nocookie.com/embed?listType=user_uploads&list='.esc_attr($ytUsername).'&'.esc_attr($YT_Parameters);
-			}
-			
-			$output .= '<iframe width="'.esc_attr($exWidth).'" height="'.esc_attr($exHeight).'" src='.esc_attr($ytSrc).' frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="'.$iframeTitle.'"></iframe>';
-
-		}else if($embedType == 'googlemap'){
-			$mapaccesstoken = (!empty($attributes['mapaccesstoken'])) ? $attributes['mapaccesstoken'] : 'default';	
-			$gSearchText = (!empty($attributes['gSearchText'])) ? $attributes['gSearchText'] : 'Goa+India';
-			$mapZoom = (!empty($attributes['mapZoom'])) ? (int)$attributes['mapZoom'] : 1;
-			$gMHeight = (!empty($attributes['gMHeight'])) ? (int)$attributes['gMHeight'] : 450;
-			$iframeTitle = (!empty($attributes['iframeTitle'])) ? esc_attr($attributes['iframeTitle']) : esc_attr__('Google Map','the-plus-addons-for-block-editor');
-
-			if($mapaccesstoken == 'default'){
-				$output .= '<iframe class="tpgb-gmap-embed" src="https://maps.google.com/maps?q='.esc_attr($gSearchText).'&z='.esc_attr($mapZoom).'&output=embed" height="'.esc_attr($gMHeight).'" loading="lazy" allowfullscreen frameborder="0" scrolling="no" title="'.$iframeTitle.'"></iframe>';
-			}else if($mapaccesstoken == 'accesstoken'){
-				$gAccesstoken = (!empty($attributes['gAccesstoken'])) ? $attributes['gAccesstoken'] : '';
-				if(!empty($gAccesstoken)){
-					$gMapModes = (!empty($attributes['gMapModes'])) ? $attributes['gMapModes'] : 'search';
-					$mapViews = (!empty($attributes['mapViews'])) ? $attributes['mapViews'] : 'roadmap';
-
-					if($gMapModes == "place"){
-						$output .= '<iframe class="tpgb-gmap-embed" src="https://www.google.com/maps/embed/v1/place?key='.esc_attr($gAccesstoken).'&q='.esc_attr($gSearchText).'&zoom='.esc_attr($mapZoom).'&maptype='.esc_attr($mapViews).'&language=En" height="'.esc_attr($gMHeight).'" loading="lazy" allowfullscreen title="'.$iframeTitle.'"></iframe>';
-					}else if($gMapModes == "direction"){
-						$gOrigin = (!empty($attributes['gOrigin'])) ? '&origin='.$attributes['gOrigin'] : '&origin=""';
-						$gDestination = (!empty($attributes['gDestination'])) ? '&destination='.$attributes['gDestination'] : '&destination=""';
-						$gWaypoints = (!empty($attributes['gWaypoints'])) ? '&waypoints='.$attributes['gWaypoints'] : '';
-						$gTravelMode = (!empty($attributes['gTravelMode'])) ? $attributes['gTravelMode'] : 'gTravelMode';
-						$Gavoid = (!empty($attributes['Gavoid'])) ? '&avoid='.implode("|", $attributes['Gavoid']) : '';
-						
-						$output .= '<iframe class="tpgb-gmap-embed" src="https://www.google.com/maps/embed/v1/directions?key='.esc_attr($gAccesstoken).esc_attr($gOrigin).esc_attr($gDestination).esc_attr($gWaypoints).esc_attr($Gavoid).'&mode='.esc_attr($gTravelMode).'&zoom='.esc_attr($mapZoom).'&maptype='.esc_attr($mapViews).'&language=En" height="'.esc_attr($gMHeight).'" loading="lazy" allowfullscreen title="'.$iframeTitle.'"></iframe>';
-					}else if($gMapModes == "streetview"){
-						$gstreetviewText = (!empty($attributes['gstreetviewText'])) ? $attributes['gstreetviewText'] : '';
-
-						$output .= '<iframe class="tpgb-gmap-embed" src="https://www.google.com/maps/embed/v1/streetview?key='.esc_attr($gAccesstoken).'&location='.esc_attr($gstreetviewText).'&heading=210&pitch=10&fov=90" height="'.esc_attr($gMHeight).'" loading="lazy" allowfullscreen title="'.$iframeTitle.'"></iframe>';
-					}else if($gMapModes == "search"){
-						$output .= '<iframe class="tpgb-gmap-embed" src="https://www.google.com/maps/embed/v1/search?key='.esc_attr($gAccesstoken).'&q='.esc_attr($gSearchText).'&zoom='.esc_attr($mapZoom).'&maptype='.esc_attr($mapViews).'&language=En" height="'.esc_attr($gMHeight).'" loading="lazy" allowfullscreen title="'.$iframeTitle.'"></iframe>';
-					}
-				}else{
-					$output .= 'Enter Access Token';
-				}
+				$output .= '<a class="twitter-dm-button" href="https://twitter.com/messages/compose?recipient_id=' . esc_attr( $tw_r_id ) . '" data-text="' . esc_attr( $tw_message ) . '" data-size="' . esc_attr( $tw_btn_size ) . '" data-screen-name="' . esc_attr( $tw_hide_uname . $twname ) . '">' . wp_kses_post( $tw_msg ) . '</a>';
+			} elseif ( 'like' === $twbutton ) {
+				$output .= '<a class="tw-button" href="https://twitter.com/intent/like?tweet_id=' . esc_attr( $tw_tweet_id ) . '" >' . wp_kses_post( $twicon . ' ' . $attributes['likeBtn'] ) . '</a>';
+			} elseif ( 'reply' === $twbutton ) {
+				$output .= '<a class="tw-button" href="https://twitter.com/intent/tweet?in_reply_to=' . esc_attr( $tw_tweet_id ) . '">' . wp_kses_post( $twicon . ' ' . $attributes['replyBtn'] ) . '</a>';
+			} elseif ( 'reTweet' === $twbutton ) {
+				$output .= '<a class="tw-button" href="https://twitter.com/intent/retweet?tweet_id=' . esc_attr( $tw_tweet_id ) . '">' . wp_kses_post( $twicon . ' ' . $attributes['reTweetBtn'] ) . '</a>';
 			}
 		}
 
-	$output .= '</div>';	
+		$output .= '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'; // phpcs:ignore WordPress.WP.EnqueuedResourcesNonEnqueuedScript.NonEnqueuedScript,WordPress.WP.EnqueuedResources.NonEnqueuedScript,WordPress.WP.EnqueuedResources
+	} elseif ( 'vimeo' === $embed_type ) {
+		$vm_id     = ( ! empty( $attributes['viId'] ) ) ? $attributes['viId'] : '';
+		$vm_stime  = ( ! empty( $attributes['vmStime'] ) ) ? $attributes['vmStime'] : '';
+		$vm_color  = ( ! empty( $attributes['vmColor'] ) ) ? ltrim( $attributes['vmColor'], '#' ) : 'ffffff';
+		$vm_select = json_decode( $attributes['viOption'], true );
 
-	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $output);
-	
+		$vm_all = array();
+		foreach ( $vm_select as $v ) {
+			$vm_all[] = $v['value'];
+		}
+
+		$vm_full_screen  = ( ( in_array( 'fullscreen', $vm_all, true ) ) ? 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"' : '' );
+		$vm_auto_play    = ( in_array( 'autoplay', $vm_all, true ) ) ? 1 : 0;
+		$vm_loop         = ( in_array( 'loop', $vm_all, true ) ) ? 1 : 0;
+		$vm_muted        = ( in_array( 'muted', $vm_all, true ) ) ? 1 : 0;
+		$vm_auto_pause   = ( in_array( 'autopause', $vm_all, true ) ) ? 1 : 0;
+		$vm_back_ground  = ( in_array( 'background', $vm_all, true ) ) ? 1 : 0;
+		$vm_byline       = ( in_array( 'byline', $vm_all, true ) ) ? 1 : 0;
+		$vm_speed        = ( in_array( 'speed', $vm_all, true ) ) ? 1 : 0;
+		$vm_title        = ( in_array( 'title', $vm_all, true ) ) ? 1 : 0;
+		$vm_portrait     = ( in_array( 'portrait', $vm_all, true ) ) ? 1 : 0;
+		$vm_play_sinline = ( in_array( 'playsinline', $vm_all, true ) ) ? 1 : 0;
+		$vm_dnt          = ( in_array( 'dnt', $vm_all, true ) ) ? 1 : 0;
+		$vm_pi_p         = ( in_array( 'pip', $vm_all, true ) ) ? 1 : 0;
+		$vm_transparent  = ( in_array( 'transparent', $vm_all, true ) ) ? 1 : 0;
+		$iframe_title    = ( ! empty( $attributes['iframeTitle'] ) ) ? esc_attr( $attributes['iframeTitle'] ) : esc_attr__( 'Social Vimeo', 'the-plus-addons-for-block-editor' );
+
+		$output .= '<iframe class="tpgb-social-vimeo" src="https://player.vimeo.com/video/' . esc_attr( $vm_id ) . '?html5=1&amp;title=' . esc_attr( $vm_title ) . '&amp;byline=' . esc_attr( $vm_byline ) . '&amp;portrait=' . $vm_portrait . '&amp;autoplay=' . esc_attr( $vm_auto_play ) . '&amp;loop=' . esc_attr( $vm_loop ) . '&amp;muted=' . esc_attr( $vm_muted ) . '&amp;autopause=' . esc_attr( $vm_auto_pause ) . '&amp;background=' . esc_attr( $vm_back_ground ) . '&amp;playsinline=' . esc_attr( $vm_play_sinline ) . '&amp;speed=' . esc_attr( $vm_speed ) . '&amp;dnt=' . esc_attr( $vm_dnt ) . '&amp;pip=' . esc_attr( $vm_pi_p ) . '&amp;transparent=' . esc_attr( $vm_transparent ) . '&amp;color=' . esc_attr( $vm_color ) . '&amp;#t=' . esc_attr( $vm_stime ) . '" width="' . esc_attr( $ex_width ) . '" height="' . esc_attr( $ex_height ) . '" frameborder="0" ' . esc_attr( $vm_full_screen ) . ' title="' . $iframe_title . '"></iframe>';
+
+	} elseif ( 'instagram' === $embed_type ) {
+		$i_g_type = ( ! empty( $attributes['iGType'] ) ) ? $attributes['iGType'] : 'posts';
+		$i_g_id   = ( ! empty( $attributes['iGId'] ) ) ? $attributes['iGId'] : 'CGAvnLcA3zb';
+		$ig_cap   = ( empty( $attributes['iGCaptione'] ) ) ? 'data-instgrm-captioned' : '';
+
+		if ( 'posts' === $i_g_type ) {
+			$ig_id = 'p/' . esc_attr( $i_g_id );
+		} elseif ( 'reels' === $i_g_type ) {
+			$ig_id = 'reel/' . esc_attr( $i_g_id );
+		} elseif ( 'igtv' === $i_g_type ) {
+			$ig_id = 'tv/' . esc_attr( $i_g_id );
+		}
+
+		$output .= '<blockquote class="instagram-media" data-instgrm-version="13" data-instgrm-permalink="https://www.instagram.com/' . esc_attr( $ig_id ) . '/?utm_source=ig_embed" ' . esc_attr( $ig_cap ) . '></blockquote><script async src="//www.instagram.com/embed.js"></script>'; // phpcs:ignore WordPress.WP.EnqueuedResourcesNonEnqueuedScript.NonEnqueuedScript,WordPress.WP.EnqueuedResources.NonEnqueuedScript,WordPress.WP.EnqueuedResources
+
+	} elseif ( 'youtube' === $embed_type ) {
+		$yt_type    = ( ! empty( $attributes['ytType'] ) ) ? $attributes['ytType'] : 'ytSV';
+		$yt_option  = json_decode( $attributes['ytOption'], true );
+		$yt_s_time  = ( ! empty( $attributes['ytSTime'] ) ) ? $attributes['ytSTime'] : '';
+		$yt_e_time  = ( ! empty( $attributes['ytETime'] ) ) ? $attributes['ytETime'] : '';
+		$ytlanguage = ( ! empty( $attributes['ytlanguage'] ) ) ? $attributes['ytlanguage'] : '';
+
+		$yt_select = array();
+		foreach ( $yt_option as $v ) {
+			$yt_select[] = ! empty( $v['value'] ) ? $v['value'] : '';
+		}
+
+		$yt_loop           = ( in_array( 'loop', $yt_select, true ) ) ? 1 : 0;
+		$yt_fs             = ( in_array( 'fs', $yt_select, true ) ) ? 1 : 0;
+		$yt_autoplay       = ( in_array( 'autoplay', $yt_select, true ) ) ? 1 : 0;
+		$yt_muted          = ( in_array( 'mute', $yt_select, true ) ) ? 1 : 0;
+		$yt_controls       = ( in_array( 'controls', $yt_select, true ) ) ? 1 : 0;
+		$yt_disablekb      = ( in_array( 'disablekb', $yt_select, true ) ) ? 1 : 0;
+		$yt_modestbranding = ( in_array( 'modestbranding', $yt_select, true ) ) ? 1 : 0;
+		$yt_playsinline    = ( in_array( 'playsinline', $yt_select, true ) ) ? 1 : 0;
+		$yt_rel            = ( in_array( 'rel', $yt_select, true ) ) ? 1 : 0;
+		$iframe_title      = ( ! empty( $attributes['iframeTitle'] ) ) ? esc_attr( $attributes['iframeTitle'] ) : esc_attr__( 'Social Youtube', 'the-plus-addons-for-block-editor' );
+
+		$yt_parameters = 'autoplay=' . esc_attr( $yt_autoplay ) . '&mute=' . esc_attr( $yt_muted ) . '&controls=' . esc_attr( $yt_controls ) . '&disablekb=' . esc_attr( $yt_disablekb ) . '&fs=' . esc_attr( $yt_fs ) . '&modestbranding=' . esc_attr( $yt_modestbranding ) . '&loop=' . esc_attr( $yt_loop ) . '&rel=' . esc_attr( $yt_rel ) . '&playsinline=' . esc_attr( $yt_playsinline ) . '&start=' . esc_attr( $yt_s_time ) . '&end=' . esc_attr( $yt_e_time ) . '&hl=' . esc_attr( $ytlanguage );
+
+		if ( 'ytSV' === $yt_type ) {
+			$yt_video_id = ( ! empty( $attributes['ytVideoId'] ) ) ? $attributes['ytVideoId'] : '';
+			$video_id    = $yt_video_id;
+			if ( strpos( $yt_video_id, 'https://www.youtube.com/watch' ) === 0 ) {
+				$url_parts = wp_parse_url( $yt_video_id );
+
+				if ( ! empty( $url_parts['query'] ) ) {
+					parse_str( $url_parts['query'], $query_params );
+					if ( ! empty( $query_params['v'] ) && preg_match( '/^[a-zA-Z0-9_-]{11}$/', $query_params['v'] ) ) {
+						$video_id = sanitize_text_field( $query_params['v'] );
+					}
+				}
+			}
+
+			$yt_src = 'https://www.youtube-nocookie.com/embed/' . esc_attr( $video_id ) . '?' . esc_attr( $yt_parameters );
+		} elseif ( 'ytPlayV' === $yt_type ) {
+			$yt_playlist_id = ( ! empty( $attributes['ytPlaylistId'] ) ) ? $attributes['ytPlaylistId'] : '';
+			$yt_src         = 'https://www.youtube-nocookie.com/embed?listType=playlist&list=' . esc_attr( $yt_playlist_id ) . '&' . esc_attr( $yt_parameters );
+		} elseif ( 'ytUserV' === $yt_type ) {
+			$yt_username = ( ! empty( $attributes['ytUsername'] ) ) ? $attributes['ytUsername'] : '';
+			$yt_src      = 'https://www.youtube-nocookie.com/embed?listType=user_uploads&list=' . esc_attr( $yt_username ) . '&' . esc_attr( $yt_parameters );
+		}
+
+		$output .= '<iframe width="' . esc_attr( $ex_width ) . '" height="' . esc_attr( $ex_height ) . '" src=' . esc_attr( $yt_src ) . ' frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="' . $iframe_title . '"></iframe>';
+
+	} elseif ( 'googlemap' === $embed_type ) {
+		$mapaccesstoken = ( ! empty( $attributes['mapaccesstoken'] ) ) ? $attributes['mapaccesstoken'] : 'default';
+		$g_search_text  = ( ! empty( $attributes['gSearchText'] ) ) ? $attributes['gSearchText'] : 'Goa+India';
+		$map_zoom       = ( ! empty( $attributes['mapZoom'] ) ) ? (int) $attributes['mapZoom'] : 1;
+		$g_m_height     = ( ! empty( $attributes['gMHeight'] ) ) ? (int) $attributes['gMHeight'] : 450;
+		$iframe_title   = ( ! empty( $attributes['iframeTitle'] ) ) ? esc_attr( $attributes['iframeTitle'] ) : esc_attr__( 'Google Map', 'the-plus-addons-for-block-editor' );
+
+		if ( 'default' === $mapaccesstoken ) {
+			$output .= '<iframe class="tpgb-gmap-embed" src="https://maps.google.com/maps?q=' . esc_attr( $g_search_text ) . '&z=' . esc_attr( $map_zoom ) . '&output=embed" height="' . esc_attr( $g_m_height ) . '" loading="lazy" allowfullscreen frameborder="0" scrolling="no" title="' . $iframe_title . '"></iframe>';
+		} elseif ( 'accesstoken' === $mapaccesstoken ) {
+			$g_accesstoken = ( ! empty( $attributes['gAccesstoken'] ) ) ? $attributes['gAccesstoken'] : '';
+			if ( ! empty( $g_accesstoken ) ) {
+				$g_map_modes = ( ! empty( $attributes['gMapModes'] ) ) ? $attributes['gMapModes'] : 'search';
+				$map_views   = ( ! empty( $attributes['mapViews'] ) ) ? $attributes['mapViews'] : 'roadmap';
+
+				if ( 'place' === $g_map_modes ) {
+					$output .= '<iframe class="tpgb-gmap-embed" src="https://www.google.com/maps/embed/v1/place?key=' . esc_attr( $g_accesstoken ) . '&q=' . esc_attr( $g_search_text ) . '&zoom=' . esc_attr( $map_zoom ) . '&maptype=' . esc_attr( $map_views ) . '&language=En" height="' . esc_attr( $g_m_height ) . '" loading="lazy" allowfullscreen title="' . $iframe_title . '"></iframe>';
+				} elseif ( 'direction' === $g_map_modes ) {
+					$g_origin      = ( ! empty( $attributes['gOrigin'] ) ) ? '&origin=' . $attributes['gOrigin'] : '&origin=""';
+					$g_destination = ( ! empty( $attributes['gDestination'] ) ) ? '&destination=' . $attributes['gDestination'] : '&destination=""';
+					$g_waypoints   = ( ! empty( $attributes['gWaypoints'] ) ) ? '&waypoints=' . $attributes['gWaypoints'] : '';
+					$g_travel_mode = ( ! empty( $attributes['gTravelMode'] ) ) ? $attributes['gTravelMode'] : 'gTravelMode';
+					$gavoid        = ( ! empty( $attributes['Gavoid'] ) ) ? '&avoid=' . implode( '|', $attributes['Gavoid'] ) : '';
+
+					$output .= '<iframe class="tpgb-gmap-embed" src="https://www.google.com/maps/embed/v1/directions?key=' . esc_attr( $g_accesstoken ) . esc_attr( $g_origin ) . esc_attr( $g_destination ) . esc_attr( $g_waypoints ) . esc_attr( $gavoid ) . '&mode=' . esc_attr( $g_travel_mode ) . '&zoom=' . esc_attr( $map_zoom ) . '&maptype=' . esc_attr( $map_views ) . '&language=En" height="' . esc_attr( $g_m_height ) . '" loading="lazy" allowfullscreen title="' . $iframe_title . '"></iframe>';
+				} elseif ( 'streetview' === $g_map_modes ) {
+					$gstreetview_text = ( ! empty( $attributes['gstreetviewText'] ) ) ? $attributes['gstreetviewText'] : '';
+
+					$output .= '<iframe class="tpgb-gmap-embed" src="https://www.google.com/maps/embed/v1/streetview?key=' . esc_attr( $g_accesstoken ) . '&location=' . esc_attr( $gstreetview_text ) . '&heading=210&pitch=10&fov=90" height="' . esc_attr( $g_m_height ) . '" loading="lazy" allowfullscreen title="' . $iframe_title . '"></iframe>';
+				} elseif ( 'search' === $g_map_modes ) {
+					$output .= '<iframe class="tpgb-gmap-embed" src="https://www.google.com/maps/embed/v1/search?key=' . esc_attr( $g_accesstoken ) . '&q=' . esc_attr( $g_search_text ) . '&zoom=' . esc_attr( $map_zoom ) . '&maptype=' . esc_attr( $map_views ) . '&language=En" height="' . esc_attr( $g_m_height ) . '" loading="lazy" allowfullscreen title="' . $iframe_title . '"></iframe>';
+				}
+			} else {
+				$output .= 'Enter Access Token';
+			}
+		}
+	}
+
+	$output .= '</div>';
+
+	$output = Tpgb_Blocks_Global_Options::block_Wrap_Render( $attributes, $output );
+
 	return $output;
 }
 
+/**
+ * Tpgb tp social embed.
+ */
 function tpgb_tp_social_embed() {
-	$globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
-	$globalpositioningOption = Tpgb_Blocks_Global_Options::load_positioning_options();
-	$globalPlusExtrasOption = Tpgb_Blocks_Global_Options::load_plusextras_options();
-	$plusButton_options = Tpgb_Blocks_Global_Options::load_plusButton_options();
-	
-	$attributesOptions = [
-			'block_id' => [
-                'type' => 'string',
-				'default' => '',
-			],
-			'embedType' => [
-				'type' => 'string',
-				'default' => 'facebook',	
-			],
-			'type' => [
-				'type' => 'string',
-				'default' => 'videos',	
-			],
-			'appID' => [
-				'type'=> 'string',
-				'default'=> '',
-			],
-			'targetC' => [
-				'type'=> 'string',
-				'default'=> 'custom',
-			],
-			'urlFC' => [
-				'type'=> 'string',
-				'default'=> 'plain',
-			],			
-			'commentAddURL' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => 'https://www.facebook.com/',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-			'postURL' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => 'https://www.facebook.com/posimyth/posts/3054603914561930',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-			'videosURL' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => 'https://www.facebook.com/posimyth/videos/444986032863860/',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-			'targetLike' => [
-				'type'=> 'string',
-				'default'=> 'custom',
-			],
-			'fmtURLlb' => [
-				'type'=> 'string',
-				'default'=> 'plain',
-			],
-			'likeBtnUrl' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => 'https://www.facebook.com/posimyth',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-			'saveURL' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => 'https://www.facebook.com/',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-			'shareURL' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => 'https://www.facebook.com/',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-
-			'fullPT' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'hgPost' => [
-				'type' => 'string',
-				'default' => '',
-			],
-			'wdPost' => [
-				'type' => 'string',
-				'default' => '',
-			],
-
-			'fullVT' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'autoplayVT' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'captionVT' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'hgVideo' => [
-				'type' => 'string',
-				'default' => '',
-			],
-			'wdVideo' => [
-				'type' => 'string',
-				'default' => '',
-			],
-
-			'countC' => [
-				'type'=> 'string',
-				'default'=> '',
-			],
-			'orderByC' => [
-				'type'=> 'string',
-				'default'=> 'social',
-			],
-
-			'typeLB' => [
-				'type'=> 'string',
-				'default'=> 'like',
-			],
-			'btnStyleLB' => [
-				'type'=> 'string',
-				'default'=> 'button',
-			],
-			'sizeLB' => [
-				'type'=> 'string',
-				'default'=> 'small',
-			],
-			'colorSLB' => [
-				'type'=> 'string',
-				'default'=> 'light',
-			],
-			'sBtnLB' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'facesLBT' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'hgLikeBtn' => [
-				'type' => 'string',
-				'default' => '',
-			],			
-			'wdLikeBtn' => [
-				'type' => 'string',
-				'default' => '',
-			],
-
-			'uRLP' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => 'https://www.facebook.com/posimyth',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-			'layoutP' => [
-				'type'=> 'string',
-				'default'=> 'timeline',
-			],
-			'smallHP' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'coverP' => [
-				'type' => 'boolean',
-				'default' => true,	
-			],
-			'profileP' => [
-				'type' => 'boolean',
-				'default' => true,	
-			],
-			'ctaBtn' => [
-				'type' => 'boolean',
-				'default' => true,	
-			],
-			'hgPage' => [
-				'type' => 'string',
-				'default' => '',
-			],
-			'wdPage' => [
-				'type' => 'string',
-				'default' => '',
-			],
-			
-			'shareBtn' => [
-				'type'=> 'string',
-				'default'=> 'button',
-			],
-			'wdShare' => [
-				'type' => 'string',
-				'default' => '',
-			],
-			'hgShare' => [
-				'type' => 'string',
-				'default' => '',
-			],
-
-			'tweetType' => [
-				'type' => 'string',
-				'default' => 'timelines',	
-			],
-			'twRepeater' => [
-				'type'=> 'array',
-				'repeaterField' => [
-					(object) [
-						'tweetURl' => [
-							'type'=> 'object',
-							'default'=> [
-								'url' => 'https://twitter.com/Interior/status/463440424141459456',
-								'target' => '',
-								'nofollow' => ''
-							],
-						],
-						'twMassage' => [
-							'type'=> 'string',
-							'default'=> 'Loading',
-						],
-					],
-				],
-				'default' => [ 
-					['_key'=> 'Tw1','tweetURl'=>['url'=>'https://twitter.com/Interior/status/463440424141459456'],'twMassage'=>'&mdash; Loading']
-				],
-			],
-			'twGuides' => [
-				'type' => 'string',
-				'default' => 'profile',	
-			],
-			'twstyle' => [
-				'type' => 'string',
-				'default' => 'linear',	
-			],
-			'twCollection' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => 'https://twitter.com/TwitterDev/timelines/539487832448843776',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-			'twlisturl' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => 'https://twitter.com/TwitterDev/lists/national-parks',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-			'twbutton' => [
-				'type' => 'string',
-				'default' => 'follow',	
-			],
-			'twname' => [
-				'type'=> 'string',
-				'default'=> 'TwitterDev',
-			],
-			'twRId' => [
-				'type'=> 'string',
-				'default'=> '3805104374',
-			],
-
-			'twColor' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'twCards' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'twalign' => [
-				'type' => 'string',
-				'default' => 'center',	
-			],
-			'twconver' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'twDesign' => [
-				'type' => 'string',
-        		'default' => '[]',
-			],
-			'twBrCr' => [
-				'type' => 'string',
-				'default' => '',
-			],
-			'twlimit' => [
-				'type' => 'string',
-				'default' => '',
-			],
-			'twwidth' => [
-				'type' => 'string',
-				'default' => '',
-			],
-			'twheight' => [
-				'type' => 'string',
-				'default' => '500',
-			],
-			'twBtnSize' => [
-				'type' => 'string',
-				'default' => '',	
-			],
-			'twTextBtn' => [
-				'type'=> 'string',
-				'default'=> 'Hello',
-			],
-			'twTweetUrl' => [
-				'type'=> 'object',
-				'default'=> [
-					'url' => '',
-					'target' => '',
-					'nofollow' => ''
-				],
-			],
-			'twHashtags' => [
-				'type' => 'string',
-				'default' => 'Twitter',	
-			],
-			'twVia' => [
-				'type' => 'string',
-				'default' => 'Twitter',	
-			],	
-			'twMessage' => [
-				'type'=> 'string',
-				'default'=> 'Hello',
-			],
-			'twTweetId' => [
-				'type'=> 'string',
-				'default'=> '463440424141459456',
-			],
-			'twCount' => [
-				'type' => 'boolean',
-				'default' => true,	
-			],	
-			'twHideUname' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'twIcon' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'likeBtn' => [
-				'type'=> 'string',
-				'default'=> 'Like',
-			],
-			'replyBtn' => [
-				'type'=> 'string',
-				'default'=> 'Reply',
-			],
-			'reTweetBtn' => [
-				'type'=> 'string',
-				'default'=> 'Retweet',
-			],
-			'twMsg' => [
-				'type'=> 'string',
-				'default'=> 'Loading',
-			],
-
-			'viId' => [
-				'type'=> 'string',
-				'default'=> '288344114',
-			],
-			'viOption' => [
-				'type' => 'string',
-        		'default' => '[]',
-			],
-			'vmStime' => [
-				'type'=> 'string',
-				'default'=> '',
-			],
-			'vmColor' => [
-				'type' => 'string',
-				'default' => '',
-			],
-			'exWidth' => [
-				'type' => 'string',
-				'default' => 640,
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'youtube' ]],
-						'selector' => '{{PLUS_WRAP}}.tpgb-social-embed .tpgb-social-yt{width:{{exWidth}}px;}',
-					],
-				],
-				'scopy' => true,
-			],
-			'exHeight' => [
-				'type' => 'string',
-				'default' => 360,
-			],
-
-			'iGType' => [
-				'type' => 'string',
-				'default' => 'posts',	
-			],
-			'iGId' => [
-				'type'=> 'string',
-				'default'=> 'CGAvnLcA3zb',
-			],
-			'iGCaptione' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-
-			'ytType' => [
-				'type' => 'string',
-				'default' => 'ytSV',	
-			],
-			'ytVideoId' => [
-				'type'=> 'string',
-				'default'=> 'XmtXC_n6X6Q',
-			],
-			'ytPlaylistId' => [
-				'type'=> 'string',
-				'default'=> 'PLivjPDlt6ApQgylktXlL2AhuPvRtDiN1S',
-			],
-			'ytUsername' => [
-				'type'=> 'string',
-				'default'=> 'NationalGeographic',
-			],
-			'ytOption' => [
-				'type' => 'string',
-        		'default' => '[]',
-			],
-			'ytSTime' => [
-				'type'=> 'string',
-				'default'=> '',
-			],
-			'ytETime' => [
-				'type'=> 'string',
-				'default'=> '',
-			],
-			'ytlanguage' => [
-				'type'=> 'string',
-				'default'=> '',
-			],
-			
-			'mapaccesstoken' => [
-				'type'=> 'string',
-				'default'=> 'default',
-			],
-			'gAccesstoken' => [
-				'type'=> 'string',
-				'default'=> '',
-			],
-			'gMapModes' => [
-				'type'=> 'string',
-				'default'=> 'place',
-			],
-			'gSearchText' => [
-				'type'=> 'string',
-				'default'=> 'Goa+India',
-			],
-			'gOrigin' => [
-				'type'=> 'string',
-				'default'=> 'LosAngeles+California+USA',
-			],
-			'gDestination' => [
-				'type'=> 'string',
-				'default'=> 'Corona+California+USA',
-			],
-			'gWaypoints' => [
-				'type'=> 'string',
-				'default'=> 'Huntington+Beach+California+US | Santa Ana+California+USA',
-			],
-			'gTravelMode' => [
-				'type'=> 'string',
-				'default'=> 'driving',
-			],
-			'gavoidtolls' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'gavoidhighways' => [
-				'type' => 'boolean',
-				'default' => false,	
-			],
-			'gstreetviewText' => [
-				'type'=> 'string',
-				'default'=> '23.0489,72.5160',
-			],
-			
-			'mapViews' => [
-				'type'=> 'string',
-				'default'=> 'roadmap',
-			],
-			'mapZoom' => [
-				'type'=> 'string',
-				'default'=> '5',
-			],
-			'gMHeight' => [
-				'type'=> 'string',
-				'default'=> '350',
-			],
-			'iframeTitle' => [
-				'type' => 'string',
-				'default' => '',	
-			],
-
-			'alignmentBG' => [
-				'type' => 'object',
-				'default' => [ 'md' => '', 'sm' =>  '', 'xs' =>  '' ],
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'twitter' ],
-										(object) ['key' => 'tweetType', 'relation' => '!=', 'value' => 'tweets' ]],
-						'selector' => '{{PLUS_WRAP}}.tpgb-social-embed{text-align:{{alignmentBG}};}',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '!=', 'value' => 'twitter' ]],
-						'selector' => '{{PLUS_WRAP}}.tpgb-social-embed{text-align:{{alignmentBG}};}',
-					],
-				],
-				'scopy' => true,
-			],
-			'borderPost' => [
-				'type' => 'object',
-				'default' => (object) [
-					'openBorder' => 0,
-				],
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'facebook' ],
-										(object) ['key' => 'type', 'relation' => '==', 'value' => ['posts','videos','page','comments'] ]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-fb-iframe',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'twitter' ]],
-						'selector' => '{{PLUS_WRAP}} .twitter-tweet',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'tweetType', 'relation' => '==', 'value' => 'buttons' ]],
-						'selector' => '{{PLUS_WRAP}} .tw-button',
-					],
-				],
-				'scopy' => true,
-			],
-			'borderRs' => [
-				'type' => 'object',
-				'default' => (object) [ 
-					'md' => [
-						"top" => '',
-						"right" => '',
-						"bottom" => '',
-						"left" => '',
-					],
-					"unit" => 'px',
-				],
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'facebook' ],
-										(object) ['key' => 'type', 'relation' => '==', 'value' => ['posts','videos','page','comments'] ]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-fb-iframe{border-radius:{{borderRs}};}',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'twitter']],
-						'selector' => '{{PLUS_WRAP}} .twitter-tweet{border-radius:{{borderRs}};}',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'tweetType', 'relation' => '==', 'value' => 'buttons' ]],
-						'selector' => '{{PLUS_WRAP}} .tw-button{border-radius:{{borderRs}};}',
-					],
-				],
-				'scopy' => true,
-			],
-			'boxS' => [
-				'type' => 'object',
-				'default' => (object) [
-					'openShadow' => 0,
-				],
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'facebook' ],
-										(object) ['key' => 'type', 'relation' => '==', 'value' => ['posts','videos','page','comments'] ]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-fb-iframe',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'twitter']],
-						'selector' => '{{PLUS_WRAP}} .twitter-tweet',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'tweetType', 'relation' => '==', 'value' => 'buttons' ]],
-						'selector' => '{{PLUS_WRAP}} .tw-button',
-					],
-				],
-				'scopy' => true,
-			],
-			'borderPostHr' => [
-				'type' => 'object',
-				'default' => (object) [
-					'openBorder' => 0,
-				],
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'facebook' ],
-										(object) ['key' => 'type', 'relation' => '==', 'value' => ['posts','videos','page','comments'] ]],
-						'selector' => '{{PLUS_WRAP}} .tpgb-fb-iframe:hover',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'twitter']],
-						'selector' => '{{PLUS_WRAP}} .twitter-tweet:hover',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'tweetType', 'relation' => '==', 'value' => 'buttons' ]],
-						'selector' => '{{PLUS_WRAP}} .tw-button:hover',
-					],
-				],
-				'scopy' => true,
-			],
-			'borderHRs' => [
-				'type' => 'object',
-				'default' => (object) [ 
-					'md' => [
-						"top" => '',
-						"right" => '',
-						"bottom" => '',
-						"left" => '',
-					],
-					"unit" => 'px',
-				],
-				'style' => [
-					(object) [		
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'facebook' ],
-										(object) ['key' => 'type', 'relation' => '==', 'value' => ['posts','videos','page','comments'] ]],				
-						'selector' => '{{PLUS_WRAP}} .tpgb-fb-iframe:hover{border-radius:{{borderHRs}};}',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'twitter']],
-						'selector' => '{{PLUS_WRAP}} .twitter-tweet:hover{border-radius:{{borderHRs}};}',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'tweetType', 'relation' => '==', 'value' => 'buttons' ]],
-						'selector' => '{{PLUS_WRAP}} .tw-button:hover{border-radius:{{borderHRs}};}',
-					],
-				],
-				'scopy' => true,
-			],
-			'boxSHr' => [
-				'type' => 'object',
-				'default' => (object) [
-					'openShadow' => 0,
-				],
-				'style' => [
-					(object) [	
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'facebook' ],
-										(object) ['key' => 'type', 'relation' => '==', 'value' => ['posts','videos','page','comments'] ]],					
-						'selector' => '{{PLUS_WRAP}} .tpgb-fb-iframe:hover',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => 'twitter']],
-						'selector' => '{{PLUS_WRAP}} .twitter-tweet:hover',
-					],
-					(object) [
-						'condition' => [(object) ['key' => 'tweetType', 'relation' => '==', 'value' => 'buttons' ]],
-						'selector' => '{{PLUS_WRAP}} .tw-button:hover',
-					],
-				],
-				'scopy' => true,
-			],
-			'twBtnCr' => [
-				'type' => 'string',
-				'default' => '',
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'tweetType', 'relation' => '==', 'value' => 'buttons']],
-						'selector' => '{{PLUS_WRAP}} .tw-button{color:{{twBtnCr}};}',
-					],
-				],
-				'scopy' => true,
-			],
-			'twBtnCrH' => [
-				'type' => 'string',
-				'default' => '',
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'tweetType', 'relation' => '==', 'value' => 'buttons']],
-						'selector' => '{{PLUS_WRAP}} .tw-button:hover{color:{{twBtnCrH}};}',
-					],
-				],
-				'scopy' => true,
-			],
-
-			'socialBg' => [
-				'type' => 'object',
-				'default' => (object) [
-					'openBg'=> 0,
-				],
-				'style' => [
-					(object) [
-						'selector' => '{{PLUS_WRAP}}.tpgb-social-embed',
-					],
-				],
-				'scopy' => true,
-			],
-			'embedBr' => [
-				'type' => 'object',
-				'default' => (object) ['openBorder' => 0],
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => ['vimeo','instagram','youtube']]],
-						'selector' => '{{PLUS_WRAP}}.tpgb-social-embed iframe',
-					],
-				],
-				'scopy' => true,
-			],
-			'embedBsd' => [
-				'type' => 'object',
-				'default' => (object) ['openShadow' => 0],
-				'style' => [
-					(object) [
-						'condition' => [(object) ['key' => 'embedType', 'relation' => '==', 'value' => ['vimeo','instagram','youtube']]],
-						'selector' => '{{PLUS_WRAP}}.tpgb-social-embed iframe',
-					],
-				],
-				'scopy' => true,
-			],
-		];
-		
-	$attributesOptions = array_merge($attributesOptions,$plusButton_options, $globalBgOption, $globalpositioningOption, $globalPlusExtrasOption);
-	
-	register_block_type( 'tpgb/tp-social-embed', array(
-		'attributes' => $attributesOptions,
-		'editor_script' => 'tpgb-block-editor-js',
-		'editor_style'  => 'tpgb-block-editor-css',
-        'render_callback' => 'tpgb_social_embed_render_callback'
-    ) );	
+	if ( method_exists( 'Tpgb_Blocks_Global_Options', 'merge_options_json' ) ) {
+		$block_data = Tpgb_Blocks_Global_Options::merge_options_json( __DIR__, 'tpgb_social_embed_render_callback', true, false, true );
+		register_block_type( $block_data['name'], $block_data );
+	}
 }
 add_action( 'init', 'tpgb_tp_social_embed' );

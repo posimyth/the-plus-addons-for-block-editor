@@ -3,7 +3,7 @@
 	Front End + Back End
 **/
 .prism-previewer {
-    z-index: 1
+	z-index: 1
 }
 .tpgb-code-highlighter .toolbar-item a {
 	text-decoration: none
@@ -52,33 +52,33 @@
 }
 .tpgb-code-highlighter div.code-toolbar > .toolbar a, .tpgb-code-highlighter div.code-toolbar > .toolbar button {
 	color: #000;
-    font-size: 13px;
-    box-shadow: 0 2px 0 0 #00000033;
-    background-color: #fff;
-    border: 1px solid #dddddd;
-    padding: 1px 10px;
-    border-radius: 5px;
-    cursor: pointer;
+	font-size: 13px;
+	box-shadow: 0 2px 0 0 #00000033;
+	background-color: #fff;
+	border: 1px solid #dddddd;
+	padding: 1px 10px;
+	border-radius: 5px;
+	cursor: pointer;
 	transition: 0.3s linear
 }
 
 /* Copy/Download Icon start */
 .tpgb-code-highlighter .code-download-icon,.tpgb-code-highlighter span.code-copy-icon, .tpgb-code-highlighter span.code-copied-icon {
-    font-size: 11px;
-    margin-left: 5px
+	font-size: 11px;
+	margin-left: 5px
 }
 /* Copy/Download Icon end */
 
 /* Language Text Start */
 .tpgb-code-highlighter div.code-toolbar > .toolbar .toolbar-item > span {
-    user-select: none;
-    color: #000;
-    font-size: 13px;
-    box-shadow: 0 2px 0 0 #0003;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 1px 10px;
-    border-radius: 5px
+	user-select: none;
+	color: #000;
+	font-size: 13px;
+	box-shadow: 0 2px 0 0 #0003;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 1px 10px;
+	border-radius: 5px
 }
 /* Language Text End */
 
@@ -327,12 +327,12 @@
 	}
 }
 
-body.admin-bar .prism-previewer { 
-	margin-top: -15px !important; 
-} 
-body.admin-bar .prism-previewer-easing { 
-	margin-top: -40px !important; 
+body.admin-bar .prism-previewer {
+	margin-top: -15px !important;
 }
-.tpgb-code-highlighter pre[class*="language-"].line-numbers > code { 
-	display: inline-block; 
+body.admin-bar .prism-previewer-easing {
+	margin-top: -40px !important;
+}
+.tpgb-code-highlighter pre[class*="language-"].line-numbers > code {
+	display: inline-block;
 }

@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-heading",
 	"version": "0.1.0",
 	"title": "Heading",
@@ -24,6 +25,10 @@
             "selector": ".tp-core-heading",
             "default": "Add Your Heading Text Here"
         },
+        "exTitle": {
+            "type": "string",
+            "default": ""
+        },
         "tLink": {
             "type": "object",
             "default": {
@@ -39,9 +44,15 @@
         "tColor": {
             "type": "string",
             "default": "",
-            "style": [{
-                "selector": "{{PLUS_WRAP}}.tp-core-heading { color: {{tColor}}; }"
-            }],
+            "style": [
+                    {
+                    "selector": "{{PLUS_WRAP}}.tp-core-heading , {{PLUS_WRAP}}.tp-core-heading > a { color: {{tColor}}; }"
+                },
+                {
+                    "selector": "{{PLUS_CLIENT_ID}} span { color: {{tColor}}; }",
+                    "backend": true
+                }
+            ],
             "scopy": true
         },
         "tTypo": {
@@ -53,9 +64,15 @@
                 "unit": "px"
             }
             },
-            "style": [{
-                "selector": "{{PLUS_WRAP}}.tp-core-heading"
-            }],
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tp-core-heading"
+                },
+                {
+                    "selector": "{{PLUS_CLIENT_ID}} span",
+                    "backend": true
+                }
+            ],
             "scopy": true
         },
         "tAlign": {
@@ -155,7 +172,7 @@
             },
             "style": [
               {
-                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ position : {{globalPosition}};width : 100%; }",
+                "selector": "{{PLUS_CLIENT_ID}}{ position : {{globalPosition}}; }",
                 "backend": true
               }
             ]
@@ -180,7 +197,7 @@
                     "value": "left"
                   }
                 ],
-                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ left : {{glohoriOffset}};right : auto; }",
+                "selector": "{{PLUS_CLIENT_ID}}{ left : {{glohoriOffset}};right : auto; }",
                 "backend": true
               },
               {
@@ -196,7 +213,7 @@
                     "value": "right"
                   }
                 ],
-                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ right : {{glohoriOffset}};left : auto; }",
+                "selector": "{{PLUS_CLIENT_ID}}{ right : {{glohoriOffset}};left : auto; }",
                 "backend": true
               }
             ]
@@ -221,7 +238,7 @@
                     "value": "top"
                   }
                 ],
-                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ top : {{gloverticalOffset}}; bottom : auto; }",
+                "selector": "{{PLUS_CLIENT_ID}}{ top : {{gloverticalOffset}}; bottom : auto; }",
                 "backend": true
               },
               {
@@ -237,7 +254,7 @@
                     "value": "bottom"
                   }
                 ],
-                "selector": "{{PLUS_CLIENT_ID}}:not(.tp-core-heading){ bottom : {{gloverticalOffset}}; top : auto; }",
+                "selector": "{{PLUS_CLIENT_ID}}{ bottom : {{gloverticalOffset}}; top : auto; }",
                 "backend": true
               }
             ]

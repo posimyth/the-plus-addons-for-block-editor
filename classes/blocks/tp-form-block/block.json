@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
 	"name": "tpgb/tp-form-block",
 	"version": "0.1.0",
 	"title": "Form",
@@ -13,7 +14,7 @@
 		"align": ["wide", "full"],
 		"inserter": true
 	},
-	"textdomain": "tpgb",
+	"textdomain": "the-plus-addons-for-block-editor",
 	"attributes": {
 		"block_id": {
 			"type": "string",
@@ -87,7 +88,7 @@
 			"default": "",
 			"style": [
 				{
-                    "selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container, {{PLUS_WRAP}} .nxt-message-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}} .nxt-number-input .nxt-input-container { background-color: {{inpBg}}; } {{PLUS_WRAP}} input:-webkit-autofill, {{PLUS_WRAP}} input:-internal-autofill-previewed { background-color: transparent !important; }"
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container, {{PLUS_WRAP}} .nxt-message-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}} .nxt-number-input .nxt-input-container { background-color: {{inpBg}}; } {{PLUS_WRAP}} input:-webkit-autofill, {{PLUS_WRAP}} input:-internal-autofill-previewed { background-color: transparent !important; }"
 				}
 			]
 		},
@@ -134,7 +135,7 @@
 			},
 			"style": [
 				{
-					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container, {{PLUS_WRAP}} .nxt-email-input .nxt-email-richtext, {{PLUS_WRAP}} .nxt-message-richtext,{{PLUS_WRAP}} .nxt-name-input .nxt-input-container .nxt-name-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}} nxt-name-input .nxt-name-richtext, {{PLUS_WRAP}}.nxt-style-1 .nxt-number-input .nxt-input-container, {{PLUS_WRAP}}.nxt-style-1 .nxt-number-input .nxt-input-container .nxt-number-richtext,  {{PLUS_WRAP}} .nxt-input-wrapper, {{PLUS_WRAP}} .nxt-message-richtext::-webkit-scrollbar-thumb {border-radius:{{inpBdrRds}}}"
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container, {{PLUS_WRAP}} .nxt-message-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}} .nxt-time-input .nxt-time-richtext,{{PLUS_WRAP}} .nxt-date-input .nxt-date-richtext, {{PLUS_WRAP}} .nxt-url-input .nxt-input-container, {{PLUS_WRAP}} .nxt-number-input .nxt-input-container, {{PLUS_WRAP}} .nxt-input-wrapper, {{PLUS_WRAP}} .nxt-input-wrapper .nxt-country-dropdown {border-radius:{{inpBdrRds}}}"
 				}
 			]
 		},
@@ -161,7 +162,7 @@
 			},
 			"style": [
 				{
-                    "selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container, {{PLUS_WRAP}} .nxt-message-input .nxt-message-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}} .nxt-number-input .nxt-input-container, {{PLUS_WRAP}} .nxt-input-wrapper  {padding:{{inpPad}}}"
+					"selector": "{{PLUS_WRAP}} .nxt-email-input .nxt-input-container, {{PLUS_WRAP}} .nxt-message-input .nxt-message-richtext, {{PLUS_WRAP}} .nxt-name-input .nxt-input-container, {{PLUS_WRAP}} .nxt-number-input .nxt-input-container, {{PLUS_WRAP}} .nxt-input-wrapper  {padding:{{inpPad}}}"
 				}
 			]
 		},
@@ -311,7 +312,7 @@
 		},
 		"subject1": {
 			"type": "string",
-			"default": ""
+			"default": "New Form Submission"
 		},
 		"autoRespMsg": {
 			"type": "string",
@@ -656,7 +657,7 @@
 			],
 			"scopy": true
 		},
-        "chkRadTxtClr": {
+		"chkRadTxtClr": {
 			"type": "string",
 			"default": "",
 			"style": [
@@ -688,7 +689,7 @@
 			],
 			"scopy": true
 		},
-        "rowGap": {
+		"rowGap": {
 			"type": "object",
 			"default": {
 				"md": "",
@@ -704,9 +705,9 @@
 					"backend": false
 				}
 			],
-            "scopy": true
+			"scopy": true
 		},
-        "columnGap": {
+		"columnGap": {
 			"type": "object",
 			"default": {
 				"md": "",
@@ -722,40 +723,40 @@
 					"backend": false
 				}
 			],
-            "scopy": true
+			"scopy": true
 		},
-        "formAlign": {
-            "type": "object",
-            "default": {
-                "md": "",
-                "sm": "",
-                "xs": ""
-            },
-            "style": [
-                {
-                    "selector": "{{PLUS_WRAP}} .nxt-simple-contact-form.block-editor-block-list__layout,{{PLUS_WRAP}} .form-nxt-style-1{ justify-content: {{formAlign}}; } {{PLUS_WRAP}} .nxt-success-message { text-align: {{formAlign}}; }",
-                    "backend": true
-                },
-                {
-                    "selector": "{{PLUS_WRAP}} .nxt-form{ justify-content: {{formAlign}}; } {{PLUS_WRAP}} .nxt-success-message { text-align: {{formAlign}}; }",
-                    "backend": false
-                }
-            ],
-            "scopy": true
-        },
-        "reqIcn": {
-            "type": "boolean",
-            "default": true,
-            "style": [
-                {
-                    "selector": "{{PLUS_WRAP}} .nxt-check-title-label.required::after,{{PLUS_WRAP}} .nxt-email-label.required::after,{{PLUS_WRAP}} .nxt-message-label.required::after,{{PLUS_WRAP}} .nxt-name-label.required::after,{{PLUS_WRAP}} .nxt-number-label.required::after,{{PLUS_WRAP}} .nxt-option-label.required::after,{{PLUS_WRAP}} .nxt-radio-title-label.required::after { content: '*'; }"
-                }
-            ],
-            "scopy": true
-        },
-        "showBlockContent" :{
-            "type": "boolean",
-            "default": true
-        }
+		"formAlign": {
+			"type": "object",
+			"default": {
+				"md": "",
+				"sm": "",
+				"xs": ""
+			},
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-simple-contact-form.block-editor-block-list__layout,{{PLUS_WRAP}} .form-nxt-style-1{ justify-content: {{formAlign}}; } {{PLUS_WRAP}} .nxt-success-message { text-align: {{formAlign}}; }",
+					"backend": true
+				},
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-form{ justify-content: {{formAlign}}; } {{PLUS_WRAP}} .nxt-success-message { text-align: {{formAlign}}; }",
+					"backend": false
+				}
+			],
+			"scopy": true
+		},
+		"reqIcn": {
+			"type": "boolean",
+			"default": true,
+			"style": [
+				{
+					"selector": "{{PLUS_WRAP}} .nxt-check-title-label.required::after,{{PLUS_WRAP}} .nxt-email-label.required::after,{{PLUS_WRAP}} .nxt-message-label.required::after,{{PLUS_WRAP}} .nxt-name-label.required::after,{{PLUS_WRAP}} .nxt-number-label.required::after,{{PLUS_WRAP}} .nxt-option-label.required::after,{{PLUS_WRAP}} .nxt-radio-title-label.required::after { content: '*'; }"
+				}
+			],
+			"scopy": true
+		},
+		"showBlockContent": {
+			"type": "boolean",
+			"default": true
+		}
 	}
 }

@@ -1,781 +1,135 @@
 <?php
-/* Block : Breadcrumbs
- * @since : 1.3.0
+/**
+ * Breadcrumbs.
+ *
+ * @package ThePluginAddonsForBlockEditor
  */
+
 defined( 'ABSPATH' ) || exit;
 
-function tpgb_breadcrumbs_callback( $attributes, $content) {
-    $uid = (!empty($attributes['block_id'])) ? $attributes['block_id'] : uniqid("title");
-    $style = (!empty($attributes['style'])) ? $attributes['style'] : '';
-    $markupSch = (!empty($attributes['markupSch'])) ? $attributes['markupSch'] : '';
-	$ctmHomeurl = (!empty($attributes['ctmHomeurl'])) ? $attributes['ctmHomeurl'] : '';
-	
-    $showTerms = (!empty($attributes['showTerms'])) ? $attributes['showTerms'] : '';
-    $taxonomySlug = (!empty($attributes['taxonomySlug'])) ? $attributes['taxonomySlug'] : '';
-    $showpartTerms = (!empty($attributes['showpartTerms'])) ? $attributes['showpartTerms'] : false;
-    $showchildTerms = (!empty($attributes['showchildTerms'])) ? $attributes['showchildTerms'] : false;
+/**
+ * Tpgb breadcrumbs callback.
+ *
+ * @param mixed $attributes The attributes.
+ * @param mixed $content The content.
+ * @return mixed The result.
+ */
+function tpgb_breadcrumbs_callback( $attributes, $content ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	$uid         = ( ! empty( $attributes['block_id'] ) ) ? $attributes['block_id'] : uniqid( 'title' );
+	$style       = ( ! empty( $attributes['style'] ) ) ? $attributes['style'] : '';
+	$markup_sch  = ( ! empty( $attributes['markupSch'] ) ) ? $attributes['markupSch'] : '';
+	$ctm_homeurl = ( ! empty( $attributes['ctmHomeurl'] ) ) ? $attributes['ctmHomeurl'] : '';
 
-	$blockClass = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
-	
-    $icons = $icontype = '';
-    if($attributes['homeIcon'] == "icon") {
-        if(!empty($attributes["iconFontStyle"]) && $attributes["iconFontStyle"] == 'font_awesome') {
-            $icons = (!empty($attributes["iconFawesome"])) ? $attributes["iconFawesome"] : '';
-            $icontype = 'icon';
-        } else if(!empty($attributes["iconFontStyle"]) && $attributes["iconFontStyle"] == 'icon_image') {
-            $iconsImg = (!empty($attributes['iconsImg']['id'])) ? $attributes['iconsImg']['id'] : '';
-            if(!empty($iconsImg)){
-                $img = wp_get_attachment_image_src($iconsImg);
-                $icons = $img[0];
-                $icontype = 'image';
-            }else if(!empty($attributes['iconsImg']['url'])){
-                $icons = $attributes['iconsImg']['url'];
-                $icontype = 'image';
-            }
-        }
-    }
-    
-    $sepIcons = $sepIconType = '';
-    if($attributes['sepIcon']=="sep_icon") {
-        if(!empty($attributes["sepIconFontStyle"]) && $attributes["sepIconFontStyle"]=='sep_font_awesome') {
-            $sepIcons= (!empty($attributes["sepIconFawesome"])) ? $attributes["sepIconFawesome"] : '';
-            $sepIconType='sep_icon';
-        } else if(!empty($attributes["sepIconFontStyle"]) && $attributes["sepIconFontStyle"]=='sep_icon_image') {
-            $sepIconImg = (!empty($attributes['sepIconImg']['id'])) ? $attributes['sepIconImg']['id'] : '';
-            if(!empty($sepIconImg)){
-                $img = wp_get_attachment_image_src($sepIconImg);
-                $sepIcons = $img[0];
-                $sepIconType = 'sep_image';
-            }else if(!empty($attributes['sepIconImg']['url'])){
-                $sepIcons = $attributes['sepIconImg']['url'];
-                $sepIconType = 'sep_image';
-            }
-        }
-    }
-    
-    $cssClass = '';
-    if($style == 'style-1') {
-        $bredStyleClass = 'bred_style_1';
-    } else if($style == 'style-2') {
-        $bredStyleClass = 'bred_style_2';
-    }
-	
-    $cssClass = (!empty($attributes["bredAlign"]['md'])) ? ' bred-' . esc_attr($attributes["bredAlign"]['md']) : '';
-    $cssClass .= (!empty($attributes["bredAlign"]['sm'])) ? ' bred-tablet-' . esc_attr($attributes["bredAlign"]['sm']) : '';
-    $cssClass .= (!empty($attributes["bredAlign"]['xs'])) ? ' bred-mobile-' . esc_attr($attributes["bredAlign"]['xs']) : '';
+	$show_terms      = ( ! empty( $attributes['showTerms'] ) ) ? $attributes['showTerms'] : '';
+	$taxonomy_slug   = ( ! empty( $attributes['taxonomySlug'] ) ) ? $attributes['taxonomySlug'] : '';
+	$showpart_terms  = ( ! empty( $attributes['showpartTerms'] ) ) ? $attributes['showpartTerms'] : false;
+	$showchild_terms = ( ! empty( $attributes['showchildTerms'] ) ) ? $attributes['showchildTerms'] : false;
 
-    $homeTitle = $attributes["homeTitle"];
-    
-    $bdToggleHome = (!empty($attributes['bdToggleHome'])) ? "on-off-home" : "";
-    $bdToggleParent = (!empty($attributes['bdToggleParent'])) ? "on-off-parent" : "";	
+	$block_class = Tp_Blocks_Helper::block_wrapper_classes( $attributes );
 
-    if( (!empty($attributes['bdToggleParent'])) ){
-    	$letterLimitParent = (!empty($attributes['letterLimitParent'])) ? $attributes['letterLimitParent'] : '';
-	}else{
-		$letterLimitParent ='0';
+	$icons    = '';
+	$icontype = '';
+	if ( 'icon' === $attributes['homeIcon'] ) {
+		if ( ! empty( $attributes['iconFontStyle'] ) && 'font_awesome' === $attributes['iconFontStyle'] ) {
+			$icons    = ( ! empty( $attributes['iconFawesome'] ) ) ? $attributes['iconFawesome'] : '';
+			$icontype = 'icon';
+		} elseif ( ! empty( $attributes['iconFontStyle'] ) && 'icon_image' === $attributes['iconFontStyle'] ) {
+			$icons_img = ( ! empty( $attributes['iconsImg']['id'] ) ) ? $attributes['iconsImg']['id'] : '';
+			if ( ! empty( $icons_img ) ) {
+				$img      = wp_get_attachment_image_src( $icons_img );
+				$icons    = $img[0];
+				$icontype = 'image';
+			} elseif ( ! empty( $attributes['iconsImg']['url'] ) ) {
+				$icons    = $attributes['iconsImg']['url'];
+				$icontype = 'image';
+			}
+		}
 	}
-	if((!empty($attributes['bdToggleCurrent']))){
-    	$letterLimitCurrent = (!empty($attributes['letterLimitCurrent'])) ? $attributes['letterLimitCurrent'] : '';
-	}else{
-		$letterLimitCurrent = '0';
-	}
-    
-    $bdToggleCurrent = (!empty($attributes['bdToggleCurrent'])) ? "on-off-current" : "";
-    
-    $breadcrumbs_last_sec_tri_normal = '';
-    $breadcrumbs_bar = '';	
-    
-    $breadcrumbs_bar .= '<div class="tp-breadcrumbs tpgb-block-'.esc_attr($uid).' '.esc_attr($blockClass).'">';
-        $breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar '.  trim( $cssClass ) .'">';
-        
-            if(!empty($attributes['bredWidth']) && $style == 'style-1') {
-                $breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar_inner '.esc_attr($bredStyleClass).'" style="width:100%">';
-            } else {
-                $breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar_inner '.esc_attr($bredStyleClass).'">';
-            }
-            
-                $activeColorCurrent = ($attributes['activeColorCurrent'] == true) ? "default_active" : "";
 
-                $breadcrumbs_bar .= Tp_Blocks_Helper::theplus_breadcrumbs($icontype, $sepIconType, $icons, $homeTitle, $sepIcons, $activeColorCurrent, $breadcrumbs_last_sec_tri_normal, $bdToggleHome, $bdToggleParent, $bdToggleCurrent, $letterLimitParent, $letterLimitCurrent, $markupSch, $ctmHomeurl , $showTerms , $taxonomySlug , $showpartTerms , $showchildTerms );
-            $breadcrumbs_bar .= '</div>';
-        $breadcrumbs_bar .= '</div>';
-    $breadcrumbs_bar .= '</div>';
-    
-	$breadcrumbs_bar = Tpgb_Blocks_Global_Options::block_Wrap_Render($attributes, $breadcrumbs_bar);
-	
+	$sep_icons     = '';
+	$sep_icon_type = '';
+	if ( 'sep_icon' === $attributes['sepIcon'] ) {
+		if ( ! empty( $attributes['sepIconFontStyle'] ) && 'sep_font_awesome' === $attributes['sepIconFontStyle'] ) {
+			$sep_icons     = ( ! empty( $attributes['sepIconFawesome'] ) ) ? $attributes['sepIconFawesome'] : '';
+			$sep_icon_type = 'sep_icon';
+		} elseif ( ! empty( $attributes['sepIconFontStyle'] ) && 'sep_icon_image' === $attributes['sepIconFontStyle'] ) {
+			$sep_icon_img_id  = ! empty( $attributes['sepIconImg']['id'] ) ? absint( $attributes['sepIconImg']['id'] ) : 0;
+			$sep_icon_img_url = ! empty( $attributes['sepIconImg']['url'] ) ? esc_url_raw( $attributes['sepIconImg']['url'] ) : '';
+			if ( $sep_icon_img_id > 0 ) {
+				$img = wp_get_attachment_image_src( $sep_icon_img_id, 'full' );
+				if ( ! empty( $img[0] ) ) {
+					$sep_icons     = $img[0];
+					$sep_icon_type = 'sep_image';
+				} elseif ( $sep_icon_img_url ) {
+					$sep_icons     = $sep_icon_img_url;
+					$sep_icon_type = 'sep_image';
+				}
+			} elseif ( $sep_icon_img_url ) {
+				$sep_icons     = $sep_icon_img_url;
+				$sep_icon_type = 'sep_image';
+			}
+		}
+	}
+
+	$css_class = '';
+	if ( 'style-1' === $style ) {
+		$bred_style_class = 'bred_style_1';
+	} elseif ( 'style-2' === $style ) {
+		$bred_style_class = 'bred_style_2';
+	}
+
+	$css_class  = ( ! empty( $attributes['bredAlign']['md'] ) ) ? ' bred-' . esc_attr( $attributes['bredAlign']['md'] ) : '';
+	$css_class .= ( ! empty( $attributes['bredAlign']['sm'] ) ) ? ' bred-tablet-' . esc_attr( $attributes['bredAlign']['sm'] ) : '';
+	$css_class .= ( ! empty( $attributes['bredAlign']['xs'] ) ) ? ' bred-mobile-' . esc_attr( $attributes['bredAlign']['xs'] ) : '';
+
+	$home_title = $attributes['homeTitle'];
+
+	$bd_toggle_home   = ( ! empty( $attributes['bdToggleHome'] ) ) ? true : false;
+	$bd_toggle_parent = ( ! empty( $attributes['bdToggleParent'] ) ) ? true : false;
+
+	if ( ( ! empty( $attributes['bdToggleParent'] ) ) ) {
+		$letter_limit_parent = ( ! empty( $attributes['letterLimitParent'] ) ) ? $attributes['letterLimitParent'] : '';
+	} else {
+		$letter_limit_parent = '0';
+	}
+	if ( ( ! empty( $attributes['bdToggleCurrent'] ) ) ) {
+		$letter_limit_current = ( ! empty( $attributes['letterLimitCurrent'] ) ) ? $attributes['letterLimitCurrent'] : '';
+	} else {
+		$letter_limit_current = '0';
+	}
+
+	$bd_toggle_current = ( ! empty( $attributes['bdToggleCurrent'] ) ) ? true : false;
+
+	$breadcrumbs_last_sec_tri_normal = '';
+	$breadcrumbs_bar                 = '';
+
+	$breadcrumbs_bar     .= '<div class="tp-breadcrumbs tpgb-block-' . esc_attr( $uid ) . ' ' . esc_attr( $block_class ) . '">';
+		$breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar ' . trim( $css_class ) . '">';
+
+	if ( ! empty( $attributes['bredWidth'] ) && 'style-1' === $style ) {
+		$breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar_inner ' . esc_attr( $bred_style_class ) . '" style="width:100%">';
+	} else {
+		$breadcrumbs_bar .= '<div class="pt_plus_breadcrumbs_bar_inner ' . esc_attr( $bred_style_class ) . '">';
+	}
+
+				$active_color_current = ( true === $attributes['activeColorCurrent'] ) ? 'default_active' : '';
+
+				$breadcrumbs_bar .= Tp_Blocks_Helper::theplus_breadcrumbs( $icontype, $sep_icon_type, $icons, $home_title, $sep_icons, $active_color_current, $breadcrumbs_last_sec_tri_normal, $bd_toggle_home, $bd_toggle_parent, $bd_toggle_current, $letter_limit_parent, $letter_limit_current, $markup_sch, $ctm_homeurl, $show_terms, $taxonomy_slug, $showpart_terms, $showchild_terms );
+			$breadcrumbs_bar     .= '</div>';
+		$breadcrumbs_bar         .= '</div>';
+	$breadcrumbs_bar             .= '</div>';
+
+	$breadcrumbs_bar = Tpgb_Blocks_Global_Options::block_Wrap_Render( $attributes, $breadcrumbs_bar );
+
 	return $breadcrumbs_bar;
 }
 
+/**
+ * Tpgb tp breadcrumbs render.
+ */
 function tpgb_tp_breadcrumbs_render() {
-    $globalBgOption = Tpgb_Blocks_Global_Options::load_bg_options();
-    $globalpositioningOption = Tpgb_Blocks_Global_Options::load_positioning_options();
-	$globalPlusExtrasOption = Tpgb_Blocks_Global_Options::load_plusextras_options();
-    $attributesOptions = [
-        'block_id' => [
-            'type' => 'string',
-            'default' => '',
-        ],
-        'style' => [
-            'type' => 'string',
-            'default' => 'style-1',
-        ],
-        'bredWidth' => [
-            'type' => 'boolean',
-            'default' => false,
-        ],
-        'bredAlign' => [
-            'type' => 'object',
-            'default' => [ 'md' => '', 'sm' =>  '', 'xs' =>  '' ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar{ text-align: {{bredAlign}}; }',
-                ]
-            ],
-			'scopy' => true,
-        ],
-        'homeTitle' => [
-            'type' => 'string',
-            'default' => 'Home',
-        ],
-        'homeIcon' => [
-            'type' => 'string',
-            'default' => 'icon',
-        ],
-        'iconFontStyle' => [
-            'type' => 'string',
-            'default' => 'font_awesome',
-        ],
-        'iconFawesome' => [
-            'type' => 'string',
-            'default' => 'fas fa-home',
-        ],
-        'iconsImg' => [
-            'type' => 'object',
-            'default' => [
-                'url' => '',
-                'Id' => '',
-            ],
-        ],
-		'ctmHomeurl' => [
-            'type'=> 'object',
-            'default'=> [
-                'url' => '',
-                'target' => '',
-                'nofollow' => ''
-            ],
-        ],
-		'markupSch' => [
-            'type' => 'boolean',
-            'default' => false,
-        ],
-        'sepIcon' => [
-            'type' => 'string',
-            'default' => 'sep_icon',
-        ],
-        'sepIconFontStyle' => [
-            'type' => 'string',
-            'default' => 'sep_font_awesome',
-        ],
-        'sepIconFawesome' => [
-            'type' => 'string',
-            'default' => 'fas fa-angle-right',
-        ],
-        'sepIconImg' => [
-            'type' => 'object',
-            'default' => [
-                'url' => '',
-                'Id' => '',
-            ],
-                      
-        ],
-        'bdToggleHome' => [
-            'type' => 'boolean',
-            'default' => true,	
-        ],
-        'bdToggleParent' => [
-            'type' => 'boolean',
-            'default' => true,	
-        ],
-        'bdToggleCurrent' => [
-            'type' => 'boolean',
-            'default' => true,	
-        ],
-        'bredMargin' => [
-            'type' => 'object',
-            'default' => (object) [ 
-                'md' => [
-                    "top" => '',
-                    "right" => '',
-                    "bottom" => '',
-                    "left" => '',
-                ],
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-2']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current_active .current_tab_sec{ padding: {{bredMargin}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'bredPadding' => [
-            'type' => 'object',
-            'default' => (object) [ 
-                'md' => [
-                    "top" => '',
-                    "right" => '',
-                    "bottom" => '',
-                    "left" => '',
-                ],
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-2']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current_active .current_tab_sec{ padding: {{bredPadding}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'bredTypo' => [
-            'type'=> 'object',
-            'default'=> (object) [
-                'openTypography' => 0,
-                'size' => [ 'md' => '', 'unit' => 'px' ],
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs span.current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .current_active, {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current_active .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs span.current_active .current_tab_sec',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'textColor' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs span.current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs span.current_active .current_tab_sec, {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current_active .current_tab_sec{ color: {{textColor}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'textHColor' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a:hover,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs span.current:hover .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs span.current_active .current_tab_sec, {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a:hover,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current:hover .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current_active .current_tab_sec{ color: {{textHColor}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'activeColorCurrent' => [
-            'type' => 'boolean',
-	        'default' => false,
-			'scopy' => true,
-        ],
-        'textBorder' => [
-            'type' => 'object',
-            'default' => (object) [
-                'openBorder' => 0,
-                'type' => '',
-                'color' => '',
-                'width' => (object) [
-                    'md' => (object)[
-                        'top' => '',
-                        'left' => '',
-                        'bottom' => '',
-                        'right' => '',
-                    ],
-                    "unit" => "",
-                ],
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .current_tab_sec,
-                    {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .current_tab_sec',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'textBorderHover' => [
-            'type' => 'object',
-            'default' => (object) [
-                'openBorder' => 0,
-                'type' => '',
-                'color' => '',
-                'width' => (object) [
-                    'md' => (object)[
-                        'top' => '',
-                        'left' => '',
-                        'bottom' => '',
-                        'right' => '',
-                    ],
-                    "unit" => "",
-                ],
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a:hover,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs span.current:hover .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs span.current_active:hover .current_tab_sec, {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a:hover,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current:hover .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs span.current_active:hover .current_tab_sec',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'iconPadding' => [
-            'type' => 'object',
-            'default' => (object) [ 
-                'md' => [
-                    "top" => '',
-                    "right" => '',
-                    "bottom" => '',
-                    "left" => '',
-                ],
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-home-img{ padding: {{iconPadding}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'iconSize' => [
-            'type' => 'object',
-            'default' => [ 
-                'md' => '',
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'iconFontStyle', 'relation' => '==', 'value' => 'font_awesome']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-home-icon{ font-size: {{iconSize}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'iconColor' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'iconFontStyle', 'relation' => '==', 'value' => 'font_awesome']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-home-icon{ color: {{iconColor}}; -webkit-transition: all .4s ease; -moz-transition: all .4s ease; -o-transition: all .4s ease; -ms-transition: all .4s ease; transition: all .4s ease }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'iconColorHover' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'iconFontStyle', 'relation' => '==', 'value' => 'font_awesome']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a:hover .bread-home-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a:hover .bread-home-icon{ color: {{iconColorHover}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'imgSize' => [
-            'type' => 'object',
-            'default' => [ 
-                'md' => '',
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'iconFontStyle', 'relation' => '==', 'value' => 'icon_image']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-home-img{ max-width: {{imgSize}};height: auto; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'imgBorderRadius' => [
-            'type' => 'object',
-            'default' => (object) [ 
-                'md' => [
-                    "top" => '',
-                    "right" => '',
-                    "bottom" => '',
-                    "left" => '',
-                ],
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'iconFontStyle', 'relation' => '==', 'value' => 'icon_image']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-home-img{ border-radius: {{imgBorderRadius}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'sepPadding' =>[
-            'type' => 'object',
-            'default' => (object) [ 
-                'md' => [
-                    "top" => '',
-                    "right" => '',
-                    "bottom" => '',
-                    "left" => '',
-                ],
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs .bread-sep-icon:not(svg),{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-sep-icon{ padding: {{sepPadding}}; } {{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs svg.bread-sep-icon{ margin: {{sepPadding}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'sepSize' => [
-            'type' => 'object',
-            'default' => [ 
-                'md' => '',
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'sepIconFontStyle', 'relation' => '==', 'value' => 'sep_font_awesome']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-sep-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-sep-icon{ font-size: {{sepSize}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'sepColor' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'sepIconFontStyle', 'relation' => '==', 'value' => 'sep_font_awesome']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .bread-sep-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs .bread-sep-icon{ color: {{sepColor}}; -webkit-transition: all .4s ease; -moz-transition: all .4s ease; -o-transition: all .4s ease; -ms-transition: all .4s ease; transition: all .4s ease }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'sepColorHover' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'sepIconFontStyle', 'relation' => '==', 'value' => 'sep_font_awesome']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a:hover .bread-sep-icon,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_2 nav#breadcrumbs a:hover .bread-sep-icon{ color: {{sepColorHover}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'sepImgSize' => [
-            'type' => 'object',
-            'default' => [ 
-                'md' => '',
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'sepIconFontStyle', 'relation' => '==', 'value' => 'sep_icon_image']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner nav#breadcrumbs img.bread-sep-icon{ max-width: {{sepImgSize}};height: auto; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'letterLimitParentT' => [
-            'type' => 'boolean',
-            'default' => true,
-        ],
-        'letterLimitParent' => [
-            'type' => 'string',
-            'default' => 20,	
-        ],
-        'letterLimitCurrentT' => [
-            'type' => 'boolean',
-            'default' => true,	
-        ],
-        'letterLimitCurrent' => [
-            'type' => 'string',
-            'default' => 20,	
-        ],
-        'contentBgPadding' => [
-            'type' => 'object',
-            'default' => (object) [ 
-                'md' => [
-                    "top" => '',
-                    "right" => '',
-                    "bottom" => '',
-                    "left" => '',
-                ],
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1{ padding: {{contentBgPadding}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'contentBg' => [
-            'type' => 'object',
-            'default' => (object) [
-                'openBg'=> 0,
-                'bgType' => 'color',
-                'videoSource' => 'local',
-                'bgDefaultColor' => '',
-                'bgGradient' => (object) [ 'color1' => '#16d03e', 'color2' => '#1f91f3', 'type' => 'linear', 'direction' => '90', 'start' => 5, 'stop' => 80, 'radial' => 'center', 'clip' => false ],
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'contentBgH' => [
-            'type' => 'object',
-            'default' => (object) [
-                'openBg'=> 0,
-                'bgType' => 'color',
-                'videoSource' => 'local',
-                'bgDefaultColor' => '',
-                'bgGradient' => (object) [ 'color1' => '#16d03e', 'color2' => '#1f91f3', 'type' => 'linear', 'direction' => '90', 'start' => 5, 'stop' => 80, 'radial' => 'center', 'clip' => false ],
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1:hover',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'contentBorder' => [
-            'type' => 'object',
-            'default' => (object) [
-                'openBorder' => 0,
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'contentBorderH' => [
-            'type' => 'object',
-            'default' => (object) [
-                'openBorder' => 0,
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1:hover',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'contentBorderRad' => [
-            'type' => 'object',
-            'default' => (object) [ ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_1{ border-radius: {{contentBorderRad}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],  
-        'contentBorderRadH' => [
-            'type' => 'object',
-            'default' => (object) [ ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_1:hover{ border-radius: {{contentBorderRadH}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'boxShadow' => [
-            'type' => 'object',
-            'default' => (object) [
-                'openShadow' => 0,
-                'inset' => 0,
-                'horizontal' => 0,
-                'vertical' => 4,
-                'blur' => 8,
-                'spread' => 0,
-                'color' => "rgba(0,0,0,0.40)",
-            ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'boxShadowH' => [
-            'type' => 'object',
-            'default' => (object) [
-                'openShadow' => 0,
-                'inset' => 0,
-                'horizontal' => 0,
-                'vertical' => 4,
-                'blur' => 8,
-                'spread' => 0,
-                'color' => "rgba(0,0,0,0.40)",
-            ],
-            'style' => [
-                (object) [
-                    'condition' => [(object) ['key' => 'style', 'relation' => '==', 'value' => 'style-1']],
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner:hover.bred_style_1',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'sepBgPadding' => [
-            'type' => 'object',
-            'default' => (object) [ 
-                'md' => [
-                    "top" => '',
-                    "right" => '',
-                    "bottom" => '',
-                    "left" => '',
-                ],
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .current_tab_sec{ padding: {{sepBgPadding}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'sepBgMargin' => [
-            'type' => 'object',
-            'default' => (object) [ 
-                'md' => [
-                    "top" => '',
-                    "right" => '',
-                    "bottom" => '',
-                    "left" => '',
-                ],
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs>span:not(.del){ margin: {{sepBgMargin}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'sepBorderRadius' => [
-            'type' => 'object',
-            'default' => (object) [ 
-                'md' => [
-                    "top" => '',
-                    "right" => '',
-                    "bottom" => '',
-                    "left" => '',
-                ],
-                "unit" => 'px',
-            ],
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar .pt_plus_breadcrumbs_bar_inner.bred_style_1 nav#breadcrumbs .current_tab_sec{ border-radius: {{sepBorderRadius}}; }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'bredAll' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del) a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del) .current_tab_sec{ background: {{bredAll}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span:not(.del):before{ border-left: 30px solid {{bredAll}} }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'bredHome' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span.bc_home .home_bread_tab{ background: {{bredHome}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.bc_home:before{ border-left: 30px solid {{bredHome}} }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'bredCurrent' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [                        
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del) .current_tab_sec{ background: {{bredCurrent}} !important; }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.current:before,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.current_active:before{ border-left: 30px solid {{bredCurrent}} }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'bredAllHover' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del):hover a,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span:not(.del):hover .current_tab_sec{ background: {{bredAllHover}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span:not(.del):hover:before{ border-left: 30px solid {{bredAllHover}} }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'bredHomeHover' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span.bc_home:hover a{ background: {{bredHomeHover}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.bc_home:hover:before { border-left: 30px solid {{bredHomeHover}} }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'bredCurrentHover' => [
-            'type' => 'string',
-            'default' => '',
-            'style' => [
-                (object) [
-                    'selector' => '{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span.current:hover .current_tab_sec,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner #breadcrumbs > span.current_active:hover .current_tab_sec{ background: {{bredCurrentHover}} !important }{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.current:hover:before,{{PLUS_WRAP}} .pt_plus_breadcrumbs_bar_inner.bred_style_2 #breadcrumbs > span.current_active:hover:before{ border-left: 30px solid {{bredCurrentHover}} }',
-                ],
-            ],
-			'scopy' => true,
-        ],
-        'showTerms' => [
-            'type' => 'boolean',
-            'default' => false,
-        ],
-        'taxonomySlug' => [
-            'type' => 'string',
-			'default' => 'category',
-        ],
-        'showpartTerms' => [
-            'type' => 'boolean',
-            'default' => true,
-        ],
-        'showchildTerms' => [
-            'type' => 'boolean',
-            'default' => true,
-        ],
-        'nochildShow' => [
-            'type' => 'number',
-			'default' => 1,
-        ],
-        'showBlockContent' => [
-           'type' => 'boolean',
-           'default' => true,
-        ]
-    ];
 
-    $attributesOptions = array_merge($attributesOptions	, $globalBgOption, $globalpositioningOption, $globalPlusExtrasOption);
-
-    register_block_type( 'tpgb/tp-breadcrumbs', array(
-		'attributes' => $attributesOptions,
-		'editor_script' => 'tpgb-block-editor-js',
-		'editor_style'  => 'tpgb-block-editor-css',
-        'render_callback' => 'tpgb_breadcrumbs_callback'
-    ));
+	$block_data = Tpgb_Blocks_Global_Options::merge_options_json( __DIR__, 'tpgb_breadcrumbs_callback', true );
+	register_block_type( $block_data['name'], $block_data );
 }
 add_action( 'init', 'tpgb_tp_breadcrumbs_render' );

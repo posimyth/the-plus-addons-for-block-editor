@@ -1,0 +1,919 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-social-embed",
+    "version": "0.1.0",
+    "title": "Social Embed",
+    "category": "tpgb",
+    "description": "Embed any Social Media Posts from Facebook, Instagram, Twitter, YouTube and Vimeo on your site.",
+    "example": {
+        "attributes": {}
+    },
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "embedType": {
+            "type": "string",
+            "default": "facebook"
+        },
+        "type": {
+            "type": "string",
+            "default": "videos"
+        },
+        "appID": {
+            "type": "string",
+            "default": ""
+        },
+        "targetC": {
+            "type": "string",
+            "default": "custom"
+        },
+        "urlFC": {
+            "type": "string",
+            "default": "plain"
+        },
+        "commentAddURL": {
+            "type": "object",
+            "default": {
+                "url": "https://www.facebook.com/",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "postURL": {
+            "type": "object",
+            "default": {
+                "url": "https://www.facebook.com/posimyth/posts/3054603914561930",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "videosURL": {
+            "type": "object",
+            "default": {
+                "url": "https://www.facebook.com/posimyth/videos/444986032863860/",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "targetLike": {
+            "type": "string",
+            "default": "custom"
+        },
+        "fmtURLlb": {
+            "type": "string",
+            "default": "plain"
+        },
+        "likeBtnUrl": {
+            "type": "object",
+            "default": {
+                "url": "https://www.facebook.com/posimyth",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "saveURL": {
+            "type": "object",
+            "default": {
+                "url": "https://www.facebook.com/",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "shareURL": {
+            "type": "object",
+            "default": {
+                "url": "https://www.facebook.com/",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "fullPT": {
+            "type": "boolean",
+            "default": false
+        },
+        "hgPost": {
+            "type": "string",
+            "default": ""
+        },
+        "wdPost": {
+            "type": "string",
+            "default": ""
+        },
+        "fullVT": {
+            "type": "boolean",
+            "default": false
+        },
+        "autoplayVT": {
+            "type": "boolean",
+            "default": false
+        },
+        "captionVT": {
+            "type": "boolean",
+            "default": false
+        },
+        "hgVideo": {
+            "type": "string",
+            "default": ""
+        },
+        "wdVideo": {
+            "type": "string",
+            "default": ""
+        },
+        "countC": {
+            "type": "string",
+            "default": ""
+        },
+        "orderByC": {
+            "type": "string",
+            "default": "social"
+        },
+        "typeLB": {
+            "type": "string",
+            "default": "like"
+        },
+        "btnStyleLB": {
+            "type": "string",
+            "default": "button"
+        },
+        "sizeLB": {
+            "type": "string",
+            "default": "small"
+        },
+        "colorSLB": {
+            "type": "string",
+            "default": "light"
+        },
+        "sBtnLB": {
+            "type": "boolean",
+            "default": false
+        },
+        "facesLBT": {
+            "type": "boolean",
+            "default": false
+        },
+        "hgLikeBtn": {
+            "type": "string",
+            "default": ""
+        },
+        "wdLikeBtn": {
+            "type": "string",
+            "default": ""
+        },
+        "uRLP": {
+            "type": "object",
+            "default": {
+                "url": "https://www.facebook.com/posimyth",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "layoutP": {
+            "type": "string",
+            "default": "timeline"
+        },
+        "smallHP": {
+            "type": "boolean",
+            "default": false
+        },
+        "coverP": {
+            "type": "boolean",
+            "default": true
+        },
+        "profileP": {
+            "type": "boolean",
+            "default": true
+        },
+        "ctaBtn": {
+            "type": "boolean",
+            "default": true
+        },
+        "hgPage": {
+            "type": "string",
+            "default": ""
+        },
+        "wdPage": {
+            "type": "string",
+            "default": ""
+        },
+        "shareBtn": {
+            "type": "string",
+            "default": "button"
+        },
+        "wdShare": {
+            "type": "string",
+            "default": ""
+        },
+        "hgShare": {
+            "type": "string",
+            "default": ""
+        },
+        "tweetType": {
+            "type": "string",
+            "default": "timelines"
+        },
+        "twRepeater": {
+            "type": "array",
+            "repeaterField": [
+                {
+                    "tweetURl": {
+                        "type": "object",
+                        "default": {
+                            "url": "https://twitter.com/Interior/status/463440424141459456",
+                            "target": "",
+                            "nofollow": ""
+                        }
+                    },
+                    "twMassage": {
+                        "type": "string",
+                        "default": "Loading"
+                    }
+                }
+            ],
+            "default": [
+                {
+                    "_key": "",
+                    "tweetURl": {
+                        "url": "https://twitter.com/Interior/status/463440424141459456"
+                    },
+                    "twMassage": "&mdash; Loading"
+                }
+            ]
+        },
+        "twGuides": {
+            "type": "string",
+            "default": "profile"
+        },
+        "twstyle": {
+            "type": "string",
+            "default": "linear"
+        },
+        "twCollection": {
+            "type": "object",
+            "default": {
+                "url": "https://twitter.com/TwitterDev/timelines/539487832448843776",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "twlisturl": {
+            "type": "object",
+            "default": {
+                "url": "https://twitter.com/TwitterDev/lists/national-parks",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "twbutton": {
+            "type": "string",
+            "default": "follow"
+        },
+        "twname": {
+            "type": "string",
+            "default": "TwitterDev"
+        },
+        "twRId": {
+            "type": "string",
+            "default": "3805104374"
+        },
+        "twColor": {
+            "type": "boolean",
+            "default": false
+        },
+        "twCards": {
+            "type": "boolean",
+            "default": false
+        },
+        "twalign": {
+            "type": "string",
+            "default": "center"
+        },
+        "twconver": {
+            "type": "boolean",
+            "default": false
+        },
+        "twDesign": {
+            "type": "string",
+            "default": "[]"
+        },
+        "twBrCr": {
+            "type": "string",
+            "default": ""
+        },
+        "twlimit": {
+            "type": "string",
+            "default": ""
+        },
+        "twwidth": {
+            "type": "string",
+            "default": ""
+        },
+        "twheight": {
+            "type": "string",
+            "default": "500"
+        },
+        "twBtnSize": {
+            "type": "string",
+            "default": ""
+        },
+        "twTextBtn": {
+            "type": "string",
+            "default": "Hello"
+        },
+        "twTweetUrl": {
+            "type": "object",
+            "default": {
+                "url": "",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "twHashtags": {
+            "type": "string",
+            "default": "Twitter"
+        },
+        "twVia": {
+            "type": "string",
+            "default": "Twitter"
+        },
+        "twMessage": {
+            "type": "string",
+            "default": "Hello"
+        },
+        "twTweetId": {
+            "type": "string",
+            "default": "463440424141459456"
+        },
+        "twCount": {
+            "type": "boolean",
+            "default": true
+        },
+        "twHideUname": {
+            "type": "boolean",
+            "default": false
+        },
+        "twIcon": {
+            "type": "boolean",
+            "default": false
+        },
+        "likeBtn": {
+            "type": "string",
+            "default": "Like"
+        },
+        "replyBtn": {
+            "type": "string",
+            "default": "Reply"
+        },
+        "reTweetBtn": {
+            "type": "string",
+            "default": "Retweet"
+        },
+        "twMsg": {
+            "type": "string",
+            "default": "Loading"
+        },
+        "viId": {
+            "type": "string",
+            "default": "288344114"
+        },
+        "viOption": {
+            "type": "string",
+            "default": "[]"
+        },
+        "vmStime": {
+            "type": "string",
+            "default": ""
+        },
+        "vmColor": {
+            "type": "string",
+            "default": ""
+        },
+        "exWidth": {
+            "type": "string",
+            "default": "640",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "youtube"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-embed .tpgb-social-yt{width:{{exWidth}}px;}"
+                }
+            ],
+            "scopy": true
+        },
+        "exHeight": {
+            "type": "string",
+            "default": "360"
+        },
+        "iGType": {
+            "type": "string",
+            "default": "posts"
+        },
+        "iGId": {
+            "type": "string",
+            "default": "CGAvnLcA3zb"
+        },
+        "iGCaptione": {
+            "type": "boolean",
+            "default": false
+        },
+        "ytType": {
+            "type": "string",
+            "default": "ytSV"
+        },
+        "ytVideoId": {
+            "type": "string",
+            "default": "XmtXC_n6X6Q"
+        },
+        "ytPlaylistId": {
+            "type": "string",
+            "default": "PLivjPDlt6ApQgylktXlL2AhuPvRtDiN1S"
+        },
+        "ytUsername": {
+            "type": "string",
+            "default": "NationalGeographic"
+        },
+        "ytOption": {
+            "type": "string",
+            "default": "[]"
+        },
+        "ytSTime": {
+            "type": "string",
+            "default": ""
+        },
+        "ytETime": {
+            "type": "string",
+            "default": ""
+        },
+        "ytlanguage": {
+            "type": "string",
+            "default": ""
+        },
+        "mapaccesstoken": {
+            "type": "string",
+            "default": "default"
+        },
+        "gAccesstoken": {
+            "type": "string",
+            "default": ""
+        },
+        "gMapModes": {
+            "type": "string",
+            "default": "place"
+        },
+        "gSearchText": {
+            "type": "string",
+            "default": "Goa+India"
+        },
+        "gOrigin": {
+            "type": "string",
+            "default": "LosAngeles+California+USA"
+        },
+        "gDestination": {
+            "type": "string",
+            "default": "Corona+California+USA"
+        },
+        "gWaypoints": {
+            "type": "string",
+            "default": "Huntington+Beach+California+US | Santa Ana+California+USA"
+        },
+        "gTravelMode": {
+            "type": "string",
+            "default": "driving"
+        },
+        "gavoidtolls": {
+            "type": "boolean",
+            "default": false
+        },
+        "gavoidhighways": {
+            "type": "boolean",
+            "default": false
+        },
+        "gstreetviewText": {
+            "type": "string",
+            "default": "23.0489,72.5160"
+        },
+        "mapViews": {
+            "type": "string",
+            "default": "roadmap"
+        },
+        "mapZoom": {
+            "type": "string",
+            "default": "5"
+        },
+        "gMHeight": {
+            "type": "string",
+            "default": "350"
+        },
+        "iframeTitle": {
+            "type": "string",
+            "default": ""
+        },
+        "alignmentBG": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "sm": "",
+                "xs": ""
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "twitter"
+                        },
+                        {
+                            "key": "tweetType",
+                            "relation": "!=",
+                            "value": "tweets"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-embed{text-align:{{alignmentBG}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "!=",
+                            "value": "twitter"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-embed{text-align:{{alignmentBG}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "borderPost": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "facebook"
+                        },
+                        {
+                            "key": "type",
+                            "relation": "==",
+                            "value": ["posts", "videos", "page", "comments"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-fb-iframe"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "twitter"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .twitter-tweet"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "tweetType",
+                            "relation": "==",
+                            "value": "buttons"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tw-button"
+                }
+            ],
+            "scopy": true
+        },
+        "borderRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "facebook"
+                        },
+                        {
+                            "key": "type",
+                            "relation": "==",
+                            "value": ["posts", "videos", "page", "comments"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-fb-iframe{border-radius:{{borderRs}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "twitter"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .twitter-tweet{border-radius:{{borderRs}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "tweetType",
+                            "relation": "==",
+                            "value": "buttons"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tw-button{border-radius:{{borderRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "boxS": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "facebook"
+                        },
+                        {
+                            "key": "type",
+                            "relation": "==",
+                            "value": ["posts", "videos", "page", "comments"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-fb-iframe"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "twitter"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .twitter-tweet"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "tweetType",
+                            "relation": "==",
+                            "value": "buttons"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tw-button"
+                }
+            ],
+            "scopy": true
+        },
+        "borderPostHr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "facebook"
+                        },
+                        {
+                            "key": "type",
+                            "relation": "==",
+                            "value": ["posts", "videos", "page", "comments"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-fb-iframe:hover"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "twitter"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .twitter-tweet:hover"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "tweetType",
+                            "relation": "==",
+                            "value": "buttons"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tw-button:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "borderHRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "facebook"
+                        },
+                        {
+                            "key": "type",
+                            "relation": "==",
+                            "value": ["posts", "videos", "page", "comments"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-fb-iframe:hover{border-radius:{{borderHRs}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "twitter"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .twitter-tweet:hover{border-radius:{{borderHRs}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "tweetType",
+                            "relation": "==",
+                            "value": "buttons"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tw-button:hover{border-radius:{{borderHRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "boxSHr": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "facebook"
+                        },
+                        {
+                            "key": "type",
+                            "relation": "==",
+                            "value": ["posts", "videos", "page", "comments"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-fb-iframe:hover"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": "twitter"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .twitter-tweet:hover"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "tweetType",
+                            "relation": "==",
+                            "value": "buttons"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tw-button:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "twBtnCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "tweetType",
+                            "relation": "==",
+                            "value": "buttons"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tw-button{color:{{twBtnCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "twBtnCrH": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "tweetType",
+                            "relation": "==",
+                            "value": "buttons"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tw-button:hover{color:{{twBtnCrH}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "socialBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-embed"
+                }
+            ],
+            "scopy": true
+        },
+        "embedBr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": ["vimeo", "instagram", "youtube"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-embed iframe"
+                }
+            ],
+            "scopy": true
+        },
+        "embedBsd": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "embedType",
+                            "relation": "==",
+                            "value": ["vimeo", "instagram", "youtube"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-embed iframe"
+                }
+            ],
+            "scopy": true
+        }
+    }
+}

@@ -1,52 +1,66 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+/**
+ * Fancybox Feed.
+ *
+ * @package ThePluginAddonsForBlockEditor
+ */
 
-if($FancyStyle == 'style-1'){
-	include TPGB_INCLUDES_URL."social-feed/fancybox-feed-style-1.php";
-}else if($FancyStyle == 'style-2'){
-	include TPGB_INCLUDES_URL."social-feed/fancybox-feed-style-2.php";
-}else{
-	if(empty($FbAlbum)){
-		$PopupTarget=$PopupLink='';
-		if( $PopupOption == "Donothing" ){
-			$videoURL = '';
-		}else if( $PopupOption == "GoWebsite" ){
-			$PopupTarget = 'target=_blank rel="noopener noreferrer"';
-			$PopupLink = 'href="'.esc_url($videoURL).'"';
-		}else if( $PopupOption == "OnFancyBox" ){
-			$PopupLink = 'href="'.esc_url($videoURL).'"';
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+if ( 'style-1' === $fancy_style ) {
+	include TPGB_INCLUDES_URL . 'social-feed/fancybox-feed-style-1.php';
+} elseif ( 'style-2' === $fancy_style ) {
+	include TPGB_INCLUDES_URL . 'social-feed/fancybox-feed-style-2.php';
+} else {
+	if ( empty( $fb_album ) ) {
+		$popup_target = '';
+		$popup_link   = '';
+		if ( 'Donothing' === $popup_option ) {
+			$video_url = '';
+		} elseif ( 'GoWebsite' === $popup_option ) {
+			$popup_target = 'target=_blank rel="noopener noreferrer"';
+			$popup_link   = 'href="' . esc_url( $video_url ) . '"';
+		} elseif ( 'OnFancyBox' === $popup_option ) {
+			$popup_link = 'href="' . esc_url( $video_url ) . '"';
 		}
 	}
 
-	if( $selectFeed == 'Facebook' && !empty($FbAlbum) ){
-		$ij=0;            
-		
-		if(!empty($videoURL) && is_array($videoURL)){
-			foreach ($videoURL as $fdata){              
-				$AImg = ( !empty($fdata['images']) && !empty($fdata['images'][0]['source']) ) ? $fdata['images'][0]['source'] : ''; 
-                    if($ij == 0){ ?>
-                        <a href="<?php echo esc_url($AImg); ?>" <?php echo $FancyBoxJS; ?> aria-label="<?php echo esc_attr__('Facebook Post','the-plus-addons-for-block-editor'); ?>">
-                            <?php if($style !== "style-4"){ ?><img class="reference-thumb tpgb-post-thumb" src="<?php echo esc_url($ImageURL); ?>" alt="<?php echo esc_attr__('Facebook Image','the-plus-addons-for-block-editor'); ?>"/><?php } ?>
-                        </a>
-                    <?php }else{ ?>
-                        <a href="<?php echo esc_url($AImg); ?>" <?php echo $FancyBoxJS; ?> aria-label="<?php echo esc_attr__('Facebook Post','the-plus-addons-for-block-editor'); ?>">
-                            <img class="hidden-image" src="<?php echo esc_url($AImg); ?>" alt="<?php echo esc_attr__('Facebook Image','the-plus-addons-for-block-editor'); ?>"/>
-                        </a>
-                    <?php  }
-				$ij++;
+	if ( 'Facebook' === $select_feed && ! empty( $fb_album ) ) {
+		$ij = 0;
+
+		if ( ! empty( $video_url ) && is_array( $video_url ) ) {
+			foreach ( $video_url as $fdata ) {
+				$a_img = ( ! empty( $fdata['images'] ) && ! empty( $fdata['images'][0]['source'] ) ) ? $fdata['images'][0]['source'] : '';
+				if ( 0 === $ij ) { ?>
+						<a href="<?php echo esc_url( $a_img ); ?>" <?php echo $fancy_box_js; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is escaped inside $fancy_box_js. ?> aria-label="<?php echo esc_attr__( 'Facebook Post', 'the-plus-addons-for-block-editor' ); ?>">
+							<?php
+							if ( 'style-4' !== $style ) {
+								?>
+								<img class="reference-thumb tpgb-post-thumb" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr__( 'Facebook Image', 'the-plus-addons-for-block-editor' ); ?>"/><?php } ?>
+						</a>
+					<?php } else { ?>
+						<a href="<?php echo esc_url( $a_img ); ?>" <?php echo $fancy_box_js; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is escaped inside $fancy_box_js. ?> aria-label="<?php echo esc_attr__( 'Facebook Post', 'the-plus-addons-for-block-editor' ); ?>">
+							<img class="hidden-image" src="<?php echo esc_url( $a_img ); ?>" alt="<?php echo esc_attr__( 'Facebook Image', 'the-plus-addons-for-block-editor' ); ?>"/>
+						</a>
+					<?php
+					}
+					++$ij;
 			}
 		}
-	}else{
-		if( ($Type == 'video' || $Type == 'photo') && (!empty($ImageURL)) ){
-			if($style == "style-1" || $style == "style-2"){ ?> 
-				<a <?php echo $PopupLink . $PopupTarget . $FancyBoxJS; ?> class="tpgb-soc-img-cls tpgb-relative-block" aria-label="<?php echo esc_attr__('Social Media Post','the-plus-addons-for-block-editor'); ?>">
-					<?php if( $PopupOption !== "GoWebsite" ){ ?><img class="tpgb-post-thumb" src="<?php echo esc_url($ImageURL); ?>"  alt="<?php echo esc_attr__('Social Media Image','the-plus-addons-for-block-editor'); ?>"/> <?php } ?>
+	} elseif ( ( 'video' === $type || 'photo' === $type ) && ( ! empty( $image_url ) ) ) {
+		if ( 'style-1' === $style || 'style-2' === $style ) {
+			?>
+							<a <?php echo $popup_link . $popup_target . $fancy_box_js; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is escaped inside $popup_link, $popup_target, and $fancy_box_js. ?> class="tpgb-soc-img-cls tpgb-relative-block" aria-label="<?php echo esc_attr__( 'Social Media Post', 'the-plus-addons-for-block-editor' ); ?>">
+				<?php
+				if ( 'GoWebsite' !== $popup_option ) {
+					?>
+					<img class="tpgb-post-thumb" src="<?php echo esc_url( $image_url ); ?>"  alt="<?php echo esc_attr__( 'Social Media Image', 'the-plus-addons-for-block-editor' ); ?>"/> <?php } ?>
 				</a>
-			<?php }else if($style == "style-3" || $style == "style-4"){
-				echo '<a '.$PopupLink . $PopupTarget . $FancyBoxJS.' class="tpgb-image-link" aria-label="'.esc_attr__('Social Media Post','the-plus-addons-for-block-editor').'"></a>';
-			}
-		} 
+		<?php } elseif ( 'style-3' === $style || 'style-4' === $style ) {
+				echo '<a ' . $popup_link . $popup_target . $fancy_box_js . ' class="tpgb-image-link" aria-label="' . esc_attr__( 'Social Media Post', 'the-plus-addons-for-block-editor' ) . '"></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is escaped inside $popup_link, $popup_target, and $fancy_box_js.
+		}
 	}
-
 }
 ?>

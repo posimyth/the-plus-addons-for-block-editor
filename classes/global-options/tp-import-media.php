@@ -1,10 +1,19 @@
 <?php
+/**
+ * Tp Import Media.
+ *
+ * @package ThePluginAddonsForBlockEditor
+ */
+
+// phpcs:disable WordPress.Files.FileName
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 /**
  * Import Media.
+ *
  * @since 1.1.0
  */
 class Tpgb_Import_Images {
@@ -19,7 +28,7 @@ class Tpgb_Import_Images {
 	 *
 	 * @var array
 	 */
-	private static $new_image_ids = [];
+	private static $new_image_ids = array();
 
 	/**
 	 * Get attachment url image hash sha1.
@@ -65,13 +74,13 @@ class Tpgb_Import_Images {
 
 		$upload_data = wp_upload_bits( $file_name, null, $file_content );
 
-		$post_image = [
+		$post_image = array(
 			'post_title' => $file_name,
-			'guid' => isset($upload_data['url']) ? $upload_data['url'] : '',
-		];
+			'guid'       => isset( $upload_data['url'] ) ? $upload_data['url'] : '',
+		);
 
 		$info = wp_check_filetype( $upload_data['file'] );
-		if ( !empty($info) ) {
+		if ( ! empty( $info ) ) {
 			$post_image['post_mime_type'] = $info['type'];
 		} else {
 			return $attachment;
@@ -83,22 +92,22 @@ class Tpgb_Import_Images {
 		if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
 			require_once ABSPATH . '/wp-admin/includes/image.php';
 		}
-		
+
 		if ( ! function_exists( 'wp_read_video_metadata' ) ) {
 			require_once ABSPATH . '/wp-admin/includes/media.php';
 		}
-		
+
 		wp_update_attachment_metadata(
 			$post_id,
 			wp_generate_attachment_metadata( $post_id, $upload_data['file'] )
 		);
 		update_post_meta( $post_id, 'tpgb_source_image_key', self::get_attachment_url_hash_image( $attachment['url'] ) );
 
-		$new_attachment_img = [
-			'id' => $post_id,
+		$new_attachment_img = array(
+			'id'  => $post_id,
 			'url' => $upload_data['url'],
-		];
-		if(isset($attachment['id'])){
+		);
+		if ( isset( $attachment['id'] ) ) {
 			self::$new_image_ids[ $attachment['id'] ] = $new_attachment_img;
 		}
 		return $new_attachment_img;
@@ -116,12 +125,12 @@ class Tpgb_Import_Images {
 	 */
 	private static function get_store_image_saved( $attachment ) {
 		global $wpdb;
-		
-		if ( isset($attachment['id']) && isset( self::$new_image_ids[ $attachment['id'] ] ) ) {
+
+		if ( isset( $attachment['id'] ) && isset( self::$new_image_ids[ $attachment['id'] ] ) ) {
 			return self::$new_image_ids[ $attachment['id'] ];
 		}
 
-		$post_id = $wpdb->get_var(
+		$post_id = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 			$wpdb->prepare(
 				'SELECT `post_id` FROM `' . $wpdb->postmeta . '` WHERE `meta_key` = \'tpgb_source_image_key\' AND `meta_value` = %s
 				;',
@@ -129,12 +138,12 @@ class Tpgb_Import_Images {
 			)
 		);
 
-		if ( !empty( $post_id ) ) {
-			$new_attachment_img = [
-				'id' => $post_id,
+		if ( ! empty( $post_id ) ) {
+			$new_attachment_img = array(
+				'id'  => $post_id,
 				'url' => wp_get_attachment_url( $post_id ),
-			];
-			if(isset($attachment['id'])){
+			);
+			if ( isset( $attachment['id'] ) ) {
 				self::$new_image_ids[ $attachment['id'] ] = $new_attachment_img;
 			}
 			return $new_attachment_img;

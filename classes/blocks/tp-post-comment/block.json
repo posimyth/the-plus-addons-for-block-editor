@@ -1,0 +1,812 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-post-comment",
+    "version": "0.1.0",
+    "title": "Post Comments",
+    "category": "tpgb",
+    "description": "Add a comment form to your post to increase audience engagement.",
+    "example": {
+        "attributes": {}
+    },
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "commentTitle": {
+            "type": "string",
+            "default": "Comment"
+        },
+        "commentFormTitle": {
+            "type": "string",
+            "default": "Leave Your Comment"
+        },
+        "loggedInAsText": {
+            "type": "string",
+            "default": "Logged in as"
+        },
+        "logOutText": {
+            "type": "string",
+            "default": "Log out?"
+        },
+        "cancelReplyText": {
+            "type": "string",
+            "default": "Cancel Reply"
+        },
+        "commentField": {
+            "type": "string",
+            "default": "Comment"
+        },
+        "submitBtnText": {
+            "type": "string",
+            "default": "Submit Now"
+        },
+        "commTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .comment-section-title,.tpgb-post-comment #respond.comment-respond h3#reply-title"
+                }
+            ],
+            "scopy": true
+        },
+        "commColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .comment-section-title,.tpgb-post-comment #respond.comment-respond h3#reply-title{color: {{commColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "profilePadding": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list li.comment>.comment-body img.avatar, {{PLUS_WRAP}}.tpgb-post-comment .comment-list li.pingback>.comment-body img.avatar{ padding: {{profilePadding}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "profileBorderRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list li.comment>.comment-body img.avatar, {{PLUS_WRAP}}.tpgb-post-comment .comment-list li.pingback>.comment-body img.avatar{border-radius: {{profileBorderRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "profileBoxShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list li.comment>.comment-body img.avatar, {{PLUS_WRAP}}.tpgb-post-comment .comment-list li.pingback>.comment-body img.avatar"
+                }
+            ],
+            "scopy": true
+        },
+        "userTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-author.vcard cite.fn .url",
+                    "backend": true
+                },
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-author.vcard .fn .url",
+                    "backend": false
+                }
+            ],
+            "scopy": true
+        },
+        "userColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-author.vcard cite.fn .url{color: {{userColor}};}",
+                    "backend": true
+                },
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-author.vcard .fn .url{color: {{userColor}};}",
+                    "backend": false
+                }
+            ],
+            "scopy": true
+        },
+        "userHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-author.vcard cite.fn .url:hover{color: {{userHoverColor}};}",
+                    "backend": true
+                },
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-author.vcard .fn .url:hover{color: {{userHoverColor}};}",
+                    "backend": false
+                }
+            ],
+            "scopy": true
+        },
+        "metaTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-meta.commentmetadata a",
+                    "backend": true
+                },
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-meta .comment-metadata a",
+                    "backend": false
+                }
+            ],
+            "scopy": true
+        },
+        "metaColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-meta.commentmetadata a{color: {{metaColor}};}",
+                    "backend": true
+                },
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-meta .comment-metadata a{color: {{metaColor}};}",
+                    "backend": false
+                }
+            ],
+            "scopy": true
+        },
+        "metaHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-meta.commentmetadata a:hover{color: {{metaHoverColor}};}",
+                    "backend": true
+                },
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-meta .comment-metadata a:hover{color: {{metaHoverColor}};}",
+                    "backend": false
+                }
+            ],
+            "scopy": true
+        },
+        "replypadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a{padding: {{replypadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "replyTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a"
+                }
+            ],
+            "scopy": true
+        },
+        "replyColor": {
+            "type": "string",
+            "default": "#f18248",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a{color: {{replyColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "replyHoverColor": {
+            "type": "string",
+            "default": "#f18248",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover{border-color: {{replyHoverColor}};color: {{replyHoverColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "replyBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 1,
+                "type": "solid",
+                "color": "rgba(0,0,0,0)",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a"
+                }
+            ],
+            "scopy": true
+        },
+        "replyBorderHover": {
+            "type": "object",
+            "default": {
+                "openBorder": 1,
+                "type": "solid",
+                "color": "#f18248",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "replyBorderRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a{border-radius: {{replyBorderRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "replyBorderRadiusHover": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover{border-radius: {{replyBorderRadiusHover}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "replyBg": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgDefaultColor": "",
+                "bgGradient": {
+                    "direction": 90
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a"
+                }
+            ],
+            "scopy": true
+        },
+        "replyBgHover": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgDefaultColor": "",
+                "bgGradient": {
+                    "direction": 90
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "replyBoxShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a"
+                }
+            ],
+            "scopy": true
+        },
+        "replyBoxShadowHover": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment .comment-list .reply a:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment{color: {{fieldColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus{color: {{fieldHoverColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldpadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment{padding: {{fieldpadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldBorderHover": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "width": {
+                    "md": {
+                        "top": "",
+                        "left": "",
+                        "bottom": "",
+                        "right": ""
+                    }
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldBorderRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment{border-radius: {{fieldBorderRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldBorderRadiusHover": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus{border-radius: {{fieldBorderRadiusHover}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldBg": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgDefaultColor": "",
+                "bgGradient": {
+                    "direction": 90
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldBgHover": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgDefaultColor": "",
+                "bgGradient": {
+                    "direction": 90
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldBoxShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment"
+                }
+            ],
+            "scopy": true
+        },
+        "fieldBoxShadowHover": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #author:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #email:focus, {{PLUS_WRAP}}.tpgb-post-comment #commentform #url:focus, {{PLUS_WRAP}}.tpgb-post-comment form.comment-form textarea#comment:focus"
+                }
+            ],
+            "scopy": true
+        },
+        "btnTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit"
+                }
+            ],
+            "scopy": true
+        },
+        "btnColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit{color: {{btnColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "btnHoverColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover{color: {{btnHoverColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "btnpadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit{padding: {{btnpadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBorderHover": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "width": {
+                    "md": {
+                        "top": "",
+                        "left": "",
+                        "bottom": "",
+                        "right": ""
+                    }
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBorderRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit{border-radius: {{btnBorderRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBorderRadiusHover": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover{border-radius: {{btnBorderRadiusHover}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBg": {
+            "type": "object",
+            "default": {
+                "openBg": 1,
+                "bgType": "color",
+                "bgDefaultColor": "#6f14f1",
+                "bgGradient": {
+                    "direction": 90
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBgHover": {
+            "type": "object",
+            "default": {
+                "bgType": "color",
+                "bgDefaultColor": "",
+                "bgGradient": {
+                    "direction": 90
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBoxShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBoxShadowHover": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "blur": 8,
+                "color": "rgba(0,0,0,0.40)",
+                "horizontal": 0,
+                "inset": 0,
+                "spread": 0,
+                "vertical": 4
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-comment #commentform #submit:hover"
+                }
+            ],
+            "scopy": true
+        }
+    }
+}

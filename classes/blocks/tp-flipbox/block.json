@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-flipbox",
 	"version": "0.1.0",
 	"title": "Flip Box",
@@ -199,7 +200,7 @@
               "url": ""
             },
             "overNmlBG": "",
-           "overHvrBG":  ""
+            "overHvrBG":  ""
           },
           {
             "_key": "1",
@@ -218,8 +219,8 @@
             "svgFIcon": {
               "url": ""
             },
-            "overNmlBG": "",
-           "overHvrBG":  ""
+             "overNmlBG": "",
+            "overHvrBG":  ""
           }
         ]
       },
@@ -739,6 +740,16 @@
         "scopy": true
       },
       "svgfillColor": {
+        "type": "string",
+        "default": "",
+        "scopy": true
+      },
+      "svgstroHov": {
+        "type": "string",
+        "default": "",
+        "scopy": true
+      },
+      "svgfillHov": {
         "type": "string",
         "default": "",
         "scopy": true
@@ -1665,7 +1676,7 @@
         ],
         "scopy": true
       },
-      "showBlockContent" :{
+        "showBlockContent" :{
             "type": "boolean",
             "default": true
         }

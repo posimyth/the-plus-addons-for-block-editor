@@ -1,0 +1,363 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-post-title",
+    "version": "0.1.0",
+    "title": "Post Title",
+    "category": "tpgb",
+    "description": "Display primary post title in your post.",
+    "example": {
+        "attributes": {}
+    },
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "types": {
+            "type": "string",
+            "default": "singular"
+        },
+        "titlePrefix": {
+            "type": "string",
+            "default": ""
+        },
+        "titlePostfix": {
+            "type": "string",
+            "default": ""
+        },
+        "postLink": {
+            "type": "boolean",
+            "default": false
+        },
+        "titleTag": {
+            "type": "string",
+            "default": "h1"
+        },
+        "limitCountType": {
+            "type": "string",
+            "default": "default"
+        },
+        "titleLimit": {
+            "type": "string",
+            "default": ""
+        },
+        "hideDots": {
+            "type": "boolean",
+            "default": false
+        },
+        "titleAlign": {
+            "type": "object",
+            "default": {
+                "md": "center",
+                "sm": "",
+                "xs": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title{text-align: {{titleAlign}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "titleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title"
+                }
+            ],
+            "scopy": true
+        },
+        "padding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title{padding: {{padding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "titleColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title { color : {{titleColor}}; } "
+                }
+            ],
+            "scopy": true
+        },
+        "titleHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title:hover { color : {{titleHvrColor}}; } "
+                }
+            ],
+            "scopy": true
+        },
+        "titleBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title"
+                }
+            ],
+            "scopy": true
+        },
+        "titleHvrbg": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "titleBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title"
+                }
+            ],
+            "scopy": true
+        },
+        "titleHvrBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "titleBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title{ border-radius : {{titleBRadius}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "titleHvrBra": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title:hover { border-radius : {{titleHvrBra}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "titleBshadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title"
+                }
+            ],
+            "scopy": true
+        },
+        "titleHvrSha": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tpgb-entry-title:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "prePostPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tp-prepost-title{padding: {{prePostPadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "prefixOffset": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "titlePrefix",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tp-prefix-title{ margin-right: {{prefixOffset}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "postfixOffset": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "titlePostfix",
+                            "relation": "!=",
+                            "value": ""
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tp-postfix-title{ margin-left: {{postfixOffset}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "prePostTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tp-prepost-title"
+                }
+            ],
+            "scopy": true
+        },
+        "prePostColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tp-prepost-title { color : {{prePostColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "prePostBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tp-prepost-title"
+                }
+            ],
+            "scopy": true
+        },
+        "prePostBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tp-prepost-title"
+                }
+            ],
+            "scopy": true
+        },
+        "prePostBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tp-prepost-title{ border-radius : {{prePostBRadius}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "prePostBshadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-title .tp-prepost-title"
+                }
+            ],
+            "scopy": true
+        }
+    }
+}

@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-button",
 	"version": "0.1.0",
 	"title": "Advanced Button",
@@ -54,15 +55,15 @@
         }
         },
         "Alignment": {
-        "type": "object",
-        "default": {
-            "md": "left",
-            "sm": "",
-            "xs": ""
-        },
-        "style": [
+            "type": "object",
+            "default": {
+                "md": "left",
+                "sm": "",
+                "xs": ""
+              },
+            "style": [
             {
-            "selector": "{{PLUS_WRAP}}.tpgb-plus-button{ text-align: {{Alignment}}; }"
+                "selector": "{{PLUS_WRAP}}.tpgb-plus-button{ text-align: {{Alignment}}; }"
             }
         ],
         "scopy": true
@@ -90,6 +91,10 @@
         "imageSize": {
         "type": "string",
         "default": "full"
+        },
+        "svgIcon": {
+            "type": "object",
+            "default": []
         },
         "ariaLabel": {
         "type": "string",
@@ -145,7 +150,7 @@
                 "value": "fontAwesome"
                 }
             ],
-            "selector": "{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .btn-icon { font-size: {{iconSize}}; }"
+            "selector": "{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .btn-icon{ font-size: {{iconSize}}; }"
             },
             {
             "condition": [
@@ -191,10 +196,60 @@
                 }
             ],
             "selector": "{{PLUS_WRAP}}.tpgb-plus-button.button-style-6 .button-link-wrap .btn-left-arrow { width: {{iconSize}}; height: {{iconSize}}; }"
+            },
+            {
+            "condition": [
+                {
+                "key": "styleType",
+                "relation": "!=",
+                "value": ["style-3", "style-6", "style-7", "style-9"]
+                },
+                {
+                "key": "iconType",
+                "relation": "==",
+                "value": "svg"
+                }
+            ],
+            "selector": "{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap svg , {{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .btn-icon object { width: {{iconSize}}; height: {{iconSize}}; }"
+            },
+            {
+            "condition": [
+                {
+                "key": "styleType",
+                "relation": "==",
+                "value": "style-6"
+                },
+                {
+                "key": "iconType",
+                "relation": "==",
+                "value": "svg"
+                }
+            ],
+            "selector": "{{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .btn-left-arrow .btn-icon svg , {{PLUS_WRAP}}.tpgb-plus-button .button-link-wrap .btn-left-arrow .btn-icon object { width: {{iconSize}}; height: {{iconSize}}; }"
             }
         ],
         "scopy": true
         },
+		"headSvgColor": {
+			"type": "string",
+			"default": "",
+			"scopy": true
+		},
+		"headSvgfill": {
+			"type": "string",
+			"default": "",
+			"scopy": true
+		},
+		"SvgStrHover": {
+			"type": "string",
+			"default": "",
+			"scopy": true
+		},
+		"SvgFillHover": {
+			"type": "string",
+			"default": "",
+			"scopy": true
+		},
         "innerPadding": {
         "type": "object",
         "default": {

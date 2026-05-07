@@ -1,0 +1,280 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-post-content",
+    "version": "0.1.0",
+    "title": "Post Content",
+    "category": "tpgb",
+    "description": "Add primary content on your post to display main page content.",
+    "example": {
+        "attributes": {}
+    },
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "className": {
+            "type": "string",
+            "default": ""
+        },
+        "types": {
+            "type": "string",
+            "default": "singular"
+        },
+        "contentType": {
+            "type": "string",
+            "default": "postExcerpt"
+        },
+        "archiveCnt": {
+            "type": "string",
+            "default": "term_desc"
+        },
+        "limitCountType": {
+            "type": "string",
+            "default": "default"
+        },
+        "titleLimit": {
+            "type": "number",
+            "default": ""
+        },
+        "chideDots": {
+            "type": "boolean",
+            "default": false
+        },
+        "contentAlign": {
+            "type": "object",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content {text-align: {{contentAlign}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "contentTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content"
+                }
+            ],
+            "scopy": true
+        },
+        "padding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content{padding: {{padding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "cntMargin": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content p { margin: {{cntMargin}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "contentColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content { color : {{contentColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "contentHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content:hover { color : {{contentHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "contentBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content"
+                }
+            ],
+            "scopy": true
+        },
+        "contentHvrbg": {
+            "type": "object",
+            "default": {
+                "openBg": 0,
+                "bgType": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "contentBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content"
+                }
+            ],
+            "scopy": true
+        },
+        "contentHvrBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "contentBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content{ border-radius : {{contentBRadius}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "contentHvrBra": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content:hover { border-radius : {{contentHvrBra}} }"
+                }
+            ],
+            "scopy": true
+        },
+        "contentBshadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content"
+                }
+            ],
+            "scopy": true
+        },
+        "contentHvrSha": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-entry-content:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "headingTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-content .tpgb-pro-paragraph .pro-heading-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "headingColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-content .tpgb-pro-paragraph .pro-heading-inner{ color : {{headingColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "headingHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-content .tpgb-pro-paragraph .pro-heading-inner:hover { color : {{headingHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-post-content .tpgb-stylist-list .tpgb-icon-list-items.d-flex-center .tpgb-icon-list-icon .list-icon{ color : {{iconColor}}; }"
+                }
+            ],
+            "scopy": true
+        }
+    }
+}

@@ -1,0 +1,9 @@
+.dynamic-style-6 .tpgb-post-category {
+	position: absolute;
+	z-index: 5;
+	top: 20px;
+	left: 20px
+}
+.tpgb-post-listing.dynamic-style-6 .tpgb-adv-button{
+	z-index: 10
+}

@@ -6,39 +6,51 @@
 	display: inline-block;
 }
 .tpgb-plus-button .button-link-wrap {
-    position: relative;
-    display: inline-block;
+	position: relative;
+	display: inline-block;
 	width: 100%;
-    padding: 15px 30px;
-    font-size: 16px;
-    line-height: 25px;
+	padding: 15px 30px;
+	font-size: 16px;
+	line-height: 25px;
 	text-decoration:blink;
-    cursor: pointer;
-    color: #fff;
+	cursor: pointer;
+	color: #fff;
 }
 .tpgb-plus-button .button-link-wrap .btn-icon {
-    vertical-align: middle;
+	vertical-align: middle;
 }
 .button-link-wrap .button-after {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 .button-link-wrap .button-before {
-    margin-right: 10px;
+	margin-right: 10px;
 }
-.button-link-wrap img.btn-icon {
-    width: 20px;
+
+.button-link-wrap img.btn-icon{
+	width: 20px;
 }
+.tpgb-plus-button .button-link-wrap div , .tpgb-plus-button .button-link-wrap .btn-icon {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.tpgb-plus-button .button-link-wrap svg ,.tpgb-plus-button .button-link-wrap .btn-icon object{
+	width: 20px;
+	height: 20px;
+}
+
+
 .tpgb-plus-button{
-    line-height: 0;
+	line-height: 0;
 }
 /* Button Fancy Box Css */
 .tpgb-btn-fpopup{
-    padding: 0px;
-    display: none;
+	padding: 0px;
+	display: none;
 }
 .tpgb-button-fancy .fancybox-close-small:hover{
-    background: none;
+	background: none;
 }
 .tpgb-button-fancy .fancybox-close-small svg path{
-    fill: #000;
+	fill: #000;
 }

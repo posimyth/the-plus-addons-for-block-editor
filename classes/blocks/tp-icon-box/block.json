@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-icon-box",
 	"version": "0.1.0",
 	"title": "Icon",
@@ -291,7 +292,7 @@
       },
       "style": [
         {
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-icon-box){ position : {{globalPosition}};width : 100%; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ position : {{globalPosition}}; }",
           "backend": true
         }
       ]
@@ -316,7 +317,7 @@
               "value": "left"
             }
           ],
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-icon-box){ left : {{glohoriOffset}};right : auto; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ left : {{glohoriOffset}};right : auto; }",
           "backend": true
         },
         {
@@ -332,7 +333,7 @@
               "value": "right"
             }
           ],
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-icon-box){ right : {{glohoriOffset}};left : auto; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ right : {{glohoriOffset}};left : auto; }",
           "backend": true
         }
       ]
@@ -357,7 +358,7 @@
               "value": "top"
             }
           ],
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-icon-box){ top : {{gloverticalOffset}}; bottom : auto; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ top : {{gloverticalOffset}}; bottom : auto; }",
           "backend": true
         },
         {
@@ -373,7 +374,7 @@
               "value": "bottom"
             }
           ],
-          "selector": "{{PLUS_CLIENT_ID}}:not(.tpgb-icon-box){ bottom : {{gloverticalOffset}}; top : auto; }",
+          "selector": "{{PLUS_CLIENT_ID}}{ bottom : {{gloverticalOffset}}; top : auto; }",
           "backend": true
         }
       ]
@@ -383,5 +384,5 @@
         "default": false
     }
   },
-  "usesContext": [ "postId", "postType","queryId","tpgb/dynamicSubFieldData","tpgb/dynamicRowIndex","tpgb/dynamicPost","tpgb/dynamicRepField"]
+  "usesContext": ["postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField"]
 }

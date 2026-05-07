@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-heading-title",
 	"version": "0.1.0",
 	"title": "Advanced Heading",
@@ -55,7 +56,7 @@
             "md": "center",
             "sm": "",
             "xs": ""
-          },
+        	},
 		  "style": [
 			{
 			  "condition": [
@@ -70,6 +71,14 @@
 		  ],
 		  "scopy": true
 		},
+        "advHeadingLink": {
+            "type": "object",
+            "default": {
+            "url": "",
+            "target": "",
+            "nofollow": ""
+            }
+        },
 		"limitTgl": {
 		  "type": "boolean",
 		  "default": false
@@ -371,7 +380,7 @@
 					"value": "style-9"
 				  }
 				],
-				"selector": "{{PLUS_WRAP}}.heading_style .heading-title,{{PLUS_WRAP}}.heading_style .heading-title>a"
+				"selector": "{{PLUS_WRAP}}.heading_style .heading-title,{{PLUS_WRAP}}.heading_style .heading-title > a"
 			  },
 			  {
 				"condition": [
@@ -406,7 +415,12 @@
 					"key": "style",
 					"relation": "!=",
 					"value": "style-9"
-				  }
+				  },
+                  {
+                    "key": "titleGrad",
+                    "relation": "==",
+                    "value": false
+                  }
 				],
 				"selector": "{{PLUS_WRAP}}.heading_style .heading-title,{{PLUS_WRAP}}.heading_style .heading-title>a{ color: {{titleColor}}; }"
 			  },
@@ -421,13 +435,39 @@
 					"key": "style",
 					"relation": "==",
 					"value": "style-9"
-				  }
+				  },
+                  {
+                    "key": "titleGrad",
+                    "relation": "==",
+                    "value": false
+                  }
 				],
 				"selector": "{{PLUS_WRAP}}.heading-style-9 .sub-style > div { color: {{titleColor}}; }"
 			  }
 			],
 			"scopy": true
 		},
+        "titleGrad": {
+            "type": "boolean",
+            "default": false
+        },
+        "titleStroke": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "titleGrad",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.heading_style .heading-title,{{PLUS_WRAP}}.heading_style .heading-title>a{ background: {{titleStroke}}; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }"
+                }
+            ],
+            "scopy": true
+        },
 		"titleMargin": {
 			"type": "object",
 			"default": {
@@ -663,7 +703,12 @@
 					"key": "subTitle",
 					"relation": "!=",
 					"value": ""
-				  }
+				  },
+                  {
+                    "key": "subTitleGrad",
+                    "relation": "==",
+                    "value": false
+                  }
 				],
 				"selector": "{{PLUS_WRAP}}.heading_style .heading-sub-title,{{PLUS_WRAP}}.heading_style .heading-sub-title>a{ color: {{subTitleColor}}; }"
 			  }
@@ -688,6 +733,28 @@
 			],
 			"scopy": true
 		},
+        "subTitleGrad": {
+            "type": "boolean",
+            "default": false
+        },
+        "subTitleStroke": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "subTitleGrad",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.heading_style .heading-sub-title,{{PLUS_WRAP}}.heading_style .heading-sub-title>a{ background: {{subTitleStroke}}; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }"
+                }
+            ],
+            "scopy": true
+        },
+
 		"extraTitleTypo": {
 			"type": "object",
 			"default": {
@@ -736,6 +803,6 @@
             "type": "boolean",
             "default": true
         }
-	},
+	}, 
     "usesContext": [ "postId", "postType", "queryId", "tpgb/dynamicSubFieldData", "tpgb/dynamicRowIndex", "tpgb/dynamicPost", "tpgb/dynamicRepField" ]
 }

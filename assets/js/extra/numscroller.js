@@ -1,10 +1,10 @@
 function numscrollerfun() {
     function numberRoller(g) {
         var element = document.querySelector(".roller-title-number-" + g);
-        var min = parseInt(element.getAttribute("data-min"));
-        var max = parseInt(element.getAttribute("data-max"));
-        var delay = parseInt(element.getAttribute("data-delay"));
-        var increment = parseInt(element.getAttribute("data-increment"));
+        var min = parseFloat(element.getAttribute("data-min"));
+        var max = parseFloat(element.getAttribute("data-max"));
+        var delay = parseFloat(element.getAttribute("data-delay"));
+        var increment = parseFloat(element.getAttribute("data-increment"));
         var numeration = element.getAttribute("data-numeration");
         
         numberRoll(g, min, max, increment, 1000 * delay / (max - min), numeration);
@@ -14,7 +14,7 @@ function numscrollerfun() {
         if (min <= max) {
             var element = document.querySelector(".roller-title-number-" + slno);
             element.innerHTML = formatNumber(min, numeration);
-            min = parseInt(min) + parseInt(increment);
+            min = parseFloat(min) + parseFloat(increment);
             setTimeout(function() {
                 numberRoll(slno, min, max, increment, timeout, numeration);
             }, timeout);

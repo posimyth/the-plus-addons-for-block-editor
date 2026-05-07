@@ -1,44 +1,79 @@
 <?php
 /**
  * Tpgb Rollback version
+ *
  * @since 1.3.0
+ * @package ThePluginAddonsForBlockEditor
  */
+
+// phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
+
+// phpcs:disable WordPress.Files.FileName
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if(!class_exists('Tpgb_Rollback')){
+if ( ! class_exists( 'Tpgb_Rollback' ) ) {
 
+	/**
+	 * Tpgb_ Rollback.
+	 *
+	 * @since 1.0.0
+	 */
 	class Tpgb_Rollback {
-		
+
 		/**
-         * Member Variable
-         * @var instance
-         */
-        private static $instance;
-        
+		 * Member Variable
+		 *
+		 * @var instance
+		 */
+		private static $instance;
+
+		/**
+		 * Version.
+		 *
+		 * @var mixed
+		 */
 		protected $version;
+		/**
+		 * Plugin slug.
+		 *
+		 * @var mixed
+		 */
 		protected $plugin_slug;
+		/**
+		 * Plugin name.
+		 *
+		 * @var mixed
+		 */
 		protected $plugin_name;
+		/**
+		 * Pakg url.
+		 *
+		 * @var mixed
+		 */
 		protected $pakg_url;
 
-        /**
-         * Initiator
-         */
-        public static function get_instance() {
-            if ( !isset( self::$instance ) ) {
-                self::$instance = new self;
-            } 
-            return self::$instance;
-        }
-        
-        /**
-         * Constructor
-         */
-        public function __construct() {
-			add_action( 'admin_post_tpgb_rollback', [ $this, 'tpgb_rollback_check_func' ] );
-        }
+		/**
+		 * Initiator
+		 */
+		public static function get_instance() {
+			if ( ! isset( self::$instance ) ) {
+				self::$instance = new self();
+			}
+			return self::$instance;
+		}
 
+		/**
+		 * Constructor
+		 */
+		public function __construct() {
+			add_action( 'admin_post_tpgb_rollback', array( $this, 'tpgb_rollback_check_func' ) );
+		}
+
+		/**
+		 * Rollback page style.
+		 */
 		private function rollback_page_style() {
 			?>
 			<style>
@@ -75,141 +110,157 @@ if(!class_exists('Tpgb_Rollback')){
 				}
 				.tpgb-rb-subtitle{
 					font-size: 18px;
-    				font-family: monospace;
+					font-family: monospace;
 				}
 			</style>
 			<?php
 		}
 
+		/**
+		 * Get rollback versions.
+		 *
+		 * @return mixed The result.
+		 */
 		public static function get_rollback_versions() {
 			$versions_list = get_transient( 'tpgb_rollback_version_' . TPGB_VERSION );
-			if ( $versions_list === false ) {
-				
+			if ( false === $versions_list ) {
+
 				require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-	
+
 				$plugin_info = plugins_api(
-					'plugin_information', [
+					'plugin_information',
+					array(
 						'slug' => 'the-plus-addons-for-block-editor',
-					]
+					)
 				);
-	
+
 				if ( empty( $plugin_info->versions ) || ! is_array( $plugin_info->versions ) ) {
-					return [];
+					return array();
 				}
-	
+
 				krsort( $plugin_info->versions );
-	
-				$versions_list = [];
-	
+
+				$versions_list = array();
+
 				$index = 0;
 				foreach ( $plugin_info->versions as $version => $download_link ) {
 					if ( 25 <= $index ) {
 						break;
 					}
-	
-					$lowercase_version = strtolower( $version );
+
+					$lowercase_version      = strtolower( $version );
 					$check_rollback_version = ! preg_match( '/(beta|rc|trunk|dev)/i', $lowercase_version );
-	
+
 					$check_rollback_version = apply_filters(
 						'tpgb_check_rollback_version',
 						$check_rollback_version,
 						$lowercase_version
 					);
-	
+
 					if ( ! $check_rollback_version ) {
 						continue;
 					}
-	
+
 					if ( version_compare( $version, TPGB_VERSION, '>=' ) ) {
 						continue;
 					}
-	
-					$index++;
+
+					++$index;
 					$versions_list[] = $version;
 				}
-	
+
 				set_transient( 'tpgb_rollback_version_' . TPGB_VERSION, $versions_list, WEEK_IN_SECONDS );
 			}
-	
+
 			return $versions_list;
 		}
 
-		public function tpgb_rollback_check_func(){
+		/**
+		 * Tpgb rollback check func.
+		 */
+		public function tpgb_rollback_check_func() {
 			check_admin_referer( 'tpgb_rollback' );
 
 			if ( ! static::update_user_rollback_versions() ) {
-				wp_die( esc_html__( 'Rollback versions not allowed', 'the-plus-addons-for-block-editor') );
+				wp_die( esc_html__( 'Rollback versions not allowed', 'the-plus-addons-for-block-editor' ) );
 			}
 
-			$rv = self::get_rollback_versions();
-			$version = isset($_GET['version']) && !empty($_GET['version']) ? sanitize_text_field( wp_unslash( $_GET['version'] ) ) : '';
-			if ( empty( $version ) || ! in_array( $version, $rv ) ) {
-				wp_die( esc_html__( 'Error, Try selecting another version.', 'the-plus-addons-for-block-editor') );
+			$rv      = self::get_rollback_versions();
+			$version = isset( $_GET['version'] ) && ! empty( $_GET['version'] ) ? sanitize_text_field( wp_unslash( $_GET['version'] ) ) : '';
+			if ( empty( $version ) || ! in_array( $version, $rv, true ) ) {
+				wp_die( esc_html__( 'Error, Try selecting another version.', 'the-plus-addons-for-block-editor' ) );
 			}
 
 			$plugin_slug = basename( TPGB_FILE__, '.php' );
-			
-			$this->version = $version;
+
+			$this->version     = $version;
 			$this->plugin_name = TPGB_BASENAME;
 			$this->plugin_slug = $plugin_slug;
-			$this->pakg_url = sprintf( 'https://downloads.wordpress.org/plugin/%s.%s.zip', $this->plugin_slug, $this->version );
-			
-			$plugin_info = [
+			$this->pakg_url    = sprintf( 'https://downloads.wordpress.org/plugin/%s.%s.zip', $this->plugin_slug, $this->version );
+
+			$plugin_info = array(
 				'plugin_name' => $this->plugin_name,
 				'plugin_slug' => $this->plugin_slug,
-				'version' 	  => $this->version,
+				'version'     => $this->version,
 				'package_url' => $this->pakg_url,
-			];
+			);
 
 			$this->tpgb_update_plugin();
 			$this->tpgb_upgrade_plugin();
 
 			wp_die(
-				'', esc_html__( 'Rollback to Previous Version', 'the-plus-addons-for-block-editor'), [
+				'',
+				esc_html__( 'Rollback to Previous Version', 'the-plus-addons-for-block-editor' ),
+				array(
 					'response' => 200,
-				]
+				)
 			);
 		}
 
-		public function tpgb_update_plugin(){
+		/**
+		 * Tpgb update plugin.
+		 */
+		public function tpgb_update_plugin() {
 			$update_plugins_data = get_site_transient( 'update_plugins' );
 
 			if ( ! is_object( $update_plugins_data ) ) {
 				$update_plugins_data = new \stdClass();
 			}
 
-			$plugin_info = new \stdClass();
+			$plugin_info              = new \stdClass();
 			$plugin_info->new_version = $this->version;
-			$plugin_info->slug = $this->plugin_slug;
-			$plugin_info->package = $this->pakg_url;
-			$plugin_info->url = 'https://nexterwp.com/nexter-blocks';
+			$plugin_info->slug        = $this->plugin_slug;
+			$plugin_info->package     = $this->pakg_url;
+			$plugin_info->url         = 'https://nexterwp.com/nexter-blocks';
 
 			$update_plugins_data->response[ $this->plugin_name ] = $plugin_info;
 
-			// Remove handle beta testers.
-			//remove_filter( 'pre_set_site_transient_update_plugins', [ Plugin::instance()->beta_testers, 'check_version' ] );
+			// Remove handle beta testers.  // phpcs:ignore Squiz.Commenting.InlineComment.InvalidEndChar
+			// remove_filter( 'pre_set_site_transient_update_plugins', [ Plugin::instance()->beta_testers, 'check_version' ] ); // phpcs:ignore Squiz.Commenting.InlineComment.InvalidEndChar
 
 			set_site_transient( 'update_plugins', $update_plugins_data );
 		}
 
-		public function tpgb_upgrade_plugin(){
+		/**
+		 * Tpgb upgrade plugin.
+		 */
+		public function tpgb_upgrade_plugin() {
 
-			require_once( ABSPATH . 'wp-admin/includes/class-wp-upgrader.php' );
+			require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 
 			$this->rollback_page_style();
 
 			$logo_url = TPGB_URL . 'assets/images/nexter-logo.png';
 
-			$args = [
-				'url' => 'update.php?action=upgrade-plugin&plugin=' . rawurlencode( $this->plugin_name ),
+			$args = array(
+				'url'    => 'update.php?action=upgrade-plugin&plugin=' . rawurlencode( $this->plugin_name ),
 				'plugin' => $this->plugin_name,
-				'nonce' => 'upgrade-plugin_' . $this->plugin_name,
-				'title' => '<img src="' . $logo_url . '" alt="tpgb-logo"><div class="tpgb-rb-subtitle">' . esc_html__( 'Rollback to Previous Version', 'the-plus-addons-for-block-editor').'</div>',
-			];
+				'nonce'  => 'upgrade-plugin_' . $this->plugin_name,
+				'title'  => '<img src="' . $logo_url . '" alt="tpgb-logo"><div class="tpgb-rb-subtitle">' . esc_html__( 'Rollback to Previous Version', 'the-plus-addons-for-block-editor' ) . '</div>',
+			);
 
 			$upgrader_plugin = new \Plugin_Upgrader( new \Plugin_Upgrader_Skin( $args ) );
 			$upgrader_plugin->upgrade( $this->plugin_name );
-
 		}
 
 		/**

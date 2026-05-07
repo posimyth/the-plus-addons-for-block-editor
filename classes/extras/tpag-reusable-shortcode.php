@@ -2,28 +2,36 @@
 /**
  * TPGB Reusable Shortcode
  *
+ * @package ThePluginAddonsForBlockEditor
  */
+
+// phpcs:disable WordPress.Files.FileName
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 if ( ! class_exists( 'Tpgb_Resuable_Shortcode' ) ) {
 
+	/**
+	 * Tpgb_ Resuable_ Shortcode.
+	 *
+	 * @since 1.0.0
+	 */
 	class Tpgb_Resuable_Shortcode {
-		
-		const TPGB_SHORTCODE = 'tpgb-reusable'; //Patterns Blocks
-		
+
+		const TPGB_SHORTCODE = 'tpgb-reusable'; // Patterns Blocks.
+
 		/**
 		 * Member Variable
-		 */
-		private static $instance;
+		 */ // phpcs:ignore Squiz.Commenting.VariableComment.MissingVar,Squiz.Commenting.VariableComment.Missing
+		private static $instance; // phpcs:ignore Squiz.Commenting.VariableComment.Missing,Squiz.Commenting.VariableComment.MissingVar
 
 		/**
 		 *  Initiator
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 			return self::$instance;
 		}
@@ -34,129 +42,159 @@ if ( ! class_exists( 'Tpgb_Resuable_Shortcode' ) ) {
 		public function __construct() {
 			$this->add_actions_shortcode();
 
-			add_action('current_screen', [ $this, 'handle_current_screen' ]);
+			add_action( 'current_screen', array( $this, 'handle_current_screen' ) );
 		}
-		
+
+		/**
+		 * Handle current screen.
+		 */
 		public function handle_current_screen() {
-			if ( get_current_screen()->id != 'edit-wp_block' && get_current_screen()->post_type != 'wp_block'  ) {
+			if ( get_current_screen()->id !== 'edit-wp_block' && get_current_screen()->post_type !== 'wp_block' ) {
 				return;
 			}
-			
-			$tpgbAjax = Tp_Blocks_Helper::get_extra_option('tpgb_template_load');
-			if( (isset($tpgbAjax) && !empty($tpgbAjax) && $tpgbAjax=='enable') || empty($tpgbAjax) ){
-				add_action( 'admin_footer', [ $this, 'tpgb_shortcode_popup'] );
+
+			$tpgb_ajax = Tp_Blocks_Helper::get_extra_option( 'tpgb_template_load' );
+			if ( ( isset( $tpgb_ajax ) && ! empty( $tpgb_ajax ) && 'enable' === $tpgb_ajax ) || empty( $tpgb_ajax ) ) {
+				add_action( 'admin_footer', array( $this, 'tpgb_shortcode_popup' ) );
 			}
 		}
-		
-		private function add_actions_shortcode(){
+
+		/**
+		 * Add actions shortcode.
+		 */
+		private function add_actions_shortcode() {
 			if ( is_admin() ) {
-				add_filter( 'manage_wp_block_posts_columns', [ $this, 'admin_columns_shortcode' ],15 );
-				add_action( 'manage_wp_block_posts_custom_column', [ $this, 'admin_columns_shortcode_content' ], 15, 2 );
+				add_filter( 'manage_wp_block_posts_columns', array( $this, 'admin_columns_shortcode' ), 15 );
+				add_action( 'manage_wp_block_posts_custom_column', array( $this, 'admin_columns_shortcode_content' ), 15, 2 );
 			}
 
-			add_shortcode( self::TPGB_SHORTCODE, [ $this, 'create_shortcode' ] );
+			add_shortcode( self::TPGB_SHORTCODE, array( $this, 'create_shortcode' ) );
 		}
-		
+
+		/**
+		 * Admin columns shortcode.
+		 *
+		 * @param mixed $columns The columns.
+		 * @return mixed The result.
+		 */
 		public function admin_columns_shortcode( $columns ) {
-			$columns['tpgb_shortcode'] = __( 'Shortcode', 'the-plus-addons-for-block-editor');
+			$columns['tpgb_shortcode'] = __( 'Shortcode', 'the-plus-addons-for-block-editor' );
 
 			return $columns;
 		}
-	
+
+		/**
+		 * Admin columns shortcode content.
+		 *
+		 * @param mixed $column The column.
+		 * @param int   $post_id The post id.
+		 */
 		public function admin_columns_shortcode_content( $column, $post_id ) {
 			if ( 'tpgb_shortcode' === $column ) {
-				//translator %s = shortcode, %d = post_id
+				// translator %s = shortcode, %d = post_id.
 				$shortcode = sprintf( '[%s id="%d"]', self::TPGB_SHORTCODE, $post_id );
 				printf( '<input type="text" class="nxt-shortcode-input" onfocus="this.select()" value="%s" readonly style="font-size: 12px;"/>', esc_attr( $shortcode ) );
 
-				$tpgbAjax = Tp_Blocks_Helper::get_extra_option('tpgb_template_load');
-				if( (isset($tpgbAjax) && !empty($tpgbAjax) && $tpgbAjax=='enable') || empty($tpgbAjax) ){
-					printf( '<button class="tpgb-shcode-btn" data-resid="%d">'.esc_html__('AJAX Shortcodes', 'the-plus-addons-for-block-editor').'</button>' , esc_attr(  $post_id ));
+				$tpgb_ajax = Tp_Blocks_Helper::get_extra_option( 'tpgb_template_load' );
+				if ( ( isset( $tpgb_ajax ) && ! empty( $tpgb_ajax ) && 'enable' === $tpgb_ajax ) || empty( $tpgb_ajax ) ) {
+					printf( '<button class="tpgb-shcode-btn" data-resid="%d">' . esc_html__( 'AJAX Shortcodes', 'the-plus-addons-for-block-editor' ) . '</button>', esc_attr( $post_id ) );
 				}
 			}
 		}
-		
-		public function create_shortcode( $option = [] ) {
+
+		/**
+		 * Create shortcode.
+		 *
+		 * @param array $option The option.
+		 * @return mixed The result.
+		 */
+		public function create_shortcode( $option = array() ) {
 			if ( empty( $option['id'] ) ) {
 				return '';
 			}
 
-			$output = '';
-			$loadClass = '';
+			$output     = '';
+			$load_class = '';
 
-			if(isset($option['tpgbajax']) && !empty($option['tpgbajax'])){
-				$loadClass = 'tpgb-load-'.$option['id'].'-content';
-				$output .= '<div class="'.esc_attr($loadClass).'" data-resuid="'.esc_attr($option['id']).'" style="min-height: 100px;flex-basis: 100%;">';
-				$output .= '</div>';
-				Tpgb_Library()->plus_do_block($option['id']);
+			if ( isset( $option['tpgbajax'] ) && ! empty( $option['tpgbajax'] ) ) {
+				$load_class = 'tpgb-load-' . $option['id'] . '-content';
+				$output    .= '<div class="' . esc_attr( $load_class ) . '" data-resuid="' . esc_attr( $option['id'] ) . '" style="min-height: 100px;flex-basis: 100%;">';
+				$output    .= '</div>';
+				Tpgb_Library()->plus_do_block( $option['id'] );
 				return $output;
 			}
 
-			if( isset($option['id']) && !empty($option['id']) ){
-				if( class_exists('Tpgb_Library') ){
+			if ( isset( $option['id'] ) && ! empty( $option['id'] ) ) {
+				if ( class_exists( 'Tpgb_Library' ) ) {
 					ob_start();
-					return Tpgb_Library()->plus_do_block($option['id']);
-					ob_get_clean();
+					return Tpgb_Library()->plus_do_block( $option['id'] );
+					ob_get_clean(); // phpcs:ignore Squiz.PHP.NonExecutableCode.Unreachable
 				}
 			}
 		}
 
+		/**
+		 * Tpgb shortcode popup.
+		 */
 		public function tpgb_shortcode_popup() {
 			global $pagenow;
-            if ( !empty($pagenow) && $pagenow == 'edit.php'  ) {
+			if ( ! empty( $pagenow ) && 'edit.php' === $pagenow ) {
 				self::tpgb_shcode_popup_html();
 
 				self::tpgb_shcode_popup_css();
-                self::tpgb_shcode_popup_js();
-            }
+				self::tpgb_shcode_popup_js();
+			}
 		}
 
+		/**
+		 * Tpgb shcode popup html.
+		 */
 		public function tpgb_shcode_popup_html() {
 			?>
 				<div class="tpgb-modal" id="tpgb-deactive-modal">
 					<div class="tpgb-modal-wrap">
-						<?php 
+						<?php
 							$copyicon = '<span class="copy-icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_751_17557)"><path d="M12.5 5.625H6.875C6.18464 5.625 5.625 6.18464 5.625 6.875V12.5C5.625 13.1904 6.18464 13.75 6.875 13.75H12.5C13.1904 13.75 13.75 13.1904 13.75 12.5V6.875C13.75 6.18464 13.1904 5.625 12.5 5.625Z" stroke="#808489" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.125 9.375H2.5C2.16848 9.375 1.85054 9.2433 1.61612 9.00888C1.3817 8.77446 1.25 8.45652 1.25 8.125V2.5C1.25 2.16848 1.3817 1.85054 1.61612 1.61612C1.85054 1.3817 2.16848 1.25 2.5 1.25H8.125C8.45652 1.25 8.77446 1.3817 9.00888 1.61612C9.2433 1.85054 9.375 2.16848 9.375 2.5V3.125" stroke="#808489" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_751_17557"><rect width="15" height="15" fill="white"/></clipPath></defs></svg></span>';
 
 						?>
 						<div class="tpgb-modal-header">
 							<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="none"><rect width="44" height="44" fill="#fff" rx="4"/><g clip-path="url(#a)"><path fill="url(#b)" d="M15.6 28.4h-3.2V15.6h3.2v-3.2H9.2v19.2h6.4m1.8 1.6h3.3l6-22.4h-3.4m5.1 1.6v3.2h3.2v12.8h-3.2v3.2h6.4V12.4"/></g><defs><linearGradient id="b" x1="9.2" x2="42" y1="33.2" y2="33.2" gradientUnits="userSpaceOnUse"><stop stop-color="#1717cc"/><stop offset="1" stop-color="#8072FC"/></linearGradient><clipPath id="a"><path fill="#fff" d="M6 6h32v32H6z"/></clipPath></defs></svg>
 							<div>
-								<h3 class="tpgb-feed-head-title"><?php echo esc_html__( 'Regular Shortcodes', 'the-plus-addons-for-block-editor'); ?> </h3>
-								<p class="tpgb-sc-desc"> <?php echo esc_html__( 'You can use below shortcodes to load this tempate load AJAX Way.', 'the-plus-addons-for-block-editor'); ?> </p>
+								<h3 class="tpgb-feed-head-title"><?php echo esc_html__( 'Regular Shortcodes', 'the-plus-addons-for-block-editor' ); ?> </h3>
+								<p class="tpgb-sc-desc"> <?php echo esc_html__( 'You can use below shortcodes to load this tempate load AJAX Way.', 'the-plus-addons-for-block-editor' ); ?> </p>
 							</div>
 						</div>
 
 						<div class="tpgb-modal-body">
 							
-							<h3 class="tpgb-feed-head-title"><?php echo esc_html__( 'Regular Shortcodes', 'the-plus-addons-for-block-editor'); ?> </h3>
-							<p class="tpgb-sc-desc"> <?php echo esc_html__( 'You need to use this class in your block to load this as AJAX.', 'the-plus-addons-for-block-editor'); ?> </p>
+							<h3 class="tpgb-feed-head-title"><?php echo esc_html__( 'Regular Shortcodes', 'the-plus-addons-for-block-editor' ); ?> </h3>
+							<p class="tpgb-sc-desc"> <?php echo esc_html__( 'You need to use this class in your block to load this as AJAX.', 'the-plus-addons-for-block-editor' ); ?> </p>
 
 							
-							<label for="copy-input"> <?php echo esc_html__('Shortcode for Ajax render:', 'the-plus-addons-for-block-editor') ?></label>
+							<label for="copy-input"> <?php echo esc_html__( 'Shortcode for Ajax render:', 'the-plus-addons-for-block-editor' ); ?></label>
 							<div class="tpgb-shcode-wrap nrow-gap">
 								<input type="text" id="tpgb-ajax-code" class="nxt-ajax-shcode" readonly/>
-								<?php echo $copyicon; ?>
+								<?php echo $copyicon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							</div>
 							<div class="tpgb-shcode-class">
-								<h3 class="tpgb-feed-head-title"><?php echo esc_html__( 'AJAX Class', 'the-plus-addons-for-block-editor'); ?> </h3>
-								<p class="tpgb-sc-desc"> <?php echo esc_html__( 'You need to use this class in your block to load this as AJAX.', 'the-plus-addons-for-block-editor'); ?> </p>
+								<h3 class="tpgb-feed-head-title"><?php echo esc_html__( 'AJAX Class', 'the-plus-addons-for-block-editor' ); ?> </h3>
+								<p class="tpgb-sc-desc"> <?php echo esc_html__( 'You need to use this class in your block to load this as AJAX.', 'the-plus-addons-for-block-editor' ); ?> </p>
 
 								<div class="tpgb-shcode-wrap"> 
 									<div class="tpgb-shcode-inner">  
-										<span> <?php echo esc_html__('Hover trigger: ' ,'the-plus-addons-for-block-editor') ?> </span>
+										<span> <?php echo esc_html__( 'Hover trigger: ', 'the-plus-addons-for-block-editor' ); ?> </span>
 										<input id="tpgb-ajax-hover" type="text" id="" class="nxt-ajax-shcode" readonly/>
-										<?php echo $copyicon; ?>
+										<?php echo $copyicon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									</div>
 									<div class="tpgb-shcode-inner">  
-										<span> <?php echo esc_html__('Click trigger: ','the-plus-addons-for-block-editor') ?> </span>
+										<span> <?php echo esc_html__( 'Click trigger: ', 'the-plus-addons-for-block-editor' ); ?> </span>
 										<input id="tpgb-ajax-click" type="text" id="" class="nxt-ajax-shcode" readonly/>
-										<?php echo $copyicon; ?>
+										<?php echo $copyicon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									</div>
 									<div class="tpgb-shcode-inner">  
-										<span> <?php echo esc_html__('On view trigger: ','the-plus-addons-for-block-editor') ?> </span>
+										<span> <?php echo esc_html__( 'On view trigger: ', 'the-plus-addons-for-block-editor' ); ?> </span>
 										<input id="tpgb-ajax-view" type="text" id="" class="nxt-ajax-shcode" readonly/>
-										<?php echo $copyicon; ?>
+										<?php echo $copyicon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									</div>
 								</div>
 							</div>
@@ -166,6 +204,9 @@ if ( ! class_exists( 'Tpgb_Resuable_Shortcode' ) ) {
 			<?php
 		}
 
+		/**
+		 * Tpgb shcode popup css.
+		 */
 		public function tpgb_shcode_popup_css() {
 			?>
 				<style type="text/css">
@@ -344,36 +385,39 @@ if ( ! class_exists( 'Tpgb_Resuable_Shortcode' ) ) {
 			<?php
 		}
 
-		public function tpgb_shcode_popup_js() { ?>
+		/**
+		 * Tpgb shcode popup js.
+		 */
+		public function tpgb_shcode_popup_js() {
+			?>
 			<script type="text/javascript">
-                document.addEventListener('DOMContentLoaded', function() {
-                    'use strict';
+				document.addEventListener('DOMContentLoaded', function() {
+					'use strict';
 
-                    // Modal Cancel Click Action
-                    document.addEventListener('click', function(e) {
-                        var modal = document.getElementById('tpgb-deactive-modal');
-                        if (e.target === modal) {
-                            modal.classList.remove('modal-active');
-                        }
-                    });
+					// Modal Cancel Click Action
+					document.addEventListener('click', function(e) {
+						var modal = document.getElementById('tpgb-deactive-modal');
+						if (e.target === modal) {
+							modal.classList.remove('modal-active');
+						}
+					});
 
-                    document.addEventListener('keydown', function(e) {
-                        var modal = document.getElementById('tpgb-deactive-modal');
-                        if (e.keyCode === 27) {
-                            modal.classList.remove('modal-active');
-                        }
-                    });
+					document.addEventListener('keydown', function(e) {
+						var modal = document.getElementById('tpgb-deactive-modal');
+						if (e.keyCode === 27) {
+							modal.classList.remove('modal-active');
+						}
+					});
 
 					var shbtn = document.querySelectorAll('.tpgb-shcode-btn');
 					if(shbtn){
 						shbtn.forEach(function(ele) {
 
-
 							ele.addEventListener('click', function(e) {
 								e.preventDefault();
 								
 								var tempId = e.target.getAttribute('data-resid'),
-								 	modal = document.getElementById('tpgb-deactive-modal'),
+									modal = document.getElementById('tpgb-deactive-modal'),
 									ajaxcode = document.getElementById('tpgb-ajax-code'),
 									hajcode = document.getElementById('tpgb-ajax-hover'),
 									cliajcode = document.getElementById('tpgb-ajax-click'),
@@ -397,6 +441,10 @@ if ( ! class_exists( 'Tpgb_Resuable_Shortcode' ) ) {
 						});
 					});
 
+					/**
+					 * Copy to clipboard.
+					 *
+					 */
 					function copyToClipboard(current , text) {
 						navigator.clipboard.writeText(text)
 							.then(function() {
@@ -411,9 +459,9 @@ if ( ! class_exists( 'Tpgb_Resuable_Shortcode' ) ) {
 							});
 					}
 
-                });
-		    </script>
-		<?php
+				});
+			</script>
+			<?php
 		}
 	}
 }

@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
 	"name": "tpgb/tp-form-radio-button",
 	"version": "0.1.0",
 	"title": "Radio Button",
@@ -12,7 +13,7 @@
 		"anchor": true,
 		"align": ["wide", "full"]
 	},
-	"textdomain": "tpgb",
+	"textdomain": "the-plus-addons-for-block-editor",
 	"ancestor": ["tpgb/tp-form-block"],
 	"attributes": {
 		"block_id": {
@@ -60,7 +61,7 @@
 			},
 			"style": [
 				{
-					"selector": "{{PLUS_CLIENT_ID}} {margin:0; width: {{inpSz}}; } {{PLUS_CLIENT_ID}}[data-type='tpgb/tp-form-radio-button'].tp-form-radio-button{width:100%} {{PLUS_CLIENT_ID}}~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;} {{PLUS_CLIENT_ID}}:has(input[type='text'])~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;}",
+					"selector": "{{PLUS_CLIENT_ID}}[data-type='tpgb/tp-form-radio-button'].tp-form-radio-button{ margin:0; width: {{inpSz}}; } {{PLUS_CLIENT_ID}}~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;} {{PLUS_CLIENT_ID}}:has(input[type='text'])~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;}",
 					"backend": true
 				},
 				{

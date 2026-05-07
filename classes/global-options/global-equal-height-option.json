@@ -1,0 +1,12 @@
+{
+    "tpgbEqualHeight": {
+        "type": "boolean",
+        "default": false,
+        "scopy" : true
+    },
+    "equalUnqClass": {
+        "type": "string",
+        "default": "",
+        "scopy" : true
+    }
+}

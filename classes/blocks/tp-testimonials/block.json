@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-testimonials",
 	"version": "0.1.0",
 	"title": "Testimonials",
@@ -341,6 +342,17 @@
                 "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content, {{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content{border-radius: {{boxBorderRadius}};}"
             }],
             "scopy": true
+        },
+        "boxhvrBorder": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.testimonial-style-1 .testimonial-list-content:hover .testimonial-content-text,{{PLUS_WRAP}}.testimonial-style-2 .testimonial-list-content:hover,{{PLUS_WRAP}}.testimonial-style-3 .testimonial-list-content:hover"
+                }
+            ]
         },
         "boxBorderRadiusHover": {
             "type": "object",

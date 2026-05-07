@@ -507,5 +507,400 @@
             "selector": "{{PLUS_BLOCK}} { overflow: {{globalOverflow}}; }"
           }
         ]
+    },
+    "gRotte": {
+        "type": "object",
+        "groupField": [
+            {
+                "gRotteDeg": {
+                    "type": "object",
+                    "default": {
+                        "md": ""
+                    },
+                    "scopy": true
+                },
+                "rotateToogle": {
+                    "type": "boolean",
+                    "default": false,
+                    "scopy": true
+                },
+                "gRotteX": {
+                    "type": "object",
+                    "default": {
+                        "md": ""
+                    },
+                    "scopy": true
+                },
+                "gRotteY": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "%"
+                    },
+                    "scopy": true
+                },
+                "globalPerspective": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                }
+            }
+        ],
+        "default": {
+            "gRotteDeg": {
+                "md": ""
+            },
+            "rotateToogle": false,
+            "gRotteX": {
+                "md": ""
+            },
+            "gRotteY": {
+                "md": ""
+            },
+            "globalPerspective": {
+                "md": ""
+            }
+        }
+    },
+    "gOfset": {
+        "type": "object",
+        "groupField": [
+            {
+                "gOfsetX": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                },
+                "gOfsetY": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                },
+                "gOfsetZ": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                }
+            }
+        ],
+        "default": {
+            "gOfsetX": {
+                "md": "",
+                "unit": "px"
+            },
+            "gOfsetY": {
+                "md": "",
+                "unit": "px"
+            },
+            "gOfsetZ": {
+                "md": "",
+                "unit": "px"
+            }
+        }
+    },
+    "gScle": {
+        "type": "object",
+        "groupField": [
+            {
+                "keepProportions": {
+                    "type": "boolean",
+                    "default": true,
+                    "scopy": true
+                },
+                "gScleValue": {
+                    "type": "object",
+                    "default": {
+                        "md": ""
+                    },
+                    "scopy": true
+                },
+                "gScleX": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "%"
+                    },
+                    "scopy": true
+                },
+                "gScleY": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                }
+            }
+        ],
+        "default": {
+            "keepProportions": true,
+            "gScleValue": {
+                "md": ""
+            },
+            "gScleX": {
+                "md": ""
+            },
+            "gScleY": {
+                "md": ""
+            }
+        }
+    },
+    "gSkew": {
+        "type": "object",
+        "groupField": [
+            {
+                "gSkewX": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "%"
+                    },
+                    "scopy": true
+                },
+                "gSkewY": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                }
+            }
+        ],
+        "default": {
+            "gSkewX": {
+                "md": ""
+            },
+            "gSkewY": {
+                "md": ""
+            }
+        }
+    },
+    "gFHori": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+    },
+    "gFVert": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+    },
+    "gRotteHov": {
+        "type": "object",
+        "groupField": [
+            {
+                "gRotteDegHov": {
+                    "type": "object",
+                    "default": {
+                        "md": ""
+                    },
+                    "scopy": true
+                },
+                "rToggleHov": {
+                    "type": "boolean",
+                    "default": false,
+                    "scopy": true
+                },
+                "gRotteXHov": {
+                    "type": "object",
+                    "default": {
+                        "md": ""
+                    },
+                    "scopy": true
+                },
+                "gRotteYHov": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "%"
+                    },
+                    "scopy": true
+                },
+                "gPersHov": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                }
+            }
+        ],
+        "default": {
+            "gRotteDegHov": {
+                "md": ""
+            },
+            "rToggleHov": false,
+            "gRotteXHov": {
+                "md": ""
+            },
+            "gRotteYHov": {
+                "md": ""
+            },
+            "gPersHov": {
+                "md": ""
+            }
+        }
+    },
+    "gOfsetHov": {
+        "type": "object",
+        "groupField": [
+            {
+                "gOfsetXHov": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                },
+                "gOfsetYHov": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                },
+                "gOfsetZHov": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                }
+            }
+        ],
+        "default": {
+            "gOfsetXHov": {
+                "md": "",
+                "unit": "px"
+            },
+            "gOfsetYHov": {
+                "md": "",
+                "unit": "px"
+            },
+            "gOfsetZHov": {
+                "md": "",
+                "unit": "px"
+            }
+        }
+    },
+    "gScleHov": {
+        "type": "object",
+        "groupField": [
+            {
+                "keepPropHov": {
+                    "type": "boolean",
+                    "default": true,
+                    "scopy": true
+                },
+                "gScleValueHov": {
+                    "type": "object",
+                    "default": {
+                        "md": ""
+                    },
+                    "scopy": true
+                },
+                "gScleXHov": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "%"
+                    },
+                    "scopy": true
+                },
+                "gScleYHov": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                }
+            }
+        ],
+        "default": {
+            "keepPropHov": true,
+            "gScleValueHov": {
+                "md": ""
+            },
+            "gScleXHov": {
+                "md": ""
+            },
+            "gScleYHov": {
+                "md": ""
+            }
+        }
+    },
+    "gSkewHov": {
+        "type": "object",
+        "groupField": [
+            {
+                "gSkewXHov": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "%"
+                    },
+                    "scopy": true
+                },
+                "gSkewYHov": {
+                    "type": "object",
+                    "default": {
+                        "md": "",
+                        "unit": "px"
+                    },
+                    "scopy": true
+                }
+            }
+        ],
+        "default": {
+            "gSkewXHov": {
+                "md": ""
+            },
+            "gSkewYHov": {
+                "md": ""
+            }
+        }
+    },
+    "gFHoriHov": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+    },
+    "gFVertHov": {
+        "type": "boolean",
+        "default": false,
+        "scopy": true
+    },
+    "gTraDur": {
+        "type": "string",
+        "default": "",
+        "scopy": true
+    },
+    "gTraFunc": {
+        "type": "string",
+        "default": "",
+        "scopy": true
+    },
+    "gTraOrigin": {
+        "type": "string",
+        "default": "",
+        "scopy": true
     }
 }

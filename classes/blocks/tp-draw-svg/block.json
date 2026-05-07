@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-draw-svg",
 	"version": "0.1.0",
 	"title": "Draw SVG",
@@ -35,6 +36,14 @@
           }
         ],
         "scopy": true
+      },
+      "svgLink": {
+        "type": "object",
+        "default": {
+          "url": "",
+          "target": "",
+          "nofollow": ""
+        }
       },
       "maxWidth": {
         "type": "object",
@@ -79,7 +88,7 @@
         "default": "onScroll",
         "scopy": true
       },
-      "showBlockContent" :{
+        "showBlockContent" :{
             "type": "boolean",
             "default": true
         }

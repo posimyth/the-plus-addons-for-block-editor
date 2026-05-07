@@ -1,32 +1,40 @@
-<?php 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-    
-	$Description_HTML='';
-    ob_start();
-        echo '<div class="tpgb-sr-content tpgb-trans-linear">';
-            include TPGB_INCLUDES_URL. "social-reviews/social-review-showmore.php";
-        echo '</div>';
-    $Description_HTML .= ob_get_clean();
+<?php
+/**
+ * Social Review Ob Style.
+ *
+ * @package ThePluginAddonsForBlockEditor
+ */
 
-    // Start Icon
-        $Star_HTML='';
-        $Star_HTML .= '<div class="tpgb-sr-star">';
-            for ($i=0; $i<$rating; $i++) {
-                $Star_HTML .= '<i star-rating="'.esc_attr($i).'" class="'.esc_attr($Icon).' sr-star"></i>';
-            }
-        $Star_HTML .= '</div>';
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
-    // Username
-        $UserName_HTML='';
-        $UserName_HTML .= '<div class="tpgb-sr-username tpgb-trans-linear">';
-            $UserName_HTML .= '<a class="tpgb-trans-linear" href="'.esc_url($ULink).'" target="_blank" aria-label="'.esc_attr__( 'Review URL', 'the-plus-addons-for-block-editor' ).'">'.esc_html($UName).'</a>';
-        $UserName_HTML .= '</div>';
+	$description_html = '';
+	ob_start();
+		echo '<div class="tpgb-sr-content tpgb-trans-linear">';
+			require TPGB_INCLUDES_URL . 'social-reviews/social-review-showmore.php';
+		echo '</div>';
+	$description_html .= ob_get_clean();
 
-    // logo Image
-        $Logo_HTML = '<a href="'.esc_url($PageLink).'" target="_blank" aria-label="'.esc_attr__( 'Page URL', 'the-plus-addons-for-block-editor' ).'"><img class="tpgb-sr-logo" src="'.esc_url($Logo).'" alt="'.esc_html__( 'Social Logo', 'the-plus-addons-for-block-editor' ).'" /></a>';
+	// Start Icon.
+		$star_html  = '';
+		$star_html .= '<div class="tpgb-sr-star">';
+for ( $i = 0; $i < $rating; $i++ ) {
+	$star_html .= '<i star-rating="' . esc_attr( $i ) . '" class="' . esc_attr( $icon ) . ' sr-star"></i>';
+}
+		$star_html .= '</div>';
 
-    // Time
-        $Time_HTML = '<div class="tpgb-sr-time tpgb-trans-linear">'.esc_html($Time).'</div>';
-    
-    // Profile
-        $Profile_HTML = '<img class="tpgb-sr-profile" src="'.esc_url($UImage).'" alt="'.esc_attr__( 'User Profile', 'the-plus-addons-for-block-editor' ).'"/>';
+	// Username.
+		$user_name_html      = '';
+		$user_name_html     .= '<div class="tpgb-sr-username tpgb-trans-linear">';
+			$user_name_html .= '<a class="tpgb-trans-linear" href="' . esc_url( $u_link ) . '" target="_blank" aria-label="' . esc_attr__( 'Review URL', 'the-plus-addons-for-block-editor' ) . '">' . esc_html( $u_name ) . '</a>';
+		$user_name_html     .= '</div>';
+
+	// logo Image.
+		$logo_html = '<a href="' . esc_url( $page_link ) . '" target="_blank" aria-label="' . esc_attr__( 'Page URL', 'the-plus-addons-for-block-editor' ) . '"><img class="tpgb-sr-logo" src="' . esc_url( $logo ) . '" alt="' . esc_html__( 'Social Logo', 'the-plus-addons-for-block-editor' ) . '" /></a>';
+
+	// Time.
+		$time_html = '<div class="tpgb-sr-time tpgb-trans-linear">' . esc_html( $time ) . '</div>';
+
+	// Profile.
+		$profile_html = '<img class="tpgb-sr-profile" src="' . esc_url( $u_image ) . '" alt="' . esc_attr__( 'User Profile', 'the-plus-addons-for-block-editor' ) . '"/>';

@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
 	"name": "tpgb/tp-form-option-field",
 	"version": "0.1.0",
 	"title": "Dropdown",
@@ -7,7 +8,7 @@
 	"description": "Add a select dropdown to list choices.",
 	"example": { "attributes": {} },
 	"supports": { "anchor": true, "align": ["wide", "full"] },
-	"textdomain": "tpgb",
+	"textdomain": "the-plus-addons-for-block-editor",
 	"ancestor": ["tpgb/tp-form-block"],
 	"attributes": {
 		"block_id": { "type": "string", "default": "" },
@@ -27,7 +28,7 @@
 			"default": { "md": "100", "unit": "%" },
 			"style": [
 				{
-					"selector": "{{PLUS_CLIENT_ID}} {margin:0; width: {{inpSz}}; } {{PLUS_CLIENT_ID}}[data-type='tpgb/tp-form-option-field'].nxt-form-option{width:100%} {{PLUS_CLIENT_ID}}~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;} {{PLUS_CLIENT_ID}}:has(input[type='text'])~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;}",
+					"selector": "{{PLUS_CLIENT_ID}}[data-type='tpgb/tp-form-option-field'].nxt-form-option{ margin:0; width: {{inpSz}}; } {{PLUS_CLIENT_ID}}~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;} {{PLUS_CLIENT_ID}}:has(input[type='text'])~.block-editor-block-list__block.wp-block:has(.nxt-btn-inline) {flex: 0;}",
 					"backend": true
 				},
 				{

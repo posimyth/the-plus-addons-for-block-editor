@@ -5,7 +5,7 @@
 	top: 0;
 	font-size: 100%;
 	left: -3.8em;
-	width: 3em; 
+	width: 3em;
 	letter-spacing: -1px;
 	border-right: 1px solid #999;
 	user-select: none
@@ -15,7 +15,7 @@
 	left: 0;
 	right: 0;
 	padding: inherit 0;
-	margin-top: 1em; 
+	margin-top: 1em;
 	background: #997a6614;
 	background: linear-gradient(to right, #997a661a 70%, #997a6600);
 	pointer-events: none;
@@ -96,13 +96,13 @@
 	z-index: 1
 }
 .code-prism-twilight .line-highlight {
-	background: #54545440; 
+	background: #54545440;
 	background: linear-gradient(to right, #5454541a 70%, #54545400); /* #545454 */
-	border-bottom: 1px dashed #545454; 
-	border-top: 1px dashed #545454; 
+	border-bottom: 1px dashed #545454;
+	border-top: 1px dashed #545454;
 	left: 0;
 	line-height: inherit;
-	margin-top: 0.75em; 
+	margin-top: 0.75em;
 	padding: inherit 0;
 	pointer-events: none;
 	position: absolute;
@@ -111,7 +111,7 @@
 	z-index: 0
 }
 .code-prism-twilight .line-highlight:before, .code-prism-twilight .line-highlight[data-end]:after {
-	background-color: #8794a6; 
+	background-color: #8794a6;
 	border-radius: 999px;
 	box-shadow: 0 1px #fff;
 	color: #f5f2f0;

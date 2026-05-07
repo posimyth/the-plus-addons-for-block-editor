@@ -1,5 +1,6 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
   "name": "tpgb/tp-team-listing",
   "version": "0.1.0",
   "title": "Team Member",
@@ -674,6 +675,24 @@
     "showBlockContent" :{
         "type": "boolean",
         "default": true
+    },
+    "conPadding": {
+        "type": "object",
+        "default": {
+            "md": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+            },
+            "unit": "px"
+        },
+        "style": [
+            {
+            "selector": "{{PLUS_WRAP}}.tpgb-team-member-list .post-content-bottom{padding:{{conPadding}}; }"
+            }
+        ],
+        "scopy": true
     }
   }
 }

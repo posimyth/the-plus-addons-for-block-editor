@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion":3,
 	"name": "tpgb/tp-pricing-table",
 	"version": "0.1.0",
 	"title": "Pricing Table",
@@ -784,7 +785,7 @@
               "value": "wysiwyg"
             }
           ],
-          "selector": "{{PLUS_WRAP}} .pricing-content-wrap.content-desc .pricing-content:hover , {{PLUS_WRAP}} .pricing-content-wrap.content-desc .pricing-content p:hover{ color: {{wysiwygTextHvrColor}}; }"
+          "selector": "{{PLUS_WRAP}} .pricing-table-inner:hover .pricing-content , {{PLUS_WRAP}} .pricing-table-inner:hover .pricing-content p{ color: {{wysiwygTextHvrColor}}; }"
         }
       ],
       "scopy": true
@@ -1115,6 +1116,16 @@
       "scopy": true
     },
     "svgfillColor": {
+      "type": "string",
+      "default": "",
+      "scopy": true
+    },
+    "svgstroHov": {
+      "type": "string",
+      "default": "",
+      "scopy": true
+    },
+    "svgfillHov": {
       "type": "string",
       "default": "",
       "scopy": true

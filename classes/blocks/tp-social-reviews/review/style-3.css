@@ -1,28 +1,28 @@
 /* S R Style-3 */
 .social-reviews-style-3 .tpgb-sr-header {
-    display: flex;
-    padding: 10px
+	display: flex;
+	padding: 10px
 }
 .social-reviews-style-3 .review-top-area {
 	display: flex;
-    justify-content: space-between;
-    align-items: center;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .social-reviews-style-3 .tpgb-review {
-    padding: 15px
+	padding: 15px
 }
 
 .social-reviews-style-3 .tpgb-sr-content {
-    padding: 0;
+	padding: 0;
 	width: 100%;
 }
 .social-reviews-style-3 .tpgb-sr-profile {
-    display: inline-flex;
+	display: inline-flex;
 	margin-right: 10px;
 }
 .social-reviews-style-3 .tpgb-sr-separator {
-    display: inline-flex;
+	display: inline-flex;
 	position: relative;
 	flex-direction: column;
 	width: 100%;
@@ -32,5 +32,5 @@
 	display: block;
 }
 .social-reviews-style-3 .tpgb-sr-star {
-    display: inline-block
+	display: inline-block
 }

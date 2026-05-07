@@ -1,412 +1,216 @@
-=== Nexter Blocks - WordPress Gutenberg Blocks & 1000+ Starter Templates ===
+=== Nexter Blocks - Gutenberg Blocks, Page Builder & AI Website Builder ===
 Contributors: posimyththemes, nirmalkavaiya, sagarpatel124, jigar9998
 Donate link: https://nexterwp.com/nexter-blocks/
-Tags: blocks, block editor, gutenberg, gutenberg blocks, wordpress blocks, page builder
+Tags: gutenberg blocks, page builder, site builder, block editor, wordpress blocks
 Requires at least: 4.0
-Tested up to: 6.8
-Stable tag: 4.5.5
+Tested up to: 6.9
+Stable tag: 4.7.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
-WordPress 90+ Gutenberg Blocks with 1000+ Ready to Use WordPress Pages & Sections Templates. With Most Advanced Customization & Unique Features.
+90+ Gutenberg Blocks & AI Website Builder with 1000+ Templates. Complete Page Builder, Popup Builder, Mega Menu, Form Builder & More. No Code.
 
 == Description ==
 
-<strong>[Nexter WordPress Gutenberg Blocks](https://nexterwp.com/nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong> is the ultimate no-code page builder plugin you need to create any type of website effortlessly with over <strong>90+ Gutenberg Blocks & 1000+ Ready to Use WordPress Templates for Starter Websites.</strong>
+You installed WordPress. Then you installed a page builder. Then a popup plugin. Then a mega menu plugin. Then a gallery plugin, a form plugin, a team members plugin, a countdown timer plugin — and suddenly you're managing 12 plugins, dreading every update, and wondering why your site is slow.
 
-Whether you’re a beginner or an experienced user, Nexter Blocks empowers you to build stunning websites with ease—no coding required!
-###Looking for The Plus Blocks for Gutenberg? Nexter Blocks is Now The Plus Blocks for Gutenberg - [Read Why?](https://nexterwp.com/blog/all-new-nexter-experience-unified-solution-wordpress-website-building?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
+[Nexter Blocks](https://nexterwp.com/nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) is the answer to all of it. It's a complete [wordpress website builder](https://nexterwp.com/nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) and [wordpress page builder](https://nexterwp.com/nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) that lives natively inside Gutenberg — 90+ blocks, built-in AI powered by ChatGPT and Gemini, popup builder, mega menu, form builder, header builder, and full theme building — all in one plugin with one dashboard, one update, and zero jQuery. Our users call it "the plugin that replaced 20 others." That's what we built it to be.
 
-All in One WordPress Page Builder Plugin packed with <strong>[Blog Website Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-blog-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks), [WordPress Mega Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks), [WordPress Dynamic Grid Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-custom-post-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks), [WordPress Popup Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-popup-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks), [WordPress Navigation Header Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-header-builder?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) and more.</strong>
+Works with Nexter Theme, Astra, Kadence, Blocksy, GeneratePress, OceanWP, Neve, Hello Elementor, and all major block themes.
 
-<strong> [ VIEW ALL WORDPRESS GUTENBERG BLOCKS DEMO](https://nexterwp.com/wordpress-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong> 
+[Website](https://nexterwp.com/nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [All Blocks Demo](https://nexterwp.com/wordpress-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Free vs Pro](https://nexterwp.com/free-vs-pro/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Pricing](https://nexterwp.com/pricing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Docs](https://nexterwp.com/docs/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Roadmap](https://roadmap.nexterwp.com/) | [Community](https://www.facebook.com/groups/nexterwpcommunity/) | [Free Support](https://wordpress.org/support/plugin/the-plus-addons-for-block-editor/#new-topic-0) | [Premium Support](https://store.posimyth.com/helpdesk/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [AI Chat](https://nexterwp.com/chat/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Video Tutorials](https://www.youtube.com/c/POSIMYTHInnovations/?sub_confirmation=1)
 
-~~~~~~~~~~~~~~~~
+== 🤖 AI Website Builder Natively Inside Gutenberg ==
 
-[Nexter Website](https://nexterwp.com/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Nexter Blocks](https://nexterwp.com/nexter-blocks?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Video Tutorials]( https://www.youtube.com/c/POSIMYTHInnovations/?sub_confirmation=1)| [Documentations](https://nexterwp.com/docs) | [Plugin Roadmap](https://roadmap.nexterwp.com/) | [Join Facebook Community](https://www.facebook.com/groups/nexterwpcommunity/) | [Free Support](https://wordpress.org/support/plugin/the-plus-addons-for-block-editor/#new-topic-0) | [Premium Support](https://store.posimyth.com/helpdesk/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [ Compare FREE vs PRO](https://nexterwp.com/free-vs-pro?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [AI Chat (Instant Answers)](https://nexterwp.com/chat/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
+No other Gutenberg blocks plugin has AI this deep. While other tools make you leave the editor to use AI, Nexter Blocks connects directly to ChatGPT (OpenAI) and Gemini — choose your preferred model in the AI settings dashboard — and runs generation inside the block editor itself. AI credits are included with Pro.
 
-### 👑 What Makes Our WordPress Gutenberg Blocks Unique?
+This is what a real [ai website builder wordpress](https://nexterwp.com/nexter-blocks/extras/nexter-ai/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) experience looks like in 2026:
 
-* <strong>Optimized Code Delivery</strong> with <strong>Ultra Light Modular</strong> backend architecture
-* <strong>Presets</strong> to instantly import professionally designed templates with ease, saving time and effort in building from scratch.
-* <strong>SEO Friendly, A/B Tested Designs</strong> and <strong>Mobile Friendly</strong>
-* Plugin Regularly Audited by <strong>Top Security Experts </strong> 🔐
-* <strong>Supports RTL | WPML</strong> or any Translation | <strong>Multisite Networks</strong>
-* Integrated with <strong>ACF, Toolset, Pods, WooCommerce, Mailchimp </strong> and more
-* <strong>Display Conditions or Visibility Logic</strong> for WordPress 🔥
-* Vertical and Horizontal <strong>Mega Menu Builder</strong> for WordPress 🔥
-* <strong>Login and Registration & Password Reset Form</strong> for WordPress
-* <strong>Free WordPress Blog Website</strong> Builder
-* <strong>Popup Builder</strong> for WordPress
-* <strong>Global Block Style</strong> apply same style to blocks globally
-* <strong>Form Block</strong> create contact/newsletter forms easily
-* Compatible with most <strong>WordPress themes like <strong>[Nexter](https://nexterwp.com/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks), Blocksy, Kadence, Astra, OceanWP, GeneratePress, Neve etc.</strong>
-* <strong>WordPress Custom Post Loops Skin Builder</strong> for Posts, CPT & WooCommerce Products 🔥
-* <strong>Carousel Anything</strong> converts any sections in carousel 🔥
-* <strong>Facebook Pixel & Google Events 4 Event Tracker for WordPress</strong> to help you track events, button clicks for conversions
-* <strong> Facebook Reviews and Google Reviews</strong> for WordPress
-* <strong>Social Feeds</strong> show live dynamic feed content from your Facebook, Instagram, YouTube,  X (formerly Twitter), Vimeo 🔥
-* <strong>Custom Cursor Icons </strong> for WordPress
-* <strong>Preloader Animation and Page Transition</strong> for WordPress
+* [AI Content Generator](https://nexterwp.com/nexter-blocks/extras/nexter-ai/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Write, expand, rewrite or translate any block content with a prompt. Supports all Gutenberg text blocks. The fastest AI content workflow for Gutenberg builders.
+* [AI Image Generator](https://nexterwp.com/nexter-blocks/extras/nexter-ai/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Generate original images from a text prompt and drop them directly into any block. No Midjourney tab. No copy-pasting.
+* [AI Repeater Auto-Fill](https://nexterwp.com/nexter-blocks/extras/nexter-ai/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Populate entire repeating sections in one prompt. Fill a 6-card testimonial grid, a 4-step process, or a full FAQ accordion from a single instruction.
+* [AI Toolbar Editing](https://nexterwp.com/nexter-blocks/extras/nexter-ai/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Select any text in the editor. The AI toolbar appears. Improve, shorten, translate, or rewrite without leaving the block.
+* [1000+ AI-Ready Website Templates](https://nexterwp.com/nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Import a full site template, let AI fill every content section with your brand voice, and go live in hours — not days.
 
+== 🏗️ Full Gutenberg Page Builder — Popups, Mega Menus, Headers & More ==
 
-<strong>⭐ REVIEW FROM OUR HAPPY USERS ⭐</strong>
+Most people are surprised to discover that Nexter Blocks is a complete [gutenberg page builder](https://nexterwp.com/nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — not just a block collection. Every major site-building capability is built in, without any additional plugin or third-party dependency.
 
-★★★★★
-> <strong>Fantastic array of Gutenberg Goodness!</strong>
->
-> "This really is a superb collection of Gutenberg blocks that are both varied in style as well a functionality. There’s a mind-boggling selection to choose from with some really  unusual blocks to use in the Gutenberg editor. Dynamic content has just been added which really opens up the design options as well as being able to turn off any blocks that you’re not using which really helps with page speed. Posimyth is a fantastic company. They really go ‘over-and-above’ to help and the Support is amongst the best I’ve ever experienced… Highly recommended if you want a complete Gutenberg solution…" [ - @captainretro](https://wordpress.org/support/topic/fantastic-array-of-gutenberg-goodness/)
+###Popup Builder
 
-★★★★★
-> <strong>It’s Time Ahead Phenomenal Block Builder Addon Plugin</strong>
->
->"Massive collection of Blocks, Features and what not. Being a user of Elementor from long and coming to Gutenberg for performance with customisability.  My end is over with The Plus Blocks, I must say It’s one of the best gutenberg addons in the WordPress. Try this and you will increase potential of block editor. Used in more than 10 client websites and it have increased productivity to next level. Cheers to Team and Highly Recommended to all." [ - @vincentbao](https://wordpress.org/support/topic/its-time-ahead-phenomenal-block-builder-addon-plugin/) 
+The built-in [wordpress popup builder](https://nexterwp.com/nexter-blocks/builder/wordpress-popup-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) covers 6 popup types (modal, slide-in, bar, full screen, inline, and widget), 10+ trigger conditions (scroll, exit intent, click, time delay, inactivity, URL, device, cookie, login status), and 16+ display rules. Build any popup directly in the Gutenberg editor. Design it like a page. No separate popup plugin needed.
 
-➡️ [Read More Reviews ](https://wordpress.org/plugins/the-plus-addons-for-block-editor/#reviews)
+###Mega Menu Builder
 
-###🏆 45+ FREE WordPress Gutenberg Blocks
+The [wordpress mega menu](https://nexterwp.com/nexter-blocks/builder/wordpress-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) builder lets you design horizontal and vertical mega menus with full Gutenberg block content inside every dropdown panel — images, icons, columns, CTAs. No code. No third-party mega menu plugin required.
 
-* <strong> [FREE Flexbox Container](https://nexterwp.com/nexter-blocks/blocks/wordpress-container/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###Header Builder
 
-* <strong> [FREE Global Block Styles](https://nexterwp.com/nexter-blocks/extras/wordpress-global-block-style/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
+Design sticky, transparent, and scroll-triggered headers that are completely independent of your theme. Combine with the [Sticky Header Scrolling Effect](https://nexterwp.com/nexter-blocks/builder/wordpress-header-effects/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks), color-change-on-scroll, nested sticky effects, and transparent header variants for effects that used to require a premium theme.
 
-* <strong> [FREE Form Block](https://nexterwp.com/nexter-blocks/builder/wordpress-form-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)  
+###Form Builder
 
-* <strong> [FREE Breadcrumb Bar](https://nexterwp.com/nexter-blocks/blocks/wordpress-breadcrumb-bar/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+A full [wordpress form builder](https://nexterwp.com/nexter-blocks/builder/wordpress-form-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) block in Gutenberg — contact forms, newsletter signups, lead forms. Mailchimp integration built in. No WPForms or Contact Form 7 required for basic form needs.
 
-* <strong> [FREE Animated SVG Icons](https://nexterwp.com/nexter-blocks/blocks/wordpress-draw-animated-svg-icon/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###Blog Builder, Ajax Search & Navigation
 
-* <strong> [FREE Flipbox](https://nexterwp.com/nexter-blocks/blocks/wordpress-flipbox/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+[Blog Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-blog-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) for fully custom blog archive layouts, [Ajax Search Bar](https://nexterwp.com/nexter-blocks/builder/wordpress-ajax-search-bar/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) for real-time live search across posts and WooCommerce, [Navigation Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-navigation-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks), and [Mobile Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-mobile-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) with slide-in, toggle, and dropdown variants.
 
-* <strong> [FREE Block Quote](https://nexterwp.com/nexter-blocks/blocks/wordpress-blockquote-block/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###Dynamic Post Grid Builder
 
-* <strong> [FREE Infobox & Iconbox](https://nexterwp.com/nexter-blocks/blocks/wordpress-infobox/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+A drag-and-drop skin builder for any post type, CPT, or WooCommerce product — build fully custom grid, carousel, masonry, and metro layouts without touching code. [Learn more](https://nexterwp.com/nexter-blocks/builder/wordpress-custom-post-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks).
 
-* <strong> [FREE Advanced Heading](https://nexterwp.com/nexter-blocks/blocks/wordpress-title-block/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+== 👑 Why Serious WordPress Builders Choose Nexter Blocks ==
 
-* <strong> [FREE Message Box](https://nexterwp.com/nexter-blocks/blocks/wordpress-message-box//?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###Performance: Zero jQuery, Pure Vanilla JS
 
-* <strong> [FREE Google Maps](https://nexterwp.com/nexter-blocks/blocks/wordpress-google-maps/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+Every block is a separate module. Disable it, and it loads zero CSS and zero JavaScript on the front end. Enable only what you need. One CSS file and one JS file load per page regardless of how many blocks are active. Vanilla JS throughout — no jQuery dependency means no jQuery debt. This is why our users score Core Web Vitals in the green while other block plugins struggle.
 
-* <strong> [FREE Pie Chart](https://nexterwp.com/nexter-blocks/blocks/wordpress-pie-chart/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###[Global Block Styles](https://nexterwp.com/nexter-blocks/extras/wordpress-global-block-style/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Site-Wide Design Control
 
-* <strong> [FREE Social Icons](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-icons/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+Change one setting, update every instance of that block across your entire site. Global Block Styles is the feature that turns 90 blocks into a consistent design system — not 90 separate styling decisions to maintain.
 
-* <strong> [FREE Progress Bar](https://nexterwp.com/nexter-blocks/blocks/wordpress-progress-bar/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###[Display Conditions](https://nexterwp.com/nexter-blocks/extras/wordpress-display-conditional-rules/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Show the Right Content to the Right Person
 
-* <strong> [FREE Number Counter](https://nexterwp.com/nexter-blocks/blocks/wordpress-number-counter/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+Show or hide any block based on user role, login status, device type, ACF field value, URL parameter, post category, WooCommerce cart status, and 20+ more conditions. Build personalized pages without a membership plugin.
 
-* <strong> [FREE Video Player](https://nexterwp.com/nexter-blocks/blocks/wordpress-video-player/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###[Cross-Domain Live Copy-Paste](https://nexterwp.com/nexter-blocks/extras/wordpress-cross-domain-live-copy-paste-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Unique to Nexter Blocks
 
-* <strong> [FREE Stylish Icon List](https://nexterwp.com/nexter-blocks/blocks/wordpress-stylish-list/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+Copy any styled section from one WordPress site and paste it — live, with all styles — into a completely different site. No plugin on the market does this. It is the single most requested feature by agency users managing multiple client sites.
 
-* <strong> [FREE Pricing Table](https://nexterwp.com/nexter-blocks/blocks/wordpress-pricing-table/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###ACF, WooCommerce, WPML & Multisite Ready
 
-* <strong> [FREE Pro Paragraph Block](https://nexterwp.com/nexter-blocks/blocks/wordpress-pro-paragraph/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+[Dynamic Content (Pro)](https://nexterwp.com/nexter-blocks/extras/wordpress-dynamic-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) pulls live data from ACF, Toolset, Pods, and native WordPress custom fields into any block. Full WooCommerce integration. WPML, RTL, and Multisite supported. Security audited by Patchstack.
 
-* <strong> [FREE Dark Mode Switcher](https://nexterwp.com/nexter-blocks/blocks/wordpress-dark-mode-switcher/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###[1000+ Gutenberg Block Templates](https://nexterwp.com/nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Source Code Syntax Highlighter](https://nexterwp.com/nexter-blocks/blocks/wordpress-source-code-syntax-highlighter/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+Full starter site kits, section templates, and per-block presets — importable in one click. Built by professional designers. Compatible with AI Auto-Fill so you can use a starter template as a structure and let AI write the content.
 
-* <strong> [FREE Reading Scroll Progress Bar](https://nexterwp.com/nexter-blocks/blocks/wordpress-reading-scroll-progress-bar/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+== ⭐ What Our Users Say ==
 
-* <strong> [FREE Heading](https://nexterwp.com/nexter-blocks/blocks/wordpress-heading/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+★★★★★ "Superb collection of Gutenberg blocks... support is amongst the best I've ever experienced." — [@captainretro](https://wordpress.org/support/topic/fantastic-array-of-gutenberg-goodness/)
 
-* <strong> [FREE Button](https://nexterwp.com/nexter-blocks/blocks/wordpress-button/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+★★★★★ "Massive collection of Blocks. One of the best gutenberg addons in WordPress. Used on more than 10 client websites." — [@vincentbao](https://wordpress.org/support/topic/its-time-ahead-phenomenal-block-builder-addon-plugin/)
 
-* <strong> [FREE Spacer](https://nexterwp.com/nexter-blocks/blocks/wordpress-spacer/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+[Read All Reviews on WordPress.org](https://wordpress.org/plugins/the-plus-addons-for-block-editor/#reviews)
 
-* <strong> [FREE Hover Card Animations](https://nexterwp.com/nexter-blocks/blocks/hover-card-animations-wordpress/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###🆓 45+ Free Gutenberg Blocks
 
-* <strong> [FREE Pricing List](https://nexterwp.com/nexter-blocks/blocks/wordpress-pricing-list/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Layout & Structure =
 
-* <strong> [FREE Social Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Flexbox Container](https://nexterwp.com/nexter-blocks/blocks/wordpress-container/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — full flexbox layout control, the foundation of every page
+* [Section Background](https://nexterwp.com/nexter-blocks/blocks/wordpress-section-background/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — video, gradient, image, and parallax section backgrounds
+* [Spacer](https://nexterwp.com/nexter-blocks/blocks/wordpress-spacer/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Google Map Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-google-map-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Typography & Heading Blocks =
 
-* <strong> [FREE YouTube Video Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-youtube-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Advanced Heading](https://nexterwp.com/nexter-blocks/blocks/wordpress-title-block/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — gradient text, animated typing, split, highlight, and stroke effects on any heading
+* [Heading](https://nexterwp.com/nexter-blocks/blocks/wordpress-heading/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Pro Paragraph](https://nexterwp.com/nexter-blocks/blocks/wordpress-pro-paragraph/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Block Quote](https://nexterwp.com/nexter-blocks/blocks/wordpress-blockquote-block/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Message Box](https://nexterwp.com/nexter-blocks/blocks/wordpress-message-box/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Source Code Syntax Highlighter](https://nexterwp.com/nexter-blocks/blocks/wordpress-source-code-syntax-highlighter/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Video Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-vimeo-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Accordion, Tabs & Interactive UI =
 
-* <strong> [FREE Facebook Posts Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-facebook-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Accordion Toggle](https://nexterwp.com/nexter-blocks/blocks/wordpress-accordion-toggle/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — the [wordpress accordion plugin](https://nexterwp.com/nexter-blocks/blocks/wordpress-accordion-toggle/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) experience built into Gutenberg, with FAQ schema markup for SEO
+* [Tab Content](https://nexterwp.com/nexter-blocks/blocks/wordpress-tab-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — horizontal and vertical tabs with full Gutenberg blocks inside each panel
+* [Infobox & Iconbox](https://nexterwp.com/nexter-blocks/blocks/wordpress-infobox/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — service cards and feature boxes with icon, image, and hover animation support
+* [Flipbox](https://nexterwp.com/nexter-blocks/blocks/wordpress-flipbox/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — animated front-back flip cards for services, team, and portfolio
+* [Hover Card Animations](https://nexterwp.com/nexter-blocks/blocks/hover-card-animations-wordpress/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Dark Mode Switcher](https://nexterwp.com/nexter-blocks/blocks/wordpress-dark-mode-switcher/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Interactive Circle Infographic](https://nexterwp.com/nexter-blocks/blocks/wordpress-interactive-circle-infographic/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Instagram Post Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-instagram-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Conversion & Sales Blocks =
 
-* <strong> [FREE Data Table](https://nexterwp.com/nexter-blocks/blocks/wordpress-data-table/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+These are the blocks that turn pages into revenue. Every one is optimized for performance and built with SEO and conversion in mind.
 
-* <strong> [FREE Countdown Timer](https://nexterwp.com/nexter-blocks/blocks/wordpress-countdown-timer/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Pricing Table](https://nexterwp.com/nexter-blocks/blocks/wordpress-pricing-table/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — the [wordpress pricing table plugin](https://nexterwp.com/nexter-blocks/blocks/wordpress-pricing-table/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) experience as a native Gutenberg block. Toggle highlights, badges, feature lists, and CTA buttons — no shortcodes.
+* [Countdown Timer](https://nexterwp.com/nexter-blocks/blocks/wordpress-countdown-timer/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — [wordpress countdown timer plugin](https://nexterwp.com/nexter-blocks/blocks/wordpress-countdown-timer/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) block with evergreen, fixed-date, and recurring modes. Adds urgency to offers and launch pages without a separate plugin.
+* [Data Table](https://nexterwp.com/nexter-blocks/blocks/wordpress-data-table/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — responsive data tables with search, sort, filter, and pagination — zero jQuery dependency
+* [Number Counter](https://nexterwp.com/nexter-blocks/blocks/wordpress-number-counter/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — animate social proof numbers on scroll: clients, projects, years of experience
+* [Progress Bar](https://nexterwp.com/nexter-blocks/blocks/wordpress-progress-bar/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Pie Chart](https://nexterwp.com/nexter-blocks/blocks/wordpress-pie-chart/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Stylish Icon List](https://nexterwp.com/nexter-blocks/blocks/wordpress-stylish-list/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Pricing List](https://nexterwp.com/nexter-blocks/blocks/wordpress-pricing-list/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Button](https://nexterwp.com/nexter-blocks/blocks/wordpress-button/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Advanced Button](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-button/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Contact Form](https://nexterwp.com/nexter-blocks/blocks/wordpress-contact-form-stylers/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Post, Blog & Testimonials =
 
-* <strong> [FREE Accordion Toggle](https://nexterwp.com/nexter-blocks/blocks/wordpress-accordion-toggle/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Testimonial Reviews](https://nexterwp.com/nexter-blocks/listing/wordpress-testimonial-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — the [wordpress testimonials plugin](https://nexterwp.com/nexter-blocks/listing/wordpress-testimonial-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) experience as a Gutenberg block — star ratings, author photos, structured layouts
+* [Post Grid](https://nexterwp.com/nexter-blocks/listing/wordpress-post-grid/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — fully customizable blog post grid with category filters and AJAX load more
+* [Post Listing](https://nexterwp.com/nexter-blocks/listing/wordpress-post-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-post-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Masonry](https://nexterwp.com/nexter-blocks/listing/wordpress-post-masonry/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Metro](https://nexterwp.com/nexter-blocks/listing/wordpress-post-metro/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Testimonial Masonry](https://nexterwp.com/nexter-blocks/listing/wordpress-testimonial-reviews-masonry/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Tab Content](https://nexterwp.com/nexter-blocks/blocks/wordpress-tab-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Media & Icons =
 
-* <strong> [FREE Interactive Circle Infographic](https://nexterwp.com/nexter-blocks/blocks/wordpress-interactive-circle-infographic/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Image](https://nexterwp.com/nexter-blocks/blocks/wordpress-image/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Advanced Image](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-image/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Video Player](https://nexterwp.com/nexter-blocks/blocks/wordpress-video-player/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Animated SVG Icons](https://nexterwp.com/nexter-blocks/blocks/wordpress-draw-animated-svg-icon/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Social Icons](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-icons/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Icons](https://nexterwp.com/nexter-blocks/blocks/wordpress-icon/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Google Maps](https://nexterwp.com/nexter-blocks/blocks/wordpress-google-maps/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Facebook Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-facebook-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Social Feeds & Embeds =
 
-* <strong> [FREE Social Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Facebook Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-facebook-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Social Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Facebook Reviews](https://nexterwp.com/nexter-blocks/blocks/wordpress-facebook-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Social Reviews](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Social Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [YouTube Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-youtube-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Vimeo Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-vimeo-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Facebook Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-facebook-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Instagram Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-instagram-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Google Map Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-google-map-embed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Contact Form Styler](https://nexterwp.com/nexter-blocks/blocks/wordpress-contact-form-stylers/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Facebook Reviews](https://nexterwp.com/nexter-blocks/blocks/wordpress-facebook-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Theme Builder Blocks =
 
-* <strong> [FREE Social Reviews](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+Build complete post and page templates with these Gutenberg theme builder blocks:
 
-* <strong> [FREE Stylish List](https://nexterwp.com/nexter-blocks/blocks/wordpress-stylish-list/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Site Logo](https://nexterwp.com/nexter-blocks/builder/wordpress-site-logo/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Image](https://nexterwp.com/nexter-blocks/builder/wordpress-post-featured-image/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Title](https://nexterwp.com/nexter-blocks/builder/wordpress-post-title/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Content](https://nexterwp.com/nexter-blocks/builder/wordpress-post-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Navigation](https://nexterwp.com/nexter-blocks/builder/wordpress-post-navigation/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Meta Info](https://nexterwp.com/nexter-blocks/builder/wordpress-post-meta-info/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Comments Form](https://nexterwp.com/nexter-blocks/builder/wordpress-post-comment-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Post Author Box](https://nexterwp.com/nexter-blocks/builder/wordpress-post-author-box/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Ajax Search Bar](https://nexterwp.com/nexter-blocks/builder/wordpress-ajax-search-bar/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= SEO, Scroll & Site-Wide Productivity =
 
-* <strong> [FREE Post Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-post-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Breadcrumb Bar](https://nexterwp.com/nexter-blocks/blocks/wordpress-breadcrumb-bar/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — SEO breadcrumb navigation with schema markup built in
+* [On Scroll Content Animations](https://nexterwp.com/nexter-blocks/extras/wordpress-on-scroll-content-animations/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — entrance animations for any block, triggered on scroll
+* [Reading Scroll Progress Bar](https://nexterwp.com/nexter-blocks/blocks/wordpress-reading-scroll-progress-bar/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Smooth Scroll](https://nexterwp.com/nexter-blocks/blocks/wordpress-smooth-scroll/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Global Block Styles](https://nexterwp.com/nexter-blocks/extras/wordpress-global-block-style/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Global Options](https://nexterwp.com/nexter-blocks/extras/wordpress-global-options/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Copy Paste Style](https://nexterwp.com/nexter-blocks/extras/copy-paste-style-values/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Cross-Domain Live Copy-Paste](https://nexterwp.com/nexter-blocks/extras/wordpress-cross-domain-live-copy-paste-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Post Grid](https://nexterwp.com/nexter-blocks/listing/wordpress-post-grid/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+###🔒 45+ Pro Gutenberg Blocks
 
-* <strong> [FREE Post – Masonry](https://nexterwp.com/nexter-blocks/listing/wordpress-post-masonry/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Animation & Visual Effects =
 
-* <strong> [FREE Post Metro](https://nexterwp.com/nexter-blocks/listing/wordpress-post-metro/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Parallax Background](https://nexterwp.com/nexter-blocks/blocks/wordpress-parallax-background-effect/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — [wordpress parallax plugin](https://nexterwp.com/nexter-blocks/blocks/wordpress-parallax-background-effect/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) effect on any section or container
+* [Lottiefiles Animations](https://nexterwp.com/nexter-blocks/blocks/wordpress-lottiefiles-animations/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — [wordpress lottie animation plugin](https://nexterwp.com/nexter-blocks/blocks/wordpress-lottiefiles-animations/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) as a native Gutenberg block
+* [Heading Animation](https://nexterwp.com/nexter-blocks/blocks/wordpress-heading-animation/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — typewriter, wave, character-by-character, and word-by-word heading animations
+* [Image Scroll Sequence](https://nexterwp.com/nexter-blocks/blocks/wordpress-image-scroll-sequence/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Canvas Background](https://nexterwp.com/nexter-blocks/blocks/wordpress-canvas-background/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Gallery Background](https://nexterwp.com/nexter-blocks/blocks/wordpress-gallery-background/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Floating Effect](https://nexterwp.com/nexter-blocks/extras/wordpress-floating-effect/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Page Preloader & Transitions](https://nexterwp.com/nexter-blocks/blocks/wordpress-preloader-animation-and-page-transitions/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Spline 3D Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-spline-3d-viewer/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Animated Service Boxes](https://nexterwp.com/nexter-blocks/blocks/wordpress-animated-service-boxes/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Magic Scroll Effect](https://nexterwp.com/nexter-blocks/extras/magic-scroll-effect-for-wordpress/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Mouse Hover Animation](https://nexterwp.com/nexter-blocks/extras/mouse-hover-animation-for-wordpress/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Testimonial Reviews Masonry](https://nexterwp.com/nexter-blocks/listing/wordpress-testimonial-reviews-masonry/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Advanced UI & Content Blocks =
 
-* <strong> [FREE Post Image](https://nexterwp.com/nexter-blocks/builder/wordpress-post-featured-image/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Table of Contents](https://nexterwp.com/nexter-blocks/blocks/wordpress-table-of-contents/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — auto-generated sticky [wordpress table of contents plugin](https://nexterwp.com/nexter-blocks/blocks/wordpress-table-of-contents/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) for long posts and documentation
+* [Before After Image Comparison](https://nexterwp.com/nexter-blocks/blocks/wordpress-before-after-image-comparison-slider/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — interactive drag-slider for portfolios, transformations, and product demos
+* [Hotspot Pinpoint Image](https://nexterwp.com/nexter-blocks/blocks/wordpress-hotspot-pinpoint-image/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — clickable image hotspots with tooltip and popup support
+* [Advanced Carousel Sliders](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-carousel-sliders/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — [wordpress carousel plugin](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-carousel-sliders/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) that works with any block content — not just images
+* [Content Switcher](https://nexterwp.com/nexter-blocks/blocks/wordpress-content-switcher/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [One Page Scroll Navigation](https://nexterwp.com/nexter-blocks/blocks/wordpress-one-page-scroll-navigation/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Process Steps](https://nexterwp.com/nexter-blocks/blocks/wordpress-process-steps/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Timeline](https://nexterwp.com/nexter-blocks/blocks/wordpress-timeline/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Circle Menu](https://nexterwp.com/nexter-blocks/blocks/wordpress-circle-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Device Mockup Previewer](https://nexterwp.com/nexter-blocks/blocks/wordpress-device-mockups/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Advanced Typography](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-typography/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [CTA Banners](https://nexterwp.com/nexter-blocks/blocks/wordpress-cta-banner/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Read More Unfold](https://nexterwp.com/nexter-blocks/blocks/wordpress-unfold-read-more-button/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Copy Coupon Code](https://nexterwp.com/nexter-blocks/blocks/wordpress-coupon-code/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Custom Cursors](https://nexterwp.com/nexter-blocks/blocks/wordpress-custom-cursors/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Pro Button](https://nexterwp.com/nexter-blocks/blocks/wordpress-pro-button/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Audio Music Player](https://nexterwp.com/nexter-blocks/blocks/wordpress-audio-music-player/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Advanced Charts & Graph](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-charts-and-graph/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Global Tooltip](https://nexterwp.com/nexter-blocks/extras/wordpress-global-tooltip/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Advanced Border Radius](https://nexterwp.com/nexter-blocks/extras/wordpress-advanced-border-radius/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Same Equal Height](https://nexterwp.com/nexter-blocks/extras/wordpress-same-equal-height/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Post Title](https://nexterwp.com/nexter-blocks/builder/wordpress-post-title/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Dynamic Content & Data =
 
-* <strong> [FREE Post Content](https://nexterwp.com/nexter-blocks/builder/wordpress-post-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Dynamic Content](https://nexterwp.com/nexter-blocks/extras/wordpress-dynamic-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — the complete [wordpress dynamic content plugin](https://nexterwp.com/nexter-blocks/extras/wordpress-dynamic-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) experience: pull ACF, Toolset, Pods, and WordPress custom fields into any block
+* [Dynamic Repeater](https://nexterwp.com/nexter-blocks/builder/wordpress-dynamic-repeater-field-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Smart Ajax Content](https://nexterwp.com/nexter-blocks/extras/wordpress-smart-ajax/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Remote Sync](https://nexterwp.com/nexter-blocks/blocks/wordpress-remote-sync/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Display Conditional Rules](https://nexterwp.com/nexter-blocks/extras/wordpress-display-conditional-rules/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Post Navigation](https://nexterwp.com/nexter-blocks/builder/wordpress-post-navigation/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Analytics & Admin =
 
-* <strong> [FREE Post Meta Info](https://nexterwp.com/nexter-blocks/builder/wordpress-post-meta-info/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [GA4 Event Conversion Tracker](https://nexterwp.com/nexter-blocks/extras/wordpress-ga4-event-conversion-tracker/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Facebook Pixel Event Tracker](https://nexterwp.com/nexter-blocks/extras/wordpress-facebook-pixel-event-conversion-tracker/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [White Label Nexter Plugin](https://nexterwp.com/nexter-blocks/extras/white-label-nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Design Grid Tool](https://nexterwp.com/nexter-blocks/extras/wordpress-design-grid-tool/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Sticky Column Effect](https://nexterwp.com/nexter-blocks/extras/wordpress-sticky-column/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Post Comments Form](https://nexterwp.com/nexter-blocks/builder/wordpress-post-comment-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Google Reviews, Social Feeds & Galleries =
 
-* <strong> [FREE Image](https://nexterwp.com/nexter-blocks/blocks/wordpress-image/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Google Reviews](https://nexterwp.com/nexter-blocks/blocks/wordpress-google-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — embed live [wordpress google reviews plugin](https://nexterwp.com/nexter-blocks/blocks/wordpress-google-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) on any page — auto-updated from your Google listing
+* [Image Gallery](https://nexterwp.com/nexter-blocks/listing/wordpress-image-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — [wordpress image gallery plugin](https://nexterwp.com/nexter-blocks/listing/wordpress-image-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) with grid, masonry, metro, and carousel layouts with lightbox
+* [Video Gallery](https://nexterwp.com/nexter-blocks/listing/wordpress-video-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — [wordpress video gallery plugin](https://nexterwp.com/nexter-blocks/listing/wordpress-video-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) with category filters and an inline lightbox player
+* [Google Reviews Badge](https://nexterwp.com/nexter-blocks/blocks/wordpress-google-badge/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Google & Facebook Reviews Wall](https://nexterwp.com/nexter-blocks/blocks/wordpress-reviews-wall/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Facebook Reviews Badge](https://nexterwp.com/nexter-blocks/blocks/wordpress-facebook-badge/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Instagram Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-instagram-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [YouTube Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-youtube-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Vimeo Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-vimeo-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Multi Social Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-multi-social-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Social Sharing Icons](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-sharing-icons/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Image Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-image-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Image Masonry](https://nexterwp.com/nexter-blocks/listing/wordpress-image-masonry/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Image Metro](https://nexterwp.com/nexter-blocks/listing/wordpress-image-metro/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Image Grid](https://nexterwp.com/nexter-blocks/listing/wordpress-image-grid/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Video Grid Gallery](https://nexterwp.com/nexter-blocks/listing/wordpress-video-grid-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Video Masonry Gallery](https://nexterwp.com/nexter-blocks/listing/wordpress-video-masonry-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Video Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-video-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Video Metro](https://nexterwp.com/nexter-blocks/listing/video-metro-for-wordpress/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Advanced Button](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-button/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= WooCommerce Blocks =
 
-* <strong> [FREE Post Author](https://nexterwp.com/nexter-blocks/builder/wordpress-post-author-box/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [WooCommerce Product Grid](https://nexterwp.com/nexter-blocks/listing/wordpress-product-grid/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — fully styled [wordpress woocommerce blocks](https://nexterwp.com/nexter-blocks/listing/wordpress-product-grid/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) with custom layouts beyond the default WooCommerce templates
+* [Product Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-product-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Product Masonry](https://nexterwp.com/nexter-blocks/listing/wordpress-product-masonry/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Product Metro](https://nexterwp.com/nexter-blocks/listing/wordpress-product-metro/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Product Listing](https://nexterwp.com/nexter-blocks/listing/wordpress-product-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Taxonomy Category & Tags Listing](https://nexterwp.com/nexter-blocks/builder/wordpress-taxonomy-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Copy Paste Style for Blocks](https://nexterwp.com/nexter-blocks/extras/copy-paste-style-values/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Team Members =
 
-* <strong> [FREE Cross Domain Live Copy Paste Content](https://nexterwp.com/nexter-blocks/extras/wordpress-cross-domain-live-copy-paste-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Team Member](https://nexterwp.com/nexter-blocks/listing/wordpress-team-members/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — [wordpress team members plugin](https://nexterwp.com/nexter-blocks/listing/wordpress-team-members/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) block — photos, bio, role, and social profile links
+* [Team Members Grid](https://nexterwp.com/nexter-blocks/listing/wordpress-team-members-grid/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Team Members Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-team-members-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE On Scroll Content Animations](https://nexterwp.com/nexter-blocks/extras/wordpress-on-scroll-content-animations/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Header, Mega Menu & Navigation (Pro) =
 
-* <strong> [FREE Global Options](https://nexterwp.com/nexter-blocks/extras/wordpress-global-options/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Horizontal Mega Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-horizontal-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Vertical Toggle Mega Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-vertical-toggle-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Vertical Mega Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-vertical-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Sticky Header Scrolling Effect](https://nexterwp.com/nexter-blocks/builder/wordpress-header-effects/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Nested Sticky Header](https://nexterwp.com/nexter-blocks/builder/nested-sticky-header-effect/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Sticky Color Change on Scroll](https://nexterwp.com/nexter-blocks/builder/sticky-header-color-change-on-scroll/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Sticky Fixed Header](https://nexterwp.com/nexter-blocks/builder/sticky-fixed-header/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Change Header Height on Scroll](https://nexterwp.com/nexter-blocks/builder/change-header-height-on-scroll/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Transparent Sticky Header](https://nexterwp.com/nexter-blocks/builder/transparent-sticky-header-effect/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Header Menu Logo on Hover](https://nexterwp.com/nexter-blocks/builder/change-header-menu-logo-on-hover/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Shape Dividers](https://nexterwp.com/nexter-blocks/extras/wordpress-shape-dividers/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Site Logo](https://nexterwp.com/nexter-blocks/builder/wordpress-site-logo/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+= Login, Registration & Membership Forms =
 
-* <strong> [FREE Post Listing](https://nexterwp.com/nexter-blocks/listing/wordpress-post-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+* [Login Form](https://nexterwp.com/nexter-blocks/blocks/wordpress-login-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — a fully styled [wordpress login form plugin](https://nexterwp.com/nexter-blocks/blocks/wordpress-login-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) experience as a Gutenberg block — brand-consistent, no shortcodes
+* [Registration Form](https://nexterwp.com/nexter-blocks/blocks/wordpress-registration-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Password Reset Form](https://nexterwp.com/nexter-blocks/blocks/wordpress-password-reset-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Mailchimp Form](https://nexterwp.com/nexter-blocks/blocks/wordpress-mailchimp-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Blog Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-blog-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Custom Dynamic Post Listing](https://nexterwp.com/nexter-blocks/builder/wordpress-custom-post-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
 
-* <strong> [FREE Testimonial Review](https://nexterwp.com/nexter-blocks/listing/wordpress-testimonial-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
+== 🔍 Our Other Products ==
 
-* <strong> [ FREE Icons](https://nexterwp.com/nexter-blocks/blocks/wordpress-icon/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [FREE Advanced Image](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-image/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [FREE Smooth Scroll](https://nexterwp.com/nexter-blocks/blocks/wordpress-smooth-scroll/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-###🏆 45+ Premium WordPress Gutenberg Blocks
-* <strong> [Table of Contents](https://nexterwp.com/nexter-blocks/blocks/wordpress-table-of-contents/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Page Preloader & Page Transitions](https://nexterwp.com/nexter-blocks/blocks/wordpress-preloader-animation-and-page-transitions/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Audio Music & Podcast Player](https://nexterwp.com/nexter-blocks/blocks/wordpress-audio-music-player/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Dynamic Content](https://nexterwp.com/nexter-blocks/extras/wordpress-dynamic-content/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Dynamic Repeater](https://nexterwp.com/nexter-blocks/builder/wordpress-dynamic-repeater-field-listing/ )</strong>
-
-* <strong> [Advanced Border Radius](https://nexterwp.com/nexter-blocks/extras/wordpress-advanced-border-radius/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Copy Coupon Code](https://nexterwp.com/nexter-blocks/blocks/wordpress-coupon-code/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Pro Button](https://nexterwp.com/nexter-blocks/blocks/wordpress-pro-button/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Remote Sync](https://nexterwp.com/nexter-blocks/blocks/wordpress-remote-sync/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Advanced Carousel Sliders](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-carousel-sliders/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Read More Unfold Button](https://nexterwp.com/nexter-blocks/blocks/wordpress-unfold-read-more-button/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Heading Animation](https://nexterwp.com/nexter-blocks/blocks/wordpress-heading-animation/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Hotspot Pinpoint Image](https://nexterwp.com/nexter-blocks/blocks/wordpress-hotspot-pinpoint-image/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Process Steps](https://nexterwp.com/nexter-blocks/blocks/wordpress-process-steps/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Timeline](https://nexterwp.com/nexter-blocks/blocks/wordpress-timeline/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Lottiefiles Animations](https://nexterwp.com/nexter-blocks/blocks/wordpress-lottiefiles-animations/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Circle Menu](https://nexterwp.com/nexter-blocks/blocks/wordpress-circle-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Animated Service Boxes](https://nexterwp.com/nexter-blocks/blocks/wordpress-animated-service-boxes/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Before After Image Comparison](https://nexterwp.com/nexter-blocks/blocks/wordpress-before-after-image-comparison-slider/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Custom Cursors](https://nexterwp.com/nexter-blocks/blocks/wordpress-custom-cursors/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Advanced Typography](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-typography/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Device Mockup Previewer](https://nexterwp.com/nexter-blocks/blocks/wordpress-device-mockups/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [ Spline 3D Embed](https://nexterwp.com/nexter-blocks/blocks/wordpress-spline-3d-viewer/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Mailchimp Form](https://nexterwp.com/nexter-blocks/blocks/wordpress-mailchimp-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [CTA Banners](https://nexterwp.com/nexter-blocks/blocks/wordpress-cta-banner/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Advanced Charts & Graph](https://nexterwp.com/nexter-blocks/blocks/wordpress-advanced-charts-and-graph/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Social Sharing Icons](https://nexterwp.com/nexter-blocks/blocks/wordpress-social-sharing-icons/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Login Form](https://nexterwp.com/nexter-blocks/blocks/wordpress-login-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Registration Form](https://nexterwp.com/nexter-blocks/blocks/wordpress-registration-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Sticky Column Effect](https://nexterwp.com/nexter-blocks/extras/wordpress-sticky-column/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Password Reset Form](https://nexterwp.com/nexter-blocks/blocks/wordpress-password-reset-form/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Content Switcher](https://nexterwp.com/nexter-blocks/blocks/wordpress-content-switcher/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Section Background](https://nexterwp.com/nexter-blocks/blocks/wordpress-section-background/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Parallax Background](https://nexterwp.com/nexter-blocks/blocks/wordpress-parallax-background-effect/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [One Page Scroll Navigation](https://nexterwp.com/nexter-blocks/blocks/wordpress-one-page-scroll-navigation/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Image Scroll Sequence](https://nexterwp.com/nexter-blocks/blocks/wordpress-image-scroll-sequence/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Canvas Background](https://nexterwp.com/nexter-blocks/blocks/wordpress-canvas-background/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Gallery Background](https://nexterwp.com/nexter-blocks/blocks/wordpress-gallery-background/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Instagram Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-instagram-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [YouTube Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-youtube-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Vimeo Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-vimeo-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Multi Social Feed](https://nexterwp.com/nexter-blocks/blocks/wordpress-multi-social-feed/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Facebook Reviews Badge](https://nexterwp.com/nexter-blocks/blocks/wordpress-facebook-badge/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Google  Reviews](https://nexterwp.com/nexter-blocks/blocks/wordpress-google-reviews/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Google Reviews Badge](https://nexterwp.com/nexter-blocks/blocks/wordpress-google-badge/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Google & Facebook Reviews](https://nexterwp.com/nexter-blocks/blocks/wordpress-reviews-wall/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Video Metro](https://nexterwp.com/nexter-blocks/listing/video-metro-for-wordpress/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Smart Ajax Content](https://nexterwp.com/nexter-blocks/extras/wordpress-smart-ajax/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Video – Metro](https://nexterwp.com/nexter-blocks/listing/video-metro-for-wordpress/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Custom Dynamic Post Listing](https://nexterwp.com/nexter-blocks/builder/wordpress-custom-post-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Blog Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-blog-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Mega Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Header Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-header-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Sticky Header Scrolling Effect](https://nexterwp.com/nexter-blocks/builder/wordpress-header-effects/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Shape Dividers](https://nexterwp.com/nexter-blocks/extras/wordpress-shape-dividers/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Header Menu Logo on Hover](https://nexterwp.com/nexter-blocks/builder/change-header-menu-logo-on-hover/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Transparent Sticky Header Effect](https://nexterwp.com/nexter-blocks/builder/transparent-sticky-header-effect/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Taxonomy Category & Tags Listing](https://nexterwp.com/nexter-blocks/builder/wordpress-taxonomy-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [WooCommerce Product Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-product-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [WooCommerce Product Grid](https://nexterwp.com/nexter-blocks/listing/wordpress-product-grid/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [WooCommerce Product Masonry](https://nexterwp.com/nexter-blocks/listing/wordpress-product-masonry/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [WooCommerce Product Metro](https://nexterwp.com/nexter-blocks/listing/wordpress-product-metro/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Image Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-image-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Image Masonry](https://nexterwp.com/nexter-blocks/listing/wordpress-image-masonry/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Image Metro](https://nexterwp.com/nexter-blocks/listing/wordpress-image-metro/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Image Grid](https://nexterwp.com/nexter-blocks/listing/wordpress-image-grid/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Video Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-video-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Design Grid Tool](https://nexterwp.com/nexter-blocks/extras/wordpress-design-grid-tool/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Floating Effect](https://nexterwp.com/nexter-blocks/extras/wordpress-floating-effect/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [GA4 Event Conversion Tracker](https://nexterwp.com/nexter-blocks/extras/wordpress-ga4-event-conversion-tracker/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Facebook Pixel Event Conversion Tracker](https://nexterwp.com/nexter-blocks/extras/wordpress-facebook-pixel-event-conversion-tracker/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Display Conditional Rules](https://nexterwp.com/nexter-blocks/extras/wordpress-display-conditional-rules/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [While Label Nexter Plugin](https://nexterwp.com/nexter-blocks/extras/white-label-nexter-blocks/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Same Equal Height](https://nexterwp.com/nexter-blocks/extras/wordpress-same-equal-height/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Magic Scroll Effect for WordPress](https://nexterwp.com/nexter-blocks/extras/magic-scroll-effect-for-wordpress/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Mouse Hover Animation for WordPress](https://nexterwp.com/nexter-blocks/extras/mouse-hover-animation-for-wordpress/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Global Tooltip](https://nexterwp.com/nexter-blocks/extras/wordpress-global-tooltip/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Horizontal Mega Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-horizontal-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Vertical Toggle Mega Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-vertical-toggle-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Vertical Mega Menu ](https://nexterwp.com/nexter-blocks/builder/wordpress-vertical-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Nested Sticky Header Effects](https://nexterwp.com/nexter-blocks/builder/nested-sticky-header-effect/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Sticky Color Change on Scroll](https://nexterwp.com/nexter-blocks/builder/sticky-header-color-change-on-scroll/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Sticky Fixed Header](https://nexterwp.com/nexter-blocks/builder/sticky-fixed-header/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Change Header Height on Scroll](https://nexterwp.com/nexter-blocks/builder/change-header-height-on-scroll/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Popup Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-popup-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Navigation Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-navigation-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Mobile Menu](https://nexterwp.com/nexter-blocks/builder/wordpress-mobile-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Team Members Grid](https://nexterwp.com/nexter-blocks/listing/wordpress-team-members-grid/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Team Members Carousel](https://nexterwp.com/nexter-blocks/listing/wordpress-team-members-carousel/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Video Grid Gallery](https://nexterwp.com/nexter-blocks/listing/wordpress-video-grid-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Video Masonry Gallery](https://nexterwp.com/nexter-blocks/listing/wordpress-video-masonry-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Product Listing](https://nexterwp.com/nexter-blocks/listing/wordpress-product-listing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Video Gallery](https://nexterwp.com/nexter-blocks/listing/wordpress-video-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [Team Member](https://nexterwp.com/nexter-blocks/listing/wordpress-team-members/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-* <strong> [ Image Gallery](https://nexterwp.com/nexter-blocks/listing/wordpress-image-gallery/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong>
-
-
-
-###🔍 OUR PRODUCTS
-
-<strong>[🥇 Nexter Extension](https://nexterwp.com/nexter-extension?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong> - Power up your WordPress website with 20+ extensions that work with all themes, boost performance, and harden security.
-
-<strong>[🥇 WDesignKit](https://wdesignkit.com/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong> - 1000+ WordPress Templates, Custom Gutenberg Blocks Builder, Convert Elementor Widget to Gutenberg Block, Store Templates & Blocks on Cloud & more.
-
-<strong>[🥇 UiChemy - Figma to WordPress Convertor](https://uichemy.com/figma-to-gutenberg-convertor?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)</strong> - Convert your Figma Templates to 100% Editable Gutenberg Blocks Website using our [FREE Figma Plugin.](https://www.figma.com/community/plugin/1265873702834050352/)
-
-<strong><a href="https://theplusaddons.com/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks">🥇 The Plus Addons for Elementor</a></strong> - 120+ All-in-One widgets for Elementor Page Builder.
+* [Nexter Extension](https://nexterwp.com/nexter-extension/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — 50+ site tools: Security, SMTP, Image Optimizer (WebP/AVIF), Theme Builder, Code Snippets, Performance
+* [The Plus Addons for Elementor](https://theplusaddons.com/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — 120+ All-in-One widgets for Elementor
+* [NexterWP Theme](https://nexterwp.com/nexter-theme/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Ultra-light, FSE-ready starter theme. Zero jQuery
+* [UiChemy — Figma to Gutenberg Converter](https://uichemy.com/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — Convert Figma designs to editable Gutenberg blocks
+* [WDesignKit](https://wdesignkit.com/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) — 1000+ Templates, Cloud Block Storage, Gutenberg Block Builder
 
 == Installation ==
 
@@ -421,55 +225,57 @@ All in One WordPress Page Builder Plugin packed with <strong>[Blog Website Build
 
 == Frequently Asked Questions ==
 
-=With so many features, will my website slow down?=
+= Will 90+ blocks slow down my site? =
 
-Not at all! Nexter Blocks are designed to be super lightweight and fast. They’re completely jQuery-free and built with pure vanilla JavaScript, ensuring the fastest performance with no extra dependencies. Plus, everything is modular—you only enable the blocks you need, so unused features won’t affect your site’s speed at all.
+No — and this is the most important thing to understand about how Nexter Blocks is built. Every block is a completely isolated module. When you disable a block in the Nexter dashboard, it loads zero CSS and zero JavaScript on the front end. Only enabled blocks add any page weight at all. And because the entire plugin is built on Vanilla JS with no jQuery dependency, the overhead is a fraction of what comparable page builders add. One CSS file and one JS file load per page regardless of how many blocks you have enabled.
 
-=I need help with the plugin, How to get support?=
+= How does the built-in AI work? =
 
-User satisfaction is at our core when building plugins for you. We feel it should be easier for you to reach us without any complex to-dos. So that you can focus on what's important. We provide multiple channels for support.
+Nexter Blocks connects directly to ChatGPT (OpenAI) and Gemini. You choose your preferred AI model in the AI settings dashboard inside your WordPress admin. AI credits are included with the Pro plan — no separate API key required for Pro users. The AI generates content, images, and full section auto-fills entirely inside the Gutenberg block editor without switching to any external tool or browser tab.
 
-- [WordPress.org Support Forum](https://wordpress.org/support/plugin/the-plus-addons-for-block-editor/#new-topic-0) *(For Free Users)*
-- [Helpdesk](https://store.posimyth.com/helpdesk/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) *(For Premium Users)*
-- [Detailed Documentation](https://nexterwp.com/docs/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) *(For Instant Answers)*
-- [Facebook Community](https://www.facebook.com/groups/nexterwpcommunity/) *(Everyone)*
-- Live Chat *(Everyone)*
-- Mention us, anywhere on Social Media, and we will get back to you soon 😉
+= Why Nexter Blocks instead of a standalone page builder? =
 
-=Does Nexter Blocks work with any Page Builder?=
+Standalone page builders like Elementor, Beaver Builder, and Divi replace the native WordPress editor with a custom interface. Nexter Blocks extends the native Gutenberg block editor — which means your content is portable, your editor stays standard, your site loads faster (no heavy page builder wrapper), and everything is compatible with the Full Site Editor direction WordPress is heading. You get a better page builder experience while staying inside the native editor.
 
-Our Blocks work with only WordPress default Block Editor, also known as Gutenberg. 
+= Does it work with my theme? =
 
-If you’re looking for the Elementor version, then check our other Elementor addon plugins dedicatedly for Elementor Page Builder—[The Plus Addons for Elementor](https://theplusaddons.com/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks).
+Compatible with Nexter Theme, Astra, Kadence, Blocksy, GeneratePress, OceanWP, Neve, Hello Elementor, and all major block-based and classic themes. Also compatible with the Full Site Editor. [Nexter Theme](https://wordpress.org/themes/nexter/) is recommended for best combined performance.
 
-= What Themes are supported with Nexter Blocks? =
+= Does it work with WooCommerce? =
 
-We have designed the blocks in compatibility with all popular themes out there, and we have made tags and CSS structure in a manner so that you can enjoy designing websites without any design hassles.We have tested with Kadence Theme, Blocksy Theme, Astra Theme, OceanWP Theme, GeneratePress Theme, Neve Theme
+Yes. WooCommerce Product Grid, Carousel, Masonry, and Metro blocks give you complete design control over product listings. The Dynamic Post Grid Builder supports WooCommerce custom post types. Dynamic Content (Pro) pulls WooCommerce meta fields into any block. Login, Registration, and Password Reset form blocks are WooCommerce account-compatible.
 
-However, we recommend having our ultra-light [Nexter Theme](https://wordpress.org/themes/nexter/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) for best performance.
+= Can I build popups without a separate popup plugin? =
 
-= Will multiple WordPress Blocks slow down my website? =
+Yes. The built-in [Popup Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-popup-builder/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) supports 6 popup types, 10+ trigger conditions (including exit intent, scroll depth, time delay, and click), and 16+ display rules. Every popup is designed inside the Gutenberg editor itself — no separate popup plugin, no shortcodes.
 
-Absolutely not! Performance is our top priority, even with feature-rich blocks. Our advanced asset delivery system ensures that only one CSS and one JS file are dynamically loaded for each page, no matter how many blocks you use.
+= Can I build a mega menu without a separate plugin? =
 
-Additionally, we offer the first-ever unused block scanner inside the addon, allowing you to disable all unused Gutenberg blocks in just one click. This guarantees that no extra code will be loaded, keeping your website as fast as possible.
+Yes. The [Mega Menu Builder](https://nexterwp.com/nexter-blocks/builder/wordpress-mega-menu/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) supports horizontal and vertical mega menus with full Gutenberg block content inside every dropdown panel — columns, icons, images, CTAs. No separate mega menu plugin required.
 
+= Does it support ACF and custom post type dynamic content? =
 
-Any questions? [Reach us here](https://store.posimyth.com/get-support-nexterwp/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
+Yes. Dynamic Content (Pro) pulls live field data from ACF, Toolset, Pods, and native WordPress custom fields into any block on any page. The Custom Dynamic Post Listing builder creates fully custom layouts for any post type or CPT with drag-and-drop skin control.
 
-=Do you have a Premium version of plugin?=
+= Does it support WPML, RTL, and multisite? =
 
-Yes, we do have a Premium version of the plugin which gives you more 40+ Premium WordPress Blocks. [Compare FREE vs Pro](https://nexterwp.com/free-vs-pro/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [Upgrade PRO](https://nexterwp.com/pricing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
+Yes — fully compatible with WPML for multilingual sites, right-to-left languages, and WordPress multisite networks. The plugin is security-audited by Patchstack.
 
-= I am unable to find a block in Gutenberg Editor, How to enable them? =
+= How do I enable a block I cannot find in the editor? =
 
-If you’re unable to find a block in the Gutenberg editor, please make sure it’s enabled in the backend. Visit Nexter Dashboard → Blocks and turn on the toggle for the blocks you wish to use.
+Go to Nexter, Blocks in your WordPress dashboard and toggle the block on. It appears in the block inserter immediately. Disabled blocks load no code on the front end, so you can enable and disable freely without affecting site performance.
 
-Still facing issues? [Get Support](https://store.posimyth.com/get-support-nexterwp/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
+= Is there a Pro version? =
 
-=I have an idea, where can I request new feature?=
+Yes. [Compare Free vs Pro](https://nexterwp.com/free-vs-pro/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks) | [See Pricing](https://nexterwp.com/pricing/?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks). Pro includes 45+ additional blocks, AI credits, dynamic content, display conditions, WooCommerce blocks, gallery layouts, and all advanced animation and header effects.
 
-Thank you so much for showing interest in shaping the features of Nexter Blocks. You can always suggest your great ideas on our Roadmap. [Suggest Feature](https://roadmap.nexterwp.com/boards/feature-requests?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
+= Where can I suggest new features or vote on the roadmap? =
+
+[Submit and vote on the public roadmap](https://roadmap.nexterwp.com/boards/feature-requests?utm_source=wordpress&utm_medium=readmepage&utm_campaign=nexterblocks)
+
+= How do I report a security vulnerability? =
+
+Via Patchstack Vulnerability Disclosure: https://patchstack.com/database/vdp/the-plus-addons-for-block-editor
 
 == Screenshots ==
 
@@ -513,6 +319,168 @@ Privacy Policy & Terms: ThePlus Addons [Privacy Policy](https://store.posimyth.c
 
 
 == Changelog ==
+
+= 4.7.7 = 06 May 2026
+- Fix : hard-coded and non-translatable strings issue
+- Improve : Enhanced overall code quality.
+
+= 4.7.6 = 06 May 2026
+- Fix : Corrected inconsistent text domain usage in the file. 
+- Improve : Enhanced overall code quality.
+
+= 4.7.5 = 22 April 2026
+- Added : Typo Components : Text Transform Default option Added.
+- Fix : Image : Image Size Dynamic Bug Fix
+- Fix : Accordion Inner : Duplicate Richtext Bug fix.
+- Fix : Block titles and descriptions were not appearing translated.
+- Fix : Corrected inconsistent text domain usage in file.
+
+= 4.7.4 = 15 April 2026
+- Fix : languages Pot Issue resolved.
+
+= 4.7.3 = 13 April 2026
+- Update : languages Pot File Updated.
+
+= 4.7.2 = 13 Mar 2026
+- Added : AI Integration support for multiple text models in the AI Settings Dashboard.
+- Added : AI Integration added to Code Snippets Block.
+- Added : AI Integration toolbar editing support across all Gutenberg text blocks.
+- Update : Components background position default set to FocalPointPicker with custom option added.
+- Improvement : Flipbox : Add labels for the options.
+- Improvement : Advanced Heading : Add labels for the options.
+- Improvement : Stylish List : Add labels for the options.
+- Improvement : Infobox : Add labels for the options.
+- Improvement : Number Counter : Add labels for the options.
+- Improvement : Pricing Table : Add labels for the options.
+- Improvement : Progress Bar : Add labels for the options.
+- Improvement : Video : Add labels for the options.
+- Improvement : Breadcrumbs : Add labels for the options.
+- Improvement : Smooth Scroll : Add labels for the options.
+- Improvement : Hover Card : Add labels for the options.
+- Improvement : Container : Add labels for the options.
+- Improvement : Form : Add labels for the options.
+- Improvement : Switcher : Add labels for the options.
+- Improvement : Search Bar : Add labels for the options.
+- Improvement : Navigation Menu : Add labels for the options.
+- Improvement : Google Map : Add labels for the options.
+- Improvement : External Form Styler : Add labels for the options.
+- Improvement : Social Icon : Add labels for the options.
+- Improvement : Code Highlighter : Add labels for the options.
+- Improvement : Dark Mode : Add labels for the options.
+- Improvement : Post Title : Add labels for the options.
+- Improvement : Advanced Image : Add labels for the options.
+- Improvement : Progress Tracker : Add labels for the options.
+- Improvement : Pricing List : Add labels for the options.
+- Improvement : Image : Add labels for the options.
+- Improvement : Site Logo : Add labels for the options.
+
+= 4.7.1 = 06 Mar 2026
+- Fix: Security : Improved code security and resolved a vulnerability.
+
+= 4.7.0 = 23 Jan 2026
+- Introduced AI-powered text generation for all blocks with OpenAI and Gemini integration.
+- Converted All blocks to ApiVersion 3, ensuring better performance, stability, and alignment with the latest WordPress standards. 
+- Added : Extra Option : Transform & Transition Normal / Hover Option Added.
+- Added : Advance Button : SVG Icon Upload Option added.
+- Added : Advance Heading : Wrap Link Option added.
+- Added : Draw SVG : Wrap Link Option added.
+- Added : Stylish List  : SVG Icon Upload Option added.
+- Added : Spacer Block : Width & Background Option Added.
+- Added : Form : Button Icon SVG Option Added.
+- Added : Testimonial : Hover Border Option Added.
+- Improvement : Accordion : Add labels for the options.
+- Improvement : Data Table : Add labels for the options.
+- Improvement : Post Listing: Add labels for the options.
+- Improvement : Social embed: Add labels for the options.
+- Improvement : Social Feed : Add labels for the options.
+- Improvement : Social Reviews : Add labels for the options.
+- Improvement : Tab Tours : Add labels for the options.
+- Improvement : Team Member : Add labels for the options.
+- Improvement : Testimonial : Add labels for the options.
+
+= 4.6.4 = 09 Jan 2026
+- Fix: Security : Improved code security and resolved a vulnerability.
+
+= 4.6.3 = 15 Dec 2025
+- Fixed : Dashboard : Asset Delivery Clear cache Bug Fix.
+- Update : Admin Banner remove.
+
+= 4.6.2 = 04 Dec 2025
+- Fixed : Extra : Equal Column Height Bug Fix.
+- Fixed : Minor Bugs and Improvements.
+
+= 4.6.1 = 02 Dec 2025
+- Fixed : Dashboard : Translation Issue Fix.
+- Fixed : Minor Bugs and Improvements.
+
+= 4.6.0 = 24 Nov 2025
+- Important Release:  Introduced a unified Nexter Settings Panel that combines all options from Nexter Theme, Nexter Blocks, and Nexter Extension into one centralized dashboard.
+- Improvement : Social Reviews :  All Block Attributes Converted to JSON
+- Improvement : Social Feed  :  All Block Attributes Converted to JSON
+- Improvement : Social Embed  :  All Block Attributes Converted to JSON
+- Improvement : Site Logo : All Block Attributes Converted to JSON
+- Improvement : Search Bar : All Block Attributes Converted to JSON
+- Improvement : Post Title : All Block Attributes Converted to JSON
+- Improvement : Post Meta : All Block Attributes Converted to JSON
+- Improvement : Post Image : All Block Attributes Converted to JSON
+- Improvement : Post Content : All Block Attributes Converted to JSON
+- Improvement : Post Comment : All Block Attributes Converted to JSON
+- Improvement : Post Author : All Block Attributes Converted to JSON
+- Improvement : Post Listing : All Block Attributes Converted to JSON
+- Improvement : Navigation Builder : All Block Attributes Converted to JSON
+- Improvement : Hover Card : All Block Attributes Converted to JSON
+- Improvement : External Form Styler : All Block Attributes Converted to JSON
+- Improvement : Data Table : All Block Attributes Converted to JSON
+- Fixed : Minor Bugs and Improvements.
+
+= 4.5.12 = 18 Nov 2025
+- Fix : Dashboard template loading issue
+- Minor bug fixes and performance improvements
+
+= 4.5.11 = 03 Nov 2025
+- Added : Form Block : support for multiple email addresses in the “To” field of the Email.
+- Improvement: Improved the Dynamic Assets loading functionality.
+- Minor bug Fixes & Improvements.
+
+= 4.5.10 = 15 Oct 2025
+- Fix : External Form Style : Enhanced button styling for improved accuracy
+- Minor bug Fixes & Improvements.
+
+= 4.5.9 = 01 Oct 2025
+- Added : Quick Action Bar on editor.
+- Added : Data Table : Button Icon Option added.
+- Added : Info box : SVG Background ,  Border & padding option Added.
+- Update : SVG Animation Stop by Set Duration option.
+- Update : New Google Fonts Updated.
+- Minor bug Fixes & Improvements.
+
+= 4.5.8 = 16 Sep 2025
+- Added : Info box :  Global support for SVG fill and stroke color.
+- Added : Info box :  SVG Icon Border , Background option added.
+- Added : Flip box :  Global support for SVG fill and stroke color.
+- Added : Number Counter :  Global support for SVG fill and stroke color.
+- Added : Pricing Table :  Global support for SVG fill and stroke color.
+- Added : Draw Svg :  Global support for SVG fill and stroke color.
+- Added : Global  Equal Height Option Added.
+- Improve : Container : Margin option now defaults to auto if not set. 
+- Fix : Google Map :  Fixed issue where map was not displaying after Kit import.
+- Minor bug Fixes & Improvements.
+
+= 4.5.7 = 11 Sep 2025
+- Added : Heading Title : Main Title & Sub Title Text Gradient Color Option added.
+- Added : Infobox : Icon Text Option added.
+- Added : Video : Fallback Video & Image Option added For Compatibility to Different OS.
+- Update : Number Counter : Add Support For Decimal number.
+- Minor bug Fixes & Improvements.
+
+= 4.5.6 = 03 Sep 2025
+- Added :  Dashboard : Disable Template import Button Option added.
+- Added : Container : Background Top Layer (Overlay) option. 
+- Improve : Onboarding Block List Layout Improve.
+- Update : Form Block : Minor layout Change in mail body part.
+- Update : Iframe Injection Remove From Live Copy.
+- Fix : Heading Block : Color & Typo issue Solved on editor Side.
+- Minor bug Fixes & Improvements.
 
 = 4.5.5 = 11 Aug 2025
 - Fix : Countdown : Security Patch ( Low Security )
@@ -575,239 +543,5 @@ Privacy Policy & Terms: ThePlus Addons [Privacy Policy](https://store.posimyth.c
 - Improve: Dashboard : Auto Save Feature Added for Block Toggle on/off.
 - Fix : Form : Submit Button Click Resize Issue Solved.
 - Fix : CSS Not Load in Kadence Elements Bug Fix.
-
-= 4.4.1 = 30 June 2025
-- Update : Google Fonts Updated 
-- Fix : Pricing List :  Resolved PHP Warning Issue.
-- Fix : Heading Title :  Resolved PHP Warning Issue.
-- Minor bug Fixes & Improvements
-
-= 4.4.0 = 26 June 2025
-- Fix : Social Embed : Resolved issue with Google Map not displaying.
-- Fix : Progress Tracker : box shadow bug in pin.
-- Fix : White Label : Removed Help link from plugin page in White Label settings.
-- Fix : Button : Attributes Type bug fix.
-- Minor bug Fixes and Overall Performance Improvements.
-
-= 4.3.2 = 04 June 2025
-- Added : Flip Box  :  Inner Padding Option Added.
-- Fix : Image Block : Object Fix Cover Option Bug Fix.
-- Fix : Social Feed  : Bug Fixes & Improve.
-- Fix : Social Review : Bug Fixes & Improve.
-- Minor Bugs and Improvements.
-
-= 4.3.1 = 26 May 2025
-- Added : Onboarding Process close Button Added to Dashboard.
-- Minor Bugs and Improvements.
-
-= 4.3.0 = 20 May 2025
-- New : Revamp Global Styles Manager.
-- Added : Onboarding Process Added to Dashboard.
-- Added : Form Block: Added options for Row Gap and Column Gap.
-- Fix :  Resolved issue with CSS not loading on the default shop page.
-- Fix : Tab Tours : issue with the default active tab not appearing correctly in the editor.
-- Fix : Post Meta :  Fixed bug where the category was not displayed on archive pages.
-- Fix : Form Block :  Fixed bug with the submit button width.
-
-= 4.2.3 = 29 April 2025
-- Fix : Background Components Button Design Issue.
-- Fix : Paragraph: Minor design bug.
-- Fix : Blockquote : Minor Design Bug Fix.
-- Fix : Heading Block : Default Anchor Tag Bug Fix.
-- Fix : Form Block : Minor Design Bug Fix.
-- Minor Bugs and Improvements.
-
-= 4.2.2 = 23 April 2025
-- Update : Language : Update the POT file for Internationalization. 
-- Minor Bugs and Improvements.
-
-= 4.2.1 = 21 April 2025
-- Fix : Navigation Builder : LinkFilter Components Bug Fix.
-- Improvement: Added compatibility with WordPress v6.8.
-- Minor Bugs and Improvements.
-
-= 4.2.0 = 16 April 2025
-- Added : Global Block Style : All Blocks 
-- Added : Form Block 
-- Improvement : Tab Tours : Enhance inline editing for the Tab Heading.
-- Improvement : Switcher  : Enhance inline editing for the Heading.
-- Improvement : Team Listing : Enhance inline editing for the Title.
-- Improvement : Site Logo : Allow users to upload a logo directly from the editor.
-- Compatibility : WPML : Button Core Translate Block
-- Compatibility : WPML : Flip Box Translate Block
-- Compatibility : WPML : Heading Translate Block
-- Compatibility : WPML : Image Core Translate Block
-- Compatibility : WPML : Pro Paragraph Translate Block
-- Minor Bugs and Improvements.
-
-= 4.1.8 = 31 March 2025
-- Added : Added : Tab Tours : Tab Column & Tab Column Padding Option Added.
-- Added : Video Block :  Add the playinline attribute to enable autoplay for video on iOS devices.
-- Improvement: Blockquote: Enhance inline editing for the Author Name field.
-- Improvement :  Dashboard :  Enhance Block List Search by Block Keywords .
-- Compatibility :  WPML : Ensured blockquote string translation support.
-- Compatibility :  Theme.JSON : Synced typography Font-Family Nexter Blocks Components.
-- Compatibility :  Site Editor – Synced custom typography Font-Family Nexter Blocks Components.
-- Update :  Language : Standardized string translation text to match the plugin slug. 
-- Minor Bugs and Improvements.
-
-= 4.1.7 = 24 March 2025
-- Added : Dashboard : WDesignkit Widgets added to the Nexter Block List. 
-- Fixed : External Form Styler : Responsive Bug Fix.
-- Fixed : Social Icon : Icon Gradient Color Bug Fix.
-- Minor Bugs and Improvements.
-
-= 4.1.6 = 10 March 2025
-- Added : Typography Component : Text Decoration Blink Option.
-- Improvement : Social Feed – Enhanced Facebook Feed API.
-- Improvement : Social Feed – Enhanced Instagram Feed API.
-- Improvement : Social Review – Enhanced Facebook Review API.
-- Fixed : Advanced Button – Resolved Dynamic Modal Popup Bug.
-- Minor Bugs and Improvements.
-
-= 4.1.5 = 27 February 2025
-- Improvement : Optimize Code to Reduce Memory Usage in Blocks.
-- Fixed : Repeater Components Drag Drop Bug Fix.
-- Minor Bugs and Improvements.
-
-= 4.1.4 = 19 February 2025
-- Added : Pricing Table : Text Hover Colour Added in Content area text.
-- Added : Pricing Table : Content Area Stylish List with Border & Padding Options in Stylish List Style-1. 
-- Fixed : Container Full-Width Bug in Editor.
-- Fixed : Info Box : Template Kit import From WDesignkit Bug Fix.
-– Minor Bugs and Improvements.
-
-= 4.1.3 = 13 February 2025
-- Compatibility : Rank Math Plugin.
-- Improvement : Optimize Code to Reduce Memory Usage in Blocks.
-- Fixed : Container : Grid Layout Auto Column CSS bug Fix.
-- Minor Bugs and Improvements.
-
-= 4.1.2 = 11 February 2025
-- Added : Container Grid CSS option added.
-- Compatibility : BerqWP Cache Plugin.
-- Fixed : Advanced Button : Multiple popup same content display bug fixed.
-- Fixed : Navigation Builder : Sub-menu open bug fixed in editor side & responsive bug fixed.
-- Fixed : Breadcrumb : SVG bug fixed.
-- Fixed : Social Embed : YouTube link bug fixed.
-- Fixed : Navigation Builder : Live copy-paste menu text removal bug fixed.
-- Minor bugs and improvements. 
-
-= 4.1.1 = 28 January 2025
-- Compatibility: Cartify Theme Compatibility with Nexter Block
-- Added : Plugin Page Settings Link Added.
-- Fixed : Minor Bugs and Improvements.
-
-= 4.1.0 = 22 January 2025
-- Added : Dash Icon Disabled : Global Option add for Improved Performance 
-- Improvement : Global Position : Merge all inline CSS styles into a dynamic CSS file, replacing inline <style> tags.
-- Improvement : Advance Image : inline CSS styles into a dynamic CSS file, replacing inline <style> tags.
-- Improvement : Advance Heading : inline CSS styles into a dynamic CSS file, replacing inline <style> tags.
-- Improvement : Info Box : inline CSS styles into a dynamic CSS file, replacing inline <style> tags.
-- Improvement : Pricing List : inline CSS styles into a dynamic CSS file, replacing inline <style> tags.
-- Fixed : Site Logo : Sticky Logo Compatibility Bug Fix.
-- Fixed : Image : Image Alt Text Bug Fix.
-- Fixed : Post Meta : Sorting Meta Field Bug Fix.
-- Fixed : Minor Bugs and Improvements.
-
-= 4.0.13 = 30 December 2024
-- Fixed : Minor Bug Fixed and Improvements
-
-= 4.0.12 = 20 December 2024
-- Fixed : Tab Tours : Image Icon Bug Fixed.
-
-= 4.0.11 = 19 December 2024
-- Added : Image Block Disable Lazy Loading Option Added For Performance Improve
-- Fixed : Tab Tours : Editor Mobile Force Accordion Bug Fixed.
-- Fixed : Global Position : Responsive CSS Bug Fixed.
-- Fixed : All Blocks: Display Rules Bug Fixed.
-- Fixed : Minor Bug Fixes and Improvements.
-
-= 4.0.10 = 05 December 2024
-- Fixed : Layout option : Warning Bug Fixed
-
-= 4.0.9 = 05 December 2024
-- Fixed : Performance : Auto Regenerate Dynamic CSS Bug Fixed
-
-= 4.0.8 = 03 December 2024
-- Added : Navigation Builder : Add Repeater Base Navigation Menu
-- Added : Stylish List : Move to Pro to Free.
-- Added : Team Listing : Style 1 Added.
-- Added : Switcher : Style 1 Added.
-- Added : Post Listing : Metro Style Added.
-- Added : Testimonial : New Style Added With 2 Different layout.
-- Added : Pricing Table : Title Alignment Option Added.
-- Added : Pricing Table : Price Alignment Option Added.
-- Added : Pricing Table : Call to action Option Added.
-- Added : Pricing Table : Content Area Stylist list Option Added.
-- Added : Pricing Table : Content Area Stylist list Option Added.
-- Added : Pricing Table : Style-1 for Ribbon option Added 
-- Added : Accordion : Content Border & Border Radius Option Added.
-- Added : Tab Tours : Responsive Option Added.
-- Improvement : Deactivate Form Design & Functionality Improve.
-- Improvement : DashBoard Responsive View Improve.
-- Fixed : Draw SVG Load Bug Fix.
-- Fixed : Video Block Popup Bug Fix.
-- Fixed : More Translation strings updated, all need text domain.
-- Fixed : Minor Bug Fixes and Improvements.
-
-= 4.0.7 = 22 November 2024
-- Fixed : Minor Bug Fixes and Improvements.
-
-= 4.0.6 = 22 November 2024
-- Fixed : Minor Bug Fixes and Improvements.
-
-= 4.0.5 = 19 November 2024
-- Compatibility : WordPress 6.7
-- Fixed : Hover Card : Sanitize bug Fix.
- 
-= 4.0.4 = 30 October 2024
-- Fixed : Breadcrumb : Latter Limit Bug Fix.
-- Fixed : Minor Bug Fixes and Improvements.
-- Fixed : Component : Range Field : Unit value bug Fix.
-
-= 4.0.3 = 24 October 2024
-- Added : Post Meta : Post Publish Date / Post Modified Option added
-- Fixed : FSE Theme : Dynamic Css Bug Fix
-- Fixed : Count Down : Style-1 Dynamic Label Bug Fix. 
-- Fixed : Accordion Inner : Editor Deprecated Block Bug Fixed
-
-= 4.0.2 = 18 October 2024
-- Fixed : Regenerate All Assets : Tab Tours Tab Color Bug Fix.
-- Fixed : Display Rules Kadence Block Compatibility Bug Fix.
-- Fixed : Post Author Mail Link Bug Fix.
-- Fixed : Testimonial : Yoast SEO plugin Compatibility of bug Fix
-
-= 4.0.1 = 07 October 2024
-- Fixed : Breadcrumbs : Letter Limit Bug Fixed
-- Fixed : Regenerate All Assets : Repeater Field Css & Group Field Css Bug Fixed
-
-= 4.0.0 = 07 October 2024
-- Important Release: New era for Gutenberg blocks, We rebranded The Plus Blocks for Gutenberg to Nexter Blocks.
-- New : Revamped Dashboard
-- New : Revamped Block Controllers
-- New : Revamped Block Editing Area
-- New : Block Change Identifier Dot in Individual Setting
-- New : Block Change Identifier Dot in Panel Setting
-- New : 100% Built on Vanilla JS - No JQuery Loaded at Frontend
-- New : Improved AJAX Loading with SEO Optimised
-- Improvement : Remove jQuery Dependency
-- Improvement : Optimized For Performance : All Blocks
-- Added : AJAX Base Template Load Using Class
-- Added: Container: Content Box layout option added in Container Full Width.
-- Added : Info Box : Add Carousel Remote Connection option
-- Added : Lazy Render Using Class
-- Added : Accordion : Add / Remove Accordions From Toolbar
-- Added : Tab Tours : Add / Remove tab From Toolbar
-- Added : Testimonials : Add / Remove Testimonial From Toolbar
-- Added : Breadcrumbs : Show Terms Taxonomy & Child Terms Taxonomy Option Added.
-- Revamped : Data Table : Converted in Vanilla JS for Top notch performance.
-- Revamped : Google Map : Converted in Vanilla JS for Top notch performance.
-- Revamped : Progress Bar : Converted in Vanilla JS for Top notch performance.
-- Revamped : Tab Tours : Converted in Vanilla JS for Top notch performance.
-- Revamped : Video Block : Converted in Vanilla JS for Top notch performance.
-- Fixed : Delay 3rd Party JS : LottieFiles Bug Fixed
-- Fixed : Stylist List : CSS Bug Fixed
-- Fixed : Bugs and Improvements
 
 == Upgrade Notice ==

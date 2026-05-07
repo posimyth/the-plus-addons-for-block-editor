@@ -1,0 +1,1793 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-social-reviews",
+    "version": "0.1.0",
+    "title": "Social Reviews",
+    "category": "tpgb",
+    "description": "Flaunt you Social Reviews from Facebook, Google with Social Badge.",
+    "example": {
+        "attributes": {}
+    },
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "review_id": {
+            "type": "string",
+            "default": ""
+        },
+        "layout": {
+            "type": "string",
+            "default": "grid"
+        },
+        "RType": {
+            "type": "string",
+            "default": "review"
+        },
+        "style": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "s2Layout": {
+            "type": "string",
+            "default": "layout-1"
+        },
+        "Rreviews": {
+            "type": "array",
+            "repeaterField": [
+                {
+                    "ReviewsType": {
+                        "type": "string",
+                        "default": "facebook"
+                    },
+                    "Token": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "FbPageId": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "FbRType": {
+                        "type": "string",
+                        "default": "default"
+                    },
+                    "icons": {
+                        "type": "string",
+                        "default": "fas fa-star"
+                    },
+                    "RCategory": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "MaxR": {
+                        "type": "string",
+                        "default": 6
+                    }
+                }
+            ],
+            "default": [
+                {
+                    "_key": "k9a2f",
+                    "ReviewsType": "facebook",
+                    "MaxR": 6,
+                    "FbRType": "default"
+                }
+            ]
+        },
+        "columns": {
+            "type": "object",
+            "default": {
+                "md": 4,
+                "sm": 4,
+                "xs": 6
+            }
+        },
+        "columnSpace": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .post-loop-inner .grid-item{padding:{{columnSpace}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FBNagative": {
+            "type": "string",
+            "default": "1"
+        },
+        "ShowFeedId": {
+            "type": "boolean",
+            "default": false
+        },
+        "FeedId": {
+            "type": "string",
+            "default": ""
+        },
+        "TimeFrq": {
+            "type": "string",
+            "default": "3600"
+        },
+        "TextLimit": {
+            "type": "boolean",
+            "default": true
+        },
+        "TextType": {
+            "type": "string",
+            "default": "char"
+        },
+        "TextMore": {
+            "type": "string",
+            "default": "Show More"
+        },
+        "TextCount": {
+            "type": "string",
+            "default": 100
+        },
+        "TextDots": {
+            "type": "boolean",
+            "default": true
+        },
+        "cntScBr": {
+            "type": "boolean",
+            "default": false
+        },
+        "scrlHeight": {
+            "type": "string",
+            "default": ""
+        },
+        "disSocialIcon": {
+            "type": "boolean",
+            "default": false
+        },
+        "disProfileIcon": {
+            "type": "boolean",
+            "default": false
+        },
+        "perf_manage": {
+            "type": "boolean",
+            "default": false
+        },
+        "UnnameTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-username a"
+                }
+            ],
+            "scopy": true
+        },
+        "UnMsgTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-content"
+                }
+            ],
+            "scopy": true
+        },
+        "UnPostOnTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-newline:nth-child(n)"
+                }
+            ],
+            "scopy": true
+        },
+        "UnTimeTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-time"
+                }
+            ],
+            "scopy": true
+        },
+        "UnnameCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-username a{color:{{UnnameCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnMassageCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-content{color:{{UnMassageCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnPostONCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-newline:nth-child(n){color:{{UnPostONCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnTimeCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-time{color:{{UnTimeCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnHnameCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-review:hover .tpgb-sr-username a{color:{{UnHnameCr}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .review-s3-wrap:hover .tpgb-sr-username a{color:{{UnHnameCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnHMassageCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-review:hover .tpgb-sr-content{color:{{UnHMassageCr}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .review-s3-wrap:hover .tpgb-sr-content{color:{{UnHMassageCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnHPostONCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-review:hover .tpgb-newline:nth-child(n){color:{{UnHPostONCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnHTimeCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-review:hover .tpgb-sr-time{color:{{UnHTimeCr}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .review-s3-wrap:hover .tpgb-sr-time{color:{{UnHTimeCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "BgBoxPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .grid-item .tpgb-review{padding:{{BgBoxPadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnNBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-review"
+                }
+            ],
+            "scopy": true
+        },
+        "UnNB": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-review"
+                }
+            ],
+            "scopy": true
+        },
+        "UnNBRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-review{border-radius:{{UnNBRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnNBs": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-review"
+                }
+            ],
+            "scopy": true
+        },
+        "UnHBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-review:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "UnHB": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-review:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "UnHBRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-review:hover{border-radius:{{UnHBRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "UnHBs": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-review:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "BgHpd": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-header{padding:{{BgHpd}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "BgFpd": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-bottom{padding:{{BgFpd}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "topBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-header"
+                }
+            ],
+            "scopy": true
+        },
+        "topB": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-header"
+                }
+            ],
+            "scopy": true
+        },
+        "BottomBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-bottom"
+                }
+            ],
+            "scopy": true
+        },
+        "BottomB": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-bottom"
+                }
+            ],
+            "scopy": true
+        },
+        "StarIconPdg": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-star{padding:{{StarIconPdg}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "StarIconCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-star .sr-star{color:{{StarIconCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "StarIconspace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-star .sr-star{width:{{StarIconspace}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "StarIconsize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-star .sr-star{font-size:{{StarIconsize}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "BgBpd": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-content{padding:{{BgBpd}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "uNamePdg": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-username{padding:{{uNamePdg}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "uNameMrg": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-username{margin:{{uNameMrg}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "OverlayImage": {
+            "type": "boolean",
+            "default": false
+        },
+        "oImgPos": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        },
+                        {
+                            "key": "OverlayImage",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .social-reviews-style-1.overlayimage img.tpgb-sr-profile{left:{{oImgPos}};} {{PLUS_WRAP}} .social-reviews-style-2.overlayimage img.tpgb-sr-profile{top:{{oImgPos}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "pImgBdr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-profile"
+                }
+            ],
+            "scopy": true
+        },
+        "BgPRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-profile{border-radius:{{BgPRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "pImgBShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-sr-profile"
+                }
+            ],
+            "scopy": true
+        },
+        "FbnameTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-sr-username a"
+                }
+            ],
+            "scopy": true
+        },
+        "FbMsgTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-sr-content"
+                }
+            ],
+            "scopy": true
+        },
+        "FbPostOnTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-sr-logotext"
+                }
+            ],
+            "scopy": true
+        },
+        "FbTimeTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-sr-time"
+                }
+            ],
+            "scopy": true
+        },
+        "FbnameCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .tpgb-sr-username a{color:{{FbnameCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbMassageCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .tpgb-sr-content{color:{{FbMassageCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbTimeCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .tpgb-sr-time{color:{{FbTimeCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbPostONCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .tpgb-sr-logotext .tpgb-newline:nth-child(n){color:{{FbPostONCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHnameCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .tpgb-review:hover .tpgb-sr-username a{color:{{FbHnameCr}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .review-s3-wrap:hover .tpgb-sr-username a{color:{{FbHnameCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHMassageCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .tpgb-review:hover .tpgb-sr-content{color:{{FbHMassageCr}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .review-s3-wrap:hover .tpgb-sr-content{color:{{FbHMassageCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHTimeCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .tpgb-review:hover .tpgb-sr-time{color:{{FbHTimeCr}};}"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .review-s3-wrap:hover .tpgb-sr-time{color:{{FbHTimeCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHPostONCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "style",
+                            "relation": "!=",
+                            "value": "style-3"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .tpgb-review:hover .tpgb-sr-logotext{color:{{FbHPostONCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbBpadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-review{padding:{{FbBpadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-review"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNB": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-review"
+                }
+            ],
+            "scopy": true
+        },
+        "FbCRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-review{border-radius:{{FbCRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbBs": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-review"
+                }
+            ],
+            "scopy": true
+        },
+        "FbBHpadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .facebook .tpgb-review:hover{padding:{{FbBHpadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-review:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHB": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-review:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "FbBHRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-review:hover{border-radius:{{FbBHRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHBs": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-review:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "FbPRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-sr-profile{border-radius:{{FbPRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHpd": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-sr-header{padding:{{FbHpd}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbBpd": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-sr-content{padding:{{FbBpd}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbFpd": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .facebook .tpgb-sr-bottom{padding:{{FbFpd}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "SmTxtTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "TextLimit",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-message a.readbtn"
+                }
+            ],
+            "scopy": true
+        },
+        "SmTxtNCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "TextLimit",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-message a.readbtn{color:{{SmTxtNCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "SlTxtNCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "TextLimit",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-message.show-less a.readbtn{color:{{SlTxtNCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "DotTxtNCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "TextLimit",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-message .sf-dots{color:{{DotTxtNCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "SmTxtHCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "TextLimit",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-message a.readbtn:hover{color:{{SmTxtHCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "SlTxtHCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "TextLimit",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-message.show-less a.readbtn:hover{color:{{SlTxtHCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "DotTxtHCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "RType",
+                            "relation": "==",
+                            "value": "review"
+                        },
+                        {
+                            "key": "TextLimit",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-reviews .tpgb-message:hover .sf-dots{color:{{DotTxtHCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "CategoryWF": {
+            "type": "boolean",
+            "default": false
+        },
+        "postLodop": {
+            "type": "string",
+            "default": "none"
+        }
+    }
+}

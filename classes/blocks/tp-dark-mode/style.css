@@ -12,7 +12,7 @@ Front End + Back End CSS
 .dark-pos-absolute .tpgb-dark-mode-wrap {
 	display: block;
 }
- .tpgb-darkmode-toggle {
+.tpgb-darkmode-toggle {
 	z-index: 500;
 	transition: all 0.5s ease;
 }
@@ -26,8 +26,8 @@ Front End + Back End CSS
 	position: fixed;
 }
 .tpgb-dark-mode.dark-pos-fixed {
-    height: 0;
-    z-index: 9999;
+	height: 0;
+	z-index: 9999;
 }
 .tpgb-dark-mode.dark-pos-absolute .tpgb-darkmode-toggle {
 	left: 10%;
@@ -35,11 +35,11 @@ Front End + Back End CSS
 }
 .fix-left-top.tpgb-darkmode-toggle {
 	left: 10%;
-    top: 10%;
+	top: 10%;
 }
 .fix-left-bottom.tpgb-darkmode-toggle {
 	left: 10%;
-    bottom: 10%;
+	bottom: 10%;
 }
 .fix-right-top.tpgb-darkmode-toggle {
 	right: 10%;

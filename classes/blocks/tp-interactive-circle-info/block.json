@@ -1,0 +1,2025 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-interactive-circle-info",
+    "version": "0.1.0",
+    "title": "Interactive Circle Info",
+    "category": "tpgb",
+    "description": "Go beyond simple paragraph, present your infographics in a interactive circular format.",
+    "example": {
+        "attributes": {}
+    },
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "styleType": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "disBtn": {
+            "type": "boolean",
+            "default": false
+        },
+        "btnStyle": {
+            "type": "string",
+            "default": "style-7"
+        },
+        "btnIconType": {
+            "type": "string",
+            "default": "none"
+        },
+        "btnIconStore": {
+            "type": "string",
+            "default": ""
+        },
+        "btnIconPosition": {
+            "type": "string",
+            "default": "after"
+        },
+        "intCircle": {
+            "type": "array",
+            "repeaterField": [
+                {
+                    "iconType": {
+                        "type": "string",
+                        "default": "icon"
+                    },
+                    "iconStore": {
+                        "type": "string",
+                        "default": "fas fa-check-circle"
+                    },
+                    "imageName": {
+                        "type": "object",
+                        "default": {
+                            "url": ""
+                        }
+                    },
+                    "imageSize": {
+                        "type": "string",
+                        "default": "full"
+                    },
+                    "iconTitle": {
+                        "type": "string",
+                        "default": "Item"
+                    },
+                    "conTitle": {
+                        "type": "string",
+                        "default": "Amazing Feature"
+                    },
+                    "conDesc": {
+                        "type": "string",
+                        "default": "Disrupt inspire and think tank, social entrepreneur but preliminary thinking think tank compelling. Inspiring, invest synergy capacity building, white paper; silo, unprecedented challenge B-corp problem-solvers."
+                    },
+                    "btnText": {
+                        "type": "string",
+                        "default": "Read more"
+                    },
+                    "btnUrl": {
+                        "type": "object",
+                        "default": {
+                            "url": "",
+                            "target": "",
+                            "nofollow": ""
+                        }
+                    },
+                    "iconNColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "iconType",
+                                        "relation": "==",
+                                        "value": "icon"
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .circle-icon-inner .tpgb-in-circle-icon{ color: {{iconNColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iconHColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "iconType",
+                                        "relation": "==",
+                                        "value": "icon"
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-icon-wrap:hover .tpgb-in-circle-icon{ color: {{iconHColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iconAColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "iconType",
+                                        "relation": "==",
+                                        "value": "icon"
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item{{TP_REPEAT_ID}}.active .tpgb-in-circle-icon{ color: {{iconAColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iTitleNColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "iconTitle",
+                                        "relation": "!=",
+                                        "value": ""
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .circle-icon-inner .circle-icon-title{ color: {{iTitleNColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iTitleHColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "iconTitle",
+                                        "relation": "!=",
+                                        "value": ""
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-icon-wrap:hover .circle-icon-title{ color: {{iTitleHColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iTitleAColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "iconTitle",
+                                        "relation": "!=",
+                                        "value": ""
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item{{TP_REPEAT_ID}}.active .circle-icon-title{ color: {{iTitleAColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iconNBG": {
+                        "type": "object",
+                        "default": {
+                            "openBg": 0
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .ia-circle-wrap {{TP_REPEAT_ID}} .tpgb-circle-icon-wrap"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iconHBG": {
+                        "type": "object",
+                        "default": {
+                            "openBg": 0
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .ia-circle-wrap {{TP_REPEAT_ID}} .tpgb-circle-icon-wrap:hover"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iconABG": {
+                        "type": "object",
+                        "default": {
+                            "openBg": 0
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item{{TP_REPEAT_ID}}.active .tpgb-circle-icon-wrap"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iconNBcolor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-icon-wrap { border-color: {{iconNBcolor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iconHBcolor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-icon-wrap:hover { border-color: {{iconHBcolor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "iconABcolor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item{{TP_REPEAT_ID}}.active .tpgb-circle-icon-wrap { border-color: {{iconABcolor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "cTitleNColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "conTitle",
+                                        "relation": "!=",
+                                        "value": ""
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-content-wrap .circle-content-title { color: {{cTitleNColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "cTitleHColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "conTitle",
+                                        "relation": "!=",
+                                        "value": ""
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-content-wrap:hover .circle-content-title{ color: {{cTitleHColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "cTitleAColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "conTitle",
+                                        "relation": "!=",
+                                        "value": ""
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}}.active .tpgb-circle-content-wrap .circle-content-title{ color: {{cTitleAColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "cDescNColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "conDesc",
+                                        "relation": "!=",
+                                        "value": ""
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-content-wrap .circle-content-desc { color: {{cDescNColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "cDescHColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "conDesc",
+                                        "relation": "!=",
+                                        "value": ""
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-content-wrap:hover .circle-content-desc { color: {{cDescHColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "cDescAColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "condition": [
+                                    {
+                                        "key": "conDesc",
+                                        "relation": "!=",
+                                        "value": ""
+                                    }
+                                ],
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}}.active .tpgb-circle-content-wrap .circle-content-desc { color: {{cDescAColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "contentNBG": {
+                        "type": "object",
+                        "default": {
+                            "openBg": 0
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-content-wrap .circle-content-inner"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "contentHBG": {
+                        "type": "object",
+                        "default": {
+                            "openBg": 0
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-content-wrap:hover .circle-content-inner"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "contentABG": {
+                        "type": "object",
+                        "default": {
+                            "openBg": 0
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}}.active .tpgb-circle-content-wrap .circle-content-inner"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "contentNBcolor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-content-wrap .circle-content-inner { border-color: {{contentNBcolor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "contentHBcolor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}} .tpgb-circle-content-wrap:hover .circle-content-inner { border-color: {{contentHBcolor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "contentABcolor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} {{TP_REPEAT_ID}}.active .tpgb-circle-content-wrap .circle-content-inner { border-color: {{contentABcolor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    }
+                }
+            ],
+            "default": [
+                {
+                    "_key": "0",
+                    "iconType": "icon",
+                    "iconStore": "fas fa-check-circle",
+                    "iconTitle": "Item 1",
+                    "conTitle": "Amazing Feature 1",
+                    "conDesc": "Disrupt inspire and think tank, social entrepreneur but preliminary thinking think tank compelling. Inspiring, invest synergy capacity building, white paper; silo, unprecedented challenge B-corp problem-solvers.",
+                    "btnText": "Read More",
+                    "btnUrl": {
+                        "url": "#",
+                        "target": "",
+                        "nofollow": ""
+                    },
+                    "imageName": {
+                        "url": ""
+                    }
+                },
+                {
+                    "_key": "1",
+                    "iconType": "icon",
+                    "iconStore": "fas fa-check-circle",
+                    "iconTitle": "Item 2",
+                    "conTitle": "Amazing Feature 2",
+                    "conDesc": "Disrupt inspire and think tank, social entrepreneur but preliminary thinking think tank compelling. Inspiring, invest synergy capacity building, white paper; silo, unprecedented challenge B-corp problem-solvers.",
+                    "btnText": "Read More",
+                    "btnUrl": {
+                        "url": "#",
+                        "target": "",
+                        "nofollow": ""
+                    },
+                    "imageName": {
+                        "url": ""
+                    }
+                },
+                {
+                    "_key": "2",
+                    "iconType": "icon",
+                    "iconStore": "fas fa-check-circle",
+                    "iconTitle": "Item 3",
+                    "conTitle": "Amazing Feature 3",
+                    "conDesc": "Disrupt inspire and think tank, social entrepreneur but preliminary thinking think tank compelling. Inspiring, invest synergy capacity building, white paper; silo, unprecedented challenge B-corp problem-solvers.",
+                    "btnText": "Read More",
+                    "btnUrl": {
+                        "url": "#",
+                        "target": "",
+                        "nofollow": ""
+                    },
+                    "imageName": {
+                        "url": ""
+                    }
+                }
+            ]
+        },
+        "Alignment": {
+            "type": "object",
+            "default": {
+                "md": "center",
+                "sm": "",
+                "xs": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap{ justify-content: {{Alignment}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "mouseTrigger": {
+            "type": "string",
+            "default": "hover"
+        },
+        "autoTime": {
+            "type": "string",
+            "default": "1000"
+        },
+        "defaultActive": {
+            "type": "string",
+            "default": "1"
+        },
+        "outAnimation": {
+            "type": "boolean",
+            "default": false
+        },
+        "selAnimation": {
+            "type": "string",
+            "default": "bounce"
+        },
+        "carouselToggle": {
+            "type": "boolean",
+            "default": false
+        },
+        "carouselID": {
+            "type": "string",
+            "default": ""
+        },
+        "circleWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-inner{ width: {{circleWidth}}; height: {{circleWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "circleNBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "circleHBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-inner:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "circleNbdr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "circleHbdr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-inner:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "circleNRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-inner {border-radius: {{circleNRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "circleHRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-inner:hover {border-radius: {{circleHRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "circleNShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "circleHShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-inner:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "iconWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap .tpgb-circle-icon-wrap{ width: {{iconWidth}}; height: {{iconWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .circle-icon-inner .tpgb-in-circle-icon{ font-size: {{iconSize}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "imageWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .circle-icon-inner .tpgb-in-circle-image{ width: {{imageWidth}}; height: {{imageWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iTitleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .circle-icon-inner .circle-icon-title"
+                }
+            ],
+            "scopy": true
+        },
+        "iTitleSpace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .circle-icon-title { margin-top: {{iTitleSpace}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconNColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .circle-icon-inner .tpgb-in-circle-icon{ color: {{iconNColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconHColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-icon-wrap:hover .tpgb-in-circle-icon { color: {{iconHColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconAColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .tpgb-in-circle-icon{ color: {{iconAColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iTitleNColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .circle-icon-inner .circle-icon-title{ color: {{iTitleNColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iTitleHColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-icon-wrap:hover .circle-icon-title { color: {{iTitleHColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iTitleAColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .circle-icon-title{ color: {{iTitleAColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "iconNBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap .tpgb-circle-icon-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "iconHBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap .tpgb-circle-icon-wrap:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "iconABG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .tpgb-circle-icon-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "iconNbdr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap .tpgb-circle-icon-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "iconHbdr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap .tpgb-circle-icon-wrap:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "iconAbdr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .tpgb-circle-icon-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "iconNRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap .tpgb-circle-icon-wrap {border-radius: {{iconNRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "iconHRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap .tpgb-circle-icon-wrap:hover {border-radius: {{iconNRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "iconARadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .tpgb-circle-icon-wrap {border-radius: {{iconARadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "iconNShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap .tpgb-circle-icon-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "iconHShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .ia-circle-wrap .tpgb-circle-icon-wrap:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "iconAShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .tpgb-circle-icon-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "cTitleTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .circle-content-inner .circle-content-title"
+                }
+            ],
+            "scopy": true
+        },
+        "cDescTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .circle-content-inner .circle-content-desc"
+                }
+            ],
+            "scopy": true
+        },
+        "cDescSpace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .circle-content-inner .circle-content-desc { margin-top: {{cDescSpace}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "contentPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap .circle-content-inner{padding: {{contentPadding}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "contentMargin": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap {margin: {{contentMargin}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "cTitleNColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap .circle-content-title { color: {{cTitleNColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "cTitleHColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap:hover .circle-content-title{ color: {{cTitleHColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "cTitleAColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .circle-content-title{ color: {{cTitleAColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "cDescNColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap .circle-content-desc { color: {{cDescNColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "cDescHColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap:hover .circle-content-desc { color: {{cDescHColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "cDescAColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .circle-content-desc { color: {{cDescAColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "contentNBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap .circle-content-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "contentHBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap:hover .circle-content-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "contentABG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .circle-content-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "contentNbdr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap .circle-content-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "contentHbdr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap:hover .circle-content-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "contentAbdr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "sm": {},
+                    "xs": {},
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .circle-content-inner"
+                }
+            ],
+            "scopy": true
+        },
+        "contentNRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap .circle-content-inner, {{PLUS_WRAP}}.circle-style-1 .tpgb-circle-content-wrap {border-radius: {{contentNRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "contentHRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap:hover .circle-content-inner, {{PLUS_WRAP}}.circle-style-1 .tpgb-circle-content-wrap:hover {border-radius: {{contentHRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "contentARadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .circle-content-inner, {{PLUS_WRAP}}.circle-style-1 .tpgb-ia-circle-item.active .tpgb-circle-content-wrap {border-radius: {{contentARadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "contentNShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap .circle-content-inner, {{PLUS_WRAP}}.circle-style-1 .tpgb-circle-content-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "contentHShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-circle-content-wrap:hover .circle-content-inner, {{PLUS_WRAP}}.circle-style-1 .tpgb-circle-content-wrap:hover "
+                }
+            ],
+            "scopy": true
+        },
+        "contentAShadow": {
+            "type": "object",
+            "default": {
+                "openShadow": 0,
+                "inset": 0,
+                "horizontal": 0,
+                "vertical": 4,
+                "blur": 8,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.40)"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .circle-content-inner, {{PLUS_WRAP}}.circle-style-1 .tpgb-ia-circle-item.active .tpgb-circle-content-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "btnTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0,
+                "size": {
+                    "md": "",
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "btnNmlColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap{ color: {{btnNmlColor}}; }"
+                },
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "btnStyle",
+                            "relation": "==",
+                            "value": "style-7"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-7 .button-link-wrap:after{ border-color: {{btnNmlColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "btnHvrColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap:hover{ color: {{btnHvrColor}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "btnTSpace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-ia-circle-info .tpgb-adv-button{ margin-top: {{btnTSpace}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBSpace": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button{ margin-bottom : {{btnBSpace}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "btnIconSpacing": {
+            "type": "object",
+            "default": {
+                "md": 5,
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .button-link-wrap .button-before { margin-right: {{btnIconSpacing}}; } {{PLUS_WRAP}} .button-link-wrap .button-after { margin-left: {{btnIconSpacing}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "btnIconSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .button-link-wrap .btn-icon { font-size: {{btnIconSize}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "btnPadding": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap{ padding: {{btnPadding}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "btnNormalB": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "btnStyle",
+                            "relation": "==",
+                            "value": "style-8"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "btnStyle",
+                            "relation": "==",
+                            "value": "style-8"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap{border-radius: {{btnBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "btnBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "btnStyle",
+                            "relation": "==",
+                            "value": "style-8"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "btnShadow": {
+            "type": "object",
+            "default": {
+                "horizontal": 0,
+                "vertical": 8,
+                "blur": 20,
+                "spread": 1,
+                "color": "rgba(0,0,0,0.27)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "btnStyle",
+                            "relation": "==",
+                            "value": "style-8"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap"
+                }
+            ],
+            "scopy": true
+        },
+        "btnHvrB": {
+            "type": "object",
+            "default": {
+                "openBorder": 0,
+                "type": "",
+                "color": "",
+                "width": {
+                    "md": {
+                        "top": "1",
+                        "left": "1",
+                        "bottom": "1",
+                        "right": "1"
+                    },
+                    "unit": "px"
+                }
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "btnStyle",
+                            "relation": "==",
+                            "value": "style-8"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "btnHvrBRadius": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "btnStyle",
+                            "relation": "==",
+                            "value": "style-8"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover{border-radius: {{btnHvrBRadius}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "btnHvrBG": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "btnStyle",
+                            "relation": "==",
+                            "value": "style-8"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button.button-style-8 .button-link-wrap:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "btnHvrShadow": {
+            "type": "object",
+            "default": {
+                "horizontal": "",
+                "vertical": "",
+                "blur": "",
+                "spread": "",
+                "color": "rgba(0,0,0,0.27)"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "disBtn",
+                            "relation": "==",
+                            "value": true
+                        },
+                        {
+                            "key": "btnStyle",
+                            "relation": "==",
+                            "value": "style-8"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .tpgb-adv-button .button-link-wrap:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "extIndicator": {
+            "type": "object",
+            "groupField": [
+                {
+                    "indiStyle": {
+                        "type": "string",
+                        "default": "style-1"
+                    },
+                    "indiLineWidth": {
+                        "type": "object",
+                        "default": {
+                            "md": "",
+                            "unit": "px"
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .tpgb-circle-ext-indicator .tpgb-circle-shape-wrap { height: {{indiLineWidth}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "indiLineHeight": {
+                        "type": "object",
+                        "default": {
+                            "md": "",
+                            "unit": "px"
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .tpgb-circle-ext-indicator .tpgb-circle-shape-wrap { width: {{indiLineHeight}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "edgeWidth": {
+                        "type": "object",
+                        "default": {
+                            "md": "",
+                            "unit": "px"
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .tpgb-circle-ext-indicator .tpgb-circle-shape-inner { width: {{edgeWidth}};  height: {{edgeWidth}}; left: calc(100% + {{edgeWidth}}/2);}"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "edgeDotwidth": {
+                        "type": "object",
+                        "default": {
+                            "md": "",
+                            "unit": "px"
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}}.indicator-style-5 .tpgb-circle-ext-indicator .tpgb-circle-shape-wrap::before { width: {{edgeDotwidth}}; height: {{edgeDotwidth}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "edgeCircwidth": {
+                        "type": "object",
+                        "default": {
+                            "md": "",
+                            "unit": "px"
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}}.indicator-style-5 .tpgb-circle-ext-indicator .tpgb-circle-shape-inner { border-width: {{edgeCircwidth}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "lineNColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .tpgb-circle-ext-indicator .tpgb-circle-shape-wrap { background: {{lineNColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "lineAColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .tpgb-circle-ext-indicator .tpgb-circle-shape-wrap { background: {{lineAColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "edgeNColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .tpgb-circle-ext-indicator .tpgb-circle-shape-inner { background: {{edgeNColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "edgeAColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}} .tpgb-ia-circle-item.active .tpgb-circle-ext-indicator .tpgb-circle-shape-inner { background: {{edgeAColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "dotNColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}}.indicator-style-5 .tpgb-circle-ext-indicator .tpgb-circle-shape-wrap::before { background: {{dotNColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "dotAColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}}.indicator-style-5 .tpgb-ia-circle-item.active .tpgb-circle-ext-indicator .tpgb-circle-shape-wrap::before { background: {{dotAColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "circleNColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}}.indicator-style-5 .tpgb-circle-ext-indicator .tpgb-circle-shape-inner { border-color: {{circleNColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    },
+                    "circleAColor": {
+                        "type": "string",
+                        "default": "",
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}}.indicator-style-5 .tpgb-ia-circle-item.active .tpgb-circle-ext-indicator .tpgb-circle-shape-inner { border-color: {{circleAColor}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    }
+                }
+            ],
+            "default": {
+                "indiStyle": "style-1",
+                "indiLineWidth": {
+                    "md": "",
+                    "unit": "px"
+                },
+                "indiLineHeight": {
+                    "md": "",
+                    "unit": "px"
+                },
+                "edgeWidth": {
+                    "md": "",
+                    "unit": "px"
+                },
+                "edgeDotwidth": {
+                    "md": "",
+                    "unit": "px"
+                },
+                "edgeCircwidth": {
+                    "md": "",
+                    "unit": "px"
+                },
+                "lineNColor": "",
+                "edgeNColor": "",
+                "dotNColor": "",
+                "circleNColor": "",
+                "lineAColor": "",
+                "edgeAColor": "",
+                "dotAColor": "",
+                "circleAColor": ""
+            }
+        },
+        "contiRotate": {
+            "type": "object",
+            "groupField": [
+                {
+                    "animDirection": {
+                        "type": "string",
+                        "default": "clock-wise"
+                    },
+                    "contiRotateSpeed": {
+                        "type": "object",
+                        "default": {
+                            "md": "",
+                            "unit": "s"
+                        },
+                        "style": [
+                            {
+                                "selector": "{{PLUS_WRAP}}.circle-continue-rotate .ia-circle-inner, {{PLUS_WRAP}}.circle-continue-rotate .ia-circle-inner .tpgb-circle-icon-wrap .circle-icon-inner, {{PLUS_WRAP}}.circle-continue-rotate .ia-circle-inner .tpgb-circle-content-wrap { animation-duration: {{contiRotateSpeed}}; -moz-animation-duration: {{contiRotateSpeed}}; -webkit-animation-duration: {{contiRotateSpeed}}; }"
+                            }
+                        ],
+                        "scopy": true
+                    }
+                }
+            ],
+            "default": {
+                "animDirection": "clock-wise",
+                "contiRotateSpeed": {
+                    "md": "",
+                    "unit": "s"
+                }
+            }
+        },
+        "showBlockContent": {
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

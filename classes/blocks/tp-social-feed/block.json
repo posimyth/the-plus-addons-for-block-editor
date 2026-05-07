@@ -1,0 +1,2356 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-social-feed",
+    "version": "0.1.0",
+    "title": "Social Feed",
+    "category": "tpgb",
+    "description": "Show your Facebook, Instagram, Twitter, YouTube, Vimeo and all combined Multi Social Feed on your site.",
+    "example": {
+        "attributes": {}
+    },
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "feed_id": {
+            "type": "string",
+            "default": ""
+        },
+        "layout": {
+            "type": "string",
+            "default": "grid"
+        },
+        "style": {
+            "type": "string",
+            "default": "style-1"
+        },
+        "AllReapeter": {
+            "type": "array",
+            "repeaterField": [
+                {
+                    "selectFeed": {
+                        "type": "string",
+                        "default": "Facebook"
+                    },
+                    "FbTokenGen": {
+                        "type": "string",
+                        "default": "manually"
+                    },
+                    "SFFbAppId": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "SFFbAppSecretId": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "RAToken": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "ProfileType": {
+                        "type": "string",
+                        "default": "post"
+                    },
+                    "Pageid": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "content": {
+                        "type": "string",
+                        "default": "[]"
+                    },
+                    "fbAlbum": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "AlbumMaxR": {
+                        "type": "string",
+                        "default": 8
+                    },
+                    "MaxR": {
+                        "type": "string",
+                        "default": 6
+                    }
+                }
+            ],
+            "default": [
+                {
+                    "_key": "b9g2w",
+                    "selectFeed": "Facebook",
+                    "FbTokenGen": "manually",
+                    "ProfileType": "post",
+                    "MaxR": 6,
+                    "content": "[]"
+                }
+            ]
+        },
+        "columns": {
+            "type": "object",
+            "default": {
+                "md": 4,
+                "sm": 4,
+                "xs": 6
+            }
+        },
+        "columnSpace": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .post-loop-inner .grid-item{padding:{{columnSpace}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "TotalPost": {
+            "type": "string",
+            "default": 1000
+        },
+        "BackendOff": {
+            "type": "boolean",
+            "default": true
+        },
+        "DescripBTM": {
+            "type": "boolean",
+            "default": false
+        },
+        "MediaFilter": {
+            "type": "string",
+            "default": "default"
+        },
+        "ShowTitle": {
+            "type": "boolean",
+            "default": false
+        },
+        "ShowFeedId": {
+            "type": "boolean",
+            "default": false
+        },
+        "FeedId": {
+            "type": "string",
+            "default": ""
+        },
+        "showFooterIn": {
+            "type": "boolean",
+            "default": false
+        },
+        "TimeFrq": {
+            "type": "string",
+            "default": "3600"
+        },
+        "TextLimit": {
+            "type": "boolean",
+            "default": true
+        },
+        "TextType": {
+            "type": "string",
+            "default": "char"
+        },
+        "TextMore": {
+            "type": "string",
+            "default": "Show More"
+        },
+        "TextCount": {
+            "type": "string",
+            "default": 100
+        },
+        "TextDots": {
+            "type": "boolean",
+            "default": true
+        },
+        "OnPopup": {
+            "type": "string",
+            "default": "Donothing"
+        },
+        "CURLOPT_SSL_VERIFYPEER": {
+            "type": "boolean",
+            "default": true
+        },
+        "perf_manage": {
+            "type": "boolean",
+            "default": false
+        },
+        "CategoryWF": {
+            "type": "boolean",
+            "default": false
+        },
+        "postLodop": {
+            "type": "string",
+            "default": "none"
+        },
+        "FbMsgTp": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-title"
+                }
+            ],
+            "scopy": true
+        },
+        "FbDesTp": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-message"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNameTp": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-username a"
+                }
+            ],
+            "scopy": true
+        },
+        "FbTimeTp": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-time a"
+                }
+            ],
+            "scopy": true
+        },
+        "fbIconSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .feed-Facebook .social-logo-fb {font-size:{{fbIconSize}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "fbIconColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .feed-Facebook .social-logo-fb {color:{{fbIconColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNBgCr": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNBcr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNBRcr": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed{border-radius:{{FbNBRcr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNBs": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHBgCr": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHBcr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHBRcr": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed{border-radius:{{FbHBRcr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHBs": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed"
+                }
+            ],
+            "scopy": true
+        },
+        "FbPRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-logo{border-radius:{{FbPRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNNameC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-username a{color:{{FbNNameC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNTimeC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-time a{color:{{FbNTimeC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNIconCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-sf-footer{color:{{FbNIconCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNTitleC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-title{color:{{FbNTitleC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbNDesC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook .tpgb-sf-feed .tpgb-message{color:{{FbNDesC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHNameC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-sf-username a{color:{{FbHNameC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHTimeC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-sf-time a{color:{{FbHTimeC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHIconCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-sf-footer{color:{{FbHIconCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHTitleC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-title{color:{{FbHTitleC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FbHDesC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .feed-Facebook:hover .tpgb-sf-feed .tpgb-message{color:{{FbHDesC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllMsgTp": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-title"
+                }
+            ],
+            "scopy": true
+        },
+        "AllDesTp": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-message"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNameTp": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-username a"
+                }
+            ],
+            "scopy": true
+        },
+        "AllTimeTp": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-time a"
+                }
+            ],
+            "scopy": true
+        },
+        "allIconSize": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .social-logo-fb, {{PLUS_WRAP}} .social-logo-ig, {{PLUS_WRAP}} .social-logo-vm, {{PLUS_WRAP}} .social-logo-yt, {{PLUS_WRAP}} .social-logo-tw{font-size:{{allIconSize}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "allIconColor": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .social-logo-fb, {{PLUS_WRAP}} .social-logo-ig, {{PLUS_WRAP}} .social-logo-vm, {{PLUS_WRAP}} .social-logo-yt, {{PLUS_WRAP}} .social-logo-tw{color:{{allIconColor}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNBgCr": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNBcr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNBrs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed{border-radius:{{AllNBrs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNBs": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHBgCr": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHBcr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHBrs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover{border-radius:{{AllHBrs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHboxpadd": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover{padding:{{AllHboxpadd}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHBs": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover"
+                }
+            ],
+            "scopy": true
+        },
+        "AllPRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed img.tpgb-sf-logo{border-radius:{{AllPRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllBoxSh": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed img.tpgb-sf-logo"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNNameC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-username a{color:{{AllNNameC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNTimeC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-time a{color:{{AllNTimeC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNIconCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-footer,{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-footer a{color:{{AllNIconCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNTitleC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-title{color:{{AllNTitleC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNDesC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-message{color:{{AllNDesC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHsmC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .grid-item a.readbtn{color:{{AllHsmC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNurlC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-feedurl{color:{{AllNurlC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNMtC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-mantion{color:{{AllNMtC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllNHtC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-hashtag{color:{{AllNHtC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHNameC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-sf-username a{color:{{AllHNameC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHTimeC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-sf-time a{color:{{AllHTimeC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHIconCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-sf-footer,{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-sf-footer a{color:{{AllHIconCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHurlC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message:hover .tpgb-feedurl{color:{{AllHurlC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHMtC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message:hover .tpgb-mantion{color:{{AllHMtC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHHtC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message:hover .tpgb-hashtag{color:{{AllHHtC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHTitleC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-title{color:{{AllHTitleC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllHDesC": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed:hover .tpgb-message{color:{{AllHDesC}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllImg": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed img.tpgb-post-thumb{padding:{{AllImg}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllTitle": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-title{padding:{{AllTitle}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllTitleBR": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-title"
+                }
+            ],
+            "scopy": true
+        },
+        "Alldescription": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-message{padding:{{Alldescription}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllDesBR": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-message"
+                }
+            ],
+            "scopy": true
+        },
+        "AllProfile": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-header{padding:{{AllProfile}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllProfBR": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-header"
+                }
+            ],
+            "scopy": true
+        },
+        "AllFooter": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-footer{padding:{{AllFooter}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "AllbtmBR": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed .tpgb-sf-footer"
+                }
+            ],
+            "scopy": true
+        },
+        "Allboxpadd": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-sf-feed{padding:{{Allboxpadd}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "SmTxtTypo": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message a.readbtn"
+                }
+            ],
+            "scopy": true
+        },
+        "SmTxtNCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message a.readbtn{color:{{SmTxtNCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "SlTxtNCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message.show-less a.readbtn{color:{{SlTxtNCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "DotTxtNCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message .sf-dots{color:{{DotTxtNCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "SmTxtHCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message a.readbtn:hover{color:{{SmTxtHCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "SlTxtHCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message.show-less a.readbtn:hover{color:{{SlTxtHCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "DotTxtHCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "style",
+                            "relation": "==",
+                            "value": ["style-1", "style-2", "style-3", "style-4"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-message:hover .sf-dots{color:{{DotTxtHCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "ScrollOn": {
+            "type": "boolean",
+            "default": false
+        },
+        "ScrollHgt": {
+            "type": "string",
+            "default": ""
+        },
+        "ScrollBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ScrollOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar"
+                }
+            ],
+            "scopy": true
+        },
+        "ScrollWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ScrollOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar{width:{{ScrollWidth}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "ThumbBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ScrollOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-thumb"
+                }
+            ],
+            "scopy": true
+        },
+        "ThumbBrs": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ScrollOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-thumb{border-radius:{{ThumbBrs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "ThumbBsw": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ScrollOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-thumb"
+                }
+            ],
+            "scopy": true
+        },
+        "TrackBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ScrollOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-track"
+                }
+            ],
+            "scopy": true
+        },
+        "TrackBRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ScrollOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-track{border-radius:{{TrackBRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "TrackBsw": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "ScrollOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.tpgb-social-feed .tpgb-normal-scroll::-webkit-scrollbar-track"
+                }
+            ],
+            "scopy": true
+        },
+        "FcySclOn": {
+            "type": "boolean",
+            "default": false
+        },
+        "FcySclHgt": {
+            "type": "string",
+            "default": ""
+        },
+        "FcySclBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FcySclOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar"
+                }
+            ],
+            "scopy": true
+        },
+        "FcySclWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FcySclOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar{width:{{FcySclWidth}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FcyThumbBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FcySclOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-thumb"
+                }
+            ],
+            "scopy": true
+        },
+        "FcyThumbBrs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FcySclOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-thumb{border-radius:{{FcyThumbBrs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FcyThumbBsw": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FcySclOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-thumb"
+                }
+            ],
+            "scopy": true
+        },
+        "FcyTrackBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FcySclOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-track"
+                }
+            ],
+            "scopy": true
+        },
+        "FcyTrackBRs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FcySclOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-track{border-radius:{{FcyTrackBRs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FcyTrackBsw": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FcySclOn",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fancy-scroll::-webkit-scrollbar-track"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyStyle": {
+            "type": "string",
+            "default": "default"
+        },
+        "LoopFancy": {
+            "type": "boolean",
+            "default": true
+        },
+        "ArrowsFancy": {
+            "type": "boolean",
+            "default": true
+        },
+        "ClickContent": {
+            "type": "string",
+            "default": "next"
+        },
+        "TransitionFancy": {
+            "type": "string",
+            "default": "slide"
+        },
+        "FancyBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": ".fancybox-container .fancybox__backdrop"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyInBg": {
+            "type": "object",
+            "default": {
+                "openBg": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyInBgB": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyInBgBs": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si{border-radius:{{FancyInBgBs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyInBoxSw": {
+            "type": "object",
+            "default": {
+                "openShadow": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyName": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-username a"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyTime": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-time a"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyTitle": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-title"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyDes": {
+            "type": "object",
+            "default": {
+                "openTypography": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-message"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyNameCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-username a{color:{{FancyNameCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyTimeCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-time a{color:{{FancyTimeCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancytitleCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-title{color:{{FancytitleCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyDesCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-message{color:{{FancyDesCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyiconCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-sf-footer a{color:{{FancyiconCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancySICr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-logo{color:{{FancySICr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancySIs": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-logo{font-size:{{FancySIs}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyBtnCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-footer .tpgb-btn-viewpost{background:{{FancyBtnCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyBtnTxtCr": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-footer .tpgb-btn-viewpost a{color:{{FancyBtnTxtCr}};}"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyBtnBr": {
+            "type": "object",
+            "default": {
+                "openBorder": 0
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-footer .tpgb-btn-viewpost"
+                }
+            ],
+            "scopy": true
+        },
+        "FancyBtnpadd": {
+            "type": "object",
+            "default": {
+                "md": {
+                    "top": "",
+                    "right": "",
+                    "bottom": "",
+                    "left": ""
+                },
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "FancyStyle",
+                            "relation": "==",
+                            "value": ["style-1", "style-2"]
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}}.fancybox-si .tpgb-fcb-footer .tpgb-btn-viewpost{padding:{{FancyBtnpadd}};}"
+                }
+            ],
+            "scopy": true
+        }
+    }
+}

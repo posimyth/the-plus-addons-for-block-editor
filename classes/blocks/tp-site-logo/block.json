@@ -1,0 +1,191 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "tpgb/tp-site-logo",
+    "version": "0.1.0",
+    "title": "Site Logo",
+    "category": "tpgb",
+    "description": "Add dynamically same logo throughout your website.",
+    "example": {
+        "attributes": {}
+    },
+	"supports": {
+		"align": ["wide","full"]
+	},
+	"textdomain": "the-plus-addons-for-block-editor",
+    "attributes": {
+        "block_id": {
+            "type": "string",
+            "default": ""
+        },
+        "logoNmlDbl": {
+            "type": "string",
+            "default": "normal"
+        },
+        "logoType": {
+            "type": "string",
+            "default": "img"
+        },
+        "imageStore": {
+            "type": "object",
+            "default": {
+                "url": "{{TPGB_ASSETS_URL}}assets/images/tpgb-placeholder.jpg"
+            }
+        },
+        "imageSize": {
+            "type": "string",
+            "default": "thumbnail"
+        },
+        "svgStore": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "logoWidth": {
+            "type": "object",
+            "default": {
+                "md": "100",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} .site-normal-logo img.image-logo-wrap{ max-width: {{logoWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "hvrImageStore": {
+            "type": "object",
+            "default": {
+                "url": "{{TPGB_ASSETS_URL}}assets/images/tpgb-placeholder.jpg"
+            }
+        },
+        "hvrImageSize": {
+            "type": "string",
+            "default": "thumbnail"
+        },
+        "hvrSvgStore": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "hvrLogoWidth": {
+            "type": "object",
+            "default": {
+                "md": "100",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "logoNmlDbl",
+                            "relation": "==",
+                            "value": "double"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .site-normal-logo.hover-logo img.image-logo-wrap{ max-width: {{hvrLogoWidth}}; width: {{hvrLogoWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "urlType": {
+            "type": "string",
+            "default": "home"
+        },
+        "customURL": {
+            "type": "object",
+            "default": {
+                "url": "#",
+                "target": "",
+                "nofollow": ""
+            }
+        },
+        "Alignment": {
+            "type": "object",
+            "default": {
+                "md": "left",
+                "sm": "",
+                "xs": ""
+            },
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}} { text-align: {{Alignment}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "stickyLogo": {
+            "type": "boolean",
+            "default": false
+        },
+        "stickyImg": {
+            "type": "object",
+            "default": {
+                "url": "{{TPGB_ASSETS_URL}}assets/images/tpgb-placeholder.jpg"
+            }
+        },
+        "sImgSize": {
+            "type": "string",
+            "default": "thumbnail"
+        },
+        "stickySvg": {
+            "type": "object",
+            "default": {
+                "url": ""
+            }
+        },
+        "stickyWidth": {
+            "type": "object",
+            "default": {
+                "md": "",
+                "unit": "px"
+            },
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "logoNmlDbl",
+                            "relation": "==",
+                            "value": "normal"
+                        },
+                        {
+                            "key": "stickyLogo",
+                            "relation": "==",
+                            "value": true
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .site-normal-logo img.image-logo-wrap.sticky-image{ max-width: {{stickyWidth}}; }"
+                }
+            ],
+            "scopy": true
+        },
+        "logoSpeed": {
+            "type": "string",
+            "default": "",
+            "style": [
+                {
+                    "condition": [
+                        {
+                            "key": "logoNmlDbl",
+                            "relation": "==",
+                            "value": "double"
+                        }
+                    ],
+                    "selector": "{{PLUS_WRAP}} .site-normal-logo,{{PLUS_WRAP}} .site-normal-logo.hover-logo,{{PLUS_WRAP}} .site-logo-wrap.logo-hover-normal:hover .site-normal-logo.hover-logo{ transition-duration : {{logoSpeed}}s; }"
+                }
+            ],
+            "scopy": true
+        },
+        "markupSch": {
+            "type": "boolean",
+            "default": false
+        },
+        "ariaLabel": {
+            "type": "string",
+            "default": ""
+        }
+    }
+}

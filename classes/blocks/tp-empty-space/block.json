@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
 	"name": "tpgb/tp-empty-space",
 	"version": "0.1.0",
 	"title": "Spacer",
@@ -51,6 +52,28 @@
               }
             ],
             "scopy": true
+        },
+        "spacewidth": {
+            "type": "object",
+             "default": {
+            "md": "",
+            "unit": "px"
+            },
+            "style": [
+            {   
+                "selector": "{{PLUS_WRAP}}{width: {{spacewidth}};}"
+            }
+            ],
+            "scopy": true
+        },
+        "spaceBG": {
+            "type": "object",
+            "default": {},
+            "style": [
+                {
+                    "selector": "{{PLUS_WRAP}}"
+                }
+            ]
         }
     }
 }
