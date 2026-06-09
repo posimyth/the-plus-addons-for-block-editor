@@ -1393,7 +1393,7 @@ class Tp_Blocks_Helper {
 
 		$settings = array(
 			'updateOnMove'      => true,
-			'direction'         => isset( $attr['sliderMode'] ) && 'vertical' === $attr['sliderMode'] ? 'ttb' : 'ltr',
+			'direction'         => isset( $attr['sliderMode'] ) && 'vertical' === $attr['sliderMode'] ? 'ttb' : ( is_rtl() ? 'rtl' : 'ltr' ),
 			'start'             => isset( $attr['initialSlide'] ) ? $attr['initialSlide'] : 0,
 			'autoplay'          => isset( $attr['slideAutoplay'] ) ? $attr['slideAutoplay'] : false,
 			'speed'             => isset( $attr['slideSpeed'] ) ? (int) $attr['slideSpeed'] : 1500,

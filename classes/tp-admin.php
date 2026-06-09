@@ -253,7 +253,7 @@ if ( ! class_exists( 'Tpgb_Admin' ) ) {
 				);
 			}
 			require_once TPGB_PATH . 'classes/global-options/tp-import-media.php';
-			$media_import = isset( $_POST['content'] ) ? wp_kses_post( wp_unslash( $_POST['content'] ) ) : '';
+			$media_import = isset( $_POST['content'] ) ? wp_unslash( $_POST['content'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.NonceVerification.Missing
 
 			if ( empty( $media_import ) ) {
 				wp_send_json_error( __( 'Empty Content.', 'the-plus-addons-for-block-editor' ) );

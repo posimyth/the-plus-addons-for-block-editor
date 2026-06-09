@@ -2223,7 +2223,7 @@ class Tpgb_Gutenberg_Settings_Options {
 				$update_block = array();
 				if ( is_array( $blocks ) ) {
 					foreach ( $blocks as $key => $val ) {
-						if ( 1 === $val ) {
+						if ( 1 === (int) $val ) {
 							$update_block[] = $key;
 						}
 					}

@@ -166,6 +166,15 @@ if ( ! class_exists( 'Tpgb_Gutenberg_Loader' ) ) {
 			if ( $ai_enabled && ( ( defined( 'WP_ADMIN' ) && WP_ADMIN ) || ( isset( $_SERVER['REQUEST_URI'] ) && strpos( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), '/wp-admin/' ) !== false ) || $is_our_rest_api ) ) {
 				require_once TPGB_PATH . 'includes/nxt_ai_apis/nxt-ai-register-api.php';
 			}
+
+			if ( function_exists( 'wp_register_ability' ) ) {
+				$mcp_option        = get_option( 'tpgb_connection_data', array() );
+				$mcp_ability_value = isset( $mcp_option['nxt_enable_mcp_abilities'] ) ? $mcp_option['nxt_enable_mcp_abilities'] : 'enable';
+				if ( empty( $mcp_option ) || 'enable' === $mcp_ability_value ) {
+					require_once TPGB_PATH . 'includes/abilities/class-tpgb-mcp-abilities.php';
+					Tpgb_MCP_Abilities::instance();
+				}
+			}
 		}
 
 		/**
@@ -218,7 +227,13 @@ if ( ! class_exists( 'Tpgb_Gutenberg_Loader' ) ) {
 		}
 	}
 
-	Tpgb_Gutenberg_Loader::get_instance();
+	add_action(
+		'plugins_loaded',
+		function () {
+			Tpgb_Gutenberg_Loader::get_instance();
+		},
+		1
+	);
 
 	/**
 	 * Tpgb load data.

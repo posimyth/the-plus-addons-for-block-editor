@@ -78,7 +78,7 @@ function tpgb_tp_interactive_circle_info_render_callback( $attributes, $content 
 	foreach ( $int_circle as $index => $item ) :
 		$item_count = '';
 		$def_active = '';
-		if ( 1 + (int) $index === $default_active ) {
+		if ( 1 + (int) $index === (int) $default_active ) {
 			$def_active = 'active';
 		}
 		$img_src    = '';

@@ -254,12 +254,37 @@ class Tpgb_Core_Init_Blocks {
 		}
 		global $pagenow;
 		if ( ! defined( 'TPGBP_VERSION' ) ) {
-			$scripts_dep = array( 'moment', 'react', 'react-dom', 'wp-block-editor', 'wp-escape-html', 'wp-element', 'wp-wordcount', 'wp-blocks', 'wp-i18n', 'wp-plugins', 'wp-components', 'wp-api-fetch' );
+			$scripts_dep = array( 'react', 'react-dom', 'wp-block-editor', 'wp-escape-html', 'wp-element', 'wp-wordcount', 'wp-blocks', 'wp-i18n', 'wp-plugins', 'wp-components', 'wp-api-fetch' );
 			if ( 'widgets.php' !== $pagenow && 'customize.php' !== $pagenow ) {
 				$scripts_dep = array_merge( $scripts_dep, array( 'wp-editor', 'wp-edit-post' ) );
+
+				// Core — global init, shared settings. Must load first.
 				wp_enqueue_script( 'tpgb-block-editor-js', TPGB_ASSETS_URL . 'assets/js/admin/blocks.js', $scripts_dep, TPGB_VERSION, false );
 
-				wp_set_script_translations( 'tpgb-block-editor-js', 'the-plus-addons-for-block-editor', TPGB_PATH . '/languages/' );
+				// Category scripts — one file per block category.
+				// Split to keep each file small so GlotPress never times out.
+				$block_dep        = array_merge( $scripts_dep, array( 'tpgb-block-editor-js' ) );
+				$lang_path        = TPGB_PATH . 'languages/';
+				$js_url           = TPGB_ASSETS_URL . 'assets/js/admin/';
+				$css_url          = TPGB_ASSETS_URL . 'assets/css/admin/';
+				$block_categories = array(
+					'blocks-essential',
+					'blocks-advanced',
+					'blocks-creative',
+					'blocks-tabbed',
+					'blocks-builder',
+					'blocks-social',
+					'blocks-listing',
+				);
+
+				foreach ( $block_categories as $cat ) {
+					$handle = 'tpgb-' . $cat . '-js';
+					wp_enqueue_script( $handle, $js_url . $cat . '.js', $block_dep, TPGB_VERSION, false );
+					wp_enqueue_style( 'tpgb-' . $cat . '-css', $css_url . $cat . '.css', array( 'tpgb-block-editor-css' ), TPGB_VERSION );
+					wp_set_script_translations( $handle, 'the-plus-addons-for-block-editor', $lang_path );
+				}
+
+				wp_set_script_translations( 'tpgb-block-editor-js', 'the-plus-addons-for-block-editor', TPGB_PATH . 'languages/' );
 			}
 		}
 

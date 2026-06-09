@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
  * @param mixed $content The content.
  * @return mixed The result.
  */
-function nxt_form_block_callback( $attr, $content ) {
+function nxt_form_block_callback( $attr, $content ) { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Scoped variable, not global.
 	$pattern = '/\btpgb-wrap-/';
 	$output  = '';
 	if ( preg_match( $pattern, $content ) ) {
@@ -107,7 +107,7 @@ function nxt_form_block_callback( $attr, $content ) {
 /**
  * Nxt form block render.
  */
-function nxt_form_block_render() {
+function nxt_form_block_render() { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Scoped variable, not global.
 	$block_data                    = Tpgb_Blocks_Global_Options::merge_options_json( __DIR__, 'nxt_form_block_callback' );
 	$block_data['render_callback'] = 'nxt_form_block_callback';
 	register_block_type( $block_data['name'], $block_data );

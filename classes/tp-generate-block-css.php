@@ -361,6 +361,7 @@ class Tpgb_Generate_Blocks_Css {
 												$device = true;
 
 												$_gbr     = isset( $values['globalBorderRadius'] ) ? $values['globalBorderRadius'] : null;
+												$_gbrf    = isset( $values['globalBorderRadiusFallback'] ) ? $values['globalBorderRadiusFallback'] : null;
 												$_gbr_idx = is_array( $_gbr ) ? ( isset( $_gbr['md'] ) ? $_gbr['md'] : '' ) : $_gbr;
 												if ( ! empty( $_gbr_idx ) && is_numeric( $_gbr_idx ) ) {
 													$_gbr_fb   = is_array( $_gbrf ) ? ( isset( $_gbrf['md'] ) ? $_gbrf['md'] : '' ) : ( is_string( $_gbrf ) ? $_gbrf : '' );
@@ -891,7 +892,7 @@ class Tpgb_Generate_Blocks_Css {
 									} elseif ( 'sm' === $breakpoint ) {
 										$tab_css .= '@media (max-width:1024px) and (min-width:767px) { ' . $css . ' } ';
 									} elseif ( 'xs' === $breakpoint ) {
-										array_push( $sm, $css );
+										array_push( $xs, $css );
 									}
 								}
 
@@ -905,7 +906,7 @@ class Tpgb_Generate_Blocks_Css {
 									} elseif ( 'sm' === $breakpoint ) {
 										$tab_css .= '@media (max-width:1024px) and (min-width:767px) { ' . $css . ' } ';
 									} elseif ( 'xs' === $breakpoint ) {
-										array_push( $sm, $css );
+										array_push( $xs, $css );
 									}
 								}
 							}
@@ -1182,7 +1183,7 @@ class Tpgb_Generate_Blocks_Css {
 		$suffix     = $is_hover ? 'Hov' : '';
 
 		// Add perspective as first transform function.
-		if ( isset( $block_value[ 'gRotte' . $suffix ] ) && isset( $block_value[ 'gRotte' . $suffix ]['tpgbReset'] ) && true === $block_value[ 'gRotte' . $suffix ]['tpgbReset'] ) {
+		if ( isset( $block_value[ 'gRotte' . $suffix ] ) && ! empty( $block_value[ 'gRotte' . $suffix ]['tpgbReset'] ) ) {
 			$rotate     = $block_value[ 'gRotte' . $suffix ];
 			$toggle_key = $is_hover ? 'rToggleHov' : 'rotateToogle';
 
@@ -1196,7 +1197,7 @@ class Tpgb_Generate_Blocks_Css {
 		}
 
 		// Rotate.
-		if ( isset( $block_value[ 'gRotte' . $suffix ] ) && isset( $block_value[ 'gRotte' . $suffix ]['tpgbReset'] ) && true === $block_value[ 'gRotte' . $suffix ]['tpgbReset'] ) {
+		if ( isset( $block_value[ 'gRotte' . $suffix ] ) && ! empty( $block_value[ 'gRotte' . $suffix ]['tpgbReset'] ) ) {
 
 			$rotate = $block_value[ 'gRotte' . $suffix ];
 			if ( isset( $rotate[ 'gRotteDeg' . $suffix ][ $breakpoint ] ) && ! empty( $rotate[ 'gRotteDeg' . $suffix ][ $breakpoint ] ) ) {
@@ -1215,7 +1216,7 @@ class Tpgb_Generate_Blocks_Css {
 		}
 
 		// Offset/Translate.
-		if ( isset( $block_value[ 'gOfset' . $suffix ] ) && isset( $block_value[ 'gOfset' . $suffix ]['tpgbReset'] ) && true === $block_value[ 'gOfset' . $suffix ]['tpgbReset'] ) {
+		if ( isset( $block_value[ 'gOfset' . $suffix ] ) && ! empty( $block_value[ 'gOfset' . $suffix ]['tpgbReset'] ) ) {
 			$offset = $block_value[ 'gOfset' . $suffix ];
 
 			if ( isset( $offset[ 'gOfsetX' . $suffix ][ $breakpoint ] ) && ! empty( $offset[ 'gOfsetX' . $suffix ][ $breakpoint ] ) ) {
@@ -1233,7 +1234,7 @@ class Tpgb_Generate_Blocks_Css {
 		}
 
 		// Scale.
-		if ( isset( $block_value[ 'gScle' . $suffix ] ) && isset( $block_value[ 'gScle' . $suffix ]['tpgbReset'] ) && true === $block_value[ 'gScle' . $suffix ]['tpgbReset'] ) {
+		if ( isset( $block_value[ 'gScle' . $suffix ] ) && ! empty( $block_value[ 'gScle' . $suffix ]['tpgbReset'] ) ) {
 			$scale         = $block_value[ 'gScle' . $suffix ];
 			$keep_prop_key = $is_hover ? 'keepPropHov' : 'keepProportions';
 
@@ -1251,7 +1252,7 @@ class Tpgb_Generate_Blocks_Css {
 		}
 
 		// Skew.
-		if ( isset( $block_value[ 'gSkew' . $suffix ] ) && isset( $block_value[ 'gSkew' . $suffix ]['tpgbReset'] ) && true === $block_value[ 'gSkew' . $suffix ]['tpgbReset'] ) {
+		if ( isset( $block_value[ 'gSkew' . $suffix ] ) && ! empty( $block_value[ 'gSkew' . $suffix ]['tpgbReset'] ) ) {
 			$skew = $block_value[ 'gSkew' . $suffix ];
 
 			if ( isset( $skew[ 'gSkewX' . $suffix ][ $breakpoint ] ) && '' !== $skew[ 'gSkewX' . $suffix ][ $breakpoint ] ) {

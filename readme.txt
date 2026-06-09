@@ -2,10 +2,10 @@
 Contributors: posimyththemes, nirmalkavaiya, sagarpatel124, jigar9998
 Donate link: https://nexterwp.com/nexter-blocks/
 Tags: gutenberg blocks, page builder, site builder, block editor, wordpress blocks
-Requires at least: 4.0
-Tested up to: 6.9
-Stable tag: 4.7.7
-Requires PHP: 5.6
+Requires at least: 5.6
+Tested up to: 7.0
+Stable tag: 4.7.12
+Requires PHP: 7.4
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -320,20 +320,37 @@ Privacy Policy & Terms: ThePlus Addons [Privacy Policy](https://store.posimyth.c
 
 == Changelog ==
 
+= 4.7.12 = 08 June 2026
+- Fix : Minor Bugs and Improvements.
+
+= 4.7.11 = 08 June 2026
+- Dashboard : AI Integration : Google Gemini Key Verification Issue Solved.
+
+= 4.7.10 = 21 May 2026
+- Compatibility : Added compatibility with WordPress v7.0
+- Fix : Minor Bugs and Improvements.
+
+= 4.7.9 = 12 May 2026
+- Fix : Wp Abilities Minor Bug Fix.
+
+= 4.7.8 = 11 May 2026
+- Added   : 58 Wp Abilities Added for upcoming AI features.
+- Fix     : hard-coded and non-translatable strings issue.
+
 = 4.7.7 = 06 May 2026
-- Fix : hard-coded and non-translatable strings issue
+- Fix     : hard-coded and non-translatable strings issue
 - Improve : Enhanced overall code quality.
 
 = 4.7.6 = 06 May 2026
-- Fix : Corrected inconsistent text domain usage in the file. 
+- Fix     : Corrected inconsistent text domain usage in the file. 
 - Improve : Enhanced overall code quality.
 
 = 4.7.5 = 22 April 2026
 - Added : Typo Components : Text Transform Default option Added.
-- Fix : Image : Image Size Dynamic Bug Fix
-- Fix : Accordion Inner : Duplicate Richtext Bug fix.
-- Fix : Block titles and descriptions were not appearing translated.
-- Fix : Corrected inconsistent text domain usage in file.
+- Fix   : Image : Image Size Dynamic Bug Fix
+- Fix   : Accordion Inner : Duplicate Richtext Bug fix.
+- Fix   : Block titles and descriptions were not appearing translated.
+- Fix   : Corrected inconsistent text domain usage in file.
 
 = 4.7.4 = 15 April 2026
 - Fix : languages Pot Issue resolved.
