@@ -1,0 +1,15 @@
+/.git
+/.github
+/node_modules
+/tests
+/.gitignore
+/package.json
+/package-lock.json
+/webpack.config.js
+/phpunit.xml
+/composer.json
+/composer.lock
+README.md
+.DS_Store
+**/.DS_Store
+.prettierignore
